@@ -1,0 +1,411 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          4,
+          13
+        ]
+      ],
+      "date-time": "2026-04-13T13:43:50Z",
+      "timestamp": 1776087830727,
+      "version": "3.50.1"
+    },
+    "publisher-location": "New York, NY, USA",
+    "reference-count": 35,
+    "publisher": "ACM",
+    "funder": [
+      {
+        "name": "NUS NAII",
+        "award": [
+          "A-8003879-00-00"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "A-8003879-00-00"
+            ]
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "dl.acm.org"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [],
+    "published-print": {
+      "date-parts": [
+        [
+          2026,
+          4,
+          13
+        ]
+      ]
+    },
+    "DOI": "10.1145/3772363.3798792",
+    "type": "proceedings-article",
+    "created": {
+      "date-parts": [
+        [
+          2026,
+          4,
+          13
+        ]
+      ],
+      "date-time": "2026-04-13T01:55:24Z",
+      "timestamp": 1776045324000
+    },
+    "page": "1-6",
+    "update-policy": "https://doi.org/10.1145/crossmark-policy",
+    "source": "Crossref",
+    "is-referenced-by-count": 0,
+    "title": [
+      "Branchat: A Tree-Structured Interface for Efficient Revisitation in Long-Horizon LLM Conversations"
+    ],
+    "prefix": "10.1145",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0006-4409-0046",
+        "authenticated-orcid": false,
+        "given": "Jiaming",
+        "family": "Li",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "School of Computing, National University of Singapore, Singapore, Singapore"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-8737-8369",
+        "authenticated-orcid": false,
+        "given": "Peinuan",
+        "family": "Qin",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "School of Computing, National University of Singapore, Singapore, Singapore"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-5484-6066",
+        "authenticated-orcid": false,
+        "given": "Yi-Chieh",
+        "family": "Lee",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "National University of Singapore, Singapore, Singapore"
+          }
+        ],
+        "role": [
+          {
+            "role": "author",
+            "vocabulary": "crossref"
+          }
+        ]
+      }
+    ],
+    "member": "320",
+    "published-online": {
+      "date-parts": [
+        [
+          2026,
+          4,
+          13
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_3_3_2_2_2",
+        "unstructured": "Josh Achiam Steven Adler Sandhini Agarwal Lama Ahmad Ilge Akkaya Florencia Leoni Aleman Diogo Almeida Janko Altenschmidt Sam Altman Shyamal Anadkat et al. 2023. GPT-4 Technical Report. arXiv preprint arXiv:https://arXiv.org/abs/2303.08774 (2023)."
+      },
+      {
+        "key": "e_1_3_3_2_3_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Albert Bandura. 1977. Self-efficacy: Toward a Unifying Theory of Behavioral Change. Psychological review 84 2 (1977) 191.",
+        "DOI": "10.1037/0033-295X.84.2.191"
+      },
+      {
+        "key": "e_1_3_3_2_4_2",
+        "unstructured": "John Brooke et al. 1996. SUS-A Quick and Dirty Usability Scale. Usability evaluation in industry 189 194 (1996) 4–7."
+      },
+      {
+        "key": "e_1_3_3_2_5_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1201/9781410615862.ch5"
+      },
+      {
+        "key": "e_1_3_3_2_6_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Christos Chatzichristos Manuel Morante Nikolaos Andreadis Eleftherios Kofidis Yiannis Kopsinis and Sergios Theodoridis. 2020. Emojis influence autobiographical memory retrieval from reading words: An fMRI-based study. PloS one 15 7 (2020) e0234104.",
+        "DOI": "10.1371/journal.pone.0234104"
+      },
+      {
+        "key": "e_1_3_3_2_7_2",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Jeff Conklin. 1987. Hypertext: An Introduction and Survey. Computer 20 9 (1987) 17–41. 10.1109/MC.1987.1663693",
+        "DOI": "10.1109/MC.1987.1663693"
+      },
+      {
+        "key": "e_1_3_3_2_8_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3746059.3747746"
+      },
+      {
+        "key": "e_1_3_3_2_9_2",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Edoardo Sebastiano De Duro Giuseppe Alessandro Veltri Hudson Golino and Massimo Stella. 2025. Measuring and Identifying Factors of Individuals’ Trust in Large Language Models. arXiv preprint arXiv:https://arXiv.org/abs/2502.21028 (2025). 10.48550/arXiv.2502.21028",
+        "DOI": "10.48550/arXiv.2502.21028"
+      },
+      {
+        "key": "e_1_3_3_2_10_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.18653/v1/2024.findings-naacl.201"
+      },
+      {
+        "key": "e_1_3_3_2_11_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/S0166-4115(08)62386-9"
+      },
+      {
+        "key": "e_1_3_3_2_12_2",
+        "doi-asserted-by": "publisher",
+        "unstructured": "James Hollan Edwin Hutchins and David Kirsh. 2000. Distributed Cognition: Toward a New Foundation for Human-Computer Interaction research. ACM Transactions on Computer-Human Interaction (TOCHI) 7 2 (2000) 174–196. 10.1145/353485.353487",
+        "DOI": "10.1145/353485.353487"
+      },
+      {
+        "key": "e_1_3_3_2_13_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3706598.3714222"
+      },
+      {
+        "key": "e_1_3_3_2_14_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3586183.3606737"
+      },
+      {
+        "key": "e_1_3_3_2_15_2",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Yu-Jeng Ju Yi-Ching Wang Shih-Chieh Lee Cheng-Heng Liu Jen-Hsuan Liu Chih-Wei Yang and Ching-Lin Hsieh. 2025. Developing the Questionnaire of Self-efficacy and Needs in Using Large-Language Model-based AI Services. Current Psychology (2025) 1–19. 10.1007/s12144-024-07206-8",
+        "DOI": "10.1007/s12144-024-07206-8"
+      },
+      {
+        "key": "e_1_3_3_2_16_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3706598.3714020"
+      },
+      {
+        "key": "e_1_3_3_2_17_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "David Kirsh. 1995. The Intelligent Use of Space. Artificial intelligence 73 1-2 (1995) 31–68.",
+        "DOI": "10.1016/0004-3702(94)00017-U"
+      },
+      {
+        "key": "e_1_3_3_2_18_2",
+        "unstructured": "Page Laubheimer. 2020. Spatial Memory: Why It Matters for UX Design. Nielsen Norman Group. https://www.nngroup.com/articles/spatial-memory/ Accessed 2025-12-26."
+      },
+      {
+        "key": "e_1_3_3_2_19_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "John D Lee and Katrina A See. 2004. Trust in Automation: Designing for Appropriate Reliance. Human factors 46 1 (2004) 50–80.",
+        "DOI": "10.1518/hfes.46.1.50.30392"
+      },
+      {
+        "key": "e_1_3_3_2_20_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Q Vera Liao and Jennifer Wortman Vaughan. 2023. AI Transparency in the Age of LLMs: A Human-centered Research Roadmap. arXiv preprint arXiv:https://arXiv.org/abs/2306.01941 (2023).",
+        "DOI": "10.1162/99608f92.8036d03b"
+      },
+      {
+        "key": "e_1_3_3_2_21_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Nelson F Liu Kevin Lin John Hewitt Ashwin Paranjape Michele Bevilacqua Fabio Petroni and Percy Liang. 2024. Lost in the Middle: How Language Models Use Long Contexts. Transactions of the Association for Computational Linguistics 12 (2024) 157–173.",
+        "DOI": "10.1162/tacl_a_00638"
+      },
+      {
+        "key": "e_1_3_3_2_22_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3613905.3651093"
+      },
+      {
+        "key": "e_1_3_3_2_23_2",
+        "unstructured": "Gabriella Pardede and Bernieke Anggita Ristia Damanik. 2025. Semantic Functions of Emojis in Computer-Mediated Communication: A Pragmatic and Contextual Analysis. Young Journal of Social Sciences and Humanities 1 3 (2025) 1–8."
+      },
+      {
+        "key": "e_1_3_3_2_24_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3708359.3712093"
+      },
+      {
+        "key": "e_1_3_3_2_25_2",
+        "first-page": "2",
+        "volume-title": "Proceedings of international conference on intelligence analysis",
+        "volume": "5",
+        "author": "Pirolli Peter",
+        "year": "2005",
+        "unstructured": "Peter Pirolli and Stuart Card. 2005. The Sensemaking Process and Leverage Points for Analyst Technology as Identified through Cognitive Task Analysis. In Proceedings of international conference on intelligence analysis , Vol. 5. McLean, VA, USA, 2–4."
+      },
+      {
+        "key": "e_1_3_3_2_26_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/345513.345330"
+      },
+      {
+        "key": "e_1_3_3_2_27_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Wim Pouw Gertjan Rop Bjorn De Koning and Fred Paas. 2019. The Cognitive Basis for the Split-attention Effect. Journal of Experimental Psychology: General 148 11 (2019) 2058.",
+        "DOI": "10.1037/xge0000578"
+      },
+      {
+        "key": "e_1_3_3_2_28_2",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Adam Rule Aurélien Tabard and Jim Hollan. 2017. Using Visual Histories to Reconstruct the Mental Context of Suspended Activities. Human–Computer Interaction 32 5-6 (2017) 511–558. 10.1080/07370024.2017.1300063",
+        "DOI": "10.1080/07370024.2017.1300063"
+      },
+      {
+        "key": "e_1_3_3_2_29_2",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Mike Scaife and Yvonne Rogers. 1996. External Cognition: How Do Graphical Representations Work? International journal of human-computer studies 45 2 (1996) 185–213. 10.1006/ijhc.1996.0048",
+        "DOI": "10.1006/ijhc.1996.0048"
+      },
+      {
+        "key": "e_1_3_3_2_30_2",
+        "doi-asserted-by": "publisher",
+        "unstructured": "Joey Scarr Andy Cockburn Carl Gutwin et al. 2013. Supporting and Exploiting Spatial Memory in User Interfaces. Foundations and Trends® in Human–Computer Interaction 6 1 (2013) 1–84. 10.1561/1100000046",
+        "DOI": "10.1561/1100000046"
+      },
+      {
+        "key": "e_1_3_3_2_31_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3581641.3584066"
+      },
+      {
+        "key": "e_1_3_3_2_32_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3586183.3606756"
+      },
+      {
+        "key": "e_1_3_3_2_33_2",
+        "first-page": "37",
+        "volume-title": "Psychology of learning and motivation",
+        "author": "Sweller John",
+        "year": "2011",
+        "unstructured": "John Sweller. 2011. Cognitive Load Theory. In Psychology of learning and motivation. Vol. 55. Elsevier, 37–76."
+      },
+      {
+        "key": "e_1_3_3_2_34_2",
+        "doi-asserted-by": "crossref",
+        "unstructured": "Richard Tomsett Alun Preece Dave Braines Federico Cerutti Supriyo Chakraborty Mani Srivastava Gavin Pearson and Lance Kaplan. 2020. Rapid Trust Calibration through Interpretable and Uncertainty-aware AI. Patterns 1 4 (2020).",
+        "DOI": "10.1016/j.patter.2020.100049"
+      },
+      {
+        "key": "e_1_3_3_2_35_2",
+        "unstructured": "Lifei Wang Natalie Friedman Chengchao Zhu Zeshu Zhu and S Joy Mountford. 2025. Evaluating Node-tree Interfaces for AI Explainability. arXiv preprint arXiv:https://arXiv.org/abs/2510.06457 (2025)."
+      },
+      {
+        "key": "e_1_3_3_2_36_2",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3544548.3581388"
+      }
+    ],
+    "event": {
+      "name": "CHI EA '26: Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems",
+      "location": "Barcelona , Spain",
+      "acronym": "CHI EA '26",
+      "sponsor": [
+        "SIGCHI ACM Special Interest Group on Computer-Human Interaction"
+      ]
+    },
+    "container-title": [
+      "Proceedings of the Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems"
+    ],
+    "original-title": [],
+    "link": [
+      {
+        "URL": "https://dl.acm.org/doi/pdf/10.1145/3772363.3798792",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2026,
+          4,
+          13
+        ]
+      ],
+      "date-time": "2026-04-13T12:43:17Z",
+      "timestamp": 1776084197000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://dl.acm.org/doi/10.1145/3772363.3798792"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2026,
+          4,
+          13
+        ]
+      ]
+    },
+    "references-count": 35,
+    "alternative-id": [
+      "10.1145/3772363.3798792",
+      "10.1145/3772363"
+    ],
+    "URL": "https://doi.org/10.1145/3772363.3798792",
+    "relation": {},
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2026,
+          4,
+          13
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "2026-04-13",
+        "order": 3,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  }
+}

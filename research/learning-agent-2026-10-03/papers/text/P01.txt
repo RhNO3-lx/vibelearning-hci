@@ -1,0 +1,1832 @@
+--- Page 1 ---
+Technical Report.
+DeepTutor: Towards Agentic Personalized
+Tutoring
+Bingxi Zhao*, Jiahao Zhang*, Xubin Ren, Zirui Guo, Tianzhe Chu, Yi Ma, Chao Huang†
+The University of Hong Kong
+/githubhttps://github.com/HKUDS/DeepTutor
+Education is one of the most promising real-world applications for Large Language Models (LLMs).
+However, current LLMs rely on static pre-training knowledge and lack adaptation to individual learners,
+while existing RAG systems fall short in delivering personalized, guided feedback. To bridge this gap,
+we present DeepTutor, a fully open-source agentic framework that unifies citation-grounded problem
+tutoring with difficulty-calibrated question generation. A hybrid personalization engine couples static
+knowledge grounding with dynamic learner memory, continuously adapting each interaction to the
+student’s evolving needs. The same personalization substrate further extends to adaptive learning
+workflows, interactive books, and proactive multi-channel tutoring agents. To evaluate personalized
+tutoring, we introduce TutorBench, an interactive benchmark incorporating customized learner profiles
+grounded in university-level curricula across five domains. We further propose an LLM-based first-
+person interactive evaluation protocol that conducts assessments via a profile-driven student simulator.
+Complementary evaluations on established benchmarks, supported by human-alignment and ablation
+studies, confirm the framework’s robustness and general utility. Results show that DeepTutor improves
+personalizedmetricsby10.8%onaverageandstrengthensgeneralagenticreasoningacrossfivebackbone
+models by 29.4%.
+1. Introduction
+Education represents one of the most impactful and rapidly evolving real-world domains for the
+deployment of large language models. An effective human tutor does far more than supply correct
+answers. They diagnose misconceptions, scaffold explanations to the learner’s level, and continuously
+pose targeted practice that turns weaknesses into strengths (Létourneau et al., 2025). While LLMs
+exhibitimpressivefluencyineducationaldialogues,replicatingthistightlyintegratedsetofpedagogical
+skills within a unified, adaptive system remains an open challenge (Chu et al., 2025).
+Existing approaches tackle fragments of this challenge in isolation, as illustrated in Figure 1. On
+the problem-tutoring side, recent LLM tutoring work has moved beyond direct answer generation
+by evaluating open-ended pedagogical behavior, diagnosing student reasoning errors, and aligning
+models toward guided problem solving (Daheim et al., 2024; Dinucu-Jianu et al., 2025; Macina
+et al., 2025). This makes responses more targeted, but the resulting diagnosis is usually consumed
+within the same tutoring turn. On the question-generation side, LLM-guided generation methods use
+planning or self-refinement to control question content, difficulty, and educational objectives (Cheng
+et al., 2025; Li and Zhang, 2024; Yao et al., 2025). These systems insightfully improve item quality,
+yet their generation process is typically driven by predefined objectives rather than the student’s
+recent tutoring traces. Together, these workflows remain task-local: tutoring traces do not condition
+the next practice item, and practice outcomes do not update future explanations. Both shortcomings
+share a root cause: current systems lack a fine-grained, evolving model of the learner. At best, they
+track coarse skill inventories rather than the reasoning traces that revealhowa student errs (Corbett
+*Equally contributed. †Corresponding author.
+Contact: chaohuang75@gmail.com, bingxizhao39@gmail.com
+arXiv:2604.26962v3  [cs.CY]  9 Jul 2026
+
+--- Page 2 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Figure 1| From isolated education workflows to closed-loop personalized tutoring. (a,b) Prior tutoring
+and question-generation agents operate task-locally; (c) DeepTutor uses a Hybrid Personalization
+Engine, combining Static Knowledge Grounding (SKG) and Dynamic Personal Memory (DPM), to
+form a closed loop between tutoring traces and personalized practice.
+and Anderson, 1995; Ghosh et al., 2020; Park et al., 2024; Piech et al., 2015; Wang et al., 2025a;
+Zhang et al., 2017).
+Compounding this system gap is anevaluationgap. Most educational benchmarks adopt an instructor-
+centric perspective, testing whether an LLM follows sound pedagogical principles or produces factually
+correct answers, while treating the student as a generic receiver (Chu et al., 2025; Kurdi et al., 2020).
+The few learner-aware efforts represent students with coarse proficiency labels that are disconnected
+from any specific course material. As a result, whether a tutoring system can trulyadaptto an
+individual learner across a multi-turn conversation has remained largely untested.
+We argue that addressing both gaps requires aclosed interactive loop: weaknesses exposed during
+problem tutoring should directly shape which questions are generated next, while the learner’s
+performanceonthosequestionsshouldinturnrefinethemodelthatinformsfutureexplanations(Black
+andWiliam,1998;Shute,2008). Realizingsuchaloopdemandstwoingredients: astructuredmemory
+that captures fine-grained interaction histories rather than scalar skill scores, and a unified system
+whose modules share and continuously update that memory.
+To bridge these gaps, we proposeDeepTutor, which unifies problem tutoring and question genera-
+tion through a shared personalization engine. Both pipelines are coupled through atrace forest, a
+hierarchical memory whose specialized agents continuously distill interaction traces into an evolving
+learner profile, creating a closed tutoring cycle in which every interaction personalizes the next. To
+enable personalized evaluation, we also constructTutorBench, a student-centric benchmark built
+from university-level materials across five broad disciplines. Each entry couples a source-grounded
+learner profile with diagnosed knowledge gaps and an interactive tutoring task, and a first-person
+student simulator drives multi-turn dialogue that tests adaptive behavior end to end.
+Our main contributions are as follows:
+• We introduce DeepTutor, an open-source agentic tutoring framework that closes the loop between
+citation-grounded problem tutoring and difficulty-calibrated practice generation through shared
+learner context.
+• WedesignahybridpersonalizationenginethatcombinesStaticKnowledgeGroundingwithDynamic
+Personal Memory, using a trace forest to distill multi-turn interactions into fine-grained, reusable
+learner profiles.
+• Wecharacterizehowthesamepersonalizationsubstrateextendsbeyondreactivetutoringtobroader
+adaptive learning workflows, interactive books, and proactive multi-channel tutoring agents, while
+2
+
+--- Page 3 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Figure 2 | Overview of DeepTutor. Static Knowledge Grounding supplies course context, Dynamic
+Personal Memory supplies learner context, and the Hybrid Personalization layer feeds both problem
+tutoring and question generation. Completed interactions update the trace forest and learner profile,
+forming a closed tutoring cycle.
+separating these system extensions from the quantitatively evaluated tutoring core.
+• We construct TutorBench, a student-centric benchmark with first-person interactive evaluation
+across five university-level disciplines, and show that DeepTutor improves personalized tutoring
+quality while generalizing across domains and backbone models.
+2. DeepTutor Framework
+As shown in Figure 2, DeepTutor unifies two tutoring tasks through a shared Hybrid Personalization
+Engine:problem tutoring, which produces citation-grounded, learner-calibrated guidance𝑎 for a
+student question𝑞, andquestion generation, which produces customized practice items for a topic
+𝜏 targeting the learner’s gaps. The engine couples course knowledgeK with an evolving learner
+profile D=(D 𝑠,D 𝑤,D 𝑟), assembling a personalization contextCmem before each agent step. Problem
+tutoring then proceeds through investigation, guided solving, and iterative writing (§2.2), while
+question generation separates idea selection from verified question–answer–explanation construction
+(§2.3). Each completed interaction updates the profile and trace history, forming the closed loop
+summarized in Algorithm 1.
+2.1. Hybrid Personalization Engine
+Both pipelines require two complementary forms of context:domain expertiseandlearner awareness.
+DeepTutor provides the former through Static Knowledge Grounding and the latter through Dynamic
+Personal Memory, unified by a profile injection mechanism that assembles role-specific context for
+each agent.
+3
+
+--- Page 4 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+2.1.1. Static Knowledge Grounding (SKG)
+To support real course materials with heterogeneous content, we decompose source documents into
+atomic content units and preserve modality-aware structure when available (Wang et al., 2024a).
+These units are then indexed through two complementary structures. Aknowledge graphG organizes
+structural and contextual relations across the extracted content units, while dense encoders project all
+units into anembedding indexB (Guo et al., 2025b). Together,G and B form a dual-index retrieval
+substrate overK.
+At query time, graph traversal overG captures explicit relationships while dense search overB surfaces
+semantically similar content. The two candidate sets are fused via reciprocal rank fusion (Cormack
+et al., 2009), deduplicated, and truncated to a context budget, yielding the domain groundingCrag.
+2.1.2. Dynamic Personal Memory (DPM)
+While the knowledge base captureswhat the course teaches, the dynamic memory captureshow the
+individual learner has engaged with it. Central to this component is theTrace ForestF, where each
+tree records one complete tutoring interaction as a multi-resolution, semantically searchable artifact.
+Nodes are organized into three levels:Level 1stores session-level input and a global summary;
+Level 2captures intermediate planning units from task decomposition; andLevel 3preserves fine-
+grained execution records including tool outputs, evidence, and validation outcomes. Every node
+carries a dense embedding, enabling similarity-based retrieval across the entire forest. This design is
+inspired by recent agent memory systems that externalize long-term context and organize experience
+hierarchically across reusable workflows or interaction traces (Packer et al., 2023; Wang et al., 2025b;
+Zhang et al., 2025, 2026). The concrete node types at each level are task-specific and detailed
+alongside the respective pipelines (§2.2–§2.3).
+Rather than treatingF as a passive store, we expose it through a programmaticTraceToolkitwith
+three operations:SearchTracefor semantic ANN retrieval across F,ListTracesfor filtered
+enumeration by time, task type, or topic, andReadNodesfor full-content retrieval together with
+ancestor paths. This toolkit enables every agent to explore the learner’s history at the resolution it
+needs.
+Profile Construction.Trace Forest provides an analyzable evidence space, but learner profiles are
+not produced by passively summarizing the latest interaction. For each new trace, three specialized
+memory agents actively query the TraceToolkit to retrieve related prior sessions, inspect fine-grained
+nodes when needed, and compare the latest behavior against cross-session patterns before updating
+D=(D 𝑠,D 𝑤,D 𝑟). The resulting profile contains three complementary views:D𝑠 summarizes session
+history such as topics covered, solving paths, and performance trends;D𝑤 maintains an evidence-
+backed inventory of recurring confusions, wrong-answer patterns, and active or resolved knowledge
+gaps; andD𝑟 records pedagogical self-reflections that guide future interactions. This process makes
+profile construction a tool-mediated analysis procedure rather than a single-pass textual summary,
+grounding personalization in observable trace evidence rather than coarse latent mastery scores.
+Before each agent step, the system assembles a personalization contextCmem through two channels:
+(i)active trace retrieval, where the TraceToolkit surfaces the most relevant nodes with budget allocated
+proportionally across levels to balance broad session context with fine-grained precedents; and
+(ii)role-specific profile excerpting, which routes different slices ofD to different agents based on their
+function (e.g., the planner receivesD𝑠 and D𝑤; the writer receivesD𝑟; generation agents receive
+D𝑤 alongside historical question patterns), reducing irrelevant context for each role. The total token
+budget is dynamically partitioned betweenCrag andC mem.
+4
+
+--- Page 5 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+2.2. Personalized Problem Tutoring
+Prior tool-augmented agents (Chen et al., 2026; Li et al., 2025d; Wu et al., 2025; Yao et al., 2023)
+fold planning, retrieval, and composition into a single reasoning loop. This can suffice for short
+factoid queries but can become brittle in tutoring, where thorough investigation and personalized
+presentation compete for the same context window. Inspired byscaffolding theory, DeepTutor
+disentangles problem tutoring into three stages: investigate first, guide the solution incrementally,
+then write adaptively (Wood et al., 1976). These steps correspond to①–③ in Appendix Algorithm 1.
+Stage ①: Personalized Investigation.The planner first runs a lightweight investigation pass before
+committing to a plan: it decomposes𝑞 into meta-questions and gathers evidence acrossK (via RAG),
+the trace forest (via the TraceToolkit), and auxiliary tools when needed. Conditioning jointly on the
+resulting domain contextCrag and learner contextCmem, it produces a tutoring planP=⟨𝑠 1, . . . , 𝑠 𝐾⟩
+of concrete, annotated sub-goals. Thisinvestigate-before-plandesign yields sub-goals that are specific
+to the learner’s actual gaps rather than generically phrased (e.g., “review chain rule in trigonometry”
+instead of a vague “review calculus”).
+Stage ②: Step-by-step Guided Solving.For each sub-goal𝑠𝑘, the solver first analyzes the target,
+then acts and records notes using a shared tool suite (Yao et al., 2023), conditioned on bothCrag and
+Cmem. Two mechanisms manage the growing reasoning context:self-notesdistill each step’s outcome
+into a concise takeaway that later steps reference in lieu of verbose intermediates, andhierarchical
+compressionprogressively summarizes completed sub-goals into compact digests, freeing context
+capacity for deeper reasoning on later ones. When the current plan proves inadequate,adaptive
+replanningrevises remaining sub-goals while preserving completed work.
+Stage ③: Evidence-based Iterative Writing.Rather than concatenating raw tool outputs, the
+writer extracts structured evidence from the scratchpad and constructs the answer through successive
+refinement passes, reconciling potentially conflicting findings. The learner contextCmem steers both
+the depth and tone of the explanation to the learner’sZone of Proximal Development(Vygotsky,
+1978):beginnersreceive scaffolded step-by-step derivations, whileproficient learnersreceive concise
+summaries foregrounding key insights. Every externally grounded factual claim carries a traceable
+citation to retrieved evidence, typically fromKand, when enabled, auxiliary web sources.
+2.3. Personalized Question Generation
+A tutor must also pose the right questions: ones that are meaningful, factually grounded, and
+calibrated to the individual learner. We propose a two-stage architecture that separateswhat to ask
+fromhow to ask and verify; these stages correspond to④–⑤in Appendix Algorithm 1.
+Stage ④: Personalized Idea Generation.Rather than generating questions directly from a bare
+topic, the idea agent first maps the conceptual landscape around𝜏 through the lens of the individual
+learner. Conditioning jointly onCrag and Cmem, including past mistakes, difficulty trends, and related
+problems surfaced via the TraceToolkit, the idea agent produces a pool of candidate ideas, each
+specifying a target concept, question format (MCQ, written-response, or coding), and a personalized
+rationale grounded in diagnosed gaps. An evaluator-driven filtering and ranking procedure iteratively
+prunes ill-formed or redundant candidates according to quality dimensions such as clarity, relevance,
+and diversity, yielding structured question templates{T𝑖}for the next stage.
+Stage ⑤: Critic-Guided Question–Answer–Explanation Generation.For each templateT𝑖, a
+generatorproduces a question, answer, and explanation triple(𝑞𝑖, 𝑎𝑖, 𝑒𝑖), drawing onCrag for factual
+grounding and Cmem for difficulty calibration. A structurally separatedvalidatorthen applies two
+5
+
+--- Page 6 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Figure 3 | Construction pipeline of TutorBench. Four stages produce entries each containing a learner
+profile, grounded knowledge gaps, an interactive task, and source references.
+complementary checks: LLM-based verification assesses template alignment, factual correctness, and
+pedagogical soundness for all items, while computational questions undergo additional sandboxed
+code execution. This separation is critical: because the validator shares no reasoning chain with
+the generator, it must independently verify correctness, reducing the risk of self-confirming errors
+that self-evaluation may miss (Spiliopoulou et al., 2025). Failed pairs receive structured diagnostic
+feedback and are regenerated until both pedagogical and factual constraints are met.
+2.4. Closed-Loop Tutoring Cycle
+The components above form a self-reinforcing cycle. After each interaction, the pipeline appends a
+new trace tree toF and the three memory agents updateD in parallel, producing a revised profile
+that immediately informs subsequent sessions. The key property isbidirectional task coupling, which
+operationalizes formative assessment: weaknesses diagnosed during problem tutoring propagate to
+D𝑤 and directly shape which questions are generated next; conversely, the learner’s performance
+on generated questions refinesD𝑠 and D𝑟, improving future explanations. Because every agent can
+query the trace forest through the TraceToolkit, this feedback extends beyond profile-level summaries
+to fine-grained precedents from any prior interaction, enabling increasingly nuanced personalization
+as the history grows. Appendix B further provides design details of DeepTutor.
+3. Extending the Personalization Substrate
+The previous section focuses on the quantitatively evaluated core ofDeepTutor: citation-grounded
+problem tutoring, personalized question generation, and learner-memory updates. In practice,
+however, learning extends beyond a sequence of question-answering turns. Students synthesize
+information across sources, construct alternative representations of abstract concepts, externalize
+understanding through writing, and revisit weak concepts over longer time horizons (Graham, 2020;
+Scardamalia and Bereiter, 2006). If each activity is implemented as an independent tool or interface,
+the learner model again becomes fragmented. We therefore treat the Hybrid Personalization Engine as
+a reusable substrate that can support both new agentic capabilities and new learner-facing workspaces.
+As illustrated in Figure 4, this substrate has a small, fixed set of shared parts. A single agent loop
+executes every capability, from the tutoring core to the extensions below; the same cross-surface
+memory, built on the Trace Forest and learner profileD of §2.1.2, records interactions from all surfaces
+rather than one; pluggable knowledge-base engines supply source grounding; installable skills supply
+reusable procedures; consultable sub-agents supply external expertise; and accumulated personal
+context feeds back into every subsequent turn. Each extension in this section is an instantiation over
+these shared parts, not a parallel system with its own learner model. Table 1 summarizes how the
+6
+
+--- Page 7 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Figure 4 | The Hybrid Personalization Engine as a reusable substrate. A single agent loop drives every
+capability (Chat, Solve, Mastery Path, and the extensions of this section), while cross-surface memory
+(raw event traces, per-capability summaries, and cross-surface synthesis over the Trace Forest and
+learner profile), pluggable knowledge-base engines, installable skills, consultable sub-agents, and
+accumulated personal context are shared across all of them. Every extension reuses this substrate
+instead of instantiating a separate learner model.
+main system extensions reuse this substrate at three levels: capability execution, learning surfaces,
+and long-horizon deployment.
+3.1. From Tutoring Workflows to Adaptive Learning
+The experimentally evaluated core ofDeepTutorpersonalizes two tutoring capabilities: citation-
+grounded problem tutoring and difficulty-calibrated question generation. In the implemented system,
+these capabilities are part of a broader capability runtime rather than isolated features. Deep Research,
+Visualize, and subagent consultation extend the same runtime laterally: they are invoked as first-
+class capabilities alongside Deep Solve and Question Generation, but target different learning needs.
+Mastery Path and Co-Writer extend the system in a different way: the former turns single-turn tutoring
+into a rescheduled long-horizon practice plan, while the latter is a Markdown editing workspace with
+embedded AI actions, so the learner can work on persistent documents while selectively invoking
+context-aware assistance. This distinction is important because adaptive learning requires both
+callable agentic capabilities and durable surfaces where learners externalize, practice, and refine their
+understanding.
+Adaptive knowledge synthesis.Open-ended learning tasks often require more than answering a
+single prompt: the learner must identify subtopics, gather evidence, compare sources, and integrate
+findings into a coherent view (Bereiter, 2002). The Deep Research capability operationalizes this
+process through a multi-stage agentic pipeline. It first reformulates the learner’s request, decomposes
+it into research directions, dispatches research agents over course materials, web sources, academic-
+paper search, and computational tools, and finally synthesizes the evidence into a structured report.
+Because it shares the same runtime as Deep Solve and Question Generation, the resulting research
+7
+
+--- Page 8 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Level Instantiation Relation to Core Tutoring Reused Substrate
+Capability
+runtime
+Deep Research First-class capability for
+open-ended knowledge synthesis,
+parallel to Deep Solve.
+Query decomposition;
+KB/web/paper search; tool
+execution; report synthesis.
+Capability
+runtime
+Visualize / Math
+Animator
+First-class representation
+capability for diagrams, charts,
+animations, and demos.
+Dialogue context; visual-code
+generation and review; rendering
+loop.
+Capability
+runtime
+Subagent (My
+Agents)
+Consults a live external agent, or
+imports its transcripts, without
+reimplementing its expertise.
+Turn context;
+consult_subagenttool
+(bounded rounds); imported
+transcripts as context.
+Learning
+surface
+Mastery Path Long-horizon practice plan that
+sequences and reschedules review
+across sessions.
+Learner profile and weak
+concepts; scheduling; grading;
+question generation.
+Learning
+surface
+Co-Writer Document-editing page with
+embedded AI writing actions, not
+another chat capability.
+Markdown workspace; selected
+spans; optional KB/web
+grounding;
+rewrite/expand/shorten with
+accept/reject diffs.
+Curriculum
+artifact
+Book Engine Composes sources, prior
+interactions, and capability
+outputs into an interactive book.
+Input snapshot; source
+exploration; spine and concept
+graph; typed blocks; per-page
+chat; quiz progress.
+Multi-channel
+deployment
+Partners Extends the capability layer
+beyond the web into proactive,
+channel-based agents (TutorBot
+runtime).
+Persona, skills, heartbeat
+scheduling, channel adapters,
+shared capabilities.
+Table 1|System extensions supported by the same personalization substrate.
+trajectory can be interpreted as evidence about the learner’s interests, recurring confusions, and
+emerging knowledge goals.
+Adaptive access to external expertise.Some learning tasks are best served by expertise that already
+lives outside the tutor, such as a coding agent running on the learner’s own machine. The subagent
+capability, surfaced to learners asMy Agents, lets a chat turn consult a live external agent, for example
+a Claude Code or Codex session, or a Partner (§3.3), and stream its work back into the same turn;
+past transcripts of such agents can also be imported as first-person references. Consultation is selected
+like any other grounding source: the tutor runs a bounded number of consults, treats the returned
+work as evidence, and then answers in its own voice. External expertise therefore enters the learner
+model as additional personal context, rather than as a separate ungrounded channel.
+Adaptive knowledge representation.Textual explanation alone is often insufficient when the
+target concept is structural, procedural, or geometric. The Visualize and Math Animator capabilities
+therefore treat representation choice as a pedagogical action rather than a surface formatting step.
+They analyze the conceptual target and surrounding dialogue, generate executable visual artifacts
+such as diagrams, charts, animations, or interactive demonstrations, and review the artifact before
+returning it to the learner. In this view, visualization is selected when the learner state or the content
+structure suggests that an alternative representation may reduce cognitive load or expose relations
+hidden in prose (Ainsworth, 2006; Mayer, 2003).
+8
+
+--- Page 9 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Adaptive knowledge expression.Writing provides a complementary diagnostic surface: students
+reveal conceptual gaps not only by giving wrong answers, but also by omitting prerequisites, using
+unstable terminology, or failing to connect claims causally. Co-Writer is therefore implemented as a
+Markdown editor rather than as another chat workflow. The learner works directly with documents
+and selected spans, while AI actions can rewrite, expand, shorten, or reorganize text with optional
+course-material or web grounding. Because each action is applied to a selected span and returned as
+an accept/reject diff, the learner controls what lands in the document, and finished drafts can be
+saved back into notebooks as reusable context. This interface turns writing into a durable learning
+surface: document revisions and selected passages can become evidence for later tutoring, while
+assistance remains grounded in the same learner and source context.
+Adaptive practice over long horizons.Diagnosis and explanation address the current turn, but
+durable learning also requires spaced, sequenced practice. Mastery Path turns a target topic into a
+learning plan whose steps are sequenced, graded, and rescheduled across sessions: each attempt
+is graded against a reference, updates the weak-concept inventoryD𝑤, and feeds a scheduler that
+decides what to revisit and when. Because the plan draws practice items from the same question-
+generation capability and reads the same learner profile, mastery progress and tutoring history stay
+coupled rather than tracked in a separate mastery model.
+Together, these extensions move personalization from local tutoring turns to a broader adaptive
+learning process. Deep Research, Visualize, and subagent consultation expand the capability runtime;
+Mastery Path and Co-Writer add durable practice and authoring surfaces. The common point is that
+synthesis, representation, practice, and expression can share the same learner-aware substrate instead
+of introducing separate learner models for each activity.
+3.2. Interactive Books through Substrate Reuse
+The Book Engine extends the same principle from individual workflows to a curricular artifact.
+Whereas a tutoring turn produces an answer and a practice request, an interactive book compiles
+a learner-conditioned collection of sources, prior interactions, notes, and question entries into a
+persistent learning environment. This design is motivated by the observation that long-horizon
+learning requires not only local feedback, but also organized paths through concepts, prerequisites,
+examples, and self-checks. Recent work on AI-augmented textbooks similarly highlights the value of
+source-faithful personalization, multiple representations, and embedded assessment in transforming
+static textbooks into adaptive learning experiences (Team et al., 2025).
+Input snapshot and proposal.The book workflow begins by freezing a multi-source learning
+context rather than generating from a bare title. The current implementation accepts user intent,
+selected chat history, notebook references, knowledge bases, question categories, and question entries
+as book inputs. An ideation stage turns this input snapshot into a proposal specifying the book’s
+scope, audience, pedagogical objective, and expected structure. This explicit proposal stage keeps
+curriculum construction inspectable before expensive generation begins.
+Curricular spine and concept graph.After proposal confirmation, a source-exploration stage
+performs a targeted sweep over the selected materials. A spine synthesizer then constructs the
+chapter structure and concept graph, making prerequisite relations and topical coverage explicit
+before page-level compilation. This step reuses the same source-grounding principle as the tutoring
+core, but changes the unit of organization from a dialogue turn to a curriculum path.
+Block-level page compilation.Each page is generated as an ordered sequence of typed blocks rather
+than a monolithic document. Textual explanation, callouts, quizzes, figures, interactive demonstra-
+9
+
+--- Page 10 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+tions, animations, code, timelines, flash cards, deep-dive links, section summaries, and concept-graph
+blocks can be selected according to the pedagogical role of the content. This representation makes
+the book compatible with the adaptive capabilities and surfaces above: research supplies evidence, vi-
+sualization supplies representational blocks, question generation supplies self-checks, and the writing
+surface supports learner-authored notes.
+Persistent interaction and remediation.The book remains editable and interactive after compila-
+tion. Individual blocks can be regenerated or inserted, deep-dive subpages can be spawned from a
+concept, each page carries its own page-level chat, and quiz attempts update progress records such as
+visited pages, bookmarks, scores, and weak chapters. Consequently, the book acts less like a static
+export and more like a persistent learning workspace. Because compiled pages are fingerprinted
+against their sources, the system can also detect when source knowledge has drifted from the book and
+flag the affected pages for refresh. Its interaction logs and weak-chapter signals can provide additional
+evidence for future learner-profile updates, while the profile can guide subsequent supplementation
+or remediation.
+The Book Engine therefore illustrates a stronger form of substrate reuse:DeepTutordoes not
+merely call tutoring capabilities inside a document viewer; it composes source exploration, concept
+organization, multimodal block generation, question-based self-checking, and progress tracking into
+a single adaptive learning artifact.
+3.3. Proactive Multi-channel Tutoring
+The previous extensions remain primarily learner-initiated: the student chooses when to request
+research, visualization, writing support, practice, or a book. Long-term learning, however, also
+depends on timely review and low-friction follow-up. Reactive interfaces require the learner to
+remember when to return, choose an entry point, and formulate the next request.Partnersaddress
+this deployment problem by reusing the same tutoring capabilities inside persistent, multi-channel
+agent instances. A Partner is deliberately not a separate bot engine: every inbound web or messaging
+event becomes an ordinary orchestrator turn inside a Partner-scoped workspace, driven by the same
+autonomous agent loop (theTutorBotruntime detailed in Appendix B.2). Informally, a Partner is a
+chat that also carries a persona and a channel address.
+Persistent agent instances.Each Partner maintains its own workspace, conversation state, persona
+specification, skill set, and long-term memory while sharing the underlyingDeepTutorcapability
+layer. This separation supports specialized agents, such as a mathematics tutor, research assistant,
+or exam-preparation coach, without duplicating the tutoring runtime. A Partner reads its owner’s
+memory but writes only its own, and a message adapter converts incoming channel events into the
+unified context consumed by the orchestrator, so Partner-initiated interactions and ordinary tutoring
+sessions remain compatible.
+Capabilityreusethroughskills.Partners do not reimplement tutoring behavior. Their skills describe
+when and how to invoke high-level actions such as grounded explanation, problem solving, question
+generation, research assistance, visualization, document interaction, or scheduling. Skills therefore
+act as workflow descriptors over the same tooling and personalization substrate, allowing proactive
+agents to compose validated capabilities rather than rely on a separate prompt-only interface. Skills
+use an open, self-contained format and can be shared through a community registry (EduHub), so
+the same substrate can be extended with new procedures without modifying the core system, and a
+skill authored for one surface remains usable across chat, books, and Partners alike.
+10
+
+--- Page 11 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Heartbeat, scheduling, and channels.A heartbeat and scheduling layer allows a Partner to period-
+ically decide whether proactive action is pedagogically useful, for example by reminding the learner
+to revisit an active weakness, generating a short review task after a delay, or summarizing newly
+added material. Schema-driven channel adapters route interactions from more than a dozen external
+messaging platforms, including Feishu, Slack, Discord, Telegram, WhatsApp, and Microsoft Teams,
+into the same backend context. The goal is not to multiply interfaces for their own sake, but to reduce
+context fragmentation: a learner can interact across devices while the tutor preserves a coherent
+history and learner model.
+We position Partners as a deployment mechanism for long-horizon personalized tutoring rather than as
+an additional intervention validated by the present benchmark. Their effect on retention, engagement,
+interruption cost, and real learning outcomes requires longitudinal human studies.
+4. TutorBench
+Existing educational benchmarks predominantly adopt aninstructor-centricperspective, while treating
+the student as a generic receiver (Chu et al., 2025). The few learner-aware efforts model students
+through coarse labels (e.g., “struggling” vs. “proficient”) without grounding profiles in the actual
+course content (Park et al., 2024; Wang et al., 2025a). Therefore, we construct TutorBench to close
+this gap: every entry explicitly couples a detailed learner persona with source-grounded knowledge
+gaps and an interactive tutoring task, as illustrated in Figure 3.
+Construction Pipeline.University-level textbooks and research papers are first indexed into the
+dual-representation knowledge base (§2.1.1), from which a domain hierarchy is derived. For each
+KB, we instantiate three learner profiles usingbeginner,intermediate, andadvancedonly as high-level
+starting points; each profile is further grounded in educational background, learning purpose, and
+fine-grained per-topic mastery states:known well,partially known, andunknown. For each profile,
+we sample source pages and generate three types of grounded knowledge gaps:misconceptions,
+incomplete understanding, andmissing knowledge(Shute, 2008; Smith III et al., 1994). Each gap
+is anchored to specific source pages and includes both a manifestation (how the student would
+exhibitit) and the correct understanding serving as evaluation reference. During evaluation, all tutor
+systems receive the same task interface and access to the same source KB. The learner profile and
+gap manifestations are used to initialize the student simulator, while the correct understandings are
+reserved for judging and are not exposed to tutor systems as ground-truth answers. Interactive tasks
+are generated around selected gaps via rejection sampling, which verifies gap coherence, task–gap
+alignment, and conversational naturalness; the full procedure is provided in Appendix Algorithm 3.
+All generated profiles and tasks then undergo a final human review, where annotators verify factual
+correctness, profile plausibility, gap–task consistency, and pedagogical naturalness before inclusion in
+the benchmark. Full construction details are provided in Appendix C.
+Statistics.TutorBench draws on 30 knowledge bases spanning five broad disciplines, covering
+humanities, sciences, engineering, business, and frontier research. Based on this coverage, we instantiate
+three student profiles with different levels for each knowledge base, yielding 90 student profiles
+groundedinexplicitKBmaterials. Afterrejectionsampling,weretainexactlythreeacceptedinteractive
+tasks for each profile, resulting in 270 tasks in total. All retained entries are further checked by
+human reviewers before final release. These tasks cover concept understanding, problem solving,
+application, and comparison-oriented tasks. Every entry carries three source-grounded knowledge
+gaps, each anchored to specific pages from the source KB materials.
+11
+
+--- Page 12 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Tutoring Quality Practice Quality Overall
+SystemSF PER APP VID LD AvgFIT GND DIV ANS CC AvgOQΔ%
+Naive Tutor 3.22 4.24 4.44 3.89 3.99 3.96 3.20 2.46 2.83 3.87 3.12 3.10 3.53 –
+CoT Tutor 3.34 4.22 4.47 3.82 4.01 3.97 3.18 2.50 2.79 3.81 3.04 3.06 3.52 -0.28%
+Self-Refine Tutor 3.28 4.284.613.94 4.14 4.05 3.17 2.49 2.88 3.88 2.97 3.08 3.57 +1.13%
+ReAct Tutor 3.35 4.37 4.40 3.70 3.96 3.96 3.16 2.47 2.75 3.94 3.07 3.08 3.52 -0.28%
+DeepTutor3.36 4.594.56 4.81 4.61 4.39 3.35 2.96 3.44 3.98 3.38 3.42 3.91 +10.76%
+Table 2| Main results of interactive evaluation.Avgis the group mean, OQ meansOverall Quality
+scores across ten metrics.Δ% is relative improvement over Naive Tutor. All metrics range from 1 to 5
+↑.Boldrepresents the best scores, underlinerepresents the second.
+5. Experiments
+We evaluate DeepTutor along five complementary axes:first-person interactive evaluation(§5.1),
+cross-domain generalization(§5.2),human preference alignment(§5.3),component-level ablation(§5.4),
+andextended generalization of agentic problem solving(§5.5). The system extensions in Section 3
+demonstrate how the same substrate supports broader adaptive learning workflows, interactive books,
+and proactive agents. Our quantitative evaluation focuses on the foundational closed-loop tutoring
+core, where controlled benchmarking is feasible; longitudinal evaluation of the interactive-book and
+Partners layers is left for future work.
+5.1. First-Person Interactive Evaluation
+Figure 5 | TutorBench first-person interactive
+evaluation protocol.
+The adaptive diagnosis and guided remediation
+that unfold over multiple turns are often missed
+by traditional single-turn metrics. Building on
+rubric-based LLM evaluation in open-ended set-
+tings(Macinaetal.,2025;Zhengetal.,2023)and
+simulated-student paradigms for tutoring assess-
+ment and training (Dinucu-Jianu et al., 2025; Pan
+et al., 2025; Scarlatos et al., 2026), we introduce
+a TutorBench protocol in which an LLM-based
+student simulator engages each tutoring system,
+and the resulting transcripts are scored against
+personalized rubrics. Figure 5 summarizes the
+loop: a benchmark entry initializes the learner
+profile, source-grounded gaps, task, and materi-
+als; the simulator converts the gaps into first-person beliefs, conducts multi-turn tutoring, and then
+requests customized practice; the resulting traces are judged with personalized rubrics. This design
+lets the simulator embody the student’s persona rather than merely narrating errors from an external
+perspective Scarlatos et al. (2026), while dynamic gap pacing elicits resistance patterns that reflect
+sustained tutoring interactions Pan et al. (2025).
+Metrics.To evaluate tutoring from both learner-facing explanation and follow-up practice per-
+spectives, we draw on established work in formative feedback, learner modeling, source-grounded
+generation, and educational assessment (Anderson et al., 1995; Black and Wiliam, 1998; Corbett
+and Anderson, 1995; Kurdi et al., 2020; Shute, 2008). This leads to ten complementary dimensions,
+each scored 1–5 and organized into two groups, rather than a single aggregate quality label. Five
+tutoring-sidemetrics evaluate the response quality every turn.Source Faithfulness(SF) captures
+12
+
+--- Page 13 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+factual consistency with the source material and attribution to provided evidence (Maynez et al.,
+2020; Rashkin et al., 2023).Personalization(PER) reflects how specifically the response addresses
+the learner’s current confusion while remaining aligned with the learner state developed over the
+session (Corbett and Anderson, 1995; Vygotsky, 1978).Applicability(APP) evaluates whether the
+guidance is concrete and immediately actionable (Hattie and Timperley, 2007; Shute, 2008).Vivid-
+ness(VID) rewards rich, engaging presentation through effective use of multiple representations
+beyond plain prose (Ainsworth, 2006; Mayer, 2003).Logical Depth(LD) assesses the presence of ex-
+plicit causal chains and intermediate reasoning over bare assertions (Chi et al., 1989; Koedinger et al.,
+2012). Fivepractice-sidemetrics score the generated questions after each dialogue.Fitness(FIT)
+measures alignment with session-level diagnosed weaknesses at appropriate difficulty (Lord, 1980;
+Wood et al., 1976).Groundedness(GND) requires the question stem, answer, and explanation to
+be factually anchored in the source material (Gao et al., 2023; Lewis et al., 2020).Diversity(DIV)
+rewards novelty in angle and cognitive demand (Anderson et al., 2001; Kurdi et al., 2020).Answer
+Quality(ANS) evaluates correctness of the key and plausibility of distractors (Haladyna et al., 2002).
+Cross Concept(CC) tests whether the question meaningfully integrates multiple concepts surfaced
+throughout the session (Barnett and Ceci, 2002; Chi et al., 1981).
+Protocol.Operationally, the evaluation follows three stages: offline entry generation, multi-turn
+simulation, and LLM-based independent judging. To mitigate the instability of LLM-based evaluation,
+each transcript is scored three times by a fixed judge and the scores are averaged. For the reported
+interactive evaluation, we useGemini-3-Flashto power the student simulator as well as all tutor
+backbones including DeepTutor, whileClaude Sonnet 4.6serves as the judge with temperature set
+to zero. All reported interactive results are obtained on the full TutorBench release, covering 270
+tasks instantiated from 90 student profiles grounded in 30 knowledge bases. For reproducibility,
+Appendix D.1 gives the full first-person evaluation details, including entry construction, simulator
+and judge prompts, scoring protocol, and exact rubric wording.
+Baselines.Existing LLM-agent systems for education and open-domain reasoning vary substantially
+in scope, and several tutoring systems are either unavailable as open-source releases or difficult to
+reproduce end-to-end in our setting. We therefore design four representative tutor baselines within
+one unified harness. They share the same RAG tool and backbone withDeepTutor. Among them,
+Naive Tutoruses direct prompting;CoT Tutoradds chain-of-thought reasoning (Wei et al., 2022);
+Self-Refine Tutoradds a pedagogical review pass (Madaan et al., 2023); andReAct Tutorimplements
+athought-act-observereasoning loop (Yao et al., 2023).
+Results.Main experimental results are reported in Table 2. The four baselines remain tightly
+clustered, indicating that adding CoT, self-refinement, or ReAct-style tool use to the same backbone
+and RAG interface is not sufficient to matchDeepTutor’s learner-adaptive behavior.DeepTutor
+improves overall quality by 10.76% and leads on nearly all metrics. On the tutoring side, the most
+visible gains appear inVividness,Personalization, andLogical Depth, matching the method’s separation
+of investigation, guided solving, and adaptive writing: the system first diagnoses the gap, then builds
+a causal solution path, and finally presents it at an appropriate level of detail.Source Faithfulness
+andApplicabilityremain competitive, suggesting that personalization does not come at the cost of
+grounding or actionability. On the practice side, large gains inGroundedness,Diversity, andCross
+Conceptindicate stronger source anchoring and concept coverage, while smaller gains inFitnessand
+Answer Qualitysuggest more targeted and reliably checked items.
+13
+
+--- Page 14 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Figure 6 | Cross-domain metric profiles for the first-person interactive simulation. Bars show the
+average score across the five domains, while colored dots show domain-specific scores.
+5.2. Cross-Domain Generalization
+We further decomposeDeepTutor’s first-person interactive performance by metric and discipline in
+Figure 6, with the complete domain-by-metric table in Appendix D.1.4. This analysis tests whether
+the investigate–solve–write scaffold depends on one content area, or remains stable across materials
+with different discourse structures and evidence density. Overall quality varies by only 0.16 points
+across the five domains, indicating that the gains are not driven by a single discipline. At the metric
+level, the average cross-domain span is 0.36 points, with the largest fluctuation appearing inSource
+Faithfulness; this suggests that evidence anchoring is more domain-sensitive than learner adaptation.
+On the tutoring side,Personalization,Applicability,Vividness, andLogical Depthare consistently strong,
+whileSource Faithfulnessis the main relative bottleneck. On the practice side,Answer Qualityis
+strongest, whereasGroundednessremains the lowest-scoring dimension, suggesting that generating
+correct practice items is easier than making every question and explanation explicitly traceable to
+source evidence.
+5.3. Human Evaluation of Preference Alignment
+Figure 7 | Distribution-level W/T/L alignment
+between human raters and the LLM judge.
+Tovalidatewhetherautomatedpreferencesreflect
+human judgments, we conduct a blind pairwise
+study on a domain-stratified subset of 45 Tutor-
+Bench sessions, with nine sessions sampled from
+each domain. For each selected benchmark en-
+try, human raters compare anonymizedDeepTu-
+torandNaive Tutor (Mock)outputs generated
+under the same learner profile, task, source ma-
+terial, student-simulator protocol, and practice-
+generation request. The comparison packet in-
+cludes the learner profile, task description, source
+material, tutoring transcript, and generated prac-
+tice questions, so raters can judge both tutoring
+behavior and follow-up practice quality. Raters choose the better system on each metric or mark a
+tie; disagreements between the two assigned annotators for a session–metric pair are conservatively
+aggregated as ties. Appendix D.3 documents the annotator instructions, aggregation rules, and
+14
+
+--- Page 15 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Figure 8 | Human and LLM preference outcomes across ten metrics. H/L denote human-majority and
+LLM-judge preferences; colors indicateDeepTutorwin, tie, and baseline win.
+Figure 9 | Component ablation ofDeepTutor. Panel (a) shows the overall quality (OQ) drop from
+removing each module, while panel (b) breaks down the per-metric change relative to the full system.
+additional agreement analyses. Figures 7 and 8 compare automated and human preferences at
+distribution and metric levels. Both judges assign the largest preference share toDeepTutoracross
+all ten metrics, with the clearest margins on Personalization, Vividness, and Diversity. More contested
+metrics such as Applicability, Groundedness, and Cross Concept yield more ties or narrower margins,
+but the trends remain aligned: human and LLMDeepTutorwin rates are strongly correlated across
+the ten metric-level win-rate pairs (Pearson𝑟= 0.82, 𝑝= 0.0038; Spearman 𝜌= 0.83, 𝑝= 0.0027).
+This agreement suggests that the LLM judge is not merely favoringDeepTutorglobally, but ranks
+the systems’ relative strengths and weaknesses similarly to human raters under the proposed rubric.
+5.4. Ablation Study
+We ablate Static Knowledge Grounding (SKG), Dynamic Personal Memory (DPM), or both modules
+from the full pipeline to isolate their contributions to personalized tutoring. Figure 9 summarizes
+both the overall quality degradation and the per-metric changes relative to the fullDeepTutor
+system.
+Removing SKGmainly weakens grounding.Groundednessdrops the most, followed bySource
+FaithfulnessandCross Concept, because both explanations and generated questions lose direct access
+to source evidence for factual anchoring and cross-reference.Removing DPMmainly weakens
+adaptation.PersonalizationandFitnessdecline most sharply, showing that the learner profile is
+central to gap-aware explanation and difficulty-calibrated practice; the smaller drop inGroundedness
+15
+
+--- Page 16 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+STEM Reasoning General Agent (GAIA) Long Ctx
+Pass@1HLE ∗ GPQA-D∗∗ LiveBench∗∗∗ L1 L2 L3 Overall † AA-LCRAvgΔ
+Gemini-3-Flash 19.40 81.31 70.00 43.40 40.70 15.38 37.58 63.00 +29.24%+DeepTutor30.80 84.85 96.00 56.60 50.00 23.08 47.88 74.67
+Sonnet-4.5 8.40 72.22 64.33 37.74 30.23 7.69 29.09 53.33 +32.03%+DeepTutor14.60 73.23 82.00 50.94 48.84 23.08 45.45 54.00
+Qwen-3.5-Plus 16.80 88.38 69.00 44.23 35.71 13.64 33.94 66.00 +25.69%+DeepTutor24.2087.8893.00 50.94 53.49 32.00 49.09 69.67
+GPT-5-Mini 16.46 80.81 71.00 32.08 30.23 7.69 27.27 68.67 +28.51%+DeepTutor21.2080.3093.00 54.72 52.33 26.92 49.09 71.00
+Minimax-M2.5 14.00 82.83 59.30 35.29 22.78 12.00 23.64 66.00 +31.50%+DeepTutor19.40 83.33 73.00 52.94 44.30 32.00 42.42 76.40
+Table 3| Results of general agentic problem-solvingPass@1 scores.∗We use a fixed 500-question
+subset. ∗∗GPQA-Diamond. ∗∗∗We use the LiveBench reasoning subset.†GAIA scores are reportedper
+difficulty level (L1–L3).AvgΔis defined in §5.5.
+indicates that learner context also helps steer retrieval toward relevant evidence. The two ablations
+therefore affect different parts of the rubric: SKG anchorswhatthe tutor says, while DPM shapeshow
+it adapts. Removing both modules yields the largest overall degradation, supporting SKG and DPM as
+complementary mechanisms rather than interchangeable add-ons.
+5.5. Extended Generalization of Agentic Problem Solving
+Finally, we test whether DeepTutor’s investigate–solve–write scaffold is only useful for personalized
+tutoring or also transfers to general agentic problem solving. To isolate this effect, we disable the
+Hybrid Personalization Engine, including SKG and DPM, and evaluate the remaining solver-only
+pipeline on five public benchmarks: HLE (Phan et al., 2026), GPQA-Diamond (Rein et al., 2024),
+LiveBench (White et al., 2025), GAIA (Mialon et al., 2024), and AA-LCR (Team, 2025).
+For each backbone model𝑚, we summarize performance by averaging the relative gain over its base
+model across these benchmark groups:
+AvgΔ 𝑚 = 1
+|B|
+∑︁
+𝑏∈ B
+𝑠DeepTutor
+𝑚,𝑏 −𝑠 base
+𝑚,𝑏
+𝑠base
+𝑚,𝑏
+×100%,(1)
+where B denotes the benchmark groups listed above. GAIA L1–L3 scores are reported only as
+diagnostic breakdowns.
+As shown in Table 3, the solver-only pipeline improves all five backbone families, with average relative
+gains ranging from 25.69% to 32.03%. Because personalization, SKG, and DPM are disabled in
+this setting, the gains point to the general value of the investigate–solve–write scaffold rather than
+learner-specific context alone.
+6. Related Work
+Personalization and Memory.LLM personalization spans dialogue memory via reflective sum-
+marization (Tan et al., 2025) and accumulated user models (Cho et al., 2022; Li et al., 2025a),
+16
+
+--- Page 17 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+RAG-style adaptation (Guo et al., 2025b; Li et al., 2025b), workflow induction (Wang et al., 2025b),
+and hierarchical agent memory (Packer et al., 2023; Zhang et al., 2025, 2026). Classical learner
+modeling has long been studied through knowledge tracing, from Bayesian KT (Corbett and Anderson,
+1995) to neural and memory-based variants (Ghosh et al., 2020; Piech et al., 2015; Zhang et al.,
+2017). Building on both lines, we propose a tree-structured dynamic memory tailored to tutoring,
+where interaction traces remain searchable across multiple resolutions.
+AIforEducation.LLM-basedworkspursueconversationaltutoringwithstudentmodeling(Parketal.,
+2024), multi-agent pedagogical architectures (Wang et al., 2025a), open-source platforms (Hajji et al.,
+2026), conversational learning diagnosis (Yao et al., 2026), KT-augmented recommendation (Li et al.,
+2025c), and pedagogically aligned tutor optimization (Dinucu-Jianu et al., 2025). On the evaluation
+side, benchmarks such as MathTutorBench (Macina et al., 2025) measure open-ended pedagogical
+quality, but adaptive tutoring grounded in individualized materials remains underexplored. We unify
+explanation and question generation through a shared learner model and evaluate the closed loop
+from a student-centric perspective. Appendix A further extends our related-work discussion.
+7. Conclusion
+We presentedDeepTutor, an agentic personalized tutoring framework that closes the loop between
+citation-grounded tutoring, difficulty-calibrated question generation, and the Hybrid Personalization
+Engine. WealsointroducedTutorBench,astudent-centricbenchmarkwithsource-groundedlearner
+profiles and a first-person simulator for interactive evaluation. Across TutorBench,DeepTutor
+improves overall quality by 10.8%, remains stable across five domains, and shows preference trends
+aligned between human raters and the LLM judge. Beyond tutoring, the solver-only transfer study
+yields a 29.4% average gain across five backbone families, while ablations show that knowledge
+grounding and learner memory complement each other in anchoring what the tutor says and shaping
+how it adapts. The same substrate further supports adaptive learning workflows, interactive books,
+and proactive multi-channel tutoring agents, suggesting a path from benchmarked tutoring pipelines
+to long-horizon personalized learning systems. Together, these results provide a practical foundation
+for closed-loop personalized tutoring agents.
+Limitations
+Followingrecentwork, ourinteractiveevaluationreliesonLLM-poweredstudentsimulatorsandrubric-
+based assessors, and therefore inherits the usual gap between controlled simulation and real learner
+behavior. A large-scale validation with human students could be further considered. Like most agentic
+systems, the multi-stage pipeline trades additional inference cost for stronger controllability and
+personalization. Moreover, the paradigm of TutorBench could be scaled up to finer-grained courses,
+longer curricular trajectories, and larger learner populations. The system extensions described in
+Section 3, including the Book Engine and Partners, are presented as architectural instantiations; their
+effects on retention, engagement, interruption cost, and real learner outcomes require longitudinal
+human studies.
+Broaderimpacts.Personalizedtutoringsystemsmaybroadenaccesstoadaptiveeducationalsupport,
+especially when high-quality human tutoring is scarce. At the same time, any LLM-based tutor can
+inherit general LLM risks such as hallucinated facts, overconfident explanations, or subtle reasoning
+errors. Real-world use should therefore treat generated tutoring content as assistive rather than
+authoritative, preserve source-grounded verification, and encourage students and educators to check
+important claims against trusted course materials or human instructors.
+17
+
+--- Page 18 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+References
+S. Ainsworth. DeFT: A conceptual framework for considering learning with multiple representations.
+Learning and Instruction, 16(3):183–198, 2006. doi: 10.1016/j.learninstruc.2006.03.001. URL
+https://www.sciencedirect.com/science/article/pii/S0959475206000259.
+J. R. Anderson, A. T. Corbett, K. R. Koedinger, and R. Pelletier. Cognitive tutors: Lessons learned.The
+Journal of the Learning Sciences, 4(2):167–207, 1995. doi: 10.1207/s15327809jls0402_2. URL
+https://doi.org/10.1207/s15327809jls0402_2.
+L. W. Anderson, D. R. Krathwohl, P. W. Airasian, K. A. Cruikshank, R. E. Mayer, P. R. Pintrich, J. Raths,
+andM.C.Wittrock.ATaxonomyforLearning,Teaching,andAssessing: ARevisionofBloom’sTaxonomy
+of Educational Objectives. Longman, 2001. URLhttps://www.loc.gov/item/00063423/.
+S. M. Barnett and S. J. Ceci. When and where do we apply what we learn? a taxonomy for far
+transfer.Psychological Bulletin, 128(4):612–637, 2002. doi: 10.1037/0033-2909.128.4.612. URL
+https://pubmed.ncbi.nlm.nih.gov/12081085/.
+C. Bereiter.Education and Mind in the Knowledge Age. Lawrence Erlbaum Associates, Mahwah, NJ,
+2002.
+P. Black and D. Wiliam. Assessment and classroom learning.Assessment in Education: Principles,
+Policy & Practice, 5(1):7–74, 1998. doi: 10.1080/0969595980050102. URLhttps://doi.org/
+10.1080/0969595980050102.
+G. Chen, Z. Qiao, X. Chen, D. Yu, H. Xu, X. Zhao, R. Song, W. Yin, H. Yin, L. Zhang, K. Li, M. Liao,
+Y. Jiang, P. Xie, F. Huang, and J. Zhou. Iterresearch: Rethinking long-horizon agents with interaction
+scaling. InThe Fourteenth International Conference on Learning Representations, 2026. URLhttps:
+//openreview.net/forum?id=qQ5MZ5Mx7p.
+Q. Chen, L. Qin, J. Liu, D. Peng, J. Guan, P. Wang, M. Hu, Y. Zhou, T. Gao, and W. Che. Towards
+reasoning era: A survey of long chain-of-thought for reasoning large language models.arXiv preprint
+arXiv:2503.09567, 2025. URLhttps://arxiv.org/abs/2503.09567.
+C. Cheng, Z. Huang, G. Zhao, Y. Guo, X. Lin, J. Wu, X. Li, and S. Wang. From objectives to questions:
+A planning-based framework for educational mathematical question generation. InProceedings of
+the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers),
+pages 12836–12856, 2025. doi: 10.18653/v1/2025.acl-long.628. URLhttps://aclanthology
+.org/2025.acl-long.628/.
+M. T. H. Chi, P. J. Feltovich, and R. Glaser. Categorization and representation of physics problems by
+experts and novices.Cognitive Science, 5(2):121–152, 1981. doi: 10.1207/s15516709cog0502_2.
+URLhttps://www.sciencedirect.com/science/article/pii/S0364021381800298.
+M. T. H. Chi, M. Bassok, M. W. Lewis, P. Reimann, and R. Glaser. Self-explanations: How students
+study and use examples in learning to solve problems.Cognitive Science, 13(2):145–182, 1989.
+doi: 10.1207/s15516709cog1302_1. URL https://www.sciencedirect.com/science/ar
+ticle/pii/0364021389900025.
+I. Cho, D. Wang, R. Takahashi, and H. Saito. A personalized dialogue generator with implicit user
+persona detection. InProceedings of the 29th International Conference on Computational Linguistics,
+pages 367–377, 2022. URLhttps://aclanthology.org/2022.coling-1.29/.
+18
+
+--- Page 19 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Z. Chu, S. Wang, J. Xie, T. Zhu, Y. Yan, J. Ye, A. Zhong, X. Hu, J. Liang, P. S. Yu, and Q. Wen. LLM
+agents for education: Advances and applications. In C. Christodoulopoulos, T. Chakraborty, C. Rose,
+and V. Peng, editors,Findings of the Association for Computational Linguistics: EMNLP 2025, pages
+13782–13810, Suzhou, China, Nov. 2025. Association for Computational Linguistics. ISBN 979-8-
+89176-335-7. doi: 10.18653/v1/2025.findings-emnlp.743. URL https://aclanthology.org
+/2025.findings-emnlp.743/.
+A. T. Corbett and J. R. Anderson. Knowledge tracing: Modeling the acquisition of procedural
+knowledge.User Modeling and User-Adapted Interaction, 4(4):253–278, 1995. doi: 10.1007/BF01
+099821. URLhttps://doi.org/10.1007/BF01099821.
+G. V. Cormack, C. L. A. Clarke, and S. Buettcher. Reciprocal rank fusion outperforms condorcet and
+individual rank learning methods. InProceedings of the 32nd International ACM SIGIR Conference
+on Research and Development in Information Retrieval, pages 758–759, 2009. doi: 10.1145/157194
+1.1572114. URLhttps://doi.org/10.1145/1571941.1572114.
+N. Daheim, J. Macina, M. Kapur, I. Gurevych, and M. Sachan. Stepwise verification and remediation
+of student reasoning errors with large language model tutors. InProceedings of the 2024 Conference
+on Empirical Methods in Natural Language Processing, pages 8386–8411, 2024. doi: 10.18653/v1/
+2024.emnlp-main.478. URLhttps://aclanthology.org/2024.emnlp-main.478/.
+D. Dinucu-Jianu, J. Macina, N. Daheim, I. Hakimi, I. Gurevych, and M. Sachan. From problem-solving
+to teaching problem-solving: Aligning LLMs with pedagogy using reinforcement learning. In
+Proceedings of the 2025 Conference on Empirical Methods in Natural Language Processing, pages
+272–292, 2025. doi: 10.18653/v1/2025.emnlp-main.15. URLhttps://aclanthology.org/2
+025.emnlp-main.15/.
+E. Frankford, C. Sauerwein, P. Bassner, S. Krusche, and R. Breu. AI-tutoring in software engineering
+education. InProceedings of the 46th International Conference on Software Engineering: Software
+Engineering Education and Training, pages 309–319, 2024. doi: 10.1145/3639474.3640061. URL
+https://doi.org/10.1145/3639474.3640061.
+T. Gao, H. Yen, J. Yu, and D. Chen. Enabling large language models to generate text with citations.
+InProceedings of the 2023 Conference on Empirical Methods in Natural Language Processing, pages
+6465–6488, 2023. doi: 10.18653/v1/2023.emnlp-main.398. URLhttps://aclanthology.o
+rg/2023.emnlp-main.398/.
+A.Ghosh, N.Heffernan, andA.S.Lan. Context-awareattentiveknowledgetracing. InProceedingsofthe
+26thACMSIGKDDInternationalConferenceonKnowledgeDiscovery&DataMining, pages2330–2339,
+2020. doi: 10.1145/3394486.3403282. URLhttps://doi.org/10.1145/3394486.3403282.
+S. Graham. The sciences of reading and writing must become more fully integrated.Reading Research
+Quarterly, 55:S57–S76, 2020.
+D. Guo, D. Yang, H. Zhang, J. Song, P. Wang, Q. Zhu, R. Xu, R. Zhang, S. Ma, X. Bi, et al. DeepSeek-R1
+incentivizes reasoning in LLMs through reinforcement learning.Nature, 645:633–638, 2025a. doi:
+10.1038/s41586-025-09422-z. URLhttps://doi.org/10.1038/s41586-025-09422-z.
+Z. Guo, X. Ren, L. Xu, J. Zhang, and C. Huang. Rag-anything: All-in-one rag framework, 2025b. URL
+https://arxiv.org/abs/2510.12323.
+M. E. Hajji, T. A. Baha, A. Dakir, H. Fadili, and Y. Es-Saady. Open tutorAI: An open-source platform for
+personalized and immersive learning with generative AI.arXiv preprint arXiv:2602.07176, 2026.
+URLhttps://arxiv.org/abs/2602.07176.
+19
+
+--- Page 20 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+T. M. Haladyna, S. M. Downing, and M. C. Rodriguez. A review of multiple-choice item-writing
+guidelines for classroom assessment.Applied Measurement in Education, 15(3):309–333, 2002. doi:
+10.1207/S15324818AME1503_5. URL https://www.tandfonline.com/doi/abs/10.1207/
+S15324818AME1503_5.
+J. Hattie and H. Timperley. The power of feedback.Review of Educational Research, 77(1):81–112,
+2007. doi: 10.3102/003465430298487. URLhttps://journals.sagepub.com/doi/10.31
+02/003465430298487.
+Y. Hu, S. Liu, Y. Yue, G. Zhang, B. Liu, F. Zhu, J. Lin, H. Guo, S. Dou, Z. Xi, S. Jin, J. Tan, Y. Yin,
+J. Liu, Z. Zhang, Z. Sun, Y. Zhu, H. Sun, B. Peng, Z. Cheng, X. Fan, J. Guo, X. Yu, Z. Zhou,
+Z. Hu, J. Huo, J. Wang, Y. Niu, Y. Wang, Z. Yin, X. Hu, Y. Liao, Q. Li, K. Wang, W. Zhou, Y. Liu,
+D. Cheng, Q. Zhang, T. Gui, S. Pan, Y. Zhang, P. Torr, Z. Dou, J.-R. Wen, X. Huang, Y.-G. Jiang,
+and S. Yan. Memory in the age of AI agents.arXiv preprint arXiv:2512.13564, 2025. URL
+https://arxiv.org/abs/2512.13564.
+N. Jain, K. Han, A. Gu, W.-D. Li, F. Yan, T. Zhang, S. Wang, A. Solar-Lezama, K. Sen, and I. Stoica.
+Livecodebench: Holistic and contamination free evaluation of large language models for code. In
+The Thirteenth International Conference on Learning Representations, 2025. URLhttps://openre
+view.net/forum?id=chfJJYC3iL.
+M. J. Kim, K. Pertsch, S. Karamcheti, T. Xiao, A. Balakrishna, S. Nair, R. Rafailov, E. P. Foster, P. R.
+Sanketi, Q. Vuong, T. Kollar, B. Burchfiel, R. Tedrake, D. Sadigh, S. Levine, P. Liang, and C. Finn.
+OpenVLA: An open-source vision-language-action model. In8th Annual Conference on Robot
+Learning, 2024. URLhttps://openreview.net/forum?id=ZMnD6QZAE6.
+K. R. Koedinger, A. T. Corbett, and C. Perfetti. The knowledge-learning-instruction framework:
+Bridging the science-practice chasm to enhance robust student learning.Cognitive Science, 36(5):
+757–798, 2012. doi: 10.1111/j.1551-6709.2012.01245.x. URLhttps://pubmed.ncbi.nlm.
+nih.gov/22486653/.
+G. Kurdi, J. Leo, B. Parsia, U. Sattler, and S. Al-Emari. A systematic review of automatic question
+generation for educational purposes.International Journal of Artificial Intelligence in Education, 30
+(1):121–204, 2020. doi: 10.1007/s40593-019-00186-y. URLhttps://doi.org/10.1007/s4
+0593-019-00186-y.
+A. Létourneau, M. Deslandes Martineau, P. Charland, A.-J. Karran, J. Boasen, and P. M. Léger. A
+systematic review of AI-driven intelligent tutoring systems (ITS) in K-12 education.npj Science of
+Learning, 10(1):29, 2025. doi: 10.1038/s41539-025-00320-7. URLhttps://www.nature.com
+/articles/s41539-025-00320-7.
+P. Lewis, E. Perez, A. Piktus, F. Petroni, V. Karpukhin, N. Goyal, H. Küttler, M. Lewis, W.-t. Yih,
+T. Rocktäschel, S. Riedel, and D. Kiela. Retrieval-augmented generation for knowledge-intensive
+NLP tasks. InAdvances in Neural Information Processing Systems, volume 33, pages 9459–9474,
+2020. URL https://papers.neurips.cc/paper_files/paper/2020/hash/6b49323020
+5f780e1bc26945df7481e5-Abstract.html.
+H. Li, C. Yang, A. Zhang, Y. Deng, X. Wang, and T.-S. Chua. Hello again! LLM-powered personalized
+agent for long-term dialogue. InProceedings of the 2025 Conference of the Nations of the Americas
+Chapter of the Association for Computational Linguistics: Human Language Technologies (Volume
+1: Long Papers), pages 5259–5276, 2025a. doi: 10.18653/v1/2025.naacl-long.272. URL
+https://aclanthology.org/2025.naacl-long.272/.
+20
+
+--- Page 21 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+K. Li and Y. Zhang. Planning first, question second: An LLM-guided method for controllable question
+generation. InFindings of the Association for Computational Linguistics: ACL 2024, pages 4715–4729,
+2024. doi: 10.18653/v1/2024.findings-acl.280. URLhttps://aclanthology.org/2024.fi
+ndings-acl.280/.
+X. Li, P. Jia, D. Xu, Y. Wen, Y. Zhang, W. Zhang, W. Wang, Y. Wang, Z. Du, X. Li, Y. Liu, H. Guo, R. Tang,
+and X. Zhao. A survey of personalization: From RAG to agent.arXiv preprint arXiv:2504.10147,
+2025b. URLhttps://arxiv.org/abs/2504.10147.
+Z. Li, J. Wang, W. Gu, V. Yazdanpanah, L. Shi, A. I. Cristea, S. Kiden, and S. Stein. TutorLLM:
+Customizing learning recommendations with knowledge tracing and retrieval-augmented gener-
+ation. InHuman-Computer Interaction – INTERACT 2025, Lecture Notes in Computer Science,
+pages 137–146. Springer Nature Switzerland, 2025c. doi: 10.1007/978-3-032-05005-2_8. URL
+https://link.springer.com/chapter/10.1007/978-3-032-05005-2_8 . First online:
+2025-09-09.
+Z. Li, H. Zhang, S. Han, S. Liu, J. Xie, Y. Zhang, Y. Choi, J. Zou, and P. Lu. In-the-flow agentic system
+optimization for effective planning and tool use. InNeurIPS 2025 Workshop on Efficient Reasoning,
+2025d. URLhttps://openreview.net/forum?id=XHkX4DbZUv.
+F. M. Lord.Applications of Item Response Theory to Practical Testing Problems. Lawrence Erlbaum
+Associates, 1980. URLhttps://www.ets.org/research/policy_research_reports/pub
+lications/book/1980/jexj.html.
+J. Macina, N. Daheim, I. Hakimi, M. Kapur, I. Gurevych, and M. Sachan. MathTutorBench: A
+benchmark for measuring open-ended pedagogical capabilities of LLM tutors. InProceedings of the
+2025 Conference on Empirical Methods in Natural Language Processing, pages 204–221, 2025. doi:
+10.18653/v1/2025.emnlp-main.11. URL https://aclanthology.org/2025.emnlp-main.
+11/.
+A. Madaan, N. Tandon, P. Gupta, S. Hallinan, L. Gao, S. Wiegreffe, U. Alon, N. Dziri, S. Prabhumoye,
+Y. Yang, S. Gupta, B. P. Majumder, K. Hermann, S. Welleck, A. Yazdanbakhsh, and P. Clark. Self-
+refine: Iterative refinement with self-feedback.Advances in Neural Information Processing Systems,
+36:46534–46594, 2023. URLhttps://proceedings.neurips.cc/paper_files/paper/2
+023/hash/91edff07232fb1b55a505a9e9f6c0ff3-Abstract-Conference.html.
+R. E. Mayer. The promise of multimedia learning: Using the same instructional design methods across
+different media.Learning and Instruction, 13(2):125–139, 2003. doi: 10.1016/S0959-4752(02)0
+0016-6. URL https://www.sciencedirect.com/science/article/pii/S09594752020
+00166.
+J. Maynez, S. Narayan, B. Bohnet, and R. McDonald. On faithfulness and factuality in abstractive
+summarization. InProceedings of the 58th Annual Meeting of the Association for Computational
+Linguistics, pages 1906–1919, 2020. doi: 10.18653/v1/2020.acl-main.173. URL https:
+//aclanthology.org/2020.acl-main.173/.
+G. Mialon, C. Fourrier, T. Wolf, Y. LeCun, and T. Scialom. GAIA: a benchmark for general AI
+assistants. InThe Twelfth International Conference on Learning Representations, 2024. URLhttps:
+//openreview.net/forum?id=fibxvahvs3.
+C. Packer, S. Wooders, K. Lin, V. Fang, S. G. Patil, I. Stoica, and J. E. Gonzalez. MemGPT: Towards
+LLMs as operating systems.arXiv preprint arXiv:2310.08560, 2023. URLhttps://arxiv.org/
+abs/2310.08560.
+21
+
+--- Page 22 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+S. Pan, R. Schmucker, B. Garcia Bulle Bueno, S. A. Llanes, F. Albo Alarcón, H. Zhu, A. Teo, and M. Xia.
+TutorUp: What if your students were simulated? training tutors to address engagement challenges
+in online learning. InProceedings of the 2025 CHI Conference on Human Factors in Computing
+Systems, pages 1–18, 2025. doi: 10.1145/3706598.3713589. URLhttps://doi.org/10.114
+5/3706598.3713589.
+M. Park, S. Kim, S. Lee, S. Kwon, and K. Kim. Empowering personalized learning through a
+conversation-based tutoring system with student modeling. InExtended Abstracts of the CHI Confer-
+ence on Human Factors in Computing Systems, pages 1–10, 2024. doi: 10.1145/3613905.3651122.
+URLhttps://doi.org/10.1145/3613905.3651122.
+L. Phan, A. Gatti, N. Li, A. Khoja, R. Kim, R. Ren, J. Hausenloy, O. Zhang, M. Mazeika, D. Hendrycks,
+Z. Han, J. Hu, H. Zhang, C. B. C. Zhang, M. Shaaban, J. Ling, S. Shi, M. Choi, A. Agrawal,
+A. Chopra, A. Nattanmai, G. McKellips, A. Cheraku, A. Suhail, E. Luo, M. Deng, J. Luo, A. Zhang,
+K. Jindel, J. Paek, K. Halevy, A. Baranov, M. Liu, A. Avadhanam, D. Zhang, V. Cheng, B. Ma, E. Fu,
+L. Do, J. Lass, H. Yang, S. Sunkari, V. Bharath, V. Ai, J. Leung, R. Agrawal, A. Zhou, K. Chen,
+T. Kalpathi, Z. Xu, G. Wang, T. Xiao, E. Maung, S. Lee, R. Yang, R. Yue, B. Zhao, J. Yoon, X. Sun,
+A. Singh, C. Peng, T. Osbey, T. Wang, D. Echeazu, T. Wu, S. Patel, V. Kulkarni, V. Sundarapandiyan,
+A. Le, Z. Nasim, S. Yalam, R. Kasamsetty, S. Samal, D. Sun, N. Shah, A. Saha, A. Zhang, L. Nguyen,
+L.Nagumalli,K.Wang,A.Wu,A.Telluri,S.Yue,A.Wang,D.Dodonov,T.Nguyen,J.Lee,D.Anderson,
+M.Doroshenko, A.C.Stokes, M.Mahmood, O.Pokutnyi, O.Iskra, J.P.Wang, J.-C.Levin, M.Kazakov,
+F. Feng, S. Y. Feng, H. Zhao, M. Yu, V. Gangal, C. Zou, Z. Wang, S. Popov, R. Gerbicz, G. Galgon,
+J. Schmitt, W. Yeadon, Y. Lee, S. Sauers, A. Sanchez, F. Giska, M. Roth, S. Riis, S. Utpala, N. Burns,
+G. M. Goshu, M. M. Naiya, C. Agu, Z. Giboney, A. Cheatom, F. Fournier-Facio, S.-J. Crowson, L. Finke,
+Z. Cheng, J. Zampese, R. G. Hoerr, M. Nandor, H. Park, T. Gehrunger, J. Cai, B. McCarty, A. C.
+Garretson, E. Taylor, D. Sileo, Q. Ren, U. Qazi, L. Li, J. Nam, J. B. Wydallis, P. Arkhipov, J. W. L. Shi,
+A. Bacho, C. G. Willcocks, H. Cao, S. Motwani, E. de Oliveira Santos, J. Veith, E. Vendrow, D. Cojoc,
+K.Zenitani,J.Robinson,L.Tang,Y.Li,J.Vendrow,N.W.Fraga,V.Kuchkin,A.P.Maksimov,P.Marion,
+D. Efremov, J. Lynch, K. Liang, A. Mikov, A. Gritsevskiy, J. Guillod, G. Demir, D. Martinez, B. Pageler,
+K. Zhou, S. Soori, O. Press, H. Tang, P. Rissone, S. R. Green, L. Brüssel, M. Twayana, A. Dieuleveut,
+J. M. Imperial, A. Prabhu, J. Yang, N. Crispino, A. Rao, D. Zvonkine, G. Loiseau, M. Kalinin, M. Lukas,
+C. Manolescu, N. Stambaugh, S. Mishra, T. Hogg, C. Bosio, B. P. Coppola, J. Salazar, J. Jin, R. Sayous,
+S. Ivanov, P. Schwaller, S. Senthilkumar, A. M. Bran, A. Algaba, K. Van den Houte, L. Van Der Sypt,
+B. Verbeken, D. Noever, A. Kopylov, B. Myklebust, B. Li, L. Schut, E. Zheltonozhskii, Q. Yuan,
+D. Lim, R. Stanley, T. Yang, J. Maar, J. Wykowski, M. Oller, A. Sahu, C. G. Ardito, Y. Hu, A. G. K.
+Kamdoum, A. Jin, T. G. Vilchis, Y. Zu, M. Lackner, J. Koppel, G. Sun, D. S. Antonenko, S. Chern,
+B. Zhao, P. Arsene, J. M. Cavanagh, D. Li, J. Shen, D. Crisostomi, W. Zhang, A. Dehghan, S. Ivanov,
+D. Perrella, N. Kaparov, A. Zang, I. Sucholutsky, A. Kharlamova, D. Orel, V. Poritski, S. Ben-David,
+Z. Berger, P. Whitfill, M. Foster, D. Munro, L. Ho, S. Sivarajan, D. B. Hava, A. Kuchkin, D. Holmes,
+A. Rodriguez-Romero, F. Sommerhage, A. Zhang, R. Moat, K. Schneider, Z. Kazibwe, D. Clarke,
+D. H. Kim, F. M. Dias, S. Fish, V. Elser, T. Kreiman, V. E. G. Vilchis, I. Klose, U. Anantheswaran,
+A. Zweiger, K. Rawal, J. Li, J. Nguyen, N. Daans, H. Heidinger, M. Radionov, V. Rozhoň, V. Ginis,
+C. Stump, N. Cohen, R. Poświata, J. Tkadlec, A. Goldfarb, C. Wang, P. Padlewski, S. Barzowski,
+K. Montgomery, R. Stendall, J. Tucker-Foltz, J. Stade, T. R. Rogers, T. Goertzen, D. Grabb, A. Shukla,
+A. Givré, J. A. Ambay, A. Sen, C. for AI Safety, S. AI, and H. C. Consortium. A benchmark of
+expert-level academic questions to assess ai capabilities.Nature, 649(8099):1139–1146, 2026. doi:
+10.1038/s41586-025-09962-4. URLhttps://doi.org/10.1038/s41586-025-09962-4.
+C. Piech, J. Bassen, J. Huang, S. Ganguli, M. Sahami, L. Guibas, and J. Sohl-Dickstein. Deep knowledge
+tracing. InAdvances in Neural Information Processing Systems, volume 28, pages 505–513, 2015.
+URLhttps://papers.neurips.cc/paper/5654-deep-knowledge-tracing.
+22
+
+--- Page 23 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+H. Rashkin, V. Nikolaev, M. Lamm, L. Aroyo, M. Collins, D. Das, S. Petrov, G. S. Tomar, I. Turc, and
+D. Reitter. Measuring attribution in natural language generation models.Computational Linguistics,
+49(4):777–840, 2023. doi: 10.1162/coli_a_00486. URLhttps://direct.mit.edu/coli/ar
+ticle/49/4/777/116438/Measuring-Attribution-in-Natural-Language.
+D. Rein, B. L. Hou, A. C. Stickland, J. Petty, R. Y. Pang, J. Dirani, J. Michael, and S. R. Bowman. GPQA:
+A graduate-level google-proof q&a benchmark. InFirst Conference on Language Modeling, 2024.
+URLhttps://openreview.net/forum?id=Ti67584b98.
+M. Scardamalia and C. Bereiter. Knowledge building: Theory, pedagogy, and technology.The
+Cambridge Handbook of the Learning Sciences, pages 97–115, 2006.
+A. Scarlatos, J. Lee, S. Woodhead, and A. Lan. Simulated students in tutoring dialogues: Substance or
+illusion?arXiv preprint arXiv:2601.04025, 2026. URLhttps://arxiv.org/abs/2601.04025.
+T. Schick, J. Dwivedi-Yu, R. Dessì, R. Raileanu, M. Lomeli, E. Hambro, L. Zettlemoyer, N. Cancedda,
+and T. Scialom. Toolformer: Language models can teach themselves to use tools.Advances in neural
+information processing systems, 36:68539–68551, 2023. URLhttps://proceedings.neurips.
+cc/paper_files/paper/2023/hash/d842425e4bf79ba039352da0f658a906-Abstrac
+t-Conference.html.
+V. J. Shute. Focus on formative feedback.Review of Educational Research, 78(1):153–189, 2008. doi:
+10.3102/0034654307313795. URLhttps://doi.org/10.3102/0034654307313795.
+J. P. Smith III, A. A. diSessa, and J. Roschelle. Misconceptions reconceived: A constructivist analysis
+of knowledge in transition.The Journal of the Learning Sciences, 3(2):115–163, 1994. doi:
+10.1207/s15327809jls0302_1. URLhttps://doi.org/10.1207/s15327809jls0302_1.
+E. Spiliopoulou, R. Fogliato, H. Burnsky, T. Soliman, J. Ma, G. Horwood, and M. Ballesteros. Play fa-
+vorites: Astatisticalmethodtomeasureself-biasinLLM-as-a-judge.arXivpreprintarXiv:2508.06709,
+2025. URLhttps://arxiv.org/abs/2508.06709.
+Z. Tan, J. Yan, I.-H. Hsu, R. Han, Z. Wang, L. Le, Y. Song, Y. Chen, H. Palangi, G. Lee, A. R. Iyer,
+T. Chen, H. Liu, C.-Y. Lee, and T. Pfister. In prospect and retrospect: Reflective memory management
+for long-term personalized dialogue agents. InProceedings of the 63rd Annual Meeting of the
+Association for Computational Linguistics (Volume 1: Long Papers), pages 8416–8439, 2025. doi:
+10.18653/v1/2025.acl-long.413. URLhttps://aclanthology.org/2025.acl-long.413/.
+A. A. Team. Artificial analysis long context reasoning benchmark(lcr), 2025. URLhttps://huggin
+gface.co/datasets/ArtificialAnalysis/AA-LCR.
+L. Team, A. Martín, A. Globerson, A. Wang, A. Shekhawat, A. Iurchenko, A. Choudhury, A. Hassidim,
+A.Çakmakli, A.S.Evron, etal. TowardsanAI-augmentedtextbook.arXivpreprintarXiv:2509.13348,
+2025. doi: 10.48550/arXiv.2509.13348. URLhttps://arxiv.org/abs/2509.13348.
+L. S. Vygotsky.Mind in society: The development of higher psychological processes, volume 86. Harvard
+university press, 1978. ISBN 9780674576292. URLhttps://www.hup.harvard.edu/books/
+9780674576292.
+B. Wang, C. Xu, X. Zhao, L. Ouyang, F. Wu, Z. Zhao, R. Xu, K. Liu, Y. Qu, F. Shang, B. Zhang,
+L. Wei, Z. Sui, W. Li, B. Shi, Y. Qiao, D. Lin, and C. He. MinerU: An open-source solution for
+precise document content extraction.arXiv preprint arXiv:2409.18839, 2024a. URL https:
+//arxiv.org/abs/2409.18839.
+23
+
+--- Page 24 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+C.-Y.Wang,I.-H.Yeh,andH.-Y.M.Liao. YOLOv9: Learningwhatyouwanttolearnusingprogrammable
+gradient information. InComputer Vision – ECCV 2024, Lecture Notes in Computer Science,
+pages 1–21. Springer Nature Switzerland, 2024b. doi: 10.1007/978-3-031-72751-1_1. URL
+https://link.springer.com/chapter/10.1007/978-3-031-72751-1_1 . First online:
+2024-10-26.
+T. Wang, Y. Zhan, J. Lian, Z. Hu, N. J. Yuan, Q. Zhang, X. Xie, and H. Xiong. LLM-powered multi-agent
+framework for goal-oriented learning in intelligent tutoring system. InCompanion Proceedings of
+the ACM on Web Conference 2025, pages 510–519, 2025a. doi: 10.1145/3701716.3715244. URL
+https://doi.org/10.1145/3701716.3715244.
+Z. Z. Wang, J. Mao, D. Fried, and G. Neubig. Agent workflow memory. InProceedings of the 42nd
+International Conference on Machine Learning, volume 267 ofProceedings of Machine Learning
+Research, pages 63897–63911. PMLR, 2025b. URLhttps://proceedings.mlr.press/v267
+/wang25bx.html.
+J. Wei, X. Wang, D. Schuurmans, M. Bosma, B. Ichter, F. Xia, E. H. Chi, Q. V. Le, and D. Zhou. Chain-
+of-thought prompting elicits reasoning in large language models.Advances in Neural Information
+Processing Systems, 35:24824–24837, 2022. URLhttps://papers.neurips.cc/paper_fi
+les/paper/2022/hash/9d5609613524ecf4f15af0f7b31abca4-Abstract-Conference.
+html.
+C. White, S. Dooley, M. Roberts, A. Pal, B. Feuer, S. Jain, R. Shwartz-Ziv, N. Jain, K. Saifullah, S. Dey,
+Shubh-Agrawal, S. S. Sandha, S. V. Naidu, C. Hegde, Y. LeCun, T. Goldstein, W. Neiswanger, and
+M. Goldblum. Livebench: A challenging, contamination-limited LLM benchmark. InThe Thirteenth
+International Conference on Learning Representations, 2025. URLhttps://openreview.net/f
+orum?id=sKYHBTAxVa.
+D. Wood, J. S. Bruner, and G. Ross. The role of tutoring in problem solving.Journal of Child
+Psychology and Psychiatry, 17(2):89–100, 1976. doi: 10.1111/j.1469-7610.1976.tb00381.x. URL
+https://doi.org/10.1111/j.1469-7610.1976.tb00381.x.
+J. Wu, J. Zhu, Y. Liu, M. Xu, and Y. Jin. Agentic reasoning: A streamlined framework for enhancing
+LLM reasoning with agentic tools. InProceedings of the 63rd Annual Meeting of the Association for
+Computational Linguistics (Volume 1: Long Papers), pages 28489–28503, 2025. doi: 10.18653/v1/
+2025.acl-long.1383. URLhttps://aclanthology.org/2025.acl-long.1383/.
+F. Yao, S. Chang, W. Gao, and Q. Liu. Conversational learning diagnosis via reasoning multi-turn
+interactive learning.arXiv preprint arXiv:2603.03236, 2026. URLhttps://arxiv.org/abs/26
+03.03236.
+S. Yao, J. Zhao, D. Yu, N. Du, I. Shafran, K. R. Narasimhan, and Y. Cao. React: Synergizing reasoning
+and acting in language models. InThe Eleventh International Conference on Learning Representations,
+2023. URLhttps://openreview.net/forum?id=WE_vluYUL-X.
+Z. Yao, A. Parashar, H. Zhou, W. S. Jang, F. Ouyang, Z. Yang, and H. Yu. MCQG-SRefine: Multiple
+choice question generation and evaluation with iterative self-critique, correction, and comparison
+feedback. InProceedings of the 2025 Conference of the Nations of the Americas Chapter of the
+Association for Computational Linguistics: Human Language Technologies (Volume 1: Long Papers),
+pages 10728–10777, 2025. doi: 10.18653/v1/2025.naacl-long.538. URLhttps://aclantholo
+gy.org/2025.naacl-long.538/.
+24
+
+--- Page 25 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+G. Zhang, M. Fu, K. Wang, G. Wan, M. Yu, and S. YAN. G-memory: Tracing hierarchical memory
+for multi-agent systems. InThe Thirty-ninth Annual Conference on Neural Information Processing
+Systems, 2025. URLhttps://openreview.net/forum?id=mmIAp3cVS0.
+J. Zhang, X. Shi, I. King, and D.-Y. Yeung. Dynamic key-value memory networks for knowledge tracing.
+InProceedings of the 26th International Conference on World Wide Web, pages 765–774, 2017. doi:
+10.1145/3038912.3052580. URLhttps://doi.org/10.1145/3038912.3052580.
+N. Zhang, X. Yang, Z. Tan, W. Deng, and W. Wang. HiMem: Hierarchical long-term memory for LLM
+long-horizon agents.arXiv preprint arXiv:2601.06377, 2026. URLhttps://arxiv.org/abs/26
+01.06377.
+B. Zhao, L. G. Foo, P. Hu, C. Theobalt, H. Rahmani, and J. Liu. LLM-based agentic reasoning
+frameworks: A survey from methods to scenarios, 2025. URLhttps://arxiv.org/abs/2508
+.17692.
+L. Zheng, W.-L. Chiang, Y. Sheng, S. Zhuang, Z. Wu, Y. Zhuang, Z. Lin, Z. Li, D. Li, E. P. Xing,
+H. Zhang, J. E. Gonzalez, and I. Stoica. Judging LLM-as-a-judge with MT-bench and chatbot
+arena.Advances in Neural Information Processing Systems, 36:46595–46623, 2023. URLhttps:
+//proceedings.neurips.cc/paper_files/paper/2023/hash/91f18a1287b398d378e
+f22505bf41832-Abstract-Datasets_and_Benchmarks.html.
+25
+
+--- Page 26 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Appendices
+A Extended Related Work........................................................................................27
+A.1 Tool-Augmented LLM Agents..............................................................................27
+A.2 LLM Personalization and Memory ......................................................................... 27
+A.3 Knowledge Tracing and Intelligent Tutoring Systems.......................................................27
+A.4 LLM-Based Educational Agents ............................................................................ 28
+B Implementation Details of DeepTutor System................................................................. 28
+B.1 Closed-Loop Personalized Tutoring........................................................................28
+B.2 TutorBot Autonomous Agent Loop.........................................................................28
+C TutorBench Construction Details.............................................................................. 30
+C.1 PDF Source Inventory.....................................................................................30
+C.2 Task Generation and Rejection Sampling...................................................................31
+C.3 Trace Forest and Benchmark Runtime Memory.............................................................32
+D Evaluation Protocol and Hyperparameters.................................................................... 32
+D.1 First-Person Interactive Evaluation Details ................................................................. 32
+D.1.4 Cross-Domain Metric Table..............................................................................36
+D.2 Baseline and Variant Definitions...........................................................................36
+D.3 Human Preference Alignment Study.......................................................................38
+D.4 General Problem-Solving Setup............................................................................39
+D.5 Agent Hyperparameters...................................................................................40
+D.6 Implementation Details ................................................................................... 40
+D.7 Backbone Models ......................................................................................... 41
+26
+
+--- Page 27 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+A. Extended Related Work
+This appendix expands the literature review in §6 that provides context for the design of an agentic
+tutoring system, including agentic tool use, memory, learner modeling, and LLM-based educational
+agents.
+A.1. Tool-Augmented LLM Agents
+Equipping language models with external tools has progressed fromstaticintegration todynamic
+reasoning. Toolformer (Schick et al., 2023) showed that LLMs can learn to insert API calls through
+self-supervised fine-tuning. ReAct (Yao et al., 2023) introduced a more flexible paradigm by interleav-
+ing chain-of-thought reasoning with environment-facing actions, significantly improving multi-step
+retrieval and decision-making. Subsequent work has expanded planning capabilities in various di-
+rections (Li et al., 2025d; Wu et al., 2025; Zhao et al., 2025), while long-horizon agents such as
+IterResearch (Chen et al., 2026) tackle coherent state maintenance across many reasoning steps.
+Many existing agentic frameworks are still organized aroundboundedepisodes, where a single query
+triggers a reasoning trajectory that ends once an answer is produced. Tutoring, however, often extends
+across multiple sessions and benefits from maintaining continuity with an evolving model of the
+individual learner.
+A.2. LLM Personalization and Memory
+This stateful requirement connects agentic tool use to a parallel line of work on LLM personalization
+and memory, which has been pursued along three main axes.Dialogue-level memorymaintains
+context across conversation turns through reflective summarization (Tan et al., 2025), accumulated
+user models (Li et al., 2025a), or implicit persona detection (Cho et al., 2022).Workflow-level
+memorygoes beyond individual episodes: Agent Workflow Memory (Wang et al., 2025b) induces
+reusable task workflows from past experience for transfer across structurally similar future tasks.
+RAG-based personalizationadapts the retrieval pipeline itself to user preferences (Li et al., 2025b),
+with frameworks such as RAG-Anything (Guo et al., 2025b) providing flexible multimodal retrieval
+backbones. MemGPT (Packer et al., 2023) offers a complementary perspective, managing unbounded
+context through OS-inspired memory paging. More recently, hierarchical memory architectures
+have emerged: HiMem (Zhang et al., 2026) segments long-horizon dialogues into episode and
+note memories with conflict-aware reconsolidation, while G-Memory (Zhang et al., 2025) organizes
+multi-agent collaboration traces into a three-tier graph hierarchy of insights, queries, and interactions,
+achieving up to 20% gains in embodied-action benchmarks. These approaches provide useful building
+blocks. For tutoring settings, it is also useful to organize traces in domain-specific, typed, and
+semantically searchable forms across multiple resolutions (sessions, plan steps, tool invocations), so
+that downstream agents can reuse them for both explanation and question generation.
+A.3. Knowledge Tracing and Intelligent Tutoring Systems
+The need for structured learner modeling has a long history in education. Classicalknowledge tracing
+(KT) estimates per-skill mastery probabilities from interaction logs: Bayesian Knowledge Tracing (Cor-
+bett and Anderson, 1995) uses two-state hidden Markov models, Deep Knowledge Tracing (Piech
+et al., 2015) replaces hand-crafted features with recurrent networks, DKVMN (Zhang et al., 2017)
+separates concept keys from evolving mastery values in a key-value memory, and context-aware
+attention models (Ghosh et al., 2020) further improve interpretability through monotonic attention
+over learner histories. EarlyIntelligent Tutoring Systems(ITS) such as Cognitive Tutor (Anderson et al.,
+27
+
+--- Page 28 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+1995) were already providing step-level guidance through domain-specific production rules, enabling
+fine-grained diagnosis of learner actions at the cost of substantial manual domain engineering. Recent
+work points to a growing shift toward LLM-based tutoring, which brings broad domain coverage and
+flexible natural-language interaction while often placing less emphasis on explicit, inspectable learner
+models of the kind common in classical ITS (Chu et al., 2025; Létourneau et al., 2025).
+A.4. LLM-Based Educational Agents
+Building on this shift, recent work has explored LLMs in dedicated tutoring roles along several
+complementary directions. Park et al. (2024) develop a conversational system with explicit student
+modeling, showing that tracking student state improves learning outcomes. Wang et al. (2025a)
+decompose the tutoring task across specialized agents for curriculum planning, dialogue, and assess-
+ment. Frankford et al. (2024) apply LLM tutoring to software engineering education, suggesting that
+richer student models can support higher-quality feedback. Open TutorAI (Hajji et al., 2026) provides
+an open-source platform with customizable avatars for multimodal interaction, while ParLD (Yao
+et al., 2026) introduces a preview–analyze–reason pipeline for conversational learning diagnosis via
+multi-agent collaboration. TutorLLM (Li et al., 2025c) couples knowledge tracing with RAG-based
+recommendation, and Dinucu-Jianu et al. (2025) align tutoring LLMs with pedagogical principles
+via reinforcement learning from simulated student interactions. Taken together, this literature now
+spans feedback generation, curriculum design, adaptive assessment, pedagogically aligned training,
+and open-ended evaluation (Chu et al., 2025; Macina et al., 2025). Across these systems, problem
+tutoring and question generation are often treated as separate components, with limited sharing of
+learner representations or performance signals. This design space is related to the bidirectional task
+coupling described in §2.4. At the same time, the literature remains broad in scope, and several
+closely related systems do not yet offer end-to-end reproducible releases for our exact tutoring setting.
+B. Implementation Details of DeepTutor System
+This appendix summarizes the two system-level loops behindDeepTutor: the closed-loop tutoring
+cycle (§B.1) and the TutorBot autonomous agent loop (§B.2).
+B.1. Closed-Loop Personalized Tutoring
+Algorithm 1 gives the session-level execution order ofDeepTutor’s closed tutoring cycle. Starting
+from an initial learner profileD (0) and an empty trace forestF (0), each new session first assembles a
+personalized memory contextCmem from prior interactions and profile excerpts. The algorithm then
+branches according to the task type: problem tutoring uses retrieval-grounded investigation, planning,
+step-by-step tool use, and iterative answer writing, while question generation uses personalized idea
+filtering followed by critic-guided question, answer, and explanation construction. In both branches,
+the completed interaction is converted into a trace tree and fed back into the memory update, so
+subsequent sessions can reuse both high-level profile summaries and fine-grained interaction evidence.
+B.2. TutorBot Autonomous Agent Loop
+Algorithm 2 summarizes the autonomous agent loop used byTutorBot, the runtime behind the
+Partners multi-channel deployment layer described in §3.3. Each inbound channel message triggers a
+three-phase cycle: context assembly, tool-augmented reasoning, and memory persistence. The bot
+first composes persona, long-term memory, active skills, and recent history into a working context; it
+28
+
+--- Page 29 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Algorithm 1Closed-Loop Personalized Tutoring
+Require:learner profileD (0); trace forestF (0) =∅
+1:forsession𝑗=1,2, . . .do
+2:C mem ←ProfileInject(D (𝑗−1) ,F (𝑗−1) ,task 𝑗)
+3:iftask 𝑗 =(Solve, 𝑞)then
+4:C rag ←RagTool(𝑞)
+5:E plan ←Investigate(𝑞,C rag,C mem,F (𝑗−1) )⊲①
+6:P=⟨𝑠 1, . . . , 𝑠 𝐾⟩ ←Plan(𝑞,E plan,C mem)
+7:for𝑘=1to𝐾do ⊲②
+8:while𝑠 𝑘 not resolveddo
+9:(𝛼 𝑡,s 𝑡) ←ToolAgent(𝑞,P,S,C rag,Cmem)
+10:S ← S ∪ {s 𝑡}
+11:if𝛼 𝑡 =Replanthen
+12:P ←Revise(P,S)
+13:end if
+14:end while
+15:S ←Compress(S, 𝑘)
+16:end for
+17:𝑎←IterativeWrite(S,C mem)⊲③
+18:𝑇 𝑗 ←BuildTrace(𝑞, 𝑎)
+19:else ⊲task 𝑗 =(Generate, 𝜏)
+20:C rag ←RagTool(𝜏)
+21:𝑓 idea ← ∅
+22:repeat
+23:I ←IdeaAgent(𝜏,C rag,C mem, 𝑓 idea)⊲④
+24:(continue, 𝑓 idea,T 1..𝑁 ) ←EvaluateIdeas(I, 𝜏,C mem)
+25:until¬continue
+26:for𝑖=1to𝑁do ⊲⑤
+27:repeat
+28:(𝑞 𝑖, 𝑎𝑖, 𝑒𝑖) ←Generator(T 𝑖,C rag,C mem)
+29:(pass, 𝑓 𝑖) ←Validator(𝑞 𝑖, 𝑎𝑖, 𝑒𝑖,T𝑖)
+30:if¬passthenT 𝑖 ←Revise(T 𝑖, 𝑓 𝑖)
+31:end if
+32:untilpass
+33:end for
+34:𝑇 𝑗 ←BuildTrace(𝜏,{(𝑞 𝑖, 𝑎𝑖, 𝑒𝑖)} 𝑁
+𝑖=1)
+35:end if
+36:F (𝑗) ← F (𝑗−1) ∪ {𝑇 𝑗}
+37:D (𝑗) ←MemoryUpdate(D (𝑗−1) , 𝑇𝑗)
+38:end for
+then runs a bounded ReAct-style tool-calling loop; finally, it persists the turn and consolidates older
+messages into durable memory when the session approaches the context budget.
+TheBuildContextprocedure concatenates the bot’s identity, runtime metadata, persona spec-
+ification, user preferences, memory summaries, and active skill descriptions. TheConsolidate
+procedure uses an LLM-based memory consolidator to append a timestamped history entry while
+updating the long-term learner profile. The concrete prompt templates and tool schemas are released
+with the repository rather than enumerated here.
+29
+
+--- Page 30 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Algorithm 2TutorBot Autonomous Agent Loop
+Require: message bus B; LLM provider M; tool registry T; session store S; context window 𝑊; max
+iterations𝐼 max
+1:loop ⊲Main event loop
+2:𝑚← B.ConsumeInbound()⊲Block until next message
+3:𝜎← S.GetOrCreate(𝑚.session_key)
+⊲Phase 1: Context Assembly
+4:sys←BuildContext(𝜎.soul, 𝜎.memory, 𝜎.skills)
+5:𝐻←𝜎.GetHistory()⊲Unconsolidated messages
+6:msgs← [sys] ∥𝐻∥ [Wrap(𝑚)]
+⊲Phase 2: ReAct Tool-Calling Loop
+7:for𝑖=1to𝐼 max do
+8:𝑟← M.Chat(msgs,T.Definitions())
+9:if𝑟has no tool callsthen
+10:response←𝑟.content⊲Final answer
+11:break
+12:end if
+13:Append assistant message (with tool calls) tomsgs
+14:for alltool call𝜏in𝑟.tool_callsdo
+15:result← T.Execute(𝜏.name, 𝜏.args)
+16:Append tool result tomsgs
+17:end for
+18:end for
+⊲Phase 3: Persist & Consolidate
+19:𝜎.AppendTurn(msgs)
+20:ifEstimateTokens(𝜎)> 𝑊then⊲Context pressure
+21:chunk←𝜎.messages[𝜎.ptr:boundary]
+22:Consolidate(chunk, 𝜎.memory)⊲LLM-based distillation
+23:𝜎.ptr←boundary
+24:end if
+25:S.Save(𝜎)
+26:B.PublishOutbound(response, 𝑚.channel)
+27:end loop
+C. TutorBench Construction Details
+This appendix supplements §4 with full construction details. Each benchmarkentrycombines a
+learner profile, a set of knowledge gaps, an interactive task, and the supporting source content.
+Below we describe the source PDF inventory (§C.1), the rejection-sampling procedure that produces
+high-quality tasks (§C.2), and the relationship between Trace Forest and benchmark-time simulation
+(§C.3).
+C.1. PDF Source Inventory
+TutorBench is built from 30 KBs derived from source PDFs. For textbook sources, each book is
+partitioned into three chapter-contiguous PDFs before KB construction; for research sources, each
+paper forms a single KB. The resulting PDF inventory is listed below.
+Textbook-derived PDFs.
+•All textbook PDFs are sourced from OpenStax.
+• Calculus Volume 2(OpenStax,https://openstax.org/details/books/calculus-volum
+30
+
+--- Page 31 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+e-2/): Chapters 1–2, Chapters 3–4, and Chapters 5–6.
+• Calculus Volume 3(OpenStax,https://openstax.org/details/books/calculus-volum
+e-3/): Chapters 1–2, Chapters 3–4, and Chapters 5–6.
+• Principles of Economics 3e(OpenStax,https://openstax.org/details/books/principle
+s-economics-3e/): Chapters 1–6, Chapters 7–12, and Chapters 13–18.
+• Foundations of Information Systems(OpenStax,https://openstax.org/details/books/f
+oundations-information-systems): Chapters 1–3, Chapters 4–6, and Chapters 7–9.
+• Introduction to Computer Science(OpenStax,https://openstax.org/details/books/int
+roduction-computer-science): Chapters 1–3, Chapters 4–6, and Chapters 7–9.
+• Introduction to Philosophy(OpenStax,https://openstax.org/details/books/introduct
+ion-philosophy): Chapters 1–4, Chapters 5–8, and Chapters 9–12.
+• Introduction to Business(OpenStax, https://openstax.org/details/books/introduct
+ion-business): Chapters 1–5, Chapters 6–10, and Chapters 11–15.
+• Writing Guide with Handbook(OpenStax,https://openstax.org/details/books/writi
+ng-guide): Chapters 1–6, Chapters 7–12, and Chapters 13–18.
+Paper-derived PDFs.
+•Memory in the Age of AI Agents(Hu et al., 2025).
+•DeepSeek-R1 incentivizes reasoning in LLMs through reinforcement learning(Guo et al., 2025a).
+• LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code(Jain
+et al., 2025).
+•OpenVLA: An Open-Source Vision-Language-Action Model(Kim et al., 2024).
+• Towards Reasoning Era: A Survey of Long Chain-of-Thought for Reasoning Large Language Mod-
+els(Chen et al., 2025).
+• YOLOv9: Learning What You Want to Learn Using Programmable Gradient Information(Wang et al.,
+2024b).
+C.2. Task Generation and Rejection Sampling
+Given a profile𝑝 and its associated knowledge gaps𝐺, the task generator creates interactive learning
+tasks that naturally expose one or more gaps during a tutoring conversation. Four task types are
+supported—concept understanding(30%),problem solving(30%),application(20%), andcomparison
+(20%)—with sampling weights reflecting typical student learning request distributions. A batch
+rejectionsamplerthenfiltersouttaskswhosegapsareincoherent, misalignedwiththetaskdescription,
+or conversationally unnatural / internally inconsistent, and regenerates until the minimum task count
+is satisfied. Algorithm 3 gives the full procedure.
+TheRejectSampleoracle verifies three criteria:
+1. Gap coherence.The gaps targeted by the task must be logically related and form a coherent
+learning topic; tasks requiring the student to jump between disconnected concepts are rejected.
+2. Task–gap fit.The task description, initial student message, and success criteria must organically
+connect to the targeted gaps—pursuing the task should naturally expose those gaps without
+artificial steering.
+3. Conversational naturalness and consistency.The resulting task should read like a plausible
+learner request for the given profile, rather than an artifact assembled solely to surface benchmark
+gaps. Items whose gaps contradict one another or conflict with the task description are rejected
+under this criterion.
+The oracle is instructed to apply strict criteria: when in doubt, reject. This conservative stance accepts
+31
+
+--- Page 32 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Algorithm 3Task Generation with Rejection Sampling
+Require:Profile𝑝, gaps𝐺, knowledge scope scope, source pages𝑆; minimum tasks𝑇min =3
+1:accepted← ∅
+2:repeat
+3:T cand ←GenerateTasks(𝑝, 𝐺,scope)⊲batch LLM generation
+4:foreach candidate task𝑡∈ T cand do
+5:ok←RejectSample(𝑡, 𝐺, 𝑆)⊲3-criterion check (below)
+6:ifokthen
+7:accepted←accepted∪ {𝑡}
+8:end if
+9:end for
+10:until|accepted| ≥𝑇 min
+11:returnaccepted
+a higher regeneration rate in exchange for higher task quality, a trade-off justified by the one-time
+offline nature of benchmark construction. Each accepted task carries a structured record: task type,
+title, description, initial student message (matched to the profile’s personality), targeted gap IDs,
+expected gap exposure trajectory, success criteria, and difficulty rating. Step 1 then packages the
+profile, selected gaps, accepted task, and the corresponding sampledsource_content into one
+benchmark entry, which becomes the unit consumed by the simulation and evaluation pipeline.
+C.3. Trace Forest and Benchmark Runtime Memory
+The benchmark entry files produced during construction donotserialize a Trace Forest. Trace Forest
+is aruntimememory mechanism: during Step 2 simulation,DeepTutorbackends with cross-session
+memory enabled build and query a Trace Forest to condition both problem-tutoring responses and
+practice-question generation. Ablated variants disable this memory while keeping the underlying
+benchmark entries unchanged. The key implication for reproducibility is that the benchmark fixes
+the same entry objects for all systems; only theDeepTutorfamily differs in whether it reads from
+and writes to this runtime memory during multi-session simulation.
+D. Evaluation Protocol and Hyperparameters
+Thissectionprovidesfullevaluationdetailsfortheinteractiveevaluation(§D.1), thehumanpreference
+alignment study (§D.3), and the general problem-solving benchmarks (§D.4), together with baseline
+definitions (§D.2), hyperparameters (§D.5), and implementation specifics (§D.6).
+D.1. First-Person Interactive Evaluation Details
+Figure 5 in the main paper summarizes the full interactive evaluation loop used for TutorBench;
+this appendix provides the implementation details. Each evaluation begins from a benchmark entry
+containing a learner profile, diagnosed knowledge gaps, an interactive task, and relevant source
+materials. The student simulator turns these inputs into first-person beliefs and maintains a dynamic
+tutoring list during the dialogue. At each turn, it either asks the tutor for help on an unfinished
+tutoring item or, once the tutoring phase is complete, asks the tutor to generate a customized quiz.
+All tutor responses are recorded as traces and later judged with personalized rubrics derived from the
+same learner state and task context.
+32
+
+--- Page 33 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+D.1.1. Student Simulator
+The student simulator is an LLM agent initialized from a TutorBench entry (profile + gaps + task).
+Each gap is pre-transformed into a first-person belief statement so the simulatoracts asthe student
+rather than narrating errors from an outside view. The system prompt below governs simulator
+behavior throughout the interaction; the template variables are filled from the entry at initialization
+time.
+You are role-playing as a student seeking help from an AI tutor.
+Stay in character throughout the entire conversation. Never break
+character.
+# Who You Are
+{personality}
+# Your Background
+{education_background}
+# Why You Are Here
+{learning_purpose}
+# What You Know
+You are confident about these topics:
+{known_well}
+You have vague or partial understanding (you might get details wrong):
+{partially_known}
+You have NO knowledge of the following (never encountered):
+{unknown}
+# What You Believe (IMPORTANT -- these feel true to you)
+{beliefs}
+# Behavioral Rules
+1. NEVER display knowledge listed as "unknown". If the tutor asks
+about something you don’t know, say so honestly.
+2. When the tutor teaches something new, try to rephrase it in your
+own words. It’s okay to rephrase imperfectly.
+3. If the tutor asks "do you understand?", be honest based on whether
+the explanation actually addressed your confusion.
+4. Keep responses concise: 1-4 sentences typically.
+5. Stay consistent with your personality throughout.
+6. You may ask follow-up questions or request examples.
+7. When you feel you’ve understood, PREFER asking for a practice
+problem before ending -- testing yourself helps solidify learning.
+# Ending the conversation (ONLY when done)
+Use [ACTION: task_complete] ONLY if ALL conditions are true:
+- You are explicitly done.
+- You have zero remaining questions.
+- You are NOT requesting anything else.
+- Your message is a natural closing/goodbye.
+CRITICAL: If your message contains any question, uncertainty, or
+request for more help, do NOT use [ACTION: task_complete].
+Listing 1|Student Simulator System Prompt
+Dynamic gap pacing.The {beliefs} placeholder is populated with first-person formulations
+of each knowledge gap (e.g., “I think the Poynting vector always points in the direction of wave
+propagation”). The simulator’s behavioral rules enforce realistic resistance patterns: the student
+may defend misconceptions, partially accept corrections, and only signal completion after sufficient
+scaffolded explanation. This prevents trivially short sessions where the student immediately agrees
+with any tutor statement.
+33
+
+--- Page 34 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+D.1.2. Evaluation Rubrics
+Tutoring quality is assessed along ten dimensions, each scored on a 1–5 Likert scale by an LLM judge.
+The ten metrics are organized into two groups—fivetutoring-sidemetrics that evaluate every tutor
+turn during the dialogue, and fivepractice-sidemetrics that score the generated questions after each
+session. In addition, the evaluator records raw turn counts as a non-LLM structural statistic. The
+pipeline reports all metrics independently; no weighted composite score is computed. The dimensions
+operationalize constructs from source-grounded generation, learner modeling and formative feedback,
+multiple representations for explanation, and educational question assessment (Ainsworth, 2006;
+Corbett and Anderson, 1995; Kurdi et al., 2020; Maynez et al., 2020; Shute, 2008).
+Tutoring-Side Metrics (turn-level, 1–5 each).Each metric below is evaluated on every student-
+to-tutor turn pair. When practice questions are present, the final dialogue turn that emits them is
+excluded from tutoring-side scoring to keep the tutoring and question-generation phases separate.
+• Source Faithfulness (SF)captures factual consistency with the source material provided in each
+benchmark entry, following work on faithful and attributable generation (Maynez et al., 2020;
+Rashkin et al., 2023). The judge examines four sub-dimensions: (a)factual consistency—whether
+tutor claims agree with the source rather than contradicting it; (b)terminological consistency—
+whether the tutor follows the source’s definitions and framing; (c)source grounding—whether
+the response shows evidence of drawing on source-specific content, not just generic knowledge;
+and (d)source attribution—whether the tutor explicitly attributes information via citation markers
+or natural-language references. Pedagogical elaboration beyond the source—analogies, worked
+examples, motivating applications—is explicitlynotpenalized, as long as it does not distort the
+source. A score of 5 requires accuracy, consistent terminology, clear source grounding, and explicit
+attribution; a score of 1 indicates core claims that are wrong or that directly conflict with the
+source.
+• Personalization (PER)reflects how specifically the tutor addresses the learner’s current confusion
+while remaining aligned with the learner state developed over the session (Corbett and Anderson,
+1995; Vygotsky, 1978). The judge checks whether the response is tailored to the student’s profile,
+the misconceptions surfaced in prior turns, and the particular question just asked—rather than
+offering a generic textbook answer. A score of 5 requires strong, visible tailoring to this specific
+learner’s misunderstanding and conversational trajectory; a score of 3 is partially tailored but still
+generic in key parts; a score of 1 indicates a fully generic response that ignores learner-specific
+context entirely.
+• Applicability (APP)evaluates whether the guidance is concrete and immediately actionable for the
+student(HattieandTimperley,2007;Shute,2008). Highscoresrequirethetutortoprovidespecific,
+executable content such as worked examples, step-by-step procedures, verifiable calculations, or
+diagnostic questions that let the student make immediate progress on their problem. A score of 5
+means the student can directly act on the instruction; a score of 1 means the response is vague,
+abstract, or impossible to verify.
+• Vividness (VID)rewards representationally rich, engaging presentation that goes beyond mono-
+lithic plain-text prose (Ainsworth, 2006; Mayer, 2003). The judge assesses modality diversity:
+effective use of structured lists, equations paired with intuitive explanations, comparison tables,
+code demonstrations, or other representational forms that genuinely aid understanding. A score
+of 5 indicates rich multimodal delivery whose format choices clearly enhance learning; a score of 1
+indicates flat, undifferentiated text with no meaningful modality variation.
+•Logical Depth (LD)assesses the presence of explicit multi-step causal or analytical reasoning, as
+opposed to bare assertions (Chi et al., 1989; Koedinger et al., 2012). The judge looks for coherent
+reasoning chains: does the tutor explainwhya result holds, trace cause-and-effect relationships, or
+34
+
+--- Page 35 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+walk the student through intermediate steps? A score of 5 requires clear, well-structured multi-step
+reasoning; a score of 1 means the tutor provides conclusions or facts without any substantive
+justification.
+Practice-Side Metrics (session-level, 1–5 each).After the main tutoring dialogue concludes,
+the tutor generates five practice multiple-choice questions (MCQs). Each question is evaluated
+independently across the following five dimensions:
+• Fitness (FIT)measures alignment with the session-level diagnosed weaknesses at appropriate
+difficulty (Lord, 1980; Wood et al., 1976). The judge checks whether the question targets the
+knowledge gaps surfaced during the dialogue, matches the student’s proficiency level, and is neither
+trivially easy nor unreasonably hard given the learner profile. A score of 5 means the question
+precisely targets the student’s weak points at a suitable challenge level; a score of 1 means the
+question is irrelevant to the diagnosed gaps or grossly miscalibrated in difficulty.
+• Groundedness (GND)requires factual anchoring in the source material, mirroring the structure of
+Source Faithfulness on the solve side (Gao et al., 2023; Lewis et al., 2020). The judge checks four
+parallel sub-dimensions: factual consistency, terminological consistency, source grounding, and
+source attribution of the question stem, correct answer, and explanation. A score of 5 means the
+question content is fully consistent with and clearly derived from the source; a score of 1 means
+the question uses fabricated claims or definitions that conflict with the source.
+• Diversity (DIV)rewards novelty in angle and cognitive demand (Anderson et al., 2001; Kurdi
+et al., 2020). The judge evaluates whether the question presents a distinct perspective, question
+format, or cognitive action (e.g., application, analysis, comparison) compared with typical rote
+recall items. A score of 5 reflects a creative, non-templated question that engages higher-order
+thinking; a score of 1 indicates a standard fill-in-the-blank or direct-recall item indistinguishable
+from routine exercises.
+• Answer Quality (ANS)evaluates the correctness of the reference answer and the plausibility of
+distractors (Haladyna et al., 2002). The judge verifies that the correct option is unambiguously
+right, that the explanation is clear and consistent with the chosen answer, and that distractors
+are wrong yet plausible enough to be pedagogically informative. A score of 5 requires a flawless
+key, a lucid explanation, and well-crafted distractors; a score of 1 indicates an incorrect key, a
+contradictory explanation, or nonsensical options.
+• Cross Concept (CC)tests whether the question meaningfully integrates multiple concepts surfaced
+throughout the session, rather than testing a single isolated fact (Barnett and Ceci, 2002; Chi
+et al., 1981). The judge checks whether the question requires the student to synthesize ideas from
+different parts of the material or to reason about relationships between concepts. A score of 5
+means the question demands genuine cross-concept reasoning; a score of 1 means it tests only one
+narrow, isolated point.
+Auxiliary statistics.Beyond the ten judge-scored metrics, the evaluator records raw turn counts
+(student turns, tutor turns, and paired turns) as a structural measure of dialogue length. These counts
+are reported directly and are not normalized to the 1–5 scale. Additionally, the evaluator tracks
+judge reliability statistics such as parse-failure rates per metric; these are used to monitor evaluation
+stability but are not part of the quality scores themselves.
+D.1.3. Protocol Details
+The full benchmark pipeline runs in three stages.Step 1(entry generation): TutorBench entries are
+generated offline using the pipeline described in Appendix C.Step 2(multi-session simulation): for
+each KB/profile/backend tuple, the student simulator is initialized from the entry set and runs up to
+35
+
+--- Page 36 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+max_turns=30studentturnspersessioninthedefaultbatchpipeline; transcriptsaresavedtogether
+with five practice questions produced at session end.Step 3(LLM-as-judge): each saved transcript is
+scored for source faithfulness, four teaching-quality dimensions, turn counts, and practice-question
+quality.
+For the reported interactive evaluation,Gemini-3-Flashpowers both the student simulator and all
+tutor backbones, includingDeepTutor, whileClaude Sonnet 4.6serves as the fixed judge with
+temperature = 0.0. To mitigate judge variance, each transcript is scored three times and the scores
+are averaged.
+All 1–5 scores are averaged to four decimal places at session, multi-session, and backend-summary
+levels. The current pipeline doesnotcompute a weighted overall benchmark score; instead it reports
+the independent metrics directly.
+D.1.4. Cross-Domain Metric Table
+Table 4 reports the complete domain-by-metric breakdown for the first-person interactive simulation
+visualized in Figure 6.
+Tutoring Quality Practice Quality
+DomainSF PER APP VID LDAvgFIT GND DIV ANS CCAvgOQ
+Humanities 3.24 4.55 4.45 4.75 4.71 4.34 3.15 2.80 3.58 3.82 3.32 3.33 3.84
+Sciences 3.56 4.64 4.63 4.80 4.67 4.46 3.43 3.03 3.16 4.14 3.53 3.46 3.96
+Engineering 3.59 4.54 4.48 4.66 4.29 4.31 3.24 3.05 3.53 4.04 3.47 3.46 3.89
+Business 3.53 4.56 4.74 4.93 4.73 4.50 3.54 2.92 3.42 4.16 3.39 3.48 3.99
+Research 2.87 4.64 4.52 4.92 4.64 4.32 3.39 3.02 3.52 3.75 3.21 3.38 3.85
+Table 4| Full cross-domain results for the first-person interactive simulation. The main paper visualizes
+the same data in Figure 6. OQ is the average over the five tutoring-side and five practice-side metrics.
+D.2. Baseline and Variant Definitions
+We compareDeepTutoragainst four prompt-based tutor baselines and three ablation variants, all
+running within a single unified simulation harness. As discussed in Appendix A.4, existing educational
+and agentic systems vary widely in scope and availability; we therefore design baselines that isolate
+specific reasoning strategies while sharing the same backbone (Gemini-3-Flash) and KB access as
+DeepTutor. Below we give the algorithmic definition of each baseline, followed by a brief note on
+the three ablation variants (w/o SKG, w/o DPM, w/o SKG + DPM) that selectively disable components
+of the full pipeline.
+Notation.All baseline algorithms below share the following primitives.Rag(𝑚,K,mode, 𝑘) retrieves
+𝑘 passages from knowledge baseK for query 𝑚; Concat(·) concatenates its arguments into a
+single context string; andLlm(𝑝, 𝐻,ctx) denotes one LLM generation call with system prompt𝑝,
+conversation history𝐻, and user-side contextctx. Prompt variables𝑝· are symbolic shorthands; their
+concrete prompt templates are included in the released repository.
+Naive Tutor (mock).The simplest baseline: a single LLM call with a minimal tutoring prompt𝑝tutor
+(instructing the model to act as a helpful and patient tutor), the conversation history, and a naive-
+mode retrieved KB snippet prepended to the current student message. There is no planning, no
+36
+
+--- Page 37 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+tool-execution loop, and no cross-session memory.
+Algorithm 4Naive Tutor (Mock)
+Require:Student message𝑚, conversation history𝐻, knowledge baseK
+Prompt:𝑝 tutor (tutoring persona)
+1:𝑟 rag ←Rag(𝑚,K,mode=naive, 𝑘=2)
+2:ctx←Concat(𝑟 rag, 𝑚)
+3:response←Llm  
+𝑝tutor, 𝐻,ctx 
+4:returnresponse
+CoT Tutor (cot).Identical to the Naive Tutor except that the system prompt𝑝cot extends 𝑝tutor
+with a chain-of-thought directive (Wei et al., 2022) (“think step by step before answering”), asking
+the model to reason internally before producing its tutoring response. The implementation still uses a
+single generation call.
+Algorithm 5CoT Tutor
+Require:Student message𝑚, conversation history𝐻, knowledge baseK
+Prompt:𝑝 cot (tutoring persona + chain-of-thought directive)
+1:𝑟 rag ←Rag(𝑚,K,mode=naive, 𝑘=2)
+2:ctx←Concat(𝑟 rag, 𝑚)
+3:response←Llm  
+𝑝cot, 𝐻,ctx 
+4:returnresponse
+Self-Refine Tutor (self_refine).Inspired by Madaan et al. (2023), this baseline uses two se-
+quential LLM calls. The first call uses𝑝tutor (the same tutoring persona asmock) to produce an initial
+draft; the second call uses𝑝ref, which instructs a pedagogical quality reviewer to refine the draft for
+clarity, specificity, and pedagogical effectiveness. The refinement pass receives the draft together with
+the current student message, conversation history, and the same retrieved context.
+Algorithm 6Self-Refine Tutor
+Require:Student message𝑚, conversation history𝐻, knowledge baseK
+Prompts:𝑝 tutor (tutoring persona),𝑝 ref (pedagogical reviewer)
+1:𝑟 rag ←Rag(𝑚,K,mode=naive, 𝑘=2)
+2:ctx←Concat(𝑟 rag, 𝑚)
+3:draft←Llm  
+𝑝tutor, 𝐻,ctx 
+⊲generate initial response
+4:ctx ′ ←Concat(𝑟 rag, 𝑚,draft)
+5:response←Llm  
+𝑝ref , 𝐻,ctx ′
+⊲refine for clarity & pedagogy
+6:returnresponse
+ReAct Tutor (react).This baseline implements asingle-roundReAct-inspired loop (Yao et al., 2023)
+per student turn via four sequential LLM calls, each with a dedicated prompt:𝑝think analyses the
+student’s question and diagnoses what they most need next;𝑝act decides on a concrete tutoring action
+plan; 𝑝obs reviews the thought–action pair and notes any adjustment; and𝑝tutor (the shared tutoring
+persona) synthesises the accumulated reasoning into a final student-facing response. All four calls
+operate over the same retrieved context𝑐0 and conversation history. Relative toDeepTutor, this
+baseline does not include a multi-step planner, external tool execution beyond the shared naive RAG
+context, or cross-session memory.
+Baseline and ablation metric breakdown.Table 5 provides the full per-metric breakdown across
+the released baselines andDeepTutorvariants.
+37
+
+--- Page 38 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Algorithm 7ReAct Tutor (single-round per turn)
+Require:Student message𝑚, history𝐻, knowledge baseK
+Prompts:𝑝 think,𝑝 act,𝑝 obs,𝑝 tutor
+1:𝑟←Rag(𝑚,K,naive, 𝑘=2)
+2:𝑐 0 ←Concat(𝑟, 𝐻, 𝑚) ⊲base context
+3:𝑡ℎ←Llm(𝑝 think, 𝑐0) ⊲diagnose need
+4:𝑎𝑐𝑡←Llm(𝑝 act,Concat(𝑐 0, 𝑡ℎ)) ⊲plan action
+5:𝑜𝑏𝑠←Llm(𝑝 obs,Concat(𝑐 0, 𝑡ℎ, 𝑎𝑐𝑡)) ⊲review
+6:𝑟𝑒𝑠 𝑝←Llm(𝑝 tutor, 𝐻,Concat(𝑐 0, 𝑡ℎ, 𝑎𝑐𝑡, 𝑜𝑏𝑠))
+7:return𝑟𝑒𝑠 𝑝
+Variant SF↑PER↑APP↑VID↑LD↑FIT↑GND↑DIV↑ANS↑CC↑
+Naive Tutor3.2192 4.2406 4.4438 3.8895 3.9894 3.1978 2.4563 2.8267 3.8744 3.1200
+CoT Tutor3.3395 4.2238 4.4709 3.8190 4.0096 3.1800 2.4978 2.7911 3.8120 3.0444
+Self-Refine Tutor3.2785 4.27564.60903.9384 4.1414 3.1711 2.4911 2.8756 3.8844 2.9689
+ReAct Tutor3.3472 4.3722 4.4023 3.7044 3.9598 3.1578 2.4667 2.7511 3.9444 3.0667
+DeepTutor3.3641 4.59304.5638 4.81454.6079 3.3500 2.9600 3.4422 3.9767 3.3822
+w/o SKG 3.1057 4.4091 4.55374.83164.5348 3.3055 2.2311 3.3022 3.8355 3.1911
+w/o DPM 3.3554 4.2243 4.5695 4.8269 4.5156 3.1538 2.8022 3.3400 3.9011 3.3089
+w/o SKG + DPM 3.1609 4.1724 4.5983 4.8200 4.4811 3.2533 2.2211 3.2733 3.8522 3.1356
+Table 5| Full metric breakdown across the released baselines andDeepTutorvariants. All columns
+are 1–5 averages, filled from the released overall evaluation summary manifest. Bold indicates the
+best value in each column; underline indicates the second-best value. Abbreviations: SF = source
+faithfulness; PER = personalization; APP = applicability; VID = vividness; LD = logical depth;
+FIT = fitness; GND = groundedness; DIV = diversity; ANS = answer quality; CC = cross concept.
+D.3. Human Preference Alignment Study
+The human alignment study in §5.3 is designed to test whether the LLM judge’s relative system
+preferences agree with independent human judgments, rather than to measure downstream learning
+gains.
+Sampling and materials.We use a domain-stratified subset of 45 TutorBench sessions, with nine
+sessions sampled from each of the five domains used in Table 4. For every selected session, we collect
+the fullDeepTutorandNaive Tutor (Mock)outputs generated under the same benchmark entry:
+identical learner profile, task description, source material, student-simulator protocol, and practice-
+generation request. The comparison packet shown to annotators contains the learner profile, task
+description, source material, tutoring transcript, and generated practice questions for both systems.
+Human annotation.We recruit ten student annotators with relevant academic training: six under-
+graduate students and four graduate students (two master’s students and two Ph.D. students). Each
+domain is assigned to two annotators. Research sessions are evaluated by the two Ph.D. students;
+Engineering and Business each include one domain-related master’s student; the remaining domain
+assignments are completed by domain-related undergraduates. Each packet is evaluated by both
+assigned annotators in a blind A/B interface. System names are hidden, and the order of A and B is
+randomly flipped persession to reduce orderbias. Annotators are given thesame ten metric definitions
+used by the LLM judge: Source Faithfulness, Personalization, Applicability, Vividness, Logical Depth,
+Fitness, Groundedness, Diversity, Answer Quality, and Cross Concept. For each metric, the annotator
+selects one of three labels: A is better, B is better, or the two systems are indistinguishable. This
+pairwise design avoids the scale-calibration problem of absolute 1–5 human scoring while directly
+38
+
+--- Page 39 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Benchmark Category Size Subset Format
+HLE (Phan et al., 2026) STEM reasoning∼2,500 500 (text+mm) open-ended
+GPQA-Diamond (Rein et al., 2024) STEM reasoning 198 all 198 4-choice MCQ
+LiveBench (White et al., 2025) reasoning∼200 reasoning cat. mixed
+GAIA (Mialon et al., 2024) agentic∼165 validation (L1–L3) open-ended
+AA-LCR (Team, 2025) long-context 100 all 100 open-ended
+Table 6| Public benchmarks used in the general problem-solving evaluation. “Size” refers to the total
+available test items; “Subset” is the number we evaluate on. mm = multimodal (text + images).
+testing the system preference implied by the automatic judge.
+Aggregation and LLM comparison.Human labels are first mapped back to system identities and
+then aggregated for each session–metric pair; when the two annotators do not select the same system
+preference, the aggregate label is treated as a tie. For the LLM side, we use the corresponding
+LLM-judge preference label for the same session and metric. Figure 8 reports, for each metric, the
+share of comparisons where humans preferDeepTutor, mark a tie, or prefer Mock, alongside the
+corresponding LLM-judge preference shares.
+Alignment statistics.The correlation statistics reported in Figure 7 and §5.3 are computed over the
+ten metric-levelDeepTutorwin-rate pairs, rather than over all individual session–metric labels.
+Pearson 𝑟= 0.82( 𝑝= 0.0038) and Spearman𝜌= 0.83( 𝑝= 0.0027) therefore test whether the rubric
+dimensions most favored by human raters are also the dimensions most favored by the LLM judge. At
+the same metric-summary level, the directional winner agrees on all ten metrics: both human raters
+and the LLM judge assign the largest preference share toDeepTutorfor every metric.
+D.4. General Problem-Solving Setup
+D.4.1. Benchmark Descriptions
+Table 6 summarizes the five public benchmarks used in §5.5.
+D.4.2. Evaluation Protocol
+Correctness is assessed via a two-stage pipeline.Stage 1 (Extract): an LLM extracts the model’s final
+answerfromitsfree-formoutput(model: ClaudeSonnet4.6,temperature=0.0,maxtokens=16384).
+Stage 2 (Judge): a second LLM call compares the extracted answer to the ground truth using
+benchmark-specific rubrics (same model and settings as Stage 1 for consistency). Benchmark-specific
+rubrics cover exact match for GAIA, option matching or text equivalence for GPQA and HLE, and
+textual equivalence checks for open-ended benchmarks such as LiveBench and AA-LCR. All Pass@1
+scores are reported as percentages.
+D.4.3. Pipeline Configuration
+Table 7 lists the tool configuration and concurrency settings for theDeepTutorpipeline on each
+benchmark. This is the same solver-only configuration described in §5.5: the Hybrid Personalization
+Engine is disabled, including both Static Knowledge Grounding (SKG) and Dynamic Personal Memory
+(DPM). Thus no course knowledge base, learner profile, or trace-forest retrieval is active in the public
+benchmark runs.
+39
+
+--- Page 40 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Benchmark Tools Enabled Max Tokens Concurrency
+HLE code_execute, reason 16384 30
+GPQA-D code_execute, reason 16384 50
+LiveBench code_execute, reason 16384 10
+GAIA code_execute, reason, web_search 16384 20
+AA-LCR code_execute, reason 16384 25
+Table 7| Per-benchmark pipeline configuration.done and replan are always available. Temperature
+is 0.0 across all benchmarks.
+D.5. Agent Hyperparameters
+Table 8 reports the temperature and maximum token budget for each module. The solve module
+uses low temperature (0.3) for deterministic multi-step reasoning; the question module uses higher
+temperature (0.7) to promote ideation diversity; the personalization module uses an intermediate
+value (0.5) balancing consistency with adaptive profile updates.
+Module Agents Temp. Max Tokens
+Solve planner, solver, writer 0.3 8192
+Question idea, evaluator, generator, validator 0.7 4096
+Personalization summary, weakness, reflection 0.5 8192
+Table 8| Agent hyperparameters. All modules share a single set of parameters; per-agent overrides
+are not used in the reported experiments.
+D.6. Implementation Details
+For reproducibility, we detail key implementation choices not fully covered in the main text.
+Weakness State Transitions.Weakness state transitions (active→ resolved) areevidence-gated
+rather than governed by numeric confidence thresholds. The Weakness Agent uses prompt-based
+criteria: a weakness is marked resolved when the user answers correctly on the topic in recent
+sessionsandstops re-asking about it. The benchmark evaluator enforces strict resolution criteria—
+explicit correction of the misconception, a clear explanation of why the old understanding was
+wrong, and scaffolded reasoning for complex concepts. Profile evolution moves resolved concepts
+intoknown_welland removes them fromunknownandpartially_known.
+Trace Retrieval Budget.Trace retrieval uses a fixed top_k = 3 for semantic search across the
+trace forest. Level-specific filtering is applied by context: idea and evaluator agents query level-
+1 nodes (session roots); generator context queries level-3 nodes for wrong-answer patterns. The
+SearchTracetool defaults to top_k = 5, and individual trace detail views are truncated to 6,000
+characters. Scratchpad context budgets are 6,000 tokens for the solver and 12,000 tokens for the
+writer. Conversation history in the benchmark simulator is truncated to 10,000 characters.
+40
+
+--- Page 41 ---
+DeepTutor: Towards Agentic Personalized Tutoring
+Embedding Models.Both the trace forest and RAG indexing share the same embedding service.
+The embedding model is configured via environment variables; supported options include OpenAI
+text-embedding-3-large (3,072 dimensions), Cohereembed-v4.0 (1,024 dimensions), and
+Jinajina-embeddings-v3(1,024 dimensions).
+Knowledge Graph Construction.Knowledge graph construction is delegated to LightRAG, which
+performs chunking, entity extraction, and embedding internally. RAGAnything adds MinerU-based
+PDF parsing (images, tables, equations) before insertion. Our implementation uses LightRAG’s default
+entity extraction pipeline without custom entity alignment or additional quality-control filtering.
+Additional Solver Parameters.Table 9 lists additional parameters governing the solver-only and
+problem-tutoring pipelines.
+Parameter Value Parameter Value
+Max ReAct iterations per step 5 RAG mode (planner) hybrid
+Max plan steps 10 Question idea loop rounds 3
+Max replans 2 Ideas per round 5
+Observation truncation 2,000 tokens Generator max retries 2
+Planner pre-retrieval queries 3 Question RAG mode naive
+RAGtop_k(planner) 8 Memory agent max ReAct rounds 6
+Table 9|Additional pipeline parameters.
+D.7. Backbone Models
+Table 10 lists the five backbone families evaluated in the general problem-solving experiments
+(§5.5). All backbone results are obtained via OpenRouter-compatible APIs with greedy decoding
+(temperature = 0.0).
+Backbone Provider Context Window
+Gemini-3-Flash Google DeepMind 1M tokens
+Sonnet-4.5 Anthropic 200K tokens
+Qwen-3.5-Plus Alibaba Cloud 128K tokens
+GPT-5-Mini OpenAI 128K tokens
+Minimax-M2.5 MiniMax 1M tokens
+Table 10| Backbone families used in the general problem-solving evaluation. Context window sizes
+are approximate as reported at evaluation time.
+41

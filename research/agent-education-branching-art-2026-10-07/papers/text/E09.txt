@@ -1,0 +1,2260 @@
+=== PDF PAGE 1 ===
+DOCUMENT RESUME
+ED 338 122HE 024 935
+AUTHORPintrich, Paul R.; And Others
+TITLEA Manual for the Use of the Motivated Strategies for
+Learning Questionnaire (MSLQ).
+INSTITUTIONNational Center for Research to Improve Postsecondary
+Teaching and Learning, Ann Arbor, MI.
+SPONS AGENCYOffice of Educational Research and Improvement (ED),
+Washington, DC.
+REPORT NONCRIPTAL-91-B-004
+PUB DATE91
+CONTRACTOERI-86-0010
+NOTE76p.; From the National Center for Research to
+Improve Postsecondary Teaching and Learning Project
+on Instructional Processes and Edrcational Outcomes.
+For a related document, see HE 024 936.
+PUB TYPEGuides - Non-Classroom Use (055) -- Tests/Evaluation
+Instruments (160)
+EDRS PRICEMF01/PC04 Plus Postage.
+DESCRIPTORSCollege Students; Higher Education; *Learning
+Motivation; *Learning Strategies; *Questionnaires;
+Research Methodology; Scientific and Technical
+Information; *Student Educational Objectives;
+*Student Motivation
+IDENTIFIERS*Motivated Strategies for Learning Questionnaire
+ABSTRACT
+This manual 13 a guide to the "Motivated Strategies
+for Learning Questionnaire" (MSLQ) for assessing collegestudents'
+motivational orientations and their use of differentlearning
+strategies for a college ccurse. The MSLQ, basedon a general
+cognitive view of motivation and learning strategies, containstwo
+sections. The motivation section consists of 31 items thatassess
+students' goals and value beliefs for acourse. The learning
+strategies section includes 31 items regarding students'use of
+different cognitive and metacognitive strategies and 19 items
+concerning student management of different resources. The guide
+contains an introduction that details the survey's development,
+scoring, organization, and administration suggestions. Twosections
+explain the two components of the instrument in detail,listing the
+items, explaining their significance, and offering descriptive
+statistics. Also included in other sectionsare a sample fact sheet;
+a sample demographic sheet; a copy of the questionnaire itself;a
+sample feedback form; 11 references; andan appendix listing
+demographic information, scale correlations, andconfirmatory factor
+analysis results.(JB)
+**** *********** *************************************** ********
+Reproductions supplied by EDRS are the best thatcan be made
+from the original document.
+***********************************************************************
+
+
+=== PDF PAGE 2 ===
+Selected publications
+available from NCRIPTAL
+Approaches to Research on the Improvementof PostsecondszyTeaching and Learning: A Working Paper
+Patricia J. Green and Joan S. Stark
+Postsecoadary Teaching and Learning Issues inSearch ofReser rchers: A Working Paper
+Carol D. Vogel and Joan S. Stark
+Classroom Assessment Techniques: A HandbookforK. Patricia Crass and Thomas A. Angelo
+Psychological Medals ot the Impact of Collegeon StudentsHarold A. Korn
+Teaching sad Learning in the CollegeClassroomA PAVkire of the Research Literature. Second Edition
+Wilbert J. Mc/Coach*. Paid R. Pfntrich,Yl-Guarig Let.
+Datrid A. F. Smith. and Rajeeu Sharma
+Designing the Learning Plan: A Reviewof Research andTheory Related to College Canicula
+Joan S. Stark and MaZeolrn A. Lowther.with assistance fromSally Smith
+Reflections on Course Planning:Faculty and StudentsConsider Influences and Goals
+Joan S. Stark. Makolnt A. Lowther. MichaelP. Ryan.
+Sally Smith &mai, Michele L Genthon.Gretchen G. Martens.and C. Lynne Hauen
+Planning Introductory CollegeCourses: Influences on FacultyJoan S. Stark. Malcolm A. I..owther. RichardJ. Bentley, Michael P. Ryan.Gretchen G. Martens. Michele 1.. Genthon.Patricia Wren. andKathleen M. Shaw
+Planning a College Course: AGuidebook for the GraduateTer:clam' Assistant
+Michael P. Ryan and Gretchen G.Martens
+Preparing Course Syllabi forImproved CommunicationMalcolm A. Lowther. Joan S. Stark.and Gretchen G. Martens
+Faculty as a Key Resource: A Reviewof the Research LiteratureRobert T. Blackburn. Janet H. Lawrence.Steuen Ross. Virptraci Polk °kaiak°.Jeffery P. Bieber. Rosalie Meilarci. andThrry Street
+Performance Appraisal fee Faculty:Implicatleas for Higher gdoeationRobert T. Blackburn and Judith A.Pitney
+no Organisational Contest farTeaching aad Learning:A Review of Os Research Literstrao
+Martnn W. Peterson. Ken S. Cameron. LisaA. Meta,
+Philip Jones. and Deborah Ettlngton
+Electronic Informatioul MerseySUM for a Computer AgeJerome Johnstort
+Design in Context: A ConceptualFramework for theStudy of Computer Sorrow-a inHigher LducationRobert B. Kovna and Robert L.Bangs:It-Drowns
+The Slectrenio Classroomia Higher Sducation: ACase for ChangeJerome Johnvort and SwanGardner
+
+
+=== PDF PAGE 3 ===
+A Manual forthe Use of the
+Motivated Strategiesfor
+Learning Questionnaire
+(MSLQ)
+Paul R. Pintrich,
+David A. F. Smith,
+Teresa Garcia, and
+Wilbert J. McKeachie
+Grant Number OEM-86-0010
+Joan S. Stark. Director
+Wilbert J. McKeachie. Associatedirector
+Suite 2400 School of EducationBuilding
+The University of Michigan
+Ann Arbor, Michigan 48109-1259
+(313)936-2741
+
+
+=== PDF PAGE 4 ===
+Acknowledgements
+The Motivated Strategies for LearningQuestionnaire (MSLQ) was designedand
+devloped by a team of researchersfrom the National Center forResearch to
+Improve Postsecondary Teaching andLearning (NCRIFFAL) and theSchool of
+Education at the University of Michigan.Besides the four authors, the teamof
+researchers included Yi-Guang Lin,Moshe Naveh-Benjamin,Stuart Karaberack.
+Donna Kempf, Terry Crooks, Susan Reiter.Carol Weiss, and Robert Doljanac.
+The development of the MSLQ could noihave been completed without theirhelp.
+Technical Report No. 91-8-004
+©1991 The Regents of The University of Michigan.All rights reserved.
+The project presented, or reported herein, was performedpursuant to a grant
+from the Office of Educatioral Research andImprovement/ Deportment of
+Education (OERI/ED).However, the opinions expressedherein do not
+necessarily reflect the position or policy of theOERI/ED or the Regents of The
+University of Michigan, and no official endorsementshould be inferred
+
+
+=== PDF PAGE 5 ===
+Contents
+I.Introduction1
+ILListing of Motivation Scales
+1. Value Components
+a.Intrinsic Goal Orientation
+b. Extrinsic Goal Orientation
+C. Task Value
+2. Expectancy Components
+a. Control Beliefs
+b. Self-Efficacy for Learning and Performance
+3. Affective Components
+a. Test Anxiety
+7
+9
+9
+10
+11
+12
+12
+13
+15
+15
+III.Listing of Learning Strategies Scales17
+1. Cognittve and Metacognitive Strategies19
+a. Rehearsal19
+b. Elaboration20
+C. Organization21
+d.Critical Thinking22
+C.Metacognitive Self-Regulation23
+2. Resource Management Strategies25
+a. Time and Study Environment25
+b. Effort Regulation27
+c. Peer Learning28
+d. Help Seeking29
+IV. Sample Face Sheet
+V. Sample Demographic Sheet
+VI. The Motivated Strategies for Learning Questionnaire
+VII. Sampie Feedback Form
+VIII.References
+t;
+31
+35
+39
+49
+61
+
+
+=== PDF PAGE 6 ===
+Appendices
+A Demographic Information
+B.Scale Correlations-
+C. Confirmatory Factor Analyses Results
+v i
+
+
+=== PDF PAGE 7 ===
+Motivated Strategies for Learning Questionnaire Manual
+I. INTRODUCTION
+1
+
+
+=== PDF PAGE 8 ===
+Motivated Strategies for Learning QuestionnaireManual
+General Description
+The Motivated Strategiesfor Learning Questionnaire (MSLQ)is a self-reportinstrument designed toassess college students' motivational orientations andtheir use of differentlearning strategies fora college course. The MSLQ isbased on a generalcognitive view of motivation andlearning strategies.McKeachie, Pintrich, Lin, &Smith (1986) present the generaltheoreticalframework that underliesthe MSLQ.Other articles that discuss thetheoretical framework includePintrich (1988a,b; 1989), Pintrich& Garcia(1991), and Pintrich and De Groot(1990).
+There are essentiallytwo sections to the MSLQ,a motivation section, and alearning strategies section.The motivation section consists of31 items thatassess students' goals and value beliefsfor a course, their beliefs about theirskill to succeed ina course, and their anxiety about tests ina course. Thelearning strategy sectionincludes 31 items regarding students'use of differentcognitive and metacognitivestrategies.In addition, the learning strategiessection includes 19 itemsconcerning student management ofdiffermtresources. There are 81 itemson the 1991 version of the MSLQ.
+Administering the mu
+The fifteen different scaleson the MSLQ can be used togetheror singly. Thescales are designedto be modular and can be usedto fit the needs of theresearcher or instructor.The instrument is designedto be given in class andtakes approximately 20-30minutes to administer.
+A samplecover sheet (p. 33) and demographic sheet(p. 37) are included inthis manual. Thecover sheet requests the student's voluntaryparticipationand briefly describesthe MSLQ. The demographicsheet is an optional formthe researchercan include to gather students' backgrounddata.Both thesample cover sheet anddemographic sheetcan be adapted to the individualresearcher's needs. Thequestionnaire itself is locatedon pages 41-48.
+Development of the MSLQ
+The MSLQ has beenunder development formallysince 1986 whenNCRIPTAL was foundedand informally since 1982when we undertookourresearch on collegestudent learning and teaching.The years 1982-1986involved usinga self-report instrument toassess students' motivation anduse of learning strategies that variedfrom 50 to 140 items. Weused theseearly instrumentsto evaluate the effectivenessof our "Learning to Learn"class here at the Universityof Michigan (see McKeachie,Pintrich, & Lin, 1985;Pintrich, McKeachie, &Lin, 1987). These instrumentswere used with over1000 University of Michiganundergraduates enrolled inour course. Theseearly instrumentswere subjected to the usual statisticaland psychometric
+3
+
+
+=== PDF PAGE 9 ===
+Motivated Strategies for Learning QuestionnaireMantta .
+analyses, including internal reliabilitycoefficient computation,factor
+analyses, and correlations with academicperformance and aptitude measures
+(e.g., SAT scores). We continuallyrevised items on the basis of theseresults.
+We began the formal developmentof the MSLQ when NCRIPTAL was
+founded in 1986. NCRIPTAL was fundedfor research on college populations
+excluding major research ins itutionslike Michigan. We began usingthe
+MSLQ at three collaborating Institutionsin the Midwest, a four-year,public,
+comprehensive university; a small liberal artscollege; and a community
+college.There were three major waves of datacollection with previous
+versions of the MSLQ with students from thesethree institutions:1986, 1987,
+and 1988. The items on these previous versionsof the MSLQ were subjected
+to the usual statistical andpsychometric analyses including int?rnalreliability
+coefficient computation, factor analyses,and correlations with academic
+performance measures. The first wave ofdata collected in 1986 included326
+students; the second wave in 1987 included 687students; and the third wave
+in 1988 included 758 students. After eachof these waves we analyzed thedata
+and rewrote items, and refined theconceptual model underlying our
+instrument.
+Therefore, based on both theoretical and empiricalanalyses, we revised items
+and constructed scales.The final version of the MSLQpresented in this
+manual represents the past five years ofwork on these various waves ofdata.
+Characteristics of thg Sample
+The data presented in this document weregathered from a sarnpie of 380
+Midwesterr college students.Most of these students (N=356)attended a
+public, four-year university;the remaining students (N=24)attended a
+community college. This version of the MSLQ wasadministered towards the
+end of the Winter 1990 (January to May) semester.Thirty seven classrooms
+were sampled, spanningfourteen subject domains and fivedisciplines
+(natural science, humanities, social science, computerscience, and foreign
+language).Additional demographic informationabout this sampk can be
+found in Appendix A (pp. 67-71).
+Item and Scale Stati§tics
+The MSLQ scales are detailed on pages9-29.This manual includes
+descriptions of each scale, as well as relevantstatistics such as internal
+reliability coefficients, means, standarddeviations, and zero order
+correlations with final course grade kr each item andscale. Scale correlations
+are presented in AppendixB (p. 75). The scale correlations withfinal grade
+are significant, albeit moderate,demonstrating predictive validity.The
+Cronbach's alphas are robust, ranging from .52 to.93.Additionally, we have
+4
+
+
+=== PDF PAGE 10 ===
+Motivated Strategies for Learning Questionnaire Manual
+included results from confirmatoryfactor analyses in Appendix C (pp. 79-87).
+These indicate that the MSLQ showsreasonable factor validity.
+5coring the MSLO
+Students rate themselveson a seven point Likert scale from "not at all true of
+me" to "very true of me." Scalesare constructed by taking the mean of theitems that make up that scale.For example, intrinsic goal orientation (seepage 9) has four items. An individual'sscore for intrinsic goal orientation
+would be computed by summingthe four items and taking theaverage.
+Items marked as "reversed"are reverse coded items and must be reflectedbefore scale construction.These negatively worded items and the ratingshave to be reversed beforean individual's score can be computed. If an itemhas to be reversed,a person who has circled 1 for that item now receivesascore of 7 and so on.Accordingly, a I becomesa 7, a 2 becomes a 6, a 3becomes a 5, a 4 remainsa 4, a 5 becomes a 3, a 6 becomes a 2, and a 7 becomes
+a I. The simplest way to reflecta reverse coded item is to subtract the originalscore from 8.For example, if the originalscore was 2 to the negativelyworded item, one wouldcompute 8 - 2 = 6; 6 being the score for the positively
+worded version of that question.The statistics reported in this manual all
+represent the positively worded versions of theitems.
+Sp_sient Feedback
+It has beenour policy at NCRIPTAL to provide students feedbackon theMSLQ as a form of compensationfor their participation inour studies. Wehave chosen nine scales ofthe MSLQ (Task Value, Self-Efficacy for Learning
+and Performance, TestAnxiety, Rehearsal, Elaboration, Organization,Metacognition, Time and StudyEnvironment Management, and EffortRegulation) on whichto give students feedback. The student's individual
+scores, the class' scale means, and quartile informationare included in thefeedback form.We provide descriptions of each scaleand also offersuggestis to students on how to increase their levels ofmotivation andstrategase. Our feedback form is duplicated in this manualon pages 51-60.Again, the feedback formmay be adapted to the researcher's or instructor's
+needs.
+We have not providednorms for the MSLQ. It is designed to be used at thecourse level. We assume that students'responses to the questions mightvary as a function of differentcourses, so that the same individual might
+report different levels of motivationor strategy use depending on the course.If the user desiresnorms for comparative purposesover time, we suggest thedevelopment of localnorms for the different courses or instructorsat thelocal institution.
+
+
+=== PDF PAGE 11 ===
+Motivated Strategies for Learning Questionnaire Manual
+H. MOTIVATION SCALES
+7
+
+
+=== PDF PAGE 12 ===
+Motivated Strategies for Learning Questionnaire Manual
+I 1I
+Goal orientation refers to the student's perception of the reasons why she is
+engaging in a learning task. On the MSLQ, goal orientation refers to student's
+general goals or orientation to the course as a whole.Intrinsic goal
+orientation concerns the degree to which the student perceives herself to be
+participating in a task for reasons such as challenge, curiosity, mastery.
+Having an intrinsic goal orientation towards an academic task indicates that
+the student's participation in the task is an end all to itself, rather than
+participation being a means to an end.
+Item
+1.In a class like this, I prefer course material that really challenges
+me so I can learn new things.
+16.In a class like this, I prefer course material that arouses my
+curiosity, even if it is difficult to learn.
+22.The most satisfying thing for me in this course is trying to
+understand the content as thoroughly as possible.
+24.When I have the opportunity in this dass, I choose course
+assignments that I can learn from even if they don't guarantee a
+good grade.
+Alpha: .74
+Descriptive Statistics
+StandardCorrelation
+MeanDeviationwith Final Grade
+Item
+1 5.051.41.22
+165.681.38.21
+225.231.41.17
+244.141.58.16
+Scale5.031.09.25
+9
+
+
+=== PDF PAGE 13 ===
+Motivated Strategies for Learning Questionnaire Manual
+YalucCompantaLLExtrinsis_CLilalnzientatilm
+Extrinsic goal orientation complements intrinsic goal orientation, and
+concerns the degree to which the student perceives herself to be participating
+in a task for reasons such as grades, rewards, performance, evaluation by
+others, and competition. When one is high in extrinsic goal orientation,
+engaging in a learning task is the means to an end. The main concern the
+student has is related to issues that are not directly related to participating in
+the task itself (such as grades, rewards, comparing one's performance to that
+of others). Again, this refers to the general orientation to the course as a
+whole.
+Item
+7.Getting a good grade in this class is the most satisfying thing for
+me right now.
+11.The most important thing for me right now is improving my
+overall grade point average, so my main concern in this class is
+getting a good grade.
+13.If I can, I want to get better grades in this class than most of the
+other students.
+30.I want to do well in this class because it is important to show my
+ability to my family, friends, employer, or others.
+Alpha: .62
+Descriptive Statistics
+Item
+Mea:1
+StandardCorrelation
+Deviationwith Final Grade
+7 5.071.62.10
+11 5.321.71-.09
+135.311.73.10
+304.432.07-.04
+Scale5.031.23.02
+10
+
+
+=== PDF PAGE 14 ===
+Motivated Strategies for Learning Questionnaire Manual
+Value Component: Task Value
+Task value differs from goal orientation in that task value refers tothe
+student's evaluation of the how interesting, how important, and howuseful
+the talk is ("What do I think of this taskr). Goal orientationrefers to the
+reasons why, the student is participating in thetask ("Why am I doing this?").
+High task value should lead to more involvement in one's learning.On the
+MSLQ, task value refers to students' perceptions of the coursematerial in
+terms of interest, importance, and utility.
+Item
+4.I think I will be able to use what I learn in this course in other
+courses.
+10.It is important for me to learn the course material in this class.
+17.I am very interested in the content area of this course.
+23.I think the course material in this class is useful for me to learn.
+26.I like the subject matter of this course.
+27.Understanding the subject matter of this course is very
+important to me.
+Alpha: .90
+Descriptive Stalis&s
+Item
+StandardCorrelation
+MeanDeviationwith Final Grade
+4 5.331.72.15
+105.871.24.15
+175.321.64.21
+235.721.38.18
+265.461.66.19
+275.541.40.22
+Scale5.541.25.22
+1k
+1
+
+
+=== PDF PAGE 15 ===
+Motivated Strategies for Learning Questionnaire Manual
+Earstancy..Component: Control of Learning Beliefs
+Control of learning refers to students' beliefs that their efforts to learn will
+result in positive outcomes.It concerns the belief that outcomes are
+contingent on one's own effort, in contrast to external factors suchas the
+teacher. If students believe that their efforts to study makea difference in
+their learning, they should bemore likely to study more strategically and
+effectively. That is, if the student feels that shecan control her academic
+performance, she is more likely to put forth what is needed strategicallyto
+effect the desired changes.
+Item
+2.If I study in appropriateways, then I will be able to learn the
+material in this course.
+9.It is my own fault if I don't learn the material in thiscourse.
+18.If I try hard enough, then I will understand thecourse material.
+25.If I don't understand the course material, it is because I didn'ttry
+hard enough.
+Alpha: .68
+Descriptive Statistics
+StandardCorrelation
+MeanDeviationwith Final Grade
+Item
+2 6.121.14.21
+9 5.601.62.06
+186.141.02.15
+255.091.62.01
+Scale5.74.98.13
+12!;
+
+
+=== PDF PAGE 16 ===
+*I
+Motivated Strategies for Learning Questionnaire Manual
+1,1I)II -01I.16-0041,11
+The items comprising this scale assess two aspects of expectancy: expectancy
+for success and self-efficacy. Expectancy for success refers to performance
+expectations, and relates specifically to task performance. Self-efficacy is a self-
+appraisal of one's ability to master a task. Self-efficacy includes judgments
+about one's ability to accomplish a task as well as one's confidence in one's
+skills to perform that task.
+Item
+5.I believe I will receive an excellent grade in this class.
+6.I'm certain I can understand the most difficult material
+presented in the readings for this course.
+12.I'm confident I can understand the basic concepts taught in this
+course.
+15.I'm confident I can understand the most complex material
+presented by the instructor in this course.
+20.I'm confident I can do an excellent job on the assignments and
+tests in this course.
+21.I expect to do well in this class.
+29.I'm certain I can master the skills being taught in this class.
+31.Considering the difficulty of this course, the teacher, and my
+skills, I think I will do well in this class.
+Alpha: .93
+
+
+=== PDF PAGE 17 ===
+Motivated Strategies for Learning Questionnaire Manual
+.10MI 14SIII øI4. .O0111
+Descriptive Statistics
+Item
+5
+6
+12
+15
+20
+21
+29
+31
+Scale
+StandardCorrelation
+MeanDeviatioqwith Final Grade
+4.951.59.49
+5.181.62.19
+6.36.%.23
+5.361.48.22
+5.241.47.39
+5.551.39.46
+5.571.30.28
+5.551.34.44
+5.471.14.41
+14
+I
+
+
+=== PDF PAGE 18 ===
+Motivated Strategies for Learning Questionnaire Manual
+Affediy.t..Cam
+Test anxiety has been found to be negatively related to expectancies aswell as
+academic performance. Test anxiety Li thought to have two components: a
+worry, or cognitive component, and anemotionality component. The worry
+component reiers to students' negative thoughts thatdisrupt performance,
+while the emotionality component refers to affective and physiological
+arousal aspects of anxiety.Cognitive concern and preoccupation with
+performance have been found to be the greatest sources of performance
+deaement. Training in the use of effective learning strategies and test-taking
+skills should help reduce the degree of anxiety.
+Item
+3.When I take a test I think about ki,.w poorly I am doing
+compared with other students.
+8.When I take a test I think about items on other parts of the test I
+can't answer.
+14.When I take tests I think of the consequences of failing.
+19.I have an uneasy, upset feeling when I take an exam.
+28.I feel my heart beating fast when I take an exam.
+Alpha: .80
+Descriptive Statistics
+Item
+Scale
+StandardCorrelation
+MeanDeviationwith Final Grade
+3 2.981.90-.29
+8 3.831.86-.13
+143.842.04-.24
+193.891.98-.22
+283.591.95-.13
+3.631.45-.27
+15
+
+
+=== PDF PAGE 19 ===
+Motivated Strategies for Learning Questionnaire Manual
+-
+III. LEARNING STRATEGIES SCALES
+17
+0 i)k.....
+
+
+=== PDF PAGE 20 ===
+Motivated Strategies for Learning Questionnaire Manual
+Basic rehearsal strategies involve recitingor naming items from a list to be
+learned. These strategies are best used for simple tasks and activation of
+information in workingmemory rather than acquisition of new information
+in long-term memory.These strategies are assumed to influence the
+attention and encodingprocesses, but they do not appear to help students
+construct internal connections among the informationor integrate the
+information with prior knowledge.
+Item
+39.When I study for this class, I practice saying the materialto
+myself over and over.
+46.When studying for this dass, I readmy class notes and the
+course readings over and over again.
+59.I memorize key words to remindme of important concepts in
+this class.
+72.I make lists of important terms for thiscourse and memorize the
+lists.
+Alpha: .69
+Descriptive Statistics
+StandardCorrelation
+MeanDeviationwith Final GradeItem
+394.302.01-.04
+464.801.84.06
+595.311.50.07
+723.682.10.06
+Scale4.531.35.05
+
+
+=== PDF PAGE 21 ===
+Motivated Strategies for Learning Questionnaire Manual
+Cognitiye..andlipjawsnitiyiatzategks: Elaboration
+Elaboration strategies help students store information into long-term
+memory by building internal connectionsbetween items to be learned.
+Elaboration strategies incluae paraphrasing, summarizing, creating analogies,
+and generative note-taking. These help the learner integrate and connect
+new information with prior knowledge.
+Item
+53.When I study for this class, I pull together information from
+different sources, such as lectures, readings, and discussions.
+62.I try to relate ideas in this subject to those in other courses
+whenever possible.
+64.When reading for this class, I try to relate the material to what I
+already know.
+67.When I study for this course, I write brief summaries of the
+main ideas from the readings and the concepts from the lectures.
+69.I try to understand the material in this class by making
+connections between the readings and the concepts from the
+lectures.
+81.I try to apply ideas from course readings in other class activities
+such as lecture and discussion.
+Alpha: .76
+Descriptive $tatistics
+Item
+Scale
+StandardCorrelation
+MeanDeviationwith Final Grade
+535.291.65.09
+625.071.59.21
+645.561.28.13
+673.232.02.15
+695.351.50.19
+814.911.56.13
+4.911.08.22
+20
+
+
+=== PDF PAGE 22 ===
+.41
+Motivated Strategies for Learning Questionnaire Manual
+11I 'AI
+Organization strategies help the learner select appropriate information and
+also construct connections among the information to be learned. Examples of
+an organizing strategies are clustering, outlining, and selecting the main idea
+in reading passages. Organizing is an active, effortful endeavor, and results in
+the learner being closely involved in the task. This should result in better
+performance.
+Item
+32.When I study the readings for this course, I outline the material
+to help me organize my thoughts.
+42.When I study for this course, I go through the readings and my
+class notes and try to find the most important ideas.
+49.I make simple charts, diagrams, or tables to help me organize
+course material.
+63.When I study for this course, I go over my class notes and make
+an outline of important concepts.
+Alpha: .64
+Descriptive Statistics
+Item
+Scale
+StandardCorrelation
+MeanDeviationwith Final Grady
+323.702.17.06
+425.931.31.21
+493.041.94.13
+633.902.11.12
+4.141.33.17
+21
+
+
+=== PDF PAGE 23 ===
+Motivated Strategies for Learning Questionnaire Manual
+Critical thinking refers to the degree to which students report applying
+previous knowledge to new situations in order to solve problems, reach
+decisions, or make critical evaluations with_respect to standards of excellence.
+Item
+38.I often find myself questioning things I hear or read in this
+course to decide if I find them convincing.
+47.When a theory, interpretation, or conclusion is presented in
+class or in the readings, I try to decide if there is good supporting
+evidence.
+51.I treat the course material as a starting point and ery to develop
+my own ideas about it.
+66.I try to play around with ideas of my own related to what I am
+learning in this course.
+71.Whenever I read or hear an assertion or conclusion in this class,
+I think about possible alternatives.
+Alpha: .80
+Descriptive Statistics
+Item
+Scale
+StandardCorrelation
+MeanDzyjalion
+383.831.77.04
+474.361.68.13
+513.811.85.08
+664.661.74.17
+714.151.49.13
+4.161.28.15
+22
+I ),
+
+
+=== PDF PAGE 24 ===
+Motivated Strategies for Learning Questionnaire Manual
+4111/1 I US"41'4I
+Metacognition refers to the awareness, knowledge, and control of cognition.
+We have focused on the control and self-regulation aspects of metacognition
+on the MSLQ, not the knowledge aspect. There are three general processes
+that make up metacognitive self-regulatory activities: plarming, monitoring,
+and regulating. Planning activities suchas goal setting and task analysis help
+to activate, or prime, relevant aspects of prior knowledge that make
+organizing and comprehending the material easier.Monitoring activities
+include tracking of one's attentionas one reads, and self-testing and
+questioning: these assist the learner in understanding the material and
+integrating it with prior knowledge. Regulating refers to the fine-tuning and
+continuous adjustment of one's cognitive activities. Regulating activitiesare
+assumed to improve performance by assisting learners in checking and
+correcting their behavior as they proceedon a task.
+Item
+33.During class time I often miss important points because I'm
+thinking of other things. (REVERSED)
+36.When reading for this course, I make up questions to help focus
+my reading.
+41.When I become confused about something I'm reading for this
+class, I go back and try to figure it out.
+44.If course materials are difficult to understand, I change theway I
+read the material.
+54.Before I study new course material thoroughly, I often skim it to
+see how it is organized.
+55.I ask myself questions to make sure I understand the material I
+have been studying in this class.
+56.I try to change the way I study in order to fit the course
+requirements and instructor's teaching style.
+57.I often find that I have been reading for class but don't know
+what it was all about. (REVERSED)
+61.I try to think through a topic and decide what Iam supposed to
+learn from it rather than just reading itover when studying.
+76.When studying for this course I try to determine which concepts
+I don't understand well.
+78.When I study for this class, I set goals for myself in order to
+direct my activities in each study period.
+79.If I get confused taking notes in class, I makesure I sort it out
+afterwards.
+
+
+=== PDF PAGE 25 ===
+Motivated Strategies for Learning Questionnaire Manua!
+DietaffignitimSelidlegulationlontinuesil
+Alpha: .79
+12tactiain_asitiattira
+Item
+33
+36
+41
+44
+54
+55
+56
+57
+61
+76
+78
+79
+Scale
+Mean
+Standard
+neviatign
+Correlation
+with Final Grade
+4.921.68.25
+2.981.75.03
+5.791.19.23
+4.071.6112
+4.511.80.17
+4.121.78.05
+4.611.68.16
+4.811.66.27
+4.501.60.21
+5.121.31.19
+4.531.67.19
+4.551.73.16
+4.54.90.30
+24
+
+
+=== PDF PAGE 26 ===
+Motivated Strategies for Learning Questionnaire Manual
+I 11,III
+Besides self-regulation of cognition, students must be able to manage and
+regulate their time and their study environments. Time management
+involves acheduling, planning, and managing one's study time.This
+includes not only setting aside blocks of time to study, but the effective use of
+that study time, and setting realistic goals. Time management varies in level,
+from an evening of studying to weekly and monthly scheduling. Study
+environment management refers to the setting where the student does her
+class work. Ideally, the learner's study environment should be organized,
+quiet, and relatively free of visual and auditory distractions.
+Item
+35.I usually study in a place where I car, concentrate on my course
+work.
+43.I make good use of my study time for this course.
+52.I find it hard to stick to a study schedule. (REVERSED)
+65.I have a regular place set aside for studying.
+70.I make sure I keep up with the weekly readings and assignments
+for this course.
+73.I attend class regularly.
+77.I often find that I don't spend very much time oi. this course
+because of other activities. (REVERSEP)
+80.I rarely find time to review my notes or readings before an exam.
+(REVERSED)
+Alpha: .76
+250I
+
+
+=== PDF PAGE 27 ===
+Motivated Strategies for Learning Questio:Lnaire Manual
+Descriptys Statistics
+Item
+IIII I eIII
+StandardCorrelation
+MeanDeviationwith Final Grade
+355.511.53.2.3
+434.461.65.26
+523.732.01.23
+654.582.03.15
+704.501.91.12
+736.49.98.17
+773.891.80.07
+805.801.48.20
+Scale4.871.05.28
+26
+
+
+=== PDF PAGE 28 ===
+Motivated Strategics for Learning Questionnaire Manual
+Self-regulation also includes students' ability to control their effort and
+attention in the face of distractions and uninteresting tasks. Effort
+management is self-management, and reflects a commitment to completing
+one's study goals, even when there are difficulties or distractions.Effort
+management is important to academic success because it not onlysignifies
+goal commitment, but also regulates the continued use of learning strategies.
+Item
+37.I often feel so lazy or bored when I study for this class that I quit
+before I finish what I planned to do. (REVERSED)
+48.I work hard to do well in this class even if I don't like what we
+are doing.
+60.When course work is difficult, I give up or only study the easy
+parts. (REVERSED)
+74.Even when course materials are dull and uninteresting, I
+manage to keep working until I finish.
+Alpha: .69
+Descriptive Statistics
+Item
+Scale
+StandardCorrelation
+MeanDeviationwith Final Grade
+374.871.73.15
+485.261.45.28
+605.521.42.29
+745.361.47.23
+5.251.10.32
+27
+
+
+=== PDF PAGE 29 ===
+Motivated Strategies for Learning Questionnaire Manual
+Collaborating with one's peers has been found to have positive effects on
+achievement. Dialogue with peers can help a learner clarifycourse material
+and reach insights one may not have attainedon one's own.
+Item
+34.When studying for this course, I often try to explain the material
+to a classmate or a friend.
+45.I try to work with other students from this class to complete the
+course assignments.
+50.When studying for this course, I often set aside time to discuss
+the course material with a group of students from the class.
+Alpha: .76
+Descriptive Statistics
+StandardCorrelation
+MeanDeviationwith Final Grade
+Item
+343.481.92.07
+452.941.97-.15
+502.241.64-.07
+:kale2.891.53-.06
+28
+
+
+=== PDF PAGE 30 ===
+Motivated Strategies for Learning Questionnaire Manuai
+Another aspect of the environment that the student must learn to manage is
+the support of others.This includes both peers and instructors. Good
+students know when they don't know something and are able to identify
+someone to provide them with some assistance. There is a largebody of
+research that indicates that peer help, peer tutoring, and individual teacher
+assistance facilitate student achievement.
+Item
+40.Even if I have trouble learning the material in this class, I try to
+do the work on my own, without help from anyune.
+(REVERSED)
+58.I ask the instructor to clarify concepts I don't understand well.
+68.When I can't understand the material in this course, I ask
+another student in this class for help.
+75.I try to identify students in this class whom I can ask for help if
+necessary.
+Alpha: .52
+Descriptive Statistics
+StandardCorrelation
+MeanDeviationwiih Final Grade
+Item
+403.261.80-.05
+584.211.89.24
+683.731.99-.06
+754.152.00-.08
+Scale3.841.23.02
+29
+
+
+=== PDF PAGE 31 ===
+Motivated Strategies for Learning Questiotutaire Manual
+-
+IV. SAMPLE FACE SHEET
+
+
+=== PDF PAGE 32 ===
+Motivated Strategies for Learning Questionnaire Manual
+MOTIVATED STRATEGIES FOR LEARNING QUESTIONNAIRE
+(MSLQ)
+National Center for Research to Improve Postsecondary Teaching and Learning
+(NCRIPTAL)
+School of Education, The University of Michigan
+Ann Arbor, Michigan
+Your instructor is participating in a study of college teaching and learning, in
+cooperation with the University of Michigan. We would like to ask for your
+participation in the study.As part of the study, over the course of the
+semester you will be asked to fill out several questionnaires related to your
+motivation and learning in this class.In addition, we would like to collect
+information from your college transcript and entrance tests scores.If you
+participate, you will receive feedback on your learning skills and motivation
+that may be useful to you in your college career. YOUR PARTICIPATION IS
+VOLUNTARY AND NOT RELATED IN ANY WAY TO YOUR GRADE IN
+THIS CLASS. You may decide to participate now butyou can withdraw from
+the study at any time during the course of thesemester with no penalty. All
+your responses are strictly confidential and only members of the research
+team will see your individual responses.
+The attached questionnaire asksyou about your study habits, your learning
+skills, and your motivation for work in thiscourse. THERE ARE NO RIGHT
+OR WRONG ANSWERS TO THIS QUESTIONNAIRE. THIS IS NOT A
+TEST. We want you to respond to the questionnaireas accurately as possible,
+reflecting your own attitudes and behaviors in thiscourse. Your answers to
+this questionnaire will be analyzed by computer andyou will receive an
+individual report in several weeks.The individual report will help you
+identify motivation and learning skills thatyou may want to improve during
+the term. Additionally, your instructor will receive feedbackon your class as
+a whole, which will allow him or her to tailor the course to class needs.
+Please sign below if you would like to be involved in this study. Thankyou
+for your cooperation.
+Name (Print)
+Signature
+Student ID Number/Social Security Number
+Instructor's Name
+Course Title and Meeting Time
+Today's Date
+33
+
+
+=== PDF PAGE 33 ===
+Motivated StTategies for Learning Questionnaire Manual
+-
+V. SAMPLE DEMOGRAPHICS SHEET
+
+
+=== PDF PAGE 34 ===
+Motivated Strategies for Learning Questionnaire Manual
+DEMOGRAPHIC INFORMATION
+1.Gender (circle one).MaleFemale
+2.What year did you graduate from high school?
+3.Class level (circle one).
+FreshmanSophomoreJuniorSenior
+4.Ethnic background (circle one).
+Afro-AmericanAsian-CaucasianHispanicOther
+or BlackAmericanor Spanish
+Speaking
+5.How many hours per week do you work for pay?
+6.How many other college level courses have you
+had in this subject area?
+7How many classes are you taking this term?
+8.How many hours a week do you study for this course?
+9.Reasons for taking this class (circle yes or no for each item).
+a.fulfills distribution requirementYesN o
+b. content seems interestingYesNo
+c.is required of all students at collegeYesNo
+d. will be useful to me in other coursesYesNo
+e.is an easy electiveYesN o
+f.will help improve my academic skillsYesNo
+g.is required for major (program)YesNo
+h. was recommended by a friendYesN o
+i. was recommended by a counselorYesN o
+j.will improve career prospectsYesN o
+k.fit into my scheduleYesN o
+37
+,
+
+
+=== PDF PAGE 35 ===
+Motivated Strategies for Learning Questionnaire Manual
+--
+VI. THE MOTIVATED STRATEGIES FOR LEARNING QUESTIONNAIRE
+39
+:16
+
+
+=== PDF PAGE 36 ===
+Motivated Strategies for Learning Questionnaire Manual
+Part A. Motivation
+The following questions ask aboutyour motivation for and attitudes about
+this class. Remember thereare no right or wrong answers, just answer as
+accurately as possible. Use the scale below toanswer the questions.If you
+think the statement is very true ofyou, drcle 7; if a statement is not at all true
+of you, circle 1.If the statement is more or less true of you, find the number
+between 1 and 7 that best describesyou.
+123 4
+not at all
+true of rne
+1.In a class like this, I prefer course material
+that really challenges me so I can learn
+new things.
+2.If I study in appropriate ways, then I
+will be able to learn the material in this
+course.
+3.When I take a test I think about how
+poorly I am doing compared with other
+students.
+4.I think I will be able to use what I learn
+in this course in othercourses.
+5.I believe I will receive an excellent grade
+in this class.
+6.I'm certain I can understand the most
+difficult material presented in the
+readings for this course.
+7.Getting a good grade in this class is the
+most satisfying thing for me right now.
+When I take a test I think about items
+on other parts of the test I can't answer.
+41
+5 6 7
+very true
+of me
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+
+
+=== PDF PAGE 37 ===
+Motivated Strategies for Learning Questionnaire Manual
+9.It is my own fault if I don't learn the
+material in this course.
+10.It is important for me to learn the
+course material in this class.
+11.The most important thing for me
+right now is improving my overall
+grade point avezage, so my main
+concern in this class is getting a
+good grade.
+12.I'm confident I can learn the basic
+concepts taught in this course.
+13.If I can, I want to get better grades in
+this class than most of the other
+students.
+14.When I take tests I think of the
+consequences of failing.
+15.I'm confident I can understand the
+most complex material presented
+by the instructor in this course.
+16.In a class like this, I prefer course
+material that arouses my curiosity,
+even if it is difficult to learn.
+17.I am very interested in the content
+area of this course.
+18.If I try hard enough, then I will
+understand the course material.
+19.I have an uneasy, upset feeling when
+I take an exam.
+42
+not at all
+true of me
+very true
+of me
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+
+
+=== PDF PAGE 38 ===
+Motivated Strategies for Learning Questionnaire Manual
+20.I'm confident I can do an excellent
+job on the assignments and tests in
+this course.
+21.I expect to do well in this class.
+22.The most satisfying thing for me in
+this course is trying to understand the
+content as thoroughly as possible.
+23.I think the course material in this class
+is useful for me to learn.
+24. When I have the opportunity in this
+class, I choose course assignments that
+I can learn from even if they don't
+guarantee a good grade.
+25.If I don't understand the course material,
+it is because I didn't try hard enough.
+26.I like the subject matter of this course.
+27.Understanding the subject matter of
+this course is very important to me.
+28.I feel my heart beating fast when I take
+an exam.
+29.I'm certain I can master the skills being
+taught in this class.
+30.I want to do well in this class because it
+is important to show my ability tomy
+family, friends, employer, or others.
+31.Considering the difficulty of this course,
+the teacher, and my skills, I think I will
+do well in this class.
+43
+not at all
+true of me
+very true
+of me
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+3 9
+
+
+=== PDF PAGE 39 ===
+Motivated Strategies for Learning Questionnaire Manua!
+Part B. Learning Strategies
+The following questicns ask about your learning strategies and study skills for
+this class. Again, there are no right or wrong answers. Answer the questions
+about how you study in this class as accurately as possible. Use the same scale
+to answer the remaining questions.If you think the statement is very true of
+you, circle 7; if a statement is not at all true of you, circle 1.If the statement is
+more or less true of you, find the number between 1 and 7 that best describes
+you.
+1 2 34
+not at all
+true cpf me
+32. When I study the readings for this course,
+I outline the material to help me organize
+my thoughts.
+33.During class time I often miss important
+points because I'm thinking of other things.
+34.When studying for this course, I often try
+to explain the material to a classmate or
+friend.
+35.I usually study in a place where I can
+concentrate on my course work.
+36. When reading for this course, I make up
+questions to help focus my reading.
+37.I often feel so lazy or bored when I study
+for this class that I quit before I finish
+what I planned to do.
+38.I often find myself questioning things I
+hear or read in this course to decide if I
+find them convincing.
+39.When I study for this class, I practice
+saying the material to myself over and
+over.
+44
+5 67
+very true
+of me
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+
+
+=== PDF PAGE 40 ===
+Motivated Strategies for Learning Questionnaire Manual
+40.Even if I have trouble learning the
+material in this class, I try to do the
+work on my own, without help from
+anyone.
+41. When I become confused about
+something I'm reading for this class,
+I go back and try to figure it out.
+42. When I study for this course, I go
+through the readings and my class
+notes and try to find the most important
+ideas.
+43.I make good use of my study time for
+this course.
+44.If course readings are difficult to
+understand, I change the way I read
+the material.
+45.I try to work with other students from
+this class to complete the course
+assignments.
+46. When studying for this course, I read
+my class notes and the course readings
+over and over again.
+47. When a theory, interpretation, or
+conclusion is presented in class or in
+the readings, I try to decide if there is
+good supporting evidence.
+48.I work hard to do woll in this dass even
+if I don't like what we are doing.
+49.I make simple charts, diagrams, or tables
+to help me organize course material.
+45
+not at all
+true of me
+very true
+of me
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+AL
+
+
+=== PDF PAGE 41 ===
+Motivated Strategies for Learning Questionnaire Manual
+50.When studying for this course, I often
+set aside time to discuss course material
+with a group of students from the class:
+51.I treat the course material a: a starting
+point and try to develop my own ideas
+about it.
+52.I find it hard to stick to a study schedule.
+53.When I study for this class, I pull together
+information from different sources, such
+as lectures, readings, and discussions.
+54.Before I study new course material
+thoroughly, I often skim it to see how
+it is organized.
+55.I ask myself questions to make sure I
+understand the material I have been
+studying in this class.
+56.I try to change the way I study in order
+to fit the course requirements and the
+instructor's teaching style.
+57.I often find that I have been reading
+for this class but don't know what it
+was all about.
+58.I ask the instructor to clarify concepts
+I don't understand well.
+59.I memorize key words to remind me
+of important concepts in this class.
+60.When course work is difficult, I either
+give up or only study the easy parts.
+46
+not at all
+true of me
+very true
+of me
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+123457
+1
+
+
+=== PDF PAGE 42 ===
+Motivated Strategies for Learning Questionnaire Manual
+not at all
+true of me
+61.I try to think through a topic and decide
+what I am supposed to learn from it rather
+than just reading it over when studyini
+for this course.
+62.I try to relate ideas in this subject to those
+in other courses whenever possible.
+63. When I study for this course, I go over my
+class notes and make an outline of important
+concepts.
+64.When reading for this class, I try to relate
+the material to what I already know.
+65.I have a regular place set aside for studying.
+66.I try to play around with ideas of my own
+related to what I am learning in this course.
+67.When I study for this course, I write brief
+summaries of the main ideas from the
+readings and my class notes.
+68.When I can't understand the material in
+this course, I ask another student in this
+class for help.
+69.I try to understand the material in this class
+by making connections between the readings
+and the concepts from the lectures.
+70.I make sure that I keep up with the weekly
+readings and assignments for this course.
+71.Whenever I read or hear an assertion or
+conclusion in this class, I think about
+possible alternatives.
+very true
+of me
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+
+
+=== PDF PAGE 43 ===
+Motivated Strategies for Learning Questionnaire Manual
+72.I make lists of important items for this
+course and memorize the lists.
+73.I attend this class regularly.
+74.Even when course materials are dull
+and uninteresting, I manage to keep
+working until I finish.
+75.I try to identify students in this class
+whom I can ask for help if necessary.
+76. When studying for this course I try to
+determine which concepts I don't
+understand well.
+77.I often find that I don't spend very
+much time on this course because of
+other activities.
+78. When I study for this class, I set goals
+for myself in order to direct my activities
+in each study period.
+79.If I get confused taking notes in class, I
+make sure I sort it out afterwards.
+80.I rarely find time to review my notesor
+readings before an exam.
+81.I try to apply ideas from course readings
+in other class activities such as lecture
+and discussion.
+48
+not at all
+true of me
+very true
+of me
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+1234567
+
+
+=== PDF PAGE 44 ===
+Motivated Strategies for Learning Questionnaire Manual
+-
+VII. SAMPLE FEEDBACK FORM
+
+
+=== PDF PAGE 45 ===
+Motivated Strategies for Learning Questionnaire Manual
+MOTIVATED STRATEGIES FOR LEARNING QUESTIONNAIRE (MSLQ)
+Earlier this semester you took a questionnaire called the Motivated Strategies
+for Learning Questionnaire (also called the MSLQ). Thepurpose of this
+questionnaire was to gather some information about your study habits,your
+learning skills, and your motivation for schoolwork. As promised,we are
+providing you with feedback from the MSLQon your study habits, learning
+skills, and motivation. This handout describes how to interpretyour scores,
+so you can figure out what the scores mean.
+This feedback is intended to helpyou determine your own strengths and
+weaknesses as a student. From past experience,we have found that students
+like to have some infort.lon on how other students do on the MSLQ.
+Therefore, we have included information about theaverage levels of
+motivation and learning skills for the students inyour instructor's class.
+Your class as a whole may be generally high insome areas and low in others,
+so think about your own skills rather than about comparisons with others.
+You may want to use this feedback to do something about changingyour
+study skills or motivation.All of the motivational and study skills
+mentioned on your feedback sheet are learnable. This isan important idea to
+remember, especially in college. Youcan decide whether you want to change
+these aspects of your learning style. We have providedsome hints to go
+along with each scale. We hopeyou find these suggestions helpful. But keep
+in mind that these are not the onlyways to improve each area. You may
+want to seek additional help from services available at your institution.
+How to interpret your scores. All the scalesare based on a seven point scale.
+Although some items were worded negatively,we have reversed these
+questions so that in general, a higherscore such as a 4, 5, 6, or 7 is better than a
+lower score like a 1, 2, or 3. The only exception is the test anxiety scale, where
+a high score means more worrying.
+The average score for your class,as well as the breakdown of the scores f^r the
+bottom 25%, middle 50%, and the top 25%, is provided for each scale.If your
+score is at the bottom 25% on a scale, this means that most of the students in
+your class are reporting more motivation or use of learning strategies than
+you. If your score is in the middle 50%, then you are similar to most students.
+If your score is in the top 25%, thenyou think you are more motivated or use
+more learning strategies than other students.In general, if your scores are
+above 3, then your are doing well.If you are below 3 on mete than six of the
+nine scales, you may want to seek help fromyour inst:uctor or the counseling
+services at your institution.
+51
+
+
+=== PDF PAGE 46 ===
+Motivated Strategies for Learning Questionnaire Manual
+MOTIVATION SCALES; The first three scales refer to your motivation for
+the course, confidence in doing well in school, and your anxiety about taking
+tests.
+I. Motivation: Interest
+This is a measure of how interested you are in the material being covered in
+this course. A hibh score means you like the subject matter and are very
+interested in the content area of this class.
+Your score:
+Class mean:
+Bottom 25%:
+Middle 50%:
+Top 25%:
+Suggestions: Skim the table of contents of the class textbook or take a look at
+the course syllabus and make a list of the three topics that mo5t interest you
+and of the three topics that least interest you. Pay particular attention to these
+topics. What is it about the three most interesting topics that makes you like
+them so-much? What is it about the other three topics that makes them
+uninteresting? Can you find any of the characteristics of the three most
+interesting topics in the three least interesting topics? If you identify what it
+is about the three most interesting topics that makes you like them so much,
+you may be able to apply what you found to the three least :nteresting ones,
+and perhaps you'll find that those uninteresting topics aren't so uninteresting
+after all!
+52
+
+
+=== PDF PAGE 47 ===
+Motivated Strategies for Learning Questionnaire Manual
+IL Motivation: Expectancy for Success
+This is a measure of your perceptions of your potential success in this course
+and of your self-confidence for understanding the course content. A high
+score means that you think you will do well in the course, and feel confident
+that you will be able to master the course material.
+Your score:
+Class mean:
+Bottom 25%:
+Middle 50%:
+Top 25%:
+Suggestions:Evaluate your current approach to a course assignment from
+different points of view.For example, describe the effectiveness and
+ineffectiveness of your own approach from your own perspective.Then
+imagine how a classmate might evaluate your approach. By analyzing the
+way you are tackling an assignment, you may be able to figure out what
+you're doing right and what you're doing wrong and can change your
+approach. A better understanding of the way you learn, what works and what
+doesn't work, may help increase your confid,mce in doing well in this course.
+5
+
+
+=== PDF PAGE 48 ===
+Motivated Strategies for Learning Questionnaire Manual
+III. Test Anxiety
+This is a measure of how much youworry about tests and how often you
+have distracting thoughts whenyou take an exam. In contrast to the other
+scales, a high score here means that youare anxious in testing situations.
+Your score:
+Class mean:
+Bottom 25%:
+Middle 50%:
+Top 25%:
+Suggestions: Developing better study skills usually results in less anxiety.
+Prepare well for class and try to complete assignmentson time. Try not to
+wait until the last minute to get things doneor to get ready for an exam.
+Doing this should help buildyour confidence at test time and hopefully
+reduce test anxiety. When takinga test, concentrate on one item at a time,
+and if you're stumpedon a question, move on and go back to the question
+later.Remind yourself that you've prepared well and ifyou can't answer
+some questions, it's ok, you'll still be able to answer the others.
+54
+
+
+=== PDF PAGE 49 ===
+Motivated Strategies for Learning Questionnaire Manu?I
+COGNITIVE SCALES
+The remaining six scales refer to different kinds of study skills and learning
+strategies you reported using for thiscourse.
+IV. Cognitive Strategy: Rehearsal
+This scale is a measure of how oftenyou use study strategies such as rereading
+class notes and couroe readings and memorizing lists r-f key wordsand
+concepts. A high score means you use these strategies fairly often.
+Your score:
+Class mean:
+Bottom 25%:
+Middle 50%:
+Top 25%:
+Suggestions: List the important terms and topics in thecourse. Define them
+and repeat them out loud. Breakup that list into smaller lists that are made
+up of closely related items. Make up images or rhymes to helpyou remember
+those lists. Generate test items to helpyou measure your recall.
+55
+
+
+=== PDF PAGE 50 ===
+Motivated Strategies for Learning Questionnaire Manual
+V. Cognitive Strategy' Elaboration
+This scale reflects how often you attempt to summarize or paraphrase(put
+into your own words) the material you read in your textbooks, andhow often
+you tTy to relate the material to what youalready know or have learned. A
+high score means that you use these strategies fairly often. Thesestrategies
+usually result in better performance than rehearsal strategies.
+Your score:
+Class mean:
+Bottom 25%:
+Middle 50%:
+Top 25%:
+Suggestions: Paraphrase and summarize important information. Use your
+own words to describe the material covered duringlecture or in assigned
+reading.Pretend you're the teacher and are trying to explain the topic to
+students! Try to figure out how each topic relates to each other. What are the
+connections between what you've heard in lecture, talked about in
+discussion, read in the book?
+56
+5,.
+
+
+=== PDF PAGE 51 ===
+Motivated Strategies for Learning Questionnaire Manual
+VI. Cognitive Strategr_Organization
+This scale refers to your ability to select the main ideas from your readings as
+well as your attempts to organize and put together what you need to learn in
+this course.
+Your score:
+Class mean:
+Bottom 25%:
+Middle 50%:
+Top 25%:
+Suggestions: Outline course material and identify where the text and lecture
+overlap and don't overlap. This will give you a starting point in developing
+connections between ideas presented in two different contexts. Make charts,
+diagrams, or tables of the important concepts. Something likea flowchart ii r a
+tree diagram is usually very helpful in trying to understand how different
+ideas "go together."
+57
+,
+
+
+=== PDF PAGE 52 ===
+Motivated Strategies for Learning Questionnaire Manual
+VII. Metacognition
+This is a measure of how often you think about what you are reading or
+studying as you do your schoolwork.For example, do you monitor your
+attention while you read or do you often find that you have read 10 pages in
+your textbook and can't remember anything about it? Do you adjust your
+reading speed if you are reading something difficult in comparison to reading
+the newspaper? A high score means that you try to plan your work and check
+on whether you understand the course material.
+Your score:
+Class mean:
+Bottom 25%:
+Middle 50%:
+Top 25%:
+Suggestions: Skim the reading material before you begin to see how it is
+organized. Look at the headings and subheadings of the text to give yourself
+an idea of how things are related to each other. While reading, ask yourself
+questions about the paragraph you have just read and scribble key words in
+the margins of the book or in a notebook. Try to determine which concepts
+you don't understand well. Although this method takes longer initially, you
+are more likely to remember what you have read. This saves you time later
+when studying for a test.
+
+
+=== PDF PAGE 53 ===
+Motivated Strategies for Learning Questionnaire Manual
+VIII. Resource Management: Time and Study Space
+This scale is a measure of how well you manage your time and schedule, and
+your use of a place to study. A high score means that you have a method for
+managing your schedule and you try to study somewhere where you can
+finish your schoolwork.
+Your score:
+Class mean:
+Bottom 25%:
+Middle 50%:
+Top 2.5%:
+Suggestions: Keep track of what you do with your study time for a week.
+Write down your goals for each study period and then write down what you
+actually accomplished during that study period. Analyze the chart at the end
+of the week. You may want to change the place where you study, or the times
+when you study, or who you study with.Try to come up with a study
+schedule that works best for you.
+59
+
+
+=== PDF PAGE 54 ===
+Motivated Strategies for Learning Questionnaire Manual
+IX. Resource Management Self-Effort
+Titis scale refers to your willingness to try hard on your schoolwork, even
+when the work is difficult. A high score means that you try hard and exert
+effort in your studying.
+Your score:
+Class mean:
+Bottom 25%:
+Middle 50%:
+Top 25%:
+Suggestions: Keep a list of the topics that you find yourself procrastinating
+instead of studying for.Try to analyze why you postpone studying these
+topics by discussing them with other students. Talking with them may lead
+you to consider an approach that may help you act more quickly instead of
+delaying studying the material.
+60
+
+
+=== PDF PAGE 55 ===
+Motivated Strategies for Learning Questionnaire Manual
+7-
+VIII. REFERENCES
+615 f;
+
+
+=== PDF PAGE 56 ===
+Motivated Strategies for Learning Questionnaire Manual
+Hayduk, L.A. (1987).t_-lua 1.1 m
+and adyances. Baltimore: Johns Hopkins UniversityPress.
+Joreskog, K.G., & Sorbom, D. (1986). 1197.EL:Analysis of lineautructural
+relationships by the method of maximum likelihood:laer's guide.
+Mooresville, IN: Scientific Software Inc.
+II
+McKeachie, W.J., Pintrich, P.R., & Lin, Y.G. (1985).Teaching learning
+strategies. Ed.ucafional29, 153-160.
+McKeachie, W.J., Pintrich, P.R., Lin, Y.G., & Smith,D. (1986). Teaching and
+learning in the college classroom: A review of the resecachliterature.
+Ann Arbor, MI: National Center for Researchto Improve
+Postsecondary Teaching and Learning, The University of Michigan.
+Pintrich, P.R. (1988a). A process-orientedview of student motivation and
+cognition. In J. Stark & L. Mets (Eds.), Improving teaching andleamiLghr uh: N w directions fr in tituticmal research (Vol. 57,
+pp. 65-79). San Francisco: Jossey-Bass.
+Pintrich, P.R. (1988b). Student learningand college teaching. In R.E. Young &
+K.E. Eble (Eds.), College leaching an0 learning:Preparing for new
+commitments. New directions for teaching and learning (Vol 33,pp.
+71-86). San Francisco: Jossey-Bass.
+Pintrich, P.R. (1989). The dynamic interplayof student motivation and
+cognition in the college classroom. In C. Ames & M.Maehr (Eds.),
+htymn: Ma1ana Iva1 t 1
+environments (Vol. 6, pp. 117-160). Greenwich, CT: JAIPress.
+Pintrich, P.R., & DeGroot, E. (1990).Motivational and self-regulated learning
+components of classroom academic performance. Journal of
+Educational Psychology, 82_, 33-40.
+Pintrich, P.R., & Garcia, T. (1991, inpress). Student goal orientation and self-
+regulation in the college classroom. In M.Maehr & P. R. Pintrich
+(Eds.), Astaricefa in r_m_tiyouanth.lcLs.._g_g_f2s2_§sjv m nt:alanIf-
+regulatory processes, (Vol. 7). Greenwich,CT: JAI Press.
+Pintrich, P.R., McKeachie, W.J.,& Lin, Y.G. (1987). Teachinga course in
+learning to learn. Teaching of Psychology,J.4 81-86.
+63
+
+
+=== PDF PAGE 57 ===
+Motivated Strategies for Learning Questionnaire Manua:
+APPENDIX A. DEMOGRAPHIC INFORMATION
+f7,:Lti,)
+65
+
+
+=== PDF PAGE 58 ===
+Motivated Strategies for Learning Questionnaire Manual
+Three hundred eighty students took this version of the MSLQ at the end of
+the Winter 1990 semester.Eighty nine of these students did not receive
+demographic sheets in the questionnaire packets they received; therefore, the
+maximum number of responses to each demographic question is 291. Note
+that responding to any question on the MSLQ is optional, and some students
+elected not to respond to certain questions._
+1. Gender
+FrequencyFtrcent
+Male9926.3
+Female19250.5
+Missing8923.2
+2. What year did you graduate
+collapsed)
+from high school? (years 1933-1979 were
+FrequencyPercent
+1933 - 1970195.0
+1971 - 1979307.9
+19803 .8
+19818 2.1
+19828 2.1
+1983174.5
+1984174.5
+19853810.0
+19864912.9
+19875113.4
+1988266.3
+1989195.0
+Missing9424.7
+3. Class level
+FrequencyPercent
+Freshman205.3
+Sophomore3810.0
+Junior9023.7
+Senior13335.0
+Graduate Student7 1.8
+Missing9224.2
+67
+
+
+=== PDF PAGE 59 ===
+Motivated Strategies for Leaning Questionnaire Manual
+4, Ethnic backgrotmd
+FrequencyPercent
+Afro-American or Black143.7
+Asian-American9 2.4
+Caucasian-25266.3
+Hispanic or Spanish Speaking4 1.1
+Other9 2.4
+Missing9224.2
+5. How many hnurs per week doyou work for pay?
+FrequencyPercent
+None6216.3
+2-10318.2
+11-15277.2
+16-206416.9
+21-25348.9
+26-30215.5
+31-40379.7
+41-618 2.1
+Missing9625.2
+6. How many other college level courses have you had in this subject area?
+Frequen y1...ceri
+None7218.9
+1 5113.4
+2 236.1
+3 277.1
+4 195.0
+5 205.3
+6 123.2
+7 133.4
+8 112.9
+9 7 1.8
+10 112.9
+11-20123.2
+Missing10227.0
+
+
+=== PDF PAGE 60 ===
+Motivated Strategies for Learning Questionnaire Manual
+7. Fulfills distribution requirement
+Frequencyegrs=
+Yes19350.8
+N o8823.2
+Missing9926.0
+8. Content seems interesting
+Frequency.Percent
+Yes21356.1
+N o6717.6
+Missing10026.3
+9. Is required of all students at college
+FrequencyPercent
+Yes184.7
+N o26268.9
+Missing10026.3
+10. Will be useful to me in other courses
+atql_yiencPercent
+Yes19250.5
+N o 8422.2
+Missing10427.3
+11. Is an easy elective
+FrequencyPercent
+Yes215.5
+N o25767.6
+Missing10226.8
+69
+
+
+=== PDF PAGE 61 ===
+Motivated Strategies for Learning Questionnaire Manual
+12. Will help improve my academic skills
+FrequencyPercent
+Yes14538.2
+N o 13335.0
+Missing10226.8
+13. Is required for majoror program
+FrequencyPercent
+Yes21155.5
+N o7920.8
+Missing9023.7
+14. Was recommended bya friend
+FrequencyPercent
+Yes328.4
+No 24564.5
+Missing10327.1
+15. Was recommended bya counselor
+FrequencyPercent
+Yes5514.5
+N o 22358.7
+Missing10226.8
+16. Will improve career prospects
+FrequencyPercent
+Yes 16242.6
+N o 11730.8
+Missing10126.6
+70
+
+
+=== PDF PAGE 62 ===
+Motivated Strategies for Learning Questionnaire Manual
+17. Fits into my schedule
+Frequency.Percent
+Yes16543.4
+N o 11530.3
+Missing-10026.3
+18. Distribution by subject area
+Frequencyars=
+Chemistry7 1.8
+Computer Science266.8
+Ecology287.4
+Economics9 2.4
+Education256.6
+English5614.7
+Geography/Geology164.2
+History8 2.1
+Microbiology106.6
+Philosophy328.4
+Physical Education184.7
+Psychology12532.9
+Sociology102.6
+Spanish102.6
+71
+
+
+=== PDF PAGE 63 ===
+Motivated Strategies for Learning Questionnaire Manual
+APPENDIX B. SCALE CORRELATIONS
+
+
+=== PDF PAGE 64 ===
+Motivated Strategies for Learning Questionnaire Manual
+Intr:Intrinsic Goal Orientation
+Extr:Extrinsic Goal Orientation
+Tskv:Task Value
+Cont:Control Beliefs about Learning
+Slfef:Self-Efficacy for Learning & Performance
+Tanx:Test Anxiety
+Reh:Rehearsal
+Elab:Elaboration
+OrgOrganization
+Crit:Critical Thinking
+Mcg:Metacognitive Self-Regulation
+Tsdy:Time and Study Environment
+Eff:Effort Regulation
+Prlrn:Peer Learning
+Hsk:Help Seeking
+Extr
+Tskv
+Com
+Slfef
+Tanx
+Reh
+Elab
+Org
+Crit
+Mcg
+Tsdy
+Eff
+Print
+Hsk
+Intr
+.15
+.68
+.29
+59
+-.15
+.10
+.48
+.27
+58
+.50
+32
+.43
+.13
+.10
+Extr
+.18
+.14
+.15
+.23
+.23
+.13
+.09
+.06
+.07
+.13
+.11
+.20
+.08
+Tskv
+.30
+51
+-.14
+.12
+.44
+.19
+.39
+.45
+.37
+.47
+.09
+.16
+Com
+.44
+-.10
+.02
+.22
+.02
+.18
+.17
+.00
+.07
+-.03
+,00
+Slfef
+-.37
+.10
+.35
+.21
+.42
+.46
+.32
+.44
+.05
+.08
+Tanx
+.11
+-.13
+-.05
+-.11
+-.24
+-.17
+-.21
+.10
+.08
+Reh
+36
+.49
+.15
+39
+38
+26
+.21
+.18
+Elab
+32
+.57
+.67
+.44
+.44
+.19
+.28
+Org
+.31
+35
+.44
+.36
+.23
+.22
+Crit
+53
+.25
+.25
+.25
+.19
+Mcg
+38
+.61
+.15
+.25
+Tsdy
+.70
+.10
+.21
+Eff
+.05
+.18
+Prim
+5
+75
+6z)
+
+
+=== PDF PAGE 65 ===
+Motivated Strategies for Learning Questionnaire Manual
+APPENDIX Q CONFIRMATORY FACTOR ANALYSES RESULTS
+t;
+77
+
+
+=== PDF PAGE 66 ===
+Motivated Strategies for Learning Questionnaire Manual
+We tested for the factor validity of the MSLQ scales by running two
+confirmatory analyses: one for the set of motivation items and another for
+the set of cognitive and metacognitive strategy items.Lisrel VI (Joreskog &
+Sorbom, 1986) was used to estimate and test our models.
+In contrast to exploratory factor analysis, confirmatory factor analysis requires
+the researcher to indicate which items (indicators) should fall onto which
+factors (latent variables).Parameter estimates for the model specified are
+generated, and tests for goodness of fit are made. The goodness of fit tests
+assess how well correlations reproduced given the model specified "match
+up" with the input sct of correlations.
+In other words, the researcher is making a quantitative test of the theory: for
+example, we have four items that we assume to be indicators of a construct
+called "Intrinsic Goal Orientation".The confirmatory factor analysis tests
+how closely the input correlations can be reproduced given the constraints
+that items 1, 16, 22, and 24 fall ontoone specific factor.There are four items
+we are assuming to tap into a factor called "Extrinsic Goal Orientation"; six
+items for "Task Value" and so forth. The 31 motivation items were tested to
+see how well they fit six latent factors:intrinsic goal orientation, extrinsic
+goal orientation, task value, control beliefs about learning, self-efficacy for
+learning and performance, and test anxiety. The 50 cognitive strategy items
+were tested to see how well they fit nine latent factors: rehearsal, elaboration,
+organization, critical thinking, metacognitive self-regulation, time and study
+environment management, effort regulation, peer learning, and help
+seeking. Each item on the MSLQ was constrained to fall onone specific factor.
+The parameter estimates for the latent factorsare presented below
+(standardized solutions are given).Larnbda-ksi estimates are analogous to
+factor loadings in an exploratory factor analysis, and values of .8or higher for
+these parameters indicate well-defined latent constructs.Phi values are the
+estimates for the covariances between the latent constructs;these are
+analogous to the scale correlations given in Appendix 13. Note that the values
+presented are analogous to, but not equivalents of, factor loadings and scale
+correlations.
+We have also provided several omnibus fit statistics:the chi-squared to
+degrees of freedom ratio (X2/df); the goodness of fit index (GFI; generated by
+the usREL VI program); the rootmean residual (RMR); and Hoelter's critical
+number (CN). A X2/df ratio of less than 5 is considered to be indicative ofa
+good fit between the observed and reproduced correlation matrices (Hayduk,
+1987). A GFI of .9 or greater; an RMR of .05or less; and a CN of 200 and above
+are heuristic values that indicate that the models "fits" the input data well.
+Our results are detailed in the followingpages.While the goodness of fit
+indices are not stellar, they are, nevertheless, quite reasonable values, given
+
+
+=== PDF PAGE 67 ===
+Motivated Strategies for Learning Questionnaire Manual
+the fact that we are spanning a broad range of courses and subject domains.
+Motivational attitudes, and deployment of the various learning strategies
+may differ depending upon course characteristics, teacher demands, and
+individual student characteristics.Overall, the models show sound
+structures, and one can reasonably claim factor validity for the MSLQ scales.
+-
+80
+
+
+=== PDF PAGE 68 ===
+Motivated Strategies for Learning Questiornaire Manual
+Motivation Items
+X2/df= 3.49
+GFI = .77
+RMR nr .07
+CN mg 122
+Lambda- Ksi Estimates
+Intrinsic Goal Orientation
+Extrinsic GJal Orientation
+Task Value
+Control Beliefs about Learning
+IndicatorLX egitriate
+ql.64
+q16.69
+q22.66
+q24.55
+q7.71
+q11.58
+q13.48
+q30.44
+44.57
+q10.64
+q17.88
+q23.86
+q26.88
+q27.84
+42.5/
+49.38
+q18.84
+q25.47
+
+
+=== PDF PAGE 69 ===
+Motivated Strategies fnr Learning Questionnaire Manual
+indicatorLX estipvtg
+Self-Efficacy for Learning and Performance
+Test Anxiety
+45.83
+46.70
+q12- .63
+q15.71
+q20.86
+q21.89
+q29.77
+q31.87
+43.60
+q8.42
+q14.62
+q19.88
+q28.76
+Phi6timates
+IntrExtrTskv
+Ext..27
+Tskv.83.24
+Cont.54.18.45
+Slfef.69.26.55
+Tanx-.18.22-.17
+82
+ContSlfef
+.66
+-.26-.39
+
+
+=== PDF PAGE 70 ===
+Motivated Strategies for Learning Questionnaire Manual
+rcoo
+Figure I. Structural model for the motivation items
+83
+7
+88
+.76'44.4414q19
+9141
+
+
+=== PDF PAGE 71 ===
+Motivated Strategies for Learning Questionnaire Manual
+X2/clf= 2.26
+GFI = .78
+RMR = .08
+CN = 180
+Lambda - Ksi Estimates
+Rehearsal
+Elaboration
+Organiza Hon
+Critical Thinking
+Learning Strategies Items
+-
+IndicatprI..X estimate
+q39.62
+q46.63
+q59.56
+q72.58
+q53.60
+q62.60
+q64.74
+q67.42
+q69.71
+q81.65
+q32.57
+q42.55
+q49.45
+q63.75
+q38.49
+q47.76
+q51.66
+q66.74
+q71.67
+
+
+=== PDF PAGE 72 ===
+Motivated Strategies for Learning Questionnaire Manual
+Metacognitive Self-Regulation
+Time and Study Environment
+Effort Regulation
+Peer Learning
+Help Seeking
+IndicatorLX estimate
+q33.40
+q36.44
+q41.47
+q44.54
+q54.53
+q55.58
+q56.43
+q57.35
+q61.60
+q76.61
+q78.55
+q79.50
+q35.52
+q43.81
+q52.52
+q65.56
+q70.64
+q73.37
+q77.48
+q80.40
+q37.53
+q48.65
+q60.52
+q74.74
+q34.54
+q45.82
+q50.84
+q40.20
+q58.17
+q68.90
+q75.79
+
+
+=== PDF PAGE 73 ===
+Motivated Strategies for Learning Questionnaire Manual
+Phi Estimates
+Elab
+.65
+.76
+.85
+.57
+.59
+.19
+.23
+Org
+.48
+.75
+.59
+.48
+.28
+.28
+Crit
+.73
+.41
+.38
+.28
+.14
+Mcg
+.76
+.78
+.23
+.27
+Tsdy
+.95
+.13
+.20
+Eff
+.07
+.19
+Prim
+.70
+Rehr
+Elab.46
+Org.71
+Crit.27
+Mcg.58
+Tsdy.55
+Eff.45
+Print.28
+Hsk.31
+86
+
+
+=== PDF PAGE 74 ===
+1:=1\
+f/4662
+63
+=4 56
+58
+ICmla
+I4/53lk
+q6260
+60
+q"r10" 74
+42
+=I/
+I4321111
+c142
+1:=Iir 7s
+=1*/
+76
+(15)14.. 66
+74
+q61rndleg 67
+I1471
+Motivated Strategies for Learning Questionnaire Manual
+56
+.60'4%14157r
+.61
+55
+5\1
+q76
+201779
+171
+Figure 2 .Strudural model of the cognitive strategy items.
+q701
+q73
+q77r
+qtiOr
+
+
+=== PDF PAGE 75 ===
+NAIIONA4 CINTIR FOR
+MOWN TO NAPRILNI
+POITIICONDART
+TIACTINO owl MINIM
+76
+BEST COPY AVAILABLE

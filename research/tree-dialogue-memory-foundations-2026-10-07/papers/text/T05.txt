@@ -1,0 +1,1934 @@
+=== PDF PAGE 1 ===
+Review of Educational Research
+Fall 2006, Vol. 76, No. 3, pp. 413-448
+Learning With Concept and
+Knowledge Maps: A Meta-Analysis
+John C. Nesbit and Olusola 0. Adesope
+Simon Fraser University
+This meta-analysis reviews experimental and quasi-experimental studies
+in which students learned by constructing, modifying, or viewing node-link
+diagrams. Following an exhaustive search for studies meeting specified
+design criteria, 67 standardized mean difference effect sizes were extracted
+from 55 studies involving 5,818participants. Students at levels ranging from
+Grade 4 to postsecondary used concept maps to learn in domains such as
+science, psychology, statistics, and nursing. Posttests measured recall and
+transfer. Across several instructional conditions, settings, andmethodological
+features, the use of concept maps was associated with increased knowledge
+retention. Mean effect sizes variedfrom small to large depending on how con-
+cept maps were used and on the type of comparison treatment. Significant het-
+erogeneity was found in most subsets.
+KEVwoRDs: concept map, graphic organizer, knowledge map, meta-analysis, node-
+link map.
+Concept maps (Novak & Gowin, 1984) and knowledge maps (O'Donnell,
+Dansereau, & Hall, 2002) are diagrams that represent ideas as node-link assemblies.
+They are often used as media for constructive learning activities and as communi-
+cation aids in lectures, study materials, and collaborative learning (Cafias et al.,
+2003). Over the last two decades there has been significant interest among educa-
+tional researchers in the instructional use of node-link diagrams. Figure 1 shows
+that the number of publications referring to concept maps, knowledge maps, or
+node-link maps has greatly expanded since 1985. Through selective searches of
+the ERIC and PsycINFO databases, we estimate that more than 500 peer-reviewed
+articles, most published since 1997, have made substantial reference to the educa-
+tional application of concept or knowledge maps.
+The term graphic organizer commonly describes two-dimensional visual knowl-
+edge representations, including flowcharts, timelines, and tables, that show rela-
+tionships among concepts or processes by means of spatial position, connecting
+lines, and intersecting figures (Alvermann, 1981; Ives & Hoy, 2003; Winn, 1991).
+As described by Estes, Mills, and Barron (1969), graphic organizers were con-
+ceived as an entailment of Ausubel's theory of meaningful learning, according to
+which learners actively subsume new concepts within preexisting, superordinate
+cognitive structures (Ausubel, 1968). Graphic organizers were first designed to
+function as advance organizers, priming students for learning by activating prior
+knowledge and illustrating its relationship with new concepts (Hawk, 1986).
+413
+
+
+=== PDF PAGE 2 ===
+a) c.
+Ua)
+.0 0 O 0
+U) )
+CL WL 0
+0 D 0 0 0) 0 0 0
+suoileoiqnd
+LOC)
+Z,-
+LcD
+-I -
+00
+414
+
+
+=== PDF PAGE 3 ===
+Learning With Concept and Knowledge Maps
+A concept map can be regarded as a type of graphic organizer that is distin-
+guished by the use of labeled nodes denoting concepts and links denoting rela-
+tionships among concepts. The links in a concept map may be labeled or unlabeled,
+directional or nondirectional. Although the modem flourishing of node-link dia-
+grams is often viewed as an entailment of Quillian's semantic networks (Quillian,
+1967), similar diagrams have been used for communication and learning since at least
+the 13th century (Sowa, 2000). Dansereau and colleagues (e.g., Hall, Dansereau,
+& Skaggs, 1992; Lambiotte & Dansereau, 1992; McCagg & Dansereau, 1991)
+used the term knowledge map to refer to a concept map with directional links
+labeled by a fixed vocabulary of symbols such as P (part) or C (characteristic).
+Throughout this review, the terms concept map and map refer to node-link diagrams,
+including knowledge maps.
+Figure 2 was adapted from a concept map created by an undergraduate student
+in an educational psychology course taught by Nesbit. For the most part, it follows
+a radial tree structure in which each node, except the central root node, has one
+incoming link. Teachers and students also use concept maps that differ consider-
+ably from radial trees in graphical layout and numbers of incoming links.
+Researchers have investigated many different ways of using concept maps. One
+branch of research, pioneered by Novak and colleagues, has examined student con-
+struction or modification of concept maps. This research includes studies in which
+students worked individually or in groups to construct maps using information
+sources such as lectures or printed materials. Another significant research branch,
+conducted mainly by Dansereau and colleagues using knowledge maps, has inves-
+tigated the cognitive effects of studying or communicating with preconstructed
+maps. This research uses maps as advance organizers, collaboration tools, and
+stand-alone information sources for individual learning.
+In recent years, scholars have suggested that concept mapping may be especially
+effective in interactive software environments (Cafias et al., 2003; Novak, 1998,
+2002). Software can reduce many of the mechanical obstacles to editing complex
+maps, provide feedback on the correctness of student-constructed maps (Chang,
+Sung, & Chen, 2002), and present maps in learner-controlled, animated formats that
+guide learners through visually complex structures (Nesbit & Adesope, 2005).
+Meta-Analyses of Graphic Organizer and Concept Map Research
+Because graphic organizers and concept maps have some shared features and
+are used in similar ways, graphic organizer research is relevant to analyzing the
+effects of concept maps. In a meta-analysis of graphic organizer research, Moore
+and Readence (1984) found that initiating learning activities with graphic orga-
+nizers led to small, positive effects on comprehension; their use as activity-closing
+summaries produced somewhat larger effects. Moore and Readence cautiously
+attributed this difference to greater "student involvement" (p. 15) in activity-closing
+uses. Although Moore and Readence did not obtain separate effect sizes for pre-
+constructed organizers and student-constructed organizers, activity summarizing
+more often used student-constructed organizers.
+Horton et al. (1993) conducted a meta-analysis of 18 classroom-based concept
+map studies. They reported (over 14 studies) that concept mapping by students
+raised posttest achievement scores by a mean of .42 standard deviations. The mean
+effect size for 3 studies using teacher-prepared maps was .59. Concept mapping by
+415
+
+
+=== PDF PAGE 4 ===
+.0
+U)
+ýL
+E~) OŽ
+C5
+110
+A-*
+4I) -P
+416
+
+
+=== PDF PAGE 5 ===
+Learning With Concept and Knowledge Maps
+students in groups (2 studies) produced a mean effect size of .88. Four studies that
+measured attitudinal effects demonstrated a mean effect size of 1.57. Five of the
+studies analyzed by Horton et al. used comparison treatments in which no valid
+instruction was provided; the remainder provided some form of "conventional or
+didactic type of instruction" (p. 104) as a comparison treatment.
+Hypothesized Cognitive and Self-Regulatory Effects
+Several explanations have been advanced to account for the beneficial effects of
+concept maps. Some explanations point to unique, intrinsic properties of the concept
+map medium. Others point to properties that concept maps share with other summary
+formats, such as outlines and lists. Building on these explanations, theorists have also
+proposed interactions between the properties of concept maps and individual differ-
+ences among learners. In this section we review the theoretical background of the
+research questions that guided the meta-analysis.
+Dual Coding and Conjoint Retention
+Viewing or constructing concept maps in conjunction with semantically equiv-
+alent text or spoken presentations may facilitate cognitive representation of the
+information in both verbal and visuospatial memory. According to Paivio's dual
+coding theory (Paivio, 1986), verbal knowledge and mental images reside in sep-
+arate but potentially interlinked memory codes. Links between verbal and visu-
+ospatial codes provide additional retrieval paths for both types of information.
+Furthermore, because verbal and visuospatial memories draw from different cog-
+nitive resources, simultaneous verbal and visuospatial processing can be efficiently
+performed (Baddeley, 1992). Dual coding theory has been used to explain enhanced
+retention and transfer when learners study pictures accompanied by speech or text
+(Mayer, 2001). Images can, however, be cognitively generated from verbal infor-
+mation (Denis & Cocude, 1992). Therefore, dual coding does not necessarily require
+both pictorial and verbal input; and, in some situations, presenting only verbal infor-
+mation may be as effective as presenting both forms.
+Theories of how students learn from geographic maps may help us to under-
+stand the effects of concept maps. It is well established that introducing a geographic
+map as an adjunct to verbal information presented as text (or speech) increases recall
+of information referenced in both the map and the verbal presentations (Diana
+& Webb, 1997; Griffin & Robinson, 2005; Stock et al., 1995). Of particular inter-
+est, however, is whether geographic maps are more effective as supplementary
+materials than lists and other text formats and, if so, what specific characteristics
+and usages of the maps contribute to the enhancement. One replicated finding is
+that recall of facts about places described in a speech passage is greater when pre-
+sentation of the passage is preceded by a relevant geographic map rather than a ver-
+bal description of the map (Stock et al., 1995; Winn, 1991). Kulhavy's conjoint
+retention theory, an extension of dual coding theory, postulates that visuospatial
+memory encodes local features, such as landmarks, mimetic icons, and symbols,
+as well as structural information representing the spatial configuration of features,
+the relative distances between features,and the positions of features relative to the
+map boundary (Verdi & Kulhavy, 2002). According to conjoint retention theory,
+feature information and structural information both facilitate the coding and later
+recall of accompanying texts. Visual features aid later recall if they are visually
+417
+
+
+=== PDF PAGE 6 ===
+Nesbit & Adesope
+distinct and drawn in such a way that they activate prior knowledge about the rep-
+resented place (e.g., are mimetic). Structural knowledge establishes a spatial frame
+that references visual features and verbal knowledge to enable efficient, spatially
+indexed memory searches. Recent research (Griffin & Robinson, 2000, 2005) casts
+doubt on the role of structural information in aiding recall of text information and
+suggests that the benefits of presenting geographic maps might be entirely attrib-
+utable to the knowledge-activating properties of localized features. In this view,
+consistent with dual coding theory but not with conjoint retention theory, supple-
+mentary material consisting of a list of labeled icons representing local features
+would be just as effective as a map showing the geographic distribution of the
+labeled icons.
+Dual coding theory suggests that concept maps can facilitate learning if they
+incorporate labeled nodes drawn as distinct, mimetic icons-pictures that help the
+leamer to retrieve prior knowledge about the concept and code the concept as an
+image. Although concept mapping software is available that allows map authors
+to represent each node by a labeled image, none of the research reviewed in this
+meta-analysis used maps incorporating mimetic icons. Conjoint retention theory,
+admittedly applied outside the domain for which it was conceived, suggests that
+concept maps may facilitate learning by enabling the learner to code a spatial frame
+for indexing and efficiently retrieving concepts.
+Verbal Coding
+Standing as a distinct alternative to dual coding and conjoint retention is the
+notion that the graphical conventions of concept maps are coded more like texts
+than pictures. In this view, any visuospatial coding of the map image in long-term
+memory is less important than the processes by which the map image facilitates
+verbal coding. There are several plausible means by which concept maps might be
+more effective than text in facilitating verbal coding.
+In maps, a concept is represented by a single node regardless of how many rela-
+tionships it has with other concepts. That is, maps visually integrate propositions
+dealing with the same concept. In contrast, a concept may be represented at sev-
+eral places scattered throughout a text passage, and it may be represented by dif-
+ferent words. Larkin and Simon (1987) described how diagrams, in comparison
+with text, can offer more efficient support to comprehension and problem solving.
+Maps may lower the cognitive load needed to add new associations to those already
+linked with previously encountered concepts by allowing a more efficient visual
+search than text passages, a more efficient search of long-term memory, or both.
+Maps may facilitate verbal coding by co-locating concepts that have similar
+meanings or that are subsumed by the same, higher-order concept, thus signaling
+the information's macrostructure. Placement of nodes may reduce cognitive load
+by reducing the visual or memory search required to distinguish or associate sim-
+ilar concepts. Winn (1991) reviewed research suggesting that pre-attentive visual
+processing of diagrams, such as visual chunking of collocated objects, lends effi-
+ciencies that cannot be obtained from text. The pre-attentive visual processes draw
+from cognitive resources that do not interfere with those required for attentional
+processing. A similar advantage may be obtained when concept maps use distinc-
+tive shapes and colors for nodes representing different types of concepts. Indeed,
+there is evidence that learning is enhanced by studying maps in which meaning is
+418
+
+
+=== PDF PAGE 7 ===
+Learning With Concept and Knowledge-Maps
+signaled by node proximity, shape, and color (Wallace, West, Ware, & Dansereau,
+1998; Wiegmann, Dansereau, & McCagg, 1992).
+Learning Strategies
+Weinstein and Mayer (1986) described the use of conceptmaps (they called it
+"networking") as an organizational strategy for complex learning tasks such as com-
+prehending text. Students who have learned to read or construct concept maps may
+be better able to identify the internal connections among concepts presented in text.
+The act of translating information from a text format to,a node-link format may
+require that learners process meaning more deeply than they normally do when read-
+ing text or listening to a lecture. According to this view, learners benefit from
+receiving information in a text format and converting it to a map format, or vice
+versa. For example, as learners construct a map from a text passage, there may be
+advantages in having them group nodes spatially according to semantic similarity,
+because in doing so they must make decisions about information structure that is
+latent in the text. In constructing a hierarchical concept map, learners must judge
+the relative inclusivity or specificity of concepts, a process that demands cognitive
+engagement (Novak & Gowin, 1984). Because it is often possible to conver between
+map and text with a fairly simple and automatic procedure, greater benefit may
+accrue if the learner is required to translate from the relationship terms found in text
+passages to a restricted, standardized vocabulary for node labels, such as those used
+in knowledge maps (Holley & Dansereau, 1984).
+Concept maps may enhance learning when they are used to summarize'infor-
+mation. There is a great deal of evidence that creating or studying summaries boosts
+recall of summarized ideas (Foos, 1995). Compared with prose-form summaries,
+concept maps may be reviewed more quickly, allowing research participants to
+complete more passes through the presented information in a fixed amount of time.
+In this respect concept maps may be similar to other concise summary formats such
+as lists and indented outlines (O'Donnell, Dansereau, & Hall, 2002). If concept
+maps are inherently biased toward the representation of summary information, it
+may be that they are particularly good for acquiring main ideas, but poor for acquir-
+ing detailed, nuance-laden knowledge.
+Unlike prose, concept maps have no conventional reading order and may thereby
+encourage a range of deep learning strategies that depart from the surface strategy
+of repeated reading. For example, when deciding which node to,process first, a
+student may decide to select the most important or most central concept. The act
+of judging concept importance requires deeper processing than the student'might
+normally exercise when reading text (Novak & Gowin, 1984). In general, process-
+ing the meaning of concept maps may be a less routinized cognitive activity than
+reading text passages, and therefore more likely to trigger metacognitive engage-
+ment. Learning to construct or read concept maps may increase students' ability to
+construct knowledge from information resources even when they are performing
+tasks that do not involve concept maps (Chmielewski & Dansereau, 1998). It may
+be that students who have worked with-concept maps are more likely to explicitly
+identify concepts found in text, and the relations among them.
+Learning to work with concept maps may help students to parse the meaning
+of text and other information sources. Unlike outlines, lists, and other graphical
+organizers, concept maps are built from concept-relationship-concept triplets that
+419
+
+
+=== PDF PAGE 8 ===
+Nesbit & Adesope
+constitute complete propositions. Therefore, to construct concept maps from a text,
+students must more thoroughly and precisely extract the text's meaning.
+Individual Differences
+There is some evidence that low-ability students, perhaps specifically those
+with low verbal ability, obtain greater benefit from instructional diagrams than
+do high-ability learners (Holliday, Brunner, & Donais, 1977; Moyer, Sowder,
+Threadgill-Sowder, & Moyer, 1984; Stensvold & Wilson, 1990). Several theorists
+(O'Donnell, Dansereau, & Hall, 2002; Patterson, Dansereau, & Wiegmann, 1993;
+Lambiotte & Dansereau, 1992) have hypothesized that students with low verbal
+ability can more easily understand and construct concept maps than they can
+decipher and write scholarly text, and that these students may benefit more from
+the use of concept maps than students with high verbal ability. The format of con-
+cept maps, specifically the use of brief labels and simple node-link-node syntax to
+represent propositions, may be more easily comprehended and constructed by
+learners who have lower verbal ability. Compared with the language presented in
+textbooks, concept maps offer a relatively regular and simple syntax. Maps may
+also be easier to comprehend for learners studying in a second language (Amer,
+1994).
+Lambiotte and Dansereau (1992) proposed that students with low prior knowl-
+edge benefit more from concept maps than those with high prior knowledge. Citing
+Mayer's assimilation theory (Mayer, 1979), they hypothesized that the specific
+macrostructure signaled by a map might guide the knowledge construction of less
+knowledgeable students but conflict with the cognitive structures already estab-
+lished in more knowledgeable students.
+Collaborative and Cooperative Learning
+Preconstructed concept maps have been used in a variety of small group learn-
+ing activities such as scripted cooperation (Rewey, Dansereau, Dees, Skaggs, &
+Pitre, 1992) and peer teaching (Patterson, Dansereau, & Wiegmann, 1993). Analy-
+ses of student interactions during collaborative concept mapping in science edu-
+cation have demonstrated that this activity can sustain meaningful discourse and
+co-construction of key concepts (Roth & Roychoudhury, 1993, 1994; Stoyanova
+& Kommers, 2002; van Boxtel, van der Linden, Roelofs, & Erkens, 2002). For
+example, van Boxtel et al. found that secondary science students who constructed
+maps in dyads uttered approximately three on-topic propositions per minute, with
+similar levels of participation from both members of the dyad.
+Concept maps seem to suit collaborative and cooperative learning because, like
+lists and outlines, they make economical use of text and can be written with letters
+that are large enough to be viewed by a small group. When drawn on large paper
+sheets or whiteboards, concept maps can often be extended with less need for reor-
+ganization and erasure than lists and outlines. Because semantic dependencies are
+more explicitly represented in concept maps than in text formats, they may be more
+amenable to concurrent editing in which different group members simultaneously
+modify the product. As noted by van Boxtel et al. (2002), concept mapping does
+not require detailed writing activities that can take time away from discussion of
+substantive concepts.
+420
+
+
+=== PDF PAGE 9 ===
+Research Questions
+The goal of the meta-analysis was to review all experimental and quasi-
+experimental studies on the learning effects of concepts maps that met specific
+methodological criteria. A reexamination of this research base is due because
+many concept map studies have appeared since 1993, the year in which the meta-
+analysis by Horton et al. was published. About half the studies coded in the pre-
+sent meta-analysis were published during or after 1993. Unlike Horton et al., we
+included laboratory studies in which the learning activities were not part of a formal
+course of study or in which the learning outcomes were not assessed for acade-
+mic credit. By expanding the scope to include laboratory research, we added many
+experiments that had participants study maps rather than construct them.
+Recognizing the considerable diversity in the concept map research base, and
+the plurality of the research questions that it addresses, our goal was to estimate
+the effects of specific approaches to using maps and to qualify those effects accord-
+ing to the conditions under which they were investigated. Our initial intent was to
+include and categorize any learning-related outcomes from this literature that could
+be aggregated for meta-analytic treatment, potentially including knowledge com-
+prehension, retention, and transfer, as well as changes in learning skills, motiva-
+tion, and attitudes.
+The meta-analysis addressed the following research questions:
+"• What are the effects of learning activities in which learners construct or mod-
+ify maps in comparison with other, nonmapping learning activities?
+"* What are the effects of studying maps in comparison with studying other
+materials such as text passages, outlines, and lists?
+"* How do these effects vary when maps are used in different knowledge domains,
+educational levels, and instructional designs?
+"* How does the use of concept maps affect constructs such as central knowl-
+edge, detailed knowledge, knowledge transfer, learning skills, and attitudes
+toward learning?
+"* What are the effects of using maps in cooperative and collaborative learning?
+"* How do different levels of verbal ability and prior knowledge affect learning
+from concept maps?
+"* How are concept map effect sizes conditioned by methodological features of
+the research?
+Method
+Study Selection Criteria
+Following a preliminary examination of empirical studies and reviews, we formed
+criteria that would capture research designed to assess the educational and learning
+effects of concept maps. We included in the meta-analysis studies that (a) contrasted
+the effects of map study, construction, or manipulation with the effects of other
+learning activities; (b) measured cognitive or motivational outcomes such as
+recall, problem-solving transfer, learning skills, interest, and attitude; (c) reported
+sufficient data to allow an estimate of standardized mean difference effect size;
+(d) assigned participants to groups prior to differing treatments; (e) randomly
+assigned participants to groups, or used a pretest or other prior variable correlated
+421
+
+
+=== PDF PAGE 10 ===
+Nesbit & Adesope
+with outcome to control for preexisting differences among groups. Studies report-
+ing a pretest effect size outside the range -. 40 < d < .40 were excluded from the
+meta-analysis. When a study was reported in more than one source (e.g., dissertation
+and journal article), the version published in a journal article was used for coding.
+Reports available in languages other than English were considered. Specifically, two
+studies written in Japanese (Minagawa, 1999; Takumi, 200 1) were translated into
+English but were not coded because they did not meet criteria (a) and (b), above.
+Implicit in the first criterion (a) is that sufficient information must have been
+supplied about comparison treatments to ensure that they constituted legitimate and
+reasonable learning activities. More generally, both comparison and experimental
+treatments must have been designed to promote learning. Effect sizes were excluded
+if the authors stated that one of the treatments was intentionally designed to be con-
+fusing or difficult to learn from. For example, we excluded one finding from a study
+by Blankenship and Dansereau (2000, p. 297) in which the treatment presented a
+map intentionally designed to have "poor structural properties."
+Search, Retrieval, and Selection of Studies
+On May 4, 2005, we searched six databases using the query concept map* OR
+knowledge map* OR node-link map *. The databases and number of studies returned
+by each database (in parentheses) were ERIC (847), Web of Science (564), PsycINFO
+empirical studies (396), PsycARTICLES (397), Academic Search Elite (281),
+and Dissertation Abstracts (170). We searched titles and abstracts of presentations
+at annual meetings of the American Educational Research Association and the
+National Association for Research in Science Teaching held after 1990. Finally,
+we searched the reference sections of a few comprehensive review papers (Cafias
+et al., 2003; Horton et al., 1993; Novak, 1990a, 1990b; O'Donnell, Danserean, &
+Hall, 2002).
+In the selection phase, one researcher read the abstract or online text of each
+study found in the search. If the abstract did not provide sufficient information to
+exclude the study according to our selection criteria, the researcher scanned the
+methods, procedure, and data collection parts of the paper to retain or exclude the
+paper. Borderline cases were retained for full text inspection. For each thesis found
+through the Dissertation Abstracts database, the researcher read the first 24 pages
+to determine eligibility for inclusion. Studies identified as not meeting the selec-
+tion criteria were eliminated, resulting in a list of 122 studies for which full text
+copies were obtained.
+Coding Study Characteristics and Effect Sizes
+Two researchers independently read each study retained in the previous phase
+to (a) eliminate those found not to meet the selection criteria, (b) select group com-
+parisons consistent with the research questions of the meta-analysis, and (c) code
+each comparison according to a predefined coding form and coding instructions.
+The coding form consisted of 26 menu items and 38 brief comment items. The
+items included source (e.g., journal or dissertation), grade level, participant gen-
+der, setting and task, structure of adjunct materials, type of student interaction, con-
+tent domain, country, how the map was used and designed, duration of study and
+treatment, comparison treatment, participant attrition, control for pretreatment dif-
+ferences (e.g., random assignment), and outcome construct.
+422
+
+
+=== PDF PAGE 11 ===
+Learning With Concept and Knowledge Maps
+The coders also rated treatment fidelity, that is, the thoroughness with which the
+treatment conditions were applied and monitored. This included consideration of
+whether participants were properly trained in the treatment activities, and to what
+extent their engagement in learning activities was monitored. For example, in a con-
+cept mapping study, a high treatment fidelity rating could be assigned if researchers
+observed the participants while they were constructing maps. A medium rating
+could be assigned if mapping activities were not observed but the maps were later
+assessed by the researchers. A low rating could be assigned if participants were
+asked to construct maps but there was no monitoring or assessment.
+Effect Size Extraction
+One important principle of meta-analysis is to avoid entering effect sizes that
+are statistically dependent (Lipsey & Wilson, 2001). For example, if a study has
+one control group and two treatment groups exposed to different types of maps,
+it is inappropriate to enter the two map-versus-control findings as different effect
+sizes because they share the same control group. Doing so would inflate the over-
+all weight attributed to the study by counting the control group twice. We devised
+a coding scheme that would allow us to preserve interesting but statistically depen-
+dent comparisons from the same study. By using the coding scheme we avoided
+inappropriately combining statistically dependent comparisons in calculating aver-
+age effect sizes, while still using them in separate analyses.
+When repeated outcomes were reported (e.g., immediate and delayed achieve-
+ment tests), only the later outcome was used. When data from multiple experi-
+mental or comparison treatments were reported, and the distinctions among the
+treatments did not address the research questions or could not be aligned with
+differing treatments from other studies, the weighted average of the multiple
+treatment groups was coded.
+Using group means and standard deviations, a standardized mean difference
+effect size (Cohen's d) was obtained for each finding:
+X - (1)
+SPooled
+where Xe is the mean of the (experimental) group using concept maps, X, is the
+mean of the comparison group, and Spooled is their pooled standard deviation.
+Cohen's d.was then used to calculate Hedge's unbiased estimate of the standard-
+ized mean difference effect size (Hedges & Olkin, 1985, p. 81):
+g=( 4-93 .)d, (2)
+where Nis the total number of participants in the experimental and comparison
+groups. The inverse variance weight, important for aggregating effect sizes, was
+coded for each finding as
+2 ne n, (n , + n , (3)
+2(n, + n,)' +
+423
+
+
+=== PDF PAGE 12 ===
+Nesbit & Adesope
+where ne is the sample size of the experimental group and n, is the sample size of
+the comparison group (Lipsey & Wilson, 2001).
+As recommended by Lipsey and Wilson, the coders estimated their confidence
+in the data with which the effect size was calculated. The effect size confidence was
+rated as low, medium, or high depending on reliability of the posttest scores, pretest
+effect sizes, and whether sufficient data were available for an accurate calculation.
+Data Analysis
+So that the contribution of a finding would be commensurate with its sample
+size, weighted mean effect sizes were calculated as
+- = Y_( wiESi)
+E Wi (4)
+where ESI is Hedge's unbiased estimate (g) of the ith effect size, and wi is the
+inverse variance weight coded for ESj (Lipsey & Wilson, 2001). The standard error
+of the mean was calculated as
+SEjs= (5)
+To determine statistical significance, a 95% confidence interval was constructed
+around each weighted mean effect size. The lower limit (ESD and upper limit (ESu)
+of the confidence interval were calculated as
+ESL = ES- 1.96(SE%),
+ESu = ES+ 1.96 (SE%), (6)
+where TS is the mean effect size, 1.96 is the critical value for the z-distribution
+(ca = .05), and SEs is the standard error of the mean effect size. When the lower
+limit of a confidence interval was greater than zero, the mean effect size was inter-
+preted as indicating a statistically detectable result favoring the use of concept maps.
+One of the assumptions of the significance test is that all findings aggregated
+into a weighted mean.effect size share the same population effect size and that the
+observed dispersion of effect sizes around the mean results only from the random
+sampling of participants from the population, that is, sampling error. This assump-
+tion was tested by the homogeneity of variance statistic
+When all k effect sizes comprising a mean effect size are derived from the same pop-
+ulation effect size, Q has a chi-square distribution with k - 1 degrees of freedom.
+When Q exceeded the critical value of the chi-square distribution (p < .05), the mean
+effect size was judged to be significantly heterogeneous (Lipsey & Wilson, 2001).
+424
+
+
+=== PDF PAGE 13 ===
+Results
+Out of the 122 studies retained in the initial selection phase, 55 studies involv-
+ing 5,818 participants were found to meet the specified selection criteria and were
+coded. The most frequent reason for rejecting studies was failure to control for prior
+differences among treatment groups. The mean intercoder agreement was 96.2%.
+Six admitted studies, listed in Table 1, measured self-report outcomes that we
+categorized as affect (anxiety, frustration, satisfaction), self-efficacy, motivation,
+and perceived use of learning strategies. As in other sections of this report, the signs
+of effect sizes were switched so that beneficial effects of using maps (e.g., anxiety
+reduction) would be indicated by positive values. The studies that measured self-
+report outcomes investigated disparate uses of concept maps. Considering the
+small number of these studies and the diverse set of treatments and outcome con-
+structs, we decided not to obtain mean effect sizes for self-report outcomes. But
+we note that using concept maps was associated with positive effect sizes in all
+cases where self-reports were measured. The remainder of the results section deals
+with studies reporting performance outcomes.
+Appendix A (page 441) shows a summary of the 96 effect sizes extracted for
+performance outcomes prior to resolving statistical dependencies. For some studies,
+more than one effect size was extracted. Within a study, statistically dependent and
+independent findings were differentiated according to whether they used separate
+subsamples, multiple outcome constructs for the same participants, or multiple
+TABLE 1
+Effect sizes for self-reports of affect, self-efficacy, motivation, and use of learning strategies
+Study, treatments, sample size, and outcome construct Effect size (g)
+Bahr & Dansereau (2001), studying bilingual maps versus lists, N= 64
+Ease of learning .48
+Satisfaction with presentation format .46
+Motivation and concentration .26
+Confidence in future performance .44
+Chularut & DeBacker (2004), mapping versus teacher-led
+discussions, N= 79
+Use of self-monitoring strategies 4.34*
+Use of knowledge acquisition strategies 3.48*
+English-as-a-second-language self-efficacy .98*
+Czerniak & Haney (1998), cooperative mapping versus lecture, N= 118
+Anxiety toward teaching and learning (sign reversed) .41,
+Jegede & Alaiyemola (1990), mapping versus lectures, N= 51
+Anxiety (sign reversed) 1.11*
+Reynolds & Dansereau (1990), studying hypermaps versus
+hypertext, N = 38
+Satisfaction .87*
+Frustration and confusion (sign reversed) .80*
+Reynolds et al. (1991), studying hypermaps versus hypertext, N= 38
+Satisfaction .47
+Frustration and confusion (sign reversed) .62
+*p <. 05.
+425
+
+
+=== PDF PAGE 14 ===
+Nesbit & Adesope
+treatment groups compared with a single control group. Effect sizes in the same
+study obtained from wholly separate participant subsamples were regarded as sta-
+tistically independent (Lipsey & Wilson, p. 112). Effect sizes obtained from over-
+lapping subsamples (e.g., same participants but different outcome measures) were
+regarded as statistically dependent.
+Two admitted studies measured knowledge of relationships between concepts
+while also assessing, in the same participants, broader conceptual knowledge pre-
+sented by the treatment. For knowledge of concept relationships, Schmid and Telaro
+(1990) found an effect size of g =.89, and Lehman, Carter, and Kahle (1985) found
+an effect size of g = .28. Both effect sizes were excluded from further analysis
+because they were not statistically independent of the effect sizes reported for
+broader conceptual knowledge outcomes. The remaining outcome constructs were
+coded as retention, transfer, mixed retention and transfer, and learning skills.
+To generate a distribution of statistically independent effect sizes, a single effect
+size was obtained for each set of statistically dependent effect sizes by calculating
+a weighted average over different outcome constructs and treatment groups. One
+study with an effect size of g = 5.94 (Guastello, Beasley, & Sinatra, 2000) was
+judged to be an outlier (z = +6.4, p < .001). Because a reexamination of the study
+could not attribute the exceptional effect size to methodological flaws or artifacts
+and because the study observed participants who had characteristics apparently
+similar to other samples in this analysis, the effect size was not deleted but, rather,
+was adjusted downward to a value (g = +2.2) slightly greater than the next-largest
+effect size, as recommended by Tabachnick and Fidell (2001).
+Effects of Constructing and Studying Concept Maps
+Participants constructed or modified maps in 25 studies, from which were
+derived 27 statistically independent effect sizes. Participants studied concept maps
+in 30 studies, from which were derived 40 statistically independent effect sizes.
+Students in the comparison treatment groups participated in group discussions,
+attended lectures, or worked with outlines, lists, or text passages.
+Table 2 shows the weighted mean of all statistically independent effect sizes,
+split according to whether maps were constructed or studied, and the geographical
+location of the research. The table includes the number of participants (N) in each
+category, the number of findings (k), the weighted mean effect size (M) and its stan-
+dard error (SE), the 95% confidence interval around the mean, and the results of a
+test of homogeneity (Q) with its associated degrees of freedom (df). The effects of
+concept maps were statistically detectable in all categories except for the averaged
+results of two studies conducted in Taiwan, in which students constructed maps.
+One of the two Taiwanese studies (Chang, Sung, & Chen, 2002), coded as having
+high treatment fidelity and high effect size confidence, reported statistically signif-
+icant benefits from concept mapping activities. The other Taiwanese study (Chang,
+1994), coded as having low treatment fidelity and medium effect size confidence,
+reported no significant difference.
+Homogeneity was rejected for all effect size means in Table 2, indicating that
+they represent widely varying individual effect sizes. Heterogeneity was notice-
+ably higher across studies in which maps were constructed rather than presented,
+perhaps reflecting the greater diversity of treatments and lower experimental con-
+trol in concept mapping research.
+426
+
+
+=== PDF PAGE 15 ===
+TABLE 2
+Weighted mean effect sizes for concept maps constructed and studied by geographical location
+95% Confidence Homogeneity
+Effect size interval of effect size
+Category N k M SE Lower Upper Q df
+All 5,818 67 .604* .028 .550 .658 472.729* 66
+Maps constructed 3,160 27 .819* .039 .744 .895 342.212* 26
+U.S. and Canada 1,539 18 .467* .053 .363 .571 123.769* 17
+Africa 1,388 7 1.446* .061 1.326 1.566 30.276* 6
+Taiwan 233 2 -. 003 .138 -. 274 .268 4.000* 1
+Maps studied 2,658 40 .373* .040 .294 .451 65.882* 39
+U.S. and Canada 2,358 37 .369* .042 .287 .452 55.557* 36
+Other 300 3 .401* .128 .149 .653 10.269* 2
+*p <. 0 5 .
+The mean effect size for concept mapping studies conducted in Africa (Nigeria
+and Egypt) was much higher than for other locations. All but one of the African
+studies were conducted in Nigeria by P. A. Okebukola and his colleagues. Accord-
+ing to Okebukola (personal communication, July 11, 2004), concept mapping offers
+special benefits to Nigerian students when compared with conventional Nigerian
+teaching methods that rely on intensive lecturing to large classes (Edukugho, 2005).
+Although English was the language of instruction in all of the African studies, it
+was a second or third language for most of the participants. Nigerian and Egyptian
+participants may have found the syntactic structure of concept maps easier to parse
+than the English lectures. Faced with rather large differences in effect size across
+geographical locations for the concept mapping studies, we decided to restrict our
+focus for the remainder of the analysis to those conducted in the United States and
+Canada. All research in which participants studied maps was retained because there
+was no evidence that the mean effect sizes for that research differed substantially
+according to geographic location.
+Educational Level, Setting, Subject, Duration, Adjunct Materials, and Map Type
+Table 3 shows weighted mean effect sizes for concept mapping studies split
+by educational level, class setting, subject (knowledge domain), and study dura-
+tion. There were no laboratory studies in which participants constructed concept
+maps. In all but three of the findings reported in Table 3, students performed the
+learning activity (constructed maps or did a comparison learning activity) entirely
+in a classroom under the supervision of an instructor. Unlike the research in
+which maps were studied, research in which maps were constructed inconsis-
+tently reported treatment duration. As a proxy for variation in treatment duration,
+Table 3 presents an approximate median split on study duration, which was reported
+in all but two findings.
+All categories listed in Table 3 show statistically detectable mean effect sizes,
+except studies that did not report study duration. For most categories, however, the
+effect size distributions were significantly heterogeneous, indicating that the vari-
+ability among effect sizes was greater than that expected from sampling error. In
+427
+
+
+=== PDF PAGE 16 ===
+TABLE 3
+Weighted mean effect sizes for constructing concept maps under various conditions
+95% Confidence Homogeneity
+Effect size interval of effect size
+Condition N k M SE Lower Upper Q df
+Educational level
+Intermediate 346 4 .905* .118 .673 1.137 45.433* 3
+(Grades 4 to 8)
+Secondary 792 7 .165* .072 .024 .306 3.118 6
+(Grades 9 to 12)
+Postsecondary 401 7 .773* .106 .565 .981 35.601* 6
+Setting
+Entirely in class 1,303 15 .380* .057 .268 .491 61.181* 14
+Not entirely in class 236 3 1.039* .146 .753 1.325 44.865* 2
+Subject
+Physical science 582 6 .283* .085 .117 .450 2.740 5
+General science, 818 9 .522* .073 .379 .665 73.064* 8
+biology, and
+statistics
+Humanities, law, 139 3 1.265* .193 .886 1.643 19.780* 2
+and social studies
+Study duration
+5 weeks 652 9 .701* .085 .536 .867 92.700* 8
+>5 weeks 601 7 .363* .083 .199 .526 12.114 6
+Unknown 286 2 .215 .119 -.019 .449 5.268* 1
+*p <. 05 .
+such cases, we interpret variation across categories as suggesting but not confirm-
+ing theoretical interpretation. For instance, the mean effect sizes and confidence
+intervals across the subject categories suggest that concept mapping offers greater
+benefit in subject areas that are more saturated with verbal knowledge. However,
+the certainty of this interpretation is limited by significant heterogeneity and the
+small number of findings in the humanities, law, and social studies category. In the
+tables that follow, different ways of subdividing the data are presented to identify
+the source of the excess variation among studies.
+Table 4 shows mean effect sizes for studying concept maps split by educational
+level, setting, subject, treatment duration, use of adjunct materials, and map type.
+Almost all of these studies used undergraduate university students as participants.
+Most of the investigations summarized in Table 4 were conducted in laboratory
+settings; that is, they used learning activities that did not contribute toward perfor-
+mance assessment in an academic program. An approximate median split was used
+to divide studies into those with treatment durations less than or greater than 1 hour.
+Almost all of the categories identified in Table 4 had statistically detectable mean
+effect sizes, but most were also significantly heterogeneous.
+Most studies in Table 4 used text in adjunct or source materials for both exper-
+imental and treatment groups. For example, Wachter (1993) had an experimental
+428
+
+
+=== PDF PAGE 17 ===
+TABLE 4
+Weighted mean effect sizes for studying concept maps under various conditions
+95% Confidence Homogeneity
+Effect size interval of effect size
+Condition N k M SE Lower Upper Q df
+Educational level
+Intermediate 162 2 .516* .160 .203 .829 .404 -1
+(Grades 4 to 8)
+Postsecondary 2,496 38 .363* .041 .282 .444 64.617* 37
+Setting
+Laboratory 1,967 32 .364* .046 .274 .455 53.343* 31
+Classroom 611 7 .366* .085 .200. .532 11.328 6
+Unknown 80 1 .620
+Subject
+Physical science 82 1 .417
+General science, 2,135 32 .340* .045 .253 .427 58.915* 31
+biology, and
+statistics
+Humanities, 441 7 .528* .100 .332 .724 3.969 6
+law, and
+social studies
+Treatment duration
+60 min 1,471 21 .363* .054 .257 .469 28.755 20
+>60 min 1,187 19 .384* .059 .268 .500 37.050* 18
+Adjunct materials
+Yes 1,414 24 .315* .055 .207 .424 38.761* 23
+No 1,244 16 .435* .058 .322 .549 24.882 15
+Map type
+Static 2,205 32 .393* .044 .308 .479 50.443* 31
+Animated 154 2 .739* .172 .402 1.076 .032 1
+Hyýerlinked 299 6 .017 .124 -. 225 .259 2.371 5
+*p <. 0 5.
+group study a map before studying a text passage and had the comparison group
+immediately begin to study the text passage. A large minority of studies had learn-
+ers in the experimental group study only a concept map and learners in the com-
+parison group study only a nonmap information source. The moderate mean effect
+size in this latter category indicates that, in at least some situations, concepts maps
+can work effectively as stand-alone information sources.
+Although the majority of the studies in Table 4 used static concept maps presented
+on paper, a few presented animated maps or hyperlinked maps that participants could
+use to access hypertext. The two studies that compared presentation of animated
+maps with animated text (Blankenship & Dansereau, 2000; Nesbit & Adesope, 2005)
+obtained substantial effect sizes favoring animated concept maps. Notably, however,
+the hypertext studies indicated no significant advantage for hyperlinked maps in
+comparison with hyperlinked outlines and other navigational devices.
+429
+
+
+=== PDF PAGE 18 ===
+Outcome Constructs and Test Types
+Appendix B (page 447) shows the outcome constructs measured by the studies.
+The studies were split according to outcome construct (retention, transfer, mixed
+retention and transfer) and test format (free recall, objective items, short answer
+items, mixed item types). Most research in which learners studied maps used reten-
+tion measures, typically a free recal test. In contrast, the classroom-based research,
+in which learners constructed maps, tended to use achievement measures, typically
+a multiple-choice test that mixed retention items with near transfer items. Mean
+effect sizes were statistically detectable in all categories, but most were signifi-
+cantly heterogeneous.
+Methodological Quality
+Appendix C (page 448) shows how effect sizes varied with the methodological
+quality of the research and whether it was published in ajournal. The studies were
+split according to the coders' confidence in the calculated effect size, the coders'
+rating of treatment fidelity, whether the study randomly assigned participants to
+treatments, and whether the study appeared in a journal or dissertation. Mean
+effect sizes were statistically detectable in all categories. Among classroom stud-
+ies in which students constructed or modified maps, low or medium coder confi-
+dence in the effect size was associated with low mean effect size, and high coder
+confidence in the effect size was associated with high mean effect size. In the same
+studies, random assignment of participants to treatment conditions was associated
+with a high mean effect size, and nonrandom assignment was associated with a
+lower mean effect size. The investigations in which maps were studied does not
+show a similar pattern, probably because they were mainly better-controlled labo-
+ratory studies with more consistent methodological quality.
+Individual, Group, and Cooperative Settings
+Table 5 shows mean effect sizes for learning with concept maps in individual,
+group, and cooperative settings. For the studies in which maps were constructed, it
+TABLE5
+Weighted mean effect sizes for types of interpersonal interaction
+95% Confidence Homogeneity
+Effect size interval of effect size
+Category N k M SE Lower Upper Q df
+Maps constructed
+Individual 460 5 .119 .094 -.065 .302 .879 4
+Mixed group 647 10 .955* .086 .787 1.123 68.495* 9
+and individual
+Not applicable 432 3 .215 .098 .023 .407 1.719 2
+or unknown
+Maps studied
+Individual 2,298 32 .402* .043 .318 .487 59.045* 31
+'Cooperative (dyads) 360 -8 .192 .106 -. 016 .401 3.505 7
+*p <. 0 5 .
+430
+
+
+=== PDF PAGE 19 ===
+Learning With Concept and Knowledge Maps
+was necessary to establish a category called mixed group and individual, in which
+there was a combination ofgroup and individual learning with concept maps. These
+studies, which showed a large and significant mean effect size, often involved stu-
+dents individually constructing maps and then discussing them in a whole-class
+activity. The category not applicable or unknown included studies that either did
+not report sufficient data to determine social interactions during learning, or used
+group learning for the mapping group and individual learning for the control group.
+It would be misleading to identify studies in the mixed group and individual learn-
+ing category as assessing the effectiveness of collaborative or cooperative concept
+mapping, because they often used relatively large class groups in which there was
+likely little or no contribution from many of the students, and the group interactions
+often consisted of reviewing maps rather than constructing them.
+Research in which materials were studied in individual learning settings pro-
+duced a statistically detectable mean effect size favoring the use of concept maps.
+In contrast, there was a nonsignificant mean effect size from studies in which pre-
+constructed materials were used in cooperative tasks. The tasks used in the latter
+studies were all structured as dyadic, scripted cooperation activities.
+The large mean effect size found for the mixed group and individual studies
+may have more to do with the comparison treatments used in these studies than the
+type of interpersonal interaction. As we discuss in the following section, in studies
+that use lectures or discussions as comparison treatments, the relatively greater
+engagement provided by the concept-mapping activity may be the active ingredi-
+ent that produces large, positive effects.
+Despite the nonsignificant mean effect size for the dyadic cooperation studies, it
+is too soon to conclude that concept maps are no better than other formats for use
+as communication aids in cooperative learning. We believe that the potential advan-
+tages of concept maps in cooperative learning are sensitive to both the nature of the
+task and the training of participants in cooperative methods. Tasks that require rapid
+communication of complex, non-hierarchically structured information are more
+likely to benefit from the conceptually integrated propositions represented in the
+concept map format. Also, students who do not have strategies for cooperative prob-
+lem solving with maps may be unable to exploit their advantages. For example, in
+one of the studies we reviewed (Patterson, Dansereau, & Newbern, 1992), dyads
+learning about the interrelated physiological effects of alcohol obtained greater ben-
+efit from concepts maps when they were provided with a strategy for using them in
+cooperative learning (g = .65) than when no strategy was provided (g = .29).
+Comparison Treatments
+Effect sizes are likely to vary according to the type of comparison or control
+treatment. Table 6 shows that among the map construction findings, 10 were from
+studies that used lectures or whole-class discussions as comparison activities, and
+7 were from studies that had students write text or outlines. In contrast, research
+that presented preconstructed maps had participants study text, outlines, or lists
+as a comparison activity. Statistically detectable benefits were demonstrated for
+studying maps rather than outlines or lists, and for constructing maps rather than
+reading text, attending lectures, or attending class discussions. Concept mapping
+appears to compare very favorably with teaching methods in which learners have dif-
+fuse responsibility for task completion (e.g., whole-class discussion), but it shows
+431
+
+
+=== PDF PAGE 20 ===
+TABLE 6
+Weighted mean effect sizes for comparison treatments
+95% Confidence Homogeneity
+Effect size interval of effect size
+Category N k M SE Lower Upper Q df
+Maps constructed
+Construct text 686 7 .194* .077 .042 .345 2.916 6
+or outline
+Lecture or 766 10 .742* .077 .591 .894 95.665* 9
+discussion
+Experiment 87 1 .45
+(Pankratius, 1987)
+Maps studied
+Study text 2,027 29 .388* .046 .298 .478 53.360* 28
+Study outline 561 10 .278* .086 .109 .447 9.597 9
+or list
+Lecture 70 1 .684
+(Cliburn, 1986)
+*p <. 05 .
+only a small advantage over other constructive tasks, such as individual note-
+taking or summarizing. As an effect size drops below .2 standard deviations, one
+may be justified in questioning its pedagogical significance and whether it might
+be attributed solely to experimenter bias.
+The elevated effect size in studies that used lecture or discussion as the com-
+parison treatment is important in interpreting the results of this meta-analysis
+because it suggests that variation in the constructive quality of the comparison task
+may underlie much of the effect size variation observed across other categories. In
+particular, there is a substantial overlap between studies that used lecture or dis-
+cussion as a comparison treatment and those in which students did concept map-
+ping in mixed group and individual modes. Of the 10 studies that used mixed group
+and individual concept mapping as an experimental treatment, 8 used lecture or
+discussion as a comparison activity. We conjecture that many of the elevated effect
+sizes generated by these studies are due to lower effectiveness of the comparison
+treatment rather than to any particular benefit of mixed group and individual con-
+cept mapping.
+Individual Differences
+We were unable to isolate theoretically relevant individual difference vari-
+ables from the studies in which maps were constructed. However, there were a few
+studies that presented maps to students who were identified as relatively low or
+high in prior knowledge or verbal ability. Only relative, nonstandardized assess-
+ments of these individual difference variables were reported. In each of these inves-
+tigations, students were categorized using a median split on tests of prior knowledge
+or verbal ability. Table 7 shows a statistically detectable mean effect size when
+maps were presented to students who had relatively low ability (either verbal abil-
+432
+
+
+=== PDF PAGE 21 ===
+TABLE 7
+Weighted mean effect sizes for high- and low-ability students studying concept maps
+95% Confidence Homogeneity
+Effect size interval of effect size
+Student-ability N k M SE Lower Upper Q df
+Domain ability
+or verbal ability
+High ability 186 5 -. 133 .150 -.427 .161 2.293 4
+Low ability 188 5 .404* .150 .110 .698 .499 4
+Domain ability
+High domain 100 3 .034 .205 -. 367 .436 .772 2
+ability
+Low domain 93 3 .369 .215 -. 052 .791 .415 2
+ability
+Verbal ability
+High verbal 86 2 -. 327 .220 -.759 .105 .079 1
+ability
+Low verbal 95 2 .436* .210 .026 .848 .041 1
+ability
+*p <. 0 5 .
+ity or knowledge). When examined separately, only the effect for l1w verbal abil-
+ity was statistically detectable. Because the statistical power of these comparisons
+is low and the confidence intervals are wide, it cannot be concluded that maps do
+not benefit higher-ability students.
+Retaining Central'and Detail Ideas.
+To examine how maps affected the recall of ideas at different levels of gen-
+erality, we isolated studies that separately assessed central and detail knowledge.
+Table 8 shows the results from six studies that presented semantically equivalent
+text passages and maps and measured recall of central and detail ideas by the same
+participants. There was a statistically detectable mean effect size for each of the
+two types of knowledge outcomes, and the effect sizes for central ideas was larger.
+Although derived from a relatively few studies, this is an important result because
+it contradicts the hypothesis that concept maps are mere summary tools, achieving
+TABLE 8
+Weighted mean effect sizes for studying central and detail ideas
+95% Confidence Homogeneity
+Effect-size interval of effect size
+Type of knowledge N k M SE Lower Upper Q df
+Central ideas 457 6 .596* .098 .404 .787 26.898* 5
+Detail ideas 457 6 .204* .096 .016 .392 27.349* 5
+*p <. 05 .
+433
+
+
+=== PDF PAGE 22 ===
+Nesbit & Adesope
+gains in general knowledge only at the expense of losses in detailed knowledge. At
+the same time, the greater benefit accorded to central ideas indicates that concept
+maps may have an inherent bias toward summary.
+Conclusion
+The meta-analysis found that, in comparison with activities such as reading text
+passages, attending lectures, and participating in class discussions, concept map-
+ping activities are more effective for attaining knowledge retention and transfer.
+Concept mapping was found to benefit learners across a broad range of educa-
+tional levels, subject areas, and settings. Much of this benefit may be due to greater
+learner engagement occasioned by concept mapping in comparison with reading
+and listening, rather than the properties of the concept map as an information
+medium. There is evidence that concept mapping is slightly more effective than
+other constructive activities such as writing summaries and outlines. But the small
+size of this effect raises doubts about its authenticity and pedagogical significance.
+The advantages of concept mapping were more pronounced in better-designed
+studies, particularly those that used random assignment of participants to treat-
+ment groups. The significant heterogeneity associated with most mean effect
+sizes for concept mapping indicates that the benefits discussed here are somewhat
+unreliable and that carefully designed research is needed to better identify medi-
+ating conditions.
+Across educational levels, subject areas, and settings, it was found that studying
+concept or knowledge maps is somewhat more effective for retaining knowledge
+than studying text passages, lists, and outlines. This effect was especially strong in
+two studies, that used animated maps but absent for hyperlinked maps. The bene-
+fits of using preconstructed maps were evident in individual learning but not in
+dyadic, cooperative learning. From a few studies, it appears that preconstructed
+maps are particularly useful as a communication medium for students with lower
+verbal proficiency and may offer little or no advantage to those 'with high verbal
+proficiency. Studying maps rather than text passages assists in recall of both cen-
+tral ideas and detail ideas, but the effect may be stronger for central ideas. There is
+insufficient evidence to determine whether studying concept maps is particularly
+efficacious for knowledge transfer and development of learning skills.
+The result that studying concept maps is somewhat more effective than studying
+lists and outlines contradicts the hypothesis that all summary formats confer equal
+benefits, and is consistent with theories claiming that that concept maps lower extrin-
+sic cognitive load by arranging nodes in two-dimensional space to represent related-
+ness, consolidating all references to a concept in a single symbol, and explicitly
+labeling links to identify relationships. The evidence that concept maps can be more
+effective than text passages for conveying detailed information reinforces the notion
+that concept maps have more to offer than the mere reduction of information.
+These results help to identify gaps in the evidence and point to high-priority
+areas for further research. To elucidate cognitive processes, there is an immediate
+need for concept map research to assess learning outcomes beyond conventional
+free recall and researcher-constructed achievement tests. Instead, investigations
+should examine the processes by which students learn with concept maps and their
+effects on higher-level learning goals such as problem-solving transfer, applica-
+tion, and analysis (Anderson & Krathwohl, 2001); conceptual change (Novak,
+434
+
+
+=== PDF PAGE 23 ===
+Learning With Concept and Knowledge Maps
+2002); and the development of learning skills (Chang, Sung, & Chen, 2002). To
+explain how students learn from concept maps, research is needed that com-
+pares the use of concept maps, graphic organizers (Katayama & Robinson,
+2000), and outlines.
+High-.quality research is needed on the use of concept maps in elementary and see-
+ondary education, especially with students learning in second languages or who are
+identified as havig reading and language difficulties. There is a lack of research on
+pedagogical models for using concept maps in small group and whole-class settings.
+More research is also needed on the effectiveness of concept mapping as a note-
+taking and prewriting activity for developing reading and writing skills.
+The evidence presented in this review should persuade teachers to make exten-
+sive, well-planned-use of concept mapping activities and preconstructed concept
+maps. We found no categories or conditions in which concept maps produced sig-
+nificant negative effects, and, aside from the theoretical objection one might pose
+that frequent use of concept maps could reduce practice in reading and writing text,
+no potentially detrimental effects have been identified. Broadly, then, teachers and
+instructional designers can be encouraged to adopt concept mapping as a learning
+activity and to communicate ideas with preconstructed concept maps in a wide
+range of educational settings.
+Note
+Supportfor this research was provided by a grant from the Social Sciences and Human-
+ities Re6earch Council of Canada (Initiative for the New Economy 512-2003-1012,
+Philip H. Winne).
+Correspondence concerning this manuscript should be sent to John C. Nesbit (see
+author contact information at end of article).
+References
+References marked with an asterisk indicate studies included in the meta-analysis.
+*Abayomi, B. I. (1988). The effects of concept mapping and cognitive Style on sciefice
+achievement (Doctoral dissertation, Georgia State University College of Education,
+1988). Dissertation Abstracts Internatiohal, 49, 1420.
+Alvermann, D., (1981). The compensatory effect of graphic organizers on descriptive
+texts. Journal of Educational Research, 75, 44-48.
+*Amer, A. A. (1994). The effect of knowledge-map and underlining training on the
+reading comprehension of scientific texts. English for Specific Purposes, 13, 35-45.
+Anderson, L. W., & Krathwohl, D. R. (Eds.). (2001). A taxonomy for learning, teaching
+and assessing: A revision of Bloom's taxonomy of educational objectives. New York:
+Addison, Wesley, Longman.
+Ausubel, D. P. (1968). Educational psychology. A cognitive view. New York: Holt,
+Rinehart & Winston.
+Baddeley, A. (1992). Is working memory working? The Fifteenth Bartlett lecture.
+Quarterly Journal of Experimental Psychology, 44A, 1-31.
+*Bahr, G. S., & Dansereau, D. F.- (2001). Bilingual knowledge,maps (BiK-Maps) in
+second-language vocabulary learning. Journal of Experimental Education, 70, 5-24.
+*Bahr, G. S., & Dansereau, D. F. (2005). Bilingual knowledge maps (BiK-Maps) as a
+presentation format: Delayed recall and training effects. Journal of Experimental
+Education, 73, 101-118.
+*Blankenship, J., & Dansereau, D. F. (2000). The effect of animated node-link displays
+on information recall. Journal of Experimental Education, 68, 293-308.
+435
+
+
+=== PDF PAGE 24 ===
+Nesbit & Adesope
+*Bodolus, J. E. (1986). The use of a concept mapping strategy to facilitate meaningful
+learning for ninth grade students in science (Doctoral dissertation, Temple Univer-
+sity, 1986). Dissertation Abstracts International, 47, 3387.
+Cafias, A. J., Coffey, J. W., Carnot, M. J., Feltovich, P., Hoffman, R. R., Feltovich, J.,
+& Novak, J. D. (2003). A summary of literature pertaining to the use of concept map-
+ping techniques and technologies for education and performance support (Report to
+The Chief of Naval Education and Training). Pensacola, FL: Institute for Human and
+Machine Cognition.
+*Chang, K., Sung, Y., & Chen, I. (2002). The effect of concept mapping to enhance text
+comprehension and summarization. Journal of Experimental Education, 71, 5-23.
+*Chang, W. (1994). The effects of using concept mapping to supplement class notes
+on the biology test scores of seventh-grade students in Taiwan, R.O.C. (Doctoral dis-
+sertation, University of Iowa, 1994). Dissertation Abstracts International, 55, 3800.
+*Chnmielewski, T. L., & Dansereau, D. F. (1998). Enhancing the recall of text: Knowl-
+edge mapping training promotes implicit transfer. Journal of Educational Psychology,
+90,407-413.
+*Chularut, P., & DeBacker, T. K. (2004). The influence of concept mapping on achieve-
+ment, self-regulation, and self-efficacy in students of English as a second language.
+Contemporary Educational Psychology, 29, 248-263.
+*Cliburn, J. W., Jr. (1985). An Ausubelian approach to instruction: The use of con-
+cept maps as advance organizers in a junior college anatomy and physiology class
+(Doctoral dissertation, University of Southern Mississippi, 1985). Dissertation
+Abstracts International, 47, 852.
+*Czerniak, C. M., & Haney, J. J. (1998). The effect of collaborative concept mapping
+on elementary preservice teachers' anxiety, efficacy, and achievement in physical
+science. Journal of Science Teacher Education, 9, 303-320.
+*Dees, S. (1989). An analysis of the strategic processing of knowledge maps as text sup-
+plements and substitutes (Doctoral dissertation, Texas Christian University, 1989).
+Dissertation Abstracts International, 50, 4252.
+Denis, M., & Cocude, M. (1992). Structural properties of images constructed from
+poorly or well-structured verbal descriptions. Memory & Cognition, 20, 497-506.
+Diana, E. M., & Webb, J. M. (1997). Using geographic maps in classrooms: The con-
+joint influence of individual differences and dual coding on learning facts, Learning
+and Individual Differences, 9, 195-214.
+Edukugho, E. (2005, June 16). Govt moves to cut pupil-teacher ratio. Odili News.
+Retrieved June 27, 2005, from http://odili.net/news/source/2005/junI16/307.html
+*Esiobu, G. 0., & Soyibo, K. (1995). Effects of concept and vee mappings under three
+learning modes on students, cognitive achievement in ecology and genetics. Jour-
+nal of Research in Science Teaching, 32, 971-995.
+Estes, T. H., Mills, D. C., & Barron, R. F. (1969). Three methods of introducing
+students to a reading-learning task in two content subjects. In H. L. Herber &
+P. L. Sanders (Eds.), Research in reading in the content areas: First year report
+(pp. 40-47). Syracuse, NY: Syracuse University Press.
+Foos, P. W. (1995). The effect of variations in text summarization opportunities on test
+performance. Journal of Experimental Education, 63, 89-95.
+Griffin, M. M., & Robinson, D. H. (2000). Role of mimeticism and spatiality in textual
+recall. Contemporary Educational Psychology, 25, 125-149.
+Griffin, M. M., & Robinson, D. H. (2005). Does spatial or visual information in maps
+facilitate text recall? Reconsidering the conjoint retention hypothesis. Educational
+Technology Research and Development, 53, 23-36.
+*Guastello, E. F., Beasley, M., & Sinatra, R. C. (2000). Concept mapping effects on
+science content comprehension of low-achieving inner-city seventh graders. Remedial
+and Special Education, 21, 356-365.
+436
+
+
+=== PDF PAGE 25 ===
+Learning With Concept and Knowledge Maps
+*Hall, R. H., Dansereau, D. F., & Skaggs, L. P. (1992). Knowledge maps and the
+presentation of related information domains. Journal of Experimental Education,
+61, 5-18.
+*Hall, R. H., & O'Donnell, A. M. (1996). Cognitive and affective outcomes of learn-
+ing from knowledge maps. Contemporary Educational Psychology, 21, 94-101.
+*Hall, R. H., & Sidio-Hall, M. A. (1994). The effect of color enhancement on knowl-
+edge map processing. Journal of Experimental Education, 62, 209:-217.
+Hawk, P. (1986). Using graphic organizers to increase achievement in middle school
+life science. Science Education, 70, 81-87.
+Hedges, L. V., & Olin, I. (1985). Statistical methodsfor meta-analysis. San Diego,
+CA: Academic Press.
+Holley, C., & Dansereau, D. (1984). Spatial learning strategies. New York: Acade-
+mic Press.
+Holliday, W. G., :Brunner, L. L., & Donais, E. L. (1977). Differential cognitive and
+affective responses to flow diagrams in science. Journal of Research in Science
+Teaching, 14, 129-138.
+Horton, P. B., McConney, A. A., Gallo, M., Woods, A. L., Senn, G. J., & Hamelin, D.
+(1993). An investigation of the effectiveness of concept mapping as an instructional
+tool. Science Education, 77, 95-111.
+Ives, B., & Hoy, C. (2003). Graphic organizers applied to higher-level secondary math-
+ematics. Learning Disabilities Research & Practice, 18, 36-51.
+*Jegede, 0. J., Alaiyemola, F. F., & Okebukola, P. A. (1990). The effect of concept
+mapping on students' anxiety and achievement in biology. Journal of Research in
+Science Teaching, 27, 951-960.
+*Jolly, A. B. (1998). The effectiveness of learning with concept mapping on thescience
+problem solving of sixth grade children (Doctoral dissertation, Indiana University of
+Pennsylvania, 1998). Dissertation Abstracts International, 59, 3356.
+Katayama, A. D., & Robinson, D. H. (2000). Getting students "partially" involved
+in note-taking using graphic organizers. Journal of Experimental Education, 68,
+119-133.
+*Lambiotte, J. G., & Dansereau, D. F. (1992). Effects of knowledge maps and prior
+knowledge on recall of science lecture content. Journal of Experimental Education,
+60, 189-201.
+Lambiotte, J. G., Dansereau, D. F., Cross, D. R., & Reynolds, S.1B. (1989). Multi-
+relational semantic maps. Educational Psychology Review, 1, 331-367. -
+*Lambiotte, J. G., Skaggs, L. P., & Dansereau, D. F. (1993). Learning from lectures:
+Effects of knowledge maps and cooperative review strategies. Applied Cognitive
+Psychology, 7, 483-497.
+Larkin, J. H., & Simon, H. A. (1987). Why a diagram is (sometimes) worth ten thousand
+words. Cognitive Science, 11, 65-99.
+*Lee, P. (1997). Integrating concept mapping and metacognitive methods in a hyper-
+media environment for learning science (Doctoral dissertation, Purdue University,
+1997). Dissertation Abstracts International, 58, 3405.
+*Lehman, J. D., Carter, C., & Kahle, J. B. (1985). Concept mapping, vee mapping, and
+achievement: Results of a field study with black high school students. Journal of
+Research in Science Teaching, 22, 663-673.
+Lipsey, M. W., & Wilson, D. B. (2001). Practical meta-analysis. Applied Social
+Research Methods Series (Vol. 49). Thousand Oaks, CA: SAGE Publications.
+*Markow, P. G. (1996). The effects of student-constructed concept maps on achieve-
+ment in a first-year college instructional chemistry laboratory (Doctoral dissertation,
+University of Connecticut, 1996). Dissertation Abstracts International, 56, 3900.
+Mayer, R. E. (1979). Can advance organizers influence meaningful learning? Review
+of Educational Research, 49, 371-383.
+437
+
+
+=== PDF PAGE 26 ===
+Nesbit & Adesope
+Mayer, R. E. (2001). Multimedia learning. Cambridge, UK: Cambridge University Press.
+McCagg, E. C., & Dansereau, D. F. (1991). A convergent paradigm for examining
+knowledge mapping as a learning strategy. Journal of Educational Research, 84,
+317-324.
+Minagawa, J. (1999). Effect of making linking labels in concept mapping. Japanese
+Journal of Educational Psychology, 47, 328-334.
+Moore, D. W., & Readence, J. F. (1984). A quantitative and qualitative review of
+graphic organizer research. Journal of Educational Research, 78, 11-17.
+*Moreland, J. L., Dansereau, D. F., & Chmielewski, T. L. (1997). Recall of descriptive
+information: The roles of presentation format, annotation strategy, and individual
+differences. Contemporary Educational Psychology, 22, 521-533.
+Moyer, J. C., Sowder, L., Threadgill-Sowder, J., & Moyer, M. B. (1984). Story problem
+formats: Drawn versus verbal versus telegraphic. Journalfor Research in Mathe-
+matics Education, 15, 342-351.
+*Nesbit, J. C., & Adesope, 0. (2005). Dynamic concept maps. In P. Kommers &
+G. Richards (Eds.), Proceedings of World Conference on Educational Multimedia,
+Hypermedia and Telecommunications 2005 (pp. 4323-4329). Chesapeake, VA:
+Association for the Advancement of Computing in Education.
+*Nicoll, G., Francisco, J., & Nakhleh, M. (2001). An investigation of the value of using
+concept maps in general chemistry. Journal of Chemical Education, 78, 1111-1117.
+*Novak, A. D. (1994). The effects of cooperative learning with concept mapping in a
+preservice teacher education course (Doctoral dissertation, Indiana University, 1994).
+Dissertation Abstracts International, 56, 895.
+Novak, J. D. (1990a). Concept maps and vee diagrams: Two metacognitive tools to
+facilitate meaningful learning. Instructional Science, 19, 29-52.
+Novak, J. D. (1990b). Concept mapping: A useful tool for science education. Journal
+of Research in Science Teaching, 27, 937-949.
+Novak, J. D. (1998). Learning, creating, and using knowledge: Concept maps asfacil-
+itative tools in schools and corporations. Mahwah, NJ: Lawrence Erlbaum.
+Novak, J. D. (2002). Meaningful learning: The essential factor for conceptual change
+in limited or inappropriate propositional hierarchies leading to empowerment of
+learners, Science Education, 86, 548-571.
+Novak, J. D., & Gowin, D. B. (1984). Learning how to learn. New York: Cambridge
+University Press.
+O'Donnell, A. M., Dansereau, D. F., & Hall, R. H. (2002). Knowledge maps as scaf-
+folds for cognitive processing. Educational Psychology Review, 14, 71-86.
+*Okebukola, P. A. (1990). Attaining meaningful learning of concepts in genetics and
+ecology: An examination of the potency of the concept-mapping technique. Journal
+of Research in Science Teaching, 27, 493-504.
+*Okebukola, P. A. (1992). Concept mapping with a cooperative learning flavor. Ameri-
+can Biology Teacher, 54, 218-221.
+*Okebukola, P. A., & Jegede, 0. J. (1988). Cognitive preference and learning-mode as
+determinants of meaningful learning through concept mapping. Science Education,
+72, 489-500.
+Paivio, A. (1986). Mental representations: A dual coding approach. Oxford, UK:
+Oxford University Press.
+*Pankratius, W. J. (1987). Building an organized knowledge base: Concept map-
+ping and achievement in secondary school physics (Doctoral dissertation, Georgia
+State University College of Education, 1987). Dissertation Abstracts Interna-
+tional, 49, 474.
+*Patterson, M. E. (1993). Conceptual analysis of spatial-semantic display processing
+(knowledge maps) (Doctoral dissertation, Texas Christian University, 1993). Dis-
+sertation Abstracts International, 55, 226.
+438
+
+
+=== PDF PAGE 27 ===
+Learning With Concept and Knowledge Maps
+*Patterson, M. E., Dansereau, D. F., & Newbem, D. (1992). Effects of communication
+aids and strategies on cooperative teaching. Journal of Educational Psychology, 84,
+453-461.
+*Patterson, M. E., Dansereau, D. F., & Wiegmann, D. A. (1993). Receiving informa-
+tion during a cooperative episode: Effects of communication aids and verbal ability.
+Learning and Individual Differences, 5, 1-11.
+*Potelle, H., & Rouet, J. (2003). Effect of content representation and readers' prior
+knowledge on the comprehension of hypertext. International Journal of Human-
+Computer Studies, 58, 327-345.
+*Prater, D. L., & Terry, C. A. (1988). Effects of mapping strategies on reading com-
+prehension and writing performance. Reading Psychology, 9, 101-120.
+Quillian, M. R. (1967). Word concepts: A theory and simulation of some basic semantic
+capabilities. Behavioral Sciences, 12, 410-430..
+*Rew6y, K. L., Dansereau, D., Dees, S., Skaggs, L., & Pitre, U. (1992). Scripted coop-
+eration and knowledge map supplements: Effects on the recall of biological and sta-
+tistical information. Journal of Experimental Education, 60, 93-107. :.
+*Rewey, K. L., Dansereau, D. F., & Peel, J. L. (1991). Knowledge maps and informa-
+tion processing strategies. Contemporary Educational Psychology, 16, 203-214.
+*Rewey, K. L.,Dansereau, D. F., Skaggs, L. P., Hall, R. H., & Pitre, U. (1989). Effects
+of scripted cooperation and knowledge maps on the processing of technical material.
+Journal of Educational Psychology, 81, 604-609.
+*Reynolds, S. B., & Dansereau, D. (1990). The knowledge hypermap:.An alternative
+to hypertext. Computers in Education, 14, 409-416.
+*Reynolds, S. B., Patterson, M. E., Skaggs, L. P., & Dansereau, D. F, (1991).,Knowjl-
+edge hypermap and cooperative learning. Computers in Education, 16, 167-173.
+Roth, W. M., & Roychoudhury, A. (1993). The concept map as a tool-for the collabo-
+rative construction of knowledge: A microanalysis of high school physics students.
+Journal of Research in Science Teaching, 30, 503-534.
+Roth, W. M., & Roychoudhury, A. (1994). Science discourse through collaborative
+concept-mapping: New perspectives for the teacher. International Journal of Science
+Education, 6, 437-455.
+*Salata, M. A. (1999). Concept maps as organizers in an introductory university level
+biology course (Doctoral dissertation, University of Virginia, 1999). Dissertation
+Abstracts International, 60, 1969.
+*Schmid, R. F., & Telaro, G. (1990). Concept mapping as an instructional strategy for
+high school biology. Journal of Educational Research, 84, 78-85.
+*Smith, B. E. (1992). Linking theory and practice in teaching basic nursing skills, Jour-
+nal of Nursing Education, 31, 16-23.
+Sowa, J. F. (2000). Knowledge representation: Logical, philosophical, and computa-
+tional foundation. Pacific Grove, CA: Brooks Cole.
+*Spaulding, D. T. (1989). Concept mapping and achievement in high school biology
+and chemistry (Doctoral dissertation, Florida Institute of Technology, 1989). Dis-
+sertation Abstracts International, 50, 1619.
+Stensvold, M. S., & Wilson, J. T. (1990). The interaction of verbal ability with concept
+mapping in learning from a chemistry laboratory activity. Science Education, 74,
+473-480.
+Stock, W. A., Kulhavy, R. W., Peterson, S. E., Hancock, T. E., & Verdi, M. P.
+(1995). Mental representations of maps and verbal descriptions: Evidence they
+may affect text memory differently. Contemporary Educational Psychology, 20,
+237-256.
+Stoyanova, N., & Kommers, P. (2002). Concept mapping as a medium of shared cog-
+nition in computer-supported collaborative problem solving. Journal of Interactive
+Learning Research, 13, 111-133.
+439
+
+
+=== PDF PAGE 28 ===
+Nesbit & Adesope
+Tabachnick, B. G., & Fidell, L. S. (2001). Using multivariate statistics (4th ed). Boston:
+Allyn & Bacon.
+Takumi, I. (2001). Hierarchical concept maps: Effect on writing. Japanese Journal of
+Educational Psychology, 49, 11-20.
+*Udupa, P. S. (1992). Concept Mapping/Cooperative Learning as a technique to improve
+the learning of "at-risk" and nondisabled students (Doctoral dissertation, University
+of Minnesota, 1992). Dissertation Abstracts International, 53, 2757.
+*Umar, I. N. (1999). A study of the effects of cognitive styles and learning strategies
+among Malaysian pre-college students in a hypermedia environment. (Doctoral
+dissertation, University of Pittsburgh, 1999). Dissertation Abstracts International,
+61, 145.
+van Boxtel, C., van der Linden, J., Roelofs, E., & Erkens, G. (2002). Collaborative con-
+cept mapping: Provoking and supporting meaningful discourse. Theory Into Practice,
+41, 40-46.
+Verdi, M. P., & Kulhavy, R. W. (2002). Learning with maps and texts: An overview.
+Educational Psychology Review, 14, 27-46.
+*Wachter, L. N. (1993). An investigation of the effects of hierarchical concept map-
+ping as a prefatory organizer on fourth-grade students' comprehension and retention
+of expository prose (Doctoral dissertation, Pennsylvania State University, 1993).
+Dissertation Abstracts International, 54, 2106.
+*Wallace, D. S., West, S. C., Ware, A. M., & Dansereau, D. F. (1998). The effect of
+knowledge maps that incorporate gestalt principles on learning. Journal of Experi-
+mental Education, 67, 5-16.
+Weinstein, C. E., & Mayer, R. E. (1986) The teaching of learning strategies. In M. C.
+Wittrock (Ed.), Handbook on Research in Teaching (3rd ed., pp. 315-327). New
+York: Macmillan.
+*Wiegmann, D. A. (1992). On the dual processing of spatial-graphic and verbal informa-
+tion (Doctoral dissertation, Texas Christian University, 1992). Dissertation Abstracts
+International, 53, 3193.
+Wiegmann, D. A., Dansereau, D. F., & McCagg, E. C. (1992). Effects of knowledge map
+characteristics on information processing. Contemporary Educational Psychology,
+17, 136-155.
+*Willerman, M., & Mac Harg, R. A. (1991). The concept map as an advance organizer.
+Journal of Research in Science Teaching, 28, 705-712.
+Winn, W. (1991). Learning from maps and diagrams. Educational Psychology Review,
+3, 211-247.
+*Zittle, F. J. (2001). The effect of web-based concept mapping on analogical transfer
+(Doctoral dissertation, University of New Mexico, 2001). Dissertation Abstracts
+International, 62, 3695.
+Authors
+JOHN C. NESBIT is an Associate Professor at Simon Fraser University, Faculty of Edu-
+cation, 8888 University Drive, Burnaby, BC, Canada, V5A 1S6; e-mail nesbit@sfii.ca.
+He conducts research on self-regulated learning with multimedia and cognitive tools,
+and collaborative evaluation of learning resources.
+OLUSOLA 0. ADESOPE is a doctoral student at Simon Fraser University, Faculty of Edu-
+cation, Burnaby, BC, Canada, V5A 1S6; e-mail ooa@sfit.ca. His research interests include
+learning with interactive concept maps and diagrams, and application of self-regulated
+learning models to enhance learning with multimedia resources.
+440
+
+
+=== PDF PAGE 29 ===
+APPENDIX A
+Coded effect sizes ,
+Study
+Abayomi (1988), dissertation
+Effect of map construction versus
+outlining on science achievement.
+Amer (1994)
+Effect of cooperative mapping
+versus underlining on recall.
+Effect of cooperative mapping
+versus text reading on recall.
+Bahr & Dansereau (2001)
+Effect of bilingual maps versus
+lists on recall of German-English
+word pairs.
+Bahr & Dansereau (2005)
+Effect of bilingual maps versus lists
+on recall of German-English word
+pairs.
+Blankenship & Dansereau (2000)
+Effect of animated map versus
+animated text on recall of
+information macrostructure.
+Bodolus (1986), dissertation
+Effect of constructing maps versus
+teacher's chosen activity on science
+achievement.
+Chang, Sung, & Chen (2002)
+Effect of map correction versus text
+reading on comprehension ability.
+Effect of map scaffolding versus text
+reading on comprehension ability.
+Effect of map construction versus
+text reading on comprehension
+ability.
+Effect of map correction versus text
+reading on summarization ability.
+Effect of map scaffolding versus text
+reading on summarization ability.
+Effect of map construction versus
+text reading on summarization
+ability.
+Chang (1994), dissertation
+Effect of mapping+outlining versus
+outlining on biology achievement.
+Effect of mapping versus outlining
+on biology achievement.
+Chularut & DeBacker (2004)
+Effect of concept mapping versus
+study and discussion on
+achievement.
+Grade
+8
+N Setting
+156 Classroom
+PS 99 Classroom
+PS 77 Laboratory
+PS 43 Laboratory
+PS 64 Laboratory
+9 244 Classroom
+5 126 Classroom
+7 187 Classroom
+PS 79 Classroom
+Effect size (g)
+0.35
+0.49
+0.95
+0.48
+0.59
+0.70
+0.11
+0.84
+0.33
+0.20
+1.14
+0.80
+0.30
+-0.41
+-0.23
+2.16
+(continued)
+441
+
+
+=== PDF PAGE 30 ===
+APPENDIX A (Continued)
+Study
+Clibum (1985), dissertation
+Effect of map-structured lectures
+on retention.
+Czerniak & Haney (1998)
+Effect of cooperative mapping versus
+lecture on comprehension.
+Dees (1989), dissertation
+Effect of map versus text on
+low-verbal-ability learners' recall.
+Effect of map versus text on
+high-verbal-ability learners' recall
+Esiobu & Soyibo (1995)
+Effect of individual concept and vee
+mapping versus lectures on biology
+achievement.
+Effect of cooperative concept and vee
+mapping versus lectures on biology
+achievement.
+Guastello, Beasle, & Sinatra (2000)
+Effect of mapping versus read-and-
+discuss in low-achieving students.
+Hall & O'Donnell (1996)
+Effect of studying maps versus text
+on superordinate idea recall.
+Effect of studying maps versus text
+on subordinate idea recall.
+Hall & Sidio-Hall (1994)
+Effect of studying color-coded map
+versus color-coded text on recall.
+Hall, Dansereau, & Skaggs (1992)
+Effect of presenting maps versus text
+on recall.
+Jegede, Alayemola, & Okebukola (1990)
+Effect of map construction versus
+lectures on biology achievement.
+Jolly (1998), dissertation
+Effect of mapping on science problem
+solving.
+Lambiotte & Dansereau (1992)
+Effect of map versus outline on
+high-prior-knowledge learners'
+central idea recall.
+Effect of map versus list on
+high-prior-knowledge learners'
+central idea recall.
+Effect of map versus outline on
+low-prior-knowledge learners'
+central idea recall.
+Grade
+PS
+N Setting
+70 Classroom
+PS 118 Classroom
+PS 143 Laboratory
+10 808 Classroom
+7 124 Varied
+PS 43 Laboratory
+PS 118 Laboratory
+PS 92 Laboratory
+10 51 Classroom
+6 36 Classroom
+PS 74 Laboratory
+442
+Effect size (g)
+0.68
+0.75
+0.42
+-0.36
+1.93
+1.34
+5.94
+0.43
+0.88
+0.29
+0.55
+1.54
+0.44
+0.38
+-0.76
+0.49
+
+
+=== PDF PAGE 31 ===
+I-.
+APPENDIX A (Continued)
+Study Grade N Setting Effect size (g)
+Effect of map versus list on
+low-prior-knowledge learners'
+central idea recall.
+Effect of map versus outline on
+high-prior-knowledge learners'
+detail idea recall.
+Effect of map versus list on
+high-prior-knowledge learners'
+detail idea recall.
+Effect of map versus outline on
+low-prior-knowledge learners'
+detail idea recall.
+Effect of map versus list on
+low-prior-knowledge learners' detail
+idea recall.
+Lambiotte, Skaggs, & Dansereau (1993)
+Effect of individually studying maps
+versus lists on recall.
+Effect of cooperatively studying maps
+versus lists on recall.
+Effect of individually studying maps
+versus lists on problem solving.
+Effect of cooperatively studying maps
+versus lists on problem solving.
+Lee (1997), dissertation
+Effect of navigational maps versus
+lists in hypermedia.
+Effect of navigational maps
+versus lists in hypermedia with
+metacognitive cues.
+Lehman, Carter, & Kahle (1985)
+Effect of mapping and vee heuristics
+versus outlining on biology
+achievement.
+Effect of mapping and vee heuristics
+versus outlining on biology
+relationship knowledge.
+Markow (1996), dissertation
+Effect of mapping versus objective
+and essay writing on chemistry
+achievement.
+McCagg & Dansereau (1991)
+Effect of mapping versus
+.self-selected study strategies on
+psychology recall.
+Moreland, Dansereau, &
+Chmielew (1997)
+Effect of annotating maps versus
+text on recall.
+PS 85 Classroom
+PS 67 Laboratory
+9 377" Classroom
+PS 32 Laboratory
+PS 81 'Varied
+PS 64 Laboratory
+0.69
+2
+0.02
+7-,0.43
+0.15
+0.33
+-0.02
+0.11
+-0.10
+0.00
+0.43
+-0.29
+0.08
+0.28
+-0.31'
+0.33
+0.36
+(continued)
+443
+
+
+=== PDF PAGE 32 ===
+APPENDIX A (Continued)
+Study
+Nesbit & Adesope (2005)
+Effects of studying animated map
+versus animated text on free recall.
+Effects of studying animated map
+versus animated text on retention
+and transfer.
+Nicoll, Francisco, & Nakhleh (2001)
+Effect of mapping on understanding
+of relationships among chemistry
+concepts.
+Novak (1994), dissertation
+Effect of cooperative mapping versus
+lecture and demo on AV ed-tech
+achievement.
+Okebukola (1990)
+Effect of mapping versus lectures
+on ecology achievement.
+Okebukola (1992)
+Effect of individual mapping versus
+lectures and discussions on biology
+achievement.
+Effect of cooperative mapping versus
+lectures and discussions on biology
+achievement.
+Okebukola & Jegede (1988)
+Effect of cooperative and individual
+mapping versus lectures on biology
+achievement.
+Pankratius (1987), dissertation
+Effect of mapping versus additional
+experiment on physics problem
+solving.
+Patterson (1993)
+Effect of studying map versus text
+on recall.
+Patterson, Dansereau, &
+Wiegmann (1993)
+Effect of map versus text in peer-
+teaching low-verbal-ability learners.
+Effects of map versus text in peer-
+teaching high-verbal-ability learners.
+Patterson, Dansereau, &
+Newbern (1992)
+Effect of cooperative learning with
+maps versus text on recall.
+Potelle & Rouet (2003)
+Effect of navigation with maps versus
+alphabetical list on thematic recall.
+PS 89 Classroom
+PS 20 Classroom
+PS 30 Classroom
+PS 138 Classroom
+11 147 Classroom
+PS 145 Classroom
+12 87 Classroom
+PS 181 Laboratory
+PS 38 Laboratory
+PS 101 Laboratory
+PS 47 Laboratory
+444
+Grade N Setting Effect size (g)
+0.96
+0.65
+1.03
+0.23
+1.53
+0.34
+1.54
+1.85
+0.45
+0.42
+0.52
+-0.22
+0.39
+0.07
+
+
+=== PDF PAGE 33 ===
+APPENDIX A (Continued)
+Study
+Prater & Terry (1988)
+Effect of teacher-led mapping versus
+teacher-led discussion on story
+comprehension.
+Reynolds & Dansereau (1990)
+Effect of studying with hypermaps
+versus hypertexts on recall.
+Reynolds et al. (1991)
+Effect of studying with hypermaps
+versus hypertexts on recall.
+Rewey, Dansereau, & Peel (1991)
+Effect of studying map versus
+studying text on central idea recall.
+Effect of summarizing map versus
+summarizing text on central
+idea recall.
+Effect of studying map versus
+studying text on detail idea recall.
+Effect of summarizing map versus
+summarizing text on detail
+idea recall.
+Rewey et al. (1992)
+Effect of individual study with map
+versus text on low-ability learners'
+recall.
+Effect of individual study with map
+versus text on high-ability learners'
+recall.
+Effect of cooperative study with map
+versus text on low-ability learners'
+recall.
+Effect of cooperative study with map
+versus text on high-ability learners'
+recall.
+Rewey et al. (1989)
+Effect of individual study of map
+versus text on recall.
+Effect of dyadic study of map versus
+text on recall.
+Salata (1999), dissertation
+Effect of presenting lecture content
+with maps versus outlines on recall.
+Schmid & Telaro (1990)
+Effect of mapping versus lectures on
+biology achievement.
+Effect of mapping versus lectures on
+understanding of relations between
+biology concepts.
+Grade
+5
+N
+30
+Setting
+Classroom
+PS 33 Lýboratory
+PS 38 Laboratory
+PS 96 Laboratory
+PS 121 Laboratory
+PS 104 Laboratory
+PS 170 - Classroom
+11 43 Classroom
+Effect size (g)
+0.76
+-0.12
+0.03
+0.07
+-0.34
+0.53
+-0.14
+0.12
+0.32
+0.38
+0.07
+0.20
+0.08
+0.43
+0.35
+0.89
+(continued)
+445
+
+
+=== PDF PAGE 34 ===
+APPENDIX A (Continued)
+Study
+Skaggs (1988)
+Effect of studying maps versus text
+on recall of main ideas.
+Effect of studying maps versus text
+on recall of detail ideas.
+Smith (1992)
+Effect of reviewing readings with
+maps and vee heuristics versus
+discussion on recall.
+Spaulding (1989), dissertation
+Effect of mapping concepts versus
+defining concepts on biology
+achievement.
+Effect of mapping concepts versus
+defining concepts on chemistry
+achievement.
+Udupa (1992), dissertation
+Effect of cooperative mapping versus
+individual study on recall.
+Umar (1999), dissertation
+Effect of map as introductory page
+in hypermedia.
+Effect of map versus text as
+introductory page in hypermedia.
+Effect of map versus outline as
+introductory page in hypermedia.
+Wachter (1993), dissertation
+Effect of studying complete map
+before reading text on delayed recall.
+Effect of studying incomplete map
+before reading text on delayed recall.
+Wallace & West (1998)
+Effect of studying maps versus text
+on recall.
+Effect of studying gestalt-enhanced
+maps versus text on recall.
+Wiegmann (1992), dissertation
+Effect of presenting map versus text
+on microstructure retention.
+Effect of presenting map versus text
+on macrostructure retention.
+Willerman & Mac Harg (1991)
+Effect of map copying versus
+introductory presentation as
+advance organizer.
+Zittle (2001), dissertation
+Effect of presenting maps versus text
+summaries on analogical transfer.
+Effect of presenting interactive maps
+versus text summaries on analogical
+transfer.
+Grade
+PS
+N
+103
+Setting
+Laboratory
+PS 42 Classroom
+10 151 Classroom
+10 32 Classroom
+PS 116 Classroom
+4 120 Varied
+PS 40 Laboratory
+PS 143 Laboratory
+8 82 Classroom
+PS 139 Laboratory
+Note. PS = postsecondary, N= number of subjects.
+446
+Effect size (g)
+0.33
+-0.26
+0.91
+0.17
+0.07
+0.41
+0.09
+-0.01
+-0.08
+0.65
+0.59
+0.35
+1.10
+0.78
+1.37
+0.42
+0.34
+1.23
+
+
+=== PDF PAGE 35 ===
+APPENDIX B
+Weighted mean effect sizes for outcome constructs and test formats
+95% Confidence Homogeneity
+Effect size interval of effect size
+Category N k M SE Lower Upper Q df
+Maps constructed
+Outcome construct
+Retention only
+Retention
+and transfer
+455 6 .805* .101 .606 1.004 51.025* 5
+1,084 12 .339* .062 .217 .462 57.455* 11
+Test format
+Free or interview 101 2 .454* .202 .057 .851 1.787 1
+recall
+Objective 977 9 .328* .660 .199 .457 56.043* 8
+Short answer 166 2 1.773* .186 1.408 2.138 10.660* 1
+Mixed item types 295 5 .392* .120 .157 .626 1.241 4
+Maps studied
+Outcome construct
+Retention only
+Transfer only
+Retention
+and transfer
+2,195 33 .355* .044 .269 .441 50.227* 32
+139 1 .827
+324 6 .317* .114 .093 .541, 9.245 5
+Test format
+Free recall, 1,740 29 .352* .049 .256 .449 45.084* 28
+Objective 461 4 .573* .097 .384 .763 3.457 3
+Mixed itemtypes 457 7 .245* .099 .051 .438 11.160 6
+* p <. 05 .
+447
+
+
+=== PDF PAGE 36 ===
+APPENDIX C
+Weighted mean effect sizes for methodological quality and document type
+95% Confidence Homogeneity
+Effect size interval of effect size
+Category N k M SE Lower Upper Q df
+Maps constructed
+Confidence in effect size
+Low or medium 1,225 12 .286* .058 .172 .400 15.938 11
+High 314 6 1.386* .131 1.129 1.643 48.851* 5
+Treatment fidelity
+Low or medium 583 7 .565* .087 .394 .736 67.892* 6
+High 956 11 .409* .067 .278 .541 53.868* 10
+Random assignment
+Yes 389 6 1.092* .114 .870 1.315 64.531* 5
+No 1,150 12 .292* .060 .174 .410 20.484* 11
+Document type
+Journal article 772 9 .730* .077 .580, .881 97.347* 8
+Dissertation 767 9 .225* .074 .081 .370 3.920 8
+Maps studied
+Confidence in effect size
+Low or medium 466 7 .335* .094 .150 .520 6.228 6
+High 2,192 33 .381* .044 .294 .467 59.461* 32
+Treatment fidelity
+Low ormedium 454 7 .421* .101 .224 .618 11.647 6
+High 2,204 33 .363* .044 .278 .449 53.962* 32
+Random assignment
+Yes 2,336 37 .357* .043 .274 .441 63.990* 36
+No 322 3 .479* .113 .257 .700 .876 2
+Document type
+Journal article 1,448 28 .319* .054 .213 .424 23.475 27
+Dissertation 1,210 12 .439* .060 .322 .556 40.177* 11
+*p < .05.
+448
+
+
+=== PDF PAGE 37 ===
+COPYRIGHT INFORMATION
+TITLE: Learning With Concept and Knowledge Maps: A
+Meta-Analysis
+SOURCE: Review of Educational Research 76 no3 Fall 2006
+PAGE(S): 413-48
+WN: 0628800924008
+The magazine publisher is the copyright holder of this article and it
+is reproduced with permission. Further reproduction of this article in
+violation of the copyright is prohibited. To contact the publisher:
+http://www.aera.net/
+Copyright 1982-2006 The H.W. Wilson Company.  All rights reserved.

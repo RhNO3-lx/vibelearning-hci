@@ -1,0 +1,312 @@
+[
+  {
+    "id": "P02",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P03",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P06",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P07",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P08",
+    "status": "failed",
+    "error": "HTTP Error 406: Not Acceptable"
+  },
+  {
+    "id": "P09",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P10",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P11",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P12",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P05",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P13",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P15",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P04",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P01",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P18",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P14",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P17",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P16",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P22",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P23",
+    "status": "failed",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "P21",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P25",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P24",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P19",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P27",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P26",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P28",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P30",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P31",
+    "status": "failed",
+    "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1082)>"
+  },
+  {
+    "id": "P33",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P29",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P35",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P34",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P36",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P37",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P39",
+    "status": "failed",
+    "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1082)>"
+  },
+  {
+    "id": "P40",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P38",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P41",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P42",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P44",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P20",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P43",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P47",
+    "status": "failed",
+    "error": "HTTP Error 403: Forbidden"
+  },
+  {
+    "id": "P48",
+    "status": "failed",
+    "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1082)>"
+  },
+  {
+    "id": "P49",
+    "status": "ok",
+    "pdf_status": "no_open_pdf_link_extracted"
+  },
+  {
+    "id": "P46",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "project": "DeepTutor",
+    "status": "ok",
+    "commit": "ef2d9e5c3c99fd073742c5aadc2bb9584b1e503b"
+  },
+  {
+    "project": "OpenMAIC",
+    "status": "ok",
+    "commit": "5312c2b4b4bcb2e7db07cacabcdac8bfddc827fa"
+  },
+  {
+    "project": "ClassMate",
+    "status": "ok",
+    "commit": "591d9734607ed1f66e117a8bd9a41eac822bc8d1"
+  },
+  {
+    "project": "ScaffoldLM",
+    "status": "ok",
+    "commit": "3e2549350e6a9e124ec4dffd18a7b0ccf3badf8f"
+  },
+  {
+    "project": "TASA",
+    "status": "ok",
+    "commit": "26eadc01bfc08006fd630dd299a0bf8a3d27bfc2"
+  },
+  {
+    "project": "TheoremExplainAgent",
+    "status": "ok",
+    "commit": "e9ece5db7756b6ded8a812eceeb936cfd02aae21"
+  },
+  {
+    "project": "Code2Video",
+    "status": "ok",
+    "commit": "1142d8e14cdc2806df85aedb0fbb5dca474caa0f"
+  },
+  {
+    "project": "EduChat",
+    "status": "ok",
+    "commit": "fa30b6d5632c9364c67ba3ed726acfecc3f62eb7"
+  },
+  {
+    "project": "Graphiti",
+    "status": "ok",
+    "commit": "3c427640abf909f12f71f963fce15eb514a3c493"
+  },
+  {
+    "project": "Mem0",
+    "status": "ok",
+    "commit": "abb81c88e1f738a8117d8293530fbc31a5ef8fd9"
+  },
+  {
+    "project": "FSRS",
+    "status": "ok",
+    "commit": "ff7c85cee735472d1c9cec0b9252d184087f74d8"
+  },
+  {
+    "project": "GenAICanHarmLearning",
+    "status": "ok",
+    "commit": "2f63dae1a01d51453826fe07ef5cf6678e339588"
+  },
+  {
+    "project": "grill-me",
+    "status": "ok",
+    "commit": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60"
+  },
+  {
+    "id": "P45",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  },
+  {
+    "id": "P32",
+    "status": "ok",
+    "pdf_status": "downloaded"
+  }
+]

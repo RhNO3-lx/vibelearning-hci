@@ -1,0 +1,249 @@
+[
+  {
+    "name": "DeepTutor",
+    "repo": "HKUDS/DeepTutor",
+    "url": "https://github.com/HKUDS/DeepTutor",
+    "feature": "整体最接近：多层记忆、主动TutorBot、知识库、出题与引导学习。",
+    "use": "优先复用基础设施；必须单独验证长期学习效果。",
+    "accessed": "2026-10-03",
+    "commit": "ef2d9e5c3c99fd073742c5aadc2bb9584b1e503b",
+    "default_branch": "main",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "updated_at": "2026-10-03T13:53:07Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "OpenMAIC",
+    "repo": "THU-MAIC/OpenMAIC",
+    "url": "https://github.com/THU-MAIC/OpenMAIC",
+    "feature": "多agent课堂、课件、语音、测验、交互模拟和PBL。",
+    "use": "研究实验状态诊断和脚手架撤除的增量贡献，勿只比生成内容数量。",
+    "accessed": "2026-10-03",
+    "commit": "5312c2b4b4bcb2e7db07cacabcdac8bfddc827fa",
+    "default_branch": "main",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "updated_at": "2026-10-03T13:47:51Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "ClassMate",
+    "repo": "Dualqwq/ClassMate",
+    "url": "https://github.com/Dualqwq/ClassMate",
+    "feature": "C/C++与DSA的VS Code辅导、编译反馈、Debug Journey及课件搜索图。",
+    "use": "已有README把部分运行记录整合标为正在开发，不能全部当已验证能力。",
+    "accessed": "2026-10-03",
+    "commit": "591d9734607ed1f66e117a8bd9a41eac822bc8d1",
+    "default_branch": "main",
+    "license": {
+      "key": "other",
+      "name": "Other",
+      "spdx_id": "NOASSERTION",
+      "url": null,
+      "node_id": "MDc6TGljZW5zZTA="
+    },
+    "updated_at": "2026-09-29T12:25:27Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "ScaffoldLM",
+    "repo": "BNU-ERC-ITEA/ScaffoldLM",
+    "url": "https://github.com/BNU-ERC-ITEA/ScaffoldLM",
+    "feature": "规划加评估驱动记忆的教学控制器。",
+    "use": "重点对照分阶段目标判定和提示策略。",
+    "accessed": "2026-10-03",
+    "commit": "3e2549350e6a9e124ec4dffd18a7b0ccf3badf8f",
+    "default_branch": "main",
+    "license": null,
+    "updated_at": "2026-09-21T00:43:00Z",
+    "file_errors": {
+      "LICENSE": "HTTP Error 404: Not Found"
+    },
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "TASA",
+    "repo": "YANGWU001/TASA",
+    "url": "https://github.com/YANGWU001/TASA",
+    "feature": "persona、事件记忆、遗忘和知识追踪。",
+    "use": "重点对照记忆更新和复习调度。",
+    "accessed": "2026-10-03",
+    "commit": "26eadc01bfc08006fd630dd299a0bf8a3d27bfc2",
+    "default_branch": "main",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "updated_at": "2026-08-21T14:57:44Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "TheoremExplainAgent",
+    "repo": "TIGER-AI-Lab/TheoremExplainAgent",
+    "url": "https://github.com/TIGER-AI-Lab/TheoremExplainAgent",
+    "feature": "长Manim定理讲解和评测数据。",
+    "use": "生成和布局检查可复用；补真人迁移评估。",
+    "accessed": "2026-10-03",
+    "commit": "e9ece5db7756b6ded8a812eceeb936cfd02aae21",
+    "default_branch": "main",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "updated_at": "2026-10-03T07:54:48Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "Code2Video",
+    "repo": "showlab/Code2Video",
+    "url": "https://github.com/showlab/Code2Video",
+    "feature": "可执行代码视频生成和批评流水线。",
+    "use": "借鉴工具验证；模型代理学习评分不能替代人。",
+    "accessed": "2026-10-03",
+    "commit": "1142d8e14cdc2806df85aedb0fbb5dca474caa0f",
+    "default_branch": "main",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "updated_at": "2026-10-03T08:52:24Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "EduChat",
+    "repo": "ECNU-ICALK/EduChat",
+    "url": "https://github.com/ECNU-ICALK/EduChat",
+    "feature": "中文教育对话与引导式教学。",
+    "use": "语言和课程情境对照。",
+    "accessed": "2026-10-03",
+    "commit": "fa30b6d5632c9364c67ba3ed726acfecc3f62eb7",
+    "default_branch": "main",
+    "license": null,
+    "updated_at": "2026-09-25T10:00:29Z",
+    "file_errors": {
+      "LICENSE": "HTTP Error 404: Not Found"
+    },
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "Graphiti",
+    "repo": "getzep/graphiti",
+    "url": "https://github.com/getzep/graphiti",
+    "feature": "时序图记忆基础设施。",
+    "use": "来源、有效期和矛盾记录；不是学习者模型。",
+    "accessed": "2026-10-03",
+    "commit": "3c427640abf909f12f71f963fce15eb514a3c493",
+    "default_branch": "main",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "updated_at": "2026-10-03T13:42:33Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "Mem0",
+    "repo": "mem0ai/mem0",
+    "url": "https://github.com/mem0ai/mem0",
+    "feature": "通用记忆抽取与检索。",
+    "use": "与结构化教育记忆比较。",
+    "accessed": "2026-10-03",
+    "commit": "abb81c88e1f738a8117d8293530fbc31a5ef8fd9",
+    "default_branch": "main",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    },
+    "updated_at": "2026-10-03T13:42:28Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "FSRS",
+    "repo": "open-spaced-repetition/fsrs4anki",
+    "url": "https://github.com/open-spaced-repetition/fsrs4anki",
+    "feature": "间隔复习调度与拟合工具。",
+    "use": "技能需定义可重复观测事件，不能直接把完整任务当单张卡。",
+    "accessed": "2026-10-03",
+    "commit": "ff7c85cee735472d1c9cec0b9252d184087f74d8",
+    "default_branch": "main",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "updated_at": "2026-10-02T21:15:19Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "grill-me",
+    "repo": "mattpocock/skills",
+    "url": "https://github.com/mattpocock/skills",
+    "feature": "逐问澄清设计的框架；当前入口转到grilling。",
+    "use": "研究性参考而非已安装或本次执行的skill；诊断题不能预先给答案。",
+    "accessed": "2026-10-03",
+    "commit": "d81f3a183412e71a5b1e84ca21bc1a35eea03a60",
+    "default_branch": "main",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    },
+    "updated_at": "2026-10-03T13:57:55Z",
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "GenAICanHarmLearning",
+    "repo": "obastani/GenAICanHarmLearning",
+    "url": "https://github.com/obastani/GenAICanHarmLearning",
+    "feature": "PNAS学习风险RCT的公开代码和匿名资料入口。",
+    "use": "可借鉴无AI测验设计，复用数据要核对许可。",
+    "accessed": "2026-10-03",
+    "commit": "2f63dae1a01d51453826fe07ef5cf6678e339588",
+    "default_branch": "main",
+    "license": null,
+    "updated_at": "2026-09-30T16:28:36Z",
+    "file_errors": {
+      "LICENSE": "HTTP Error 404: Not Found"
+    },
+    "snapshot_status": "downloaded"
+  },
+  {
+    "name": "Megi",
+    "url": "https://github.com/ruanyf/weekly/issues/8347",
+    "website": "https://megi.dev/",
+    "feature": "提问目录树、导航和拖拽重组；来自开发者产品介绍",
+    "use": "不能从树状展示推断模型上下文隔离；未查到此来源给出的源码仓库",
+    "accessed": "2026-10-03",
+    "snapshot_status": "developer_issue_source"
+  }
+]

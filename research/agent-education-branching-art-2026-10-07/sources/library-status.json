@@ -1,0 +1,13 @@
+{
+  "entries": 34,
+  "pdf": 29,
+  "new_pdf": 18,
+  "reused_pdf": 11,
+  "unavailable": [
+    "I01",
+    "A03",
+    "A04",
+    "E02",
+    "B09"
+  ]
+}

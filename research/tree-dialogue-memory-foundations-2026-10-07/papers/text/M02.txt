@@ -1,0 +1,2306 @@
+=== PDF PAGE 1 ===
+Temporal Order Matters for Agentic Memory:
+Segment Trees for Memory Construction and Retrieval
+Yifan Simon Liu1, Liam Gallagher1, Faeze Moradi Kalarde1,
+Jiazhou Liang1,Armin Toroghi 1,Scott Sanner 1,2
+1University of Toronto
+2Vector Institute for Artificial Intelligence
+yifanliu.liu@mail.utoronto.ca
+Abstract
+Long-horizon conversational agents need to interact with users through evolv-
+ing events, tasks, and goals, where utterances within a period often center on a
+shared topic before the conversation shifts to a new context. Such histories can
+be naturally represented as a temporally ordered segment tree, where sequential
+utterances compose into higher-level segments. However, existing tree-based
+memory systems mostly focus on topically structured hierarchies and often ignore
+temporal sequencing, leaving two key design questions for temporally ordered
+memory underexplored: (i) how to update a temporally ordered tree online as
+new utterances arrive, and (ii) how to exploit the resulting temporal hierarchy
+along with topical structure during retrieval. We introduce Segment Tree Memory
+(SEGTREEMEM), a memory architecture that represents conversation history as
+a Segment Tree over utterances while preserving temporal order. To support on-
+line updates, SEGTREEMEMincrementally incorporates new utterances into the
+Segment Tree while maintaining temporally contiguous interaction segments. For
+retrieval, SEGTREEMEMpropagates relevance signals through the tree, enabling
+the model to integrate information across related parts of the conversation and
+identify query-relevant context more effectively. Our experiments show that across
+three datasets and two LLM backbones, SEGTREEMEMimproves LLM-judge
+accuracy by nearly 20% over non-temporal tree baselines and other strong memory
+baselines. These results support the view that long-horizon conversational agents
+benefit from memory indexes that arebothtemporal and hierarchical.
+1 Introduction
+Long-horizon conversational agents interact with users over multi-turn dialogues of sequential user
+and agent utterances [10, 24, 40]. To respond accurately to a query, the agent must retain and leverage
+relevant information from earlier utterances. This necessitates a memory system that supports efficient
+online constructionas utterances arrive to retain the full history, along with aretrieval mechanism
+that accesses query-relevant information to support response generation [5, 28, 30].
+In real-world interactions, conversations naturally organize into topically coherent and temporally
+ordered segments, where consecutive utterances share the same subject before transitioning to a new
+topic [7, 12]. This implies that the relevance of a past utterance to a current query cannot be determined
+from its content alone, as utterances within a segment are semantically interrelated and their meaning
+depends on surrounding utterances within the same segment. A memory system that does not account
+for temporal order risks retrieving semantically similar yet contextually misaligned information.
+This makes tree-based memory structures a natural choice, as they can organize conversations into
+hierarchically nested, temporally ordered segments while preserving local contextual dependencies.
+Preprint. Work in progress.
+arXiv:2606.04555v1  [cs.CL]  3 Jun 2026
+
+=== PDF PAGE 2 ===
+Other Methods
+time
+Internal nodes do not preserve temporal order
+SegTreeMem(Ours)
+v₁
+v₃
+v₂
+ v₄
+v₅
+v₆
+v₇
+ v₉
+v₈
+ v₁₀
+Internal nodesPreserveTemporal order
+v₁
+ v₃
+v₂
+ v₄
+ v₆
+v₅
+ v₇
+ v₉
+v₈
+ v₁₀
+Figure 1: Memory tree representations. Semantic trees may group non-consecutive utterances,
+ignoring temporal order (top), while SEGTREEMEMpreserves temporal order by assigning each
+node a contiguous span of utterances (bottom).
+However, existing tree-based memory systems tend to focus on topically structured hierarchies
+and often place less emphasis on temporal sequencing, leaving open two key design questions for
+temporally ordered tree memory: (i)How should the tree be constructed online to index incoming
+utterances in real-time while preserving topical coherence and temporal order?(ii)How should
+retrieval exploit both topical and temporal organization in the resulting tree structure?
+To preserve the temporal order of utterances in memory, we use a Segment Tree [6], where each node
+represents a contiguous span of utterances, and internal nodes recursively partition their spans into
+ordered, non-overlapping sub-spans. Building on the Segment Tree structure, we introduce Segment
+Tree Memory (SEGTREEMEMshown in Figure 1). Specifically, our contributions are as follows:
+• SEGTREEMEMinserts each new utterance by updating only a small set of nodes along the
+rightmost frontier, supporting real-time tree construction while preserving temporal order
+and coherent node representations (Figure 2).
+• SEGTREEMEMemploys a structure-aware retrieval mechanism that uses the tree as a
+temporal and hierarchical memory index and formulates retrieval as relevance propagation
+over the tree via a transition matrix, combining local semantic matching with hierarchical
+topical structure and temporal dependencies (Figure 3).
+• We empirically evaluate SEGTREEMEMon three memory datasets and two LLM backbones,
+showing consistent accuracy improvements over existing baselines and demonstrating the
+benefit of temporal and hierarchical memory indexes for conversational agents.
+2 Problem Definition
+We consider a conversational agent that interacts with a user through a sequence of utterances. Let xt
+denote thet-th utterance. The conversation history aftertutterances isX t = (x1, . . . , xt).
+A long-horizon agent maintains an external memory state throughout the conversation. LetMt denote
+the memory state after processing the first t utterances. In this work, we focus on two components of
+memory: online memory construction and the retrieval from memory, which are described below.
+Online Memory Construction.When a new utterance xt+1 arrives, the memory state is updated
+as Mt+1 =U(M t, xt+1), where U denotes the online update operator. An effective U should satisfy:
+(i) Incremental update:It incorporates xt+1 into Mt without rebuilding memory from scratch.
+(ii) Efficient update scope:Let Ct and ∆t denote the memory units inspected and modified
+during update. For real-time interaction,|C t|,|∆ t| ≪ |M t|, ideally sublinear in|M t|.
+(iii) Structural and temporal preservation:The updated memory Mt+1 should preserve
+structural organization and conversation order. Memory units may be grouped or abstracted,
+but not reordered, i.e.,i < j⇒x i precedesx j inM t+1.
+2
+
+=== PDF PAGE 3 ===
+Construction Retrieval
+Build Online Preserves order Retrieval Uses hierarchyUses order
+RAPTOR [34] Clustering× ×Collapsed× ×
+MemTree [31] Semantic insertion✓×Collapsed× ×
+MemWalker [4] Fixed ordered grouping×✓LLM-guided traversal✓ ✓
+LATTICE [8] Clustering× ×LLM-guided traversal✓×
+SEGTREEMEM(Ours) Segment Tree ✓ ✓ Relevance propagation ✓ ✓
+Table 1: Comparison of tree-based memory methods through the desiderata in Section 2. Under
+Construction,Onlineindicates whether the method defines an online update rule for incorporating a
+new utterance into an existing memory state, andPreserves orderindicates whether construction
+explicitly preserves conversation order. UnderRetrieval,Uses hierarchyindicates whether retrieval
+uses the tree structure rather than treating nodes as independent candidates, andUses orderindicates
+whether retrieval can exploit temporal order when selecting evidence.
+Retrieval from Memory.Given a user query q, the agent retrieves evidence O=R(q, M t) from
+the current memory state, whereRis the retrieval operator. An effectiveRshould satisfy:
+(i) Topical relevance:Let R(q, m) denote the topical relevance between query q and memory
+unitm. Retrieval should favor memory units with highR(q, m).
+(ii) Temporal and structural context:A topical match may not be sufficient alone. Let Nt(m)
+denote the structurally and temporally admissible neighborhood of m in Mt. Retrieval
+should use topical matches as memory entry points andN t(m)to expand the evidence.
+3 Related Work
+Memory construction.RAPTOR [ 34] and LATTICE [8] build semantic abstraction trees through
+clustering. MemWalker [4] preserves document order by grouping adjacent segments into fixed-size
+units. MemTree [31] builds a semantic tree by inserting new memories into the most similar branch.
+Among these methods, only MemTree explicitly supports online memory update. However, its
+similarity-based insertion prioritizes topical relatedness and does not preserve utterance order in the
+tree structure. Conversely, MemWalker preserves temporal order but is designed for static contexts
+rather than online updates. SEGTREEMEMsupports both.
+Retrieval from memory.Existing retrieval methods vary in whether and how they utilize the tree
+structure during retrieval. RAPTOR [34] and MemTree [31] performcollapsed retrieval, where all
+tree nodes are treated as independent candidates. Although this approach supports topical relevance,
+it does not explicitly use structural or temporal context during retrieval. MemWalker [ 4] and
+LATTICE [8] performLLM-guided traversal, where an LLM navigates the tree hierarchy. Although
+these methods leverage the top-down tree structure, they do not exploit other tree-induced relations or
+temporal order during retrieval. In contrast, the retrieval mechanism in SEGTREEMEMexploits both
+the tree structure and temporal order to identify additional relevant context.
+4 Methodology
+A Segment Tree [6] provides a principled data structure that satisfies the desiderata of online memory
+construction in Section 2. It maintains a hierarchical decomposition over contiguous time intervals,
+where (i) incorporating xt+1 reduces to attaching a rightmost leaf and updating nodes along a single
+root-to-leaf path, avoiding global reconstruction; (ii) the structure restricts inspection and modification
+to O(log|M t|) nodes under balanced tree; (iii) each node encodes a contiguous segment, and the
+left-to-right leaf order follows chronology, preserving temporal consistency.
+4.1 Conversation Segment Tree
+Given the temporally ordered utterance sequence X= (x 1, . . . , xT ), where xt denotes the t-th
+utterance, we represent X as a rooted Segment Tree T= (V, E, ρ) to preserve temporal order for
+3
+
+=== PDF PAGE 4 ===
+later retrieval (Figure 1, bottom). Here, V is the set of nodes, E is the set of parent-child edges, and
+ρ∈Vis the root node.
+Each node v∈V is associated with a contiguous interval of the conversation history, denoted
+by I(v) =
+
+l(v), r(v)
+
+, where l(v) and r(v) are the indices of the first and last utterances in the
+conversation interval, respectively, with1≤l(v)≤r(v)≤T . Thus, v represents the subsequence 
+xl(v), xl(v)+1, . . . , xr(v)
+
+in the conversation history. The tree comprises three types of nodes.
+Root node.The root nodeρis associated with the entire conversation history, i.e.,I(ρ) = [1, T].
+Internal nodes.Each internal node v is associated with an interval equal to the union of the intervals
+of its child nodes. Let ch(v) = (c1, . . . , cm) denote the ordered children of node v, indexed from left
+to right. These children have pairwise disjoint and consecutive intervals, i.e.,
+r(cj) + 1 =l(c j+1),1≤j≤m−1.(1)
+Then, the interval associated with node v is I(v) = Sm
+j=1
+
+l(cj), r(cj)
+
+=
+
+l(c1), r(cm)
+
+, where the
+last equality follows from the fact that intervals associated with consecutive child nodes are adjacent
+and non-overlapping. Therefore, the interval associated with every internal node is partitioned into
+consecutive non-overlapping sub-intervals, each corresponding to a child node.
+Leaf nodes.Each leaf node represents a single utterance. Thus, for every leaf node v, I(v) = [t, t].
+Node annotations.Each node v carries an annotation A(v), which is an LLM-generated summary
+of the conversation spanI(v).
+4.2 Online Segment Tree Construction
+In the agent setting, memory must be constructed online as the conversation unfolds. Given Xt =
+(x1, . . . , xt), let Tt = (Vt, Et, ρt) be the Segment Tree of the firstt utterances. When a new utterance
+xt+1 arrives, our goal is to updateT t toT t+1 while preserving the Segment Tree properties.
+Rightmost frontier.Let the rightmost frontier of Tt be denoted by Ft, defined as the ordered
+collection of nodes whose associated intervals have right endpoint equal tot, i.e.,
+Ft =Frontier(T t) = (f1, . . . , fm),{f 1, . . . , fm}={v∈V t :r(v) =t}.(2)
+The frontier nodes are ordered from lower to higher levels: f1 is the rightmost leaf and fm is the
+root. Under the levelled-tree invariant, Ft contains exactly one active node per level. Since xt+1 has
+interval [t+ 1, t+ 1] , it can only attach to a node whose interval ends at t. Thus, the admissible
+insertion candidates are precisely the non-leaf nodes in Ft, i.e., Ft \ {f1}, giving the update local
+scope rather than requiring a scan over all tree nodes.
+v₁
+v₃
+v₂
+v₆
+v₄
+v₅
+v₇
+v₈
+v₉
+v₁₀
+Incoming utterance𝑥!"#
+1. Calculate compatibility scores2. Insert the incoming utterance
+v₁₁
+v₁₀
+v₆
+v₃
+v₉
+Figure 2: Online Segment Tree update. For a new
+utterance xt+1, the compatibility model selects a
+frontier node v3, to which a subtree with leaf xt+1
+is attached.
+Online tree update via rightmost frontier.
+To select an attachment node, we use a compat-
+ibility model, which either returns the non-leaf
+frontier node most compatible with the incom-
+ing utterancex t+1, or indicates that no compat-
+ible frontier node exists. If a frontier node is
+selected, let fℓ∗, where ℓ∗ ∈ {2, . . . , m}, de-
+note the selected node. We create a chain of
+ℓ∗ −2 internal nodes above the new leaf zt+1,
+each with interval [t+ 1, t+ 1] , and attach the
+chain top, or zt+1 itself when ℓ∗ = 2 , as the
+rightmost child of fℓ∗. We then update the right
+endpoints and annotations of fℓ∗ and its ances-
+tors. If no frontier node is compatible, we create
+a new root fm+1 whose leftmost child is the pre-
+vious root of Tt. We also create a chain of m−1 internal nodes above zt+1, each with interval
+[t+ 1, t+ 1] , and attach the chain top, or zt+1 itself when m= 1 , to fm+1. The interval of fm+1 is
+then updated to [1, t+ 1] , and its annotation is created accordingly. The algorithm is visualized in
+Figure 2.
+4
+
+=== PDF PAGE 5 ===
+v₁v₂v₃v₄v₅v₆
+v₁v₂v₃v₄v₅v₆
+.0.30.20.20.10.10.1
+v₁
+v₂
+v₃
+v₄
+v₅
+v₆
+ =
+v₁
+v₂
+v₃
+v₄
+v₅
+v₆
+Top-down
+Bottom-up
+1.ScorePropagation:Multiply the transition matrix by the relevance vector2. Final Score Update CalculationAverage the updated vector and the relevance vector
+=
+0.300.220.220.130.120.12
+0.30.20.20.10.10.1
+000000 000000.5 000000.5 001010 0100.500 1000.500
+v₁v₂v₃v₄v₅v₆
+v₁v₂v₃v₄v₅v₆
+.0.30.20.20.10.10.1
+=
+0.700.100.200.000.000.00
+000111 001000 110000 000000 000000 000000
+0.000.150.150.300.200.20
+0.000.150.150.300.200.20
+0.270.200.200.120.110.11
+=
+			α
+0.370.210.220.100.100.10
+.0.30.20.20.10.10.1
+0.340.190.200.090.090.09
+Normalize
+0.700.100.200.000.000.00
+Normalize
++							
++							
+			α
+.
+Figure 3: Two score propagation policies: top: top-down, where scores propagate from parents to
+children; bottom: bottom-up, where scores propagate from children to parents. The matrices illustrate
+the corresponding propagation operators. Blue arrays denote normalized initial local scores, purple
+arrays denote scores after one propagation step, and gray arrays denote the final scores obtained by
+combining the initial and propagated scores withα= 0.1.
+Design choices for memory construction.The design choices for online memory construction
+center on the compatibility model, which determines where a new utterance is inserted. We consider
+three forms of compatibility. (i)Cosine similarityselects the frontier node whose annotation
+embedding is most similar to the new utterance. (ii)Pointwise LLM[ 14, 17, 18, 20]independently
+scores each frontier node annotation against the new utterance and selects the most compatible node.
+(iii)Batch LLM[ 23, 35, 42] presents all frontier node annotations with the new utterance to an
+LLM, which jointly compares candidates and selects the most compatible node.
+4.3 Retrieval from the Memory Tree
+Our retrieval operator follows a simple principle: identify memory units relevant to the query, then
+expand around them to gather context. This is motivated by the fact that relevant information typically
+appears within coherent temporal spans rather than in isolation. Accordingly, the operator satisfies
+the retrieval desiderata in Section 2: (i) it assigns initial scores that give higher values to more
+relevant nodes, selecting them as entry points; (ii) it propagates these scores over the tree, allowing
+high-scoring nodes to expand into their structurally and temporally admissible neighborhoods.
+4.3.1 Structure-Aware Score Propagation
+To incorporate the hierarchical structure of the memory tree, we propagate relevance scores through
+structurally meaningful connections using a matrix-based multi-hop formulation, inspired by classical
+graph-based ranking methods such as PageRank [11, 29, 37].
+Formally, a propagation policy P induces a sparse propagation matrix WP ∈[0,1] |V|×|V| , where
+each entry [WP ]uv = Pr(u|v, q) gives the probability of propagating relevance from nodev to node
+u given query q. Thus, [WP ]uv captures the contribution of node v to node u in a single propagation
+step, while repeated applications ofW P enable multi-hop aggregation over the tree structure.
+Two canonical propagation policies are shown in Figure 3: (i)top-down, which distributes relevance
+from a node to its children, and (ii)bottom-up, which propagates relevance from a node to its parent.
+Initial score normalization.Given a query q, retrieval aims to identify nodes whose associated
+conversation spans are relevant for answering q. Each node v∈V is represented by its annotation
+A(v), from which we compute a local relevance score rq(v) =R(q, A(v))∈R. We normalize these
+scores to obtain an initial query distribution ass (0)
+q (v) = rq(v)P
+u∈V rq(u) .
+5
+
+=== PDF PAGE 6 ===
+This normalization ensures that s(0)
+q forms a valid probability distribution, which stabilizes subsequent
+matrix-based propagation and prevents scale explosion or vanishing across multiple hops. Selecting
+nodes directly based on s(0)
+q recoverscollapsed-treeretrieval [ 31, 34], which ignores the tree structure
+and treats nodes independently.
+Score propagation.Starting from the initial distribution s(0)
+q ∈R |V| , we define thek-hop structural
+distribution via iterative propagation as
+s(k)
+q =W P s(k−1)
+q =W k
+P s(0)
+q , k= 1, . . . , H.(3)
+Each multiplication byW P corresponds to one structural transition along the tree.
+Final retrieval score.We define the final structure-aware retrieval score as a finite-horizon combi-
+nation of the local and propagated distributions:
+˜sq =
+PH
+k=0 αks(k)
+q
+PH
+k=0 αk
+,0≤α <1,(4)
+where α controls the relative contribution of longer propagation paths. The resulting vector˜sq ∈R |V|
+assigns a structure-aware relevance score to each node. The retriever then selects the top-K nodes
+with the largest values in˜sq ∈R |V| .
+Design choices for retrieval.We consider the following design choices for the retrieval mechanism:
+the relevance scorer R(·,·) , the propagation policy P∈ {no-propagation,top-down,bottom-up} ,
+the induced transition matrixW P , the propagation horizonH, and the decay factorα.
+5 Experiments
+5.1 Research Questions
+RQ1: Does temporal tree construction improve final performance?We compare Segment
+Tree construction with non-temporal similarity clustering trees under a temporal-order permutation
+experiment with matched retrieval settings to evaluate whether preserving temporal order in the
+constructed memory tree improves final performance.
+RQ2: Which online construction strategy gives the best performance-cost tradeoff?We compare
+cosine similarity, pointwise LLM, and batch LLM as compatibility models for online Segment Tree
+construction, and evaluate their final performance together with tree construction latency and cost.
+RQ3: How do tree-aware retrieval policies affect retrieval quality?We compare no-propagation,
+top-down, and bottom-up retrieval policies, and study how propagation horizon H and decay factor
+αcontribute to each policy’s final performance.
+RQ4: How does full SEGTREEMEMperform against existing memory baselines?We compare
+the full SEGTREEMEMsystem against flat retrieval, tree-based memory, and structured memory
+baselines to evaluate its end-to-end conversational memory performance.
+5.2 Datasets and Evaluation
+We evaluate on three long-horizon memory benchmarks:LoCoMowith 10 conversation groups
+and 1,986 queries [24],LongMemEval-MABwith 5 context groups and 300 queries [ 10, 40], and
+RealMemwith 10 personas and 1,415 queries [ 3]. LongMemEval-MAB denotes the MemoryAgent-
+Bench reformulation of LongMemEval(S), where memory is built over an extended dialogue and
+queried repeatedly. We use text-embedding-3-small for all embedding-based retrieval and simi-
+larity computations. We report LLM-judge accuracy and token-level F1. For LLM-dependent compo-
+nents, including LLM-based memory construction and answer generation, we evaluate two backbones:
+gpt-5.4-mini [27] and qwen-3.5-flash [1]. Answer correctness is judged by gpt-4o-mini [25].
+All methods use the same evidence budget K= 10 . We only report gpt-5.4-mini results in the
+main paper. Full qwen-3.5-flash results are provided in Appendix D.1 and category-level break-
+downs are provided in Appendix D.2.
+6
+
+=== PDF PAGE 7 ===
+non-temporal SegTreeMem
+(Cosine)
+SegTreeMem
+(Pointwise LLM)
+SegTreeMem
+(Batch LLM)
+0.50
+0.55
+0.60
+0.65
+0.70
+LoCoMo
++0.7%
++1.8% +1.8%
++2.8%
+non-temporal SegTreeMem
+(Cosine)
+SegTreeMem
+(Pointwise LLM)
+SegTreeMem
+(Batch LLM)
+0.50
+0.55
+0.60
+0.65
+0.70
+LongMemEval
++0.3%
++1.8% +2.2%
++3.7%
+non-temporal SegTreeMem
+(Cosine)
+SegTreeMem
+(Pointwise LLM)
+SegTreeMem
+(Batch LLM)
+0.56
+0.58
+0.60
+0.62
+0.64
+0.66
+0.68
+RealMem
++0.2%
++1.1% +1.5%
++6.1%
+LLM-judge acc
+no-propagation BU best TD best best of group non-temporal
+Figure 4: Controlled comparison of tree construction strategies. We compare a non-temporal similarity
+clustering tree with Segment Tree variants under matched retrieval settings. BU and TD report the
+best bottom-up and top-down configurations. Segment Tree construction consistently improves over
+the non-temporal baseline, showing the benefit of preserving temporal order for memory construction.
+5.3 Baselines and Configurations
+We compare against three groups of external baselines.Flat retrievalbaselines include BM25 and
+Dense retrieval [26, 32].Tree-basedbaselines include RAPTOR and MemTree [ 31, 34].Structured
+memorybaselines include A-MEM, Mem0, and HippoRAG [5, 9, 41]. We do not include MemWalker
+and LATTICE as direct baselines because they do not provide readily reproducible implementations
+for our online conversational setting [4, 8]. See Appendix E for full implementation details.
+Design choice Value space
+Online construction
+Compatibility modelC cosine similarity, pointwise LLM,
+batch LLM
+Retrieval
+Local relevanceRnormalized cosine similarity
+Propagation policyP no-propagation, top-down, bottom-up
+Transition matrixW P binary structural weights, column-
+normalized
+Decay factorα{.05, .10, .20, .30, .50, .70, .95}
+Propagation horizonH{0,1,2,3}
+Table 2:Experimental setting of SEGTREEMEM.
+SEGTREEMEMvariants. 1 We evaluate
+SEGTREEMEMby varying online construction
+and tree-aware retrieval settings, as summarized
+in Table 2. For online construction, we com-
+pare three compatibility models: cosine simi-
+larity, pointwise LLM, and batch LLM. For re-
+trieval, we compute node-query relevance with
+text-embedding-3-small, normalize the local
+scores into an initial query distribution, and com-
+pare three propagation policies P : no-propagation,
+top-down, and bottom-up. In our experiments, WP
+is set by assigning binary raw weights to the al-
+lowed source-target transitions induced byP (Figure 3), and then column-normalizing these weights.
+5.4 Results
+RQ1: Does temporal tree construction improve final performance?
+Temporal trees improve final performance over non-temporal baselines.In Figure 4, we
+compare Segment Tree with a non-temporal similarity clustering tree. See Appendix F for the imple-
+mentation of this baseline. We control the node-level summarization prompt and other implementation
+details, so the only difference is the online update algorithm. Across the three datasets, Segment Tree
+variants consistently outperform the non-temporal tree, and applying the same propagation policies
+to the non-temporal tree does not close the gap. This suggests that preserving temporal order during
+construction yields a stronger memory representation for conversational retrieval.
+Temporal tree construction improves internal-node coherence.To investigate why temporal
+tree construction improves over the non-temporal similarity clustering tree, we conduct a qualitative
+analysis of tree instances (Appendix C). We find that Segment Tree internal nodes tend to be more
+semantically coherent and fluent because they summarize temporally ordered utterance spans. In
+contrast, similarity clustering can group utterances from distant parts of a conversation under the
+same internal node, which may lead to less coherent summaries.
+1Anonymized implementation and reproduction instructions are available at https://anonymous.4open.
+science/r/SegTreeMem-B325/README.md.
+7
+
+=== PDF PAGE 8 ===
+0 50 100 150 200 250 300 350 400
+10 1
+100
+101
+Wall-clock (s)
+Per-utterance construction time
+50 100 150 200 250 300 350 400
+Number of utterances
+10 4
+10 3
+10 2
+10 1
+100
+Latency (s)
+Per-utterance retrieval latency
+0 50 100 150 200 250 300 350 400
+102
+103
+T okens
+Per-utterance tokens
+Flat retrieval
+BM25 Dense RAG
+Structured memory
+Mem0 MemTree A-Mem HippoRAG
+SegTreeMem
+Cosine Pointwise Batch
+Flat retrieval
+BM25 Dense RAG
+Structured memory
+Mem0 MemTree A-Mem HippoRAG
+SegTreeMem
+Cosine Pointwise Batch
+Figure 5: Construction and retrieval efficiency as memory grows. We report per-utterance construc-
+tion time, per-utterance retrieval latency, and per-utterance token usage for flat retrieval baselines,
+structured memory baselines, and SEGTREEMEMconstruction variants. SEGTREEMEMremains
+efficient among structured memory methods, with cosine construction providing the lowest-cost
+variant and LLM-based construction remaining competitive in runtime and token usage.
+Tree Order LoCoMo LME RealMem
+Non-temp.
+Orig. 0.603 0.595 0.574
+Perm. 0.583 0.576 0.523
+∆-0.020 -0.019 -0.051
+SEGTREEMEM
+Orig. 0.639 0.630 0.580
+Perm. 0.538 0.523 0.436
+∆-0.111 -0.107 -0.144
+Table 3: Temporal-order permutation experiment
+under batch-LLM construction and no-propagation
+retrieval. Scores are LLM-judge accuracy.
+Temporal permutation confirms the contri-
+bution of temporal order.To test whether
+temporal order is actually used by the con-
+structed memory, we conduct a temporal-order
+permutation experiment by swapping 30% of
+randomly selected turn pairs before memory
+construction and rebuilding each tree from the
+permuted sequence. We use batch-LLM con-
+struction with no-propagation retrieval. As
+shown in Table 3, permutation only mildly af-
+fects the non-temporal tree but causes a much
+larger performance drop for SEGTREEMEM. This indicates that preserving temporal order during
+construction contributes directly to SEGTREEMEM’s performance.
+RQ2: Which online construction strategy gives the best performance-cost tradeoff?
+Batch LLM gives the best construction quality.RQ2 compares the compatibility models used
+during online Segment Tree construction. As shown in Figure 4, batch LLM is consistently strong
+under no-propagation and also receives larger gains from tree-aware retrieval. This suggests that
+batch LLM produces coherent memory nodes that perform well without propagation and yields
+a tree structure that can be better exploited by propagation. This is consistent with findings in
+LLM-based ranking that listwise comparison can better support relative judgments among candidates
+than independent pointwise scoring [23, 35].
+Cosine provides the better quality-cost tradeoff.Construction quality should be interpreted
+together with online cost (Figure 5). Batch LLM gives the strongest quality, but it requires LLM-
+based frontier scoring. In contrast, cosine similarity uses no LLM calls for frontier matching, and
+the runtime analysis shows roughly 10× lower token usage and about 5× lower construction latency
+than batch LLM in the online construction trace. Cosine similarity therefore provides the better
+quality-cost trade-off as it remains competitive in accuracy while better satisfying the real-time update
+requirement. Thus, batch LLM is preferable when construction quality is prioritized, while cosine
+similarity is the practical choice when latency or token budget is the main constraint.
+RQ3: How do tree-aware retrieval policies affect retrieval quality?
+Retrieval behavior is dataset-dependent.Figure 6 shows that the effect of tree-aware retrieval
+depends on the dataset, propagation policy P , horizon H, and decay factor α. No single propagation
+configuration dominates across all settings. Top-down propagation gives the strongest results on Lo-
+CoMo and LongMemEval-MAB, while RealMem shows stronger gains from bottom-up propagation.
+8
+
+=== PDF PAGE 9 ===
+0.05 0.1 0.2 0.3 0.5 0.7 0.95
+0.56
+0.58
+0.60
+0.62
+0.64
+0.66
+0.68LLM-judge acc
+0.53
+ 0.47
+ 0.43
+ 0.40
+LoCoMo
+0.2%
++2.4%
+0.05 0.1 0.2 0.3 0.5 0.7 0.95
+0.60
+0.62
+0.64
+0.66
+0.68
+LongMemEval
++2.7%
++2.3%
+0.05 0.1 0.2 0.3 0.5 0.7 0.95
+0.54
+0.56
+0.58
+0.60
+0.62
+0.64
+0.66
+RealMem
++6.3%
++1.5%
+ (decay factor)
+no-propagation BU TD
+Figure 6: Effect of propagation policy and decay factor on retrieval quality. The dashed line
+denotes no-propagation retrieval, corresponding to H= 0 . Curves show bottom-up and top-down
+propagation as α varies, with performance averaged over H∈ {1,2,3} . All results use batch LLM
+tree construction. Moderate propagation often improves retrieval, while the stronger direction depends
+on the temporal granularity required by each dataset.
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00level frac in top-K
+Bottom-up
+LoCoMo
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00
+LongMemEval
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00
+RealMem
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00level frac in top-K
+Top-down
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00
+0.40
+0.45
+0.50
+0.55
+0.60
+0.60
+0.62
+0.64
+0.66
+0.68
+0.57
+0.58
+0.59
+0.60
+0.61
+0.62
+0.63
+0.64
+acc
+0.59
+0.60
+0.61
+0.62
+0.63
+0.64
+0.65
+0.66
+0.67
+0.60
+0.61
+0.62
+0.63
+0.64
+0.65
+0.66
+0.67
+0.68
+0.56
+0.57
+0.58
+0.59
+acc
+level 1 level 2 level 3 level 4 acc
+Figure 7: Retrieved-node level distribution as a function of the propagation setting, using batch-LLM
+SEGTREEMEMtrees and a fixed propagation horizon H= 2 . Stacked bars show the fraction of
+retrieved nodes at each dataset-specific temporal level, and the dashed line shows the corresponding
+accuracy. Bottom-up propagation increasingly shifts retrieval toward broader internal nodes as α
+grows, whereas top-down propagation remains more concentrated on exchange-level evidence.
+Propagation direction changes temporal granularity.To explain the dataset-specific effects,
+we analyze how different propagation policies change the distribution of retrieved node levels in
+Appendix D.3. The analysis shows that different propagation policies shift the temporal granularity
+of the retrieved evidence. Top-down retrieval selects more specific spans, while bottom-up retrieval
+increases the selection of internal nodes that cover broader temporal contexts. This helps explain
+the dataset-specific behavior in Figure 6. LoCoMo contains many detail-oriented questions, where
+retrieving specific utterance spans is more useful. RealMem is more project-oriented, where answers
+often depend on the broader state of an evolving interaction. In real applications, this suggests that
+the propagation policy should be chosen according to the temporal granularity required by the task.
+Decay factor α and horizon H tune probability allocation.Figure 6 shows that the best prop-
+agation setting differs across datasets and policies. Moderate propagation often improves over
+no-propagation, while very large α can sharply reduce accuracy. To better understand the effects of α
+and H, we provide full H-sweep results and analyze retrieved node levels under different propagation
+9
+
+=== PDF PAGE 10 ===
+Method LoCoMo LongMemEval-MAB RealMem
+LLM F1 LLM F1 LLM F1
+Retrieval-only memory baselines
+BM25 [33] 0.469[0.447, 0.491]0.184[0.177, 0.192]0.497[0.440, 0.553]0.169[0.150, 0.189]0.498[0.472, 0.524]0.317[0.312, 0.322]
+Dense [13] 0.490[0.468, 0.512]0.188[0.180, 0.196]0.520[0.463, 0.577]0.168[0.149, 0.187]0.524[0.498, 0.550]0.316[0.311, 0.321]
+Graph-structured memory baselines
+A-MEM [41] 0.608[0.586, 0.629]0.231[0.223, 0.239]0.553[0.497, 0.610]0.166[0.148, 0.184]0.515[0.488, 0.541]0.308[0.303, 0.314]
+Mem0 [5] 0.454[0.432, 0.476]0.187[0.179, 0.194]0.537[0.480, 0.593]0.174[0.156, 0.191]0.450[0.424, 0.476]0.314[0.310, 0.318]
+HippoRAG [9] 0.570[0.548, 0.592]0.218[0.210, 0.226]0.560[0.504, 0.616]0.172[0.153, 0.190]0.531[0.505, 0.557]0.310[0.304, 0.315]
+Tree-structured memory baselines
+RAPTOR [34] 0.593[0.571, 0.614]0.223[0.213, 0.232]0.523[0.467, 0.580]0.166[0.148, 0.185]0.579[0.553, 0.604]0.312[0.306, 0.318]
+MemTree [31] 0.483[0.461, 0.505]0.151[0.144, 0.157]0.483[0.427, 0.540]0.157[0.139, 0.175]0.536[0.510, 0.562]0.310[0.304, 0.315]
+Proposed method
+SEGTREEMEM-TD0.636[0.615, 0.657]0.308[0.302, 0.314]0.633[0.577, 0.686]0.204[0.188, 0.220]0.608[0.583, 0.634]0.356[0.348, 0.363]
+SEGTREEMEM-BU0.639[0.618, 0.660]0.301[0.295, 0.307]0.647[0.591, 0.699]0.197[0.181, 0.213]0.621[0.595, 0.645]0.356[0.348, 0.363]
+Table 4: Main answer-quality results across memory benchmarks. Each reported score includes
+its 95% confidence interval in brackets. For SEGTREEMEM, TD and BU use the same fixed
+representative setting (batch LLM construction, α= 0.10 , H= 2 ), with top-down and bottom-
+up propagation respectively. SEGTREEMEMachieves the strongest overall performance across
+benchmarks, showing that temporally ordered tree memory improves long-horizon agentic memory.
+policies and (α, H) settings in Appendix D.3. The analysis shows that α and H determine how far
+retrieval moves from the initial topical entry distribution and how strongly the retrieved evidence
+follows the corresponding policy direction. Larger α and larger H push retrieval further along that
+direction. Thus, the best (α, H) setting depends on the temporal granularity required by the task and
+how far retrieval should move from the initial distribution.
+RQ4: How does full SEGTREEMEMperform against existing memory baselines?
+Table 4 shows that the full SEGTREEMEMsystem achieves the best LLM-judge accuracy across the
+evaluated benchmarks, improving over the strongest external baseline nearly20%. The comparison
+supports the central claim of this work: long-horizon conversational agents benefit from memory
+indexes that are both temporal and hierarchical. Online Segment Tree construction creates temporally
+ordered memory units, while tree-aware retrieval uses this structure to recover relevant context at
+the appropriate granularity. Figure 5 shows that SEGTREEMEMis also computationally competitive.
+Per-utterance construction and retrieval is the fastest among methods that build any structured memory.
+Token cost ranges from negligible for Cosine to comparable with existing structured baselines for the
+Pointwise and Batch variants.
+6 Conclusion
+We introduced SEGTREEMEM, a memory architecture that organizes long-horizon conversation
+history as an online Segment Tree over utterances and retrieves evidence through tree-aware prop-
+agation. The central takeaway is that conversational agents benefit from memory indexes that are
+both temporal and hierarchical: temporal order helps construct coherent memory states, while the
+tree structure lets retrieval select context at the appropriate granularity. Our results support temporal
+and hierarchical indexing as a practical foundation for long-horizon conversational memory.
+Limitation and future work.Our current implementation leaves several practical extensions for
+future work. First, propagation uses fixed policies and horizons across queries, although different
+questions may require different retrieval granularity. Query-dependent policy selection could choose
+among no propagation, top-down retrieval, and bottom-up retrieval. Second, the current system
+focuses on text-based conversational memory. Extending the same temporal ordering principle to
+multimodal observations, tool calls, and action traces is an important direction for long-horizon
+agents. Third, future systems could add incremental maintenance operations, such as local subtree
+rebuilding, periodic compression, or duplicate cleanup, to keep the memory index efficient and stable
+over very long deployments.
+10
+
+=== PDF PAGE 11 ===
+References
+[1] Alibaba Cloud. Qwen3.5-Flash model documentation. https://www.alibabacloud.com/
+help/en/model-studio/getting-started/models, 2026. Alibaba Cloud Model Studio
+documentation forqwen3.5-flash; snapshotqwen3.5-flash-2026-02-23.
+[2] Yushi Bai, Xin Lv, Jiajie Zhang, Hongchang Lyu, Jiankai Tang, Zhidian Huang, Zhengxiao
+Du, Xiao Liu, Aohan Zeng, Lei Hou, et al. Longbench: A bilingual, multitask benchmark for
+long context understanding. InProceedings of the 62nd annual meeting of the association for
+computational linguistics (volume 1: Long papers), pages 3119–3137, 2024.
+[3] Haonan Bian, Zhiyuan Yao, Sen Hu, Zishan Xu, Shaolei Zhang, Yifu Guo, Ziliang Yang,
+Xueran Han, Huacan Wang, and Ronghao Chen. Realmem: Benchmarking llms in real-world
+memory-driven interaction.arXiv preprint arXiv:2601.06966, 2026.
+[4] Howard Chen, Ramakanth Pasunuru, Jason Weston, and Asli Celikyilmaz. Walking down
+the memory maze: Beyond context limit through interactive reading.arXiv preprint
+arXiv:2310.05029, 2023.
+[5] Prateek Chhikara, Dev Khant, Saket Aryan, Taranjeet Singh, and Deshraj Yadav. Mem0:
+Building production-ready ai agents with scalable long-term memory.arXiv preprint
+arXiv:2504.19413, 2025. Includes Mem0 and graph-enhanced Mem0g variants.
+[6] Mark de Berg, Otfried Cheong, Marc van Kreveld, and Mark Overmars.Computational
+Geometry: Algorithms and Applications. Springer, 3 edition, 2008.
+[7] Michel Galley, Kathleen R. McKeown, Eric Fosler-Lussier, and Hongyan Jing. Discourse
+segmentation of multi-party conversation. InProceedings of the 41st Annual Meeting of
+the Association for Computational Linguistics, pages 562–569, Sapporo, Japan, July 2003.
+Association for Computational Linguistics. doi: 10.3115/1075096.1075167. URL https:
+//aclanthology.org/P03-1071/.
+[8] Nilesh Gupta, Wei-Cheng Chang, Ngot Bui, Cho-Jui Hsieh, and Inderjit S. Dhillon. LLM-guided
+hierarchical retrieval.arXiv preprint arXiv:2510.13217, 2025.
+[9] Bernal Jiménez Gutiérrez, Yiheng Shu, Yu Gu, Michihiro Yasunaga, and Yu Su. Hipporag:
+Neurobiologically inspired long-term memory for large language models.arXiv preprint
+arXiv:2405.14831, 2024.
+[10] Yuanzhe Hu, Yu Wang, and Julian McAuley. Evaluating memory in llm agents via incremental
+multi-turn interactions.arXiv preprint arXiv:2507.05257, 2025.
+[11] Glen Jeh and Jennifer Widom. Scaling personalized web search. InProceedings of the 12th
+International Conference on World Wide Web, pages 271–279. ACM, 2003.
+[12] Shafiq Joty, Giuseppe Carenini, and Raymond T. Ng. Topic segmentation and labeling in
+asynchronous conversations.Journal of Artificial Intelligence Research, 47:521–573, 2013. doi:
+10.1613/jair.3940. URLhttps://doi.org/10.1613/jair.3940.
+[13] Vladimir Karpukhin, Barlas Oguz, Sewon Min, Patrick Lewis, Ledell Wu, Sergey Edunov,
+Danqi Chen, and Wen-tau Yih. Dense passage retrieval for open-domain question answering.
+InProceedings of the 2020 Conference on Empirical Methods in Natural Language Processing
+(EMNLP), pages 6769–6781, Online, November 2020. Association for Computational Lin-
+guistics. doi: 10.18653/v1/2020.emnlp-main.550. URL https://aclanthology.org/2020.
+emnlp-main.550/.
+[14] Junyoung Kim, Anton Korikov, Jiazhou Liang, Justin Cui, Yifan Simon Liu, Qianfeng Wen,
+Mark Zhao, and Scott Sanner. Bayesian active learning with gaussian processes guided by llm
+relevance scoring for dense passage retrieval.arXiv preprint arXiv:2604.17906, 2026.
+[15] Jiazhou Liang, Yifan Simon Liu, David Guo, Minqi Sun, Yilun Jiang, and Scott Sanner.
+Evaluating scene-based in-situ item labeling for immersive conversational recommendation.
+arXiv preprint arXiv:2604.09698, 2026.
+11
+
+=== PDF PAGE 12 ===
+[16] Jiazhou Liang, Armin Toroghi, Yifan Simon Liu, Faeze Moradi Kalarde, Liam Gallagher, and
+Scott Sanner. Goal-oriented reasoning for rag-based memory in conversational agentic llm
+systems.arXiv preprint arXiv:2605.12213, 2026.
+[17] Yang Liu, Dan Iter, Yichong Xu, Shuohang Wang, Ruochen Xu, and Chenguang Zhu. G-eval:
+Nlg evaluation using gpt-4 with better human alignment. InProceedings of the 2023 conference
+on empirical methods in natural language processing, pages 2511–2522, 2023.
+[18] Yang Liu, Dan Iter, Yichong Xu, Shuohang Wang, Ruochen Xu, and Chenguang Zhu. G-eval:
+Nlg evaluation using gpt-4 with better human alignment. InProceedings of the 2023 conference
+on empirical methods in natural language processing, pages 2511–2522, 2023.
+[19] Yifan Liu, Gelila Tilahun, Xinxiang Gao, Qianfeng Wen, and Michael Gervers. A compar-
+ative study of static and contextual embeddings for analyzing semantic changes in medieval
+latin charters. InProceedings of the First Workshop on Language Models for Low-Resource
+Languages, pages 182–192, 2025.
+[20] Yifan Liu, Qianfeng Wen, Jiazhou Liang, Mark Zhao, Justin Cui, Anton Korikov, Armin
+Toroghi, Junyoung Kim, and Scott Sanner. Multimodal item scoring for natural language
+recommendation via gaussian process regression with llm relevance judgments.arXiv preprint
+arXiv:2510.22023, 2025.
+[21] Yifan Liu, Qianfeng Wen, Mark Zhao, Jiazhou Liang, and Scott Sanner. Ma-dpr: Manifold-
+aware distance metrics for dense passage retrieval. InProceedings of the 2025 Conference on
+Empirical Methods in Natural Language Processing, pages 31073–31091, 2025.
+[22] Yifan Simon Liu, Ruifan Wu, Liam Gallagher, Jiazhou Liang, Armin Toroghi, and Scott
+Sanner. Semantic xpath: Structured agentic memory access for conversational ai.arXiv preprint
+arXiv:2603.01160, 2026.
+[23] Xueguang Ma, Xinyu Zhang, Ronak Pradeep, and Jimmy Lin. Zero-shot listwise document
+reranking with a large language model.CoRR, abs/2305.02156, 2023. doi: 10.48550/arXiv.
+2305.02156.
+[24] Adyasha Maharana, Dong-Ho Lee, Sergey Tulyakov, Mohit Bansal, Francesco Barbieri, and
+Yuwei Fang. Evaluating very long-term conversational memory of llm agents.arXiv preprint
+arXiv:2402.17753, 2024.
+[25] OpenAI. GPT-4o mini model documentation. https://platform.openai.com/docs/
+models/gpt-4o-mini, 2024. Official OpenAI API documentation for gpt-4o-mini; snap-
+shotgpt-4o-mini-2024-07-18.
+[26] OpenAI. New embedding models and api updates. https://openai.
+com/index/new-embedding-models-and-api-updates/ , 2024. Introduces
+text-embedding-3-small.
+[27] OpenAI. Gpt-5.4 mini model documentation. https://developers.openai.com/
+api/docs/models/gpt-5.4-mini, 2026. Official OpenAI API documentation for
+gpt-5.4-mini.
+[28] Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang, Shishir G. Patil, Ion Stoica,
+and Joseph E. Gonzalez. Memgpt: Towards llms as operating systems.arXiv preprint
+arXiv:2310.08560, 2023.
+[29] Lawrence Page, Sergey Brin, Rajeev Motwani, and Terry Winograd. The pagerank citation
+ranking: Bringing order to the web. Technical report, Stanford InfoLab, 1999.
+[30] Joon Sung Park, Joseph O’Brien, Carrie Jun Cai, Meredith Ringel Morris, Percy Liang, and
+Michael S. Bernstein. Generative agents: Interactive simulacra of human behavior. InProceed-
+ings of the 36th Annual ACM Symposium on User Interface Software and Technology, UIST
+’23, 2023.
+12
+
+=== PDF PAGE 13 ===
+[31] Alireza Rezazadeh, Zichao Li, Wei Wei, and Yujia Bao. From isolated conversations to hierarchi-
+cal schemas: Dynamic tree memory representation for llms.arXiv preprint arXiv:2410.14052,
+2024.
+[32] Stephen Robertson and Hugo Zaragoza. The probabilistic relevance framework: Bm25 and
+beyond.Foundations and Trends in Information Retrieval, 3(4):333–389, 2009. doi: 10.1561/
+1500000019.
+[33] Stephen E. Robertson, Steve Walker, Susan Jones, Micheline Hancock-Beaulieu, and Mike
+Gatford. Okapi at trec-3. InText Retrieval Conference, 1994.
+[34] Parth Sarthi, Salman Abdullah, Aditi Tuli, Shubh Khanna, Anna Goldie, and Christopher D.
+Manning. RAPTOR: Recursive abstractive processing for tree-organized retrieval.arXiv
+preprint arXiv:2401.18059, 2024.
+[35] Weiwei Sun, Lingyong Yan, Xinyu Ma, Shuaiqiang Wang, Pengjie Ren, Zhumin Chen,
+Dawei Yin, and Zhaochun Ren. Is ChatGPT good at search? investigating large language
+models as re-ranking agents. InProceedings of the 2023 Conference on Empirical Meth-
+ods in Natural Language Processing, pages 14918–14937, Singapore, December 2023. As-
+sociation for Computational Linguistics. doi: 10.18653/v1/2023.emnlp-main.923. URL
+https://aclanthology.org/2023.emnlp-main.923/.
+[36] Yixuan Tang and Yi Yang. Multihop-rag: Benchmarking retrieval-augmented generation for
+multi-hop queries.arXiv preprint arXiv:2401.15391, 2024.
+[37] Hanghang Tong, Christos Faloutsos, and Jia-Yu Pan. Fast random walk with restart and its
+applications. InProceedings of the Sixth IEEE International Conference on Data Mining, pages
+613–622, 2006.
+[38] Qianfeng Wen, Yifan Liu, Joshua Zhang, George Saad, Anton Korikov, Yury Sambale, and
+Scott Sanner. Elaborative subtopic query reformulation for broad and indirect queries in travel
+destination recommendation.arXiv preprint arXiv:2410.01598, 2024.
+[39] Qianfeng Wen, Yifan Liu, Justin Cui, Joshua Zhang, Anton Korikov, George-Kirollos Saad,
+and Scott Sanner. A simple but effective elaborative query reformulation approach for natural
+language recommendation.arXiv preprint arXiv:2510.02656, 2025.
+[40] Di Wu, Hongwei Wang, Wenhao Yu, Yuwei Zhang, Kai-Wei Chang, and Dong Yu. Long-
+memeval: Benchmarking chat assistants on long-term interactive memory.arXiv preprint
+arXiv:2410.10813, 2024.
+[41] Wujiang Xu, Zujie Liang, Kai Mei, Hang Gao, Juntao Tan, and Yongfeng Zhang. A-mem:
+Agentic memory for llm agents.arXiv preprint arXiv:2502.12110, 2025.
+[42] Xinyu Zhang, Sebastian Hofstätter, Patrick Lewis, Raphael Tang, and Jimmy Lin. Rank-without-
+GPT: Building GPT-independent listwise rerankers on open-source large language models.
+CoRR, abs/2312.02969, 2023. doi: 10.48550/arXiv.2312.02969.
+[43] Wanjun Zhong, Lianghong Guo, Qiqi Gao, He Ye, and Yanlin Wang. Memorybank: Enhancing
+large language models with long-term memory.Proceedings of the AAAI Conference on
+Artificial Intelligence, 38(17), 2024.
+13
+
+=== PDF PAGE 14 ===
+A Algorithmic Details
+This subsection provides pseudocode for the two SEGTREEMEMoperations. Node annotations are
+denoted byA(v), node intervals byI(v), and the admissible retrieval set byG.
+Algorithm 1Online Segment Tree Update
+1: Input:current tree Tt = (Vt, Et, ρt), incoming utterance xt+1, compatibility model C, annota-
+tion modelS
+2:Output:updated treeT t+1
+3:Create a new leafz t+1 withI(z t+1) = [t+ 1, t+ 1]andA(z t+1) =x t+1
+4:ifT t =∅then
+5:returnthe single-node tree rooted atz t+1
+6:end if
+7:F t = (f1, . . . , fm)←Frontier(T t), ordered from leaf to root.
+8:ℓ ⋆ ←C(x t+1, Ft \ {f1}), whereℓ ⋆ ∈ {2, . . . , m} ∪ {NONE}
+9:ifℓ ⋆ ̸=NONEthen
+10: Create a rightmost chain Z of ℓ⋆ −2 internal nodes above zt+1, each with interval [t+ 1, t+ 1]
+11:Attach the chain top (orz t+1 itself, ifℓ ⋆ = 2) as the rightmost child off ℓ⋆
+12:U←Z∪ {f ℓ⋆ } ∪anc(f ℓ⋆)
+13:else
+14:Create a new rootρ t+1 whose leftmost child isρ t
+15: Create a rightmost chain Z of m−1 internal nodes above zt+1, each with interval [t+ 1, t+ 1]
+16:Attach the chain top (orz t+1 itself, ifm= 1) as the rightmost child ofρ t+1
+17:U←Z∪ {ρ t+1}
+18:end if
+19:foreach nodeu∈Uin bottom-up orderdo
+20:I(u)←
+
+minc∈ch(u) l(c),max c∈ch(u) r(c)
+
+21:A(u)←S
+ 
+(A(c))c∈ch(u)
+
+22:end for
+23:returnT t+1
+Insertion invariant.The update in Algorithm 1 never reorders existing leaves. The incoming
+utterance is always introduced as the new rightmost leaf, and only nodes on the affected right frontier
+are modified. Therefore every internal node continues to summarize a contiguous interval, while the
+update scope remains localized to the selected frontier segment and its ancestors. The NONE branch is
+used when the compatibility model finds no coherent continuation among the active frontier nodes.
+In that case the previous tree and the new rightmost chain are combined under a new root.
+14
+
+=== PDF PAGE 15 ===
+Algorithm 2Structure-Aware Retrieval
+1: Input:memory tree T= (V, E) , query q, admissible set G ⊆V , local relevance model R,
+propagation matrixW P , horizonH, decayα∈[0,1), evidence budgetK
+2:Output:retrieved node set bVK
+3:foreach nodev∈Vdo
+4:r q(v)←R(q, A(v))//Relevance score computation
+5:end for
+6:s (0)
+q (v)←r q(v)
+P
+u∈V rq(u)for allv∈V//Initial score normalization
+7:˜sq ←s (0)
+q
+8:s prev
+q ←s (0)
+q
+9:fork= 1, . . . , Hdo
+10:s (k)
+q ←W P sprev
+q // Score propagation
+11:˜s q ←˜sq +α ks(k)
+q // Propagated score accumulation
+12:s prev
+q ←s (k)
+q
+13:end for
+14: bVK ←TopK v∈G ˜sq(v)// Retrieving nodes with high final scores
+15:return bVK
+Retrieval invariant.Algorithm 2 first scores every node independently using its annotation, then
+mixes the local score distribution with propagated distributions obtained by applying WP for up to H
+steps. Setting H= 0 recovers collapsed retrieval. For top-down propagation, probability mass moves
+from broader summaries toward child spans. For bottom-up propagation, mass moves from specific
+matches toward their enclosing temporal context. The final Top-K selection is restricted to G, which
+lets the same scoring routine support either internal-node retrieval or leaf-only evidence selection.
+15
+
+=== PDF PAGE 16 ===
+B Extended Related Work
+B.1 Long-Horizon Memory Benchmarks
+Long-horizon conversational memory benchmarks evaluate whether an agent can retain, update, and
+retrieve information accumulated across extended interactions. This setting differs from standard long-
+context RAG [2, 15, 36, 38, 39]: the memory state is built over a sequence of user–agent interactions,
+and queries may require resolving information across temporally separated turns, updated facts,
+evolving preferences, or task state.
+We evaluate SEGTREEMEMon three benchmarks that directly target this setting:
+• LoCoMoevaluates very long-term conversational memory across multi-session dialogues,
+with questions that require retrieving facts, preferences, and events from extended interaction
+histories [24].
+• LongMemEval-MABis based on the MemoryAgentBench reformulation of LongMemEval,
+where memory is built incrementally over an extended dialogue and queried repeatedly
+throughout the interaction [10, 40]. This setting is especially relevant to online memory
+construction because the system must maintain a memory state as new utterances arrive
+rather than process a fixed document once.
+• RealMemevaluates memory-driven interaction in more realistic user-facing scenarios,
+where questions may depend on evolving project state, user preferences, or prior task context
+[3].
+These benchmarks are well matched to our goal because they evaluate memory as an external state
+maintained over interaction histories. Other long-context benchmarks, including synthetic needle-
+retrieval tasks, long-document QA, and book-level reading comprehension, are useful for measuring
+whether a model can attend over long input sequences. However, they do not directly evaluate
+the central setting of this paper: online construction of a persistent conversational memory index
+and retrieval from that index as the interaction evolves. We therefore focus our experiments on
+benchmarks where memory construction and retrieval are both part of the task.
+B.2 Flat Retrieval Methods
+Memory construction.Flat retrieval methods store past context as an unordered collection of
+independent memory records. In sparse retrieval, records are indexed by lexical matching signals
+such as BM25 [33]. In dense retrieval, records are embedded into a vector space and indexed for
+nearest neighbor search [13]. These methods are simple, scalable, and often strong baselines for
+retrieval-augmented generation. However, their construction step does not explicitly model the
+hierarchical or temporal structure of a conversation. Each memory unit is usually treated as an
+independent item, even when its meaning depends on surrounding utterances.
+Retrieval.At retrieval time, flat methods rank memory records independently by lexical or semantic
+similarity to the query. This supports topical matching but does not explicitly use temporal or
+structural context. For example, if a query matches one utterance in a longer coherent span, flat
+retrieval does not automatically recover nearby utterances, enclosing summaries, or other parts of the
+same interaction segment. In our terminology, flat retrieval satisfies topical relevance but does not
+directly exploit the admissible temporal or structural neighborhood around a match.
+B.3 Graph-Based and Agentic Memory Methods
+Memory construction.Graph-based and agentic memory systems enrich flat memory by extracting,
+linking, updating, or consolidating memory records over time. Generative Agents store memories in a
+stream and periodically synthesize higher-level reflections [30].MemoryBank incorporates importance
+weighting and forgetting mechanisms for long-term user memory [43]. MemGPT organizes memory
+across tiers and lets the agent manage memory through operations analogous to paging [28]. More
+recent agentic memory systems such as A-MEM and Mem0 emphasize explicit memory operations,
+including extraction, updating, linking, and consolidation [5, 41]. Goal-oriented memory reasoning
+further studies how an agent can decompose a user utterance into subgoals and retrieve memory
+targeted to those reasoning needs [16].
+16
+
+=== PDF PAGE 17 ===
+These systems are designed for persistent agent memory, but their memory organization is often
+driven by learned or heuristic estimates of memory importance, extracted entities, or agentic update
+decisions rather than by a deterministic temporal constraint.
+Retrieval.Graph-structured retrieval methods use links between memory records to expand beyond
+an initial topical match [ 21, 22]. This idea is related to classical graph ranking methods such as
+PageRank, personalized PageRank, and random walks with restart [11, 29, 37]. HippoRAG applies
+this perspective to LLM memory by constructing a corpus-derived knowledge graph and using
+personalized PageRank to obtain a structure-aware relevance signal [9]. A-MEM also uses explicit
+memory links to support associative retrieval [41].
+Our retrieval method shares the high-level idea that relevance can be propagated through structure.
+The key difference is the underlying structure. Graph-based methods typically propagate over entity,
+fact, or memory-record links. In contrast, SEGTREEMEMpropagates over a temporal hierarchy whose
+nodes correspond to contiguous conversational spans. This makes propagation directly interpretable
+as moving between local utterances, enclosing temporal contexts, and related neighboring spans.
+B.4 Tree-Based Memory Methods
+Memory construction.Tree-based memory methods organize text into hierarchical abstractions.
+RAPTOR constructs a recursive abstraction tree by clustering text chunks and summarizing clusters
+[34]. LATTICE similarly builds a semantic hierarchy for LLM-guided retrieval [ 8]. MemWalker
+preserves document order by grouping adjacent segments into fixed-size units [ 4]. MemTree is
+designed for conversational memory and supports online updates by inserting new memories into the
+most semantically similar branch [31].
+These methods differ in whether they support online construction and whether they preserve order.
+RAPTOR and LATTICE build semantic abstraction trees through clustering, which can group non-
+adjacent segments and therefore does not guarantee temporal contiguity. MemWalker preserves order
+but is designed for static contexts rather than online conversational updates. MemTree supports online
+insertion, but its similarity-based insertion rule prioritizes topical relatedness and does not preserve
+utterance order in the tree structure. SEGTREEMEMis designed to satisfy both requirements: it
+updates memory online while maintaining a tree over temporally contiguous utterance spans.
+Retrieval.Existing tree-based retrieval methods generally follow one of two strategies. RAPTOR
+and MemTree performcollapsed retrieval: they flatten the tree into a set of candidate nodes and
+rank all nodes independently [ 31, 34]. This allows retrieval at multiple abstraction levels, but it
+does not explicitly use the tree edges during retrieval. MemWalker and LATTICE instead perform
+LLM-guided traversal, where an LLM moves from coarse nodes to finer-grained children to select
+relevant branches [4, 8]. This uses the top-down hierarchy, but it does not directly exploit other
+tree-induced relations such as parent context, sibling context, or temporal neighborhoods around an
+initially relevant match.
+SEGTREEMEMdiffers from both approaches. Rather than flattening the tree or performing a single
+top-down traversal, it treats retrieval as finite-horizon relevance propagation over the memory tree.
+This lets the retriever begin from topical matches and then move through structurally meaningful
+relations, such as from a detailed utterance to its enclosing context or from a broad summary to its
+child spans. Because every node in SEGTREEMEMcorresponds to a contiguous utterance interval,
+these structural moves also have a temporal interpretation.
+B.5 Conversational Segmentation and Segment Trees
+Conversational segmentation studies how to identify coherent stretches of dialogue and topic bound-
+aries in interaction histories [ 19]. Prior work has studied discourse segmentation in multi-party
+conversation [7] and topic segmentation in asynchronous conversations [12]. These methods typically
+produce a flat sequence of boundaries as a preprocessing step.
+The compatibility model in SEGTREEMEMperforms a related decision, but in an online and hierarchi-
+cal memory construction setting. Each incoming utterance is compared against the rightmost frontier
+of the current tree, where different frontier nodes correspond to different temporal granularities. The
+17
+
+=== PDF PAGE 18 ===
+update therefore decides not only whether the utterance continues the current topic, but also at what
+level of temporal abstraction it should be attached.
+Segment trees originate as data structures for range queries over intervals [6]. We adapt this classical
+structure to conversational memory by associating each node with an LLM-generated annotation of a
+contiguous utterance span and by defining an online rightmost-frontier update rule. To our knowledge,
+SEGTREEMEMis the first LLM-agent memory system to use a Segment Tree as the primary memory
+index for online construction and structure-aware retrieval over long-horizon conversations.
+18
+
+=== PDF PAGE 19 ===
+C Tree Structure Analysis
+C.1 Cross-Dataset Quantitative Statistics
+Dataset Method Nodes Max depth Mean depth Depth std. Branching Calls/leaf
+LoCoMo SEGTREEMEMBatch 317 3.80 3.09 0.24 8.91 1.95
+SEGTREEMEMCosine 352 4.00 3.46 0.60 5.10 0.96
+SEGTREEMEMPointwise 315 3.40 3.01 0.20 9.23 3.97
+MEMTREE474 5.90 3.82 0.92 2.45 3.67
+RAPTOR 290 2.20 2.13 0.08 34.37 –
+LongMemEval SEGTREEMEMBatch 780 4.00 3.12 0.33 5.70 1.88
+SEGTREEMEMCosine 833 4.00 3.36 0.48 4.38 0.93
+SEGTREEMEMPointwise 797 4.00 3.20 0.40 5.20 4.13
+MEMTREE1102 6.80 3.86 1.11 2.40 4.13
+RAPTOR 703 5.20 4.23 0.70 12.02 –
+RealMem SEGTREEMEMBatch 947 4.00 3.46 0.49 3.81 1.94
+SEGTREEMEMCosine 865 3.00 2.88 0.32 5.26 0.94
+SEGTREEMEMPointwise 835 3.00 2.99 0.08 6.55 3.93
+MEMTREE1190 6.90 3.65 1.20 2.42 4.09
+RAPTOR 734 4.40 3.66 0.65 21.54 –
+Table 5: Cross-dataset tree-shape statistics, averaged over conversations in each dataset. LoCoMo has
+10 conversations with 281 leaves on average, LongMemEval has 5 conversations with 643 leaves on
+average, and RealMem has 10 conversations with 698 leaves on average. Nodes denotes the per-tree
+node count. Max depth, mean depth, and depth std. summarize leaf-depth statistics. Branching
+denotes the mean branching factor of internal nodes. Calls/leaf denotes LLM construction calls per
+leaf. RAPTOR is omitted from Calls/leaf because its recursive clustering procedure lacks an online
+per-leaf analogue.
+Table 5 shows that SEGTREEMEMproduces well-behaved trees in practice. Maximum leaf depth
+stays at 3–4 on conversations of 281–698 utterances, far below the O(T) worst-case ceiling of
+the degenerate cascading regime (Appendix C.3), and depth standard deviations are roughly half
+MEMTREE’s across most settings.
+Branching and cost place SEGTREEMEMbetween the two baselines on both axes. RAPTOR forms
+broad clustered levels (branching up to 34) and MEMTREEforms narrow semantic hierarchies
+(≈2.4 ); SEGTREEMEMsits in between at 4–9. Construction cost shows the same pattern: cosine
+mode (≈0.95 calls/leaf) is cheaper than any baseline, batch LLM (≈1.9 ) adds one batched frontier-
+selection call per insertion, and sequential LLM (≈4 ) matches MEMTREE’s budget while producing
+shallower, more uniform trees.
+C.2 LoCoMoconv-47Tree Visualization
+C.2.1 Tree Comparison
+conv-47 spans 31 sessions of conversation over approximately seven calendar months. The conver-
+sation is between two friends, James and John, and weaves together six recurring topics: gaming,
+programming, dogs, charity, travel, and romance. These topics are revisited across many distantly
+spaced sessions. The resulting tree structures for SEGTREEMEM, MEMTREE[ 31], and RAP-
+TOR [34] are shown in Figure 8.
+19
+
+=== PDF PAGE 20 ===
+SegTreeMem (Ours)
+MemTree
+RAPTOR
+Figure 8: Whole-tree visualizations of SEGTREEMEM(top), MEMTREE[ 31] (middle), and RAP-
+TOR [34] (bottom) on LoCoMo conv-47, which spans 329 utterances across 31 dialogues. Each
+leaf (filled circle) is one utterance; internal nodes are drawn as outlined circles. Both leaves and
+internal nodes are colored by source dialogue index.
+C.3 Adversarial Cases
+We analyze two adversarial input patterns for SEGTREEMEM’s online construction algorithm.
+C.3.1 Maximally topic-switching input
+The online insertion algorithm selects an attachment point from the rightmost frontier, or creates a
+new root when no frontier node is compatible with the incoming utterance. In the adversarial limit
+where every new utterance is judged incompatible with every frontier node, every insertion takes
+the new-root branch. After T utterances, the tree becomes a degenerate cascading segment tree
+(Figure 9): each NONE step creates a new root whose left subtree is the entire previous tree Tt and
+whose right subtree is a freshly created chain of m−1 internal nodes terminating in the new leaf
+zt+1. The resulting tree has heightO(T)andO(T 2)total nodes.
+Figure 9: Degenerate cascading segment tree produced by maximally topic-switching input. Each
+new utterance triggers a new root with a fresh right-side chain whose length grows with the height of
+the existing tree.
+20
+
+=== PDF PAGE 21 ===
+Consequences.This structure has two distinct costs. The first is storage: total node count grows
+quadratically in T , and the O(T 2) internal nodes each require an annotation pass through S, making
+this regime strictly more expensive than maintaining a flat list of utterances. The second is represen-
+tational. Each NONE step creates two kinds of internal nodes, both representationally weak: the
+new root summarizes a long, incoherent prefix ending at the latest utterance, while the m−1 chain
+nodes above zt+1 all carry the singleton interval [t+ 1, t+ 1] and therefore summarize a single
+utterance through redundant copies of one annotation. Neither type captures focused conversational
+episodes. Structure-aware propagation is correspondingly weakened: relevance signals between
+older and newer leaves must pass through high-level ancestors that do not correspond to meaningful
+temporal segments. Local leaf scoring still retrieves individual utterances, but the tree structure itself
+contributes little useful context.
+When this arises.This case is a constructed worst case rather than a realistic operating regime.
+It requires every incoming utterance to be judged incompatible with every active temporal context
+on the frontier, including the most recent leaf. Natural conversation does not satisfy this condition:
+adjacent turns within a conversation almost always share some local discourse context. We do not
+observe degenerate cascading behavior on any benchmark in this work; we describe it here to delimit
+the structural guarantees of the construction algorithm rather than to characterize typical inputs. The
+pattern would require either (i) an extremely strict compatibility threshold or (ii) a synthetically
+constructed stream in which each utterance is drawn from a domain disjoint from every preceding
+utterance.
+C.3.2 Long-range topical recurrence
+A second adversarial pattern occurs when the conversation repeatedly returns to a previous topic
+after a long intervening span on other topics. Because SEGTREEMEMinserts new utterances only
+through the rightmost frontier, the later occurrence of the topic is placed according to its current
+temporal context rather than being merged retroactively with the earlier occurrence. As a result, two
+utterances about the same topic can lie in disjoint subtrees whose lowest common ancestor covers a
+broad intervening interval (Figure 10).
+Figure 10: Long-range topical recurrence. Two leaves on the same topic (purple) are separated by an
+intervening span of utterances on other topics (blue). Although the temporal segment-tree invariant is
+preserved, the shortest tree path between the two topical mentions passes through a high common
+ancestor. Finite-horizon propagation may therefore fail to connect the two mentions.
+Consequences.The temporal segment-tree invariant still holds: every internal node summarizes a
+contiguous span of the conversation. However, the recurrent topic is split across multiple temporal
+regions, and no narrow internal node summarizes all occurrences of that topic together. Since structure-
+aware retrieval propagates scores for only a finite horizonH, a relevance signal at one occurrence
+cannot necessarily reach the other occurrence when their tree distance exceeds H. Increasing H
+can reduce this issue, but also risks spreading relevance into unrelated intervening content through
+high-level ancestors.
+When this arises.Unlike maximally topic-switching input, this pattern is common in long-horizon
+interaction. Users naturally return to ongoing projects, people, preferences, locations, and periodic
+activities after many unrelated utterances. The adversarial aspect is not the recurrence itself, but
+21
+
+=== PDF PAGE 22 ===
+the combination of recurrence with enough intervening content that the related mentions become
+structurally distant in the temporal tree.
+Mitigation.The current retrieval framework partially mitigates this case through local scoring
+and finite-horizon propagation. Collapsed retrieval is robust when both recurrent mentions have
+annotations that independently match the query, since it scores nodes without relying on tree distance.
+Bottom-up propagation can also promote a relevant leaf to its local temporal context, helping retrieve
+surrounding evidence from the same episode. However, pure temporal propagation does not guarantee
+that a single high-scoring occurrence will activate a distant recurrence of the same topic. This is
+a genuine limitation of a purely temporal segment tree, and suggests a natural extension: augment
+the temporal tree with semantic cross-links between distant but related nodes, while preserving the
+segment tree as the primary chronological scaffold.
+C.4 QA Case Analyses
+We provide qualitative QA cases to illustrate how temporal tree construction and score propagation
+affect downstream retrieval. We first show two successful cases from the late-2022 portion of
+conv-47, where SEGTREEMEMkeeps the gold utterances and their nearby context within the same
+local temporal segment. We then analyze a representative failure of SEGTREEMEM, followed by two
+cases that illustrate how score propagation changes the retrieved evidence.
+Successful QA cases.The first two cases illustrate two ways that temporal segmentation helps
+SEGTREEMEMretrieve the required evidence. In Q1, a narrow parent summary preserves a local
+detail that is lost when gaming-related utterances are aggregated more broadly. In Q2, a parent
+summary packages information from adjacent sibling utterances, allowing retrieval to recover a short
+answer even when the exact answer-bearing utterance is not retrieved directly.
+• SM1, Local-detail preservation.When several adjacent utterances discuss the same event,
+SEGTREEMEMcan summarize them within a narrow temporal segment. This keeps specific
+details attached to their local context rather than smoothing them into a broad topic summary.
+• SM2, Summary-mediated sibling evidence.When the answer is contained in a short
+neighboring utterance, the parent summary can carry that detail into the retrieved evidence
+even if retrieval lands on an adjacent utterance or parent node from the same local temporal
+segment.
+Q1 | SM1: narrow temporal summaries preserve local details. Question.What did John suggest
+James practice before playing FIFA 23 together?
+Gold answer.Control with a gamepad and timing.
+Relevant utterances(5 Nov 2022).User 1:Great idea! I hope it’s easy to control.User 2:Not
+at all, all you need is a gamepad and a sense of timing.User 1:Great! Well, I’ll go train!
+SEGTREEMEM.The depth-3 internal node cov-
+ering the 5 November dialogue encodes the an-
+swer in its summary: “. . . John advised him to
+practice first . . . using a gamepad and good tim-
+ing.” Because the FIFA-related utterances are
+grouped within a narrow temporal segment, the
+gamepad/timing fact is preserved in the summary
+seen by the retriever.
+MEMTREEand RAPTOR.MEMTREE’s re-
+trieval is dominated by broad video-game clus-
+ters that mix gaming utterances from different
+dates. These clusters recover the topic of FI-
+FA/gaming, but their summaries do not pre-
+serve the specific gamepad/timing detail from
+5 November. RAPTOR retrieves nearby FIFA
+evidence, including the utterance where John
+says James should “practice a little first,” but not
+the answer-bearing detail about using a gamepad
+and having a sense of timing. Its generated an-
+swer is therefore underspecified: James should
+“practice a little first.”
+This case shows that temporal segmentation can preserve the granularity needed for exact-answer
+questions. The baselines retrieve the correct broad topic, but the retrieved evidence does not contain
+the specific detail required by the question.
+22
+
+=== PDF PAGE 23 ===
+Q1: What did John suggest James practice before playing FIFA 23 together?
+Gold answer: control with a gamepad and timing.
+Conversation root
+James and John's friendship centered on programming, 
+gaming, dogs, books, and mutual support, with 
+updates on jobs, creative projects, charity work, 
+travel, family, and relationship milestones. 
+Internal node  early Nov 2022
+John and James caught up across early Nov 2022 about 
+charity gaming, moving in together, family road 
+trips, a chess win, game recommendations, and their 
+shared love of dogs. 
+Internal node  5 Nov 2022
+James and John chatted on 5 Nov 2022 about James's 
+family road trip and John's regional chess 
+tournament win, then discussed game recommendations 
+with John suggesting FIFA 23 and advising practice 
+before they play together. 
+Internal node  5 Nov 2022, 5:20 pm
+On 5 November 2022 at 5:20 pm, James asked John for 
+game recommendations, and John suggested FIFA 23, 
+describing it as an online football game; James 
+decided to try the sports genre, and John advised 
+him to practice first before they play together 
+using a gamepad and good timing . 
+Answer-bearing exchange (5 Nov 2022, 5:20 pm)
+"Great idea! I hope it's easy to control." "Not at 
+all, all you need is a gamepad and a sense of timing 
+." "Great! Well, I'll go train!" 
+Figure 11: Q1 ground-truth answer-bearing utterance and ancestor nodes in the LoCoMo conv-47
+SEGTREEMEMtree.
+Q2 | SM2: parent summaries recover adjacent sibling details. Question.What is the name of
+John’s cousin’s dog?
+Gold answer.Luna.
+Relevant utterances(7 Nov 2022).User 1:This pup is so adorable! What’s their name?User 2:
+Their name is Luna.
+SEGTREEMEM.The depth-3 internal node cov-
+ering the 7 November dialogue ends its summary
+with “. . . including John’s cousin’s dog Luna,” so
+the parent summary already contains the answer.
+The answer is therefore available through the lo-
+cal parent node even when retrieval does not land
+directly on the short answer-bearing utterance,
+“Their name is Luna.”
+MEMTREEand RAPTOR.Both baselines re-
+trieve nearby 7 November dog-related evidence
+in which John shares a photo of his cousin’s dog,
+but the retrieved evidence does not name the dog.
+The exact name appears in an adjacent utterance,
+and the retrieved evidence does not package that
+sibling fact with the retrieved node. Thus, the
+baselines reach the right local neighborhood but
+miss the short answer-bearing detail.
+Together, Q1 and Q2 show two complementary benefits of temporal segmentation. First, narrow
+temporal summaries can preserve local details that may be smoothed away by broad semantic
+aggregation, as in Q1. Second, parent summaries can package information from adjacent sibling
+utterances, as in Q2. The latter case is especially important for short answers such as names, where
+the answer-bearing utterance may be semantically close to the retrieved evidence but absent from the
+exact node text shown to the answer model.
+Failure mode of SEGTREEMEM: missed details in internal node summaries.Although
+SEGTREEMEMimproves retrieval by preserving chronological structure, its summaries can still
+compress away exact local details. This is most visible when the question requires an answer such as
+a date or name. Score propagation can sometimes recover such details by moving relevance from a
+relevant parent summary to its children, but it does not guarantee that the answer-bearing utterance
+receives enough mass to enter the evidence budget.
+Q3: Internal summaries can omit exact local details. Question.When did John resume playing
+drums in his adulthood?
+Gold answer.February 2022.
+23
+
+=== PDF PAGE 24 ===
+SEGTREEMEM.Retrieval reaches the correct
+local temporal region, but the highest-ranked evi-
+dence from that region is not the answer-bearing
+utterance. The retrieved parent summary men-
+tions that John resumed hobbies, but it does not
+preserve the specific drum-playing fact needed
+to answer the question. Thus, the temporal tree
+locates the right region of the conversation, while
+the retrieved summary is not specific enough for
+literal date recall.
+MEMTREEand RAPTOR.MEMTREE’s leaf-
+level retrieval lands directly on the literal drum
+mention. RAPTOR retrieves related drum evi-
+dence, including a March utterance about John
+playing drums and a later utterance about hav-
+ing played drums when he was younger, but it
+does not surface the exact February resume-date
+evidence. This illustrates that literal recall can de-
+pend sensitively on whether the answer-bearing
+utterance itself enters the evidence budget.
+This case illustrates a limitation of SEGTREEMEM: answer quality still depends on whether the
+relevant detail is preserved in the retrieved node annotations. This motivates either more detail-
+preserving summarization prompts or a fallback to exact utterance-level evidence when the query
+appears to require literal recall.
+Score propagation.We next inspect two cases where score propagation changes the ranking or
+composition of the retrieved evidence relative to collapsed retrieval. These examples illustrate the
+intended behavior of propagation: moving score toward nodes whose local temporal context also
+matches the query.
+Q4: Propagation improves evidence selection. Question.What is John planning to do after
+receiving Samantha’s phone number?
+Gold answer.Call her.
+Under collapsed retrieval, an unrelated programming/video-card utterance is ranked slightly above
+a Samantha-related utterance. With structure-aware propagation, the Samantha-related evidence
+is promoted because its parent and ancestor nodes also describe the same local Samantha-related
+temporal context. This small ranking change moves the answer-bearing context above an unrelated
+near-tie.
+SEGTREEMEMwith propagation.Propaga-
+tion raises the score of the Samantha-related ut-
+terance by incorporating support from its local
+parent context. The resulting evidence supports
+the answer that John plans to call Samantha.
+Collapsed retrieval.Without propaga-
+tion, the retrieval order leaves an unrelated
+programming/video-card utterance above the
+Samantha-related evidence. The answer model
+therefore produces a confused response instead
+of directly answering the intended event.
+This case shows the intended use of propagation: the local relevance score identifies candidate
+utterances, while the tree context helps distinguish an utterance embedded in the relevant temporal
+segment from a near-tie embedded in an unrelated segment. It also illustrates that this is a propagation-
+specific effect rather than a general failure of collapsed retrieval: RAPTOR’s collapsed retrieval
+surfaces the literal Samantha phone-number evidence and answers this question correctly.
+Q5: Propagation can introduce distractors. Question.Which of James’s family members have
+visited him in the last year?
+Gold answer.Mother and sister.
+This case shows the precision/recall tradeoff between propagation policies. A broader top-down
+propagation policy admits a cousin-related utterance because it shares family vocabulary with the
+query. However, that extra evidence introduces a distractor, and the answer model incorrectly adds
+cousins to the final answer. A tighter bottom-up policy keeps retrieval concentrated around the
+directly relevant temporal regions and answers with only mother and sister.
+24
+
+=== PDF PAGE 25 ===
+Bottom-up propagation.The bottom-up pol-
+icy keeps relevance concentrated around the ut-
+terances and parent nodes that directly support
+the visit facts. The retrieved evidence remains
+focused on the mother and sister mentions, pro-
+ducing the correct answer.
+Top-down propagation.The top-down policy
+admits an incorrect cousin-related utterance. Al-
+though this evidence is topically related to family,
+it is not part of the gold answer, and the answer
+model over-includes cousins.
+Together, Q4 and Q5 show that propagation is useful when structural context agrees with the query,
+but can hurt when nearby or descendant nodes contain semantically related distractors. This supports
+the main experimental finding that propagation should be used with limited horizons and moderate
+strength: it is a retrieval-time correction that can improve evidence selection, not a substitute for local
+node relevance.
+25
+
+=== PDF PAGE 26 ===
+D Additional Results
+D.1 Qwen Results
+Qwen backbone results.Table 6 reports the same main comparison when LLM-dependent memory
+construction and answer generation use qwen3.5-flash. SEGTREEMEMremains the strongest
+method under this backbone on all three benchmarks. The no-propagation variant already im-
+proves over the strongest external baseline in primary score on LoCoMo, LongMemEval-MAB, and
+RealMem, showing that the temporally ordered tree structure itself contributes beyond the answer
+model. The Best variant further improves over no propagation by 2.4 points on LoCoMo, 5.1 points
+on LongMemEval-MAB, and 4.2 points on RealMem, indicating that structure-aware propagation
+continues to provide useful context expansion under a different LLM backbone.
+Effect of propagation under Qwen.The gains from Best over no propagation are not uniform
+across metrics. On LoCoMo and RealMem, the Best variant improves both the primary judge
+score and token-level F1, suggesting that propagation helps retrieve evidence that is both more
+judge-sufficient and more lexically aligned with the reference answers. On LongMemEval-MAB,
+the primary accuracy gain is large, while F1 changes only modestly. This pattern is consistent with
+LongMemEval-MAB’s answer format: many questions are judged by whether the answer state is
+correct, and the token-level overlap metric is less sensitive to whether the retrieved evidence supports
+the correct update or temporal relation. Thus, the Qwen results support the same conclusion as
+the main results: propagation is most useful as a mechanism for selecting the appropriate temporal
+context, not merely as a way to increase lexical overlap.
+D.1.1 Propagation Sweep under Qwen
+Propagation remains beneficial under Qwen.Figure 12 shows that structure-aware retrieval also
+improves SEGTREEMEMwhen LLM-dependent memory construction and answer generation use
+qwen3.5-flash. The no-propagation baseline is already strong, but both propagation directions
+produce additional gains on at least one setting for each benchmark. This supports the same conclusion
+as the main GPT-backed results: the tree structure is useful by itself, and propagation further improves
+retrieval by changing how relevance is allocated across the temporal hierarchy.
+The best propagation direction is benchmark-dependent.The Qwen sweep again shows that
+there is no universally optimal propagation policy. On LoCoMo, top-down propagation gives a stable
+improvement at moderate decay, while bottom-up propagation is useful only at small decay and
+becomes unstable when too much mass is pushed upward. On LongMemEval-MAB, both directions
+improve over no propagation, with top-down propagation giving the largest gain at a moderate decay
+factor. On RealMem, bottom-up propagation gives the strongest result, consistent with the intuition
+that RealMem often requires recovering broader project- or task-level state rather than only a single
+answer-bearing exchange.
+Decay controls the granularity–drift tradeoff.The shape of the curves illustrates the role of
+α. Small and moderate values of α allow retrieval to incorporate structurally related context while
+keeping the initial semantic match anchored. Large values can move too much probability mass away
+from the answer-bearing node. This effect is most visible for bottom-up propagation on LoCoMo,
+where aggressive upward expansion substantially degrades accuracy. The same pattern appears more
+mildly on LongMemEval-MAB, where bottom-up propagation improves at small decay but falls
+below the best top-down setting as decay increases.
+Backbone robustness.Together with Table 6, this sweep shows that the propagation behavior is not
+an artifact of the GPT-family backbone. The absolute scores differ across answer models, and Qwen
+has a distinct category-level failure profile, especially on LoCoMo adversarial questions. Nevertheless,
+the same high-level retrieval pattern persists: useful propagation is task- and granularity-dependent.
+Detail-oriented settings favor top-down or weak propagation, whereas state-oriented settings such as
+RealMem benefit more from bottom-up context expansion.
+26
+
+=== PDF PAGE 27 ===
+Method Variant LoCoMo LongMemEval-MAB RealMem
+LLM F1 LLM F1 LLM F1
+Retrieval-only memory baselines
+BM25 [33] Default 0.469[0.447, 0.491]0.157[0.150, 0.164]0.542[0.485, 0.598]0.137[0.121, 0.154]0.611[0.585, 0.636]0.359[0.353, 0.364]
+Dense [13] Default 0.477[0.455, 0.499]0.153[0.147, 0.160]0.590[0.534, 0.646]0.140[0.125, 0.156]0.631[0.606, 0.656]0.363[0.357, 0.368]
+Graph-structured memory baselines
+A-MEM [41] Default 0.496[0.474, 0.518]0.155[0.149, 0.162]0.599[0.543, 0.654]0.139[0.123, 0.154]0.635[0.610, 0.660]0.361[0.355, 0.366]
+Mem0 [5] Default 0.354[0.332, 0.375]0.128[0.122, 0.133]0.517[0.460, 0.573]0.147[0.132, 0.162]0.486[0.460, 0.512]0.351[0.346, 0.356]
+HippoRAG [9] Default 0.470[0.448, 0.492]0.151[0.145, 0.158]0.612[0.557, 0.667]0.142[0.126, 0.159]0.629[0.603, 0.654]0.359[0.353, 0.364]
+Tree-structured memory baselines
+RAPTOR [34] Default 0.518[0.496, 0.540]0.146[0.140, 0.152]0.593[0.538, 0.649]0.140[0.124, 0.156]0.618[0.592, 0.643]0.362[0.356, 0.367]
+MemTree [31] Default 0.369[0.347, 0.390]0.118[0.112, 0.123]0.543[0.487, 0.600]0.137[0.121, 0.152]0.597[0.571, 0.622]0.360[0.355, 0.365]
+Proposed tree-structured memory method
+SEGTREEMEMNo-Propagation0.525[0.503, 0.547]0.161[0.154, 0.167]0.669[0.618, 0.720]0.128[0.112, 0.143]0.659[0.634, 0.683]0.359[0.354, 0.365]
+SEGTREEMEMBest 0.549[0.527, 0.571]0.168[0.162, 0.175]0.720[0.669, 0.771]0.144[0.129, 0.159]0.701[0.677, 0.724]0.364[0.358, 0.369]
+Table 6: Qwen answer-quality results across long-horizon memory benchmarks. LLM denotes
+LLM-judge accuracy and F1 denotes token-level F1. Each reported score includes its 95% confidence
+interval in brackets. For SEGTREEMEM, Best denotes the best propagation setting selected by
+LLM-judge accuracy from the retrieval sweep. All LLM-dependent memory construction and answer
+generation useqwen3.5-flash. Bold values mark the best score in each metric column.
+0.05 0.1 0.3 0.5 0.7
+0.42
+0.44
+0.46
+0.48
+0.50
+0.52
+0.54
+0.56
+0.58LLM-judge acc (qwen) 0.36
+ 0.32
+LoCoMo
++3.0%
++2.4%
+0.05 0.1 0.3 0.5 0.7
+0.62
+0.64
+0.66
+0.68
+0.70
+0.72
+0.74
+0.76
+0.78
+LongMemEval
++6.5%
++7.3%
+0.05 0.1 0.3 0.5 0.7
+0.64
+0.66
+0.68
+0.70
+0.72
+0.74
+RealMem
++4.2%
++3.0%
+ (decay factor)
+no-propagation BU TD
+Figure 12: Effect of propagation direction and decay factor under the qwen3.5-flash backbone.
+The dashed horizontal line denotes no-propagation retrieval. BU denotes bottom-up propagation and
+TD denotes top-down propagation. Stars mark the best setting within each propagation direction, and
+percentage annotations report the improvement over the no-propagation setting. The plotted score is
+LLM-judge accuracy for LoCoMo and LongMemEval-MAB, and perfect-rate for RealMem.
+D.2 Question-Type Breakdown
+D.2.1 LoCoMo Breakdown
+Table 7 shows that SEGTREEMEMobtains the best aggregate LoCoMo accuracy under both
+gpt-5.4-mini and qwen3.5-flash, but the category-level behavior differs substantially between
+the two backbones. Under gpt-5.4-mini, SEGTREEMEMBest leads on single-hop, multi-hop,
+temporal, open-domain, and overall accuracy. The only category where it does not lead is adversarial
+QA, where A-MEM, RAPTOR, and HippoRAG remain stronger. This indicates that temporal hier-
+archy and propagation are especially helpful for locating answer-bearing evidence across ordinary
+single-hop, multi-hop, and temporal questions, while adversarial questions additionally require robust
+rejection of unsupported premises.
+Backbone sensitivity on LoCoMo.The qwen3.5-flash LoCoMo results show a different error
+profile. The largest degradation is concentrated in adversarial questions: all structured methods drop
+sharply on this category, and the strongest adversarial score under Qwen comes from BM25 rather
+than from a structured memory method. Despite this adversarial weakness, SEGTREEMEMBest
+remains the best aggregate method because it retains strong performance on multi-hop, temporal, and
+open-domain questions. This suggests that the retrieval structure continues to help recover relevant
+27
+
+=== PDF PAGE 28 ===
+Method gpt-5.4-mini qwen3.5-flash
+Single-hopMulti-hopTemporalOpen-domainAdversarialAll Single-hopMulti-hopTemporalOpen-domainAdversarialAll
+Retrieval-only memory baselines
+BM25 [33] 0.252 0.389 0.354 0.734 0.191 0.469 0.291 0.442 0.302 0.7070.1860.469
+Dense [13] 0.340 0.421 0.385 0.750 0.168 0.490 0.383 0.433 0.354 0.717 0.143 0.477
+Graph-structured memory baselines
+A-MEM [41] 0.422 0.424 0.417 0.7790.5760.608 0.429 0.470 0.385 0.737 0.126 0.496
+Mem0 [5] 0.191 0.324 0.323 0.597 0.471 0.454 0.206 0.405 0.260 0.507 0.141 0.353
+HippoRAG [9] 0.372 0.402 0.375 0.725 0.565 0.570 0.394 0.417 0.375 0.711 0.121 0.470
+Tree-structured memory baselines
+RAPTOR [34] 0.482 0.442 0.396 0.767 0.567 0.593 0.5670.421 0.375 0.769 0.114 0.518
+MemTree [31] 0.291 0.327 0.406 0.630 0.455 0.483 0.294 0.283 0.312 0.548 0.150 0.369
+Proposed tree-structured memory method
+SEGTREEMEMNo-Propagation0.470 0.554 0.385 0.879 0.4100.639 0.445 0.519 0.288 0.783 0.0670.525
+SEGTREEMEMBest 0.526 0.580 0.542 0.894 0.4200.668 0.514 0.558 0.458 0.811 0.0900.549
+Table 7: LoCoMo question-type LLM-judge accuracy under two answer and LLM-dependent
+memory-construction backbones. The five LoCoMo categories are single-hop, multi-hop, temporal,
+open-domain, and adversarial. For SEGTREEMEM, Identity denotes no propagation, and Best denotes
+the best propagation setting under the corresponding backbone. Bold values mark the best score in
+each category within each backbone.
+evidence, but the answer backbone affects whether the model correctly refuses or qualifies answers
+when the question contains a misleading premise.
+D.2.2 LongMemEval-MAB Breakdown
+Table 8 shows a cleaner pattern than LoCoMo. Under both gpt-5.4-mini and qwen3.5-flash,
+SEGTREEMEMBest achieves the highest aggregate accuracy. The strongest gains appear in multi-
+session, single-session preference, and temporal-reasoning questions, which are precisely the cate-
+gories that require maintaining state across turns or resolving information through temporal context.
+By contrast, the single-session assistant category is nearly saturated for many methods, and the single-
+session user and knowledge-update categories are sometimes led by external baselines. Therefore, the
+aggregate improvement is not driven by easy single-session cases; it comes primarily from categories
+where temporal memory organization is expected to matter.
+Propagation improves state-tracking categories.Comparing identity/no-propagation with Best
+shows that propagation is most useful for categories that require moving between a local evidence
+match and a broader memory state. On LongMemEval-MAB, Best improves over no propagation on
+multi-session and temporal-reasoning questions under both backbones. The same trend appears for
+preference questions, where the answer often depends on recovering an accumulated or updated user
+state rather than a single isolated utterance. These category-level gains explain why the aggregate
+Best row improves over the identity row even when some single-session categories are already near
+ceiling.
+Backbone effects on LongMemEval-MAB.The qwen3.5-flash backbone raises LongMemEval-
+MAB accuracy for most methods relative to the GPT-family runs, but the relative conclusion remains
+unchanged: SEGTREEMEMBest is the strongest aggregate method, and its advantage is largest on
+the temporally demanding categories. This is important because the Qwen setting changes both LLM-
+dependent construction and answer generation. The fact that the same category-level pattern persists
+suggests that the gains are not an artifact of a particular answer model, but reflect the interaction
+between temporally ordered memory construction and structure-aware retrieval.
+28
+
+=== PDF PAGE 29 ===
+Method gpt-5.4-mini qwen3.5-flash
+Know. Multi Asst. Pref. User Temp. All Know. Multi Asst. Pref. User Temp. All
+Retrieval-only memory baselines
+BM25 [33] 0.578 0.253 0.967 0.3670.8890.320 0.497 0.644 0.3071.0000.4000.9330.360 0.542
+Dense [13] 0.689 0.307 0.967 0.4670.8890.253 0.520 0.756 0.3331.0000.633 0.889 0.387 0.590
+Graph-structured memory baselines
+A-MEM [41] 0.711 0.387 0.967 0.600 0.822 0.280 0.553 0.733 0.4271.0000.633 0.911 0.333 0.599
+Mem0 [5] 0.756 0.400 0.767 0.4330.8890.280 0.537 0.711 0.373 0.800 0.333 0.889 0.280 0.517
+HippoRAG [9]0.7780.373 0.967 0.533 0.867 0.280 0.560 0.8220.3731.0000.700 0.889 0.373 0.612
+Tree-structured memory baselines
+RAPTOR [34] 0.644 0.333 0.967 0.533 0.867 0.253 0.523 0.800 0.3471.0000.667 0.889 0.347 0.593
+MemTree [31] 0.556 0.2271.0000.633 0.822 0.227 0.483 0.644 0.320 0.967 0.633 0.889 0.293 0.543
+Proposed tree-structured memory method
+SEGTREEMEMNo-Propagation 0.632 0.437 1.000 0.652 0.821 0.536 0.630 0.629 0.406 1.000 0.654 0.796 0.545 0.669
+SEGTREEMEMBest 0.718 0.488 0.973 0.702 0.829 0.595 0.670 0.778 0.520 1.000 0.767 0.867 0.667 0.720
+Table 8: LongMemEval-MAB question-type LLM-judge accuracy under two answer and LLM-
+dependent memory-construction backbones. Columns are knowledge update (Know.), multi-session
+(Multi), single-session assistant (Asst.), single-session preference (Pref.), single-session user (User),
+temporal reasoning (Temp.), and aggregate accuracy (All). For SEGTREEMEM, Identity denotes no
+propagation, and Best denotes the best propagation setting under the corresponding backbone. Bold
+values mark the best score in each category within each backbone.
+0.60
+0.65
+Bottom-up
+LongMemEval
+0.4
+0.5
+0.6
+LoCoMo
+0.60
+0.65
+RealMem
+0.05 0.1 0.2 0.3 0.5 0.70.95
+0.625
+0.650
+0.675Top-down
+0.05 0.1 0.2 0.3 0.5 0.70.95
+0.60
+0.65
+0.05 0.1 0.2 0.3 0.5 0.70.95
+0.550
+0.575
+0.600
+LLM-judge acc
+ (decay factor)
+H=1 H=2 H=3 identity (H=0, no propagation)
+Figure 13: Accuracy as a function of the decay factor α and propagation horizon H, using batch-
+LLM SEGTREEMEMtrees. The dashed horizontal line denotes the no-propagation baselineH= 0.
+Solid curves report finite-horizon bottom-up and top-down propagation with H∈ {1,2,3} over
+the grid α∈ {0.05,0.10,0.20,0.30,0.50,0.70,0.95} . The plotted score is LLM-judge accuracy for
+LongMemEval-MAB and LoCoMo, and perfect-rate for RealMem.
+D.3 Additional Propagation Analysis
+To complement the propagation sweep in Figure 6, we provide two additional diagnostics for structure-
+aware retrieval. First, we analyze how accuracy changes jointly with the propagation horizon H
+and decay factor α. Second, we inspect how propagation changes the temporal level of the retrieved
+evidence. Together, these analyses clarify why propagation helps in some settings but hurts in others:
+the propagation policy does not simply add more context, but changes the granularity at which
+evidence is retrieved from the temporal hierarchy.
+Propagation is most useful at short horizons.Figure 13 shows that one or two propagation hops
+are usually sufficient to capture the useful structural context. Increasing the horizon beyond this range
+rarely gives a consistent gain and can make retrieval less stable, especially when paired with a large
+decay factor. This supports the finite-horizon design used in the main experiments: relevant context is
+often near the initial semantic match in the tree, either as a parent summary, a child span, or a nearby
+29
+
+=== PDF PAGE 30 ===
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00level frac in top-K
+Bottom-up
+LoCoMo
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00
+LongMemEval
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00
+RealMem
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00level frac in top-K
+Top-down
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00
+no-prop 0.05 0.1 0.2 0.3 0.5 0.7 0.95
+ (no-propagation at left)
+0.00
+0.25
+0.50
+0.75
+1.00
+0.40
+0.45
+0.50
+0.55
+0.60
+0.60
+0.62
+0.64
+0.66
+0.68
+0.57
+0.58
+0.59
+0.60
+0.61
+0.62
+0.63
+0.64
+acc
+0.59
+0.60
+0.61
+0.62
+0.63
+0.64
+0.65
+0.66
+0.67
+0.60
+0.61
+0.62
+0.63
+0.64
+0.65
+0.66
+0.67
+0.68
+0.56
+0.57
+0.58
+0.59
+acc
+level 1 level 2 level 3 level 4 acc
+Figure 14: Retrieved-node level distribution as a function of the propagation setting, using batch-LLM
+SEGTREEMEMtrees and a fixed propagation horizon H= 2 . The leftmost bar in each panel is
+the identity baseline. Stacked bars show the fraction of retrieved nodes at each dataset-specific
+temporal level, and the black line shows the corresponding accuracy or perfect-rate score. Bottom-up
+propagation increasingly shifts retrieval toward broader internal nodes as α grows, whereas top-down
+propagation remains more concentrated on exchange-level evidence.
+hierarchical neighbor. Long-range propagation can move too much probability mass away from the
+answer-bearing region.
+Decay controls the amount of structural drift.The curves also show that α is the main knob
+controlling the tradeoff between semantic anchoring and structural expansion. Small and moderate α
+values allow the retriever to incorporate nearby hierarchical context while preserving the original
+query match. Very large α values can overweight propagated mass and cause retrieval drift. This is
+most visible for bottom-up propagation on LoCoMo, where increasing α steadily lowers accuracy
+across horizons. In contrast, LongMemEval-MAB and RealMem tolerate moderate upward expansion
+better, because many of their questions benefit from recovering broader state or temporally aggregated
+context.
+The best direction depends on the benchmark.The horizon sweep confirms that there is no uni-
+versally best propagation direction. LoCoMo benefits more from top-down propagation at moderate
+decay, which is consistent with its many detail-oriented questions: broad summaries can identify
+the relevant episode, but the answer often requires retrieving a more specific descendant. RealMem
+shows the opposite tendency. Its strongest gains come from bottom-up propagation, suggesting
+that local matches are often useful entry points but the final answer depends on broader project- or
+task-level state. LongMemEval-MAB lies between these regimes: both directions can improve over
+identity retrieval, but performance is sensitive to the chosen decay and horizon.
+Top-down propagation remains exchange-oriented.Figure 14 shows that top-down propagation
+keeps most retrieved evidence close to the leaves. Even as α increases, the retrieved set remains
+dominated by exchange-level nodes, with only a moderate increase in broader temporal spans at
+intermediate settings. This matches the semantics of top-down propagation: relevance that initially
+matches a higher-level summary is pushed downward toward finer-grained descendants. The resulting
+retrieval behavior is well suited to questions that require localized details, which helps explain why
+top-down propagation is competitive on LoCoMo and LongMemEval-MAB.
+Bottom-up propagation expands toward broader temporal context.Bottom-up propagation
+exhibits the complementary pattern. As α increases, retrieved evidence shifts from exchange-level
+nodes toward higher-level temporal units, such as subsessions and sessions in LongMemEval-MAB
+30
+
+=== PDF PAGE 31 ===
+and LoCoMo, or broader episode-like segments in RealMem. This behavior reflects the intended
+role of bottom-up propagation: a highly relevant local match can promote its enclosing temporal
+context, allowing retrieval to recover the broader state surrounding the matched exchange. This
+broader context is helpful on RealMem, but it can hurt on LoCoMo when the question requires a
+narrow answer-bearing exchange.
+Granularity explains the dataset-dependent sweep.The two diagnostics together explain the
+propagation behavior in Figure 6. On LoCoMo, stronger bottom-up propagation moves retrieval away
+from exchange-level evidence and is accompanied by a clear drop in accuracy, indicating that many
+questions require narrow, detail-preserving evidence. On RealMem, moderate bottom-up propagation
+improves performance while also increasing the share of broader internal nodes, suggesting that
+project- or task-level context is often useful. LongMemEval-MAB lies between these extremes: a
+small amount of structural expansion can help, but aggressive propagation can dilute answer-bearing
+local evidence.
+Overall, these results support the interpretation in Section 5.4: tree-aware retrieval is best understood
+as agranularity-control mechanism. The propagation direction determines whether retrieval expands
+toward broader context or finer detail, while the decay factorα and horizon H control the strength and
+distance of that expansion. The best setting therefore depends on the temporal granularity required
+by the downstream QA task rather than on a universally optimal propagation policy.
+31
+
+=== PDF PAGE 32 ===
+E Implementation Details
+We evaluate all external baselines through their official implementations, adapted to the same long-
+horizon conversational-memory benchmark interface. This interface standardizes the visible memory
+prefix, query set, final evidence budget, answer-generation prompt, and judging protocol across
+methods. Unless otherwise stated, each method returns at most K= 10 evidence items per query. For
+GPT-backed runs, LLM-dependent memory construction and answer generation use gpt-5.4-mini.
+For Qwen-backed runs, they use qwen3.5-flash with thinking disabled. All embedding-dependent
+components usetext-embedding-3-small. The judge is fixed togpt-4o-miniacross methods.
+BM25.BM25 is the lexical retrieval-only baseline. It indexes the same exchange-level memory
+units as the other baselines and ranks visible memories with BM25 using k1 = 1.5 and b= 0.75 . It
+does not use LLM-based construction, embedding retrieval, memory updates, graph construction, or
+hierarchical summarization. The retrieved evidence budget is fixed toK= 10.
+Dense retrieval.Dense retrieval is the flat embedding baseline. It embeds both the query and each
+visible exchange-level memory unit with text-embedding-3-small and ranks memory units by
+cosine similarity. The method does not build an explicit memory structure and does not use an LLM
+during memory construction. It returns the top K= 10 exchange-level memory units to the shared
+answer-generation prompt.
+RAPTOR.For RAPTOR [ 34], we use the official recursive clustering-and-summarization
+interface. The initial leaves are the benchmark memory units. Node embeddings use
+text-embedding-3-small; cluster summaries are generated by the LLM backbone used in the
+corresponding experimental regime. The RAPTOR configuration uses reduction dimension 3, cluster
+threshold 0.5, and maximum summary input length 3500 tokens. The final retrieved evidence budget
+isK= 10.
+MemTree.For MemTree [ 31], we use the official online semantic-tree interface. Memory units
+are inserted incrementally using the method’s semantic routing rule. The configuration sets the base
+insertion threshold to 0.45, the threshold growth rate to 1.0, maximum depth to 8, and enables leaf
+expansion. Internal aggregation uses the LLM backbone of the corresponding run, and embeddings
+use text-embedding-3-small. Retrieval uses the collapsed-tree mode with retrieval threshold
+0.10, returning the topK= 10nodes.
+A-MEM.For A-MEM [ 41], we use the official note-based memory interface. Each memory unit
+is converted into a structured memory note with LLM-generated JSON metadata. The text used for
+note embedding concatenates the note content, context, keywords, and tags. The configuration uses 2
+nearest neighbors for note linking, enables memory evolution, sets the evolution threshold to 100,
+and uses link-score threshold 0.75. Retrieval uses A-MEM’s semantic-plus-links mode and returns
+the topK= 10memory notes.
+Mem0.For Mem0 [ 5], we use the official base Mem0 memory interface. We do not report the
+graph-enhanced Mem0 variant in the main comparison. The configuration uses additive single-pass
+memory extraction, normalized-text MD5 hashing for deduplication, and entity linking. LLM-
+dependent extraction uses the LLM backbone of the corresponding run, and memory embeddings
+use text-embedding-3-small. Retrieval combines semantic, BM25, and entity signals with
+configured weights 0.70, 0.20, and 0.10, respectively, and uses a minimum overfetch of 60. The final
+evidence budget isK= 10.
+HippoRAG.For HippoRAG [ 9], we use the official graph-retrieval interface. LLM-dependent
+information extraction, query processing, and fact filtering use the backbone of the corresponding
+experimental regime, while embedding-dependent components use text-embedding-3-small.
+The configuration sets the graph-retrieval damping factor to0.5, synonymy threshold to 0.8, query-
+linking top-k to 5, maximum filtered facts to 4, and passage-node weight to 0.05. The top K= 10
+retrieved passages are passed to the shared answer-generation prompt.
+Controlled deviations from the original baseline settings.The intentional deviations from some
+original baseline papers are the shared benchmark substitutions required for controlled comparison:
+32
+
+=== PDF PAGE 33 ===
+the LLM backbone, embedding model, visible-memory interface, final evidence budget, answer
+prompt, and judge are fixed across methods. In particular, all LLM-dependent baseline components
+use either gpt-5.4-mini or qwen3.5-flash according to the experimental regime, all embedding-
+dependent components use text-embedding-3-small, and all reported runs use final evidence
+budget K= 10 . All other method-specific parameters follow the official implementation interface
+and defaults, with the explicit configuration values reported above.
+33
+
+=== PDF PAGE 34 ===
+F Non-Temporal Similarity-Clustering Baseline
+To isolate the role of temporal construction, we implement a non-temporal similarity-clustering tree
+as a controlled baseline. This baseline uses the same memory units, annotation prompts, embedding
+model, retrieval scorer, propagation settings, and evidence budget as SEGTREEMEM. Its only
+intended difference from SEGTREEMEMis the online update rule: instead of inserting each new
+utterance through the rightmost temporal frontier, it assigns the utterance to the most similar existing
+semantic cluster.
+At time t, the baseline maintains a clustering tree over the observed utterance prefix Xt =
+(x1, . . . , xt). Each utterance xi is represented as a leaf node. The baseline is initialized by cre-
+ating the first lowest-level cluster from the first leaf utterance. Let Ct denote the set of current
+lowest-level internal cluster nodes, which serve as the assignment candidates for the next utterance.
+For each cluster c∈ C t, let L(c) denote the set of leaf utterances under c. The cluster is represented
+by the mean embedding of its assigned utterances,
+µ(c) = 1
+|L(c)|
+X
+xi∈L(c)
+e(xi),
+wheree(·)is the same embedding function used by the dense retrieval pipeline.
+When a new utterance xt+1 arrives, the baseline compares it against all current lowest-level clusters
+and identifies the nearest cluster,
+c⋆ = arg max
+c∈Ct
+cos
+ 
+e(xt+1), µ(c)
+
+.
+If
+cos
+ 
+e(xt+1), µ(c⋆)
+
+≥τ nt, τ nt = 0.45,
+the new utterance is inserted as a new leaf child of c⋆. Otherwise, the baseline creates a new lowest-
+level internal cluster containing only the new leaf. Thus, the number of active clusters is not fixed in
+advance, and new clusters are created online when the incoming utterance is not sufficiently similar
+to any existing cluster. Existing leaves are not reassigned during this online update. After insertion,
+the embedding of the affected cluster and the embeddings of its ancestors are recomputed, and their
+node annotations are regenerated using the same summarization prompts as SEGTREEMEM.
+This baseline is non-temporal because cluster membership is determined by semantic similarity rather
+than by utterance order. Consequently, utterances from distant parts of a conversation may be grouped
+under the same internal node, even when they do not form a contiguous conversational episode. This
+makes the baseline useful for testing the structural hypothesis of the paper: whether a temporally
+ordered hierarchy provides a better memory state than a semantic clustering tree under matched
+retrieval conditions. Table 9 summarizes the main differences between this non-temporal baseline
+and SEGTREEMEM.
+Component SEGTREEMEMNon-temporal baseline
+Memory unit Individual utterance Same
+Construction candidates Rightmost temporal frontier Current lowest-level semantic clusters Ct
+Assignment criterion Frontier compatibility with the incoming
+utterance
+Cosine similarity to cluster mean embed-
+dings with thresholdτ nt = 0.45
+New-cluster creation New temporal branch when no frontier
+node is compatible
+New semantic cluster when nearest-
+cluster similarity is belowτ nt
+Temporal constraint Every internal node covers a contiguous
+span
+No contiguity constraint
+Leaf reassignment Existing leaves are never reordered Existing leaves are not reassigned
+Annotation model Same LLM summarization prompts Same prompts
+Retrieval Same local scorer, propagation grid, and
+evidence budget
+Same settings
+Table 9: Controlled comparison between temporal Segment Tree construction and the non-temporal
+similarity-clustering baseline. The baseline is designed to test whether preserving chronological
+contiguity during construction improves the memory representation, while keeping retrieval and
+annotation choices fixed.
+34
+
+=== PDF PAGE 35 ===
+G Prompt Templates
+G.1 SEGTREEMEMConstruction Prompts
+SEGTREEMEMuses LLMs only for the LLM-based construction variants and for internal-node
+annotation. Retrieval and dataset loading do not invoke LLMs. Specifically, the implementation uses
+three prompt templates: pointwise LLM compatibility, batch LLM compatibility, and internal-node
+annotation.
+Pointwise LLM compatibility.The pointwise construction variant evaluates one admissible
+rightmost-frontier candidate at a time. The model decides whether the incoming subtree should be
+merged into the candidate or whether construction should continue upward along the frontier.
+System prompt
+You evaluate a single rightmost-frontier candidate for online segment-
+tree memory construction.
+Return exactly MERGE or SPLIT.
+MERGE when the incoming subtree is semantically compatible with the
+frontier node and should be appended as its rightmost child. SPLIT when
+the incoming subtree should not merge with this candidate and should
+continue upward.
+User prompt
+Frontier node interval: [{frontier_node.left}, {frontier_node.right}]
+Frontier node content:
+{rendered frontier node}
+Incoming subtree interval: [{current.left}, {current.right}]
+Incoming subtree content:
+{rendered incoming subtree}
+Decision:
+Batch LLM compatibility.The batch construction variant evaluates the admissible rightmost
+frontier in a single LLM call. The frontier candidates are ordered from lower to higher level. If
+there are m admissible candidates, the valid merge labels are dynamically generated as MERGE_1, . . .,
+MERGE_m. The model returns exactly one merge label or SPLIT. A label MERGE_i selects candidate i
+as the attachment node, while SPLIT indicates that no supplied frontier candidate is compatible with
+the incoming subtree.
+System prompt
+You evaluate the ordered rightmost frontier for online segment-tree
+memory construction.
+Return exactly one label: MERGE_1, MERGE_2, ..., MERGE_m, or SPLIT.
+MERGE_i selects the single frontier candidate i whose node is
+semantically compatible with the incoming subtree and should receive it
+as the rightmost child. SPLIT means no supplied frontier candidate is
+compatible.
+35
+
+=== PDF PAGE 36 ===
+User prompt
+Incoming subtree interval: [{incoming.left}, {incoming.right}]
+Incoming subtree content:
+{rendered incoming subtree}
+Ordered frontier candidates, from lower to higher level:
+Candidate 1 -> MERGE_1
+Interval: [{candidate_1.left}, {candidate_1.right}]
+Content:
+{rendered candidate 1}
+Candidate 2 -> MERGE_2
+Interval: [{candidate_2.left}, {candidate_2.right}]
+Content:
+{rendered candidate 2}
+... repeated for all candidates ...
+Decision:
+Internal-node annotation.After construction creates or updates an internal node, SEGTREEMEM
+regenerates the node annotation from its ordered child segments. The child segments are rendered in
+chronological order. The annotation prompt is shared across construction variants.
+System prompt
+You maintain a temporally ordered segment-tree memory. Write a concise
+annotation for one internal node from its ordered child segments. Return
+only the annotation text.
+User prompt
+Node interval: [{node.left}, {node.right}]
+Ordered child segments:
+- interval=[{child.left},{child.right}] id={child.node_id}
+{rendered child}
+... repeated for each ordered child ...
+Annotation:
+G.2 LoCoMo Prompts
+For LoCoMo, retrieved evidence is inserted into the following prompt before answer generation.
+Answer generaiton
+You are a helpful assistant answering questions about a long-term conversation
+between two people. Use the retrieved memory excerpts to answer the question
+accurately and concisely.
+Memories:
+{evidence_text}
+Question: {question}
+36
+
+=== PDF PAGE 37 ===
+Answer:
+We evaluate generated LoCoMo answers using the following rubric. The judge receives the question,
+question category, gold answer, and candidate answer, and returns an integer score from 0 to 3.
+LLM judge prompt
+Your task is to evaluate the quality of a candidate answer to a conversational
+memory question.
+You will be given:
+1. The question asked
+2. The question category (1=single-hop, 2=temporal, 3=open-ended,
+4=multi-hop, 5=adversarial)
+3. The gold answer (or adversarial answer for category 5)
+4. The candidate answer to evaluate
+Scoring criteria:
+Score 0: The candidate answer is incorrect or contradicts the gold answer. For
+category 5, the candidate provides the adversarial (wrong) answer as if it were
+true.
+Score 1: The candidate answer is vague or generic, not using specific
+information
+from the conversation. For category 5, the candidate is uncertain but doesn’t
+clearly reject the premise.
+Score 2: The candidate answer is partially correct, capturing some but not all
+key information from the gold answer. For category 5, the candidate correctly
+identifies that the information may not be available.
+Score 3: The candidate answer is fully correct and captures the key information
+from the gold answer. For category 5, the candidate clearly states the
+information is not in the conversation.
+Important:
+- Focus on factual accuracy, not style or fluency.
+- For temporal questions (category 2), dates and time references must be
+correct.
+- For multi-hop questions (category 4), all reasoning steps must be present.
+- For adversarial questions (category 5), the correct behavior is to recognize
+the question cannot be answered from the conversation.
+G.3 LongMemEval-MAB Prompts
+For LongMemEval-MAB, retrieved evidence is inserted into the following answer-generation prompt.
+Answer generation
+You are a helpful assistant that answers questions based on your memory of
+previous conversations. Use the retrieved memory excerpts to answer accurately
+and concisely.
+Memories:
+{evidence_text}
+Question: {question}
+Answer:
+37
+
+=== PDF PAGE 38 ===
+G.4 RealMem Prompts
+For RealMem, we use the official answer-generation prompt from the RealMemBench evaluation
+code.
+Answer generation
+You are a personal AI assistant that helps the user with some long-term tasks.
+Please respond to the user’s latest message based on the reference memory.
+Memories:{evidence_text}
+Query: {question}
+Response:
+RealMem evaluates answer quality by checking consistency between the candidate answer and the
+user-related memory.
+LLM judge prompt
+Your task is to evaluate the consistency between the [candidate answer] and the
+[user-related memory].
+You will be given four pieces of information:
+1. The user’s current query
+2. The user-related memory, representing the latest valid user state
+3. A reference answer based on the relevant memory
+4. The candidate answer to be evaluated
+Please follow these rules during evaluation:
+- Focus only on whether "facts, constraints, preferences, and confirmed states"
+are correctly used
+- Do NOT evaluate language style, tone, politeness, empathy, or fluency
+- Do NOT give a high score just because the answer "sounds reasonable"
+- The reference answer is only to help understand how relevant memory should
+ideally be used. A candidate answer does not need to exactly match the
+reference answer to receive a full score
+Scoring criteria:
+Score 0: Poor -- the candidate answer conflicts with the user-related memory
+Score 1: Fair -- the candidate answer does not conflict with the relevant memory
+but is generic and not based on user memory
+Score 2: Good -- the candidate answer uses part of the user-related memory
+Score 3: Very good -- the candidate answer uses all of the user-related memory
+Output format:
+{
+"score": int,
+"reason": str
+}
+H Limitations and Broader Impacts
+Limitations.Agentic memory systems remain sensitive to the quality of their stored representations,
+retrieval mechanisms, and summarization procedures. Errors introduced during memory construction
+can persist over long horizons, causing agents to retrieve incomplete, outdated, or misleading context.
+More broadly, current memory systems still lack robust guarantees for reliability, privacy preservation,
+and under noisy, adversarial, or rapidly changing user histories.
+38
+
+=== PDF PAGE 39 ===
+Broader Impacts.Long-term agentic memory has the potential to make AI assistants more useful
+by supporting continuity across extended interactions, personalized help, and better handling of
+evolving user goals. Persistent memory also creates risks around privacy, data retention, and over-
+personalization. Users should remain in control over what is stored, retrieved, edited, and forgotten,
+and careful analysis should be done to ensure memory improves user outcomes without amplifying
+harmful or sensitive inferences.
+39
+
+=== PDF PAGE 40 ===
+NeurIPS Paper Checklist
+1.Claims
+Question: Do the main claims made in the abstract and introduction accurately reflect the
+paper’s contributions and scope?
+Answer: [Yes]
+Justification: Our abstract and introduction accurately summarize our main contributions: a
+temporally ordered segment-tree memory representation, online rightmost-frontier construc-
+tion, and structure-aware relevance propagation. We evaluate the empirical claims across
+LoCoMo, LongMemEval-MAB, and RealMem in Section 5.
+2.Limitations
+Question: Does the paper discuss the limitations of the work performed by the authors?
+Answer: [Yes]
+Justification: We discuss limitations in Appendix C.3 and Appendix C.4, including maxi-
+mally topic-switching conversations, long-range topical recurrence, and cases where internal
+node summaries miss exact details. We also discuss cases where propagation can dilute
+local evidence and broader limitations of long-term memory systems in Appendix H.
+3.Theory assumptions and proofs
+Question: For each theoretical result, does the paper provide the full set of assumptions and
+a complete (and correct) proof?
+Answer: [NA]
+Justification: We formalize the memory representation, online update rule, and retrieval
+operator, but we do not present theoretical theorems requiring formal proofs.
+4.Experimental result reproducibility
+Question: Does the paper fully disclose all the information needed to reproduce the main ex-
+perimental results of the paper to the extent that it affects the main claims and/or conclusions
+of the paper (regardless of whether the code and data are provided or not)?
+Answer: [Yes]
+Justification: We provide the information needed to reproduce the main experimental results.
+Sections 5.2–5.4 specify the datasets, baselines, evaluation protocol, model choices, metrics,
+and main experimental settings. Appendix E and Appendix G provide implementation
+details and prompt templates for construction, retrieval, answer generation, and evaluation.
+5.Open access to data and code
+Question: Does the paper provide open access to the data and code, with sufficient instruc-
+tions to faithfully reproduce the main experimental results, as described in supplemental
+material?
+Answer: [Yes]
+Justification: We provide anonymized code in the supplemental material, including instruc-
+tions for reproducing the main experiments. We use publicly available benchmark datasets
+and document the dataset choices, baselines, model settings, retrieval configuration, and
+prompt templates in Section 5 and Appendix E and Appendix G.
+6.Experimental setting/details
+Question: Does the paper specify all the training and test details (e.g., data splits, hyperpa-
+rameters, how they were chosen, type of optimizer) necessary to understand the results?
+Answer: [Yes]
+Justification: We specify the datasets, baselines, evaluation metrics, answer-generation
+models, judge model, and main experimental configuration in Section 5. We provide
+additional details on construction, retrieval, answer generation, and evaluation prompts in
+Appendix E and Appendix G.
+7.Experiment statistical significance
+40
+
+=== PDF PAGE 41 ===
+Question: Does the paper report error bars suitably and correctly defined or other appropriate
+information about the statistical significance of the experiments?
+Answer: [Yes]
+Justification: We report 95% confidence intervals for the main LLM-judge accuracy and
+token-level F1 results in Table 4. We compute these intervals over evaluation examples, so
+they quantify uncertainty due to finite benchmark size rather than variation across model
+training runs.
+8.Experiments compute resources
+Question: For each experiment, does the paper provide sufficient information on the com-
+puter resources (type of compute workers, memory, time of execution) needed to reproduce
+the experiments?
+Answer: [Yes]
+Justification: We describe the compute setting in Appendix E. Our experiments use pre-
+trained API models and local orchestration rather than model training or finetuning. We
+identify the main computational costs, including embedding memory nodes, LLM-based
+node annotation, LLM-based compatibility scoring, answer generation, and LLM-as-a-judge
+evaluation.
+9.Code of ethics
+Question: Does the research conducted in the paper conform, in every respect, with the
+NeurIPS Code of Ethicshttps://neurips.cc/public/EthicsGuidelines?
+Answer: [Yes]
+Justification: We use public or benchmark conversational-memory datasets and evaluate
+retrieval and answer generation methods. We have reviewed the NeurIPS Code of Ethics
+and do not identify deviations from it.
+10.Broader impacts
+Question: Does the paper discuss both potential positive societal impacts and negative
+societal impacts of the work performed?
+Answer: [Yes]
+Justification: We discuss both positive and negative broader impacts in Appendix H. We note
+that long-term memory can improve continuity, personalization, and support for evolving
+user goals, while also creating risks around privacy, data retention, over-personalization, and
+harmful or sensitive inferences.
+11.Safeguards
+Question: Does the paper describe safeguards that have been put in place for responsible
+release of data or models that have a high risk for misuse (e.g., pre-trained language models,
+image generators, or scraped datasets)?
+Answer: [NA]
+Justification: We do not release a pretrained model, scraped dataset, or other high-risk
+artifact. We evaluate memory construction and retrieval methods on existing benchmarks.
+12.Licenses for existing assets
+Question: Are the creators or original owners of assets (e.g., code, data, models), used in
+the paper, properly credited and are the license and terms of use explicitly mentioned and
+properly respected?
+Answer: [Yes]
+Justification: We cite the original sources for the datasets, baselines, pretrained models, and
+evaluation assets used in our experiments. We do not redistribute the original benchmark
+datasets or pretrained models; users should obtain those assets from their original sources
+and comply with the corresponding licenses and terms of use. Our supplemental code
+documents dependencies and reproduction instructions.
+13.New assets
+41
+
+=== PDF PAGE 42 ===
+Question: Are new assets introduced in the paper well documented and is the documentation
+provided alongside the assets?
+Answer: [Yes]
+Justification: We release anonymized supplemental code as a new asset. We do not release a
+new dataset or pretrained model.
+14.Crowdsourcing and research with human subjects
+Question: For crowdsourcing experiments and research with human subjects, does the paper
+include the full text of instructions given to participants and screenshots, if applicable, as
+well as details about compensation (if any)?
+Answer: [NA]
+Justification: Not applicable
+15. Institutional review board (IRB) approvals or equivalent for research with human
+subjects
+Question: Does the paper describe potential risks incurred by study participants, whether
+such risks were disclosed to the subjects, and whether Institutional Review Board (IRB)
+approvals (or an equivalent approval/review based on the requirements of your country or
+institution) were obtained?
+Answer: [NA]
+Justification: Not applicable
+16.Declaration of LLM usage
+Question: Does the paper describe the usage of LLMs if it is an important, original, or
+non-standard component of the core methods in this research? Note that if the LLM is used
+only for writing, editing, or formatting purposes and doesnotimpact the core methodology,
+scientific rigor, or originality of the research, declaration is not required.
+Answer: [Yes]
+Justification: We use LLMs as core components of both our method and evaluation. In the
+method, we use LLMs to generate node annotations and, in the LLM-based construction
+variants, to make compatibility judgments during online tree construction. In the experi-
+ments, we use LLMs for answer generation and LLM-as-a-judge evaluation. We describe
+these uses in Section 4 and Section 5 and provide the corresponding prompts in Appendix G.
+42

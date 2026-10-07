@@ -1,0 +1,1310 @@
+=== PDF PAGE 1 ===
+Frontiers in Psychology 01 frontiersin.org
+TYPE Original Research
+PUBLISHED 17 June 2026
+DOI 10.3389/fpsyg.2026.1847432
+OPEN ACCESS
+EDITED BY
+Jin Su Jeong,  
+University of Extremadura, Spain
+REVIEWED BY
+Carol Nash,  
+University of Toronto, Canada
+Sauman Chu,  
+University of Minnesota Twin Cities, 
+United States
+Feng Ji,  
+University of Toronto, Canada
+*CORRESPONDENCE
+Fenglin Song  
+ songfenglin@student.usm.my
+RECEIVED 04 April 2026
+REVISED 30 April 2026
+ACCEPTED 02 June 2026
+PUBLISHED 17 June 2026
+CITATION
+Song F and Xu B (2026) Effects of 
+integrating a structured design thinking 
+strategy into generative AI-supported 
+design learning on students’ design 
+achievement, creative self-efficacy, and 
+problem-solving skills.
+Front. Psychol. 17:1847432.
+doi: 10.3389/fpsyg.2026.1847432
+COPYRIGHT
+© 2026 Song and Xu. This is an 
+open-access article distributed under 
+the terms of the Creative Commons 
+Attribution License (CC BY). The use, 
+distribution or reproduction in other 
+forums is permitted, provided the 
+original author(s) and the copyright 
+owner(s) are credited and that the 
+original publication in this journal is 
+cited, in accordance with accepted 
+academic practice. No use, distribution 
+or reproduction is permitted which does 
+not comply with these terms.
+Effects of integrating a structured 
+design thinking strategy into 
+generative AI-supported design 
+learning on students’ design 
+achievement, creative 
+self-efficacy, and problem-solving 
+skills
+Fenglin Song * and Biao Xu 
+Centre for Instructional Technology and Multimedia, Universiti Sains Malaysia, Penang, Malaysia
+The rapid development of generative artificial intelligence (GAI) offers new 
+opportunities for design education, yet its educational value may be limited 
+without clear instructional guidance. To address this issue, this study integrates 
+a structured design thinking strategy based on the Double Diamond model into 
+GAI-supported design learning to support students’ purposeful and reflective use 
+of GAI tools. An experimental study was conducted in a university-level char -
+acter design course in China, involving 120 undergraduate students assigned 
+to three conditions: GAI-supported learning with a structured design thinking 
+strategy (GAI-SDTS), GAI-supported learning without the strategy, and traditional 
+design learning. Results showed that students in the GAI-SDTS group achieved 
+higher design achievement, creative self-efficacy, and problem-solving skills than 
+those in the other two groups. These findings suggest that while GAI can support 
+design learning, its educational benefits appear to be strengthened when embed-
+ded within a structured design thinking framework. The study also discusses the 
+theoretical and practical implications of integrating generative AI with structured 
+design thinking in higher education design contexts.
+KEYWORDS
+creative self-efficacy, design education, design thinking, generative artificial 
+intelligence, problem-solving skills
+1 Introduction
+Design education aims to cultivate students’ abilities in creativity, visual expression, and 
+problem-solving (Calavia et al., 2021; Chiu and Hwang, 2025; Lin and Chang, 2024). In uni-
+versity-level design courses, the goal is not only to develop technical skills but also to help 
+students form original ideas and apply them to real-world contexts. Traditional design teaching 
+often relies on instructor-led demonstrations and tool-based practice, with students learning 
+software such as Adobe Photoshop or Illustrator through repeated technical exercises (Hu and 
+Li, 2025). While this approach provides foundational skills, it can also present challenges. Many 
+students with creative ideas may find it difficult to express those ideas due to their limited 
+technical proficiency. In some cases, the tools themselves become a barrier, restricting both the 
+
+=== PDF PAGE 2 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 02 frontiersin.org
+fluency of design expression and the confidence to explore alternative 
+solutions (Rong et al., 2025). This gap between idea generation and 
+execution may prevent students from fully realizing their design 
+potential.
+In recent years, the rapid development of generative artificial 
+intelligence (GAI) has opened new possibilities for design education 
+(Chandrasekera et al., 2025 ; Hwang and Chen, 2023 ; Petrova and 
+Kuhnen, 2025). Tools such as ChatGPT, Midjourney, and Stable 
+Diffusion allow students to generate images, explore visual styles, and 
+receive text-based feedback using simple prompts (Derevyanko and 
+Zalevska, 2023). These tools can help students express abstract ideas 
+more quickly, reduce the time needed for trial and error, and support 
+visual exploration even when technical drawing skills are limited 
+(Rong et al., 2025; Y ao et al., 2025). GAI is increasingly viewed not just 
+as a production tool but also as a learning assistant that supports idea 
+development and creative thinking (Hwang and Chen, 2023). Several 
+studies have shown that integrating GAI into design activities can 
+increase student engagement, improve creative outcomes, and reduce 
+cognitive load during complex design tasks ( Bian et al., 2025 ; 
+Montenegro, 2024; Zeng et al., 2025). These advantages suggest that 
+GAI has the potential to enhance the learning process in design class-
+rooms. However, the way it is used can strongly influence its actual 
+effectiveness.
+Although GAI offers valuable support in design education, relying 
+on it without clear instructional guidance can lead to several problems 
+(Huang, 2024). When students engage with GAI tools independently, 
+they may focus too heavily on output quality while neglecting the 
+underlying thinking process (Saritepeci and Yildiz Durak, 2024). The 
+ease of generating content may reduce their motivation to explore 
+problems deeply or evaluate solutions critically (Melisa et al., 2025). 
+For example, students may accept AI-generated results without inde-
+pendent thinking (Darvishi et al., 2024), which limits their ability to 
+identify user needs, justify design decisions, or revise based on feed-
+back. Without a structured learning framework, the use of GAI can 
+weaken students’ design reasoning and reduce opportunities for 
+meaningful learning. These challenges highlight the need for a peda-
+gogical strategy that not only integrates GAI into the classroom but 
+also supports students in using it thoughtfully and purposefully 
+(Caires et al., 2023).
+Design thinking (DT) is a human-centered approach to innova-
+tion that emphasizes empathy, creativity, and iterative problem solving 
+(Razzouk and Shute, 2012 ; Ramos et al., 2024 ). In the context of 
+design education, DT helps students better understand user needs, 
+define problems clearly, explore multiple ideas, and test solutions 
+through feedback and refinement ( Lin et al., 2025 ). It encourages 
+learners to move beyond surface-level aesthetics and engage in deeper 
+reasoning about function, context, and user experience. As a teaching 
+approach, DT aligns well with the goals of design education by pro-
+moting active inquiry, collaboration, and reflection. Prior studies have 
+shown that DT-based instruction can enhance students’ creative con-
+fidence (Balakrishnan, 2022), increase their engagement in open-
+ended tasks ( Saad et al., 2020 ), and improve their ability to solve 
+complex and real-world problems (Tsai et al., 2023). While the value 
+of DT is widely recognized, its effective implementation in classroom 
+settings requires structured strategies that can guide students through 
+each stage of the design process (Wei et al., 2025). One way to trans-
+form DT into an effective classroom strategy is to provide students 
+with a clear structure that guides their process from problem identifi-
+cation to solution development.
+The Double Diamond model, developed by the UK Design 
+Council (2007), is one such approach that has been widely applied in 
+both professional and educational design contexts. It consists of four 
+key stages: Discover, Define, Develop, and Deliver. These stages help 
+students separate divergent and convergent thinking, understand the 
+problem space thoroughly, and generate user-centered solutions 
+through iteration and feedback (Chang and Tsai, 2024; Y ang and Lin, 
+2025). In instructional settings, the Double Diamond model provides 
+a practical framework that helps students internalize DT as a repeat-
+able, reflective process rather than a one-time activity ( Saad et al., 
+2020; Y ang and Lin, 2025). However, few studies have examined how 
+the Double Diamond model can be integrated with GAI tools to sup-
+port design learning in higher education settings ( Grau and 
+Rockett, 2026).
+In this study, the Double Diamond model is used as the DT strat-
+egy aimed at guiding students in their use of GAI tools. This struc-
+tured approach is expected to help students engage more meaningfully 
+with their design tasks, make better use of AI-generated resources 
+throughout the design process. To evaluate the effectiveness of this 
+structured DT strategy supported by GAI tools, an experimental study 
+was conducted in a university-level character design course focused 
+on card game character design in China. Based on this instructional 
+context, the following research questions were formulated to guide the 
+investigation:
+RQ1: Does the Generative AI-supported learning with a 
+Structured Design Thinking Strategy (GAI-SDTS) approach lead 
+to significantly higher design achievement compared to 
+Generative AI-supported learning without the strategy (GAI) 
+and Traditional Design Learning (TDL)?
+RQ2: Does the GAI-SDTS approach enhance students’ creative 
+self-efficacy compared to the GAI and TDL groups?
+RQ3: Do students in the GAI-SDTS group demonstrate stronger 
+problem-solving skills than those in the GAI and TDL groups?
+To complement these research questions, the study further pro-
+posed the following hypotheses:
+RH1: Students in the GAI-SDTS group would achieve higher 
+design achievement than those in the GAI and TDL groups.
+RH2: Students in the GAI-SDTS group would report higher cre-
+ative self-efficacy than those in the GAI and TDL groups.
+RH3: Students in the GAI-SDTS group would demonstrate 
+stronger problem-solving skills than those in the GAI and 
+TDL groups.
+2 Literature review
+2.1 GAI in design education
+Since the release of GAI tools such as ChatGPT, Midjourney, and 
+Stable Diffusion, their applications in design education have rapidly 
+expanded (Li et al., 2025 ). In learning activities, GAI can assume 
+
+=== PDF PAGE 3 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 03 frontiersin.org
+multiple educational roles, such as teacher, student, learning peer, 
+domain expert, administrator, and learning tool (Hwang and Chen, 
+2023), which support learners in a wide range of design activities. 
+Multiple studies have examined GAI in a range of design education 
+contexts (Almaz et al., 2024; Chandrasekera et al., 2025; Chen et al., 
+2025; Petrova and Kuhnen, 2025). For example, Chandrasekera et al. 
+(2025) examined the use of GAI tools in relation to diverse learning 
+styles, while Almaz et al. (2024) discussed the integration of GAI into 
+architectural and interior design education. Petrova and Kuhnen 
+(2025) further investigated the role of GAI as a conceptualization and 
+research tool in design, and Chen et al. (2025) examined the use of a 
+ChatGPT-driven pedagogical agent in design and art courses. 
+However, existing studies have primarily employed GAI directly while 
+overlooking the role of instructional support. Therefore, this study 
+proposes that integrating GAI into DT may be beneficial for enhanc-
+ing students’ interaction with GAI and improving their performance 
+in design activities.
+2.2 Design thinking
+DT was first introduced by Rowe (1991) and has been described 
+as the cognitive process of designers (Balakrishnan, 2022; Dunne and 
+Martin, 2006). Scholars regard DT as a constructive educational 
+approach because it transforms students’ learning processes by linking 
+real-world experiences, problem-solving foundations, and cycles of 
+reflection and reconstruction (Tsai et al., 2023; Tu et al., 2018). As a 
+thinking framework, DT is also considered an effective means of cul-
+tivating key twenty-first century skills such as creativity, critical think-
+ing, collaboration, and problem-solving (Razali et al., 2022; Du et al., 
+2012; Guaman-Quintanilla et al., 2022).
+With the development of DT across different fields, various DT 
+models have emerged. The DT model proposed by the Hasso-Plattner 
+Institute of Design at Stanford University involves five key stages, 
+which consist of Empathy, Definition, Ideas, Prototype, and Testing 
+(Hasso Plattner Institute of Design at Stanford University (d.school), 
+2010). The UK Design Council (2007) introduced a four-stage DT 
+process, known as the “Double Diamond, ” comprising the phases of 
+Discover, Define, Develop, and Deliver. Each phase contains iterative 
+loops through which ideas can be explored and tested. IDEO, a design 
+innovation consultancy, also proposed a human-centered DT model 
+that includes three steps, which are inspiring solutions, ideating solu-
+tions, and implementing solutions (Liu et al., 2024 ). Based on the 
+Danish Design Ladder, Wrigley and Straker (2015)  proposed an 
+Educational Design Ladder that illustrates pedagogical stages in the 
+development of DT. This model includes five phases, which are foun-
+dation level, product level, project level, business level and profes -
+sional level.
+Among these models, the Double Diamond model has become 
+one of the most structured and widely applied frameworks in design 
+education (Lai et al., 2023; Li et al., 2025; Y ang and Lin, 2025). For 
+example, Y ang and Lin (2025) incorporated the Double Diamond 
+model into a design curriculum to cultivate students’ abilities in prob-
+lem identification, solution construction, and expression feedback. 
+This alignment makes the model particularly suitable for the present 
+study, in which students were also required to progress through itera-
+tive phases of exploration, definition, development, and final presenta-
+tion during character design. Therefore, the present study adopted the 
+Double Diamond model as an design strategy to guide students’ 
+design activities.
+2.3 Creativity self-efficacy
+Creativity is understood as the ability to draw upon prior knowledge 
+to generate new ideas and develop innovative solutions (Kleiman, 2008; 
+Liu et al., 2024). Creativity self-efficacy refers to individuals’ beliefs in 
+their capacity to produce original ideas and engage in creative perfor-
+mance (Tierney and Farmer, 2002). Rooted in self-efficacy theory 
+(Bandura, 1997; Schack, 1989), creativity self-efficacy emphasizes 
+domain-specific confidence as a driver of motivation and creative 
+engagement. Abulela (2024) argued that creativity self-efficacy is a criti-
+cal attribute for predicting, developing, and enhancing creative perfor-
+mance. Creativity can also be assessed through individuals’ confidence 
+in their creative abilities (Liu et al., 2024). Empirical studies indicate that 
+students with higher levels of creativity self-efficacy maintain positive 
+psychological states that support creative behavior (Lee et al., 2025). 
+Moreover, compared with those with lower self-efficacy, individuals with 
+stronger creative self-beliefs are more likely to experiment with alterna-
+tive ideas and strategies when encountering task-related obstacles, 
+thereby increasing their likelihood of success (Liu Z. et al., 2025; Paulus 
+and Brown, 2007). Given its significance, it is crucial to examine how 
+integrating a structured DT strategy into GAI-supported design learning 
+affects the development of students’ creativity self-efficacy.
+2.4 Problem-solving skills
+Problem-solving is conceptualized as individuals’ perceptions of 
+their competence when dealing with real-life personal problems, 
+including confidence in problem-solving, approach-avoidance ten-
+dencies, and perceived personal control ( Heppner and Petersen, 
+1982). Problem-solving and creativity are closely linked, as creative 
+thinking facilitates the development of novel and effective solutions to 
+complex challenges ( Calavia et al., 2021 ). It involves translating 
+abstract problems into concrete representations, generating potential 
+abstract solutions, and converting those solutions into actionable 
+strategies. Empirical evidence has shown that DT-based instructional 
+approaches can effectively foster problem-solving skills (Liu et al., 
+2024; Tsai et al., 2023). For example, Liu et al. (2024) reported that 
+applying the Stanford DT model significantly enhanced pre-service 
+teachers’ inventive problem-solving skills. Similarly, Tsai et al. (2023) 
+characterized DT as a student-centered approach that enhances stu-
+dents’ wicked problem-solving capabilities. In addition, recent studies 
+suggest that GAI can contribute to the development of problem-solv-
+ing skills. For example, Kim et al. (2025) found that GAI can facilitate 
+structured problem-solving, whereas Wei et al. (2025) demonstrated 
+that integrating GAI tools into digital activities can significantly 
+enhance students’ collaborative problem-solving skills. These findings 
+suggest that integrating DT with GAI may provide an effective peda-
+gogical structure for cultivating problem-solving skills. Therefore, this 
+study examines how integrating a structured DT strategy into GAI-
+supported design learning influences students’ problem-solving skills.
+3 Methods
+3.1 Research design
+This study adopted a quasi-experimental design that combined a 
+posttest-only control group design for design achievement and a 
+
+=== PDF PAGE 4 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 04 frontiersin.org
+pretest-posttest control group design for creative self-efficacy and 
+problem-solving skills. Quasi-experiments remain a rigorous 
+approach for examining causal relationships in authentic educational 
+settings where full experimental control is not feasible, provided that 
+potential threats to validity are carefully addressed ( Cook and 
+Campbell, 1986; Chiu and Hwang, 2025; Liu et al., 2024). The inde-
+pendent variable was the instructional method used during the card 
+game character design, with participants randomly assigned to one of 
+three groups: (1) Generative AI-supported learning with Structured 
+Design Thinking Strategy (GAI-SDTS), (2) Generative AI-supported 
+learning without the strategy (GAI), and (3) Traditional Design 
+Learning (TDL). The dependent variables were design achievement, 
+creative self-efficacy, and problem-solving skills, as shown in Figure 1.
+3.2 Population and sampling
+The population for this study consisted of second-year under -
+graduate students majoring in animation at a university located in 
+central China. A total of 120 students aged between 19 and 22 years 
+(M = 20.4, SD = 0.84) participated in the experiment. A single-stage 
+cluster sampling method was used to select three classes out of six 
+existing animation classes. All students in the selected classes were 
+then randomly assigned to one of three groups:
+ (1) Generative AI-supported learning with the Structured Design 
+Thinking Strategy (GAI-SDTS), in which students received 
+guidance based on the Double Diamond DT framework while 
+using generative AI tools;
+ (2) Generative AI-supported learning without the strategy (GAI), 
+where students used GAI tools but without any structured 
+design guidance; and.
+ (3) Traditional Design Learning (TDL), which followed a 
+conventional design instruction model without GAI tools or 
+explicit DT strategies.
+A four-week intensive practical course on character design was 
+conducted from October 20, 2025, to November 14, 2025. Students 
+were reorganized into new mixed-class groups based on their assigned 
+condition and completed the card character design tasks indepen-
+dently. Meanwhile, written informed consent was obtained from all 
+participants prior to the study. To ensure instructional consistency, the 
+instructor introduced the same course schedule, design requirements, 
+and learning objectives across all groups. During the design process, 
+they avoided intervening in students’ creative work and focused only 
+on maintaining classroom order, which included time management, 
+monitoring students’ adherence to task requirements, and responding 
+to procedural questions. This combination of cluster sampling and 
+random group assignment ensured the initial equivalence of partici-
+pants across groups and helped address the lack of a pretest measure 
+for design achievement, thus enhancing the internal validity of the 
+experimental design.
+3.3 Course design
+A course titled “Card Game Character Design” was specifically 
+developed for this study to enable students to effectively integrate digi-
+tal technologies into their design practice. The objective of the practi-
+cal course was as follows: “Using the digital tools you have learned, 
+design and create a distinctive card game character with clear person-
+ality traits. ” The course structure comprised four key components: (a) 
+character exploration, (b) character defining, (c) character creation, 
+and (d) character presentation, as shown in Figure 2. These compo-
+nents were designed to engage students in creatively addressing both 
+theoretical and practical design problems.
+FIGURE 1
+The research structure of the study.
+
+=== PDF PAGE 5 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 05 frontiersin.org
+To minimize instructional variability, the instructional design 
+strictly controlled all variables across groups except for the presence 
+of the structured DT strategy. All groups shared identical learning 
+objectives, design tasks, time allocation, instructor, instructional 
+materials, and assessment criteria. The instructor had over 15 years of 
+experience in design education and more than 2 years of experience 
+using GAI tools in instructional contexts. In addition, the instructor 
+received prior training to standardize instructional delivery across all 
+conditions, with an emphasis on neutral facilitation and minimizing 
+variability unrelated to the experimental intervention.
+Students in the TDL group conducted design exploration primar-
+ily through printed materials and online resources and independently 
+formulated character information based on the collected references. 
+They then created hand-drawn sketches and completed their final 
+designs using traditional digital tools, such as Photoshop. In contrast, 
+students in both the GAI-SDTS and GAI groups had access to the 
+same GAI tools, Deepseek and Dreamina, to support their design pro-
+cesses. Deepseek facilitated text-based interaction, enabling students 
+to develop character-related information through real-time dialogue 
+and iterative refinement. Dreamina supported text-to-image and 
+image-to-image generation, allowing students to produce and refine 
+high-quality character visuals by adjusting parameters and prompts.
+However, the main difference between the two GAI-supported 
+groups lay in whether the Double Diamond DT framework was 
+explicitly operationalized. Specifically, students in the GAI-SDTS 
+group were provided with a Double Diamond-Based Design 
+Operation Sheet (DDDOS) that articulated stage objectives, self-
+monitoring questions, suggested use of GAI tools, and stage com -
+pletion check. Details of the DDDOS are provided in 
+Supplementary Table S1 . This sheet supported students’ indepen -
+dent monitoring of their design progress without additional 
+instructor intervention. In contrast, students in the GAI group 
+used the same GAI tools freely without structured design 
+guidance.
+The DDDOS for the GAI-SDTS group was structured around 
+the four stages of the Double Diamond model: (1) Discover, (2) 
+Define, (3) Develop, and (4) Deliver. Throughout the DDDOS, 
+GAI-SDTS group were encouraged to use GAI tools at designated 
+points aligned with each design stage to support creativity and 
+problem-solving. Rather than providing instructional guidance or 
+evaluative feedback, the sheet externalized the DT, enabling stu -
+dents to independently regulate their progression through the 
+design task while maintaining instructional equivalence across 
+experimental conditions. Although the stages were presented 
+sequentially, the design process was inherently iterative; students 
+were encouraged to revisit earlier stages whenever reflection 
+revealed insufficient exploration, unclear definition, or misalign -
+ment between design intent and outcomes. Figure 3 illustrates the 
+GAI-supported learning with the structured DT strategy for the 
+GAI-SDTS group.
+In the Discover phase, the DDDOS guided GAI-SDTS group 
+to engage in broad design exploration by exploring diverse 
+themes, contexts, and visual possibilities for character design. 
+Students were prompted to reflect on whether they were suffi -
+ciently exploring multiple ideas rather than prematurely narrow -
+ing their focus. At this stage, DeepSeek was used to engage 
+students in theme-based dialogue to support the brainstorming of 
+character ideas, as illustrated in Figure 4 , while Dreamina was 
+used to browse homepage artworks and collect creative keywords 
+related to visual styles, as shown in Figure 5 . Students proceeded 
+to the next stage only after confirming that they had developed a 
+basic understanding of the character design space and potential 
+design directions.
+During the Define phase, the DDDOS supported convergent 
+thinking by requiring GAI-SDTS group to articulate a clear character 
+concept to identify design direction. Self-monitoring questions 
+prompted students to assess whether their character concept was 
+clearly defined and whether their design goal could be expressed con-
+cisely and coherently. At this stage, Deepseek was used to generate and 
+refine character concepts and to articulate prompt descriptions, 
+whereas Dreamina was intentionally not used to avoid premature 
+visual fixation. Students advanced to the next phase only after deter-
+mining for themselves that the intended direction of their character 
+design had been clearly articulated.
+FIGURE 2
+Course design.
+
+=== PDF PAGE 6 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 06 frontiersin.org
+In the Develop phase, the DDDOS guided GAI-SDTS group 
+to generate, compare, and refine multiple character design solu -
+tions. Self-monitoring questions encouraged students to reflect on 
+whether they had produced more than one design option and 
+whether they had systematically compared alternatives before 
+making selections. During this stage, Dreamina was used to gen -
+erate multiple character variations based on predefined prompts 
+and to support the comparison of alternative designs, as 
+FIGURE 3
+GAI-supported learning with the SDTS.
+FIGURE 4
+Exploring character themes through dialogue with Deepseek.
+
+=== PDF PAGE 7 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 07 frontiersin.org
+illustrated in Figure 6 , while Deepseek was intentionally not used 
+to allow students to focus exclusively on character sketch 
+generation.
+During the Deliver phase, the DDDOS focused on finalization 
+and presentation of the design outcome. It guided GAI-SDTS group 
+to refine the selected character design and clearly articulate the 
+rationale behind their design decisions. Self-monitoring questions 
+prompted students to assess alignment between the final design and 
+the original design goal and to evaluate their ability to justify design 
+choices. At this stage, Dreamina was used to refine visual details and 
+export the final design, as shown in Figure 7, while Deepseek was used 
+to summarize the final design statement.
+FIGURE 5
+Browsing artworks and collecting keywords using Dreamina.
+FIGURE 6
+Generating multiple character variations based on predefined prompts using Dreamina.
+
+=== PDF PAGE 8 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 08 frontiersin.org
+3.4 Instruments
+The scoring rubric used to assess students’ design achievement 
+was adapted from the framework proposed by Bian et al. (2025), origi-
+nally developed for evaluating visual artwork in design education. To 
+better align with the characteristics of the card-game character design 
+task, the rubric was revised by two associate professors with over 
+11 years of teaching experience in design education. The modified 
+rubric consists of five evaluation dimensions: (1) Technical Skill (2) 
+Adherence to Theme (3) Composition and Design (4) Creativity (5) 
+Detail Quality and Workload. Each dimension was rated on a five-
+point Likert scale, ranging from 1 (lowest) to 5 (highest). All student 
+submissions were anonymized and randomly ordered before evalua-
+tion. Two instructors with 8 years of design teaching experience inde-
+pendently rated student’s final work. Inter-rater reliability was assessed 
+using Kendall’s W , which yielded a value of 0.94 (p < 0.001), indicating 
+a high degree of agreement between the two raters.
+The Creative Self-Efficacy (CSE) scale, developed by Abulela 
+(2024), was used to assess learners’ creative self-efficacy in relation to 
+the GAI-integrated DT instructional approach adopted in this study. 
+The CSE instrument consists of 21 items divided into two dimensions: 
+Creative Ideas Self-Efficacy (CISE) with 12 items and Creative 
+Performance Self-Efficacy (CPSE) with 9 items. All items were rated 
+on a five-point Likert scale, ranging from 1 (strongly disagree) to 5 
+(strongly agree). To ensure the reliability of the instrument within the 
+context of this study, internal consistency analyses were conducted. 
+The overall Cronbach’s alpha coefficient for the CSE scale was 0.86, 
+indicating a high level of reliability. The alpha value for the CISE 
+dimension was 0.88, and for the CPSE dimension, it was 0.85, both 
+demonstrating strong internal consistency.
+The Problem-Solving Inventory (PSI), developed by Heppner and 
+Petersen (1982), was employed to assess learners’ perceived problem-
+solving ability in the context of the GAI-integrated DT instructional 
+approach implemented in this study. The PSI comprises 32 items dis-
+tributed across three dimensions: Problem-Solving Confidence (PSC) 
+with 11 items, Approach-Avoidance Style (AAS) with 16 items, and 
+Personal Control (PC) with 5 items. All items were rated on a five-
+point Likert scale ranging from 1 (strongly disagree) to 5 (strongly 
+agree). It is important to note that all three dimensions include 
+reverse-scored items, where higher scores reflect more negative per-
+ceptions of one’s problem-solving ability. For example, a sample item 
+from the PSC dimension is “Many problems I face are too complex for 
+me to solve. ” To examine the reliability of the instrument within the 
+present study sample, internal consistency analysis was conducted. 
+The overall Cronbach’s alpha coefficient was 0.86, indicating strong 
+reliability. The alpha values for each subscale were 0.88 for PSC, 0.84 
+for AAS, and 0.82 for PC, suggesting good internal consistency across 
+all dimensions. The PSI captures individuals’ confidence, approach 
+tendencies, and perceived control in problem-solving, which remain 
+relevant across domains, including design tasks. However, the PSI 
+does not fully reflect design-specific and AI-mediated problem-solv-
+ing processes. Therefore, the findings should be interpreted as general 
+tendencies rather than domain-specific abilities.
+3.5 Experimental procedures
+The experimental procedure for this study is shown in Figure 8. 
+In Week 1, all students completed the pre-tests of creative self-efficacy, 
+and problem-solving skills. Students in the GAI-SDTS and GAI 
+groups also received 90 min of standardized training on the use of 
+GAI tools to ensure a shared understanding of how to apply these 
+tools effectively during the design tasks. During the training, the 
+instructor demonstrated the operational procedures of Deepseek and 
+Dreamina, including prompt techniques, parameter adjustment,and 
+image generation and refinement. Students also engaged in hands-on 
+practice to familiarize themselves with the tools. This training was 
+FIGURE 7
+Refining visual details and exporting the final design using Dreamina.
+
+=== PDF PAGE 9 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 09 frontiersin.org
+provided solely for operational familiarization and was deliberately 
+kept independent of the experimental design content and tasks.
+Between Weeks 2 and 5, students in all groups completed the same 
+card game character design tasks. However, the instructional condi-
+tions differed across groups. The GAI-SDTS group completed the 
+tasks using GAI tools guided by a structured DT strategy based on the 
+Double Diamond model. The GAI group used the same GAI tools but 
+without structured DT guidance. In contrast, the TDL group com-
+pleted the tasks using traditional design software without the use of 
+GAI tools or explicit DT strategies.
+In the week 6 of the experiment, students’ final card character 
+design artworks are used as the basis for grading their design achieve-
+ments Meanwhile, all three groups completed the post-test question-
+naires on creative self-efficacy and problem-solving skills.
+4 Results
+All data were analyzed by SPSS 26.0. As only post-test scores were 
+collected for the design achievement, a one-way ANOV A was con-
+ducted to examine differences between the GAI-SDTS, GAI, and TDL 
+groups. For the creative self-efficacy and problem-solving skills, both 
+pre-test and post-test data were collected. Therefore, ANCOV A was 
+used to assess post-test differences among groups while controlling 
+students’ pre-test scores as covariates. The statistical significance level 
+was set at p < 0.05 for all analyses.
+4.1 Design achievement results
+The assumption of homogeneity of variances was tested using 
+Levene’s test, and the result was non-significant (p > 0.05), indicating 
+that the variances were equal across groups and ANOV A assumptions 
+were met. The ANOV A revealed a statistically significant effect of 
+instructional condition on design achievement, F = 43.28, p < 0.001, 
+suggesting that the type of instructional support had a substantial 
+impact on students’ performance. As shown in Table 1, the GAI-SDTS 
+group (M = 20.90, SD = 7.64) achieved significantly higher scores than 
+both the GAI group ( M = 18.65, SD = 7.41) and the TDL group 
+(M = 16.13, SD = 6.85). Post hoc comparisons using Tukey’s HSD indi-
+cated that all pairwise differences were statistically significant: GAI-
+SDTS > GAI ( p < 0.001), GAI-SDTS > TDL ( p < 0.001), and 
+GAI > TDL (p < 0.001). These results suggest that integrating a DT 
+strategy into GAI-supported learning significantly enhanced students’ 
+FIGURE 8
+Experimental procedure.
+TABLE 1 ANOVA result for design achievements of three groups.
+Variable Group N Mean S.D. F Post hoc
+Post-test
+ (1) GAI-SDTS 40 20.90 7.64 43.28*** (1) > (2)
+ (2) GAI 40 18.65 7.41 (1) > (3)
+ (3) TDL 40 16.13 6.85 (2) > (3)
+The symbol *** indicates statistical significance at the p < 0.001 level. Note: *** p < 0.001.
+
+=== PDF PAGE 10 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 10 frontiersin.org
+design achievement compared to both GAI-only and traditional 
+learning.
+4.2 Creative self-efficacy results
+ANCOV A was conducted to examine the effects of instructional 
+conditions on students’ creative self-efficacy, using pretest scores as 
+covariates. The assumption of homogeneity of regression slopes was 
+met, with F = 0.12, p = 0.89 > 0.05, indicating no significant interac-
+tion between the covariate and the grouping variable. Levene’s test 
+of equality of error variances also confirmed that the data satisfied 
+the assumption of homogeneity (p > 0.05). As shown in Table 2, the 
+ANCOV A revealed a statistically significant main effect of group on 
+creative self-efficacy, with F = 803.16, p < 0.001. After adjusting for 
+pre-test scores, the GAI-SDTS group (adjusted M = 4.25) performed 
+significantly better than both the GAI group (adjusted M = 3.84) 
+and the TDL group (adjusted M = 3.54). Bonferroni post hoc analysis 
+indicated that all pairwise group differences were statistically signifi-
+cant: GAI-SDTS scored higher than GAI, and GAI scored higher 
+than TDL. These findings indicate that the GAI-SDTS group dem -
+onstrated the highest overall creative self-efficacy among the 
+three groups.
+To further examine the dimensions of creative self-efficacy, 
+ANCOV A was separately conducted on the creative ideas self-effi -
+cacy dimension. The test for homogeneity of regression slopes 
+showed no significant violation, with F = 0.61, p = 0.55 > 0.05, and 
+Levene’s test confirmed the equality of variances (p > 0.05). Results 
+showed a significant group effect, with F = 432.90, p < 0.001. The 
+adjusted means indicated that the GAI-SDTS group (4.26) reported 
+the highest level of creative ideas self-efficacy, followed by the GAI 
+group (3.80) and then the TDL group (3.45). All between-group 
+differences were statistically significant. These findings indicate that 
+the GAI-SDTS group achieved the highest level of creative ideas 
+self-efficacy.
+A similar pattern was observed in the creative performance self-
+efficacy dimension. The assumption of homogeneity of regression 
+slopes was met, F = 0.38, p = 0.69 > 0.05, and Levene’s test showed no 
+violation of the homogeneity of variances assumption ( p > 0.05). 
+ANCOV A results demonstrated a significant difference among the 
+three groups, F = 190.10, p < 0.001. The adjusted post-test mean of the 
+GAI-SDTS group (4.23) was significantly higher than that of the GAI 
+group (3.89), which in turn was higher than the TDL group (3.67), 
+with all differences reaching statistical significance. It is evident that 
+the GAI-SDTS group reported the highest creative performance 
+self-efficacy.
+4.3 Problem-solving skills results
+To evaluate the effects of instructional conditions on students’ 
+problem-solving skills, a one-way ANCOV A was performed using 
+pretest scores as covariates. The assumption of homogeneity of regres-
+sion slopes was satisfied (F = 0.31, p = 0.72 > 0.05), and Levene’s test 
+also indicated equality of error variances ( p > 0.05). The analysis 
+revealed a significant main effect of group on overall problem-solving 
+skills, F = 461.14, p < 0.001. After adjusting for pre-test scores, the 
+GAI-SDTS group (adjusted M = 4.44) scored higher than the GAI 
+group (adjusted M = 4.04), and both outperformed the TDL group 
+(adjusted M = 3.71), as shown in Table 3. These results suggest that 
+students in the GAI-SDTS group reported relatively higher overall 
+problem-solving skills.
+For the problem-solving confidence dimension, the homogeneity 
+of regression slopes was confirmed ( F = 0.51, p = 0.61 > 0.05), and 
+Levene’s test also showed no violation of variance equality (p > 0.05). 
+The ANCOV A yielded a significant effect of group, F = 140.48, 
+p < 0.001. The adjusted means revealed that the GAI-SDTS group 
+(4.73) scored higher than the GAI group (4.01), and both groups 
+scored higher than the TDL group (4.00), as shown in Table 3. These 
+findings indicate that the GAI-SDTS group demonstrated the highest 
+level of problem-solving confidence.
+A similar pattern was found in the other two dimensions. For the 
+approach-avoidance style, the regression slope assumption was satis-
+fied (F = 0.67, p = 0.52 > 0.05), and Levene’s test supported homoge-
+neity of variances (p > 0.05). The ANCOV A showed a significant 
+group effect, F = 228.83, p < 0.001. The GAI-SDTS group (adjusted 
+M = 4.34) outperformed the GAI group (4.03), which in turn scored 
+higher than the TDL group (3.82). Regarding personal control, the 
+assumption of equal regression slopes was met ( F = 1.13, 
+p = 0.33 > 0.05), with homogeneity of variances confirmed (p > 0.05). 
+A significant difference was found among groups, F = 171.68, 
+p < 0.001. The adjusted means were 4.11 (GAI-SDTS), 3.29 (GAI), and 
+2.75 (TDL), with all between-group differences reaching significance 
+(see Table 3). These findings suggest that the GAI-SDTS group 
+reported higher scores in both approach-avoidance style and personal 
+control than the other groups.
+TABLE 2 ANCOVA result for creative self-efficacy of three groups.
+Variable Group N Mean S.D. Adjusted mean F Post hoc
+Total
+(1) GAI-SDTS 40 4.24 0.15 4.25 803.16*** (1) > (2)
+(2) GAI 40 3.84 0.14 3.84 (1) > (3)
+(3) TDL 40 3.55 0.14 3.54 (2) > (3)
+Creative ideas self-
+efficacy
+(1) GAI-SDTS 40 4.26 0.19 4.26 432.90*** (1) > (2)
+(2) GAI 40 3.81 0.16 3.80 (1) > (3)
+(3) TDL 40 3.45 0.19 3.45 (2) > (3)
+Creative performance 
+self-efficacy
+(1) GAI-SDTS 40 4.22 0.19 4.23 190.10*** (1) > (2)
+(2) GAI 40 3.89 0.14 3.89 (1) > (3)
+(3) TDL 40 3.68 0.16 3.67 (2) > (3)
+The symbol *** indicates statistical significance at the p < 0.001 level. Note: *** p < 0.001.
+
+=== PDF PAGE 11 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 11 frontiersin.org
+5 Discussion
+This study proposed a structured DT strategy to strengthen the 
+use of GAI in design learning and to improve students’ design think-
+ing ability. The strategy was implemented in a four-week intensive 
+university-level character design course, and its effects were examined 
+in terms of students’ design achievement, creative self-efficacy, and 
+problem-solving skills.
+5.1 Impact on design achievement
+For the research question 1, the results indicate that students in 
+the GAI-SDTS group achieved higher design scores than those in the 
+GAI and TDL groups, while students in the GAI group also outper-
+formed those in the TDL group. The findings indicate that the use of 
+GAI can enhance students’ design achievement. This improvement 
+appears to be associated with the affordances of GAI tools in expand-
+ing creative possibilities and supporting higher-quality design out-
+comes. Indeed, GAI can improve workflow, reduce cognitive load, and 
+foster creativity in design learning (Chandrasekera et al., 2025), while 
+also helping students explore design alternatives and support informed 
+decision-making (Almaz et al., 2024). The results are consistent with 
+the findings of Chen et al. (2025) , who reported that a ChatGPT-
+driven pedagogical agent provided personalized and immediate feed-
+back, significantly improving students’ academic performance in 
+design and art courses. Similarly, Zeng et al. (2025)  found that an 
+AI-driven smart sketchpad offering greater creative freedom and 
+expressive possibilities effectively enhanced students’ performance in 
+film character design. However, it should be noted that students in the 
+GAI-SDTS and GAI groups used AI tools to generate and refine visual 
+outputs. Therefore, design achievement scores may partly reflect the 
+quality of AI-generated artifacts rather than students’ independent 
+design ability.
+In addition, the findings suggest that integrating a structured DT 
+strategy into GAI-supported learning environments can further 
+improve students’ design achievement. This improvement may be 
+attributed to the DDDOS, which provides learners with clear proce-
+dural guidance to plan, regulate, and reflect on their design processes. 
+Meanwhile, the DDDOS offers explicit instructions on how to use 
+GAI tools at different stages of the design process, which may help 
+students engage with GAI in a more purposeful manner. In this way, 
+the structured DT strategy appears to enhance the instructional effec-
+tiveness of GAI-supported design learning. This result supports earlier 
+study that AI systems should be provided instructional scaffolding and 
+possess the key attributes of a learning partner in order to strengthen 
+the interaction between students and AI ( Kim et al., 2022 ). It also 
+aligns with Chiu and Hwang (2025), who demonstrated that integrat-
+ing a mind-mapping strategy into GAI-supported learning environ-
+ments significantly improved students’ learning achievement.
+However, the present results differ from those reported by Zhan 
+et al. (2022), who found no significant difference in learning achieve-
+ment between product-based pedagogy and direct instruction in a 
+high-school AI course. These differences may be attributed to the high 
+degree of procedural complexity in Zhan et al. ’s (2022) study. As prod-
+uct-based pedagogy organized learning around a seven-step 7P model 
+(phenomenon, problem, plan, prototype, product, presentation, and 
+price), the extensive process requirements may have fragmented stu-
+dents’ learning and diluted immediate performance gains. In contrast, 
+the present study adopted a more streamlined and cognitively focused 
+instructional structure. By embedding a structured DT strategy within 
+GAI-supported learning, students were guided through essential 
+phases of problem framing, ideation, and refinement without exces-
+sive procedural overhead.
+5.2 Impact on creative self-efficacy
+For the research question 2, students in the GAI-SDTS group 
+reported higher creative self-efficacy than those in the GAI and TDL 
+groups. This result can be attributed to the structured DT strategy 
+embedded in the GAI-SDTS condition. Verganti et al. (2021) emph-
+sied that DT can function as an instructional strategy that guides 
+design activities through a set of practical principles, methods, and 
+tools. In this study, the DT strategy functioned as an effective design 
+approach that supported self-monitoring, encouraged task checking, 
+and provided clear guidance on appropriate use of GAI, which 
+prompted students to reflect on their design actions and make pur-
+poseful adjustments throughout the design process.
+Meanwhile, GAI offered students opportunities to explore 
+design ideas, clarify design goals, and generate and refine creative 
+solutions. These factors contributed to more positive creative 
+TABLE 3 ANCOVA result for problem-solving skills of three groups.
+Variable Group N Mean S.D. Adjusted Mean F Post hoc
+Total
+ (1) GAI-SDTS 40 4.45 0.12 4.44 461.14*** (1) > (2)
+ (2) GAI 40 4.04 0.12 4.04 (1) > (3)
+ (3) TDL 40 3.72 0.10 3.71 (2) > (3)
+Problem-solving 
+confidence
+ (1) GAI-SDTS 40 4.73 0.20 4.73 140.48*** (1) > (2)
+ (2) GAI 40 4.39 0.24 4.41 (1) > (3)
+ (3) TDL 40 4.00 0.15 4.00 (2) > (3)
+Approach avoidance 
+style
+ (1) GAI-SDTS 40 4.34 0.11 4.34 228.83*** (1) > (2)
+ (2) GAI 40 4.03 0.10 4.03 (1) > (3)
+ (3) TDL 40 3.83 0.14 3.82 (2) > (3)
+Personal control
+ (1) GAI-SDTS 40 4.15 0.36 4.11 171.68*** (1) > (2)
+ (2) GAI 40 3.25 0.49 3.29 (1) > (3)
+ (3) TDL 40 2.75 0.30 2.75 (2) > (3)
+The symbol *** indicates statistical significance at the p < 0.001 level. Note: *** p < 0.001.
+
+=== PDF PAGE 12 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 12 frontiersin.org
+experiences, which strengthened students’ confidence in their cre -
+ative abilities and supported a more fluent and sustained design 
+process. This finding is consistent with the study by Chans et al. 
+(2025), which reported that integrating GAI into DT activities can 
+enhance students’ creativity by supporting idea generation and 
+expanding the range of considerations involved in design. The 
+results suggest that when GAI is embedded within a structured DT 
+framework, it not only broadens the scope of creative exploration 
+but also promotes reflective and user-centered design practices. 
+Therefore, the integration appears to be particularly effective in 
+strengthening students’ creative self-efficacy, as learners develop 
+greater confidence in both generating creative ideas and transform-
+ing them into meaningful design outcomes.
+With regard to creative ideas self-efficacy, the findings indicate 
+that students in the GAI-SDTS group were more confident in their 
+ability to generate original and meaningful ideas than students in the 
+other two groups. This result is consistent with Petrova and Kuhnen 
+(2025), who demonstrated that GAI effectively enhanced the ideation 
+process and facilitated collaboration, which in turn fostered students’ 
+confidence. Similarly, Chang and Tsai’s (2024) research showing that 
+DT significantly and positively affected idea creativity in AI applica-
+tions, particularly in terms of novelty and value. The combined use of 
+a structured DT strategy and technological tools may further enhance 
+this effect. However, Lively et al. (2023) cautioned that GAI may strug-
+gle to produce truly original ideas, as it relies heavily on existing works 
+and patterns to generate design outputs. In addition, overreliance on 
+AI may overshadow the innate creativity of humans and disconnect 
+them from their creative instincts (Montenegro, 2024). The present 
+study shows that integrating a structured DT strategy into GAI-
+supported learning can effectively address these concerns by guiding 
+students to critically reflect on AI-generated ideas and to use GAI 
+tools at designated points aligned with each stage of the design 
+process.
+A similar pattern was found for creative performance self-efficacy, 
+which refers to students’ confidence in turning ideas into clear and 
+well-developed design outcomes. Students in the GAI-SDTS group 
+reported the highest creative performance self-efficacy. This finding is 
+consistent with Lin and Chang’s (2024) study, which demonstrated 
+that hands-on DT learning in AI-related tasks significantly enhanced 
+the novelty, feasibility, and value of students’ design products. This 
+finding suggests that creative self-efficacy during the execution stage 
+depends strongly on structured guidance and opportunities for 
+repeated improvement. Although GAI can improve visual quality and 
+lower technical barriers, structured DT further helps students make 
+informed design decisions. As a result, students develop stronger con-
+fidence in their ability to successfully realize creative ideas.
+5.3 Impact on problem-solving skills
+For the research question 3, the findings indicate that students in 
+the GAI-SDTS group exhibited stronger overall problem-solving skills 
+than those in the GAI and TDL groups, with consistent advantages 
+observed across all three dimensions: problem-solving confidence, 
+approach-avoidance style, and personal control. This may be because 
+the structured DT functioned as a powerful pedagogical mechanism 
+for cultivating problem-solving abilities in GAI-supported design 
+learning environments. In the GAI-SDTS condition, learners main-
+tained decision-making autonomy while benefiting from a clearly 
+structured design process, which supported purposeful strategy use 
+and sustained engagement, thereby contributing to improved prob-
+lem-solving performance (Willems et al., 2025).
+The results are consistent with Kim et al. (2025) study, which dem-
+onstrated that DT-based GAI improved problem-solving skills, sug-
+gesting that integrating DT with GAI enhances learners’ contextual 
+understanding and emotional engagement, thereby supporting more 
+effective problem definition. Similarly, Hong et al. (2023) found that 
+DT-based GAI education led to significant improvements across mul-
+tiple dimensions of creative problem-solving ability, including prob-
+lem detection and analysis, idea generation, action planning, 
+execution, and communication. These findings suggest that structured 
+inquiry and iterative design cycles strengthen learners’ confidence and 
+persistence in complex tasks.
+However, Gonsalves (2024)  cautioned that easy access to 
+AI-generated solutions may encourage superficial engagement. In 
+contrast, the present findings suggest that structured DT can effec-
+tively address common concerns about cognitive passivity or shallow 
+learning associated with AI use. This indicate that the educational 
+impact of GAI is largely shaped by pedagogical design. In the GAI-
+SDTS condition, learners were required to generate, compare, and 
+justify alternative solutions, positioning AI outputs as prompts for 
+reflection rather than ready-made answers.
+With regard to problem-solving confidence, the higher confi -
+dence reported by the GAI-SDTS group may be attributed to the 
+explicit emphasis on problem identification and definition during 
+the early stages of the Double Diamond model. By guiding students 
+to systematically explore design contexts and clarify constraints 
+before generating solutions, the structured strategy likely reduced 
+uncertainty. In contrast, students in less structured conditions may 
+have relied more heavily on trial-and-error or AI outputs without 
+fully understanding the underlying problem space, which can 
+undermine confidence.
+The improvements observed in approach-avoidance style further 
+highlight the value of structured DT in GAI-supported learning. 
+Students in the GAI-SDTS group were more inclined to actively 
+engage with problems rather than avoid them, suggesting greater per-
+sistence and willingness to invest effort. In addition, gains in personal 
+control suggest that students experienced stronger self-regulation and 
+agency. The DDDOS externalized the design process without impos-
+ing direct instructor control, enabling students to monitor progress 
+independently while maintaining autonomy. The dialogue records 
+showed that students in the GAI-SDTS group were more willing to 
+confront emerging design difficulties by iteratively refining prompts, 
+requesting alternative perspectives, and testing multiple solution 
+paths. These results show that integrating GAI into a structured DT 
+framework enhances not only problem-solving outcomes but also 
+learners’ confidence, engagement, and self-regulatory capacities in 
+complex design tasks.
+5.4 Contribution to recent research
+In recent studies, GAI has been shown to improve learning out -
+comes in design education, including creativity, motivation, self-
+efficacy, cognitive load, and academic achievement ( Chiu, 2026 ; 
+Huang et al., 2026; Wang et al., 2026). Existing research has largely 
+emphasized GAI itself, but has paid less attention to how integrat -
+ing GAI with well-established DT instructional models shapes 
+
+=== PDF PAGE 13 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 13 frontiersin.org
+learning outcomes. In design education, DT is crucial, but research 
+on how integrating GAI into DT influences students’ creative self-
+efficacy and problem-solving skills remains limited. The present 
+study is the first to examine the differential effects of integrating a 
+structured DT strategy into GAI-supported design learning for ani -
+mation majors. The findings show that a structured DT strategy can 
+function as a pedagogical mechanism that strengthens not only 
+design achievement but also creative self-efficacy and problem-
+solving skills. The study therefore extends recent research by clari -
+fying that the educational value of GAI depends not only on access 
+to AI tools, but also on how its use is pedagogically structured 
+across the design process.
+5.5 Theoretical and practical implications
+This study provides several important theoretical contributions to 
+the understanding of GAI-supported design learning in higher educa-
+tion. Its novelty lies in the integration of DT, particularly the Double 
+Diamond model, into GAI-supported design instruction. While previ-
+ous studies have examined the role of GAI in design education, they 
+have primarily treated AI as a single tool for content generation. In 
+contrast, the present study conceptualizes GAI as a process-oriented 
+learning support that is deliberately embedded across all stages of the 
+DT cycle to guide students’ structured and purposeful use of AI. By 
+integrating GAI with a structured DT strategy grounded in the Double 
+Diamond model, this study extends prior research on GAI-supported 
+creativity and problem-solving. In addition, this study contributes to 
+design education theory by empirically validating the role of struc-
+tured DT in enhancing design achievement, creative self-efficacy, and 
+problem-solving skills within AI-mediated learning environments. 
+Moreover, the results enrich theoretical discussions of human-AI col-
+laboration by illustrating how guided interaction with AI can promote 
+reflective thinking, self-regulation, and learner agency, rather than 
+cognitive passivity.
+From a practical perspective, this study offers actionable insights 
+for educators, students, and institutions seeking to integrate GAI into 
+design education. For educators, the findings highlight the importance 
+of aligning GAI use with design stages and instructional goals, ensur-
+ing that students engage critically with AI-generated outputs rather 
+than relying on them unreflectively. For students, the study suggests 
+that scaffolded learning environments integrating GAI tools can sup-
+port idea generation, refinement, and evaluation, while helping learn-
+ers maintain coherence and cognitive focus throughout the design 
+task. At the institutional level, the results suggest that effective adop-
+tion of GAI requires pedagogical frameworks and guidelines that miti-
+gate overreliance and foster higher-order thinking.
+5.6 Limitations and future directions
+This study has several limitations that should be considered 
+when interpreting the findings and that also suggest directions for 
+future research. First, although the study provides evidence for the 
+effectiveness of integrating a structured DT strategy into GAI-
+supported learning, it relied primarily on outcome-based measures 
+and quantitative analyses. This is a limitation because DT has long 
+been understood as a process-oriented form of learning ( Scheer et 
+al., 2012 ; Li et al., 2024 ). Future research would benefit from 
+adopting qualitative or mixed-methods approaches to explore stu -
+dents’ learning experiences, design decision-making processes, 
+and interactions with GAI tools across different stages of the 
+design process. Second, this study compared the GAI-SDTS, GAI, 
+and TDL groups, but did not include a structured DT strategy 
+without GAI-supported learning group. Future studies could 
+include an additional structured DT-only group to further clarify 
+the independent and combined effects of structured DT and GAI-
+supported learning. Third, the PSI captures students’ general per -
+ceived problem-solving tendencies, which remain relevant across 
+domains. Future research could incorporate design-specific mea -
+sures to better capture students’ problem-solving processes in 
+AI-supported design learning. Fourth, the instructional interven -
+tion in this study was limited to a specific design task and a single 
+implementation of the Double Diamond-based DT strategy. This 
+constrains transferability, as DT pedagogy has long been recog -
+nized as diverse in educational application ( Hasso Plattner 
+Institute of Design at Stanford University (d.school), 2010 ; Wrigley 
+and Straker, 2015 ; Liu et al., 2024 ). Future studies could investigate 
+how variations in DT structures or task complexity influence stu -
+dents’ performances. Fifth, this study did not examine long-term 
+learning effects or potential risks. Cognitive offloading and over -
+reliance on AI have been raised as challenges requiring further 
+inquiry ( Hewitt and Scardamalia, 1998 ; Wei et al., 2025 ). 
+Longitudinal research is needed to investigate how sustained 
+engagement with GAI within structured design frameworks affects 
+students’ autonomy, critical engagement, and reflective thinking. 
+Finally, this study did not incorporate instructor or peer critique 
+into the intervention. This point is important because critique has 
+long been regarded as a core pedagogical practice in design learn -
+ing ( Gray, 2013; Liu C. C. et al., 2025 ). While this strengthened 
+internal validity, it also reduced the ecological authenticity of the 
+learning environment. Future research should therefore examine 
+whether the observed effects remain consistent when structured 
+forms of critique are integrated across conditions.
+6 Conclusion
+This study examined the effects of integrating a structured DT 
+strategy into GAI-supported design learning on university students’ 
+design achievement, creative self-efficacy, and problem-solving skills. 
+The research was guided by three hypotheses: students in the GAI-
+SDTS group would achieve higher design achievement (H1), report 
+higher creative self-efficacy (H2), and demonstrate stronger problem-
+solving skills (H3) than those in the GAI and TDL groups. The results 
+corroborated all three hypotheses. Across all measured outcomes, 
+students in the GAI-supported learning with a structured DT strategy 
+condition consistently outperformed those in the GAI-only and tra-
+ditional design learning groups. These findings indicate that while 
+GAI tools can effectively lower technical barriers and facilitate idea 
+exploration, their educational value appears to be strengthened when 
+embedded within a structured pedagogical framework. More impor-
+tantly, the results suggest that the benefits of GAI in design education 
+do not stem solely from content generation or efficiency gains, but 
+from how AI use is pedagogically organized. By aligning GAI-
+supported activities with the stages of the Double Diamond model, 
+the proposed approach supported students in systematic problem 
+framing, iterative ideation, reflection, and refinement. The DDDOS 
+externalized the design process without imposing direct instructor 
+
+=== PDF PAGE 14 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 14 frontiersin.org
+control, enabling learners to regulate their progress autonomously 
+while maintaining engagement with complex design tasks.
+Data availability statement
+The raw data supporting the conclusions of this article will be 
+made available by the authors, without undue reservation.
+Ethics statement
+The studies involving humans were approved by the Human 
+Research Ethics Committee of Universiti Sains Malaysia. The studies 
+were conducted in accordance with the local legislation and institu-
+tional requirements. The participants provided their written informed 
+consent to participate in this study.
+Author contributions
+FS: Software, Data curation, Visualization, Conceptualization, 
+Writing – review & editing, Formal analysis, Project administration, 
+Supervision, Writing  – original draft, Methodology. BX: 
+Conceptualization, Formal analysis, Validation, Methodology, 
+Writing – original draft, Investigation.
+Funding
+The author(s) declared that financial support was not received for 
+this work and/or its publication.
+Acknowledgments
+The author(s) expresses they sincere gratitude to the students and 
+faculty who participated in this study for their valuable time and 
+insightful contributions.
+Conflict of interest
+The author(s) declared that this work was conducted in the 
+absence of any commercial or financial relationships that could be 
+construed as a potential conflict of interest.
+Generative AI statement
+The author(s) declared that Generative AI was used in the creation 
+of this manuscript. The author(s) declared that Generative AI was 
+used solely by students as part of the instructional intervention 
+described in the Methods section to support design exploration and 
+ideation.
+Any alternative text (alt text) provided alongside figures in this 
+article has been generated by Frontiers with the support of artificial 
+intelligence and reasonable efforts have been made to ensure accuracy, 
+including review by the authors wherever possible. If you identify any 
+issues, please contact us.
+Publisher’s note
+All claims expressed in this article are solely those of the authors 
+and do not necessarily represent those of their affiliated organiza -
+tions, or those of the publisher, the editors and the reviewers. Any 
+product that may be evaluated in this article, or claim that may be 
+made by its manufacturer, is not guaranteed or endorsed by the 
+publisher.
+Supplementary material
+The Supplementary material for this article can be found online 
+at: https://www.frontiersin.org/articles/10.3389/fpsyg.2026.1847432/
+full#supplementary-material
+References
+Abulela, M. A. A. (2024). Development and initial validation of a creative self-effi -
+cacy scale for undergraduates: categorical confirmatory factor analysis and multidi -
+mensional item response theory. Front. Educ.  8:1306532. doi: 10.3389/
+feduc.2023.1306532
+Almaz, A. F ., El-Agouz, E. A. E. A., Abdelfatah, M. T., and Mohamed, I. R. (2024). The 
+future role of artificial intelligence design integration into architectural and interior 
+design education is to improve efficiency, sustainability, and creativity. Civ. Eng. Archit. 
+12, 1749–1772. doi: 10.13189/cea.2024.120336
+Balakrishnan, B. (2022). Exploring the impact of design thinking tool among design 
+undergraduates: a study on creative skills and motivation to think creatively. Int. J. 
+Technol. Des. Educ. 32, 1799–1812. doi: 10.1007/s10798-021-09652-y
+Bandura, A. (1997). Self-Efficacy: The Exercise of Control. New Y ork: Macmillan.
+Bian, C., Wang, X., Huang, Y ., Zhou, S., and Lu, W . (2025). Effects of AI-generated images 
+in visual art education on students' classroom engagement, self-efficacy and cognitive 
+load. Humanit. Soc. Sci. Commun. 12, 1–14. doi: 10.1057/s41599-025-05860-2
+Caires, C. S., Estadieu, G., and Olga Ng Ka Man, S. (2023). “Design thinking methodology 
+and text-to-image artificial intelligence: a case study in the context of furniture design 
+education, ” in Perspectives on Design and Digital Communication IV: Research, Innovations 
+and Best Practices, (Cham: Springer Nature Switzerland), 113–134.
+Calavia, M. B., Blanco, T., and Casas, R. (2021). Fostering creativity as a problem-solving 
+competence through design: think-create-learn, a tool for teachers. Think. Skills Creat. 
+39:100761. doi: 10.1016/j.tsc.2020.100761
+Chandrasekera, T., Hosseini, Z., Perera, U., and Bazhaw Hyscher, A. (2025). Generative 
+artificial intelligence tools for diverse learning styles in design education. Int. J. Archit. 
+Comput. 23, 358–369. doi: 10.1177/14780771241287345
+Chang, Y . S., and Tsai, M. C. (2024). Effects of design thinking on artificial intelligence 
+learning and creativity. Educ. Stud. 50, 763–780. doi: 10.1080/03055698.2021.1999213
+Chans, G. M., Merino-Soto, C., Chavez, S. S., Castro, J. A. G., Zavala, G., and 
+Rodriguez, E. S. (2025). "Integrating generative AI into design thinking: assessing impact 
+on creativity and innovation in STEM education," In 2025 IEEE Global Engineering 
+Education Conference (EDUCON) (Piscataway, NJ: IEEE), 1–7.
+Chen, J., Mokmin, N. A. M., and Su, H. (2025). Integrating generative artificial intelli-
+gence into design and art course: effects on student achievement, motivation, and self-
+efficacy. Innov. Educ. Teach. Int. 62, 1431–1446. doi: 10.1080/14703297.2025.2503857
+Chiu, M. C. (2026). An image generative AI-empowered watch-summarise-question-
+illustrate approach to enhancing students' learning motivation, self-efficacy and creative 
+thinking in sustainable product design. Int. J. Mob. Learn. Organ. 20, 157–187. doi: 
+10.1504/IJMLO.2026.152813
+
+=== PDF PAGE 15 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 15 frontiersin.org
+Chiu, M. C., and Hwang, G. J. (2025). Enhancing student creative and critical thinking in 
+generative AI-empowered creation: a mind-mapping approach. Interact. Learn. Environ. 
+34, 869–890. doi: 10.1080/10494820.2025.2511244
+Cook, T. D., and Campbell, D. T. (1986). The causal assumptions of quasi-experimental 
+practice: the origins of quasi-experimental practice. Synthese 68, 141–180. doi: 10.1007/
+BF00413970
+Darvishi, A., Khosravi, H., Sadiq, S., Gasevic, D., and Siemens, G. (2024). Impact of AI 
+assistance on student agency. Comput. Educ.  210:104967. doi: 10.1016/j.
+compedu.2023.104967
+Derevyanko, N., and Zalevska, O. (2023). Comparative analysis of neural networks 
+Midjourney, stable diffusion, and DALL-E and ways of their implementation in the edu-
+cational process of students of design specialities. Sci. Bull. Mukachevo State Univ. Ser. 
+Pedag. Psychol. 9, 36–44. doi: 10.52534/msu-pp3.2023.36
+Design Council. (2007). The double diamond. Available online at: https://www.design-
+council.org.uk/our-resources/the-double-diamond/ (Accessed October 10, 2025).
+Du, J., Jing, S., and Liu, J. (2012). Creating shared design thinking process for collaborative 
+design. J. Netw. Comput. Appl. 35, 111–120. doi: 10.1016/j.jnca.2011.02.014
+Dunne, D., and Martin, R. (2006). Design thinking and how it will change management 
+education: an interview and discussion. Acad. Manag. Learn. Educ. 5, 512–523. doi: 
+10.5465/AMLE.2006.23473212
+Gonsalves, C. (2024). Generative AI'S impact on critical thinking: revisiting bloom's tax-
+onomy. J. Mark. Educ. 48, 4–19. doi: 10.1177/02734753241305980
+Grau, S., and Rockett, T. (2026). “Integrating artificial intelligence and design thinking: 
+enhancing students' practical skills, ” in Human-Centered Learning Design in the AI Era, 
+(Hershey, PA: IGI Global Scientific Publishing), 121–156.
+Gray, C. M. (2013). Informal peer critique and the negotiation of habitus in a design 
+studio. Art Des. Commun. High. Educ. 12, 195–209. doi: 10.1386/adch.12.2.195_1
+Guaman-Quintanilla, S., Everaert, P ., Chiluiza, K., and Valcke, M. (2022). Fostering team-
+work through design thinking: evidence from a multi-actor perspective. Educ. Sci. 12:279. 
+doi: 10.3390/educsci12040279
+Hasso Plattner Institute of Design at Stanford University (d.school). (2010). Design 
+Thinking Bootcamp Bootleg (Archival Resource). Stanford, CA: Stanford d.school. 
+Available online at: https://dschool.stanford.edu/resources/the-bootcampbootleg 
+(Accessed October 10, 2025).
+Heppner, P . P ., and Petersen, C. H. (1982). The development and implications of a per-
+sonal problem-solving inventory. J. Couns. Psychol.  29, 66–75. doi: 
+10.1037/0022-0167.29.1.66
+Hewitt, J., and Scardamalia, M. (1998). Design principles for distributed knowledge build-
+ing processes. Educ. Psychol. Rev. 10, 75–96. doi: 10.1023/A:1022810231840
+Hong, S.-J., Kim, S.-W ., and Lee, Y . (2023). The effect of design thinking based artificial 
+intelligence education programs on middle school students' creative problem solving abil-
+ity. J. Korea Soc. Comput. Inf. 28, 227–234. doi: 10.9708/jksci.2023.28.02.227
+Hu, B., and Li, Y . (2025). The role of digital drawing software in enhancing specific artistic 
+skills and behavioral intentions in art education. Cogent Educ.  12:2481679. doi: 
+10.1080/2331186X.2025.2481679
+Huang, H. (2024). Promoting students' creative and design thinking with generative 
+AI-supported co-regulated learning: evidence from digital game development projects in 
+healthcare courses. Educ. Technol. Soc. 27, 487–502.
+Huang, Z., Zhao, J., and Fu, X. (2026). Generative AI as an external cognitive tool for 
+developing creative intelligence in visual design: a mixed-methods randomized study 
+using cognitive load indicators and motivational modeling. J. Intell. 14:65. doi: 10.3390/
+jintelligence14040065
+Hwang, G. J., and Chen, N. S. (2023). Exploring the potential of generative artificial intel-
+ligence in education: applications, challenges, and future research directions. Educ. 
+Technol. Soc. 26, i–xviii.
+Kim, J., Lee, H., and Cho, Y . H. (2022). Learning design to support student-AI collabora-
+tion: perspectives of leading teachers for AI in education. Educ. Inf. Technol. 27, 
+6069–6104. doi: 10.1007/s10639-021-10831-6
+Kim, S. W ., Lim, S., Hong, S. J., and Lee, Y . (2025). The effects of design-thinking-
+based AI education programs utilizing generative AI on Korean middle school stu -
+dents' creative problem-solving ability. J. Inf. Vis.  9, 1553–1562. doi: 10.62527/
+joiv.9.4.4378
+Kleiman, P . (2008). Towards transformation: conceptions of creativity in higher educa-
+tion. Innov. Educ. Teach. Int. 45, 209–217. doi: 10.1080/14703290802175966
+Lai, Y . R., Chen, H. J., and Y ang, C. H. (2023). “Exploring the impact of generative artifi-
+cial intelligence on the design process: opportunities, challenges, and insights, ” in 
+Artificial Intelligence, Social Computing and Wearable Technologies, vol. 113 (AHFE Open 
+Access), 49–59.
+Lee, P . J., Hung, J. F ., Liau, P . H., and Tsai, C. Y . (2025). A dual mediation model linking 
+design thinking mindset to creative problem-solving skills through creative self-efficacy 
+and critical thinking disposition. Think. Skills Creat.  60:102055. doi: 10.1016/j.
+tsc.2025.102055
+Li, S., Onyon, N., and Kotchasit, S. (2024). Carrying out training courses in creative 
+graphic design based on design thinking and problem-based learning to increase students' 
+creative thinking abilities. Int. J. Sociol. Anthropol. Sci. Rev. 4, 429–438. doi: 10.60027/
+ijsasr.2024.4896
+Li, H., Sun, L., and Kim, S. (2025). Effects of customized generative AI on student engage-
+ment and emotions in visual communication design education: implications for sustain-
+able integration. Sustainability 17:9963. doi: 10.3390/su17229963
+Lin, M. Y ., and Chang, Y . S. (2024). Using design thinking hands-on learning to improve 
+artificial intelligence application creativity: a study of brainwaves. Think. Skills Creat. 
+54:101655. doi: 10.1016/j.tsc.2024.101655
+Lin, L., Shen, S., Shadiev, R., and Yu, M. (2025). Review of research on design thinking in 
+K-12 education. Educ. Res. Rev. 47:100682. doi: 10.1016/j.edurev.2025.100682
+Liu, X., Gu, J., and Xu, J. (2024). The impact of the design thinking model on pre-service 
+teachers' creativity self-efficacy, inventive problem-solving skills, and technology-
+related motivation. Int. J. Technol. Des. Educ.  34, 167–190. doi: 10.1007/
+s10798-023-09809-x
+Liu, Z., Guo, H., Zhou, Z., Ma, F ., and Zeng, Y . (2025). How creative self-efficacy influ-
+ences problem-solving skills in engineering education: the dual mediating role of critical 
+thinking and metacognition. BMC Psychol. 13:1278. doi: 10.1186/s40359-025-03630-y
+Liu, C. C., Wang, D., Gu, X., Hwang, G. J., Tu, Y . F ., and Wang, Y . (2025). Facilitating pre-
+service teachers’ instructional design and higher-order thinking with generative AI: an 
+integrated approach with peer assessment and concept map. J. Res. Technol. Educ., 1–26. 
+doi: 10.1080/15391523.2025.2474528
+Lively, J., Hutson, J., and Melick, E. (2023). Integrating AI-generative tools in web design 
+education: enhancing student aesthetic and creative copy capabilities using image and 
+text-based AI generators. J. Artif. Intell. Robot. 1, 23–36. doi: 10.59232/AIR-V1I1P103
+Melisa, R., Ashadi, A., Triastuti, A., Hidayati, S., Salido, A., Ero, P . E. L., et al. (2025). 
+Critical thinking in the age of AI: a systematic review of AI'S effects on higher education. 
+Educ. Process Int. J. 14:e2025031. doi: 10.22521/edupij.2025.14.31
+Montenegro, N. (2024). Integrative analysis of text-to-image AI systems in architectural 
+design education: pedagogical innovations and creative design implications. J. Archit. 
+Urban. 48, 109–124. doi: 10.3846/jau.2024.20870
+Paulus, P . B., and Brown, V . R. (2007). Toward more creative and innovative group idea 
+generation: a cognitive-social-motivational perspective of brainstorming. Soc. Personal. 
+Psychol. Compass 1, 248–265. doi: 10.1111/j.1751-9004.2007.00006.x
+Petrova, M., and Kuhnen, C. (2025). Artificial intelligence as a tool for individual and 
+collaborative creativity in design education. Des. Technol. Educ. 30, 86–101. doi: 10.24377/
+DTEIJ.article3044
+Ramos, M. D., Nandan, M., Porter, K., and Dyess, S. M. L. (2024). Enhancing student 
+success in higher education: a human-centered design thinking approach. J. High. Educ. 
+Theory Pract. 24:45. doi: 10.33423/jhetp.v24i7.7090
+Razali, N. H., Ali, N. N. N., Safiyuddin, S. K., and Khalid, F . (2022). Design thinking 
+approaches in education and their challenges: a systematic literature review. Creat. Educ. 
+13, 2289–2299. doi: 10.4236/ce.2022.137145
+Razzouk, R., and Shute, V . (2012). What is design thinking and why is it important? Rev. 
+Educ. Res. 82, 330–348. doi: 10.3102/0034654312457429
+Rong, W ., Xiao, M., Zhao, L., and Zhou, X. (2025). Empowering student learning in 
+higher education with generative AI art applications: a systematic review. Information 
+16:1070. doi: 10.3390/info16121070
+Rowe, P . G. (1991). Design Thinking. Cambridge, MA: MIT Press.
+Saad, E., Elekyaby, M. S., Ali, E. O., and Hassan, S. F . A. E. (2020). Double diamond 
+strategy saves time of the design process. Int. Des. J.  10, 211–222. doi: 10.21608/
+idj.2020.96345
+Saritepeci, M., and Yildiz Durak, H. (2024). Effectiveness of artificial intelligence integra-
+tion in design-based learning on design thinking mindset, creative and reflective thinking 
+skills: an experimental study. Educ. Inf. Technol.  29, 25175–25209. doi: 10.1007/
+s10639-024-12829-2
+Schack, G. D. (1989). Self-efficacy as a mediator in the creative productivity of gifted 
+children. J. Educ. Gift. 12, 231–249. doi: 10.1177/016235328901200306
+Scheer, A., Noweski, C., and Meinel, C. (2012). Transforming constructivist learning into 
+action: design thinking in education. Des. Technol. Educ. 17, 8–19. doi: 10.24377/DTEIJ.
+article1679
+Tierney, P ., and Farmer, S. M. (2002). Creative self-efficacy: its potential antecedents and 
+relationship to creative performance. Acad. Manag. J. 45, 1137–1148. doi: 10.5465/3069429
+Tsai, C. A., Song, M. Y . W ., Lo, Y . F ., and Lo, C. C. (2023). Design thinking with constructivist 
+learning increases the learning motivation and wicked problem-solving capability: an empir-
+ical research in Taiwan. Think. Skills Creat. 50:101385. doi: 10.1016/j.tsc.2023.101385
+Tu, J. C., Liu, L. X., and Wu, K. Y . (2018). Study on the learning effectiveness of Stanford 
+design thinking in integrated design education. Sustainability 10:2649. doi: 10.3390/
+su10082649
+Verganti, R., Era, C. D., and Swan, K. S. (2021). Design thinking: critical analysis and 
+future evolution. J. Prod. Innov. Manag. 38, 603–622. doi: 10.1111/jpim.12610
+Wang, J., Zhang, J., and Kang, Y . (2026). Evaluating the effects of personalised learning on 
+AI-assisted design performance, creative self-efficacy, and engagement of high- and low-
+performing college design students. J. Comput. Assist. Learn. 42:e70221. doi: 10.1002/
+jcal.70221
+Wei, X., Wang, L., Lee, L. K., and Liu, R. (2025). The effects of generative AI on collaborative 
+problem-solving and team creativity performance in digital story creation: an experimental 
+study. Int. J. Educ. Technol. High. Educ. 22:23. doi: 10.1186/s41239-025-00526-0
+
+=== PDF PAGE 16 ===
+Song and Xu 10.3389/fpsyg.2026.1847432
+Frontiers in Psychology 16 frontiersin.org
+Willems, T., Khan, S., Huang, Q., Camburn, B., Sockalingam, N., and Poon, K. W . (2025). 
+“To use or to refuse? Re-centering student agency with generative AI in engineering 
+design education, ” in 2025 IEEE International Conference on Teaching, Assessment, and 
+Learning for Engineering (TALE), (Piscataway, NJ: IEEE), 1–8.
+Wrigley, C., and Straker, K. (2015). Design thinking pedagogy: the educational 
+design ladder. Innov. Educ. Teach. Int.  54, 374–385. doi: 
+10.1080/14703297.2015.1108214
+Y ang, S., and Lin, H. (2025). Application of double diamond model in design courses from 
+the perspective of industry-education integration. Int. J. New Dev. Educ. 7, 148–155. doi: 
+10.25236/IJNDE.2025.070723
+Y ao, X., Zhong, Y ., and Cao, W . (2025). The analysis of generative artificial intelligence 
+technology for innovative thinking and strategies in animation teaching. Sci. Rep. 
+15:18618. doi: 10.1038/s41598-025-03805-y
+Zeng, S., Rahim, N., and Xu, S. (2025). Enhancing college students' achievement, motiva-
+tion and engagement in film character design through AI-driven smart sketchpad: a 
+personalized interactive learning model for art education. IEEE Access 13, 90814–90831. 
+doi: 10.1109/ACCESS.2025.3560021
+Zhan, Z., Shen, W ., and Lin, W . (2022). Effect of product-based pedagogy on students' project 
+management skills, learning achievement, creativity, and innovative thinking in a high-
+school artificial intelligence course. Front. Psychol. 13:849842. doi: 10.3389/fpsyg.2022.849842

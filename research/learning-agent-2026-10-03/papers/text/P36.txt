@@ -1,0 +1,1199 @@
+--- Page 1 ---
+1
+LLM2Manim: Pedagogy-Aware AI Generation of
+STEM Animations
+Aastha Joshi, Hongyi Ke, Meet Gajjar, Aaron Christian, Qi Wang, Jun Chen
+Abstract—High-quality STEM animations can be useful for
+learning, but they are still not common in daily teaching, mostly
+because they take time and special skills to make. In this paper,
+we present a semi-automated, human-in-the-loop (HITL) pipeline
+that uses a large language model (LLM) to help convert math
+and physics concepts into narrated animations with the Python
+libraryManim. The pipeline also tries to follow multimedia
+learning ideas like segmentation, signaling, and dual coding, so
+the narration and the visuals are more aligned.
+To keep the outputs stable, we use constrained prompt
+templates, a symbol ledger to keep symbols consistent, and we
+regenerate only the parts that have errors. We also include
+expert review before the final rendering, because sometimes the
+generated code or explanation is not fully correct.
+We tested the approach with 100 undergraduate students in
+a within-subject A-B study. Each student learned two similar
+STEM topics, one with the LLM-generated animations and
+one with PowerPoint slides. In general, the animation-based
+instruction gives slightly better post-test scores (83% vs. 78%,
+p < .001), and students show higher learning gains (d= 0.67).
+They also report higher engagement (d= 0.94) and lower
+cognitive load (d= 0.41). Students finished the tasks faster, and
+many of them said they prefer the animated format. Overall,
+these results suggest LLM-assisted animation can make STEM
+content creation easier, and it may be a practical option for more
+classrooms.
+Index Terms—STEM education; Educational animation; Large
+language models; Pedagogy-aware AI; Manim; Generative AI;
+Multimedia learning; Cognitive load; Automated content gener-
+ation.
+I. INTRODUCTION
+Learning can be more effective when the content is animated
+and narrated in an intuitive way [1], [2]. But in many STEM
+classes, the material is still shown as static symbols and
+equations, to an extent analogous to reading sheet music, while
+you never hear the true music. Multimedia learning research
+suggests that adding visuals and sounds together (animation
+with narration) can help students understand more, since the
+information is not coming from only one form [3], [4].
+However, making good STEM animations was notoriously
+difficult for educators. It often is time-consuming and requires
+coding skills to be combined with teaching experience [5].
+Manim library facilitates this process, but still requires manual
+writing to adjust every scene. This makes the process quite
+demanding and inaccessible for most instructors [5], [6].
+In this study, we build an LLM + Manim pipeline to
+make this process more accessible for educators. The system
+starts from a short natural-language brief, e.g., an instructor’s
+Department of Aerospace Engineering, San Diego State University, San
+Diego, CA 92182 USA (email: qwang4@sdsu.edu).
+objective teaching a math/physics topic, and then generates a
+narratedManimanimation for classroom use. This framework
+is not fully automatic, and still keeps a human-in-the-loop
+(HITL) check before release, to compensate for possible flaws
+in the LLM-generated drafts.
+The workflow is organized into five stages: (i) inputs
+and resources; (ii) simple scene planning; (iii)Manimcode
+generation with some self-correction; (iv) rendering with syn-
+chronized narration; and (v) delivery on a platform with basic
+analytics. Following such a schematic, a high-level concept can
+be turned into a full explainer video (Fig. 1). The guidance
+of the workflow also includes common multimedia learning
+principles, such as segmentation and signaling, making the
+generated videos easier to follow, although the quality still
+depends on the topic and the generated output.
+A. Background and Related Work
+Multimedia learning research often finds learning improve-
+ment when verbal and visual information are both included and
+aligned, instead of only reading text [4], [7]. The Cognitive
+Theory of Multimedia Learning (CTML) describes two main
+channels (audio and visual) of the learning process, each with a
+limited capacity. Without the material being paced, combined,
+and intuitively organized, students may feel overloaded.
+Based on this understanding, some common design rules are
+used in STEM explanations. For example, spoken narration
+with graphics is usually better than putting excessive text on
+the screen. It also helps when speech and visuals happen at the
+same time (temporal contiguity). Segmentation and signaling,
+in addition, help to break a long idea into smaller parts and
+tell students what to focus on [4], [8], [9].
+Some meta-analysis studies further suggest that animation
+can be better than static figures, but mostly when the design is
+clean and not distracting [5], [10]. If the motion is not aligned,
+or if there are too many extra details, it backfires to increase
+cognitive load and reduce learning [4], [11]. In the current
+work, we try to keep narration and visuals more aligned using
+prompts, templates, and simple checks to minimize the risk of
+such drawbacks.
+Another related view is cognitive load theory (CLT), which
+focuses on pacing and reducing unnecessary load [7]. In
+math and physics, students often need to track symbols and
+intermediate steps. If the explanation jumps too rapidly, or the
+screen has overloaded contents, it confuses the students. In
+practice, we keep notation stable, align narration with what is
+shown, and maintain a minimum essential amount of elements
+at the same time [12]. These simple principles lead to choices
+arXiv:2604.05266v1  [cs.MM]  7 Apr 2026
+
+--- Page 2 ---
+2
+Fig. 1. Overview of the LLM-driven, pedagogy-aware animation pipeline. The system converts an instructor’s goal or a student’s question into a narrated
+STEM animation through five stages: (1) inputs and optional resources; (2) pedagogy-guided scene planning and narration outline; (3) automatic Manim code
+generation with self-correction; (4) rendering with narration, visual synchronization; and (5) delivery via an accessible, analytics-enabled platform.
+that may help keep the outputs more stable and easier to
+follow.
+Visualization tools have also been used historically in STEM
+education, from early algorithm animations to more modern
+interactive tools [13], [14]. In many cases, dynamic visuals
+help students understand processes that are difficult to grasp
+by static diagrams, since the steps are shown more clearly [15].
+More recently, Manim makes it possible to create high-quality
+animations with reasonable math typesetting. Some studies and
+reports demonstrate its usefulness for explanations, despite the
+high authoring cost [6], [16]. This is the main motivation to use
+LLM support to facilitate the instructor to start from a short
+brief and get a draft quickly, instead of developing everything
+from scratch [17].
+B. AI-Generated Educational Content and Animation
+The emergence and rapid growth of LLM have made it
+technically possible to realize automatic generation of nar-
+rated, animated teaching material, including simple tasks like
+lesson outlines, quizzes, and short explanations [17] [24] .
+This technology saves time and helps teachers prepare faster
+[25]. On the other hand, at the current stage, human manual
+labor is still required for high-quality animations (for example,
+from the YouTube channel “3Brown1Blue”). We foresee that
+it would still take a period of time until LLMs can fully take
+over this process to scale up [22]. Meanwhile, research efforts
+continuously explore directions towards this ultimate goal.
+Automatic systems like Code2Video focus on layout automa-
+tion and code-to-video generation [23]. Table I gives a simple
+summary of these different directions, including manual expert
+work, code-based systems, and interactive platforms. We com-
+pare them on automation level, pedagogy support, narration-
+visual alignment, and whether they are tested with learners
+[26].
+Some recent prototype systems also try to turn technical
+text into visuals, or generate step-by-step explanations. For
+example, Manimator converts passages from papers or math
+descriptions into Manim animations [20]. It tries to keep the
+content faithful, but it does not incorporate strong teaching
+design rules or classroom validation. TheoremExplainAgent
+focuses on theorem understanding with multimodal explana-
+tions in a narrow math setting [21], but does not report learner
+results. These works suggest the direction is promising, but it
+still remains an open question how much students really learn
+from these generated materials [27].
+In the current work, we aim to fill this gap in a more
+practical manner. Firstly, we treat narration and visuals as
+two outputs that should match each other, and we guide
+them with CTML/CLT ideas. Secondly, we adopt a simple
+symbol ledger and validators to keep notation and units stable
+to prevent potential conflict of symbols or small mistakes.
+Thirdly, we keep a human-in-the-loop (HITL) review and
+evaluate the animations with students in a counterbalanced
+classroom study. We also note that interactive systems, where
+
+--- Page 3 ---
+3
+TABLE I
+COMPARISON OFVISUALIZATION/ANIMATIONAPPROACHES FORSTEM LEARNING ANDHOWOURSYSTEMADVANCES THESTATE OF THEART
+Approach / System Automation Pedagogy Narrative Voice Sync Evaluations Reference
+Manual Manim workflows× △ △ △[6], [16]
+3D interactive OOP tool △ △ × △ [14]
+Dynamic 3D math graphs× △ ×✓[15]
+Parsing via Python+Manim × △ △ △ [16]
+Manim for algorithms & DS× △ △ △[6]
+Interactive visual learning (ML) × ✓ × ✓ [18]
+Visualization morphing×✓× △[19]
+AI: Manimator ✓ × △ × [20]
+AI: TheoremExplainAgent✓△ △ ×[21]
+Manual Manim (3Brown1Blue) × ✓ ✓ ✓ [22]
+Code2Video✓△ × ×[23]
+Current study: LLM Manim pipeline ✓ ✓ ✓ ✓ -
+Legend:✓present;△partial/implicit;×absent.
+learners can change parameters and see results in real time,
+can be very helpful for exploration [18]. But they usually need
+custom development and more effort, so we do not include
+them in the current study.
+Overall, our framework aims to keep the generation of
+automations fast and scalable, but also keeps core pedagogy
+rules and a structured review before release. As shown in
+Table I, this combination may be a practical option for real
+teaching use.
+C. Research Questions and Hypotheses
+This study focuses on five questions based on our design
+goal.
+RQ1: Do narration-synchronized, LLM-generated animations
+lead to higher post-test scores and larger learning gains
+than matched slides?
+RQ2: Does the animation condition increase engagement
+while keeping the workload similar or lower?
+RQ3: Are the benefits similar or maybe larger for students
+with lower prior knowledge or other underserved sub-
+groups?
+RQ4: Does animation help students finish concept tasks faster
+under limited class time?
+RQ5: Do students report higher satisfaction with animation-
+based materials?
+Based on these questions, we expected better learning per-
+formance (H1) and higher engagement without higher work-
+load (H2). We also expected the effect may be more helpful
+for lower-prepared learners (H3), with shorter task time (H4),
+and higher satisfaction (H5). For analysis, we mostly follow
+common practice. We use Analysis of covariance (ANCOV A)
+for post-tests with pre-test as a covariate. For within-subject
+outcomes, we use paired tests, and we report effect sizes and
+confidence intervals.
+The remainder of this paper is organized as follows. Section
+II introduces the proposed authoring pipeline and its narration-
+visual alignment and reliability mechanisms. Section III out-
+lines the classroom study design, participants, instruments, and
+analysis procedures. Section IV reports the results. Sections
+V and VI conclude with a discussion of the findings, equity
+considerations, limitations, and future directions.
+Fig. 2. Example outputs from the pipeline. The bottom scenes show a
+common layout issue (text and figure overlap), so we fix it by a quick
+human edit.A representative rendered animation is available at: https://youtu.
+be/cUnw-wGVlUk.
+II. METHODOLOGY
+We build a semi-automated pipeline that turns a
+math/physics topic into a short teaching video (3-10 minutes).
+Fig. 2 shows typical outputs. It also shows a common problem,
+including label overlaps or spacing issues, which is further
+adjusted with HITL. The full workflow is:User Interaction→
+Content Planning→Parallel Processing→Scene Assembly
+→Final Output. The schematic is shown in Fig. 3, with a
+detailed explanation in the following sections.
+A. Plan First, Then Generate
+The process starts with a short concept brief to create
+alignment with the students’ background knowledge and define
+the concept to explain. A structured plan is built afterwards
+to help keep outputs stable across scenes. The plan includes
+a few simple parts: (1) scene goals, (2) a symbol list with
+units and assumptions, (3) short narration cues, (4) storyboard
+frames, and (5) code constraints (layout and timing), as shown
+in Fig. 4 . Through experiments, such planning demonstrates
+much better stability with reduced small drift, symbol changes,
+and tangential divergence of concepts within the video.
+
+--- Page 4 ---
+4
+Fig. 3. Overall pipeline of the HITL authoring system, from a short brief to a rendered video.
+Concept Brief
+Scene Goals
+Symbol List
+notation, units, assumptions
+Narration Cues
+short timed segments
+Storyboard Frames
+Code Constraints
+layout, timing, allowed primitives
+Checks
+units, symbol consistency
+Fig. 4. Slot-based plan template to make key items explicit. Once an issue
+is identified, instead of revisiting everything, only the broken part will be
+modified and fixed.
+B. Alignment between Speech and Visuals
+A prominent difficulty in the current work is to make speech
+and visuals align in time (temporal contiguity). To solve such
+a difficulty, we applied simple timing markers. Narration cues
+are linked to visual events. If they drift, either the timing will
+be adjusted or the whole part will be regenerated. Fig. 5 shows
+a simple example for this technique.
+Cue 1
+“Introducex”
+Cue 2
+“Apply transform”
+Cue 3
+“Explain result”
+Event 1
+Highlightx
+Event 2
+Motion/transform
+Event 3
+Add note
+Fig. 5. Speech-visual alignment. Cues are linked to events to keep the videos
+easier to follow.
+In practice, a topic is also split into small parts (segmenta-
+tion). Most scenes are 60-120 seconds. This makes the pace
+steadier and easier to debug.
+C. Parallel Drafting and Merging
+As illustrated in Fig. 6, the narration and Manim code are
+generated in parallel for a faster response in real time. This
+further avoids one error spreading to everything, if narration
+is fine but code breaks, only the code will be regenerated for
+that scene and vice versa.
+Prompt
+Cues
+Storyboard
+Symbol list
+Code prompt
+Primitives
+Layout hints
+Timing marks
+Merge narration & code
+Fig. 6. Parallel generation. Two tracks are separate, then merged. This makes
+fixes cheaper when only one part is wrong.
+Run check
+imports, LATEX, deterministic run
+Cue/event check
+timing alignment
+Symbol/unit check
+keep meaning stable
+Goal coverage
+show the key step
+Merge
+Render or regenerate part
+Fig. 7. Checks before rendering. We keep them simple and mostly local,
+because many errors are small and easy to fix.
+D. Human Review (HITL)
+As mentioned in the introduction, the current work is not
+fully automated and still requires human review. Three quick-
+
+--- Page 5 ---
+5
+pass criteria are adopted: subject-matter, teaching quality, and
+engineering. LLMs often drift in notation and style. Code
+can also break after library updates. To mitigate these issues,
+we adopt several practical safeguards, including structured
+prompting, low-temperature decoding for code generation,
+restricted primitive operations, and a curated set of regres-
+sion test scenes. When templates or dependencies change,
+we regenerate the regression scenes and compare them with
+older outputs. Significant deviations are then identified and
+examined to ensure consistency and correctness. A build man-
+ifest (model id, prompt version, seeds, Manim/LATEX versions)
+is also stored along the way to help with reproducibility
+and debugging. Before final rendering, a set of lightweight
+validation checks is applied to each scene to ensure correctness
+and alignment, as summarized in Fig. 7.
+In the current study, we focus on short videos (3-10 minutes)
+as a proof of concept for a long-term goal of automatic
+generation of course contents. The review cost stays reasonable
+so far. Longer videos are possible, but require more fixes and
+stability. Interactive variants are explored but not yet included
+in the classroom study in this paper.
+III. EXPERIMENTS
+The study involvesN= 100students enrolled in mathe-
+matics, physics, aerospace engineering, computer science, and
+information systems courses at San Diego State University.
+Participant demographic characteristics are summarized in
+Table II. The sample represents typical STEM majors aged
+18-26 years (M= 21.4,SD= 2.3) with varying prior
+knowledge levels (15% none, 35% basic, 35% intermediate,
+15% advanced). Participation is voluntary and uncompensated
+for grades; students receive a $10 digital gift card for each
+completed survey as appreciation.
+TABLE II
+PARTICIPANTDEMOGRAPHICCHARACTERISTICS IN THEA-B
+CROSSOVERSTUDY(N = 100).
+Category Value
+Age (Mean±SD) 22.29±2.48
+Age Range 18-26 years
+Majors Mathematics (26%), Computer Science
+(24%),
+Physics (20%), Aerospace (15%), Infor-
+mation Systems (15%)
+Prior Knowledge Intermediate (42.5%), Basic (36.2%),
+Advanced (15.0%), None (6.3%)
+The study was approved by the university’s Institutional
+Review Board, and informed consent was obtained from all
+participants prior to data collection. The study was conducted
+under standard educational research ethics protocols. Data
+were anonymized prior to analysis, and participants could
+withdraw at any time without penalty.
+A. Research Design and Procedures
+A within-subjects A-B crossover design was employed to
+minimize inter-individual variability. Each participant com-
+pleted two parallel learning modules, one delivered through
+Sequence 1: Animation→Slides
+Pre-test Animation Post-test Survey
+Module 1
+Pre-test Slides Post-test Survey
+Module 2
+Sequence 2: Slides→Animation
+Pre-test Slides Post-test Survey
+Module 1
+Pre-test Animation Post-test Survey
+Module 2
+Fig. 8. Within-subject A-B crossover design with counterbalanced order.
+Sequence 1 completed the Animation module first, followed by Slides, while
+Sequence 2 completed Slides first, followed by Animation. Each module
+included a pre-test, instructional phase, post-test, and survey, with distinct
+topics for Module 1 and Module 2.
+LLM-generated Manim animations and the other via tradi-
+tional PowerPoint slides, covering comparable topics (Linear
+Transformations, Linear Systems, Eigenvalues and Eigenvec-
+tors, Thermodynamics). To control order effects, participants
+were randomly assigned to one of two sequences: Animation-
+First followed by Slides-Second, or Slides-First followed by
+Animation-Second.
+Each module followed a uniform timeline consisting of
+a pre-test (5-10 min) to assess baseline understanding, an
+instructional phase (15 min) for studying the assigned format
+individually, a post-test (5-10 min) to measure learning gains,
+and a perception survey (5 min) capturing engagement and
+workload responses along with open-ended reflections. All
+content was pedagogically identical in text and visuals, differ-
+ing only in delivery medium. The same instructor developed
+both versions and was blinded to conditions during grading
+to prevent bias. Because the study employed a within-subjects
+A-B crossover design, module order was counterbalanced to
+control for sequence and carryover effects. The impact of
+order (Animation-First vs. Slides-First) was later examined
+as a between-subjects factor to verify that observed learning,
+engagement, and workload differences were not attributable to
+ordering artifacts.
+B. Data Collection
+Learning outcomes were measured using matched pre- and
+post-quizzes, consisting of five expert-validated conceptual
+and procedural questions per topic, targeting application-
+level learning outcomes. Engagement was measured with the
+Intrinsic Motivation Inventory (IMI), a six-item, seven-point
+Likert scale (1 = Strongly Disagree to 7 = Strongly Agree)
+assessing enjoyment, value, and interest (e.g., “I enjoyed learn-
+ing with [animation/slides]”). The IMI items and anchors are
+reproduced in the survey instruments. Cognitive workload was
+measured using the NASA-TLX instrument with six subscales
+(Mental, Physical, Temporal Demand, Performance, Effort,
+and Frustration), each rated on a 0-20 scale (0 = Very Low
+to 20 = Very High), following the standardized format shown
+
+--- Page 6 ---
+6
+in the survey forms. Participants also provided open-ended
+feedback on clarity, pacing, and overall learning experience.
+Responses were coded thematically by two independent raters,
+and intercoder reliability exceeded Cohen’sκ= 0.80. In this
+study,κwas used to measure agreement between raters while
+accounting for chance agreement. Cohen’sκis defined as
+κ= po −p e
+1−p e
+,(1)
+wherep o is the observed proportion of agreement andp e is
+the expected agreement by chance [28].
+C. Data Analysis Plan
+To support interpretation of the reported results, we report
+both reliability and effect size metrics alongside inferential
+statistics. Internal consistency of multi-item scales was as-
+sessed using Cronbach’sα, which indicates how consistently
+the survey items measure the same intended concept (e.g.,
+engagement or cognitive workload); values above 0.70 are
+generally considered acceptable. Cronbach’sαis defined as
+α= k
+k−1
+ 
+1−
+Pk
+i=1 σ2
+i
+σ2
+T
+!
+,(2)
+wherekis the number of items,σ 2
+i is the variance of item
+i, andσ 2
+T is the variance of the total score [29]. For within-
+subject comparisons, effect sizes are reported using Cohen’sd
+for paired samples, which describes how large the difference
+between instructional conditions is, independent of sample
+size, with values of 0.2, 0.5, and 0.8 corresponding to small,
+medium, and large effects. For paired samples, Cohen’sdis
+defined as
+d=
+¯X1 − ¯X2
+sd
+,(3)
+where ¯X1 − ¯X2 represents the mean difference between
+conditions ands d is the standard deviation of the paired
+differences [30]. Together, these metrics help clarify both the
+reliability of the measures and the practical importance of the
+observed differences.
+To ensure direct alignment between the research questions
+and the analytical procedures, each RQ was mapped to a
+corresponding statistical test and measurement strategy.
+RQ1 (Learning Achievement).This question was evalu-
+ated through two complementary analyses: (a) an ANCOV A,
+with post-test score as the dependent variable, instructional
+condition as the fixed factor, and pre-test score as a covariate,
+enabling an adjusted comparison of learning performance;
+and (b) paired-samplest-tests on learning gains (post-pre) to
+examine within-student differences across conditions.
+RQ2 (Engagement and Cognitive Load).This question
+was addressed using paired-samplest-tests applied to the IMI
+engagement scale and the NASA-TLX workload index, re-
+spectively. These tests allowed us to quantify whether students
+reported higher motivation or reduced perceived effort when
+learning with animations.
+RQ3 (Equity and Accessibility).This question was ex-
+plored through subgroup analyses based on prior-knowledge
+levels and demographic attributes, examining whether the an-
+imation condition provided disproportionate benefits to lower-
+prepared or underserved learners.
+All analyses incorporated appropriate effect sizes (partial
+η2 for ANCOV A and Cohen’sdfor paired tests) and 95%
+confidence intervals to support interpretation of practical sig-
+nificance.
+All quantitative analyses were conducted in Python using
+NumPy, SciPy, and StatsModels. Inferential tests included
+an ANCOV A with post-test as dependent variable, instruc-
+tional condition as factor, and pre-test as covariate (post=
+β0 +β 1condition+β 2pre+ε). Partialη 2 was computed to
+quantify effect size for the ANCOV A. Paired-samplest-tests
+compared Animation and Slides conditions for learning gains,
+engagement, and workload. Effect sizes were computed using
+Cohen’s d for paired samples, with 95% confidence intervals.
+Significance threshold was set atα= 0.05(two-tailed).
+Qualitative responses were analyzed inductively, and emergent
+themes were triangulated with quantitative trends. All data,
+code, and figure scripts are archived for reproducibility.
+To provide a clearer sense of measurement stability, we
+also calculated 95% confidence intervals for the reliability
+estimates using a bootstrap resampling procedure. For the IMI
+engagement scale, Cronbach’sαwas0.82with a confidence
+interval of [0.78,0.86]. The NASA-TLX workload scale
+showedα= 0.79with an interval of [0.74,0.83]. These
+intervals indicate that both instruments performed consistently
+in our sample and that the observed internal consistency is
+unlikely to be due to sampling variability.
+D. Satisfaction Analysis
+To address RQ5, overall learner satisfaction with each
+instructional medium was measured using a single Likert-
+type item included in both perception surveys. Participants
+rated their satisfaction on a 1-7 scale immediately after
+completing each module. Because the study used a within-
+subjects crossover design, satisfaction differences between the
+Animation and Slides conditions were analyzed using paired-
+samplest-tests. Cohen’sdand 95% confidence intervals were
+computed to quantify the magnitude and precision of the
+observed effect.
+Satisfaction was treated as a complementary affective mea-
+sure distinct from engagement, capturing holistic learner pref-
+erence and perceived value of the instructional experience.
+This analysis provides insight into the acceptability and expe-
+riential quality of the generated animations, supporting evalu-
+ation of the system beyond learning and workload outcomes.
+E. Equity and Subgroup Analysis
+RQ3 investigated whether the animation condition provided
+disproportionate benefits for learners with lower prior knowl-
+edge or other underserved subgroups. To examine this ques-
+tion, we conducted subgroup analyses based on participants’
+self-reported prior-knowledge levels (None, Basic, Intermedi-
+ate, Advanced). For statistical power and interpretability, these
+levels were collapsed into two groups: Low (None + Basic)
+and High (Intermediate + Advanced).
+
+--- Page 7 ---
+7
+Participant-level learning gain differences (Animation -
+Slides) were computed by pivoting the dataset to wide for-
+mat. Independent-samplest-tests compared gain differences
+across prior-knowledge groups, and complementary ANCOV A
+models tested for condition×subgroup interactions while
+controlling for baseline pre-test performance. These analyses
+evaluated whether animations offered additional scaffolding
+that particularly supported lower-prepared learners.
+Additional robustness checks assessed whether the observed
+learning advantage varied by demographic factors (e.g., major,
+age), instructional sequence (Animation-First vs. Slides-First),
+topic, or module period. Order and topic effects were examined
+using mixed models and regression terms. These analyses
+ensured that the benefits of the animation condition were not
+attributable to sequencing artifacts or topic-specific difficulty,
+strengthening the internal validity of the experimental findings.
+F . Validity and Ethics
+Internal validity was ensured through within-subject coun-
+terbalancing, identical content, and blinded grading. External
+validity was supported by recruiting students from diverse
+STEM majors, enhancing generalizability. Construct validity
+was upheld through the use of validated IMI and NASA-TLX
+instruments and expert-verified quiz items. Statistical conclu-
+sion validity was supported by testing assumptions of normal-
+ity and homogeneity, with no significant violations observed;
+outliers beyond three interquartile ranges were inspected and
+retained. Ethical compliance included IRB approval, informed
+consent, voluntary participation, anonymity, and adherence to
+IEEE ethics standards for human-subject learning research.
+IV. RESULTS
+Descriptive statistics (mean and standard deviation) of all
+previously mentioned evaluation criteria were summarized in
+Table III shown below.
+TABLE III
+DESCRIPTIVE STATISTICS(MEAN±SD)FOR PRE-TEST,POST-TEST,
+LEARNING GAIN,ENGAGEMENT(IMI),AND WORKLOAD(NASA-TLX)
+ACROSS INSTRUCTIONAL CONDITIONS IN THE WITHIN-SUBJECTA-B
+CROSSOVER STUDY(N= 100). ALL VARIABLES REFLECT PAIRED
+OBSERVATIONS FROM THE SAME PARTICIPANTS UNDER BOTH ANIMATION
+AND SLIDE-BASED FORMATS.
+Variable Condition Mean SD N
+Pre-Test Score (0-100) Animation 60.51 9.54 100
+Slides 59.47 9.03 100
+Post-Test Score (0-100) Animation 74.42 9.56 100
+Slides 69.05 9.38 100
+Learning Gain (Post-Pre) Animation 13.91 4.90 100
+Slides 9.58 5.51 100
+IMI (Engagement 1-7) Animation 5.43 0.44 100
+Slides 4.89 0.42 100
+NASA-TLX (Workload 0-20) Animation 9.99 1.56 100
+Slides 10.73 1.21 100
+Note:Values based on within-subject A-B crossover data (N= 100). IMI = Intrinsic
+Motivation Inventory; NASA-TLX = NASA Task Load Index.
+We analyze these data, together with additional quantitative
+evidence collected through surveys, in the following subsec-
+tions.
+A. Learning Outcomes
+Descriptive statistics for learning performance under both
+instructional conditions are summarized in Table IV. To ad-
+dress RQ1, we compared post-test performance while con-
+trolling for baseline differences and examined within-subject
+learning gains derived from the pre-post assessments.
+TABLE IV
+INFERENTIAL RESULTS FOR LEARNING,ENGAGEMENT,WORKLOAD,
+SATISFACTION,AND EFFICIENCY(N = 100).
+Measuret(99)pCohen’sd
+Learning Gain 6.74< .0010.67
+IMI (Engagement) 9.44< .0010.94
+NASA-TLX (Workload) -4.06< .0010.41
+Satisfaction 16.35< .0011.64
+Efficiency (Time) -8.56< .0010.86
+Post-test performance was analyzed using analysis of co-
+variance, a statistical method that adjusts group comparisons
+by controlling for baseline differences through a covariate
+(e.g., pre-test score). In subsequent text, this method is referred
+to as ANCOV A. The results of ANCOV A revealed a significant
+effect of instructional condition,F(1,197) = 38.85,p < .001,
+with a partialη 2 = 0.165. Students performed substantially
+better after completing the animation-based module than after
+the slides-based module, with adjusted post-test means of
+Madj = 83.4(Animation) andM adj = 78.1(Slides). Assump-
+tion checks indicated no violations of normality, homogeneity
+of variance, or homogeneity of regression slopes, validating
+the use of ANCOV A for adjusted comparisons.
+Animation Slides
+0
+20
+40
+60
+80
+60.5 59.5
+74.4 69.1
+Score (0-100)
+Pre-Test
+Post-Test
+Fig. 9. Learning performance across instructional conditions, shown through
+the mean pre- and post-test scores for animation and slide-based instructions.
+To further evaluate learning improvement, paired-samples
+t-tests were conducted on learning gains. Students achieved
+significantly larger gains after the animation module (M=
+13.91,SD= 4.90) relative to the slides module (M= 9.58,
+SD= 5.51),t(99) = 6.74,p < .001,d= 0.67. This
+effect size represents a medium-to-large within-subject impact,
+indicating that animation-based explanations were supported
+with greater conceptual improvement. Learning differences
+were also robust across instructional order: Animation-First
+and Slides-First sequences did not differ significantly in gain
+patterns (p=.808).
+A consolidated visualization of learning performance is
+provided in Fig. 9. It displays the mean pre- and post-test
+scores for both instructional formats, and the right panel
+presents mean learning gains. Students achieved significantly
+
+--- Page 8 ---
+8
+higher adjusted post-test scores and larger learning gains in the
+animation condition than in the slides condition, as reported
+in Table IV.
+B. Engagement (IMI)
+Student engagement was measured using the six-item Intrin-
+sic Motivation Inventory (IMI), which captures learners’ per-
+ceived enjoyment, interest, and value during each instructional
+module. Participants reported consistently higher engagement
+when interacting with the animation-based materials compared
+to the slide-based version. Mean IMI ratings were significantly
+higher for the animation condition (M= 5.43,SD= 0.44)
+than for the slides condition (M= 4.89,SD= 0.42),
+t(99) = 9.44,p < .001,d= 0.94. This represents a large
+within-subject effect, indicating that the animated explanations
+were perceived as more enjoyable and motivating.
+Reliability analysis showed strong internal consistency for
+the IMI scale (α=.82, 95% CI [.78, .86]), confirming that
+the scale adequately captured engagement across conditions.
+IMI item distributions showed a consistent upward shift for the
+animation condition. Engagement differences were also robust
+across instructional order, with no significant sequence effects
+observed.
+These findings align with multimedia learning theory, which
+predicts that coordinated narration and visual cues enhance
+learner interest and motivational investment. A visual summary
+of IMI ratings is provided in Fig. 10 (left panel). consistently
+higher IMI ratings for animations is shown, indicating that
+synchronized narration and directed visual attention cues in-
+creased learners’ interest and perceived value. At the same
+time, overall workload decreased (shown on the right panel),
+suggesting that the animations reduced extraneous cognitive
+load by clarifying symbolic and spatial relationships, consis-
+tent with cognitive load theory.
+Fig. 10. Engagement and cognitive workload across instructional conditions.
+The left panel shows IMI engagement ratings for animation and slide-based
+modules. The right panel presents overall NASA-TLX workload scores.
+Boxplots indicate median, interquartile range, and outliers.
+C. Cognitive Workload (NASA-TLX)
+Cognitive workload was assessed using the NASA-TLX
+instrument, which captures perceived mental, physical, tem-
+poral, and effort-related demands of the learning task. Stu-
+dents reported lower workload during the animation module
+(M= 9.99,SD= 1.56) than during the slides module
+(M= 10.73,SD= 1.21). A paired-samplest-test confirmed
+this difference,t(99) =−4.06,p < .001, corresponding to
+a moderate effect size (d= 0.41, 95% CI [0.21, 0.61]). This
+reflects a moderate reduction in perceived workload for the
+animation condition.
+Reliability analysis showed acceptable internal consistency
+for the NASA-TLX scale (α=.79). Workload differences
+were also robust across instructional order, with no significant
+sequence effects observed. These findings align with cogni-
+tive load theory, suggesting that synchronized narration and
+targeted signaling reduced extraneous load by helping learners
+focus on the most relevant symbolic or spatial transformations.
+A visual summary of workload ratings is presented in
+Fig. 10 (right panel), illustrating consistent downward shifts
+across TLX subscales for the animation condition.
+D. Satisfaction
+To address RQ5, overall learner satisfaction with each
+instructional medium was compared using paired-samplest-
+tests. Participants reported substantially higher satisfaction
+with the animation-based modules (M= 5.63,SD= 0.41)
+compared to the slide-based modules (M= 4.79,SD=
+0.47). This difference was statistically significant,t(99) =
+16.35,p < .001, with a very large effect size (d= 1.64,
+95% CI [1.32, 1.96]). These results directly address RQ5
+and indicate a strong overall preference for the animation
+condition.
+The magnitude of this effect is consistent with the system’s
+design philosophy, synchronized narration, segmentation, and
+signaling, which collectively enhance clarity and reduce per-
+ceived effort during learning. High satisfaction ratings, there-
+fore, complement the observed gains in engagement and
+learning performance, suggesting that learners found the AI-
+generated animations both effective and enjoyable. A summary
+of satisfaction outcomes is presented in Table IV.
+E. Efficiency
+To address RQ4, exploratory analyses were conducted to
+compare task completion efficiency across instructional con-
+ditions. Although precise end-times were not logged dur-
+ing deployment, coarse timing metadata from survey sub-
+missions and learner self-reports enabled approximate dura-
+tion estimates for each module. Participants completed the
+animation-based module more quickly (M= 11.25minutes,
+SD= 1.18) than the slides-based module (M= 13.07
+minutes,SD= 1.31). A paired-samplest-test confirmed
+this difference,t(99) =−8.56,p < .001, corresponding
+to a large within-subject effect (d=−0.86). These results
+directly address RQ4 and indicate that the animation condition
+supported more efficient completion of concept-focused tasks.
+Because timing granularity was limited, these findings are
+interpreted cautiously; however, when considered alongside
+reduced NASA-TLX workload ratings, they suggest that the
+animation condition lowered extraneous cognitive load and
+facilitated more rapid information processing. Efficiency dif-
+ferences were also robust across instructional order, with no
+
+--- Page 9 ---
+9
+Low Prior Knowledge High Prior Knowledge
+0
+2
+4
+2.31
+5.15
+Animation−Slides Gain
+Fig. 11. Animation advantage in learning gains (Animation - Slides) by
+prior-knowledge subgroup. Both groups benefited from animations, with a
+larger gain difference observed for learners with higher prior knowledge.
+significant sequence effects observed. A summary of infer-
+ential outcomes, including efficiency results, is provided in
+Table IV.
+F . Equity and Subgroup Effects
+To address RQ3, we examined whether the advantage of
+animation-based instruction varied across learner subgroups,
+particularly those with lower prior preparation. Participants
+were grouped into Low (None + Basic) and High (Interme-
+diate + Advanced) prior-knowledge categories. Analysis of
+participant-level learning gain differences (Animation - Slides)
+revealed a statistically significant subgroup effect: learners
+in the Low prior-knowledge group showed a smaller gain
+from slide-based instruction and therefore exhibited a larger
+benefit from animations (M= 2.31) compared to their
+High prior-knowledge peers (M= 5.15),t(98) =−2.11,
+p=.040. This pattern suggests that animation-supported
+explanations provided additional scaffolding that narrowed
+performance disparities for lower-prepared learners, consistent
+with Hypothesis H3.
+Robustness checks confirmed that this effect was not at-
+tributable to sequencing or topic differences. No significant or-
+der effects were observed between Animation-First and Slides-
+First groups (p=.808), and condition-by-topic and condition-
+by-period interactions were non-significant. These findings
+indicate that the observed animation advantage generalized
+across instructional sequences, topics, and module positions.
+Figure 11 visualizes these subgroup differences, highlight-
+ing the disproportionate benefit for learners with lower initial
+preparation. Together, these results support the equity poten-
+tial of pedagogy-guided, narration-synchronized animations
+in STEM education. Importantly, these results reveal that
+although both groups benefited from the animations, higher-
+prepared learners exhibited larger animation advantages, in-
+dicating that prior conceptual scaffolding may have enabled
+deeper uptake of the narrated visual explanations. Together,
+these results validate Hypotheses H1 and H2 and confirm that
+narration-synchronized, pedagogically structured animations
+can improve learning outcomes and subjective experience
+without increasing workload.
+G. Qualitative Feedback
+Open-ended survey responses were analyzed thematically
+to contextualize the quantitative findings. Students provided
+brief comments after each module describing what helped
+or hindered their learning. Two researchers independently
+reviewed the responses, iteratively grouped similar statements
+into themes, and resolved disagreements through discussion.
+The resulting themes offer convergent evidence for the benefits
+and trade-offs of animation-based instruction.
+A first theme,Enhanced Engagement and Enjoyment, re-
+flected frequent descriptions of the animations as “more in-
+teresting,” “fun,” or “attention-grabbing.” Learners reported
+that motion and synchronized narration “kept me focused”
+and reduced the temptation to multitask compared to slides.
+These comments align with the large IMI effect favoring the
+animation condition.
+A second theme,Conceptual Clarity, highlighted that an-
+imations made abstract mathematics and physics “easier to
+visualize” and “showed what the symbols were doing.” Stu-
+dents remarked that seeing transformations unfold step-by-
+step helped them connect formulas to geometric or physical
+interpretations, reinforcing the observed gains in post-test
+performance.
+A third theme,Pacing and Control, captured mixed pref-
+erences. Several participants appreciated the fixed pacing of
+animations for “keeping me moving” through the material,
+whereas others preferred slides for pausing and re-reading at
+their own speed. This tension suggests that adding lightweight
+controls (pause, replay, seek) could further improve the usabil-
+ity of animation-based materials.
+A fourth theme,Cognitive Load and Focus, echoed the
+workload results. Many students indicated that animations
+“highlighted what to pay attention to” and reduced the need
+to infer intermediate steps, while a smaller number reported
+occasional overload when multiple visual elements moved
+simultaneously. Overall, the qualitative patterns support the
+quantitative evidence that pedagogy-guided animations in-
+crease engagement and understanding while generally main-
+taining manageable cognitive load.
+H. Summary of Inferential Results
+Table IV consolidates all inferential outcomes across learn-
+ing, engagement, workload, satisfaction, and efficiency. Across
+all measures, the animation condition yielded statistically
+significant improvements with medium-to-large effect sizes.
+Learning gains showed a medium-to-large impact (d= 0.67),
+engagement demonstrated a large effect (d= 0.94), workload
+showed a moderate reduction (d= 0.41), and satisfaction
+exhibited an exceptionally large effect (d= 1.64). Efficiency
+analyses further indicated that learners completed the ani-
+mation module more quickly, with a large efficiency effect
+(d= 0.86). Together, these convergent results highlight the
+robust pedagogical and experiential advantages of narration-
+synchronized, pedagogy-guided Manim animations.
+
+--- Page 10 ---
+10
+V. DISCUSSION
+A. Implications for Learning Technology Design and Practice
+While the results demonstrate that LLM-generated,
+pedagogy-aware animations can meaningfully enhance learn-
+ing and learner experience in STEM contexts, they also have
+several implications for instructional practice and the integra-
+tion of AI-generated media in STEM education. Learners not
+only achieved higher post-test performance with the anima-
+tion condition (Fig. 9) but also reported substantially greater
+engagement and enjoyment (Fig. 10, left panel). Combined
+with the moderate reduction in perceived workload (Fig. 10,
+right panel), these findings suggest that pedagogy-informed
+animations can both support deeper understanding and create
+a more motivating learning environment. This pattern aligns
+with cognitive load theory and multimedia learning research
+[4], [7], which predicts that segmentation, signaling, and
+synchronized narration reduce extraneous processing demands
+and promote dual-channel integration.
+The very large satisfaction effect (d= 1.64) and the sizable
+efficiency advantage (d= 0.86), summarized in Table IV,
+highlight the practical benefits of the medium. These outcomes
+indicate that students not only learned more but did so with
+less perceived effort and in less time, reinforcing the usability
+of the generated animations in both classroom and self-paced
+learning environments.
+For instructors, the LLM-Manim pipeline reduces the ex-
+pertise and time required to create high-quality visual ex-
+planations, enabling wider adoption of animations beyond
+experts with specialized programming or design backgrounds.
+This makes it feasible to incorporate concise, concept-focused
+animations into blended learning models, flipped classroom
+structures, and online instructional modules. The positive
+reception observed in this study suggests strong learner readi-
+ness for such media, and the workflow’s reproducibility and
+HITL quality control support instructional reliability across
+offerings.
+B. Equity, Limitations and Future Directions
+To address RQ3, we examined whether the advantages of
+animation-based instruction varied across learner subgroups.
+As shown in Fig. 11, both lower and higher prepared learn-
+ers benefited from the animation condition, although higher-
+prepared learners exhibited a larger animation-related gain.
+This pattern suggests that prior conceptual scaffolding enabled
+deeper uptake of the narrated visual explanations, while lower-
+prepared learners still achieved meaningful improvements.
+These findings highlight that animation-based explanations can
+support a broad range of learners but may require additional
+scaffolds such as slower pacing, selective replay, or introduc-
+tory warm-up prompts to maximize benefits for novices.
+Beyond prior knowledge differences, the system’s built-in
+accessibility features, such as automatic captioning, consistent
+narration, controlled pacing, and color stable design, support
+learners with varied processing preferences, including non-
+native speakers and students with attention or working memory
+challenges. Although accessibility was not a primary focus of
+the present evaluation, these affordances align with universal
+design principles and suggest that LLM-generated animations
+may serve as an inclusive medium for diverse STEM learning
+needs.
+Future equity-focused work should expand these analyses
+across demographic groups such as gender, linguistic back-
+ground, and socioeconomic status, and examine whether adap-
+tive scaffolding or personalized pacing can narrow remaining
+performance gaps.
+This study was conducted with two instructors at a sin-
+gle institution, which may limit generalizability. Efficiency
+measures relied on coarse timing data, and satisfaction was
+assessed using a single-item scale. Learning outcomes were
+measured immediately after instruction, leaving long-term
+retention unexamined. The pipeline also requires human-in-
+the-loop review, and LLM behavior may vary across model
+updates. Finally, only two STEM topics were included, sug-
+gesting the need for broader curricular evaluation.
+Future work should examine long-term retention and larger,
+multi-institution deployments to assess the durability and
+generalizability of the observed effects. Additional research
+is needed to extend the pipeline to a broader range of STEM
+topics, reduce reliance on human-in-the-loop review, and im-
+prove robustness across LLM model updates. A promising
+direction involves transitioning from a single-model workflow
+to a multi-agent pipeline, in which specialized agents col-
+laboratively critique, refine, and validate narration, code, and
+pedagogical structure to further enhance automation accuracy
+and instructional quality. Equity-focused evaluations spanning
+gender, linguistic background, and socioeconomic status are
+also essential, along with targeted scaffolds to further support
+lower-prepared learners. Finally, adding adaptive pacing, mul-
+tilingual narration, and accessibility features such as richer
+captioning and interactive controls represents a promising
+direction for expanding the instructional reach of AI-generated
+animations.
+VI. CONCLUSION
+This work introduced an LLM-driven, pedagogy-aware
+pipeline for generating narrated STEM learning animations
+using the Manim framework. By embedding multimedia
+learning principles into structured prompt templates, parallel
+narration–code generation, and a three-stage human-in-the-
+loop review, the system transforms natural-language concept
+descriptions into synchronized visual verbal explanations with
+high instructional fidelity.
+A controlled classroom study with 100 undergraduate
+STEM learners demonstrated that these AI-generated ani-
+mations yield meaningful educational benefits. Across top-
+ics, students achieved higher post-test performance, reported
+greater engagement, and experienced lower cognitive workload
+compared to traditional slide-based instruction. Satisfaction
+and efficiency advantages further indicated that learners not
+only understood more, but did so with less perceived effort
+and in less time. Subgroup analyses showed that the animation
+benefit generalized across learners with different levels of
+prior knowledge, with higher-prepared students exhibiting the
+largest gains. Qualitative feedback echoed these findings, high-
+
+--- Page 11 ---
+11
+lighting improvements in clarity, motivation, and conceptual
+visualization.
+Together, these results provide the first controlled evidence
+that LLM-generated, pedagogy-guided animations can support
+effective STEM learning at scale. Beyond demonstrating fea-
+sibility, the current study establishes a foundation for auto-
+mated instructional media that is both technically robust and
+grounded in learning science. As LLM capabilities continue to
+evolve, future extensions of this framework, including adaptive
+pacing, personalized scaffolding, multilingual narration, and
+richer accessibility support offer substantial potential for de-
+mocratizing the production of high-quality, cognitively aligned
+STEM explanations.
+ACKNOWLEDGMENTS
+This work was supported by the California Learning Lab
+under the AI Fast-Funding for Accelerated Study and Trans-
+formation, through the project “Animate Math Concepts in
+Engineering Education using Large Language Models.”
+REFERENCES
+[1] J. E. Zull,From Brain to Mind: Using Neuroscience to Guide Change
+in Education. New York, NY , USA: Routledge, 2023. [Online].
+Available: https://doi.org/10.4324/9781003444886
+[2] B. E. Stein, T. R. Stanford, and B. A. Rowland, “Multisensory
+integration and the society for neuroscience: Then and now,”Journal
+of Neuroscience, vol. 40, no. 1, pp. 3–11, 2020. [Online]. Available:
+https://www.jneurosci.org/content/40/1/3
+[3] R. E. Mayer and R. Moreno, “Animation as an aid to multimedia
+learning,”Educational Psychology Review, vol. 14, no. 1, pp. 87–99,
+2002. [Online]. Available: https://doi.org/10.1023/A:1013184611077
+[4] R. E. Mayer,The Cambridge Handbook of Multimedia Learning,
+2nd ed. New York, NY , USA: Cambridge University Press, 2014.
+[Online]. Available: https://doi.org/10.1017/CBO9781139547369
+[5] F. H. H ¨offler and H. Leutner, “Instructional animation versus
+static pictures: A meta-analysis,”Learning and Instruction, vol. 17,
+no. 6, pp. 722–738, 2007. [Online]. Available: https://doi.org/10.1016/
+j.learninstruc.2007.09.013
+[6] M. Markovi ´c and I. Ka ˇstelan, “Demonstrating the potential of
+visualization in education with the manim python library: Examples
+from algorithms and data structures,” in2024 47th MIPRO ICT
+and Electronics Convention (MIPRO), 2024, pp. 625–629. [Online].
+Available: https://doi.org/10.1109/MIPRO60963.2024.10569661
+[7] J. Sweller, P. Ayres, and S. Kalyuga,Cognitive Load Theory.
+New York, NY , USA: Springer, 2011. [Online]. Available: https:
+//doi.org/10.1007/978-1-4419-8126-4
+[8] R. Ploetzner and B. Breyer, “Strategies for learning from animation
+with and without narration,” inLearning from Dynamic Visualization:
+Innovations in Research and Application. Cham, Switzerland: Springer,
+2017. [Online]. Available: https://doi.org/10.1007/978-3-319-56204-9
+15
+[9] P. de Koning and H. Jarodzka, “Guiding cognitive processing during
+learning with animations,” inLearning from Dynamic Visualization:
+Innovations in Research and Application. Cham, Switzerland: Springer,
+2017. [Online]. Available: https://doi.org/10.1007/978-3-319-56204-9
+16
+[10] S. Berney and M. B ´etrancourt, “Does animation enhance learning? a
+meta-analysis,”Computers & Education, vol. 101, pp. 150–167, 2016.
+[Online]. Available: https://doi.org/10.1016/j.compedu.2016.06.005
+[11] H. A. de Koning, M. M. J. Tabbers, R. M. J. P. Rikers, and F. Paas,
+“Attention guidance in learning from a complex animation,”Applied
+Cognitive Psychology, vol. 23, no. 3, pp. 369–381, 2009. [Online].
+Available: https://doi.org/10.1002/acp.1461
+[12] G. P. Jain, V . P. Gurupur, J. L. Schroeder, and E. D. Faulkenberry,
+“Artificial intelligence-based student learning evaluation: A concept
+map-based approach for analyzing a student’s understanding of a topic,”
+IEEE Transactions on Learning Technologies, vol. 7, no. 3, pp. 267–279,
+2014. [Online]. Available: https://doi.org/10.1109/TLT.2014.2330297
+[13] T. H ¨ubscher-Younger and N. H. Narayanan, “How undergraduate
+students’ learning strategy and culture affect algorithm animation use
+and interpretation,” inProceedings of the IEEE International Conference
+on Advanced Learning Technologies (ICALT), 2001, pp. 127–134.
+[Online]. Available: https://ieeexplore.ieee.org/document/943856
+[14] J. F. Miller and J. R. Miller, “Proposing a 3d interactive visualization
+tool for learning OOP concepts,” inInternational Conference on
+Information Technology: Research and Education, 2006, pp. 279–283.
+[Online]. Available: https://ieeexplore.ieee.org/document/4016308
+[15] C. Lin, J. Hung, and K. Huang, “Study of the use of dynamic 3d
+visualization graphs as supplements for understanding math,”IEEE
+Transactions on Education, vol. 53, no. 2, pp. 262–270, 2010. [Online].
+Available: https://doi.org/10.1109/TE.2009.2036154
+[16] P. Akhilesh, K. A. Krishna, S. K. Bharadwaj, D. Subham, and M. Belwal,
+“A visual approach to understand parsing algorithms through python
+and manim,” in2024 15th International Conference on Computing,
+Communication and Networking Technologies (ICCCNT), 2024, pp.
+1–7. [Online]. Available: https://doi.org/10.1109/ICCCNT61001.2024.
+10725029
+[17] J. Lu, R. Zheng, Z. Gong, and H. Xu, “Supporting teachers’
+professional development with generative AI: The effects on higher
+order thinking and self-efficacy,”IEEE Transactions on Learning
+Technologies, vol. 17, pp. 1279–1289, 2024. [Online]. Available:
+https://doi.org/10.1109/TLT.2024.3369690
+[18] A. Alatawi, E. Burcu, D. Kalogiros, and J. R. Carri ´on, “Interactive
+visual learning in machine learning: A cognitive learning theories-
+driven approach,” inProceedings of the 2025 IEEE Global Engineering
+Education Conference (EDUCON), 2025, pp. 1–10. [Online]. Available:
+https://doi.org/10.1109/EDUCON62633.2025.11016355
+[19] P. Ruchikachorn and K. Mueller, “Learning visualizations by analogy:
+Promoting visual literacy through visualization morphing,”IEEE
+Transactions on Visualization and Computer Graphics, vol. 21, no. 9,
+pp. 1028–1044, 2015. [Online]. Available: https://doi.org/10.1109/
+TVCG.2015.2413786
+[20] S. P., V . Jain, S. Golugula, and M. S. Sathvik, “Manimator:
+Transforming research papers and mathematical concepts into visual
+explanations,” arXiv preprint arXiv:2507.14306, 2025. [Online].
+Available: https://doi.org/10.48550/arXiv.2507.14306
+[21] M. Ku, T. Chong, J. Leung, K. Shah, A. Yu, and W. Chen,
+“Theoremexplainagent: Towards multimodal explanations for llm
+theorem understanding,” arXiv preprint arXiv:2502.19400, 2025.
+[Online]. Available: https://arxiv.org/abs/2502.19400
+[22] G. Sanderson, “3blue1brown: Visual mathematics explained,” Website
+and ManimGL Open-Source Repository, 2025, accessed 2025. [Online].
+Available: https://www.3blue1brown.com/
+[23] Z. Zheng, Y . Liu, K. Wang, and M. Chen, “Code2video: A code-
+centric paradigm for educational video generation,” arXiv preprint
+arXiv:2510.01174, 2025. [Online]. Available: https://doi.org/10.48550/
+arXiv.2510.01174
+[24] M. Wang, M. Wang, X. Xu, L. Yang, D. Cai, and M. Yin, “Unleashing
+ChatGPT’s power: A case study on optimizing information retrieval
+in flipped classrooms via prompt engineering,”IEEE Transactions on
+Learning Technologies, vol. 17, pp. 629–641, 2024. [Online]. Available:
+https://doi.org/10.1109/TLT.2023.3324714
+[25] J. Yin, T.-T. Goh, and Y . Hu, “Using a chatbot to provide formative
+feedback: A longitudinal study of intrinsic motivation, cognitive
+load, and learning performance,”IEEE Transactions on Learning
+Technologies, vol. 17, pp. 1404–1415, 2024. [Online]. Available:
+https://doi.org/10.1109/TLT.2024.3364015
+[26] C. Xu, W. Jia, R. Wang, X. He, B. Zhao, and Y . Zhang, “Semantic
+navigation of powerpoint-based lecture video for autonote generation,”
+IEEE Transactions on Learning Technologies, vol. 16, no. 1, pp. 1–17,
+2023. [Online]. Available: https://doi.org/10.1109/TLT.2022.3216535
+[27] A. Neyem, L. A. Gonz ´alez, M. Mendoza, J. P. S. Alcocer, L. Centellas-
+Claros, and C. Paredes-Robles, “Toward an AI knowledge assistant
+for context-aware learning experiences in software capstone project
+development,”IEEE Transactions on Learning Technologies, vol. 17,
+pp. 1639–1654, 2024. [Online]. Available: https://doi.org/10.1109/TLT.
+2024.3396735
+[28] J. Cohen, “A coefficient of agreement for nominal scales,”Educational
+and Psychological Measurement, vol. 20, no. 1, pp. 37–46,
+1960. [Online]. Available: https://journals.sagepub.com/doi/10.1177/
+001316446002000104
+[29] L. J. Cronbach, “Coefficient alpha and the internal structure of tests,”
+Psychometrika, vol. 16, no. 3, pp. 297–334, 1951. [Online]. Available:
+https://link.springer.com/article/10.1007/BF02310555
+
+--- Page 12 ---
+12
+[30] J. Cohen,Statistical Power Analysis for the Behavioral Sciences,
+2nd ed. Lawrence Erlbaum Associates, 1988. [Online]. Available: https:
+//utstat.utoronto.ca/∼brunner/oldclass/378f16/readings/CohenPower.pdf
+[31] B. Tversky, B. Morrison, and J. B ´etrancourt, “Animation: Can
+it facilitate?”International Journal of Human-Computer Studies,
+vol. 57, no. 4, pp. 247–262, 2002. [Online]. Available: https:
+//doi.org/10.1006/ijhc.2002.1017
+[32] G. Polat, Z. Akbulut, and O. Genc-Kumtepe, “Multimedia learning:
+Current themes, trends and future directions,”Education Inquiry, 2025.
+[Online]. Available: https://doi.org/10.1080/20004508.2025.2522104
+[33] J. C. Castro-Alonso, R. M. Wong, O. O. Adesope, and F. Paas,
+“Effectiveness of multimedia pedagogical agents predicted by diverse
+theories: A meta-analysis,”Educational Psychology Review, vol. 33,
+pp. 989–1015, 2021. [Online]. Available: https://doi.org/10.1007/
+s10648-020-09587-1
+[34] A. Paivio,Mental Representations: A Dual Coding Ap-
+proach. New York, NY , USA: Oxford University Press,
+1986. [Online]. Available: https://global.oup.com/academic/product/
+mental-representations-9780195066661
+[35] S. D. Scott, C. Greenhalgh, and S. Benford, “A design framework
+for interaction in 3d real-time learning environments,” inProceedings
+of the IEEE International Conference on Advanced Learning
+Technologies (ICALT), 2001, pp. 115–119. [Online]. Available:
+https://ieeexplore.ieee.org/document/943854
+[36] S. Sahibet al., “Mathematical animations: The art of teaching,” in
+Proceedings of the 31st Annual Frontiers in Education Conference (FIE),
+2001. [Online]. Available: https://ieeexplore.ieee.org/document/963987
+[37] F. Amini, N. H. Riche, B. Lee, J. Leboe-McGowan, and P. Irani,
+“Hooked on data videos: Assessing the effect of animation and
+pictographs on viewer engagement,” inProceedings of the 2018
+International Conference on Advanced Visual Interfaces (AVI), 2018,
+pp. 21:1–21:9. [Online]. Available: https://doi.org/10.1145/3206505.
+3206552
+[38] OpenAI, “GPT-4 technical report,” arXiv preprint arXiv:2303.08774,
+2023. [Online]. Available: https://arxiv.org/abs/2303.08774
+[39] Manim Community Developers, “Manim: Mathematical animation
+framework,” 2025. [Online]. Available: https://www.manim.community/
+[40] S. Amershi, M. Cakmak, W. B. Knox, and T. Kulesza, “Power to
+the people: The role of humans in interactive machine learning,”AI
+Magazine, vol. 35, no. 4, pp. 105–120, 2014. [Online]. Available:
+https://doi.org/10.1609/aimag.v35i4.2513
+[41] R. D. Peng, “Reproducible research in computational science,”Science,
+vol. 334, no. 6060, pp. 1226–1227, 2011. [Online]. Available:
+https://doi.org/10.1126/science.1213847
+[42] L. Huang, W. Yu, W. Ma, W. Zhong, Z. Feng, H. Wang, Q. Chen,
+W. Peng, X. Feng, B. Qin, and T. Liu, “A survey on hallucination
+in large language models: Principles, taxonomy, challenges, and open
+questions,”ACM Transactions on Information Systems, 2025, early
+access. [Online]. Available: https://doi.org/10.48550/arXiv.2311.05232
+[43] J. White, M. Fu, A. Hays, Q. Dong, S. Schmidt, S. Subramanian,
+T. Zhao, Q. Huang, J. G. Hester, T. Schuman, Y . Sun, C. Vendome,
+D. C. Schmidt, A. Gokhale, and J. Spencer-Smith, “A prompt
+pattern catalog to enhance prompt engineering with ChatGPT,”
+arXiv preprint arXiv:2302.11382, 2023. [Online]. Available: https:
+//doi.org/10.48550/arXiv.2302.11382
+[44] B. Hu, L. Zheng, J. Zhu, L. Ding, Y . Wang, and X. Gu, “Teaching
+plan generation and evaluation with GPT-4: Unleashing the potential
+of LLM in instructional design,”IEEE Transactions on Learning
+Technologies, vol. 17, pp. 1471–1485, 2024. [Online]. Available:
+https://doi.org/10.1109/TLT.2024.3384765
+[45] M. Liu, J. Zhang, L. M. Nyagoga, and L. Liu, “Student-AI question
+cocreation for enhancing reading comprehension,”IEEE Transactions
+on Learning Technologies, vol. 17, pp. 815–826, 2024. [Online].
+Available: https://doi.org/10.1109/TLT.2023.3333439

@@ -1,0 +1,1705 @@
+=== PDF PAGE 1 ===
+Unpublished working draft.Not for distribution.
+Conversations in Space: Non-Linear LLM Interaction in Everyday
+Use
+Rifat Mehreen Amin
+LMU Munich
+Munich, Germany
+rifat.amin@ifi.lmu.de
+Alperen Adatepe
+LMU Munich
+Munich, Germany
+adatepe.alperen@campus.lmu.de
+Daniela Fernandes
+Aalto University
+Espoo, Finland
+daniela.dasilvafernandes@aalto.fi
+Daniel Buschek
+University of Bayreuth
+Bayreuth, Germany
+daniel.buschek@uni-bayreuth.de
+Andreas Butz
+LMU Munich
+Munich, Germany
+butz@ifi.lmu.de
+G
+L
+A
+Chat View
+I
+B
+C
+Canvas View
+J H
+F
+D
+E
+K
+Figure 1: Our system CanvasConvo extends traditional chat-based interaction (Chat View) with branching and spatial organiza-
+tion (Canvas View). Starting from a single prompt, users can create alternative conversational paths directly from messages (A,
+B), enabling parallel exploration of different perspectives. The canvas view represents these branches as a structured node-link
+graph, supporting comparison, navigation, and revisiting of ideas (C, D). The timeline (E) is linked to both linear and spatial
+views: selecting an entry (H) scrolls to the corresponding point in the chat (I), while in the canvas, it highlights the referenced
+node (J) and enables users to zoom into its details on click (K). The sidebar (G) organizes conversations with tags (L).
+Abstract
+As LLM conversations grow, their histories capture alternative
+directions, decisions, and evolving lines of thought that can be dif-
+ficult to navigate through chat alone. We investigate an interaction
+concept that represents the same conversation through two syn-
+chronized views: a familiar linear chat for ongoing dialogue and
+a spatial canvas for navigating its emerging structure. To investi-
+gate this interaction concept, we developed CanvasConvo, which
+allows conversations to branch into alternative paths that remain
+accessible across both views. In a five-day field deployment with 24
+participants, we examined how people appropriated this parallel
+representation in self-directed knowledge work. Participants selec-
+tively moved between the two views rather than replacing chat with
+the canvas. Chat remained central to conversational interaction,
+while the canvas supported overview, revisitation, and exploration
+of alternatives. Adoption was uneven, revealing challenges around
+Unpublished working draft. Not for distribution.
+,
+.
+established chat habits, transitions between representations, and
+understanding branch context. Our findings inform the design of
+user interfaces for LLMs that combine linear and non-linear con-
+versation representations.
+CCS Concepts
+•Human-centered computing → Graphical user interfaces;
+Natural language interfaces;Interactive systems and tools.
+Keywords
+Conversational interfaces, LLMs, Conversation graphs, Non-linear
+interaction, Branching interaction, Interactive systems
+1 Introduction
+Large language models (LLMs) have become integral to knowledge
+work, supporting activities such as writing, programming, planning,
+design, and research through iterative interaction [14]. During these
+tasks, users’ goals and interpretations often emerge progressively
+2026-09-16 01:27. Page 1 of 1–18.
+arXiv:2605.15848v2  [cs.HC]  15 Sep 2026
+
+=== PDF PAGE 2 ===
+Unpublished working draft.Not for distribution.
+, , Amin et al.
+through dialogue with AI rather than being fully specified upfront,
+making LLM interaction a process of intentmaking and sensemak-
+ing [6]. As these interactions unfold, conversations accumulate
+alternatives, constraints, and reusable strategies, becoming exter-
+nal representations of users’ evolving thought processes [2, 38]. Yet
+LLM interaction remains dominated by linear conversational inter-
+faces that become difficult to manage as conversations grow longer
+and more exploratory. Earlier ideas and context become buried,
+while exploring alternatives often requires copying prompts, rerun-
+ning conversations, or distributing work across multiple chats or
+tabs [11, 19, 25, 31]. As a result, users must increasingly manage not
+only the task itself, but also the accumulated context, alternatives,
+and progress of the interaction [33].
+Researchers have explored richer interaction paradigms for ad-
+dressing these limitations, including graphical representations of
+generated responses [ 11], executable prompting graphs [ 3, 35],
+integrated rewriting environments [25], spatial canvases for orga-
+nizing generated information [ 2, 30, 31], and conversation-level
+branching [15]. These systems demonstrate the value of introducing
+structure into LLM interaction, but often require users to explicitly
+construct or manage that structure by assembling prompt graphs, ar-
+ranging workspace artifacts, or organizing conversational branches.
+This leaves open how conversational structure can emerge directly
+from ongoing interaction while remaining integrated with the fa-
+miliar chat experience. To ground this problem in users’ existing
+practices, we conducted a formative study with eight experienced
+LLM users. The study identified recurring challenges around con-
+text fragmentation, iteration friction, and exploring alternative
+conversational paths, motivating the design of CanvasConvo.
+Guided by these findings, we developed CanvasConvo, a con-
+versational interface that combines conventional chat with a syn-
+chronized spatial representation automatically derived from the
+evolving conversation. Every message becomes part of a persistent
+conversational structure that users can revisit, branch, and organize
+without separately authoring a workspace or abandoning the famil-
+iar interaction model of chat. Rather than positioning the spatial
+canvas as a replacement for chat, CanvasConvo explores how lin-
+ear and non-linear representations can coexist as complementary
+views of the same evolving conversation. Because the system is
+intended to support conversations that accumulate, branch, and
+are revisited over time, we sought to understand how these rep-
+resentations become incorporated into users’ ongoing practices
+rather than evaluating only their initial use. Prior work shows that
+the qualities shaping initial encounters with interactive systems
+can differ from those that become important through continued
+use [12], while longitudinal studies of generative AI have identi-
+fied processes such as familiarization, customization, and workflow
+appropriation that emerge through repeated interaction [17]. We
+therefore conducted a five-day exploratory field study with 24 par-
+ticipants who incorporated CanvasConvo into self-directed writing,
+programming, planning, research, and study activities. Using in-
+teraction logs, questionnaires, and semi-structured interviews, we
+examined how participants adopted and appropriated its conversa-
+tional representations over time.
+Our findings reveal a division of labor between the two syn-
+chronized representations: participants primarily treated chat as
+a generation surface to advance the conversation, while using the
+spatial canvas as an orientation surface to revisit, compare, and
+organize evolving conversational trajectories. Branching supported
+exploration of alternatives while preserving their relationship to the
+prior context, but also introduced new challenges in understanding
+which context a branch retained and in reconciling divergent con-
+versational paths. Together, these findings suggest that supporting
+non-linear LLM interaction is not simply a matter of replacing linear
+histories with richer visual structures. Instead, conversational in-
+terfaces can benefit from treating linear and spatial representations
+as complementary interaction surfaces, supporting the fluid presen-
+tation of conversational content while making the accumulating
+structure of that interaction available for navigation, reflection, and
+exploration over time.
+2 Related Work
+We review prior work from three complementary perspectives: re-
+search on intent formation during conversational interaction with
+LLMs, approaches that structure LLM interactions beyond chrono-
+logical chat, and spatial workspaces for supporting non-linear ex-
+ploration. Together, these strands motivate our investigation of
+conversation-level spatial representations.
+2.1 Intent Formation in Conversational LLM
+Interaction
+Prior work characterizes interaction with LLMs as an iterative
+process in which users progressively formulate, evaluate, and refine
+their intent. Why Johnny Can’t Prompt shows that non-expert users
+often develop prompts opportunistically, struggle to articulate their
+goals precisely, and lack systematic strategies for evaluating model
+outputs [39]. Similarly, research on intentmaking argues that goals
+and interpretations emerge through interaction rather than being
+fully specified in advance [6].
+Several systems support this iterative process by externalizing
+intermediate conversational artifacts. Wordcraft enables users to
+iteratively rewrite, continue, and discuss generated text during
+collaborative writing [38]. PromptCanvas represents prompts and
+intermediate outputs as persistent, composable widgets that users
+can refine throughout creative workflows [2]. Likewise, Selenite
+structures generated alternatives and evaluation criteria to sup-
+port reasoning during exploratory decision making [16]. Although
+these systems address different domains, they collectively show
+that intermediate prompts, outputs, and decisions become valuable
+artifacts that support the gradual refinement of user intent.
+2.2 Structuring LLM Interaction
+Beyond supporting iterative intent formation, researchers have ex-
+plored alternative representations for organizing interactions with
+LLMs. Existing systems structure different aspects of the interac-
+tion process, including generated responses, prompting workflows,
+conversational memory, and information spaces.
+Some systems focus on structuring model outputs. Graphologue
+transforms generated responses into node-link graphs of entities
+and relationships, enabling non-linear exploration of generated con-
+tent [11]. VISAR represents argument development as an editable
+hierarchical tree, allowing users to organize and revise reasoning
+2026-09-16 01:27. Page 2 of 1–18.
+
+=== PDF PAGE 3 ===
+Unpublished working draft.Not for distribution.
+Conversations in Space: Non-Linear LLM Interaction in Everyday Use , ,
+across multiple levels of abstraction [40]. Other work instead struc-
+tures prompting workflows. PromptChainer and AI Chains decom-
+pose complex tasks into modular prompt pipelines with intermedi-
+ate outputs that improve transparency and debugging [35, 36], while
+ChainForge represents prompt workflows as executable graphs for
+systematic comparison and evaluation [3]. DirectGPT maps direct-
+manipulation operations to reusable prompts [19], and Memolet
+externalizes conversational memory into reusable interactive ob-
+jects [37].
+A complementary line of work structures broader information
+spaces assembled during exploration. Sensecape and Luminate or-
+ganize generated information within hierarchical workspaces that
+support multilevel exploration and synthesis instead of committing
+users to a single conversational trajectory [ 30, 31]. Collectively,
+these systems demonstrate that explicit representations improve
+navigation, comparison, and reuse during complex interaction with
+LLMs, although they organize different artifacts of interaction
+rather than the conversation itself.
+2.3 Spatial Workspaces and Non-Linear
+Interaction
+Spatial workspaces have become an increasingly common inter-
+action paradigm for supporting complex cognitive tasks. Earlier
+research on conversation visualization showed that asynchronous
+discussions naturally evolve into multiple interleaved threads and
+benefit from persistent spatial representations that preserve con-
+text while enabling flexible navigation [23, 24]. More recent work
+extends these ideas to interaction with LLMs.
+PromptCanvas enables users to arrange prompts and generated
+outputs within a persistent workspace that supports iterative re-
+finement through direct manipulation [2]. Sensemaking systems
+such as CoNotate, InterWeave, and ForSense integrate adaptive
+guidance into user-created workspaces to support synthesis across
+evolving information structures [ 20, 21, 24]. DataTone similarly
+demonstrates how interactions within a workspace can be trans-
+formed into persistent constraints that shape subsequent analy-
+sis [8]. Recent systems have also explored branching conversational
+interaction. Branchat explicitly preserves alternative conversational
+trajectories, allowing users to revisit and continue previous lines
+of exploration without overwriting earlier work [ 15]. Together,
+these systems demonstrate the value of spatial organization and
+non-linear navigation for exploratory interaction with LLMs.
+2.4 Synthesis and Positioning
+Prior systems move beyond linear chat by structuring different
+parts of LLM interaction in different ways. As summarized in Ta-
+ble 1, these representations range from generated response content
+and prompt workflows to information spaces and conversation
+histories. They also differ in how structure is created and how it
+relates to chat: some require users to construct workflows or or-
+ganize workspace artifacts, while others derive structure from the
+interaction itself; similarly, structured representations may replace,
+augment, or remain synchronized with conversational interaction.
+Together, these systems demonstrate multiple ways of externalizing
+structure to support exploration, navigation, and revisitation.
+CanvasConvo focuses specifically on the conversation history
+as the object of representation. Its spatial structure is derived from
+the evolving conversation, with users creating alternative trajec-
+tories through branching, and remains synchronized with the fa-
+miliar linear chat interface. Rather than replacing chat with a sepa-
+rate visual workspace, CanvasConvo treats linear and spatial rep-
+resentations as complementary views of the same conversation.
+While prior work has established the value of structured represen-
+tations, comparatively less is known about how users incorporate
+such conversation-level representations into exploratory and long-
+running LLM workflows in practice.
+Building on this gap, we examine both how users currently man-
+age conversational complexity in existing LLM interfaces and how
+they subsequently interact with CanvasConvo during self-directed
+work. We focus on how users manage alternative directions, revisit
+and reuse prior conversational artifacts, and navigate non-linear
+structures during longer-running and multi-step tasks. We address
+the following research questions:
+RQ1 How do users currently manage multiple ideas, alternative
+directions, orwhat-ifscenarios when interacting with LLM
+chat interfaces?
+RQ2 How does providing non-linear conversational structures
+(e.g., branching, visual navigation, and reuse of conversa-
+tional artifacts) influence users’ ability to revisit, reuse, and
+adapt prior prompts and responses?
+RQ3 How do users interact with such non-linear conversational
+interfaces when working on longer-running or multi-step
+tasks with LLMs?
+3 Formative Study
+Prior work has identified challenges in managing increasingly long
+and complex interactions with LLMs, including difficulties in revis-
+iting earlier content, exploring alternative directions, and maintain-
+ing context across conversational turns. However, less is understood
+about how users encounter and work around these challenges in
+their existing LLM workflows, particularly when conversations in-
+volve iterative exploration rather than a single linear progression.
+To better understand these practices and inform the design of
+CanvasConvo, we conducted a formative study examining how
+users manage complex and exploratory interactions with current
+conversational LLM interfaces. The study focused on participants’
+existing practices: how they explore alternative directions, iterate
+on previous outputs, maintain context, and organize conversational
+histories as their interactions grow.
+Eight expert LLM users (F1-F8), all with prior experience using
+conversational AI tools, were recruited through purposive sampling
+under the inclusion criterion of intensive professional LLM use (10+
+sessions/week, at least 6 months of regular use); three were UI/UX
+researchers and five were software developers. Participants took
+part through in-person sessions, remote sessions, or asynchronous
+written feedback, depending on their availability covering work-
+flow walkthroughs, breakdown moments, ideal-tool sketches, and
+reactions to early design directions. Working through the sessions
+together, the two researchers grouped the recurring observations
+into three core themes.
+2026-09-16 01:27. Page 3 of 1–18.
+
+=== PDF PAGE 4 ===
+Unpublished working draft.Not for distribution.
+, , Amin et al.
+Table 1: Comparison of representative LLM interaction systems by primary representation, structure creation, use case,
+relationship to chat, and empirical evaluation.
+System Primary Representation Structure Creation Primary Use Case Relationship to Chat Evaluation
+Graphologue [11] LLM response content Automatic Information exploration Synchronized diagram and
+text
+Qualitative study
+ChainForge [3] Prompt workflow User-authored Prompt engineering / testing Separate visual workflow Lab study
+PromptCanvas [2] Prompt logic Hybrid Creative writing Canvas workspace 2 lab studies + field study
+Sensecape [31] Information space Hybrid Exploration / sensemaking Structured workspace Lab study
+Branchat [15] Conversation history Automatic + user branching Revisitation / context
+management
+Synchronized tree and chat Lab study
+CanvasConvo Conversation history Automatic + user
+branching
+Exploratory and
+long-running LLM
+workflows
+Synchronized
+complementary canvas
+and chat views
+5-day field study
+3.1 Findings
+Participants expressed consistent frustration with the linear, se-
+quential nature of current LLM interfaces. Despite their expertise,
+many lacked the vocabulary to articulate what they wanted until
+the session prompted structured reflection.Three themes were
+identified as central issues. Context fragmentation, iteration
+friction, and the forking problem.These themes align with
+research on information foraging [22] and the tension between lin-
+ear interaction paradigms and the non-linear nature of knowledge
+work [31].
+3.1.1 Context Fragmentation.Context fragmentation refers to the
+scattering of relevant information across the conversation history,
+forcing users to scroll, search, or mentally reconstruct the state of
+their work. Participants consistently reported difficulty locating
+files and outputs, with F3 noting,“I spend half my time scrolling up
+to find the file I just uploaded. By the time I find it, I have lost my train
+of thought. ”Valuable outputs such as well-structured code snippets
+or polished paragraphs became embedded in the scroll history and
+were effectively inaccessible for later retrieval. F6 illustrated the
+resulting inefficiency:“I got this perfect function like 20 messages ago,
+and now I cannot find it. I have to scroll and scroll, and sometimes I just
+regenerate it, which is wasteful. ”Several participants also described
+the cognitive friction of session interruption. Upon returning after
+a break, they reported needing to rebuild their mental model of
+the entire conversation:“If I close the tab and come back an hour
+later, I have to re-read the whole thing to remember where I was”(F1).
+This behavior reflects the extraneous cognitive load imposed by
+interfaces that provide neither persistent summaries nor spatial
+overviews of session state [32].
+Six of eight participants had developed explicit workarounds:
+maintaining separate documents (Notion, Word, Google Docs) to
+preserve important outputs from the chat. This coping strategy
+echoes the principles of casual information organization, in which
+users create ad hoc collections of resources when the primary inter-
+face fails to support the necessary persistence of artifacts [18]. The
+widespread adoption of this workaround reveals a clear gap: critical
+information that should be persistent and retrievable must instead
+be manually externalized by the user. The design implication is a
+persistent, always-visible artifact repository that elevates uploaded
+files and generated outputs from embedded ephemera to first-class,
+directly accessible objects.
+3.1.2 Iteration Friction.Iteration friction refers to the dispropor-
+tionate cost of making small, localized refinements to generated
+content [34]. Six of the eight participants described frustration with
+the binary choice between accepting an output as-is or regenerating
+it entirely. F2 articulated this constraint clearly:“I just want to tweak
+this one paragraph, not regenerate the whole essay. But if I ask it to
+fix paragraph three, it gives me a completely different version of the
+whole thing. ”To circumvent this limitation, users developed com-
+plex workarounds. F5 described constructing increasingly unwieldy
+prompts designed to protect desired portions while modifying oth-
+ers:“I end up writing these enormous prompts like ‘keep paragraphs 1,
+2, and 4 exactly the same, but rewrite paragraph 3 to be more formal. ’
+It is exhausting. ”More concerning was the inhibitory effect on iter-
+ation itself. F7 reported a reluctance to ask for revisions even when
+dissatisfied:“Sometimes I get something 90% right, and I am scared
+to ask for changes because it might ruin what is already working. ”
+This fear-driven acceptance of suboptimal outputs represents a
+fundamental usability failure.
+Seven of the eight participants reported manually editing LLM
+outputs rather than requesting revisions, and F3 described an ex-
+treme adaptation: copying individual paragraphs into entirely new
+chats for focused iteration, then manually recombining the results
+across sessions. These strategies highlight a critical design need:
+inline tools for localized iteration that allow users to target specific
+content segments for refinement without triggering full-context
+re-prompting or risking unintended side effects elsewhere in the
+output. This aligns with the research calling for a shift from purely
+conversational interaction toward direct manipulation of specific
+generated objects [19]. F2 raised an important concern about trans-
+parency:“How do I know the widget is only changing the selected
+text? What if it’s also silently modifying the context around it?”This
+does not invalidate the case for local iteration tools; rather, it identi-
+fies a requirement that must accompany them (preview affordances
+such as diff visualization or undo-group mechanisms) to calibrate
+user trust [1].
+3.1.3 The Forking Problem.The forking problem refers to the dif-
+ficulty of exploring alternative approaches without losing accu-
+mulated context or polluting the conversation history. Seven of
+the eight participants encountered this tension between the desire
+to try new strategies and the cost of restarting from scratch. F8
+2026-09-16 01:27. Page 4 of 1–18.
+
+=== PDF PAGE 5 ===
+Unpublished working draft.Not for distribution.
+Conversations in Space: Non-Linear LLM Interaction in Everyday Use , ,
+quantified the friction:“If I want to try a different prompt strat-
+egy, I have to copy-paste everything into a new chat. That is like a
+five-minute tax every time I want to explore an alternative. ”Some
+users attempted to work around this by continuing in the same
+chat, but this strategy traded technical convenience for cognitive
+overhead. F6 described the result:“My chat looks like a graveyard
+of half-finished ideas. I cannot tell which approach I am currently on. ”
+Other participants adopted the multi-window strategy, opening
+parallel sessions to preserve context. However, this approach intro-
+duced new friction in the comparison phase. F1 reported:“I have
+to open two browser tabs side-by-side and manually compare. There
+is no way to see the branches together. ”These ad-hoc workarounds
+(mental models of scattered branches, copy-paste overhead, manual
+cross-tab comparison) point to a fundamental absence: integrated
+support for exploring and comparing parallel lines of inquiry within
+a single coherent interface, a capability essential for sensemaking
+with LLMs [11, 31].
+The severity of this problem manifested in different ways across
+the sample. F4 reported habitually maintaining“15 to 20 ChatGPT
+tabs open at any time, ”each representing a distinct exploration
+thread. F2 adopted a more self-aware coping mechanism, typing
+explicit“BRANCH:”markers directly into the chat to impose concep-
+tual structure: a fragile strategy that offloads to working memory a
+distinction that the interface should maintain automatically.
+These challenges point to a spatial canvas with integrated branch-
+ing support. The cognitive benefits of stable spatial layouts for
+information retrieval and navigation are well-documented [ 26],
+and recent work shows that spatial organization can substantially
+reduce the overhead of managing complex, multi-threaded explo-
+rations [27]. The design solution is to make branches visually salient,
+spatially distinct, and directly comparable.
+This enthusiasm for spatial organization was not universal. F7
+articulated a limitation:“I already have spatial organization in my
+editor. If I open yet another spatial interface for the LLM, am I co-
+ordinating two spatial models in my head, or does one replace the
+other? That feels complicated. ”Spatial interfaces may thus intro-
+duce friction when layered on existing spatially complex tools such
+as IDEs; their value is contingent on task complexity, workflow
+integration, and the user’s broader tool ecosystem, a boundary con-
+dition the prototype accommodates through an optional embedded
+panel mode.
+3.2 Design Goals
+Our formative study revealed that users were already constructing
+implicit conversational branches through multiple chats, browser
+tabs, copy-pasting, and self-authored markers, creating a trade-off
+between preserving conversational context and keeping alterna-
+tive trajectories manageable. Together with recurring challenges
+in retrieving and iterating on prior content, these observations,
+alongside prior work on non-linear LLM interaction, direct ma-
+nipulation, and information organization, informed four design
+goals for supporting exploratory and long-running conversational
+workflows.
+DG1 Support parallel exploration of conversational paths.
+Prior work shows that users iteratively refine prompts and
+pursue multiple directions during creative and analytical
+tasks [4, 39]. However, conventional chat interfaces constrain
+interaction to a single linear trajectory. Grounded in theFork-
+ing Problemidentified in our formative study, the system
+should allow users to pursue alternative directions from ex-
+isting conversational states without duplicating context or
+fragmenting their work across separate chats. These alterna-
+tives should remain connected to their shared conversational
+history so that users can move between and compare different
+lines of exploration.
+DG2 Enable direct manipulation of conversational artifacts.
+Informed by theIteration Frictionobserved in our forma-
+tive study, the system should enable users to act on specific
+conversational elements rather than relying exclusively on
+sequential prompting and full-response regeneration. Follow-
+ing principles of direct manipulation, conversational artifacts
+should remain persistent and operable [19], allowing users to
+selectively reuse, branch from, compare, or transform prior
+content.
+DG3 Support scalable navigation and context management.
+Grounded in theContext Fragmentationidentified in our for-
+mative study, the system should help users maintain aware-
+ness of conversation structure as interactions accumulate.
+Users should be able to move between an overview of their
+conversational history and focused interaction following
+Shneiderman’s mantra [29] with particular branches, mes-
+sages, or artifacts, supporting both orientation and retrieval
+in increasingly complex conversations.
+DG4 Balance structured guidance with flexible interaction.
+Throughout the formative study, participants developed dif-
+ferent strategies for managing complex LLM interactions,
+including using external documents, multiple chat windows,
+and self-authored markers to organize branches. Structured
+interaction techniques, such as prompt suggestions and scaf-
+folding, can support users in exploring and refining ideas [39].
+At the same time, overly rigid systems may constrain user
+agency. The system should provide context-aware guidance
+while preserving flexibility in how users explore, structure,
+and manipulate conversations.
+4 CanvasConvo
+Building on our design goals, CanvasConvo conceptualizes interac-
+tion with LLMs as anon-linear workflowrather than a sequence of
+isolated turns.
+4.1 Interaction Concept: Structuring
+Non-Linear LLM Workflows
+Inspired by interaction paradigms from visual editing systems and
+prior work on structured writing environments, CanvasConvo com-
+bines a familiar chat interface with spatial and structural interaction
+mechanisms. The system organizes interaction across three comple-
+mentary dimensions: spatial organization, branching, and temporal
+navigation, allowing users to fluidly move between focused dia-
+logue and exploratory workflows.
+4.1.1 Spatial Canvas.The spatial canvas serves as a structural rep-
+resentation of the conversation, transforming the linear message
+2026-09-16 01:27. Page 5 of 1–18.
+
+=== PDF PAGE 6 ===
+Unpublished working draft.Not for distribution.
+, , Amin et al.
+N
+A
+I
+M
+D C
+F
+J
+K
+H
+L
+B
+E
+G
+Figure 2: CanvasConvo (canvas view). The canvas (center) visualizes messages as nodes with a linear main thread (M), and
+branching zones (C, F), while the sidebar (N) organizes conversations (with tags (I)) and branches (A). Users can annotate with
+notes (D), navigate via semantic zoom (G) and a minimap (H), and search (J) to highlight relevant content. The timeline (E)
+shows conversation history and enables navigation to messages (K), with branch points explicitly marked (B). The overview
+panel (L) displays contextual information, including goals and resources.
+sequence into a node-link graph. Each message is represented as a
+node, and edges encode sequential relationships and branch con-
+nections. The layout issystem-derived and structure-driven.
+The main conversation thread is arranged linearly (Main Thread,
+Figure 2- M ), while branches appear as separate zones connected
+to their origin points. The layout reflects the underlying conversa-
+tional structure. The canvas introduces several key interactions:
+• Node Types.Messages are represented as chat nodes contain-
+ing role labels and content previews (Figure 2- F ). Branches are
+grouped intobranch zone nodes, visually distinct regions with
+labels and automatically generated summaries (Figure 2- C ). Ad-
+ditional node types include loading placeholders and user-created
+sticky-notes for annotations (Figure 2- D ). With these, users can
+add annotations, for example, to externalize ideas, without modi-
+fying the conversation.
+• Semantic Zoom.The canvas supports four levels of semantic zoom
+(Cluster, Minimal, Compact, Full), from high-level role indicators
+to full message content (Figure 2-G ). This enables users to move
+between overview and detailed inspection.
+• Navigation and Search.Users navigate via panning, zooming,
+keyboard shortcuts, and a minimap (Figure 2- H ) that provides a
+global overview. A text search function (Figure 2- J ) highlights
+relevant nodes by adjusting opacity, allowing quick identification
+of content in large conversations. Hovering over any node in the
+canvas further highlights the corresponding conversational path.
+Overall, the canvas functions as avisualization and navigation
+layerthat makes conversational structure, relationships, and alter-
+native paths explicitly visible(DG3).
+4.1.2 Conversation Branching.CanvasConvo introduces branch-
+ing as a core mechanism for exploring alternative conversational
+trajectories. From any message, users can create a branch that du-
+plicates the conversation history up to that point and continues
+as a new thread (Figure 3- G ). This preserves prior context while
+enabling divergence. Branch creation is integrated directly into the
+interaction flow via buttons in chat messages and canvas nodes.
+Branches are represented consistently across the views:
+•as nested entries in the conversation sidebar (Figure 2- A )
+• as badges attached to branching points in the chat (Figure 3- A )
+•and as distinct zones in the spatial canvas (Figure 2- C )
+Hovering over a branch tag reveals a preview of the branch
+(Figure 3- B ). Branching supports workflows such as exploring
+alternative prompts, comparing different outputs, or recovering
+from earlier points in the conversation. By externalizing alterna-
+tive paths, branching transforms interaction from a single linear
+progression into amulti-path exploration process(DG1). It is also
+possible to delete branches if needed.
+4.1.3 History Timeline.To complement the structural view pro-
+vided by the canvas, CanvasConvo includes a timeline view within
+the overview panel. It presents a vertical history of all messages,
+with each entry represented by a colored marker and a text preview
+2026-09-16 01:27. Page 6 of 1–18.
+
+=== PDF PAGE 7 ===
+Unpublished working draft.Not for distribution.
+Conversations in Space: Non-Linear LLM Interaction in Everyday Use , ,
+F
+B
+G
+A
+C
+E
+D
+Figure 3: CanvasConvo (Chat view). Messages can be branched directly (A), with previews shown on hover (B) and branch points
+indicated in the thread (G). Hovering over a point in the timeline shows an overview of the conversation (D). A contextual
+toolbar (C) enables inline transformations such as summarizing or rephrasing selected text. The sidebar provides conversation
+overviews and metadata (F), while prompt templates (E) support reusable inputs.
+(Figure 2- E ). Selecting an entry navigates the viewport to the cor-
+responding message in both chat and canvas view (Figure 2- K ).
+Branch-point messages are explicitly indicated (Figure 2- B ). Hov-
+ering over a timeline entry reveals a preview of the corresponding
+conversation text (Figure 3-D , there shown in the collapsed state of
+the timeline sidebar). This view emphasizestemporal progression
+(DG3), allowing users to:
+•revisit earlier states of the conversation
+•track how ideas evolved over time
+•and quickly navigate across different points in the interaction
+Together with the canvas, the timeline provides a complemen-
+tary perspective: while the canvas showsstructure and relationships,
+the timeline revealssequence and historyby preserving the chrono-
+logical flow of both user and assistant messages.
+4.1.4 Supporting Interaction Mechanisms.In addition to these core
+components, CanvasConvo provides several mechanisms that sup-
+port interaction across views and with chat messages in general:
+• Chat Interface.This view shows messages with real-time stream-
+ing responses and rich rendering (Markdown, code, LaTeX, im-
+ages). Messages support actions such as edit, regenerate, copy,
+and branch. The sidebar on the left ((Figure 2-N )) shows a search-
+able list of conversations by recency; each displays metadata such
+as message count and conversation tags (Figure 2- I ). The tags
+are generated based on the whole context of the conversation and
+dynamically updates as the conversation progresses. Hovering
+reveals a summary preview (Figure 3- F ). At the bottom, the
+message input supports reusable prompts via a picker(DG4), to
+quickly insert and reuse templates (Figure 3- E ).
+• Toolbar.Selecting text within a message reveals a toolbar with
+transformation actions (e.g., shorten, expand, rephrase, summa-
+rize, critique), see Figure 3-C . When clicking one, a popup shows
+a preview for users to confirm. These tools enable localized re-
+finement of outputs without writing new prompts(DG2).
+• Context and Resource Management.The overview panel provides
+access to contextual controls (e.g., inferred goals, system instruc-
+tions), uploaded files, and automatically extracted resources such
+as links and generated images (Figure 2-L ), collapsed in Figure 2.
+This makes otherwise implicit context visible and configurable.
+4.2 Technical Implementation
+CanvasConvo is implemented as a single-page web application
+using Next.js (App Router) and React, with Supabase providing au-
+thentication, persistence, and real-time synchronization. The spatial
+canvas is built on React Flow. Model responses are streamed via
+Server-Sent Events to enable low-latency interaction. The system
+integrates multiple LLMs (e.g., GPT-5, GPT-4.1, GPT-4o), with con-
+figurable reasoning effort and large context windows supporting
+extended interactions.
+5 Main Study Design
+We conducted an exploratory study to investigate how users in-
+teract with our system. We were interested in understanding how
+users managed long-running LLM-supported workflows as they
+2026-09-16 01:27. Page 7 of 1–18.
+
+=== PDF PAGE 8 ===
+Unpublished working draft.Not for distribution.
+, , Amin et al.
+incorporated CanvasConvo into their everyday tasks. Participants
+were free to use the system for their own writing, programming,
+planning, research, study, and other knowledge-work activities,
+allowing us to observe how conversation-level spatial representa-
+tions were appropriated across naturally occurring workflows. The
+study was approved by our institution’s ethics board.
+5.1 Participants
+We recruited 24 participants (P1-P24, with no overlap with par-
+ticipants from the formative study) through institutional mailing
+lists and word-of-mouth (6 female, 17 male, 1 non-binary) with
+ages 21 to 54 years ( 𝑀= 28.6, 𝑆𝐷= 6.6). They represented di-
+verse professional backgrounds, including students, researchers,
+software engineers, and industry professionals. Participants var-
+ied in their writing experience, including both professional and
+non-professional writers. All reported prior experience with LLM-
+based tools, with most indicating high familiarity and frequent use
+in their daily workflows. Participants commonly used LLM sys-
+tems for tasks such as writing and editing, coding, data analysis,
+brainstorming, planning, and learning. Overall, the participant pool
+reflects a group of active LLM users with varied domains of appli-
+cation and experience levels. A detailed overview is provided in
+Table 2. Participants were compensated 20€for the five-day study.
+5.2 Study Procedure
+Our study allowed participants to integrate the system into every-
+day workflows. The procedure combined a structured onboarding
+task with open-ended usage.
+5.2.1 Pre-Task Preparation.Before starting the study, participants
+completed an introductory questionnaire, watched a tutorial video1
+introducing the system, and got access to CanvasConvo. The ques-
+tionnaire gathered data on participants’ experiences with multi-step
+workflows in LLM chats, including how they structure complex
+tasks, manage multiple lines of thought, reuse prompts, and or-
+ganize conversations. We further assessed perceived challenges,
+satisfaction with current interfaces, and desired features for sup-
+porting parallel exploration and long-running tasks.
+5.2.2 Guided Mandatory Task.Participants first completed a struc-
+tured, mandatory task during the five-day study period. They se-
+lected or defined a topic such as a learning plan, weekly routine,
+creative writing idea, or personal project. They created an initial
+version of their idea through interaction with the AI, iteratively
+refined it via follow-up prompts, and explored alternative versions
+by modifying aspects such as difficulty, constraints, or style. Par-
+ticipants were encouraged to create multiple branches, reuse prior
+prompts, revisit earlier responses, and use the canvas view to un-
+derstand the conversation structures.
+5.2.3 Open-Ended Usage.After completing the guided task, par-
+ticipants used the system freely for their own work during the
+remainder of the five-day study. These activities included plan-
+ning, programming, research, ideation, and other self-directed LLM-
+supported workflows, allowing us to observe adoption of the inter-
+face under naturalistic usage conditions.
+1submitted as a supporting material to this submission
+5.2.4 Post-Task Measures and Interview.At the end of the study,
+participants completed a post-task questionnaire on usability, task
+load, and questions on workflow support and conversation manage-
+ment, and participated in a semi-structured interview. The inter-
+views focused on participants’ experiences, workflows, perceived
+benefits and challenges, and suggestions for improvement.
+5.3 Measurements and Analysis
+We collected both quantitative and qualitative data to capture user
+behavior and perceptions.
+5.3.1 Quantitative Measures.Participants completed standard us-
+ability and workload instruments, including the System Usability
+Scale (SUS) [5] and NASA Task Load Index (NASA-TLX) [9] along
+with custom Likert items on workflow support, revisiting and reuse,
+managing multiple directions, and sense of control and authorship.
+We also logged interaction data, including branching behavior, node
+creation, navigation patterns, and reuse of conversational artifacts.
+5.3.2 Qualitative Analysis.Interview recordings were transcribed
+and independently reviewed by two researchers. Because the in-
+terview protocol was organized around topics aligned with our
+research questions, including participants’ existing conversational
+workflows, navigation and revisitation, exploration through branch-
+ing, and experiences with the spatial representation, the analysis
+focused on identifying recurring patterns within and across these
+discussion areas. The researchers iteratively compared their ob-
+servations, grouped related responses, and discussed emerging
+patterns and differences until reaching consensus. The resulting
+themes were used to organize the qualitative findings, with repre-
+sentative quotations used to illustrate both recurring experiences
+and divergent cases.
+6 Results
+We report the qualitative findings first, beginning with participants’
+existing practices in conventional LLM interfaces and then examin-
+ing how they adopted, adapted, and encountered challenges with
+CanvasConvo during the five-day deployment. We subsequently re-
+late these statements to patterns observed in the interaction teleme-
+try.
+6.1 Practices and Challenges in Conversational
+UI Workflows (RQ1)
+Our findings from the introductory questionnaire (beforeseeing/us-
+ing our design, separate from the formative study) reveal how par-
+ticipants currently structure, manage, and struggle with workflows
+in their usual LLM chat interfaces.
+6.1.1 Structuring Multi-Step Tasks.Participants described breaking
+complex tasks into smaller steps and iterating incrementally. They
+followed structured, step-by-step approaches, often starting with a
+high-level plan before refining individual components:“I usually
+ask one chat for a plan of the complex task. . . and then start new chats
+for each task. ”–P15. Others described iterative refinement within a
+single thread:“I outline the text. . . draft with AI. . . give feedback. . .
+iterate. ”–P1. Several participants emphasized decomposition and
+2026-09-16 01:27. Page 8 of 1–18.
+
+=== PDF PAGE 9 ===
+Unpublished working draft.Not for distribution.
+Conversations in Space: Non-Linear LLM Interaction in Everyday Use , ,
+incremental problem solving:“I go step by step, with a bottom-
+up approach. . . solving a smaller problem first. ”–P5. However, not
+all workflows were structured. Some participants reported more
+organic and less controlled approaches:“I usually start chatting and
+work through the task organically. . . my workflow can sometimes feel
+unstructured”–P17.
+6.1.2 Managing Conversations: One Thread vs. Multiple Chats.Par-
+ticipants described their typical use of LLM chat interfaces as rely-
+ing on a single, continuously growing conversation thread, which
+often became difficult to manage over time . For example, P7 noted
+that they usually work within“one long thread. ”As conversations
+grew, this structure led to a loss of clarity and increasing complex-
+ity. P2 described how they would“fill it with so much unnecessary
+paths”and eventually need to restart the chat altogether. Others
+characterized this experience as disorienting, with P14 noting that
+one can“go down a rabbit hole. . . and not really know how you got
+there. ”. To cope with these limitations, participants reported switch-
+ing between multiple chats or restarting conversations entirely,
+leading to fragmented workflows and loss of context. Some split
+tasks across multiple chats to improve clarity:“I split them. . . to
+have a better overview of the ‘big task’. ”–P16. A common strategy
+combined both approaches. For example P10 noted,“If the topic
+can be split. . . I split them up in multiple chats”. This highlights a
+tension between context continuity and organizational clarity, with
+no single strategy fully addressing both.
+6.1.3 Managing Multiple Ideas and Exploration.When exploring
+alternative directions, participants relied on ad-hoc strategies such
+as scrolling, copying content, or opening multiple chats or browser
+tabs:“Continue in the same chat and scroll back. . . copy prompts into
+another chat”–P11. Some used external tools to compensate for
+missing functionality:“I usually write external notes. . . to avoid un-
+necessary context. ”–P15. Despite these efforts, participants reported
+limited support for parallel exploration:“One thread can’t always
+handle different tasks. . . I have to start another thread. ”–P7.
+6.1.4 Loss of Overview in Long Conversations.A common challenge
+was maintaining an overview in longer interactions, due to the
+difficulty of retrieving earlier information or understanding past
+decisions. P8 said,“It is hard to find previous answers or go back and
+build upon them”. Similarly, P10 said,“When the chat gets longer,
+it is difficult to keep track of what I discussed before”. Participants
+attributed this to the linear, scroll-based nature of chat interfaces,
+such as P11:“Scrolling a lot to previous chats. ”
+6.1.5 Need for Structure, Navigation, and Branching.In their re-
+flections on their usual tools, people consistently expressed the
+need for better organization and navigation, such as the ability to
+explore alternatives without losing prior context. P12 mentioned,“I
+would add a way to create separate threads inside the same chat. . . to
+explore different ideas without mixing everything”. P23 noted,“There
+is no true ‘undo’ or branching feature. . . you’re often forced to start
+over”. Other desired features included grouping, visual overviews,
+and improved navigation:“A visual overview or map of the conversa-
+tion”–P8. P10 mentioned,“Organizing the chat into different sections
+or topics with an overview”.
+Participants also highlighted the need for better retrieval and
+reuse:“Being able to save certain prompts to use them afterwards. ”–
+P15. Overall, these findings point to limitations of linear chat UIs in
+multi-step and exploratory workflows, and thus confirm that our
+design features address a user need.
+6.2 Effects of Non-Linear Structures on Reuse,
+Navigation, and Exploration (RQ2)
+We next report the qualitative findings from participants’ experi-
+ences with CanvasConvo, specifically on how the non-linear struc-
+tures support revisiting, reuse, navigation, and exploration.
+6.2.1 Adopting Spatial Interaction Alongside Linear Chat.Partic-
+ipants contrasted CanvasConvo with traditional chat interfaces.
+Participants described preferring traditional chat interfaces for
+quick, low-effort interactions. For example, P3 noted that“for very
+minimal searches. . . I would use the other ones”, while P1 stated“for
+quick things. . . I would just use a normal chat”. Some continued to
+rely on linear interaction habits (P19, P23):“I just scrolled up. . . I
+never ended up using the canvas due to force of habits. ”(P19), others
+characterized their prior LLM use as sequential and difficult to or-
+ganize in contrast, such as P17:“I normally use LLM tools in a very
+linear way, just in a long chat. ”
+These statements indicate that adopting the spatial represen-
+tation was not immediate or uniform. For some participants, es-
+tablished chat-based practices remained the default even when
+alternative navigation mechanisms were available. In particular,
+P19’s continued reliance on scrolling suggests that introducing a
+spatial representation does not by itself displace interaction habits
+developed through conventional chat interfaces. Participants in-
+stead differed in when and for which kinds of tasks they considered
+the additional structure worthwhile.
+In contrast, participants described CanvasConvo as supporting
+exploration and organization: P11 described it as“the go-to solution
+when I’m learning something, ”and P1 highlighted its usefulness“for
+longer ideations. . . trying out different topics. . . the branching is really
+nice. ”More broadly, participants pointed to its applicability in larger-
+scale tasks, as reflected by P23’s observation that“people working
+on bigger projects would benefit the most. ”And P7 said,“usually. . . I
+have to use one long thread. . . but here. . . the organization was better
+and time efficient. ”They adopted spatial metaphors, framing the
+system as a map or structured overview:“like a mind map. . . where
+your ideas branch out. ”(P6). P3 perceived it as a tree, saying“it’s
+kind of like a flow chart or like a tree”.
+Together, these findings suggest that participants did not simply
+replace linear chat with a spatial workspace. Rather, they selectively
+incorporated spatial interaction when conversational complexity
+made the additional structure useful, while continuing to rely on
+familiar linear interaction for shorter or simpler tasks.
+6.2.2 Externalizing Conversation State and Supporting Navigation.
+Participants highlighted how the canvas reduces the need to rely
+on memory or scrolling, by visualizing branches and conversation
+states:“You can just click on older conversations. . . it was very easy
+to navigate. ”–P11. P17 noted,“I could clearly see where I had to go
+and how the conversation developed”. Participants described this
+as enabling faster comprehension of prior work, such as P19:“It
+2026-09-16 01:27. Page 9 of 1–18.
+
+=== PDF PAGE 10 ===
+Unpublished working draft.Not for distribution.
+, , Amin et al.
+gives you a much faster way to get a feeling of what has happened”.
+P9 explicitly compared the interaction to human conversational
+behavior:“It’s more like how we talk to people. . . you can go back to
+something you mentioned earlier and continue from there”. Partici-
+pants described the canvas as making prior conversational states
+directly accessible rather than requiring them to reconstruct con-
+text from a linear history. Instead of rereading long transcripts, they
+used the timeline to jump to earlier moments in the conversation
+and the spatial layout to distinguish alternative reasoning paths.
+As P10 explained, “There was a timeline on the right side... I could
+just hover over the timeline dots” to revisit previous parts of the
+conversation, while DP6 highlighted the ability to move fluidly be-
+tween “‘the overview” and detailed content. These accounts suggest
+that the canvas supported navigation not simply by making con-
+versations easier to browse, but by externalizing conversation state
+into a persistent spatial representation that reduced the need to
+mentally reconstruct where ideas originated and how they evolved.
+6.2.3 Branching as a Mechanism for Exploration and Control.The
+central mechanism for non-linear exploration was branching, but
+participants did not always develop an accurate mental model of
+its semantics. P23, for example, explained: “I didn’t know what the
+branch knows and what it doesn’t know. ” This uncertainty con-
+cerned the conversational context inherited by a branch rather than
+the mechanics of creating one. It suggests that making alternative
+paths visually explicit is insufficient if the relationship between
+their underlying conversational contexts remains ambiguous.
+Participants used branching to explore alternatives, separate
+ideas, and avoid interference between different lines of reasoning.
+P19 said,“I used the branching tool to explore different ideas and eval-
+uate them”. P7 used branching in a highly structured, task-oriented
+way, saying“I made one branch for. . . materials. . . another branch
+for. . . logistics, guest list, and to-do things. ”. Participants also empha-
+sized control and independence between branches . P10 explained,
+“The branching kind of gave me an incentive to explore more directions. ”
+These findings show a tension in branching interactions: branches
+provided participants with explicit spaces for exploring alternatives,
+but their usefulness depended on participants’ understanding of
+which conversational states were shared or isolated across those
+spaces.
+6.3 Interaction with Non-Linear Interfaces in
+Multi-Step and Long-Running Tasks (RQ3)
+In the open-ended part of the study, participants applied Canvas-
+Convo to a variety of tasks over several days, including planning,
+programming, research, and ideation. Insights from these experi-
+ences extend and substantiate the previous aspects with concrete
+instances across real tasks.
+6.3.1 Supporting Parallel and Iterative Workflows.Participants de-
+scribed using branching to explore alternatives in parallel and struc-
+ture their work across multiple directions. Rather than progressing
+sequentially, they distributed related ideas across branches and
+worked on them simultaneously. As P5 explained,“Well, I’m also
+looking at something else in parallel, so that way I speed up my
+work”. Similarly, P6 described organizing different aspects of a task
+across branches:“Something like. . . day one this was the diet plan. . .
+what was the exercise routine. . . different kind of simultaneously, but
+two different branches. ”This ability to externalize parallel lines of
+thought supported more structured and efficient exploration.
+Branching was also used to systematically explore variations of
+the same idea through prompt reuse. Participants iterated on prior
+inputs while preserving earlier results. For example, P10 noted,“I
+reused the previous prompts. . . to create different branches. . . what if I
+had one hour per day. . . or 20 minutes per day?”, while P5 described
+applying the same prompt across conceptual variations:“The same
+prompt we used, but with a different. . . concept. . . polymorphism. . .
+virtualization. . . singleton pattern. . . ”. This pattern enabled con-
+trolled experimentation across alternatives without losing context.
+Participants further revisited earlier states and resumed exploration
+from previously abandoned paths. As P7 explained,“I went to the
+Canvas option. . . went back in conversation where I abandoned an-
+other idea, and then. . . picked up the conversation from there again. ”
+This iterative navigation allowed users to treat conversations as
+revisitable states rather than linear histories. However, P20 noted,
+“Switching between canvas and chat was confusing”. This difficulty
+highlights a second adoption challenge distinct from branch seman-
+tics. Although the synchronized views exposed the same underlying
+conversation, moving between linear and spatial representations
+required participants to maintain orientation across two different
+interaction models. For some participants, the benefit of obtaining
+a structural overview, therefore, came with an additional coordina-
+tion cost when returning to a focused conversation.
+Participants also noted limitations in comparing and integrating
+outcomes across branches. While the system supported divergence,
+synthesizing results remained challenging. As P3 suggested,“maybe
+merging the two ideas to see how would they look like”. Overall, while
+branching enabled parallel exploration and iteration, it introduced
+new challenges around cross-branch comparison and integration.
+6.3.2 Reflection and Interpreting the Spatial Representation.Par-
+ticipants reported that the system supported reflection and helped
+them better understand their own thinking processes. By external-
+izing conversation structure, the canvas enabled users to reason
+about their progress and decision-making. As P23 noted,“It helped
+me understand how to approach the task”. Participants also used
+branching for implicit comparison, with P11 explaining,“You can
+compare outputs very effectively by switching branches”. This sug-
+gests that the representation supports metacognitive engagement
+during task execution.
+The spatial layout was frequently interpreted through familiar
+structural metaphors, particularly maps and organized overviews.
+P14 described the canvas as“like a map where I could see how the
+conversation developed”, while P19 emphasized clarity and struc-
+ture:“It was very structured and I was able to [get an] overview”.
+Participants highlighted that the arrangement of branches made
+relationships between ideas easier to interpret. As P11 stated,“The
+sub-conversations are ordered perfectly. . . very overview-friendly”.
+In addition, the representation supported fluid transitions be-
+tween overview and detail, enabling users to navigate different
+levels of abstraction. P6 explained,“you can see from the overview,
+and then you go into details”, and noted that branching allows ideas
+to be considered“side by side. . . otherwise you go up and down. . .
+but here. . . it helps you think in an organized way. ”
+2026-09-16 01:27. Page 10 of 1–18.
+
+=== PDF PAGE 11 ===
+Unpublished working draft.Not for distribution.
+Conversations in Space: Non-Linear LLM Interaction in Everyday Use , ,
+Across these experiences, appropriation of the spatial representa-
+tion was therefore uneven rather than universal. Some participants
+incorporated the canvas and branching into their workflows as
+mechanisms for organizing, revisiting, and comparing conversa-
+tional paths, while others continued to rely on familiar linear in-
+teraction or encountered difficulties understanding branch context
+and coordinating between views. These differences suggest that
+adopting a non-linear conversational interface involved developing
+new interaction practices and mental models, rather than simply
+learning where interface features were located.
+6.4 Subjective Evaluation
+In this section we discuss participants’ subjective experience of
+CanvasConvo using standardized usability and workload measures
+(SUS, NASA-TLX), along with Likert-scale ratings of agency, au-
+thorship, and system support. These measures capture how users
+perceived control, collaboration, and their ability to manage com-
+plex, multi-branch interactions.
+6.4.1 System Usability Score.For the system usability score (SUS),
+CanvasConvo achieved a mean score of78 .9( 𝑆𝐷= 11.2), with a
+median of80 .0and a range from56 .7to94 .4. This places the system
+well above the standard usability benchmark of 68, indicating strong
+overall usability. The majority of ratings fall within the “good” to
+“excellent” range, with multiple participants assigning scores above
+85, reflecting consistently positive perceptions of the system.
+6.4.2 Perceived Workload (NASA-TLX).We analyzed raw NASA-
+TLX ratings for our tool to assess perceived workload. Overall,
+the results indicate low workload across all factors (see Table 3 in
+Appendix). Participants reported particularly low levels of physical
+demand (𝑀= 1.50, 𝑆𝐷= 1.10) and annoyance ( 𝑀= 1.67, 𝑆𝐷=
+0.82), while mental demand (𝑀= 2.83, 𝑆𝐷= 1.55) and effort (𝑀=
+3.29, 𝑆𝐷= 1.68) were slightly higher but still in a low-to-moderate
+range. The overall NASA-TLX score (𝑀= 2.79, 𝑆𝐷= 0.74) further
+suggests that participants experienced the system as lightweight
+and manageable.
+6.4.3 Authorship and Agency.Participants reported a generally
+strong sense of agency and alignment when interacting with the
+tool, see Figure 4. Most participants agreed that they could easily
+guide the system (91%) and felt in control of the conversation and
+its outcomes (83%). Similarly, a large majority indicated that the
+outputs reflected their own ideas and intentions (87%), suggesting
+that the system supports user-driven expression rather than over-
+riding it. While perceptions of ownership were slightly more mixed,
+a majority still felt that the ideas developed during the interaction
+belonged to them (65%). Participants largely experienced the inter-
+action as collaborative (78%), indicating that the tool was seen not
+just as a passive assistant but as an active partner in the process.
+6.4.4 Perceived System Support.Participants also reported strong
+support for managing and navigating longer, more complex interac-
+tions (see Figure 5). A large majority agreed that the system helped
+them keep track of ideas across extended conversations (91%) and
+maintain an overview of their work (96%). Nearly all participants
+found it easy to revisit earlier parts of the conversation (96%), indi-
+cating effective support for accessing prior context. Similarly, most
+4%
+4%
+4%
+13%
+22%
+91%
+87%
+83%
+78%
+65%
+4%
+9%
+13%
+9%
+13%
+Collaboration with AI
+Ownership of ideas
+Outputs reflect user intent
+Control over interaction
+Guiding system direction
+Strongly disagree                                          Strongly Agree
+1 2 3 4 5 6 7
+Figure 4: Participant ratings of perceived agency, authorship,
+and collaboration when using the system, measured on a
+7-point Likert scale (N=24).
+4%
+4%
+4%
+4%
+13%
+96%
+96%
+91%
+87%
+83%
+0%
+0%
+4%
+9%
+4%
+Maintaining overview
+Recovering prior content
+Managing multiple paths
+Revisiting past content
+Idea tracking
+Strongly disagree                                          Strongly Agree
+1 2 3 4 5 6 7
+Figure 5: Participant ratings of the system’s support for
+overview and context management across interaction, mea-
+sured on a Likert scale (N=24).
+participants reported that it was easy to recover previous prompts
+or results when needed (87%). While slightly more varied, responses
+still showed that participants felt supported in managing multiple
+directions or ideas within a conversation (83%).
+Overall, participants rated the system positively for organiza-
+tion, navigation, and continuity in multi-step interactions. These
+aggregate ratings should, however, be interpreted alongside the
+qualitative findings, which show that participants differed in how
+readily they incorporated the spatial representation into their work-
+flows and in how clearly they understood its interaction semantics.
+6.5 Objective Telemetry
+To complement participants’ self-reported experiences, we analyzed
+interaction logs collected through a custom instrumentation layer
+during the field study. Across 24 participants, the system recorded
+165 distinct conversations and 1,225 messages. On average, partici-
+pants generated 51.04 messages and 6.88 conversations, indicating
+sustained engagement with the system over multiple sessions. Sum-
+mary statistics are presented in Table 4 in the Appendix.
+6.5.1 Feature Engagement and Interaction Distribution.Interaction
+activity was unevenly distributed across system components. Chat-
+based interactions accounted for the largest proportion of events
+(47.2%), followed by canvas interactions (28.3%) and sidebar nav-
+igation (11.4%). In addition, navigation behaviors such as branch
+revisits and timeline interactions were frequently observed, with
+93 branch navigation events and 132 timeline clicks, highlighting
+active use of the system’s mechanisms for revisiting prior context.
+Prompt templates were used 18 times in total, and 5 participants
+created templates.
+The distribution, therefore, does not indicate a shift from chat-
+centered to canvas-centered interaction during the deployment.
+Instead, participants continued to perform most recorded interac-
+tions through the familiar chat interface while selectively engaging
+2026-09-16 01:27. Page 11 of 1–18.
+
+=== PDF PAGE 12 ===
+Unpublished working draft.Not for distribution.
+, , Amin et al.
+with the spatial representation and its navigation mechanisms. This
+pattern is consistent with the qualitative findings in Section 6.2,
+and Section 6.3, where participants described the canvas as par-
+ticularly useful for obtaining an overview, revisiting prior states,
+and managing alternative directions, but not necessarily as their
+primary surface for conversational interaction.
+Prompt templates showed substantially narrower adoption: only
+five participants created templates during the deployment. This
+suggests that reusable prompting was not a central part of most
+participants’ workflows during the study, despite being available
+as a supporting mechanism.
+6.5.2 Temporal Patterns of Use.A comparison of recorded view du-
+rations shows that canvas-view events had a higher mean duration
+(𝑀= 34.1minutes) than chat-view events ( 𝑀= 13.0minutes). This
+difference should be interpreted cautiously. The telemetry records
+wall-clock time between entering and leaving a view and does not
+distinguish active interaction from reading, inactivity, or time spent
+in a background tab. Moreover, participants may have selected
+the canvas for more complex tasks, and lower familiarity with the
+spatial interface may itself have increased interaction time. The
+current data therefore cannot determine whether longer canvas du-
+rations reflect more sustained organization and reflection, greater
+task complexity, lower interface familiarity, or a combination of
+these factors.
+In conjunction with the qualitative findings in Section 6.2, the
+duration pattern is consistent with participants using chat for rela-
+tively rapid input and iteration and the canvas for longer episodes
+of reviewing and organizing prior content. However, the telemetry
+alone does not establish these functional roles. A controlled within-
+participant study using equivalent tasks, active-time measurements,
+and task-level covariates would be needed to disentangle interface
+effects from differences in familiarity and task complexity.
+6.5.3 Branching and Exploratory Behavior.Participants engaged
+with branching as a mechanism for creating alternative conversa-
+tional trajectories. In total, 79 branches were created (𝑀= 3.29per
+participant), including 15 sub-branches and a maximum nesting
+depth of two levels. The telemetry also recorded 93 branch-open
+events (𝑀= 3.88per participant), indicating that participants navi-
+gated to existing branches in addition to creating them.
+However, because the number of branch-open events only mod-
+estly exceeded the number of branch-creation events, these aggre-
+gate counts do not establish that branches were frequently revisited.
+The data also do not distinguish an immediate opening of a newly
+created branch from a later return to an earlier branch. We therefore
+interpret these events more conservatively as evidence that partici-
+pants both created and navigated among branching conversation
+paths. Together with the qualitative findings in Section 6.2, this
+suggests that at least some participants used branching to structure
+alternatives as navigable conversational trees rather than solely as
+linear sequences.
+6.5.4 Interaction with the Spatial Canvas.Telemetry from the can-
+vas interface highlights active engagement with spatial navigation
+features. Zoom interactions were the most frequent action (𝑁= 881;
+𝑀= 36.71), followed by node selections (𝑁= 246; 𝑀= 10.25) and
+search usage ( 𝑁= 94; 𝑀= 3.92). The high frequency of zoom
+interactions shows that participants frequently changed the level
+of detail displayed on the canvas. Together with participants’ de-
+scriptions of moving between overview and detailed inspection,
+this pattern is consistent with the use of the canvas for navigating
+across levels of conversational detail. This aligns with the results
+discussed in Section 6.3. Temporal navigation was also actively
+used. Participants clicked on timeline entries 132 times (𝑀= 5.50),
+directly navigating to earlier points in the conversation. This pro-
+vides behavioral evidence supporting participants’ reported ease of
+revisiting prior context (Section 6.2).
+Overall, the telemetry data complement our qualitative find-
+ings by revealing distinct interaction patterns across the interface
+components. Chat interactions were more frequent, while canvas
+sessions tended to be longer and were accompanied by navigation
+actions such as branching, node selection, and timeline use. Al-
+though these behavioral traces do not by themselves establish how
+participants used each interface, they are consistent with interview
+accounts describing chat as supporting rapid conversational inter-
+action and the canvas as facilitating organization and exploration
+during longer-running tasks.
+7 Discussion & Future Work
+In this work, we investigated how spatial and non-linear conversa-
+tional interfaces can support LLM-based workflows. Specifically,
+we examined (RQ1) how users manage multiple ideas and alter-
+native directions in traditional LLM chat interfaces, (RQ2) how
+non-linear structures influence reuse and navigation of conversa-
+tional artifacts, and (RQ3) how users adopt and appropriate spatial
+conversational interfaces in longer-running tasks.
+Limitations.One limitation of our study is the duration and
+scope of the field deployment. While the five-day study allowed us
+to observe evolving workflows and repeated interactions, longer-
+term use may reveal different patterns of adoption. Additionally,
+our participant pool consisted largely of experienced LLM users,
+which may limit generalizability to novice populations. Future work
+should investigate how such systems are adopted over extended
+periods and across different expertise levels. A further limitation
+concerns variability in participants’ engagement and task charac-
+teristics. Participants worked on self-selected activities that differed
+considerably in duration, complexity, and information density, re-
+sulting in different cognitive and sensemaking demands across
+individuals. Finally, subjective measures such as NASA-TLX should
+be interpreted cautiously, as observed workload differences may
+partially reflect variation in underlying tasks rather than interface
+effects alone. Future studies could employ more controlled task sets
+alongside ecological deployments to better isolate the effects of
+interaction design.
+Spatial Representations Complement Rather Than Replace Linear
+Chat.Our findings suggest that the transition from linear to spatial
+conversational interaction is better understood as appropriation
+than replacement. Participants continued to rely heavily on the
+familiar chat interface while selectively incorporating the canvas
+when they needed to revisit prior states, obtain an overview, or man-
+age alternative directions. This division of labor is reflected both
+in participants’ accounts and in the interaction telemetry, where
+2026-09-16 01:27. Page 12 of 1–18.
+
+=== PDF PAGE 13 ===
+Unpublished working draft.Not for distribution.
+Conversations in Space: Non-Linear LLM Interaction in Everyday Use , ,
+chat interactions remained more frequent than canvas interactions.
+Importantly, adoption of the spatial representation was uneven.
+P19’s continued reliance on scrolling illustrates how established in-
+teraction habits can persist even when alternative navigation mech-
+anisms are available. P20’s difficulty switching between canvas and
+chat highlights the coordination cost introduced by maintaining
+synchronized linear and spatial representations, while P23’s uncer-
+tainty about inherited branch context shows that users must also
+develop an accurate mental model of non-linear conversation se-
+mantics. Together, these findings suggest that designing non-linear
+LLM interfaces requires supporting transitions between representa-
+tions and communicating conversational state, not simply exposing
+additional structure.
+Externalizing Conversations as Navigable Structures.Our results
+show that representing conversations as spatial structures changes
+how users interact with LLMs. Instead of treating conversations
+as long transcripts, participants engaged with them as persistent,
+navigable artifacts, often describing the system as a “map” or “tree”
+of ideas. This aligns with prior work emphasizing the importance
+of external representations for sensemaking and exploration [ 2,
+11]. Unlike such prior approaches that visualize single LLM re-
+sponses [11, 40], CanvasConvo structures the entire interaction
+as a branching history, enabling parallel exploration and better
+workflow awareness. Features like spatial layout, timeline naviga-
+tion, and semantic zoom supported smooth transitions between
+overview and detail [28], as also reflected in the interaction logs. Ad-
+ditionally, search, tagging, and automatic summaries helped users
+navigate and retrieve information in larger conversations.
+Managing Cognitive Demands.People’s use of our system and
+their reflections in comparison to their usual tools suggest that
+the linear chat paradigm is effective for short, goal-directed tasks
+but breaks down in exploratory and multi-step workflows. Con-
+cretely, for their usual LLM-based tools, they described difficulties
+navigating verbose outputs, maintaining context, and comparing
+alternatives, often resorting to external tools or fragmented strate-
+gies such as copying prompts or splitting tasks across chats. These
+observations align with prior work showing that LLM interaction
+introduces significant metacognitive demands, particularly in mon-
+itoring progress and evaluating outputs [7, 33]. Based on partici-
+pants’ experiences in our study, by externalizing conversational
+structure, CanvasConvo is perceived as reducing reliance on mem-
+ory and scrolling. However, these new representations come with
+interaction demands. Future designs could explore further com-
+binations, transitions, and adaptations of linear and non-linear
+conversation UIs.
+Branching as a Mechanism for Exploration.Our branching feature
+was accepted and leveraged for exploringwhat-ifscenarios. Unlike
+linear chats, it lets users explore alternatives without restarting,
+while preserving context. Participants used it to test ideas, compare
+approaches, and separate lines of reasoning, lowering the barrier to
+exploration [30]. Branching also supported users’ sense of control,
+as branches were seen as independent spaces.
+To compare results across branches, participants developed their
+own strategies, such as adopting reusable prompt templates to sum-
+marize and transfer insights. Since the conversation is structured
+as a tree, it supported divergence but not merging. Future designs
+could address this gap by introducing mechanisms for merging
+and reconciling branches. For example, such designs could draw
+inspiration from merging in version control systems such as Git.
+At the same time, our findings suggest that branching requires
+clearer interaction semantics than current implementations pro-
+vide. While participants appreciated the ability to isolate ideas,
+several were uncertain about exactly what conversational state was
+preserved across branches. This ambiguity occasionally reduced
+confidence in the system despite branching operating correctly.
+These observations suggest that future systems should make con-
+text inheritance explicit—for example through visual indicators of
+shared history, inherited prompts, or branch-specific summaries—to
+better align users’ mental models with system behavior.
+Supporting Multi-Step and Long-Running Workflows.In longer-
+running own tasks, participants viewed CanvasConvo as a workspace
+rather than a chat tool, as it supported parallel exploration, iter-
+ative refinement, and revisiting prior states (with timeline navi-
+gation). This is consistent with work showing that externalizing
+cognitive work into manipulable representations supports more
+effective reasoning across complex, multi-step tasks [13]. Working
+with CanvasConvo thus supported planning, ideation, and problem-
+solving processes. Telemetry data further supports this distinction.
+Interestingly, participants naturally developed a division of labor
+between interaction modes. Linear chat supported rapid iteration
+and prompt refinement, whereas the spatial workspace was primar-
+ily used for organization, revisiting previous work, and managing
+multiple concurrent directions.
+Authorship, Agency, and Control in Non-Linear Interaction.Par-
+ticipants reported a strong sense of agency when interacting with
+CanvasConvo. Prior work on human-AI co-writing has shown that
+close integration of AI raises questions of authorship, disclosure,
+and cognitive ownership [10, 38]. In our study, the introduction of
+branching supported a sense of ownership by making the model’s
+context visible and controllable. This allowed users to isolate ideas,
+explore alternatives independently, and avoid unintended carry-
+over between interaction paths. Related, participants’ perceived
+that outputs largely reflected their own intentions. The system was
+frequently perceived as a collaborative partner rather than a passive
+tool, indicating a shift toward co-creative interaction. These find-
+ings suggest that non-linear interfaces can strengthen perceived
+agency by identifying user decisions and interaction paths.
+8 Conclusion
+We presented CanvasConvo, a conversational interface that trans-
+forms linear LLM interaction into a non-linear, spatial workspace
+through branching, a canvas, and timeline-based navigation. In
+a 5-day field study with 24 participants, we observed how users
+structured multi-step workflows, explored alternatives in paral-
+lel, and revisited prior interactions within this space. Participants
+used branching to separate ideas and explore directions, while the
+canvas, timeline, and supporting features (e.g., summaries, tags,
+reusable prompts) helped maintain an overview and reuse con-
+versational content. These findings show how conversation-level
+spatial representations can support exploration, navigation, and
+2026-09-16 01:27. Page 13 of 1–18.
+
+=== PDF PAGE 14 ===
+Unpublished working draft.Not for distribution.
+, , Amin et al.
+sensemaking in LLM-based work, while also revealing that their
+adoption is neither immediate nor uniform. Participants selectively
+combined spatial interaction with familiar linear chat practices, and
+the added structure introduced challenges in navigation, switching
+between views, and understanding conversational context across
+branches. Overall, our results suggest that future LLM interfaces
+should move beyond linear chat toward interactive workspaces that
+support both exploration and synthesis, while balancing structure
+with usability.
+Acknowledgments
+Funded by Elitenetzwerk Bayern and the Deutsche Forschungsge-
+meinschaft (DFG, German Research Foundation) – 525037874.
+References
+[1] Saleema Amershi, Dan Weld, Mihaela Vorvoreanu, Adam Fourney, Besmira
+Nushi, Penny Collisson, Jina Suh, Shamsi Iqbal, Paul N. Bennett, Kori Inkpen,
+Jaime Teevan, Ruth Kikin-Gil, and Eric Horvitz. 2019. Guidelines for Human-
+AI Interaction. InProceedings of the 2019 CHI Conference on Human Factors in
+Computing Systems(Glasgow, Scotland Uk)(CHI ’19). Association for Computing
+Machinery, New York, NY, USA, 1–13. doi:10.1145/3290605.3300233
+[2] Rifat Mehreen Amin, Oliver Hans Kühle, Daniel Buschek, and Andreas Butz. 2026.
+PromptCanvas: Composable Prompting Workspaces Using Dynamic Widgets for
+Exploration and Iteration in Creative Writing.ACM Trans. Interact. Intell. Syst.
+(June 2026). doi:10.1145/3817049 Just Accepted.
+[3] Ian Arawjo, Chelse Swoopes, Priyan Vaithilingam, Martin Wattenberg, and
+Elena L. Glassman. 2024. ChainForge: A Visual Toolkit for Prompt Engineer-
+ing and LLM Hypothesis Testing. InProceedings of the 2024 CHI Conference
+on Human Factors in Computing Systems(Honolulu, HI, USA)(CHI ’24). Asso-
+ciation for Computing Machinery, New York, NY, USA, Article 304, 18 pages.
+doi:10.1145/3613904.3642016
+[4] Shraddha Barke, Michael B. James, and Nadia Polikarpova. 2023. Grounded
+Copilot: How Programmers Interact with Code-Generating Models.Proc. ACM
+Program. Lang.7, OOPSLA1, Article 78 (April 2023), 27 pages. doi:10.1145/3586030
+[5] John Brooke. 1996. SUS: A ’Quick’ and ’Dirty’ Usability Scale. InUsability Evalu-
+ation in Industry, Patrick W. Jordan, Bruce Thomas, Bernard A. Weerdmeester,
+and Ian Lyall McClelland (Eds.). Taylor and Francis, Chapter 21, 189–194.
+[6] Alex Bäuerle, Adam Connors, Alexander Novikov, Adam Zsolt Wagner, Ngân
+V˜u, Fernanda Viegas, Martin Wattenberg, and Lucas Dixon. 2026. Intentmaking
+and Sensemaking: Human Interaction with AI-Guided Mathematical Discovery.
+arXiv:2605.05921 [cs.AI] https://arxiv.org/abs/2605.05921
+[7] Daniela Fernandes, Steeven Villa, Salla Nicholls, Otso Haavisto, Daniel Buschek,
+Albrecht Schmidt, Thomas Kosch, Chenxinran Shen, and Robin Welsch. 2026. AI
+makes you smarter but none the wiser: The disconnect between performance
+and metacognition.Computers in Human Behavior175 (2026), 108779. doi:10.
+1016/j.chb.2025.108779
+[8] Tong Gao, Mira Dontcheva, Eytan Adar, Zhicheng Liu, and Karrie G. Karahalios.
+2015. DataTone: Managing Ambiguity in Natural Language Interfaces for Data
+Visualization. InProceedings of the 28th Annual ACM Symposium on User Interface
+Software & Technology(Charlotte, NC, USA)(UIST ’15). Association for Computing
+Machinery, New York, NY, USA, 489–500. doi:10.1145/2807442.2807478
+[9] Sandra G Hart and Lowell E Staveland. 1988. Development of NASA-TLX (Task
+Load Index): Results of empirical and theoretical research. InAdvances in psy-
+chology. Vol. 52. Elsevier, 139–183.
+[10] Daphne Ippolito, Ann Yuan, Andy Coenen, and Sehmon Burnam. 2022. Creative
+Writing with an AI-Powered Writing Assistant: Perspectives from Professional
+Writers. doi:10.48550/ARXIV.2211.05030 Version Number: 1.
+[11] Peiling Jiang, Jude Rayan, Steven P. Dow, and Haijun Xia. 2023. Graphologue:
+Exploring Large Language Model Responses with Interactive Diagrams. InPro-
+ceedings of the 36th Annual ACM Symposium on User Interface Software and
+Technology. ACM, San Francisco CA USA, 1–20. doi:10.1145/3586183.3606737
+[12] Evangelos Karapanos, John Zimmerman, Jodi Forlizzi, and Jean-Bernard Martens.
+2009. User experience over time: an initial framework. InProceedings of the
+SIGCHI Conference on Human Factors in Computing Systems(Boston, MA, USA)
+(CHI ’09). Association for Computing Machinery, New York, NY, USA, 729–738.
+doi:10.1145/1518701.1518814
+[13] David Kirsh. 2010. Thinking with external representations.AI & SOCIETY25, 4
+(Nov. 2010), 441–454. doi:10.1007/s00146-010-0272-8
+[14] Mina Lee, Katy Ilonka Gero, John Joon Young Chung, Simon Buckingham Shum,
+Vipul Raheja, Hua Shen, Subhashini Venugopalan, Thiemo Wambsganss, David
+Zhou, Emad A. Alghamdi, Tal August, Avinash Bhat, Madiha Zahrah Choksi,
+Senjuti Dutta, Jin L.C. Guo, Md Naimul Hoque, Yewon Kim, Simon Knight,
+Seyed Parsa Neshaei, Antonette Shibani, Disha Shrivastava, Lila Shroff, Agnia
+Sergeyuk, Jessi Stark, Sarah Sterman, Sitong Wang, Antoine Bosselut, Daniel
+Buschek, Joseph Chee Chang, Sherol Chen, Max Kreminski, Joonsuk Park, Roy
+Pea, Eugenia Ha Rim Rho, Zejiang Shen, and Pao Siangliulue. 2024. A Design
+Space for Intelligent and Interactive Writing Assistants. InProceedings of the 2024
+CHI Conference on Human Factors in Computing Systems(Honolulu, HI, USA)
+(CHI ’24). Association for Computing Machinery, New York, NY, USA, Article
+1054, 35 pages. doi:10.1145/3613904.3642697
+[15] Jiaming Li, Peinuan Qin, and Yi-Chieh Lee. 2026. Branchat: A Tree-Structured
+Interface for Efficient Revisitation in Long-Horizon LLM Conversations. InPro-
+ceedings of the Extended Abstracts of the 2026 CHI Conference on Human Factors
+in Computing Systems (CHI EA ’26). Association for Computing Machinery, New
+York, NY, USA, Article 137, 6 pages. doi:10.1145/3772363.3798792
+[16] Michael Xieyang Liu, Tongshuang Wu, Tianying Chen, Franklin Mingzhe Li,
+Aniket Kittur, and Brad A Myers. 2024. Selenite: Scaffolding Online Sensemak-
+ing with Comprehensive Overviews Elicited from Large Language Models. In
+Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems
+(Honolulu, HI, USA)(CHI ’24). Association for Computing Machinery, New York,
+NY, USA, Article 837, 26 pages. doi:10.1145/3613904.3642149
+[17] Tao Long, Sitong Wang, Émilie Fabre, Tony Wang, Anup Sathya, Jason Wu,
+Savvas Dimitrios Petridis, Ding Li, Tuhin Chakrabarty, Yue Jiang, Jingyi Li,
+Tiffany Tseng, Ken Nakagaki, Qian Yang, Nikolas Martelaro, Jeffrey V Nickerson,
+and Lydia B Chilton. 2025. Facilitating Longitudinal Interaction Studies of AI
+Systems. InAdjunct Proceedings of the 38th Annual ACM Symposium on User
+Interface Software and Technology (UIST Adjunct ’25). Association for Computing
+Machinery, New York, NY, USA, Article 13, 5 pages. doi:10.1145/3746058.3758469
+[18] Richard Mander, Gitta Salomon, and Yin Yin Wong. 1992. A “pile” metaphor
+for supporting casual organization of information. InProceedings of the SIGCHI
+Conference on Human Factors in Computing Systems(Monterey, California, USA)
+(CHI ’92). Association for Computing Machinery, New York, NY, USA, 627–634.
+doi:10.1145/142750.143055
+[19] Damien Masson, Sylvain Malacria, Géry Casiez, and Daniel Vogel. 2024. Direct-
+GPT: A Direct Manipulation Interface to Interact with Large Language Models.
+InProceedings of the 2024 CHI Conference on Human Factors in Computing Systems
+(Honolulu, HI, USA)(CHI ’24). Association for Computing Machinery, New York,
+NY, USA, Article 975, 16 pages. doi:10.1145/3613904.3642462
+[20] Srishti Palani, Zijian Ding, Austin Nguyen, Andrew Chuang, Stephen MacNeil,
+and Steven P. Dow. 2021. CoNotate: Suggesting Queries Based on Notes Promotes
+Knowledge Discovery. InProceedings of the 2021 CHI Conference on Human Factors
+in Computing Systems(Yokohama, Japan)(CHI ’21). Association for Computing
+Machinery, New York, NY, USA, Article 726, 14 pages. doi:10.1145/3411764.
+3445618
+[21] Srishti Palani, Yingyi Zhou, Sheldon Zhu, and Steven P. Dow. 2022. InterWeave:
+Presenting Search Suggestions in Context Scaffolds Information Search and
+Synthesis. InProceedings of the 35th Annual ACM Symposium on User Interface
+Software and Technology(Bend, OR, USA)(UIST ’22). Association for Computing
+Machinery, New York, NY, USA, Article 93, 16 pages. doi:10.1145/3526113.3545696
+[22] Peter Pirolli and Stuart Card. 2005. The sensemaking process and leverage
+points for analyst technology as identified through cognitive task analysis. In
+Proceedings of international conference on intelligence analysis, Vol. 5. McLean,
+VA, USA, 2–4.
+[23] Dimitri Popolov, Michael Callaghan, and Paul Luker. 2000. Conversation space:
+visualising multi-threaded conversation. InProceedings of the Working Confer-
+ence on Advanced Visual Interfaces(Palermo, Italy)(A VI ’00). Association for
+Computing Machinery, New York, NY, USA, 246–249. doi:10.1145/345513.345330
+[24] Gonzalo Ramos, Napol Rachatasumrit, Jina Suh, Rachel Ng, and Christopher
+Meek. 2022. ForSense: Accelerating Online Research Through Sensemaking
+Integration and Machine Research Support.ACM Trans. Interact. Intell. Syst.12,
+4, Article 30 (Nov. 2022), 23 pages. doi:10.1145/3532853
+[25] Mohi Reza, Nathan M Laundry, Ilya Musabirov, Peter Dushniku, Zhi
+Yuan “Michael” Yu, Kashish Mittal, Tovi Grossman, Michael Liut, Anastasia
+Kuzminykh, and Joseph Jay Williams. 2024. ABScribe: Rapid Exploration &
+Organization of Multiple Writing Variations in Human-AI Co-Writing Tasks
+using Large Language Models. InProceedings of the 2024 CHI Conference on
+Human Factors in Computing Systems(Honolulu, HI, USA)(CHI ’24). Associ-
+ation for Computing Machinery, New York, NY, USA, Article 1042, 18 pages.
+doi:10.1145/3613904.3641899
+[26] George Robertson, Mary Czerwinski, Kevin Larson, Daniel C. Robbins, David
+Thiel, and Maarten van Dantzich. 1998. Data mountain: using spatial memory
+for document management. InProceedings of the 11th Annual ACM Symposium
+on User Interface Software and Technology(San Francisco, California, USA)(UIST
+’98). Association for Computing Machinery, New York, NY, USA, 153–162. doi:10.
+1145/288392.288596
+[27] Joey Scarr, Andy Cockburn, Carl Gutwin, and Sylvain Malacria. 2013. Testing
+the robustness and performance of spatially consistent interfaces. InProceedings
+of the SIGCHI Conference on Human Factors in Computing Systems(Paris, France)
+(CHI ’13). Association for Computing Machinery, New York, NY, USA, 3139–3148.
+2026-09-16 01:27. Page 14 of 1–18.
+
+=== PDF PAGE 15 ===
+Unpublished working draft.Not for distribution.
+Conversations in Space: Non-Linear LLM Interaction in Everyday Use , ,
+doi:10.1145/2470654.2466430
+[28] Ben Shneiderman. 1983. Direct manipulation: A step beyond programming
+languages.Computer16, 08 (1983), 57–69.
+[29] Ben Shneiderman. 1996. The eyes have it: A task by data type taxonomy for in-
+formation visualizations. InProceedings 1996 IEEE symposium on visual languages.
+IEEE, 336–343.
+[30] Sangho Suh, Meng Chen, Bryan Min, Toby Jia-Jun Li, and Haijun Xia. 2024.
+Luminate: Structured Generation and Exploration of Design Space with Large
+Language Models for Human-AI Co-Creation. InProceedings of the CHI Con-
+ference on Human Factors in Computing Systems(Honolulu, HI, USA)(CHI ’24).
+Association for Computing Machinery, New York, NY, USA, Article 644, 26 pages.
+doi:10.1145/3613904.3642400
+[31] Sangho Suh, Bryan Min, Srishti Palani, and Haijun Xia. 2023. Sensecape: En-
+abling Multilevel Exploration and Sensemaking with Large Language Models.
+InProceedings of the 36th Annual ACM Symposium on User Interface Software
+and Technology(San Francisco, CA, USA)(UIST ’23). Association for Computing
+Machinery, New York, NY, USA, Article 1, 18 pages. doi:10.1145/3586183.3606756
+[32] John Sweller. 1988. Cognitive Load During Problem Solving: Effects on Learning.
+Cognitive Science12, 2 (1988), 257–285. doi:10.1207/s15516709cog1202_4
+[33] Lev Tankelevitch, Viktor Kewenig, Auste Simkute, Ava Elizabeth Scott, Advait
+Sarkar, Abigail Sellen, and Sean Rintel. 2024. The Metacognitive Demands and
+Opportunities of Generative AI. InProceedings of the CHI Conference on Human
+Factors in Computing Systems(Honolulu, HI, USA)(CHI ’24). Association for
+Computing Machinery, New York, NY, USA, Article 680, 24 pages. doi:10.1145/
+3613904.3642902
+[34] Michael Terry and Elizabeth D. Mynatt. 2002. Side views: persistent, on-demand
+previews for open-ended tasks. InProceedings of the 15th Annual ACM Symposium
+on User Interface Software and Technology(Paris, France)(UIST ’02). Association
+for Computing Machinery, New York, NY, USA, 71–80. doi:10.1145/571985.571996
+[35] Tongshuang Wu, Ellen Jiang, Aaron Donsbach, Jeff Gray, Alejandra Molina,
+Michael Terry, and Carrie J Cai. 2022. PromptChainer: Chaining Large Language
+Model Prompts through Visual Programming. InExtended Abstracts of the 2022
+CHI Conference on Human Factors in Computing Systems(New Orleans, LA, USA)
+(CHI EA ’22). Association for Computing Machinery, New York, NY, USA, Article
+359, 10 pages. doi:10.1145/3491101.3519729
+[36] Tongshuang Wu, Michael Terry, and Carrie Jun Cai. 2022. AI Chains: Transparent
+and Controllable Human-AI Interaction by Chaining Large Language Model
+Prompts. InProceedings of the 2022 CHI Conference on Human Factors in Computing
+Systems(New Orleans, LA, USA)(CHI ’22). Association for Computing Machinery,
+New York, NY, USA, Article 385, 22 pages. doi:10.1145/3491102.3517582
+[37] Ryan Yen and Jian Zhao. 2024. Memolet: Reifying the Reuse of User-AI Con-
+versational Memories. InProceedings of the 37th Annual ACM Symposium on
+User Interface Software and Technology(Pittsburgh, PA, USA)(UIST ’24). Asso-
+ciation for Computing Machinery, New York, NY, USA, Article 58, 22 pages.
+doi:10.1145/3654777.3676388
+[38] Ann Yuan, Andy Coenen, Emily Reif, and Daphne Ippolito. 2022. Wordcraft: Story
+Writing With Large Language Models. InProceedings of the 27th International
+Conference on Intelligent User Interfaces(Helsinki, Finland)(IUI ’22). Association
+for Computing Machinery, New York, NY, USA, 841–852. doi:10.1145/3490099.
+3511105
+[39] J.D. Zamfirescu-Pereira, Richmond Y. Wong, Bjoern Hartmann, and Qian Yang.
+2023. Why Johnny Can’t Prompt: How Non-AI Experts Try (and Fail) to Design
+LLM Prompts. InProceedings of the 2023 CHI Conference on Human Factors in
+Computing Systems(Hamburg, Germany)(CHI ’23). Association for Computing
+Machinery, New York, NY, USA, Article 437, 21 pages. doi:10.1145/3544548.
+3581388
+[40] Zheng Zhang, Jie Gao, Ranjodh Singh Dhaliwal, and Toby Jia-Jun Li. 2023. VISAR:
+A Human-AI Argumentative Writing Assistant with Visual Programming and
+Rapid Draft Prototyping. InProceedings of the 36th Annual ACM Symposium
+on User Interface Software and Technology(San Francisco, CA, USA)(UIST ’23).
+Association for Computing Machinery, New York, NY, USA, Article 5, 30 pages.
+doi:10.1145/3586183.3606800
+2026-09-16 01:27. Page 15 of 1–18.
+
+=== PDF PAGE 16 ===
+Unpublished working draft.Not for distribution.
+, , Amin et al.
+A Methodology
+A.1 Participants
+Table 2: Participant Overview (pre-task questionnaire Survey): Demographics, professional background, familiarity with LLM
+tools, usage frequency, and primary tasks.
+Nr. Gender Prof. Writer Job Age Familiarity Frequency LLM Tasks Used
+P1 Female No PhD student 27 Very familiar Daily Writing/editing; coding
+P2 Female No PhD Student 28 Very familiar Multiple/day Writing/editing; coding; data analy-
+sis; planning; brainstorming
+P3 Male No Software Engineer 32 Moderately fa-
+miliar
+3–5/week Writing/editing; coding; data analy-
+sis; learning
+P4 Male No Accountant 29 Moderately fa-
+miliar
+3–5/week Writing/editing; brainstorming;
+learning
+P5 Male Yes Data Engineer 34 Expert Multiple/day Writing/editing; coding; data analy-
+sis; brainstorming; learning
+P6 Female No Sales 29 Moderately fa-
+miliar
+3–5/week Writing/editing; brainstorming;
+learning
+P7 Female Yes Research Communica-
+tion Specialist
+29 Very familiar 1–2/week Writing/editing; planning; brain-
+storming; learning
+P8 Non-binary No Student 28 Very familiar 3–5/week Writing/editing; coding; data analy-
+sis; learning
+P9 Male Yes Researcher 33 Expert Daily Writing/editing; coding; brainstorm-
+ing
+P10 Male No Data Science Special-
+ist
+31 Very familiar Multiple/day Writing/editing; coding; data anal-
+ysis; planning; brainstorming; cre-
+ative writing
+P11 Female No Master’s Student 26 Very familiar Daily Writing/editing; coding; brainstorm-
+ing; learning
+P12 Male No Visual Designer 27 Very familiar Daily Writing/editing; brainstorming
+P13 Male No Unemployed 35 Very familiar Daily Coding; brainstorming; learning
+P14 Male No Software Engineer 28 Very familiar 3–5/week Coding; data analysis; planning;
+brainstorming; learning
+P15 Male No CS Master Student 28 Very familiar Multiple/day Writing/editing; coding; data analy-
+sis; brainstorming; learning
+P16 Male No Software Developer 29 Very familiar Multiple/day Coding; data analysis; brainstorm-
+ing; learning
+P17 Male No Intern (Full-Stack) 21 Very familiar Daily Writing/editing; coding; data analy-
+sis; planning; brainstorming; learn-
+ing
+P18 Male No Student 24 Very familiar Daily Writing/editing; coding; data analy-
+sis; planning; brainstorming; learn-
+ing
+P19 Male No Mechanical Eng. In-
+tern
+24 Very familiar Multiple/day Writing/editing; coding; data analy-
+sis; planning; brainstorming; learn-
+ing
+P20 Male No Student 25 Very familiar Multiple/day Writing/editing; coding; data analy-
+sis; planning; brainstorming; learn-
+ing
+P21 Male No CS Master Student 21 Expert Multiple/day Writing/editing; coding; data analy-
+sis; planning; brainstorming; learn-
+ing; creative writing
+P22 Male No Researcher 23 Very familiar 3–5/week Writing/editing; coding
+P23 Male No GenAI Researcher 54 Expert Multiple/day Writing/editing; data analysis; plan-
+ning; brainstorming
+P24 Male No Working Student
+(PM/Dev)
+22 Very familiar Multiple/day Writing/editing; coding; data analy-
+sis; planning
+B Results
+B.1 NASA-TLX
+B.2 Objective Telemetry
+2026-09-16 01:27. Page 16 of 1–18.
+
+=== PDF PAGE 17 ===
+Unpublished working draft.Not for distribution.
+Conversations in Space: Non-Linear LLM Interaction in Everyday Use , ,
+Table 3: The raw NASA-TLX results (N=24).
+Factor M SD
+Mental Demand2.83 1.55
+Physical Demand1.50 1.10
+Temporal Demand1.96 1.16
+Success5.46 1.14
+Effort3.29 1.68
+Annoy1.67 0.82
+Overall NASA-TLX (Sum)16.71 4.44
+Overall NASA-TLX (Mean)2.79 0.74
+2026-09-16 01:27. Page 17 of 1–18.
+
+=== PDF PAGE 18 ===
+Unpublished working draft.Not for distribution.
+, , Amin et al.
+Table 4: Objective telemetry data from the main study for CanvasConvo. Values represent per-participant averages.
+Telemetry Value
+Messages 51.04
+Conversations 6.88
+Interaction distribution (%)
+Chat interactions 47.2%
+Canvas interactions 28.3%
+Sidebar navigation 11.4%
+Session duration (minutes)
+Canvas sessions 34.10
+Chat sessions 13.00
+Branching behavior
+Branches created 3.29
+Branch navigation events 3.88
+Navigation events
+Timeline navigation 5.50
+Canvas interaction events
+Zoom level changes 36.71
+Node clicks 10.25
+Canvas search usage 3.92
+Timeline navigation clicks 5.50
+Received 20 February 2007; revised 12 March 2009; accepted 5 June 2009
+2026-09-16 01:27. Page 18 of 1–18.

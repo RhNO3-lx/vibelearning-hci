@@ -1,0 +1,1041 @@
+=== PDF PAGE 1 ===
+Education and Information Technologies (2025) 30:4493–4518
+https://doi.org/10.1007/s10639-024-12881-y
+How educational chatbots support self-regulated learning?
+A systematic review of the literature
+Rui Guan 1 · Mladen Rakovi´c1 · Guanliang Chen 1 · Dragan Gaševi´c1,2
+Received: 18 March 2024 / Accepted: 21 June 2024 / Published online: 30 August 2024
+© The Author(s) 2024
+Abstract
+Engagement in self-regulated learning (SRL) may improve academic achievements
+and support development of lifelong learning skills. Despite its educational potential,
+many students ﬁnd SRL challenging. Educational chatbots have a potential to scaffold
+or externally regulate SRL processes by interacting with students in an adaptive way.
+However, to our knowledge, researchers have yet to learn whether and how educational
+chatbots developed so far have (1) promoted learning processes pertaining to SRL and
+(2) improved student learning performance in different tasks. To contribute this new
+knowledge to the ﬁeld, we conducted a systematic literature review of the studies on
+educational chatbots that can be linked to processes of SRL. In doing so, we followed
+the PRISMA guidelines. We collected and reviewed publications published between
+2012 and 2023, and identiﬁed 27 publications for analysis. We found that educational
+chatbots so far have mainly supported learners to identify learning resources, enact
+appropriate learning strategies, and metacognitively monitor their studying. Limited
+guidance has been provided to students to set learning goals, create learning plans,
+reﬂect on their prior studying, and adapt to their future studying. Most of the chatbots
+in the reviewed corpus of studies appeared to promote productive SRL processes
+and boost learning performance of students across different domains, conﬁrming the
+potential of this technology to support SRL. However, in some studies the chatbot
+interventions showed non-signiﬁcant and mixed effects. In this paper, we also discuss
+the ﬁndings and provide recommendations for future research.
+Keywords Educational chatbot · Self-regulated learning · Scaffolding ·
+Artiﬁcial intelligence
+1 Introduction
+Self-regulated learning (SRL) is considered a complex set of recursive and goal-
+oriented learning processes (Panadero,2017). Self-regulated learners set their learning
+goals and actively select, monitor and modify their learning strategies to accomplish
+Extended author information available on the last page of the article
+123
+
+=== PDF PAGE 2 ===
+4494 Education and Information Technologies (2025) 30:4493–4518
+these goals and succeed in different learning tasks (Zimmerman, 2013; Winne &
+Hadwin, 1998; Winne, 2022; Cleary et al., 2022). Self-regulated learners are thus in
+control over their learning processes and learning goals (Winne,2018). As engagement
+in SRL processes has a potential to improve academic achievements and, more broadly,
+to support lifelong learning (Cleary & Chen,2009; Klug et al.,2011; Recommendation,
+2018; Theobald, 2021), it is critical for students to master their command of SRL and
+become productive learners in different domains of knowledge.
+To advance understanding of SRL and identify the relationships among differ-
+ent learning processes involved, researchers have proposed several SRL theoretical
+frameworks, such as Winne and Hadwin ( 1998); Winne (2018); Zimmerman ( 2000);
+Pintrich (2000). Although differences among these theoretical models are noticeable,
+these models broadly agree that SRL is a cyclic process that involves a repertoire
+of learning goals and learning strategies (Panadero, 2017). For example, according
+to Zimmerman ( 2000), self-regulated learners selectively use speciﬁc processes to
+work on learning tasks, over three cyclical phases: forethought, performance and self-
+refection. Winne and Hadwin (1998)’s theoretical model describes SRL as a dynamic
+set of skills where learning unfolds over ﬁve facets (conditions, operations, products,
+evaluations, and standards - COPES) and four phases (deﬁning task requirements,
+setting goals and devising plans, enacting study tactics, and adapting future studying).
+Even though researchers have made a substantial progress over the past several
+decades towards deeper understanding and more effective support for learning pro-
+cesses involved in SRL, development of SRL skills is still considered challenging for
+many students (Bjork et al., 2013). For example, students struggle to gather appropri-
+ate resources for a learning task (List & Du, 2021); set relevant, speciﬁc and attainable
+goals to guide their engagement with the task(McCardle et al., 2017); select appropri-
+ate learning strategies and effectively use them (Azevedo, 2018;L i s t&L i n ,2023);
+and accurately monitor and evaluate their own progress (Zimmerman, 2002; Gutier-
+rez de Blume, 2022; Lim et al., 2023). Students often need guidance to successfully
+enact these learning processes. Educational researchers and practitioners proposed
+different types of external support to students as they are developing SRL skills (Jivet
+et al., 2020, 2021; Perez-Alvarez et al., 2022). Broadly, the SRL support has so far
+been provided in a more traditional way, e.g., via a classroom-style coaching on goal
+setting (McCardle et al., 2017; Morisano et al., 2010; Alessandri et al., 2020) and
+metacognitive strategies (Cleary et al., 2022; Dignath & V eenman, 2021), and, more
+recently, using technology-enhanced learning platforms, e.g., computer-based scaf-
+folding environments that support task orientation, strategy use and metacognitive
+monitoring (Baker et al., 2020; Azevedo et al., 2017; Azevedo & Aleven, 2013; Pérez
+et al.,
+2020; Jivet et al., 2020, 2021; Dever et al., 2023; Srivastava et al., 2022;L i me t
+al., 2023).
+In recent years, researchers have become increasingly interested in using chatbots
+to address educational problems (Wollny et al., 2021; Li et al., 2023; Dai et al., 2023).
+One of the main reasons for such increased interest is that chatbots have a potential
+to scaffold or externally regulate learning processes in dynamically changing learning
+contexts like SRL (Azevedo & Hadwin, 2005), because chatbots use artiﬁcial intel-
+ligence and natural language processing to simulate and adapt to conversation with
+humans. Following the growing interest in educational chatbots, researchers have
+123
+
+=== PDF PAGE 3 ===
+Education and Information Technologies (2025) 30:4493–4518 4495
+recently published several literature reviews on the topic (Winkler & Söllner, 2018;
+Pérez et al., 2020; Smutny & Schreiberova, 2020). All these reviews have contributed
+a signiﬁcant knowledge to this ﬁeld, providing valuable ﬁndings about the currently
+available educational chatbots across disciplines and the beneﬁts of using chatbot tech-
+nologies in education to, e.g., supplement teaching or recommend learning content to
+students. However, to our knowledge, researchers have yet to learn how educational
+chatbots developed so far have supported processes theorised in SRL. These new
+ﬁndings may add to the current educational research and practice given the docu-
+mented beneﬁts of SRL skills for academic performance and life-long learning. To
+contribute new research knowledge to the ﬁelds of educational technology and learn-
+ing sciences, we conducted the present systematic review of the literature explicitly
+focusing on how educational chatbots have been used to support SRL processes and
+learning achievements. Our analysis was based on Winne and Hadwin ( 1998)’s the-
+oretical framework that deﬁned facets and phases of SRL. Our ﬁndings may inform
+future research related to development and implementation of educational chatbots
+that provide a more comprehensive SRL support to learners.
+2 Background
+2.1 SRL theoretical framework to guide this systematic review
+Different theoretical frameworks have been proposed to date to deﬁne SRL processes
+and to understand the relationships among them, and, in this way, help researchers to
+measure and support learners’ engagement in SRL. For an overview of major SRL
+theoretical frameworks, see Panadero ( 2017). To theoretically ground our systematic
+literature review, we utilized the SRL theoretical model proposed by Winne and Had-
+win (1998). According to this framework, students’ SRL processes unfold over four
+general phases: task deﬁnition, goal setting and planning, enacting study tactics, and
+adaptation to future studying, and ﬁve facets: conditions, operations, products, eval-
+uations and standards. We opted to use this framework because (1) it is one of the
+six most cited frameworks in the literature, signifying its robustness and widespread
+acceptance among researchers, and it is particularly welcomed in research involving
+computer assisted learning (Panadero et al., 2016); (2) it provides a comprehensive
+account of cognitive, metacognitive and motivational processes that interweave in SRL
+offering a holistic view of the learning process; and (3) the model is distinguished by
+its detailed depiction of how different phases interact with each other over time as
+learning unfolds, affording researchers and educators ways to design speciﬁc and
+time-sensitive SRL support to learners (Greene & Azevedo, 2007).
+The ﬁrst phase in Winne and Hadwin’s model of SRL is task deﬁnition where learn-
+ers make inferences and develop perceptions about the features of the task, and survey
+available resources for studying. The next phase is goal setting and planning where
+learners set their learning goals, devise plans and determine learning strategies which
+will be used to accomplish goals for learning. In the following phase, students enact
+their learning strategies and oversee (i.e., metacognitively monitor) the effectiveness
+of those strategies in addressing the task. For example, learners might highlight key
+123
+
+=== PDF PAGE 4 ===
+4496 Education and Information Technologies (2025) 30:4493–4518
+concepts and construct a vocabulary list during a reading task, and, if they deem this
+strategy to be ineffective, they may decide to modify (i.e., metacognitively control) it,
+e.g., engage in note-taking instead of highlighting. In the adaptation phase, learners
+reﬂect on their studying during the previous stages and make forward-reaching adap-
+tations for similar tasks in the future, e.g., a learner may decide to include note-taking
+in a repository of preferable learning strategies for the upcoming reading comprehen-
+sion tasks, as note-taking worked well for the learner in the present task. In this way,
+learners reach beyond the present task and change their cognitive conditions for future
+learning (Greene & Azevedo, 2007).
+Learning activities that unfold over the four general phases of SRL can be char-
+acterised relative to ﬁve common dimensions, i.e., facets: conditions, operations,
+products, evaluations and standards (COPES). Conditions encompass different inter-
+nal and external factors that affect how a learner will engage with a task. For example,
+internal conditions include the learner’s prior knowledge of a domain, knowledge
+of learning strategies, experience with a task, and motivation and interest in a task;
+whereas external conditions include available learning resources, task instructions,
+scoring rubrics and time constraints. Operations are the processes by which learners
+manipulate information at hand and, in that way, induce actual learning (Winne,2022).
+Winne (2018) deﬁned ﬁve fundamental operations including searching, monitoring,
+assembling, rehearsing and translating (SMART). As learners engage in operations,
+they create products of learning, e.g., a note, essay draft or program code. Self-
+regulated learners actively evaluate their learning products against standards, e.g.,
+a scoring rubric or instructional objectives. Upon evaluating their learning products,
+self-regulated learners may engage in metacognitive control, i.e., they may decide to
+modify their learning goals and strategies, and revise the products (Greene & Azevedo,
+2007;R a k o v i ´c et al., 2022a).
+2.2 Educational chatbots
+A chatbot is an interactive computer program enhanced by artiﬁcial intelligence (AI)
+and natural language processing (NLP) to simulate conversation with humans through
+text and voice. Since the development of the earliest chatbot Eliza (Weizenbaum,
+1966) in 1966, various chatbots have evolved providing interactive interface for users
+to engage with different services, resources, and data in a natural conversational style
+(McTear, 2020). As well, chatbots have been used as tools to understand and model
+human behavior (McTear, 2020). The use of chatbots has seen a signiﬁcant increase
+over the past several years (Zawacki-Richter et al., 2019), offering support to users
+in different contexts, e.g., customer services, online shopping and banking (Illescas-
+Manzano et al., 2021).
+Due to its characteristics to dynamically and adaptively interact with users, educa-
+tional chatbots have been considered a viable option to support learning in different
+settings (Smutny & Schreiberova, 2020), including SRL. For example, as metacogni-
+tive processes of monitoring and control are considered central in SRL (Winne,2022),
+learners need to continuously engage those processes to succeed in a learning task.
+Many learners, however, struggle to sustain these metacognitive processes throughout
+123
+
+=== PDF PAGE 5 ===
+Education and Information Technologies (2025) 30:4493–4518 4497
+a learning session (Azevedo & Aleven, 2013), which further prevents them from pro-
+ductively engaging in SRL and performing well in a task. Educational chatbot may
+provide external regulation to learners by performing a part of metacognitive monitor-
+ing instead of students having to conduct these processes by themselves (Molenaar,
+2022), e.g, a bot may identify two learning strategies that a learner had used previ-
+ously in the task and ask a learner to compare the effectiveness of these two strategies
+relative to task requirements. In this way, a chatbot may help the learner preserve cog-
+nitive resources for other aspects of the task, e.g., constructing deeper understanding
+of concepts studied. As well, by providing SRL guidance to students, chatbot may
+help learners increase their engagement across phases and facets of SRL, which may
+further beneﬁt their development of SRL skills and boost their academic achievements.
+Recent literature reviews (Winkler & Söllner, 2018; Pérez et al., 2020;S m u t n y&
+Schreiberova, 2020; Wollny et al., 2021) have reported that chatbots have been used
+for the two main purposes in educational settings, including (1) service support and (2)
+teaching support. Building on the success of chatbots in the area of customer service,
+chatbots have been used at many educational institutions to provide service support to
+students, e.g., support with enrolment, library and campus resources (Sweidan et al.,
+2021; Allison, 2012). For example, an interactive bot SIAAA-C (Sweidan et al.,2021)
+is designed to provide students with important campus resources, e.g., campus map
+and notiﬁcations during COVID-19. On the other hand, teaching-oriented chatbots
+have been commonly used in formal education to supplement traditional teaching in
+different domains, e.g., languages, math and science. Harnessing their conversational
+features, those chatbots typically play the role of human tutor and provide learners with
+content knowledge and practice questions. For instance, Wu et al. ( 2020) developed a
+multi-module chatbot that supported students studying mathematics and Chinese his-
+tory, whereas Mageira et al. (2022) and V ázquez-Cano et al. (2021) created the chatbots
+to help students learn English and Spanish, respectively, e.g., through prompting and
+recommending additional learning resources. The literature reviews published so far
+(Winkler & Söllner, 2018; Pérez et al., 2020; Smutny & Schreiberova, 2020; Wollny
+et al., 2021) identifed different types of educational chatbots and technologies used to
+implement those bots. These reviews have also revealed the potential of using chatbots
+to facilitate teaching and learning processes, to recommend learning content and to
+provide service support to students. While there have been several studies investigating
+the use of chatbots for SRL, there has been insufﬁcient understanding about the extent
+to which different aspects of SRL have been supported by chatbots. To address this
+gap, we conducted a systematic literature review to learn (1) how educational chatbots
+have provided support for learners’ SRL and (2) how that support has affected learn-
+ers’ SRL skills and performance. This inquiry is critical because by identifying and
+synthesizing the ways in which educational chatbots contribute to or hinder SRL, our
+study could potentially offer valuable insights into the design of more effective edu-
+cational technologies that are aligned with pedagogical goals. Second, understanding
+the impact of chatbots on learners’ SRL skills and performance can inform educa-
+tors and policymakers about the potential beneﬁts and limitations of integrating these
+technologies into the learning environments. More formally, the following Research
+Questions guided our systematic review:
+123
+
+=== PDF PAGE 6 ===
+4498 Education and Information Technologies (2025) 30:4493–4518
+• RQ1: How have educational chatbots been used to support students’ SRL processes
+relative to (i) phases and (ii) facets theorised in Winne and Hadwin ( 1998) and
+Winne (2018)?
+• RQ2: To what extent has the use of educational chatbots improved learners’ SRL
+processing and learning performance?
+3 Methodology
+We conducted a systematic review of the literature to answer our research questions.
+To ensure a thorough and transparent systematic literature review process, we carried
+this review using the Preferred Reporting Items for Systematic Reviews and Meta-
+Analysis (PRISMA) framework as a guideline (Page et al., 2021; Moher et al., 2009).
+The systematic literature review involved three major phases (1) search for relevant
+publications in multiple bibliographical databases, (2) select relevant publications
+following the PRISMA framework, (3) extract and analyse relevant information in
+selected publications to answer research questions.
+3.1 Literature search
+We utilized the SPIDER framework (Cooke et al., 2012) to deﬁne parameters for the
+literature search. The SPIDER framework proposes ﬁve general groups of search cri-
+teria, including sample, phenomenon of interest, design, evaluation and research type.
+As per our inclusion criteria (detailed in the next section) our Sample (S) involved stu-
+dents studying in formal educational settings at primary, secondary and tertiary levels.
+The Phenomena of our Interest (PI) were self-regulated learning and educational chat-
+bots. We searched for research studies that have been Designed to empirically evaluate
+the effects of chatbots on SRL (D) and that have reported outcome measures based
+on these Evaluations (E). We included qualitative, quantitative and mixed-methods
+studies (R) in our search.
+We used the following search query: (“chatbot” OR “educational chatbot” OR “con-
+versational agent”) AND “self-regulated learning” AND “formal education” AND
+(“student” OR “learner”) AND “research article” to search for titles, abstracts and
+keywords of publications in bibliographical databases. We included studies published
+between 2012 and 2023, inclusively, as we deemed this time range to be sufﬁcient to
+capture the state-of-the-art in the emerging ﬁeld of educational chatbots. We searched
+the following bibliographical databases: Scopus, Elsevier, ACM, IEEE Xplore, Web
+of Science, ERIC, PsychInfo, Wiley library, Google Scholar, ResearchGate and the
+library database at our university. The search was conducted in October 2023. At this
+stage, we retrieved 598 publications. After removing 72 duplicates, 526 publications
+remained in our dataset for further analysis.
+3.2 Abstract screening and full paper review
+To identify relevant publications for our review we performed two reviewing steps,
+following the PRISMA guidelines (1) abstract screening and (2) full paper review.
+123
+
+=== PDF PAGE 7 ===
+Education and Information Technologies (2025) 30:4493–4518 4499
+In other words, publications selected in the abstract screening step were reviewed in
+full for their relevance at the full paper review step. For these two reviewing steps,
+we followed our inclusion and exclusion criteria. Speciﬁcally, we included research
+studies that:
+1. Reported on the use of chatbots in formal educational settings
+2. Reported on the use of chatbots to support students to engage in SRL processing
+(e.g., goal setting, strategy use, and monitoring)
+3. Described characteristics of educational chatbots (e.g., chatbot architecture and
+types of utterances exchanged between student and bot)
+4. Reported on the effectiveness of educational chatbots in supporting SRL skills
+and/or learning outcomes
+5. Were published in peer-reviewed journals and conference proceedings in English
+between Jan 2012 and Oct 2023
+We excluded:
+1. Publications that reported on using chatbots outside of formal educational settings
+(e.g., school administration and customer service)
+2. Publications from which it could not be clearly inferred what SRL processes have
+been supported by the chatbot (e.g., studies applying a third-party chatbot as a
+black box intervention or using a chatbot to conduct a quiz)
+3. Publications that did not provide a clear description of chatbot characteristics
+4. Publications that did not provide the evaluation of chatbot effectiveness
+5. Technical reports, conceptual and design papers
+6. Non-peer reviewed publications and publications without available full-text
+At the screening step, two reviewers screened the titles and abstracts of 526 publi-
+cations, i.e., those publications that remained from the previous phase in this review.
+Each reviewer had an opportunity to vote “Y es”, “Maybe” or “No” for the study, rel-
+ative to whether the study should be included in the next stage of the review. The
+reviewers had the agreement on 456 papers ( 86.7%, Fleiss kappa = 0.734, p<0.001).
+The remaining 70 conﬂicts were resolved through discussion between the reviewers.
+The main reasons for conﬂicts came from abstracts that did not explicitly state whether
+the chatbot evaluation was performed in the study. The reviewers agreed to keep such
+articles in the dataset and fully assess those in the next stage. A total of 101 publications
+remained in the dataset after this stage.
+At the full paper review step, the reviewers randomly selected 15 out of 101 publi-
+cations (nearly 15%), separately reviewed those and voted whether the paper should
+be included in the study or not, following the inclusion and exclusion criteria. The
+reviewers agreed on 12 out of 15 publications (80%, Fleiss kappa = 0.52, p=0.04).
+The common disagreement between the reviewers at this stage was about whether
+the study provided a sufﬁciently clear description of the bot characteristics. This dis-
+agreement was resolved through discussion between the reviewers and the decision
+was made to include in the ﬁnal review only those publications that described types
+of utterances exchanged between a student and a bot. The reviewers evenly split the
+remaining publications in the dataset (i.e., 86 publications were randomly assigned to
+each reviewer) and reviewed those separately. A total of 27 papers were extracted for
+the review. We summarized our review process in Fig. 1 (Page et al., 2021).
+123
+
+=== PDF PAGE 8 ===
+4500 Education and Information Technologies (2025) 30:4493–4518
+Fig. 1 PRISMA ﬂow diagram
+3.3 Analysis of extracted publications
+The ﬁrst author of this review extracted data from each publication as per following
+categories: general information (publication title, authors, year, sample size, level of
+education, domain of education and learning task), chatbot type, SRL facet (conditions,
+operations, products, evaluations, and standards), SRL phase (task understanding,
+goal setting and planning, enactment, and adaptation), and reported effects (on SRL
+processes and learning achievements). To categorise publications into suitable SRL
+facets and phases, the ﬁrst author closely followed deﬁnitions of constructs provided
+in Winne and Hadwin ( 1998). See the section SRL Theoretical Framework to Guide
+This Review for details. The analysis of SRL facets and phases in selected publications
+123
+
+=== PDF PAGE 9 ===
+Education and Information Technologies (2025) 30:4493–4518 4501
+was used to address RQ1, while the analysis of the reported effects of chatbots on SRL
+processes and learning achievements was used to address RQ2.
+4 Results
+4.1 General information
+We summarised the studies included in our systematic literature review in Fig. 2.O u t
+of the 526 studies that we assessed in this review, 27 studies ﬁt the inclusion criteria
+for full review. Over 92% of these studies were published in 2020 onward, i.e, six in
+2020, 11 in 2021, two studies in 2022 and six studies in 2023, whereas only two studies
+were published before 2020. We observed that 13 studies utilized a natural language
+processing (NLP)-driven approach in their chatbot design to interpret and respond
+to user inputs in a conversational manner. On the other hand, 13 studies employed
+rule-based architectures in their chatbot design, i.e., following predeﬁned pathways
+or rules to respond to speciﬁc commands or keywords, offering predictable and con-
+sistent interactions within a structured framework (Fig. 2). Additional architectures in
+the reviewed studies include an NLP-driven architecture with contextual bandit algo-
+rithm (Cai et al., 2021) and knowledge-based system accessing a vast domain-speciﬁc
+database to deliver accurate information (Chang et al., 2022b).
+Further, the chatbots we reviewed provided SRL support to students in different
+domains of education, including language learning, math, science, computer program-
+Fig. 2 Number of publications by year color-coded with chatbot architectures
+123
+
+=== PDF PAGE 10 ===
+4502 Education and Information Technologies (2025) 30:4493–4518
+Fig. 3 Domain of education supported by chatbot color-coded with participants’ level of education
+ming, accounting and educational psychology, with language learning being slightly
+more prominent than the other domains (Fig. 3). Moreover, the chatbots included in
+this review have been mainly utilised in higher education, i.e., researchers provided
+chatbots to university students in 21 studies. Two studies were conducted in primary
+schools, three studies were conducted in secondary school and one study involved a
+diverse student population recruited from Amazon Mechanical Turk (Fig. 3).
+4.2 RQ1: How have educational chatbots been used to support students’ SRL
+processes relative to (1) phases and (2) facets theorised in Winne and Hadwin
+(1998) and Winne (2018)?
+Of 27 articles included in this review, 15 reported on using chatbots to support student
+SRL processing in a single SRL phase, 11 articles reported on support across two and
+1 article reported on support across three SRL phases. None of the reviewed studies
+appeared to utilise educational chatbots to provide comprehensive SRL support across
+all four phases of SRL deﬁned in Winne and Hadwin ( 1998). More speciﬁcally, in
+25 articles researchers used chatbots to facilitate SRL during the strategy enactment
+phase, i.e., the phase in which students are to select and use learning tactics and
+strategies. In these studies, chatbots were mainly utilised to guide students to enact
+learning tactics/strategies to accomplish a particular learning task, such as writing a
+thesis statement (Lin & Chang, 2020) or an essay (Neumann et al., 2021), learning a
+programming language (Ait et al., 2023; Tian et al., 2021) and developing a project
+report (Kumar, 2021). Six chatbots supported students at the task deﬁnition stage, e.g.,
+“Make sure to re-read the question!” (Cai et al.,2021). Five chatbots supported students
+to set goals and devise plans for learning, e.g., by scaffolding students to specify their
+achievement goals (Hew et al.,2021, 2023) and by guiding goal setting with questions
+123
+
+=== PDF PAGE 11 ===
+Education and Information Technologies (2025) 30:4493–4518 4503
+(Du et al., 2021; Al-Abdullatif et al., 2023). Four chatbots supported students to adapt
+to their future studying, e.g., by providing students with the opportunity to monitor
+their learning progress (Harati et al., 2021; Oliveira et al., 2021) (Fig. 4).
+In all the studies we reviewed authors have reported on using chatbots to pro-
+mote SRL processes at conditions, operations, and products, the three cognitive facets
+of SRL. For instance, researchers have used chatbots to promote students’ internal
+conditions for a task that include activation of domain knowledge (Cai et al., 2021;
+Neumann et al., 2021), task interest and motivation (Fryer et al., 2017, 2020;Y i n
+et al., 2021), self-efﬁcacy (Chang et al., 2022a), and outcome expectation (Hew et al.,
+2021)). Researchers have also utilised chatbots to support students to leverage exter-
+nal conditions for a task. For example, chatbots recommended learning resources to
+students (Bailey et al., 2021; Chang et al., 2022b), and guided students to manage
+their studying time (Harati et al., 2021) and to understand task requirements Du et al.
+(2021); Mellado-Silva et al. ( 2020); Chen et al. ( 2020)). We also found that in 17
+studies chatbots supported students to engage in cognitive operations of assembling.
+These include integrating and consolidating conceptual knowledge in math (Cai et al.,
+2021), English language learning (Fryer et al., 2017; Xia et al., 2023), physical sci-
+ences (Deveci Topal et al., 2021) and accounting (Mellado-Silva et al., 2020). Nine
+chatbots provided support for cognitive operations of translating. These include guid-
+Fig. 4 V enn diagram showing the number of studies over SRL phases
+123
+
+=== PDF PAGE 12 ===
+4504 Education and Information Technologies (2025) 30:4493–4518
+ing students to transform knowledge from readings into a written narrative (Bailey
+et al., 2021) and to apply knowledge in a practical project (Kumar, 2021). 13 chatbots
+provided support for metacognitive operations of monitoring. These include guiding
+students to monitor for domain knowledge acquisition (Harati et al.,2021), for learning
+goals and responses to questions (Hew et al., 2021), for learning strategy employment
+(Song & Kim, 2021) and for progress and performance (Cai et al., 2021; Neumann
+et al., 2021; Oliveira et al., 2021; Zhang et al., 2023a, b). Five chatbots provided sup-
+port for searching operations. These include guiding students to search for course
+materials and learning content (Chang et al., 2022a, b; Oliveira et al., 2021), for spe-
+ciﬁc learning strategies (Du et al., 2021) and for learning tools (Jones & Castellano,
+2018). And one chatbot included support for a cognitive operation of rehearsing by
+guiding students to formulate acquired knowledge in their own words (Jeon, 2021).
+Next, we found that the most common learning products that students created while
+studying with chatbots were answers to questions on tests/quizzes (Cai et al., 2021;
+Chang et al., 2022b; Jeon, 2021), and only a few chatbots have supported students
+to produce essays (Neumann et al., 2021), thesis statements (Lin & Chang, 2020),
+project reports (Kumar, 2021) and learning goals (Du et al., 2021).
+Further, 16 chatbots in the corpus we reviewed have appeared to provide support
+for learning processes theorised to occur at the evaluations facet of SRL. For instance,
+chatbots utilised in Cai et al. ( 2021), Oliveira et al. ( 2021), Zhang et al. ( 2023a) and
+Lin and Chang ( 2020) assisted students to engage in judgment of learning, whereas
+chatbots in Jones and Castellano ( 2018), Hew et al. (2021), Song and Kim (2021) and
+Yin et al. ( 2021) promoted student engagement in self-reﬂection. Last, 14 chatbots
+provided a guidance to students to better comprehend task standards. Speciﬁcally,
+these chatbots provided students with initial explanations of task requirements and
+other task features (Bailey et al., 2021; Lin & Chang, 2020; Jones & Castellano, 2018;
+Chen et al., 2020), task-related tips (Tian et al., 2021), opportunities for progress
+check relative to task topics (Harati et al., 2021), and questions for goal setting (Du
+et al.,
+2021; Hew et al., 2023). We provide the summary table of the SRL phases and
+facets supported by the educational chatbots included in this review in the appendix
+(Figs. 5, 6, 7, 8, and 9).
+4.3 RQ2: To what extent the use of educational chatbots improved students’ SRL
+processing and learning performance?
+Among the publications reviewed, we found mixed effects of educational chatbots
+on students’ SRL processes and learning performance. In terms of promoting SRL
+processing, researchers have reported that students who studied with chatbots tended
+to: use more effective learning strategies (Bailey et al., 2021; Chang et al., 2022b;
+Mellado-Silva et al., 2020), increase their awareness of the importance of setting
+learning goals (Du et al., 2021; Hew et al., 2023), control the learning process over
+their study pace (Yin et al., 2021; Tian et al., 2021), enhance their learning engage-
+ment and self-efﬁcacy (Chang et al., 2022a; Hew et al., 2021; Oliveira et al., 2021),
+and transfer some of their SRL skills to a new learning activity (Jones & Castellano,
+2018). Researchers have also found that students who studied with a chatbot did not
+123
+
+=== PDF PAGE 13 ===
+Education and Information Technologies (2025) 30:4493–4518 4505
+sustain well their interest in task, attributed to the novelty effect (Fryer et al., 2017),
+and did not increase their SRL processing (Harati et al., 2021). Moreover, the use of
+chatbot in one of the studies did not appear to statistically signiﬁcantly boost student
+internal conditions, i.e., need for cognition, perception of learning, creativity, self-
+efﬁcacy and motivational beliefs – conditions critical for productive SRL (Kumar,
+2021). The systematic review also shows that chatbots were used to improve students’
+learning performance in tasks spanning different subjects, including English as a sec-
+ond language (Bailey et al., 2021), obstetrics (Chang et al., 2022a), physical education
+(Chang et al., 2022b), science (Deveci Topal et al., 2021), accounting (Mellado-Silva
+et al., 2020), geography (Jones & Castellano, 2018) and educational psychology (Lin
+& Chang, 2020; Kumar, 2021). We also note that the use of chatbot had limited effects
+on learning performance of students working on a chemistry task (Harati et al., 2021),
+and statistically non-signiﬁcant effects on performance of students working on tasks
+in math (Cai et al., 2021), computer science (Oliveira et al., 2021) and geography
+(Jones & Castellano, 2018). We summarised descriptive and inferential statistics on
+SRL processes and learning performance across the reviewed studies in the appendix
+(Figs. 5, 6, 7, 8, and 9).
+5 Discussion
+Even though chatbot is not a new technology, our results indicate that the application
+of chatbots for promoting SRL has only recently attracted attention from educational
+researchers and practitioners, i.e., over 90% of the papers in the reviewed corpus
+were published after 2020. Unlike some other educational technologies that have been
+widely researched as support for student SRL over the past decade – e.g., intelligent
+tutoring systems (Duffy & Azevedo, 2015; Dever et al., 2023; Taub et al., 2021) and
+computer-based scaffolding environments (Molenaar et al., 2012; Srivastava et al.,
+2022; Lim et al., 2023) – the use of chatbots to this purpose appears yet to be more
+deeply explored.
+The two most prominent chatbot architectures in the reviewed corpus were NLP-
+driven and rule-based chatbots. NLP-driven chatbots utilize NLP and machine learning
+methods to derive the meaning from user input and understand user intents. Even
+though the NLP-driven models often require extensive training before they can be
+applied, chatbots based on this architecture typically offer more robustness in inter-
+preting insufﬁciently clear and grammatically incorrect student inputs. We found
+DialogFlow to be a commonly used NLP platform powering NLP-driven chatbots
+for SRL (Deveci Topal et al., 2021; Bailey et al., 2021). On the other hand, rule-based
+chatbots use a set of predeﬁned rules, e.g., a tree-like decision ﬂow, to map student
+input to appropriate chatbot response. These rules are created after anticipating users’
+input and pre-scripted during the bot design. Rule-based chatbot provides better behav-
+ior control and may be a particularly applicable architecture for researchers aiming
+to explicitly map user inputs to SRL processes, e.g., “What should I do ﬁrst?” can be
+mapped to goal setting, and, based on that, chatbot may provide a series of prompts to
+guide a learner to set their goals. In this review, researchers utilised chatbots to sup-
+port learning in a very diverse set of educational domains (i.e., 15 different domains
+123
+
+=== PDF PAGE 14 ===
+4506 Education and Information Technologies (2025) 30:4493–4518
+identiﬁed in our corpus) and this ﬁnding aligns with ﬁndings from the previously
+conducted literature reviews (Winkler & Söllner, 2018; Pérez et al., 2020;S m u t n y&
+Schreiberova, 2020) that also reported that researchers tended to apply educational
+chatbots in diverse domains. The main reason for this cross-domain popularity of
+chatbots may be because this technology was designed to adapt to conversation with
+different users and on different topics.
+Educational chatbots for self-regulated learning have mainly supported learners’
+processes at one or two phases of the Winne and Hadwin model of SRL. Our ﬁndings
+suggest that the current design and implementation of educational chatbots lack the
+ability to aid the whole SRL cycle and thus provide students with comprehensive SRL
+support addressing all the four phases of SRL deﬁned in Winne and Hadwin ( 1998)
+and Winne ( 2018). Commonly, almost all of the reviewed chatbots were designed
+to promote the enactment of learning tactics and strategies that educators deemed
+to be important for success in different learning tasks. For example, in the writing
+thesis statement task (Lin & Chang, 2020), educators may guide students to strategi-
+cally engage the following learning activities “identify relevant passage” → “identify
+claims” → “compose thesis statement” → “evaluate your conceptual understanding”
+→ “revise thesis statement”. The bot was designed to provide guidance to students on
+these activities, in any order they prefer. For this reason, utterances between learners
+and chatbots have been often mapped to speciﬁc learning tactics to reinforce the learn-
+ing of students, taking into account required learning activities. In this way, chatbots
+have served as a potentially effective supplement to traditional classroom teaching,
+the trend also identiﬁed in the previous literature (Pérez et al., 2020). This ﬁnding
+ties with another ﬁnding from our review showing that chatbots mainly supported
+operations of rehearsing, assembling and translating, i.e., cognitive operations that are
+typically contingent upon task conditions (Winne, 1995), such as integrate informa-
+tion from several readings in an essay or recap a math formula in a quiz. Together,
+these ﬁndings may suggest that design of SRL chatbots was primarily informed by the
+nature of speciﬁc learning tasks, e.g., persuasive writing, numerical conversion and
+software programming, and, as such, dependent upon expected sequences of actions
+that learners should take to address those tasks.
+To a lesser extent, chatbots supported students to metacognitively evaluate their
+immediate and past studying, and to adapt their studying accordingly. For instance, by
+using interactive and personalised feedback from chatbots the students were afforded
+the opportunity to engage in judgement of learning (Cai et al., 2021; Chang et al.,
+2022b; Lin & Chang, 2020; Oliveira et al., 2021), and evaluate and adapt learning
+strategies they used during the task. In two of the studies, engagement in metacog-
+nitive judgement of learning was reported to be associated with increased student
+engagement in critical thinking (Chang et al., 2022b) and writing performance (Lin
+& Chang, 2020), further conﬁrming the potential of educational chatbots to support
+student metacognition, which is considered to be one of the central processes for
+productive SRL (Winne, 2018). Students’ internal conditions such as motivation, self-
+efﬁcacy, and interest in a task, are often measured using self-report questionnaires,
+interviews and self-reﬂection prompts administered before or after the learning ses-
+sion. Data that dynamically capture student internal conditions as they evolve during
+the session is rarely collected, making it hard for educational technologies to pro-
+123
+
+=== PDF PAGE 15 ===
+Education and Information Technologies (2025) 30:4493–4518 4507
+vide immediate support adaptive to learning conditions. Even though some chatbots
+we reviewed have demonstrated ability to promote internal conditions, e.g., learn-
+ing motivation (Yin et al., 2021), perception of learning (Neumann et al., 2021) and
+self-efﬁcacy (Chang et al., 2022a), the capability of educational chatbots to provide
+responses sensitive to evolving internal conditions remains limited. We also note that
+many chatbots in the reviewed corpus supported students to search for, gather and
+access learning resources for their tasks. As chatbots have been traditionally used
+in dialogue systems for customer service and information acquisition (Serban et al.,
+2017; Winkler & Söllner, 2018), we speculate the popularity of this feature in educa-
+tional chatbots may have been naturally inherited from the ﬁeld of customer service
+and adapted to support students as they gather learning content. Moreover, the recent
+explosion of advanced generative language models that generate sophisticated human-
+like responses and engage in natural language conversations, such as ChatGPT, has
+opened up new possibilities to improve educational chatbots from being tools mainly
+used for information acquisition to a powerful pedagogical tools that can revolution-
+ize how students learn by offering personalized learning experiences and real-time
+guidance adapted to the student’s learning skills and knowledge of content.
+We found that chatbots in the reviewed studies generally promoted increase in pro-
+ductive SRL processes and learning performance of students across different domains,
+conﬁrming the potential of this technology to support SRL. Non-signiﬁcant effects
+were identiﬁed in a group of studies and we attribute this ﬁnding to several possi-
+ble reasons. Student motivation and engagement in learning sessions facilitated with
+chatbot may have dropped as many students may feel isolated in such learning con-
+text and may prefer direct support from teachers instead (Zhang et al., 2020). This
+may further lead to challenges in sustaining students’ learning interest in a task, as
+indicated in one of the reviewed studies (Fryer et al., 2017). As the reviewed chatbots
+have mainly supported university students, it may be expected that many students in
+this population already possessed a preferred catalogue of learning strategies and that
+one-time session with chatbot may not be sufﬁcient to help those students alter their
+approaches to learning. Another reason for non-signiﬁcant effects may be related to
+chatbot’s challenges to always provide satisfactory and accurate responses, that clearly
+target particular learning processes (Deveci Topal et al., 2021).
+6 Conclusionandimplicationsforfurtherstudies
+The ﬁndings of this systematic literature review indicate the increasing interest of
+researchers in using educational chatbots to support self-regulated learning. The
+reviewed studies predominantly employed NLP-driven and rule-based chatbot archi-
+tectures. Both architectures have shown potential in promoting various processes in
+SRL, particularly in the enactment of learning strategies and cognitive operations such
+as assembling, translating, and monitoring. Despite these advancements, the review
+identiﬁes signiﬁcant gaps in the comprehensive support of SRL. None of the chatbots
+have provided SRL support across all the four phases of SRL, as proposed by Winne
+and Hadwin Winne and Hadwin ( 1998). The support often involved guiding students
+through the steps within speciﬁc learning tasks rather than offering a holistic support
+123
+
+=== PDF PAGE 16 ===
+4508 Education and Information Technologies (2025) 30:4493–4518
+to student SRL processing. The effects of chatbots on students’ SRL processes and
+learning performance appeared to be mixed. While many studies reported improve-
+ments in the use of learning strategies, student engagement, and self-efﬁcacy, others
+found limited or non-signiﬁcant effects on learning performance.
+Based on the ﬁndings from this systematic literature review, we propose the fol-
+lowing areas of investigation towards advancing research on chatbots and SRL.
+1. Create chatbots that provide a comprehensive SRL support across all the phases
+Our results suggest that, to date, there has been no chatbot designed to provide
+a comprehensive support across all the four phases of SRL deﬁned in the Winne
+and Hadwin model. For instance, even though student engagement in goal settings,
+planning, and adaptation has been widely documented to beneﬁt student learning
+experiences and performance (Alessandri et al., 2020;R a k o v i ´c et al., 2022a;R a k o v i c
+et al., 2022b), SRL processes at these stages have been rarely supported in the reviewed
+corpus, which may partially explain small, insigniﬁcant and limited effects of several
+chatbots on student achievements in this review. Within the SRL framework, each
+phase builds upon the previous one creating a cyclical process that allows students
+to continuously improve their learning strategies and accomplish their learning goals.
+Supporting studying in each phase of SRL may provide students with better control
+over their learning and may lead to greater academic success, increased conﬁdence
+and motivation in one’s ability to learn.
+2. Identify speciﬁc learning tasks in which chatbots can provide most effective
+support
+While it is important to apply chatbots in different subject domains, it is equally
+important to identify speciﬁc tasks within those domains where chatbots can be most
+effective. By doing so, researchers and educators can ensure that chatbots are used in a
+targeted and effective manner, maximizing the impact of this technology on students’
+learning experience. In this way, chatbots may help learners develop a catalogue of
+task-speciﬁc learning skills and transfer these skills to similar tasks in the future.
+3. Evaluate the effectiveness of SRL chatbots in longitudinal studies
+Most of the educational chatbots in this review have been evaluated in small scale
+studies, e.g., a one-time intervention administered in one class. Such a lack of longitu-
+dinal data might impede researchers from gaining a deeper understanding of the long
+term beneﬁts of SRL chatbots. Therefore, it may beneﬁt future research in educational
+technology and learning sciences if researchers conduct a longitudinal study, e.g., a
+study spanning over one or several semesters, to examine the effects of chatbot on the
+development of students’ SRL skills over time.
+4. Use chatbot to elicit students’ internal conditions
+Student internal conditions including prior knowledge, motivation, interest, self-
+efﬁcacy, achievement goals, utility value and outcome expectations can have a
+signiﬁcant impact on how learners approach and engage with the learning process
+(Meece, 2023). However, there are very limited existing efforts in learning analyt-
+ics focusing on understanding and eliciting internal conditions (Matcha et al., 2019).
+These constructs have been typically measured at the beginning of a learning task.
+Since SRL is a dynamic and cyclic process (Panadero, 2017), student internal condi-
+tions may often change during the learning session, also affecting other processes that
+learners enact. For example, use of effective learning strategies and accomplishment of
+123
+
+=== PDF PAGE 17 ===
+Education and Information Technologies (2025) 30:4493–4518 4509
+some learning goals early in a learning session may increase students’ self-efﬁcacy and
+motivation later in the session, compared to what learners reported at the outset of the
+session. Given the conversational and interactive nature of chatbots, researchers may
+consider using this technology as an instrument that dynamically captures changes in
+internal conditions and helps learners to reﬂect on their own learning process, e.g., by
+engaging in dialogues with learners, asking questions that gauge students’ understand-
+ing, their learning goals and conﬁdence levels, analyzing the content and frequency of
+student interactions, providing feedback on their progress, and offering suggestions
+for improvement.
+5. Record and analyse what students did, not only what they say they did
+Digital trace-data, e.g., navigation logs, text annotations and keystrokes, that stu-
+dents generate in digital learning environments have been increasingly harnessed to
+unobtrusively measure SRL (Fan et al., 2022; Rakovic et al., 2022b; Lim et al., 2023).
+For instance, trace-data are often mapped to theorised SRL processes and dynamically
+analysed (e.g., by using process mining and natural language processing approaches)
+to obtain a more complete picture of student learning behaviors. To our knowledge,
+educational chatbots developed to date have mainly gathered information about student
+learning in two ways (1) via self-reports, e.g., based on what students said to the bot
+they did, and (2) via student performance data, e.g., correct/incorrect answers on a test.
+Researchers, however, have identiﬁed several challenges related to those methods. For
+example, students self-reports may often be insufﬁciently accurate and biased towards
+student beliefs or social desirability (Winne, 2022), whereas performance data often
+cannot directly inform the intervention (Arizmendi et al., 2022). Researchers may
+consider introducing trace-data as an additional input to SRL chatbots to ensure bots
+more accurately monitor student SRL processes as they dynamically unfold and, based
+on that, provide students with a more accurate and timely SRL support.
+6. Support students at all educational levels
+The chatbots in the reviewed corpus have mainly supported university students.
+More research is needed to adapt chatbots to cater to the needs of students at other levels
+of education, e.g., primary and secondary. Students at different levels of education may
+have different learning needs and preferences (Ambrose et al., 2010). By conducting
+research and adapting chatbots to cater these speciﬁc needs from different levels of
+students, we can ensure that the beneﬁts of educational chatbots are accessible to
+students of all developmental stages, potentially creating more effective, engaging and
+inclusive learning environment for them. Also, university students have become more
+experienced learners and have often formed certain learning habits. This may make it
+challenging for the educational chatbot to induce some changes to learning. An early
+intervention at a primary or secondary education level could help in preparing students
+to better self-regulate their learning at a tertiary education level and throughout life.
+7. Improve the effectiveness and accuracy of chatbot responses by harnessing the
+potential of large language models and generative AI
+In our review, a notable limitation of current educational chatbots is their often
+unsatisfactory responses (Deveci Topal et al.,2021), highlighting a gap in understand-
+ing users’ intentions and providing relevant support. This indicates that the current
+chatbots may have limited ability to interpret users’ intentions and provide adequate
+support, which further may hamper student engagement and motivation. Researchers
+123
+
+=== PDF PAGE 18 ===
+4510 Education and Information Technologies (2025) 30:4493–4518
+may utilise the rapidly emerging technologies of generative AI speciﬁcally large lan-
+guage models like ChatGPT, that can handle complex language problems, e.g., large
+language models such as ChatGPT, to enhance the chatbots’ ability to understand
+learners’ intentions and provide appropriate responses in the context of SRL. In this
+way, the volume of productive interactions between students and SRL chatbots may
+improve student learning experiences and interest in studying with a bot, marking a
+step forward in AI-driven education.
+AppendixA:Summaryofthereviewedstudies
+Fig. 5 Summary table of reviewed chatbot articles including supported SRL stages and facets
+123
+
+=== PDF PAGE 19 ===
+Education and Information Technologies (2025) 30:4493–4518 4511
+Fig. 6 Summary table of reviewed chatbot articles including supported SRL stages and facets
+Fig. 7 Summary table of reviewed chatbot articles including supported SRL stages and facets
+123
+
+=== PDF PAGE 20 ===
+4512 Education and Information Technologies (2025) 30:4493–4518
+Fig. 8 Summary table of reviewed chatbot articles including supported SRL stages and facets
+Fig. 9 Summary table of reviewed chatbot articles including supported SRL stages and facets
+123
+
+=== PDF PAGE 21 ===
+Education and Information Technologies (2025) 30:4493–4518 4513
+Acknowledgements This work was in part supported by funding from the Australian Research Council
+(DP220101209, DP240100069) and Jacobs Foundation.
+Author contribution Rui Guan: Conceptualization, Methodology, Formal analysis, Writing - Original Draft,
+Data Curation.
+Mladen Rakovi´c: Conceptualization, Methodology, Formal analysis, Writing - Original Draft, Data Cura-
+tion, Supervision.
+Guanliang Chen: Conceptualization, Methodology, Writing - Original Draft, Supervision.
+Dragan Gaševi´c: Conceptualization, Methodology, Writing - Original Draft, Supervision
+Funding Open Access funding enabled and organized by CAUL and its Member Institutions.
+Data availability statement Data sharing not applicable to this article as no datasets were generated or
+analyzed during the current study. This systematic literature review is based entirely on data from publicly
+available sources. The analysis synthesizes ﬁndings from a wide range of publications, including journal
+articles and conference papers, all of which are cited in the references section of this paper. These sources
+can be accessed through academic libraries and online databases. Supplementary materials created during
+this review, including summary tables (Figs. 5 - 9) and ﬁgures (Figs. 1 - 4), are available upon request.
+Declarations
+Competing interest The authors have no competing interests to declare that are relevant to the content of
+this article.
+Financial interest All authors certify that they have no afﬁliations with or involvement in any organization
+or entity with any ﬁnancial interest or non-ﬁnancial interest in the subject matter or materials discussed in
+this manuscript.
+Ethical standard This systematic review has been conducted in accordance with the principles of academic
+integrity and honesty. All sources have been properly cited, and no copyrighted material has been used
+without permission. The review does not involve any original data collection from human or animal subjects,
+and therefore, ethical approval was not sought.
+Open Access This article is licensed under a Creative Commons Attribution 4.0 International License, which
+permits use, sharing, adaptation, distribution and reproduction in any medium or format, as long as you give
+appropriate credit to the original author(s) and the source, provide a link to the Creative Commons licence,
+and indicate if changes were made. The images or other third party material in this article are included
+in the article’s Creative Commons licence, unless indicated otherwise in a credit line to the material. If
+material is not included in the article’s Creative Commons licence and your intended use is not permitted
+by statutory regulation or exceeds the permitted use, you will need to obtain permission directly from the
+copyright holder. To view a copy of this licence, visit http://creativecommons.org/licenses/by/4.0/ .
+References
+Ait Baha, T., El Hajji, M., Es-Saady, Y ., & Fadili, H. (2023). The impact of educational chatbot on student
+learning experience. Education and InformationTechnologies, 1–24.
+Al-Abdullatif, A. M., Al-Dokhny, A. A., & Drwish, A. M. (2023). Implementing the bashayer chatbot
+in saudi higher education: Measuring the inuence on students’ motivation and learning strategies.
+Frontiers in Psychology, 14, 1129070–1129070.
+Alessandri, G., Borgogni, L., Latham, G. P ., Cepale, G., Theodorou, A., & De Longis, E. (2020). Self-set
+goals improve academic performance through nonlinear effects on daily study performance. Learning
+and Individual Differences, 77, 101784.
+Allison, D. (2012). Chatbots in the library: Is it time? Library Hi tech, 30 (1), 95–107.
+123
+
+=== PDF PAGE 22 ===
+4514 Education and Information Technologies (2025) 30:4493–4518
+123
+Arizmendi, C. J., Bernacki, M. L., Rakovi´c, M., Plumley, R. D., Urban, C. J., Panter, A., Greene, J. A., &
+Gates, K. M. (2022). Predicting student outcomes using digital logs of learning behaviors: Review,
+current standards, and suggestions for future work. Behavior Research Methods, 1–29.
+Ambrose, S. A., Bridges, M. W., DiPietro, M., Lovett, M. C., & Norman, M. K. (2010). How learning
+works: Seven research-based principles for smart teaching. John Wiley & Sons.
+Azevedo, R. (2018). Using hypermedia as a metacognitive tool for enhancing student learning? the role of
+self-regulated learning. In: Educational psychologist(pp. 199–209). Routledge.
+Azevedo, R., & Aleven, V . (2013). Metacognition and learning technologies: An overview of current inter-
+disciplinary research. International Handbook of Metacognition and Learning Technologies , 1–16.
+Azevedo, R., & Hadwin, A. F. (2005). Scaffolding self-regulated learning and metacognition - implications
+for the design of computer-based sca olds. Instructional Science, 33(5/6), 367–379.
+Azevedo, R., Taub, M., Mudrick, N. V ., Millar, G. C., Bradbury, A. E., & Price, M. J. (2017). Using Data
+Visualizations to Foster Emotion Regulation During Self- Regulated Learning with Advanced Learning
+Technologies. In J. Buder & F. W. Hesse (Eds.), Informational environments : Effects of use, effective
+designs (pp. 225–247). https://doi.org/10.1007/978-3-319-64274-110
+Bailey, D., Southam, A., & Costley, J. (2021). Digital storytelling with chatbots: Mapping l2 participation
+and perception patterns. Interactive Technology and Smart Education, 18 (1), 85–103.
+Baker, R., Xu, D., Park, J., Y u, R., Li, Q., Cung, B., & Smyth, P . (2020). The beneﬁts and caveats of using
+clickstream data to understand student self-regulatory behaviors: Opening the black box of learning
+processes. International Journal of Educational Technology in Higher Education, 17 , 1–24.
+Bjork, R. A., Dunlosky, J., & Kornell, N. (2013). Self-regulated learning: Beliefs, techniques, and illusions.
+Annual Review of Psychology, 64, 417–444.
+Cai, W., Grossman, J., Lin, Z. J., Sheng, H., Wei, J.T.-Z., Williams, J. J., & Goel, S. (2021). Bandit algorithms
+to personalize educational chatbots. Machine Learning, 110 (9), 2389–2418.
+Chang, C.-Y ., Hwang, G.-J., & Gau, M.-L. (2022). Promoting students’ learning achievement and self-
+efﬁcacy: A mobile chatbot approach for nursing training. British Journal of Educational Technology,
+53(1), 171–188.
+Chang, C.-Y ., Kuo, S.-Y ., & Hwang, G.-H. (2022). Chatbot-facilitated nursing education. Educational
+Technology & Society, 25(1), 15–27.
+Chen, H.-L., Vicki Widarso, G., & Sutrisno, H. (2020). A chatbot for learning chinese: Learning achievement
+and technology acceptance. Journal of Educational Computing Research, 58 (6), 1161–1189.
+Cleary, T. J., & Chen, P . P . (2009). Self-regulation, motivation, and math achievement in middle school:
+V ariations across grade level and math context. Journal of School Psychology, 47 (5), 291–314.
+Cleary, T. J., Kitsantas, A., Peters-Burton, E., Lui, A., McLeod, K., Slemp, J., & Zhang, X. (2022). Profes-
+sional development in self-regulated learning: Shifts and variations in teacher outcomes and approaches
+to implementation. Teaching and Teacher Education, 111, 103619.
+Cooke, A., Smith, D., & Booth, A. (2012). Beyond pico: The spider tool for qualitative evidence synthesis.
+Qualitative Health Research, 22(10), 1435–1443.
+Dai, W., Lin, J., Jin, H., Li, T., Tsai, Y . S., Gaševi´ c, D., & Chen, G. (2023). Can large language models
+provide feedback to students? A case study on ChatGPT. In 2023 IEEE International Conference on
+Advanced Learning Technologies (ICALT) (pp. 323-325). IEEE.
+Deveci Topal, A., Dilek Eren, C., & Kolburan Geçer, A. (2021). Chatbot application in a 5th grade science
+course. Education and Information Technologies, 26 (5), 6241–6265.
+Dever, D. A., Sonnenfeld, N. A., Wiedbusch, M. D., Schmorrow, S. G., Amon, M. J., & Azevedo, R. (2023).
+A complex systems approach to analyzing pedagogical agents’ scaffolding of self-regulated learning
+within an intelligent tutoring system. Metacognition and Learning, 1–33.
+Dignath, C., & V eenman, M. V . (2021). The role of direct strategy instruction and indirect activation of
+self-regulated learning|evidence from classroom observation studies. Educational Psychology Review,
+33(2), 489–533.
+Du, J., Huang, W., & Hew, K. F. (2021). Supporting students goal setting process using chatbot: Implemen-
+tation in a fully online course. 2021 IEEE International Conference on Engineering, Technology &
+Education (TALE), 35–41.
+Duffy, M. C., & Azevedo, R. (2015). Motivation matters: Interactions between achievement goals and agent
+scaffolding for self-regulated learning within an intelligent tutoring system. Computers in Human
+Behavior , 52, 338–348.
+
+=== PDF PAGE 23 ===
+Education and Information Technologies (2025) 30:4493–4518 4515
+123
+Fan, Y ., Lim, L., van der Graaf, J., Kilgour, J., Rakovi´ c, M., Moore, J., Molenaar, I., Bannert, M., &
+Gaševi´c, D. (2022). Improving the measurement of self-regulated learning using multi-channel data.
+Metacognition and Learning, 1–31.
+Fryer, L. K., Ainley, M., Thompson, A., Gibson, A., & Sherlock, Z. (2017). Stimulating and sustaining inter-
+est in a language course: An experimental comparison of chatbot and human task partners. Computers
+in Human Behavior , 75, 461–468.
+Fryer, L. K., Thompson, A., Nakao, K., Howarth, M., & Gallacher, A. (2020). Supporting self-efﬁcacy beliefs
+and interest as educational inputs and outcomes: Framing ai and human partnered task experiences.
+Learning and Individual Differences, 80 , 101850.
+Greene, J. A., & Azevedo, R. (2007). A theoretical review of winne and hadwin’s model of self-regulated
+learning: New perspectives and directions. Review of Educational Research, 77 (3), 334–372.
+Gutierrez de Blume, A. P . (2022). Calibrating calibration: A meta-analysis of learning strategy instruction
+interventions to improve metacognitive monitoring accuracy. Journal of Educational Psychology,
+114(4), 681.
+Harati, H., Sujo-Montes, L., Tu, C.-H., Armﬁeld, S. J., & Y en, C.-J. (2021). Assessment and learning in
+knowledge spaces (aleks) adaptive system impact on students’ perception and self-regulated learning
+skills. Education Sciences, 11 (10), 603.
+Hew, K. F., Huang, W., Du, J., & Jia, C. (2021). Using chatbots in ipped learning online sessions: Perceived
+usefulness and ease of use. International Conference on Blended Learning , 164–175.
+Hew, K. F., Huang, W., Du, J., & Jia, C. (2023). Using chatbots to support student goal setting and social
+presence in fully online activities: Learner engagement and perceptions. Journal of Computing in
+Higher Education, 35 (1), 40–68.
+Illescas-Manzano, M. D., Vicente López, N., Afonso González, N., & Cristofol Rodríguez, C. (2021).
+Implementation of chatbot in online commerce, and open innovation. Journal of Open Innovation:
+Technology, Market, and Complexity, 7(2), 125.
+Jeon, J. (2021). Chatbot-assisted dynamic assessment (ca-da) for l2 vocabulary learning and diagnosis.
+Computer Assisted Language Learning , 1–27.
+Jivet, I., Scheffel, M., Schmitz, M., Robbers, S., Specht, M., & Drachsler, H. (2020). From students with love:
+An empirical study on learner goals, self-regulated learning and sense-making of learning analytics in
+higher education. The Internet and Higher Education, 47 , 100758.
+Jivet, I., Wong, J., Scheffel, M., V alle Torre, M., Specht, M., & Drachsler, H. (2021). Quantum of choice:
+How learners’ feedback monitoring decisions, goals and self-regulated learning skills are related.
+LAK21: 11th International Learning Analytics and Knowledge Conference , 416–427.
+Jones, A., & Castellano, G. (2018). Adaptive robotic tutors that support self-regulated learning: A longer-
+term investigation with primary school children. International Journal of Social Robotics, 10 (3),
+357–370.
+Klug, J., Ogrin, S., Keller, S., Ihringer, A., & Schmitz, B. (2011). A plea for selfregulated learning as a
+process: Modelling, measuring and intervening.
+Kumar, J. A. (2021). Educational chatbots for project-based learning: Investigating learning outcomes for
+a team-based design course. International Journal of Educational Technology in Higher Education,
+18(1), 1–28.
+L i ,Y . ,S h a ,L . ,Y a n ,L . ,L i n ,J . ,R a k o v i ´c, M., Galbraith, K., Lyons, K., Gaševi´c, D., & Chen, G. (2023). Can
+large language models write reﬂectively. Computers and Education: Artiﬁcial Intelligence, 4, 100140.
+https://doi.org/10.1016/j.caeai.2023.100140 .
+Lim, L., Bannert, M., van der Graaf, J., Singh, S., Fan, Y ., Surendrannair, S., Rakovic, M., Molenaar,
+I., Moore, J., & Gaševi´ c, D. (2023). Effects of real-time analytics-based personalized scaffolds on
+students’ self-regulated learning. Computers in Human Behavior , 107547.
+Lin, M.P .-C., & Chang, D. (2020). Enhancing post-secondary writers’ writing skills with a chatbot.Journal
+of Educational Technology & Society, 23(1), 78–92.
+List, A., & Du, H. (2021). Reasoning beyond history: Examining students’ strategy use when completing
+a multiple text task addressing a controversial topic in education. Reading and Writing, 34 (4), 1003–
+1048.
+List, A., & Lin, C.-J. (2023). Content and quantity of highlights and annotations predict learning from
+multiple digital texts. Computers & Education, 199 , 104791.
+Mageira, K., Pittou, D., Papasalouros, A., Kotis, K., Zangogianni, P ., & Daradoumis, A. (2022). Educational
+ai chatbots for content and language integrated learning. Applied Sciences, 12 (7), 3239.
+
+=== PDF PAGE 24 ===
+4516 Education and Information Technologies (2025) 30:4493–4518
+Matcha, W., Gaševi´c, D., Pardo, A., et al. (2019). A systematic review of empirical studies on learning ana-
+lytics dashboards: A self-regulated learning perspective.IEEE Transactions on Learning Technologies,
+13(2), 226–245.
+McCardle, L., Webster, E. A., Haffey, A., & Hadwin, A. F. (2017). Examining students’ self-set goals for
+self-regulated learning: Goal properties and patterns.Studies in Higher Education, 42(11), 2153–2169.
+McTear, M. (2020). Conversational ai: Dialogue systems, conversational agents, and chatbots. Synthesis
+Lectures on Human Language Technologies, 13(3), 1–251.
+Meece, J. L. (2023). The role of motivation in self-regulated learning. In Self-regulation of learning and
+performance(pp. 25–44). Routledge.
+Mellado-Silva, R., Faúndez-Ugalde, A., & Blanco-Lobos, M. (2020). Effective learning of tax regulations
+using different chatbot techniques. Advances in Science, Technology and Engineering Systems, 5 (6),
+439–446.
+Moher, D., Liberati, A., Tetzlaff, J., Altman, D. G., Altman, D., Antes, G., ...B e r l i n ,J .A . ,e ta l .(2009).
+Preferred reporting items for systematic reviews and metaanalyses: The prisma statement (chinese
+edition). Journal of Chinese Integrative Medicine , 7(9), 889–896.
+Molenaar, I. (2022). The concept of hybrid human-ai regulation: Exemplifying how to support young
+learners’ self-regulated learning. Computers and Education: Artiﬁcial Intelligence, 3 , 100070.
+Molenaar, I., Roda, C., van Boxtel, C., & Sleegers, P . (2012). Dynamic scaffolding of socially regulated
+learning in a computer-based learning environment. Computers & Education, 59 (2), 515–523.
+Morisano, D., Hirsh, J. B., Peterson, J. B., Pihl, R. O., & Shore, B. M. (2010). Setting, elaborating, and
+reecting on personal goals improves academic performance. Journal of Applied Psychology, 95 (2),
+255.
+Neumann, A. T., Arndt, T., Köbis, L., Meissner, R., Martin, A., de Lange, P ., & Wollersheim, H.-W. (2021).
+Chatbots as a tool to scale mentoring processes: Individually supporting self-study in higher education.
+Frontiers in Artiﬁcial Intelligence, 4, 668220.
+Oliveira, E., de Barba, P . G., & Corrin, L. (2021). Enabling adaptive, personalised and context-aware
+interaction in a smart learning environment: Piloting the icollab system. Australasian Journal of
+Educational Technology, 37(2), 1–23.
+Page, M. J., McKenzie, J. E., Bossuyt, P . M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., Brennan, S.
+E., et al. (2021). The prisma 2020 statement: An updated guideline for reporting systematic reviews.
+Systematic Reviews, 10(1), 1–11.
+Panadero, E. (2017). A review of self-regulated learning: Six models and four directions for research.
+Frontiers in Psychology, 422.
+Panadero, E., Klug, J., & Järvelä, S. (2016). Third wave of measurement in the self-regulated learning
+ﬁeld: When measurement and intervention come hand in hand. Scandinavian Journal of Educational
+Research, 60(6), 723–735.
+Pérez, J. Q., Daradoumis, T., & Puig, J. M. M. (2020). Rediscovering the use of chatbots in education: A
+systematic literature review. Computer Applications in Engineering Education, 28 (6), 1549–1565.
+Perez-Alvarez, R., Jivet, I., Pérez-Sanagustin, M., Scheffel, M., & V erbert, K. (2022). Tools designed to sup-
+port self-regulated learning in online learning environments: A systematic review. IEEE Transactions
+on Learning Technologies.
+Pintrich, P . R. (2000). The role of goal orientation in self-regulated learning. In: Handbook of self-
+regulation(pp. 451–502). Elsevier.
+Rakovi´c, M., Bernacki, M. L., Greene, J. A., Plumley, R. D., Hogan, K. A., Gates, K. M., & Panter,
+A. T. (2022a). Examining the critical role of evaluation and adaptation in self-regulated learning.
+Contemporary Educational Psychology, 68, 102027.
+Rakovic, M., Fan, Y ., V an Der Graaf, J., Singh, S., Kilgour, J., Lim, L., Moore, J., Bannert, M., Molenaar,
+I., & Gasevic, D. (2022b). Using learner trace data to understand metacognitive processes in writing
+from multiple sources. LAK22: 12th International Learning Analytics and Knowledge Conference ,
+130–141.
+Recommendation, E. C. (2018). Key competences for lifelong learning. https://doi.org/10.1111/bjep.12173
+Serban, I. V ., Sankar, C., Germain, M., Zhang, S., Lin, Z., Subramanian, S., . . . Ke, N. R., et al. (2017). A
+deep reinforcement learning chatbot. arXiv:1709.02349.
+Smutny, P ., & Schreiberova, P . (2020). Chatbots for learning: A review of educational chatbots for the
+facebook messenger. Computers & Education, 151 , 103862.
+Song, D., & Kim, D. (2021). Effects of self-regulation scaffolding on online participation and learning
+outcomes.
+Journal of Research on Technology in Education, 53 (3), 249–263.
+123
+
+=== PDF PAGE 25 ===
+Education and Information Technologies (2025) 30:4493–4518 4517
+Srivastava, N., Fan, Y ., Rakovic, M., Singh, S., Jovanovic, J., V an Der Graaf, J., Lim, L., Surendrannair,
+S., Kilgour, J., Molenaar, I., et al. (2022). Effects of internal and external conditions on strategies of
+self-regulated learning: A learning analytics study.LAK22: 12th International Learning Analytics and
+Knowledge Conference, 392–403.
+Sweidan, S. Z., Abu Laban, S. S., Alnaimat, N. A., & Darabkh, K. A. (2021). Siaaa-c: A student interac-
+tive assistant android application with chatbot during covid-19 pandemic. Computer Applications in
+Engineering Education, 29 (6), 1718–1742.
+Taub, M., Azevedo, R., Rajendran, R., Cloude, E. B., Biswas, G., & Price, M. J. (2021). How are students’
+emotions related to the accuracy of cognitive and metacognitive processes during learning with an
+intelligent tutoring system? Learning and Instruction, 72 , 101200.
+Theobald, M. (2021). Self-regulated learning training programs enhance university students’ academic
+performance, self-regulated learning strategies, and motivation: A meta-analysis. Contemporary Edu-
+cational Psychology, 66, 101976.
+Tian, X., Risha, Z., Ahmed, I., Lekshmi Narayanan, A. B., & Biehl, J. (2021). Let’s talk it out: A chatbot
+for effective study habit behavioral change. Proceedings of the ACM on Human-computer Interaction,
+5(CSCW1), 1–32.
+Vázquez-Cano, E., Mengual-Andrés, S., & López-Meneses, E. (2021). Chatbot to improve learning punc-
+tuation in spanish and to enhance open and exible learning environments. International Journal of
+Educational Technology in Higher Education, 18 (1), 1–20.
+Weizenbaum, J. (1966). Eliza|a computer program for the study of natural language communication between
+man and machine. Communications of the ACM, 9 (1), 36–45.
+Winkler, R., & Söllner, M. (2018). Unleashing the potential of chatbots in education: A state-of-the-art
+analysis. Academy of Management Annual Meeting (AOM) .
+Winne, P . H. (1995). Inherent details in self-regulated learning.Educational Psychologist, 30(4), 173–187.
+Winne, P . H. (2018). Theorizing and researching levels of processing in self-regulated learning. British
+Journal of Educational Psychology, 88 (1), 9–20.
+Winne, P . H. (2022). Modeling self-regulated learning as learners doing learning science: How trace data
+and learning analytics help develop skills for self-regulated learning. Metacognition and Learning ,
+1–19.
+Winne, P . H., & Hadwin, A. F. (1998). Studying as self-regulated engagement in learning. in metacognition
+in educational theory and practice. Metacognition in Educational Theory and Practice , 277–304.
+Wollny, S., Schneider, J., Di Mitri, D., Weidlich, J., Rittberger, M., & Drachsler, H. (2021). Are we there
+yet?-a systematic literature review on chatbots in education. Frontiers in Artiﬁcial Intelligence, 4 ,
+654924.
+Wu, E.H.-K., Lin, C.-H., Ou, Y .-Y ., Liu, C.-Z., Wang, W.-K., & Chao, C.-Y . (2020). Advantages and
+constraints of a hybrid model k-12 e-learning assistant chatbot. Ieee Access, 8 , 77788–77801.
+Xia, Q., Chiu, T. K. F., Chai, C. S., & Xie, K. (2023). The mediating effects of needs satisfaction on
+the relationships between prior knowledge and self-regulated learning through artiﬁcial intelligence
+chatbot. British Journal of Educational Technology, 54(4), 967–986.
+Yin, J., Goh, T.-T., Y ang, B., & Xiaobin, Y . (2021). Conversation technology with micro-learning: The impact
+of chatbot-based learning on students’ learning motivation and performance. Journal of Educational
+Computing Research, 59(1), 154–177.
+Zawacki-Richter, O., Marín, V . I., Bond, M., & Gouverneur, F. (2019). Systematic review of research on
+artiﬁcial intelligence applications in higher education- where are the educators? International Journal
+of Educational Technology in Higher Education, 16 (1), 1–27.
+Zhang, J.-H., Zou, L.-C., Miao, J.-J., Zhang, Y .-X., Hwang, G.-J., & Zhu, Y . (2020). An individualized
+intervention approach to improving university students’ learning performance and interactive behaviors
+in a blended learning environment. Interactive Learning Environments, 28(2), 231–245.
+Zhang, R., Zou, D., & Cheng, G. (2023a).Chatbot-based learning of logical fallacies in e writing: Perceived
+effectiveness in improving target knowledge and learner motivation(pp. 1–18). Ahead-of-print(ahead-
+of-print): Interactive Learning Environments.
+Zhang, R., Zou, D., & Cheng, G. (2023b). Chatbot-based training on logical fallacy in eﬂ argumentative
+writing. Innovation in Language Learning and Teaching, 17 (5), 932–945.
+Zimmerman, B. J. (2000). Attaining self-regulation: A social cognitive perspective. In Handbook of self-
+regulation(pp. 13–39). Elsevier.
+Zimmerman, B. J. (2002). Becoming a self-regulated learner: An overview. Theory Into Practice, 41 (2),
+64–70.
+123
+
+=== PDF PAGE 26 ===
+4518 Education and Information Technologies (2025) 30:4493–4518
+Zimmerman, B. J. (2013). Theories of self-regulated learning and academic achievement: An overview and
+analysis. Self-regulated Learning and Academic Achievement, 1–36.
+Publisher’s Note Springer Nature remains neutral with regard to jurisdictional claims in published maps
+and institutional afﬁliations.
+AuthorsandAﬃliations
+Rui Guan 1 · Mladen Rakovi´c1 · Guanliang Chen 1 · Dragan Gaševi´c1,2
+B Mladen Rakovi´c
+mladen.rakovic@monash.edu
+Rui Guan
+rui.guan@monash.edu
+Guanliang Chen
+guanliang.chen@monash.edu
+Dragan Gaševi´c
+dragan.gasevic@monash.edu
+1 Centre for Learning Analytics at Monash, Faculty of Information Technology, Monash
+University, 25 Exhibition walk, Clayton, VIC, 3800, Australia
+2 School of Informatics, University of Edinburgh, Edinburgh, UK
+123

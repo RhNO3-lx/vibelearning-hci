@@ -1,0 +1,923 @@
+[
+  {
+    "id": "T01",
+    "topic": "education",
+    "title": "The Theory Underlying Concept Maps and How to Construct and Use Them",
+    "url": "https://cmap.ihmc.us/docs/theory-of-concept-maps",
+    "pdf_url": "https://cmap.ihmc.us/Publications/ResearchPapers/TheoryUnderlyingConceptMaps.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查开头、心理基础与图1，PDF页1–3；图1视觉核查",
+    "metadata": {},
+    "resolved_url": "https://cmap.ihmc.us/docs/theory-of-concept-maps",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 948151,
+    "pdf_sha256": "8c3482f91b0e831490d2eb2bb2f77faad2d04ffbacf4ad16b43f060c5a367d8c",
+    "pages": 36,
+    "download_resolved_url": "https://cmap.ihmc.us/Publications/ResearchPapers/TheoryUnderlyingConceptMaps.pdf",
+    "attempts": [],
+    "status": "2008 IHMC技术报告",
+    "finding": "概念学习的层级结构、先知识连接和cross-links；focus question约束组织。",
+    "limitation": "不是思维拓扑测量；概念图是允许交叉连接的图，不是纯树。理论论述不等于分支聊天效应。"
+  },
+  {
+    "id": "T02",
+    "topic": "education",
+    "title": "Cognitive Flexibility Theory: Advanced Knowledge Acquisition in Ill-Structured Domains",
+    "url": "https://escholarship.org/uc/item/1dr9x302",
+    "pdf_url": "https://files.eric.ed.gov/fulltext/ED302821.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查先进知识获取、reductive bias和hypertext建议",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 411635,
+    "pdf_sha256": "c87e70098b6974b5befc12ec8dd8950f9479297db84afd79b321ce545277afee",
+    "pages": 15,
+    "download_resolved_url": "https://files.eric.ed.gov/fulltext/ED302821.pdf",
+    "attempts": [
+      {
+        "stage": "metadata",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ],
+    "status": "1988理论论文/技术报告",
+    "finding": "复杂且结构不良领域需要多种表征、案例关系与灵活知识组装。",
+    "limitation": "主要针对高级知识获取；反对刚性分隔知识，不能替纯树背书，也不直接研究LLM。"
+  },
+  {
+    "id": "T03",
+    "topic": "education",
+    "title": "Phases of inquiry-based learning: Definitions and the inquiry cycle",
+    "url": "https://doi.org/10.1016/j.edurev.2015.02.003",
+    "pdf_url": "https://ris.utwente.nl/ws/files/7001676/1-s2.0-S1747938X15000068-main.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查方法、探究阶段、图3与讨论",
+    "metadata": {},
+    "resolved_url": "https://linkinghub.elsevier.com/retrieve/pii/S1747938X15000068",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1307535,
+    "pdf_sha256": "78274d04d8a17f107a381a3872b0aa5f75f5924f87ffa1d53a167a02d72adff6",
+    "pages": 15,
+    "download_resolved_url": "https://ris.utwente.nl/ws/files/7001676/1-s2.0-S1747938X15000068-main.pdf",
+    "attempts": [],
+    "status": "Educational Research Review 2015",
+    "finding": "32篇框架文献综合；提问/假设、探索/实验、解释、反思形成可回返的流程。",
+    "limitation": "描述性综合框架；支持非线性路径，但其结构含回路，非树状认知证明。"
+  },
+  {
+    "id": "T04",
+    "topic": "education",
+    "title": "Question Asking During Tutoring",
+    "url": "https://doi.org/10.3102/00028312031001104",
+    "pdf_url": "https://citeseerx.ist.psu.edu/document?doi=11a0dabaacc40144adcae5df3b06873236acca8f&repid=rep1&type=pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "出版商原始摘要＋ERIC；全文未下载",
+    "metadata": {},
+    "resolved_url": "https://sage.cnpereading.com/doi/10.3102/00028312031001104",
+    "pdf_status": "failed",
+    "attempts": [
+      {
+        "stage": "pdf",
+        "error": "Not PDF: text/html"
+      }
+    ],
+    "status": "American Educational Research Journal 1994",
+    "finding": "研究方法与代数辅导中的提问；问题质量与成绩相关，频次不相关；修复知识缺口。",
+    "limitation": "相关性；不证明树状对话或越多提问越好。"
+  },
+  {
+    "id": "T05",
+    "topic": "education",
+    "title": "Learning With Concept and Knowledge Maps: A Meta-Analysis",
+    "url": "https://doi.org/10.3102/00346543076003413",
+    "pdf_url": "https://www.sfu.ca/~jcnesbit/research/NesbitAdesope2006.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查摘要、纳入与结果限制",
+    "metadata": {},
+    "resolved_url": "https://sage.cnpereading.com/doi/10.3102/00346543076003413",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 2295440,
+    "pdf_sha256": "6b6feed2a41842346278c37bb75f4b1e2b61e4096caddadec32c347ecc54b4f6",
+    "pages": 37,
+    "download_resolved_url": "https://www.sfu.ca/~jcnesbit/research/NesbitAdesope2006.pdf",
+    "attempts": [],
+    "status": "Review of Educational Research 2006",
+    "finding": "55项研究、5818人；构建/修改/查看概念知识图与保持和迁移。",
+    "limitation": "节点关系图非严格树；多种教学活动；与T06包含重叠研究，不能算两份完全独立元分析。"
+  },
+  {
+    "id": "T06",
+    "topic": "education",
+    "title": "Studying and Constructing Concept Maps: a Meta-Analysis",
+    "url": "https://link.springer.com/article/10.1007/s10648-017-9403-9",
+    "pdf_url": "https://link.springer.com/content/pdf/10.1007/s10648-017-9403-9.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查方法、总体/调节分析与限制",
+    "metadata": {
+      "citation_pdf_url": [
+        "https://link.springer.com/content/pdf/10.1007/s10648-017-9403-9.pdf"
+      ],
+      "citation_fulltext_html_url": [
+        "https://link.springer.com/article/10.1007/s10648-017-9403-9"
+      ],
+      "citation_journal_title": [
+        "Educational Psychology Review"
+      ],
+      "citation_journal_abbrev": [
+        "Educ Psychol Rev"
+      ],
+      "citation_publisher": [
+        "Springer US"
+      ],
+      "citation_issn": [
+        "1573-336X"
+      ],
+      "citation_title": [
+        "Studying and Constructing Concept Maps: a Meta-Analysis"
+      ],
+      "citation_volume": [
+        "30"
+      ],
+      "citation_issue": [
+        "2"
+      ],
+      "citation_publication_date": [
+        "2018/06"
+      ],
+      "citation_online_date": [
+        "2017/03/21"
+      ],
+      "citation_firstpage": [
+        "431"
+      ],
+      "citation_lastpage": [
+        "455"
+      ],
+      "citation_article_type": [
+        "Meta-Analysis"
+      ],
+      "citation_language": [
+        "en"
+      ],
+      "citation_doi": [
+        "10.1007/s10648-017-9403-9"
+      ],
+      "citation_springer_api_url": [
+        "http://api.springer.com/xmldata/jats?q=doi:10.1007/s10648-017-9403-9&api_key="
+      ],
+      "citation_author": [
+        "Schroeder, Noah L.",
+        "Nesbit, John C.",
+        "Anguiano, Carlos J.",
+        "Adesope, Olusola O."
+      ],
+      "citation_author_email": [
+        "noah.schroeder@wright.edu"
+      ],
+      "citation_author_institution": [
+        "Department of Leadership Studies in Education and Organizations, Wright State University, Dayton, USA",
+        "Faculty of Education, Simon Fraser University, Burnaby, Canada",
+        "Department of Educational Leadership, Sport Studies and Educational/Counseling Psychology, College of Education, Washington State University, Pullman, USA",
+        "Department of Educational Leadership, Sport Studies and Educational/Counseling Psychology, College of Education, Washington State University, Pullman, USA"
+      ],
+      "citation_cover_date": [
+        "2018/06/01"
+      ]
+    },
+    "resolved_url": "https://link.springer.com/article/10.1007/s10648-017-9403-9?error=cookies_not_supported&code=0efad637-b17d-443b-b7f0-b742f3cc0dc0",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 828775,
+    "pdf_sha256": "b32cd07f69deb6833bcb2ef9391edca9e8d910a30d135dcf475db439a4cf9c3a",
+    "pages": 25,
+    "download_resolved_url": "https://link.springer.com/content/pdf/10.1007/s10648-017-9403-9.pdf?error=cookies_not_supported&code=775eb8cc-2587-4340-b6f1-5d84e5013e91",
+    "attempts": [],
+    "status": "Educational Psychology Review 2018（2017在线）",
+    "finding": "142个独立效应量、11814人；总体g=.58，异质性I²=87.50%；构建/查看图对应不同对照的收益有差异。",
+    "limitation": "142不是142项研究；是概念图教学包，非AI自动对话树；构建vs查看调节效应不等于所有情况下直接优越。",
+    "authors": [
+      "Schroeder, Noah L.",
+      "Nesbit, John C.",
+      "Anguiano, Carlos J.",
+      "Adesope, Olusola O."
+    ]
+  },
+  {
+    "id": "T07",
+    "topic": "education",
+    "title": "Cognitive load in hypertext reading: A review",
+    "url": "https://www.sciencedirect.com/science/article/pii/S0747563205000658",
+    "pdf_url": null,
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "出版商原始摘要与预览；全文未下载",
+    "pdf_status": "no_pdf_link",
+    "attempts": [
+      {
+        "stage": "metadata",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ],
+    "status": "Computers in Human Behavior 2007",
+    "finding": "非线性链接选择可能增加决策/视觉负担，低先知识和低工作记忆者风险更高；层级结构及导航支持有条件帮助。",
+    "limitation": "传统超文本非LLM对话；不推出所有分支都会伤害学习。"
+  },
+  {
+    "id": "T08",
+    "topic": "education",
+    "title": "Effects of prior knowledge and concept-map structure on disorientation, cognitive load, and learning",
+    "url": "https://doi.org/10.1016/j.learninstruc.2009.02.005",
+    "pdf_url": "https://research.ou.nl/files/1022307/Amadieu-etal_LI_2009.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "出版商/作者机构/ERIC原始摘要；作者提交版链接被拦，未下载",
+    "metadata": {},
+    "resolved_url": "https://linkinghub.elsevier.com/retrieve/pii/S0959475209000152",
+    "pdf_status": "failed",
+    "attempts": [
+      {
+        "stage": "pdf",
+        "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+      }
+    ],
+    "status": "Learning and Instruction 2009",
+    "finding": "24成人；先知识×层级/网络概念图；低先知识者层级图概念知识较好、迷航较少；眼动与导航分析。",
+    "limitation": "直接比较层级和网络，未比较树状/线性聊天；小样本，具体学科材料。"
+  },
+  {
+    "id": "T09",
+    "topic": "education",
+    "title": "Retrieval Practice Produces More Learning than Elaborative Studying with Concept Mapping",
+    "url": "https://doi.org/10.1126/science.1199327",
+    "pdf_url": "https://learninglab.psych.purdue.edu/downloads/2011/2011_Karpicke_Blunt_Science.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查两实验与延迟结果",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 500577,
+    "pdf_sha256": "6393bed6a1fc905f84f0677648999c3d7bbd1350859bd9559dc273117a46ca3e",
+    "pages": 5,
+    "download_resolved_url": "https://learninglab.psych.purdue.edu/downloads/2011/2011_Karpicke_Blunt_Science.pdf",
+    "attempts": [
+      {
+        "stage": "metadata",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ],
+    "status": "Science 2011",
+    "finding": "检索练习比边看材料边做精加工概念图产生更好的一周后学习，包括推理问题。",
+    "limitation": "比较的是学习操作，不是树/图结构；不说明概念图无效。应为分支交互加入解释、检索与整合活动。"
+  },
+  {
+    "id": "T10",
+    "topic": "education",
+    "title": "Hypertext Learning Environments, Cognitive Flexibility, and the Transfer of Complex Knowledge: An Empirical Investigation (1993 technical report; related 1995 journal article)",
+    "url": "https://eric.ed.gov/?id=ED355508",
+    "pdf_url": "https://files.eric.ed.gov/fulltext/ED355508.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "下载并重点核查CSR-TR-573方法与结果；期刊版仅原始摘要",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1034025,
+    "pdf_sha256": "a77a14b44898867fd12b190d4417c4ab86315ce57f06d9486d8cb3e3dab6c58b",
+    "pages": 37,
+    "download_resolved_url": "https://files.eric.ed.gov/fulltext/ED355508.pdf",
+    "attempts": [
+      {
+        "stage": "metadata",
+        "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+      },
+      {
+        "stage": "pdf",
+        "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+      },
+      {
+        "stage": "metadata",
+        "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+      }
+    ],
+    "journal_url": "https://doi.org/10.2190/4T1B-HBP0-3F7E-J4PN",
+    "pdf_version": "1993 technical report CSR-TR-573, not 1995 journal typesetting",
+    "year": "1993",
+    "status": "1993技术报告；相关1995 JECR期刊论文",
+    "finding": "多主题交叉浏览与minimal hypertext/drill比较；分析样本34人，迁移与事实掌握存在权衡。",
+    "limitation": "不能把1993报告冒充1995排版全文；多组件干预、排除缺失及额外两人、学习时间差异；不是自由追问vs线性。"
+  },
+  {
+    "id": "M01",
+    "topic": "memory",
+    "title": "From Isolated Conversations to Hierarchical Schemas: Dynamic Tree Memory Representation for LLMs",
+    "url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/0382cb76309820f71c6eacd47b36ce71-Abstract-Conference.html",
+    "pdf_url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/0382cb76309820f71c6eacd47b36ce71-Paper-Conference.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "发表版全文重点核查§3–5及附录检索消融",
+    "metadata": {
+      "citation_title": [
+        "From Isolated Conversations to Hierarchical Schemas: Dynamic Tree Memory Representation for LLMs"
+      ],
+      "citation_author": [
+        "Rezazadeh, Alireza",
+        "Li, Zichao",
+        "Wei, Wei",
+        "Bao, Yujia"
+      ],
+      "citation_journal_title": [
+        "International Conference on Learning Representations"
+      ],
+      "citation_volume": [
+        "2025"
+      ],
+      "citation_firstpage": [
+        "990"
+      ],
+      "citation_lastpage": [
+        "1023"
+      ],
+      "citation_pdf_url": [
+        "https://proceedings.iclr.cc/paper_files/paper/2025/file/0382cb76309820f71c6eacd47b36ce71-Paper-Conference.pdf"
+      ],
+      "citation_publication_date": [
+        "2025-05-01"
+      ]
+    },
+    "resolved_url": "https://proceedings.iclr.cc/paper_files/paper/2025/hash/0382cb76309820f71c6eacd47b36ce71-Abstract-Conference.html",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 2201376,
+    "pdf_sha256": "7e30ee36fbf3bb0451ebe4b0d82d26afd6785b9ad6aa5bbfc122c01016d752e1",
+    "pages": 34,
+    "download_resolved_url": "https://proceedings.iclr.cc/paper_files/paper/2025/file/0382cb76309820f71c6eacd47b36ce71-Paper-Conference.pdf",
+    "attempts": [],
+    "status": "ICLR 2025",
+    "finding": "MemTree：动态语义插入，节点有文本、embedding和孩子，高层汇总；多session对话与文档QA；默认collapsed retrieval全节点检索。",
+    "limitation": "构建树并非只沿当前分支取上下文；会从不同子树取信息，非用户fork树；认知schema类比非教育实证。",
+    "authors": [
+      "Rezazadeh, Alireza",
+      "Li, Zichao",
+      "Wei, Wei",
+      "Bao, Yujia"
+    ]
+  },
+  {
+    "id": "M02",
+    "topic": "memory",
+    "title": "Temporal Order Matters for Agentic Memory: Segment Trees for Long-Horizon Agents",
+    "url": "https://arxiv.org/abs/2606.04555",
+    "pdf_url": "https://arxiv.org/pdf/2606.04555",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查§2–4、结果及限制",
+    "metadata": {
+      "citation_title": [
+        "Temporal Order Matters for Agentic Memory: Segment Trees for Long-Horizon Agents"
+      ],
+      "citation_author": [
+        "Liu, Yifan Simon",
+        "Gallagher, Liam",
+        "Kalarde, Faeze Moradi",
+        "Liang, Jiazhou",
+        "Toroghi, Armin",
+        "Sanner, Scott"
+      ],
+      "citation_date": [
+        "2026/06/03"
+      ],
+      "citation_online_date": [
+        "2026/06/03"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2606.04555"
+      ],
+      "citation_arxiv_id": [
+        "2606.04555"
+      ],
+      "citation_abstract": [
+        "Long-horizon conversational agents need to interact with users through evolving events, tasks, and goals. Such histories are naturally temporal, yet many existing memory systems organize information primarily by topical similarity and may ignore the order in which events occur. We introduce Segment Tree Memory, or SegTreeMem, a memory architecture that represents conversation history as a temporally ordered Segment Tree over utterances. SegTreeMem incrementally inserts new utterances through an online rightmost-frontier update rule, preserving chronological order while forming hierarchical memory segments. For retrieval, SegTreeMem propagates relevance scores through the tree to combine local semantic matching with hierarchical temporal context. Across three long-horizon memory benchmarks and two LLM backbones, SegTreeMem improves answer quality over flat retrieval, graph-structured memory, and tree-structured memory baselines. Additional temporal-order permutation analysis shows that the performance gain depends on preserving temporal order during memory construction, supporting the claim that temporal order is a key structure for agentic memory."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2606.04555",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 2304439,
+    "pdf_sha256": "99551c5c8111eae572cff23a1643aa0766ddd5b4519e9005e9b715a4745d51d1",
+    "pages": 42,
+    "download_resolved_url": "https://arxiv.org/pdf/2606.04555",
+    "attempts": [],
+    "status": "2026 arXiv预印本",
+    "finding": "SegTreeMem：叶为时间有序utterance，内节点为连续时间区间；右边界在线插入，相关性传播保留层级和时间邻域。",
+    "limitation": "时间分段树非探索分叉；PDF标题为Memory Construction and Retrieval，摘要页标题为Long-Horizon Agents，保持两个版本记录。",
+    "authors": [
+      "Liu, Yifan Simon",
+      "Gallagher, Liam",
+      "Kalarde, Faeze Moradi",
+      "Liang, Jiazhou",
+      "Toroghi, Armin",
+      "Sanner, Scott"
+    ],
+    "year": "2026"
+  },
+  {
+    "id": "M03",
+    "topic": "memory",
+    "title": "MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing",
+    "url": "https://arxiv.org/abs/2605.23986",
+    "pdf_url": "https://arxiv.org/pdf/2605.23986",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查系统表示、更新/检索与官方README",
+    "metadata": {
+      "citation_title": [
+        "MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing"
+      ],
+      "citation_author": [
+        "Chen, Han",
+        "Zhang, Zining",
+        "Pei, Wenqi",
+        "He, Bingsheng",
+        "Wu, Ming",
+        "Zeng, Jason",
+        "Heinrich, Michael",
+        "Wu, Wei",
+        "Zhang, Hongbao"
+      ],
+      "citation_date": [
+        "2026/05/16"
+      ],
+      "citation_online_date": [
+        "2026/09/06"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2605.23986"
+      ],
+      "citation_arxiv_id": [
+        "2605.23986"
+      ],
+      "citation_abstract": [
+        "Memory is a fundamental component for long-context LLM agents, supporting persistent state across interactions through a continuous serve-and-update lifecycle. Despite substantial prior work, many stateful systems retain sequential autoregressive extraction or state-dependent maintenance on the write path, delaying when new evidence becomes queryable. To address these challenges, we present MemForest, a memory framework that reformulates agent memory as a write-efficient temporal data-management problem. MemForest breaks the sequential bottleneck via parallel extraction, decoupling memory construction into concurrent, independent operations. We further introduce MemTree, a hierarchical temporal index that organizes memory as time-ordered trees and replaces global rewrites with localized dirty-path refresh. Dirty summaries can be refreshed in parallel across nodes and trees. End-to-end work remains proportional to incoming content; the logarithmic bound applies only to structural insertion and level-dependent refresh depth in balanced trees. We evaluate MemForest on two long-context benchmarks, LongMemEval-S and LoCoMo. Experiments use Qwen3-4B, Qwen3-30B, and Gemma-4-12B-IT. With Qwen3-30B, MemForest reaches 81.8 percent pass at 1 on LongMemEval-S, while its input-normalized build rate is 6.0 times that of EverMemOS. On LoCoMo categories 1 to 4, it reaches 84.09 percent, within 0.13 percentage points of EverMemOS; on a matched conversation, its build rate is 9.5 times higher. These results show that MemForest reduces memory-freshness latency while retaining strong answer quality."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2605.23986",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1285519,
+    "pdf_sha256": "a289e4e09d105186fcd98f22fe4e7e99b44ed89996066927ccbd10c36c4de4e8",
+    "pages": 21,
+    "download_resolved_url": "https://arxiv.org/pdf/2605.23986",
+    "attempts": [],
+    "status": "2026 arXiv预印本；官方repo称VLDB2027投稿材料",
+    "finding": "MemForest：事实存储＋session/entity/scene作用域时间树；连续区间摘要、局部dirty-path刷新、粗到细取证；LoCoMo/LongMemEval-S。",
+    "limitation": "本文内部MemTree不同于M01的ICLR MemTree；时间/事实scope不等于学习者fork语义。仅确认repo存在，未运行复现。",
+    "authors": [
+      "Chen, Han",
+      "Zhang, Zining",
+      "Pei, Wenqi",
+      "He, Bingsheng",
+      "Wu, Ming",
+      "Zeng, Jason",
+      "Heinrich, Michael",
+      "Wu, Wei",
+      "Zhang, Hongbao"
+    ],
+    "year": "2026"
+  },
+  {
+    "id": "M04",
+    "topic": "memory",
+    "title": "Weighted Memory Tree: Remembering What Matters for Long-Horizon LLM Agents",
+    "url": "https://arxiv.org/abs/2608.20631",
+    "pdf_url": "https://arxiv.org/pdf/2608.20631",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查§2.3、实验设定及§7",
+    "metadata": {
+      "citation_title": [
+        "Weighted Memory Tree: Remembering What Matters for Long-Horizon LLM Agents"
+      ],
+      "citation_author": [
+        "Dao, Quang",
+        "Kathalkar, Purvi",
+        "Eaton, Kenneth"
+      ],
+      "citation_date": [
+        "2026/08/21"
+      ],
+      "citation_online_date": [
+        "2026/08/21"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2608.20631"
+      ],
+      "citation_arxiv_id": [
+        "2608.20631"
+      ],
+      "citation_abstract": [
+        "Large language model (LLM) agents have demonstrated the ability to solve multi-step tasks requiring planning, tool use, and external information access, yet growing execution histories increase inference cost and expose reasoning to outdated, irrelevant, or misleading information, potentially degrading reasoning quality. Existing memory approaches organize or compress execution histories but provide limited mechanisms for deciding which memories remain active. We introduce the, a hierarchical memory system that organizes execution into tasks, subtasks, and actions while assigning each memory a dynamic retention score. Event-based updates and selection-based decay revise these scores, allowing WMT to preserve useful information, fold completed trajectories, suppress low-utility content, and retain access to folded context. We evaluate WMT on GAIA-Text using Qwen3-8B, Gemma 4 E4B, and Llama-3.1-8B, with ablations and memory-poisoning experiments. Relative to linear memory, WMT improves accuracy by an average of 9.97 percentage points while reducing prompt-token usage by 32.8%. Memory-poisoning experiments show that WMT limits the persistence and propagation of unreliable information. Our results suggest that effective long-horizon agent memory depends less on storing more information than on deciding which information should remain active."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2608.20631",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 596945,
+    "pdf_sha256": "b710c2b78c9a066457520f73e02560b278f357aa25c4727665db01c95551d817",
+    "pages": 16,
+    "download_resolved_url": "https://arxiv.org/pdf/2608.20631",
+    "attempts": [],
+    "status": "2026 arXiv预印本",
+    "finding": "WMT：任务/子任务/动作树；活跃路径、动态保留分、fold/suppress/reopen；GAIA系列。",
+    "limitation": "基准每题新树，无跨题global memory；conversation/global mode设计有描述但未在此评估。保留效用分不是事实正确分。",
+    "authors": [
+      "Dao, Quang",
+      "Kathalkar, Purvi",
+      "Eaton, Kenneth"
+    ],
+    "year": "2026"
+  },
+  {
+    "id": "M05",
+    "topic": "memory",
+    "title": "HiAgent: Hierarchical Working Memory Management for Solving Long-Horizon Agent Tasks with Large Language Model",
+    "url": "https://aclanthology.org/2025.acl-long.1575/",
+    "pdf_url": "https://aclanthology.org/2025.acl-long.1575.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "发表版全文重点核查方法与限制",
+    "metadata": {
+      "citation_title": [
+        "HiAgent: Hierarchical Working Memory Management for Solving Long-Horizon Agent Tasks with Large Language Model"
+      ],
+      "citation_author": [
+        "Mengkang Hu",
+        "Tianxing Chen",
+        "Qiguang Chen (陈麒光)",
+        "Yao Mu",
+        "Wenqi Shao",
+        "Ping Luo"
+      ],
+      "citation_conference_title": [
+        "Proceedings of the 63rd Annual Meeting of the Association for Computational Linguistics (Volume 1: Long Papers)"
+      ],
+      "citation_publication_date": [
+        "2025/7"
+      ],
+      "citation_pdf_url": [
+        "https://aclanthology.org/2025.acl-long.1575.pdf"
+      ],
+      "citation_firstpage": [
+        "32779"
+      ],
+      "citation_lastpage": [
+        "32798"
+      ],
+      "citation_doi": [
+        "10.18653/v1/2025.acl-long.1575"
+      ]
+    },
+    "resolved_url": "https://aclanthology.org/2025.acl-long.1575/",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1433875,
+    "pdf_sha256": "879de3ba16e6fb26f5b6b741edc7b5cc6eaae6e78d3dc60875af56442cc899a2",
+    "pages": 20,
+    "download_resolved_url": "https://aclanthology.org/2025.acl-long.1575.pdf",
+    "attempts": [],
+    "status": "ACL 2025",
+    "finding": "HiAgent：以subgoal形成工作记忆块，当前块保留细节，旧块摘要且可请求历史轨迹。",
+    "limitation": "层级工作记忆，不应夸称任意深度严格树；within-trial，不是长期跨session学习者记忆。官方代码存在，未运行。",
+    "authors": [
+      "Mengkang Hu",
+      "Tianxing Chen",
+      "Qiguang Chen (陈麒光)",
+      "Yao Mu",
+      "Wenqi Shao",
+      "Ping Luo"
+    ]
+  },
+  {
+    "id": "M06",
+    "topic": "memory",
+    "title": "RAPTOR: Recursive Abstractive Processing for Tree-Organized Retrieval",
+    "url": "https://openreview.net/forum?id=GN921JHCRw",
+    "pdf_url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/8a2acd174940dbca361a6398a4f9df91-Paper-Conference.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "发表版全文重点核查摘要、树构建与检索",
+    "metadata": {},
+    "resolved_url": "https://openreview.net/challenge?redirect=%2Fforum%3Fid%3DGN921JHCRw",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 2452208,
+    "pdf_sha256": "371fe233df534f98a4ff34f8718da5921c44183fc37d079cc8bdd4e92a592527",
+    "pages": 22,
+    "download_resolved_url": "https://proceedings.iclr.cc/paper_files/paper/2024/file/8a2acd174940dbca361a6398a4f9df91-Paper-Conference.pdf",
+    "attempts": [],
+    "status": "ICLR 2024",
+    "finding": "RAPTOR：离线对文档chunk嵌入、聚类、递归摘要形成树；多粒度检索。",
+    "limitation": "文档RAG非动态Agent session树；不能因名称tree而推断分支作用域隔离。官方代码存在，未运行。"
+  },
+  {
+    "id": "D01",
+    "topic": "discourse",
+    "title": "Attention, Intentions, and the Structure of Discourse",
+    "url": "https://aclanthology.org/J86-3001/",
+    "pdf_url": "https://aclanthology.org/J86-3001.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查结构区分和§5 interruptions",
+    "metadata": {
+      "citation_title": [
+        "Attention, Intentions, and the Structure of Discourse"
+      ],
+      "citation_author": [
+        "Barbara J. Grosz",
+        "Candace L. Sidner"
+      ],
+      "citation_journal_title": [
+        "Computational Linguistics"
+      ],
+      "citation_volume": [
+        "12"
+      ],
+      "citation_issue": [
+        "3"
+      ],
+      "citation_publication_date": [
+        "1986"
+      ],
+      "citation_pdf_url": [
+        "https://aclanthology.org/J86-3001.pdf"
+      ],
+      "citation_firstpage": [
+        "175"
+      ],
+      "citation_lastpage": [
+        "204"
+      ]
+    },
+    "resolved_url": "https://aclanthology.org/J86-3001/",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 3011830,
+    "pdf_sha256": "a978acc61fb8abd04a94c3a4faa3d3093efdba261a666649b5c5e2bef120add8",
+    "pages": 30,
+    "download_resolved_url": "https://aclanthology.org/J86-3001.pdf",
+    "attempts": [],
+    "status": "Computational Linguistics 1986",
+    "finding": "话语片段/目的关系与注意状态分开；focus spaces stack支持离开当前话题并回归。",
+    "limitation": "经典话语理论，非现代LLM记忆算法；无关插话可在注意栈嵌套但非主任务目的子节点。",
+    "authors": [
+      "Barbara J. Grosz",
+      "Candace L. Sidner"
+    ]
+  },
+  {
+    "id": "D02",
+    "topic": "branching",
+    "title": "Context Branching for LLM Conversations: A Version Control Approach to Exploratory Programming",
+    "url": "https://arxiv.org/abs/2512.13914",
+    "pdf_url": "https://arxiv.org/pdf/2512.13914",
+    "accessed": "2026-10-07",
+    "provenance": "reused previous follow-up B01",
+    "read_depth": "复用上轮全文核查，重点回看作用域设计",
+    "metadata": {
+      "citation_title": [
+        "Context Branching for LLM Conversations: A Version Control Approach to Exploratory Programming"
+      ],
+      "citation_author": [
+        "Nanjundappa, Bhargav Chickmagalur",
+        "Maaheshwari, Spandan"
+      ],
+      "citation_date": [
+        "2025/12/15"
+      ],
+      "citation_online_date": [
+        "2025/12/15"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2512.13914"
+      ],
+      "citation_arxiv_id": [
+        "2512.13914"
+      ],
+      "citation_abstract": [
+        "Large Language Models (LLMs) have become integral to software engineering workflows, yet their effectiveness degrades significantly in multi-turn conversations. Recent studies demonstrate an average 39% performance drop when instructions are delivered across multiple turns, with models making premature assumptions and failing to course correct (Laban et al., 2025). This degradation is particularly problematic in exploratory programming tasks where developers need to investigate alternative approaches without committing to a single path. Current solutions force users into a false dichotomy: continue in a context-polluted conversation where the LLM becomes increasingly confused, or start fresh and lose all accumulated context. We present ContextBranch, a conversation management system that applies version control semantics to LLM interactions. ContextBranch provides four core primitives--checkpoint, branch, switch, and inject--enabling users to capture conversation state, explore alternatives in isolation, and selectively merge insights. We evaluate ContextBranch through a controlled experiment with 30 software engineering scenarios featuring intentionally polluting explorations. Branched conversations achieved higher response quality compared to linear conversations, with large improvements in focus and context awareness. Benefits were concentrated in complex scenarios involving conceptually distant explorations. Branching reduced context size by 58.1% (31.0 to 13.0 messages), eliminating irrelevant exploratory content. Our work establishes conversation branching as a fundamental primitive for AI-assisted exploratory work, demonstrating that isolation prevents context pollution when exploring alternatives."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2512.13914",
+    "pdf_status": "reused",
+    "pdf_bytes": 757611,
+    "pdf_sha256": "339837e0bfdffd4218814f01b798e79f8b49e853238e37536222eba99915b72f",
+    "pages": 11,
+    "download_resolved_url": "https://arxiv.org/pdf/2512.13914",
+    "attempts": [],
+    "finding": "ContextBranch：checkpoint/branch/switch/inject，保护主线上下文；合成编程场景评测。",
+    "limitation": "不是学习者研究，不含长期学习者记忆模型。",
+    "authors": [
+      "Nanjundappa, Bhargav Chickmagalur",
+      "Maaheshwari, Spandan"
+    ],
+    "year": "2025",
+    "status": "2025 arXiv预印本"
+  },
+  {
+    "id": "D03",
+    "topic": "branching",
+    "title": "Conversations in Space: Non-Linear LLM Interaction in Everyday Use",
+    "url": "https://arxiv.org/abs/2605.15848v2",
+    "pdf_url": "https://arxiv.org/pdf/2605.15848v2",
+    "accessed": "2026-10-07",
+    "provenance": "reused previous follow-up B02",
+    "read_depth": "复用上轮全文核查，重点回看context inheritance",
+    "metadata": {
+      "citation_title": [
+        "Conversations in Space: Non-Linear LLM Interaction in Everyday Use"
+      ],
+      "citation_author": [
+        "Amin, Rifat Mehreen",
+        "Adatepe, Alperen",
+        "Fernandes, Daniela",
+        "Buschek, Daniel",
+        "Butz, Andreas"
+      ],
+      "citation_date": [
+        "2026/05/15"
+      ],
+      "citation_online_date": [
+        "2026/09/15"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2605.15848"
+      ],
+      "citation_arxiv_id": [
+        "2605.15848"
+      ],
+      "citation_abstract": [
+        "As LLM conversations grow, their histories capture alternative directions, decisions, and evolving lines of thought that can be difficult to navigate through chat alone. We investigate an interaction concept that represents the same conversation through two synchronized views: a familiar linear chat for ongoing dialogue and a spatial canvas for navigating its emerging structure. To investigate this interaction concept, we developed CanvasConvo, which allows conversations to branch into alternative paths that remain accessible across both views. In a five-day field deployment with 24 participants, we examined how people appropriated this parallel representation in self-directed knowledge work. Participants selectively moved between the two views rather than replacing chat with the canvas. Chat remained central to conversational interaction, while the canvas supported overview, revisitation, and exploration of alternatives. Adoption was uneven, revealing challenges around established chat habits, transitions between representations, and understanding branch context. Our findings inform the design of user interfaces for LLMs that combine linear and non-linear conversation representations."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2605.15848v2",
+    "pdf_status": "reused",
+    "pdf_bytes": 1764219,
+    "pdf_sha256": "8b3a378acaf923a8d36fe2f836f2d39652bbcb52926e2f0b5638449f61709b69",
+    "pages": 18,
+    "download_resolved_url": "https://arxiv.org/pdf/2605.15848v2",
+    "attempts": [],
+    "finding": "CanvasConvo：对话fork＋线性/树状同步视图，24人5日田野；继承语义理解有成本。",
+    "limitation": "UI/导航与使用体验，不是知识记忆树检索基准或教育RCT。",
+    "authors": [
+      "Amin, Rifat Mehreen",
+      "Adatepe, Alperen",
+      "Fernandes, Daniela",
+      "Buschek, Daniel",
+      "Butz, Andreas"
+    ],
+    "year": "2026",
+    "status": "2026 arXiv v2"
+  },
+  {
+    "id": "D04",
+    "topic": "education-dialogue",
+    "title": "Interaction of Discourse Planning, Instructional Planning and Dialogue Management in an Interactive Tutoring System",
+    "url": "http://cs.iit.edu/~circsim/",
+    "pdf_url": "http://cs.iit.edu/~circsim/documents/rfdiss.pdf",
+    "year": "1996",
+    "authors": [
+      "Reva K. Freedman"
+    ],
+    "status": "Northwestern博士论文1996",
+    "pdf_status": "downloaded",
+    "provenance": "downloaded original project archive over HTTP after HTTPS certificate mismatch",
+    "pages": 276,
+    "pdf_bytes": 1508287,
+    "pdf_sha256": "a2bfb6734a2cba0520234d339cab7aab281a73193eb5b33557ac967f3e16512b",
+    "accessed": "2026-10-07",
+    "read_depth": "276页中重点读§5.3、§5.4.7及架构范围声明；PDF211页视觉核查",
+    "extraction_note": "PDF glyph names /Gxx mapped to the corresponding hex character; rendered-page QA required",
+    "finding": "CIRCSIM/TIPS设计：教学agenda/history与discourse tree分离；教学schema放弃后，已经说出的turn仍留在tree。",
+    "limitation": "架构与可行性设计论文，作者明确省略完整运行系统所需部分细节；不是树状LLM教育部署效果证据。"
+  },
+  {
+    "id": "M07",
+    "topic": "memory",
+    "title": "H-MEM: Hierarchical Memory for High-Efficiency Long-Term Reasoning in LLM Agents",
+    "url": "https://aclanthology.org/2026.eacl-long.15/",
+    "pdf_url": "https://aclanthology.org/2026.eacl-long.15.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "发表版全文重点核查架构、检索与LoCoMo实验",
+    "metadata": {
+      "citation_title": [
+        "H-MEM: Hierarchical Memory for High-Efficiency Long-Term Reasoning in LLM Agents"
+      ],
+      "citation_author": [
+        "Haoran Sun",
+        "Shaoning Zeng",
+        "Bob Zhang"
+      ],
+      "citation_conference_title": [
+        "Proceedings of the 19th Conference of the European Chapter of the Association for Computational Linguistics (Volume 1: Long Papers)"
+      ],
+      "citation_publication_date": [
+        "2026/3"
+      ],
+      "citation_pdf_url": [
+        "https://aclanthology.org/2026.eacl-long.15.pdf"
+      ],
+      "citation_firstpage": [
+        "341"
+      ],
+      "citation_lastpage": [
+        "350"
+      ],
+      "citation_doi": [
+        "10.18653/v1/2026.eacl-long.15"
+      ]
+    },
+    "resolved_url": "https://aclanthology.org/2026.eacl-long.15/",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1626276,
+    "pdf_sha256": "6e41c97fd911e3a321f9f868e82d42a6eeb1acdaf8b933bd01254bfe619e4b9d",
+    "pages": 10,
+    "download_resolved_url": "https://aclanthology.org/2026.eacl-long.15.pdf",
+    "attempts": [],
+    "status": "EACL 2026",
+    "finding": "H-MEM：domain/category/trace/episode四层，位置索引指向下层，逐层检索对话记忆。",
+    "limitation": "语义抽象层级非用户fork；LoCoMo问答非教育学习效果。",
+    "authors": [
+      "Haoran Sun",
+      "Shaoning Zeng",
+      "Bob Zhang"
+    ]
+  },
+  {
+    "id": "M08",
+    "topic": "memory",
+    "title": "Beyond Semantic Organization: Memory as Execution State Management for Long-Horizon Agents",
+    "url": "https://arxiv.org/abs/2606.06090",
+    "pdf_url": "https://arxiv.org/pdf/2606.06090",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查方法、Revise与MemoryArena实验",
+    "metadata": {
+      "citation_title": [
+        "Beyond Semantic Organization: Memory as Execution State Management for Long-Horizon Agents"
+      ],
+      "citation_author": [
+        "Chen, Yaoqi",
+        "Lai, Haibin",
+        "Feng, Yuru",
+        "Han, Chuyu",
+        "Zhang, Qianxi",
+        "Lu, Baotong",
+        "Li, Menghao",
+        "Wang, Xinjiang",
+        "Wang, Zhirui",
+        "Xu, Shusen",
+        "Li, Zengzhong",
+        "Jin, Zewen",
+        "Wu, Hao",
+        "Li, Cheng",
+        "Chen, Qi"
+      ],
+      "citation_date": [
+        "2026/06/04"
+      ],
+      "citation_online_date": [
+        "2026/06/04"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2606.06090"
+      ],
+      "citation_arxiv_id": [
+        "2606.06090"
+      ],
+      "citation_abstract": [
+        "LLM-based agents increasingly tackle long-horizon tasks with interdependent decisions, where each action reshapes future constraints and intermediate errors can cascade. Existing RAG and agent memory systems organize histories by semantic similarity, retrieving content-relevant entries at decision time. We argue that this design mismatches execution-state dependencies: it fragments decision trajectories and mixes valid and erroneous traces, hindering coherent state reconstruction and error isolation. We propose MAGE (Memory as Agent-Guided Exploration), an active execution-state manager that stores interactions in a hierarchical state tree. The agent derives its state from the active root-to-current path, combining subgoal summaries, recent traces, and hints from prior branches. Four coupled operations maintain the tree: Grow records new traces, Compress summarizes completed subgoals, Maintain validates summaries, and Revise restores a target boundary and resumes on a new branch. This design bounds context growth while preserving state integrity and isolating flawed segments from the active path. Experiments on MemoryArena show that MAGE improves the average task success rate by 7.8--20.4 pp over baselines, while reducing token consumption by 55.1%."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2606.06090",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1046459,
+    "pdf_sha256": "1ecff2417d2892bf1b8578d3b0346386fa51dbfcbcfea839481000c48849eb5c",
+    "pages": 16,
+    "download_resolved_url": "https://arxiv.org/pdf/2606.06090",
+    "attempts": [],
+    "status": "2026 arXiv预印本",
+    "finding": "MAGE：两层执行状态树，当前root-to-current路径加支线hints，Grow/Compress/Maintain/Revise；错误回到边界后开新分支。",
+    "limitation": "本轮最接近路径隔离/恢复机制，但任务执行分支不等于学习者澄清分支；没有学习者研究；内存指针回退不能视为现实副作用撤销。",
+    "authors": [
+      "Chen, Yaoqi",
+      "Lai, Haibin",
+      "Feng, Yuru",
+      "Han, Chuyu",
+      "Zhang, Qianxi",
+      "Lu, Baotong",
+      "Li, Menghao",
+      "Wang, Xinjiang",
+      "Wang, Zhirui",
+      "Xu, Shusen",
+      "Li, Zengzhong",
+      "Jin, Zewen",
+      "Wu, Hao",
+      "Li, Cheng",
+      "Chen, Qi"
+    ],
+    "year": "2026"
+  }
+]

@@ -1,0 +1,1605 @@
+[
+  {
+    "id": "B01",
+    "topic": "branching",
+    "title": "Context Branching for LLM Conversations: A Version Control Approach to Exploratory Programming",
+    "url": "https://arxiv.org/abs/2512.13914",
+    "pdf_url": "https://arxiv.org/pdf/2512.13914",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查 §6–6.3",
+    "metadata": {
+      "citation_title": [
+        "Context Branching for LLM Conversations: A Version Control Approach to Exploratory Programming"
+      ],
+      "citation_author": [
+        "Nanjundappa, Bhargav Chickmagalur",
+        "Maaheshwari, Spandan"
+      ],
+      "citation_date": [
+        "2025/12/15"
+      ],
+      "citation_online_date": [
+        "2025/12/15"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2512.13914"
+      ],
+      "citation_arxiv_id": [
+        "2512.13914"
+      ],
+      "citation_abstract": [
+        "Large Language Models (LLMs) have become integral to software engineering workflows, yet their effectiveness degrades significantly in multi-turn conversations. Recent studies demonstrate an average 39% performance drop when instructions are delivered across multiple turns, with models making premature assumptions and failing to course correct (Laban et al., 2025). This degradation is particularly problematic in exploratory programming tasks where developers need to investigate alternative approaches without committing to a single path. Current solutions force users into a false dichotomy: continue in a context-polluted conversation where the LLM becomes increasingly confused, or start fresh and lose all accumulated context. We present ContextBranch, a conversation management system that applies version control semantics to LLM interactions. ContextBranch provides four core primitives--checkpoint, branch, switch, and inject--enabling users to capture conversation state, explore alternatives in isolation, and selectively merge insights. We evaluate ContextBranch through a controlled experiment with 30 software engineering scenarios featuring intentionally polluting explorations. Branched conversations achieved higher response quality compared to linear conversations, with large improvements in focus and context awareness. Benefits were concentrated in complex scenarios involving conceptually distant explorations. Branching reduced context size by 58.1% (31.0 to 13.0 messages), eliminating irrelevant exploratory content. Our work establishes conversation branching as a fundamental primitive for AI-assisted exploratory work, demonstrating that isolation prevents context pollution when exploring alternatives."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2512.13914",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 757611,
+    "pdf_sha256": "339837e0bfdffd4218814f01b798e79f8b49e853238e37536222eba99915b72f",
+    "pages": 11,
+    "download_resolved_url": "https://arxiv.org/pdf/2512.13914",
+    "attempts": [],
+    "finding": "2025 arXiv；30个合成编程场景；GPT-4生成并由另一会话GPT-4评分。整体8.46→8.67，关注点与上下文利用改善；上下文31→13条。",
+    "limitation": "技术机制近邻；不是30名用户，不是教育RCT；刻意注入污染、同模型家族裁判、单模型。不要复用论文效应量当教育功效分析依据。",
+    "authors": [
+      "Nanjundappa, Bhargav Chickmagalur",
+      "Maaheshwari, Spandan"
+    ],
+    "year": "2025"
+  },
+  {
+    "id": "B02",
+    "topic": "branching",
+    "title": "Conversations in Space: Non-Linear LLM Interaction in Everyday Use",
+    "url": "https://arxiv.org/abs/2605.15848v2",
+    "pdf_url": "https://arxiv.org/pdf/2605.15848v2",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查 §5–7及附录",
+    "metadata": {
+      "citation_title": [
+        "Conversations in Space: Non-Linear LLM Interaction in Everyday Use"
+      ],
+      "citation_author": [
+        "Amin, Rifat Mehreen",
+        "Adatepe, Alperen",
+        "Fernandes, Daniela",
+        "Buschek, Daniel",
+        "Butz, Andreas"
+      ],
+      "citation_date": [
+        "2026/05/15"
+      ],
+      "citation_online_date": [
+        "2026/09/15"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2605.15848"
+      ],
+      "citation_arxiv_id": [
+        "2605.15848"
+      ],
+      "citation_abstract": [
+        "As LLM conversations grow, their histories capture alternative directions, decisions, and evolving lines of thought that can be difficult to navigate through chat alone. We investigate an interaction concept that represents the same conversation through two synchronized views: a familiar linear chat for ongoing dialogue and a spatial canvas for navigating its emerging structure. To investigate this interaction concept, we developed CanvasConvo, which allows conversations to branch into alternative paths that remain accessible across both views. In a five-day field deployment with 24 participants, we examined how people appropriated this parallel representation in self-directed knowledge work. Participants selectively moved between the two views rather than replacing chat with the canvas. Chat remained central to conversational interaction, while the canvas supported overview, revisitation, and exploration of alternatives. Adoption was uneven, revealing challenges around established chat habits, transitions between representations, and understanding branch context. Our findings inform the design of user interfaces for LLMs that combine linear and non-linear conversation representations."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2605.15848v2",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1764219,
+    "pdf_sha256": "8b3a378acaf923a8d36fe2f836f2d39652bbcb52926e2f0b5638449f61709b69",
+    "pages": 18,
+    "download_resolved_url": "https://arxiv.org/pdf/2605.15848v2",
+    "attempts": [],
+    "finding": "使用2026-09-15 v2最新标题；24人、5日自选知识工作；聊天与树状画布同步。日志、访谈、SUS、NASA-TLX；分支有利回看和比较，采纳不均且继承语义有困惑。",
+    "limitation": "没有教育随机对照与保持测验；不能说树状UI普遍降低负荷；v1检索摘要为5–7日，报告采用v2的5日。",
+    "authors": [
+      "Amin, Rifat Mehreen",
+      "Adatepe, Alperen",
+      "Fernandes, Daniela",
+      "Buschek, Daniel",
+      "Butz, Andreas"
+    ],
+    "year": "2026"
+  },
+  {
+    "id": "B03",
+    "topic": "initiative",
+    "title": "The Role of Initiative in Tutorial Dialogue",
+    "url": "https://aclanthology.org/E03-1072/",
+    "pdf_url": "https://aclanthology.org/E03-1072.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查摘要、方法、结果",
+    "metadata": {
+      "citation_title": [
+        "The Role of Initiative in Tutorial Dialogue"
+      ],
+      "citation_author": [
+        "Mark G. Core",
+        "Johanna D. Moore",
+        "Claus Zinn"
+      ],
+      "citation_conference_title": [
+        "10th Conference of the European Chapter of the Association for Computational Linguistics"
+      ],
+      "citation_publication_date": [
+        "2003/4"
+      ],
+      "citation_pdf_url": [
+        "https://aclanthology.org/E03-1072.pdf"
+      ]
+    },
+    "resolved_url": "https://aclanthology.org/E03-1072/",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 388417,
+    "pdf_sha256": "dbfd68f58b4cebc4a6a9fb7c871931ab247bd170102940411938410fbd670546",
+    "pages": 8,
+    "download_resolved_url": "https://aclanthology.org/E03-1072.pdf",
+    "attempts": [],
+    "finding": "EACL 2003；真人物理辅导对话的主动权标注。讲授式学生主动权21%，苏格拉底式10%；未发现主动权与学习直接关系，交互性与学习正相关。",
+    "limitation": "历史教育直接证据，但不研究LLM树状存储；主动权、话语产出、问题深度需区分，相关不等于因果。",
+    "authors": [
+      "Mark G. Core",
+      "Johanna D. Moore",
+      "Claus Zinn"
+    ]
+  },
+  {
+    "id": "I01",
+    "topic": "interruption",
+    "title": "Designing the Impression of Social Agents’ Real-time Interruption Handling",
+    "url": "https://doi.org/10.1145/3308532.3329435",
+    "pdf_url": "https://www.dfki.de/fileadmin/user_upload/import/10535_ivaea493.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "机构公开PDF的搜索索引方法/结果片段；未下载全文",
+    "pdf_status": "failed",
+    "attempts": [
+      {
+        "stage": "metadata",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "stage": "pdf",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ],
+    "finding": "IVA 2019；42人、被试内、三种停止重叠时序；测主导性、友好、亲近。作者报告较长响应更主导、较少亲近，友好总体检验仅边缘显著。",
+    "limitation": "原PDF403且web打开超时；不能称全部指标显著，不能推到文本教育或保持。原始主效应与对比统计投稿前复核。"
+  },
+  {
+    "id": "I02",
+    "topic": "interruption",
+    "title": "Handling User Interruptions in an Embodied Conversational Agent",
+    "url": "https://www.cs.ox.ac.uk/publications/publication3549-abstract.html",
+    "pdf_url": "https://www.csc.kth.se/~jboye/publications/aamas2010_interruptions.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查机制与结论",
+    "metadata": {
+      "citation_title": [
+        "Handling User Interruptions in an Embodied Conversational Agent"
+      ],
+      "citation_author": [
+        "Crook, Nigel"
+      ],
+      "citation_date": [
+        "2010"
+      ]
+    },
+    "resolved_url": "https://www.cs.ox.ac.uk/publications/publication3549-abstract.html",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 390720,
+    "pdf_sha256": "6c56f99b5c69375b979330ff91ef3435e10be6207758d9810e7eaa050c3df29d",
+    "pages": 7,
+    "download_resolved_url": "https://www.csc.kth.se/~jboye/publications/aamas2010_interruptions.pdf",
+    "attempts": [],
+    "finding": "AAMAS ECA workshop 2010；停止长话语后根据用户语义继续、重规划或abort。",
+    "limitation": "社会情感对话机制论文；非教育学习因果效果。",
+    "authors": [
+      "Crook, Nigel"
+    ],
+    "year": "2010"
+  },
+  {
+    "id": "I03",
+    "topic": "interruption",
+    "title": "Turn-Taking Cues in a Human Tutoring Corpus",
+    "url": "https://aclanthology.org/P11-3017/",
+    "pdf_url": "https://aclanthology.org/P11-3017.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查摘要与方法",
+    "metadata": {
+      "citation_title": [
+        "Turn-Taking Cues in a Human Tutoring Corpus"
+      ],
+      "citation_author": [
+        "Heather Friedberg"
+      ],
+      "citation_conference_title": [
+        "Proceedings of the ACL 2011 Student Session"
+      ],
+      "citation_publication_date": [
+        "2011/6"
+      ],
+      "citation_pdf_url": [
+        "https://aclanthology.org/P11-3017.pdf"
+      ],
+      "citation_firstpage": [
+        "94"
+      ],
+      "citation_lastpage": [
+        "98"
+      ]
+    },
+    "resolved_url": "https://aclanthology.org/P11-3017/",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 191692,
+    "pdf_sha256": "359ad7b464e2e564a2ce7e9bd5d7ba97b4ae497e5895ff30739039ca9c300245",
+    "pages": 5,
+    "download_resolved_url": "https://aclanthology.org/P11-3017.pdf",
+    "attempts": [],
+    "finding": "ACL Student Research Workshop 2011；真人辅导语料的韵律轮次边界研究。",
+    "limitation": "教育轮次设计近邻；非允许/不允许打断的学习实验。",
+    "authors": [
+      "Heather Friedberg"
+    ]
+  },
+  {
+    "id": "I04",
+    "topic": "interruption",
+    "title": "Real-Time Reactive Speech Synthesis: Incorporating Interruptions",
+    "url": "https://www.isca-archive.org/interspeech_2017/wester17_interspeech.html",
+    "pdf_url": "https://www.isca-archive.org/interspeech_2017/wester17_interspeech.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查摘要、方法与结论",
+    "metadata": {
+      "citation_title": [
+        "Real-Time Reactive Speech Synthesis: Incorporating Interruptions"
+      ],
+      "citation_conference_title": [
+        "Proc. Interspeech 2017"
+      ],
+      "citation_publication_date": [
+        "2017"
+      ],
+      "citation_firstpage": [
+        "3996"
+      ],
+      "citation_lastpage": [
+        "4000"
+      ],
+      "citation_author": [
+        "Wester, Mirjam",
+        "Braude, David A.",
+        "Potard, Blaise",
+        "Aylett, Matthew P.",
+        "Shaw, Francesca"
+      ],
+      "citation_pdf_url": [
+        "https://www.isca-archive.org/interspeech_2017/wester17_interspeech.pdf"
+      ],
+      "citation_doi": [
+        "10.21437/Interspeech.2017-1250"
+      ]
+    },
+    "resolved_url": "https://www.isca-archive.org/interspeech_2017/wester17_interspeech.html",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 379462,
+    "pdf_sha256": "afc428567eb118becb7926c93804eb96bf0d978a62b17c2d84a99c30e0757a28",
+    "pages": 5,
+    "download_resolved_url": "https://www.isca-archive.org/interspeech_2017/wester17_interspeech.pdf",
+    "attempts": [],
+    "finding": "Interspeech 2017；反应式增量语音合成及处理用户打断。",
+    "limitation": "工程/语音机制证据；非教育介入RCT。",
+    "authors": [
+      "Wester, Mirjam",
+      "Braude, David A.",
+      "Potard, Blaise",
+      "Aylett, Matthew P.",
+      "Shaw, Francesca"
+    ]
+  },
+  {
+    "id": "A01",
+    "topic": "art",
+    "title": "SakugaFlow: A Stagewise Illustration Framework Emulating the Human Drawing Process and Providing Interactive Tutoring for Novice Drawing Skills",
+    "url": "https://arxiv.org/abs/2506.08443",
+    "pdf_url": "https://arxiv.org/pdf/2506.08443",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查 §3–4",
+    "metadata": {
+      "citation_title": [
+        "SakugaFlow: A Stagewise Illustration Framework Emulating the Human Drawing Process and Providing Interactive Tutoring for Novice Drawing Skills"
+      ],
+      "citation_author": [
+        "Kawamura, Kazuki",
+        "Rekimoto, Jun"
+      ],
+      "citation_date": [
+        "2025/06/10"
+      ],
+      "citation_online_date": [
+        "2025/06/10"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2506.08443"
+      ],
+      "citation_arxiv_id": [
+        "2506.08443"
+      ],
+      "citation_abstract": [
+        "While current AI illustration tools can generate high-quality images from text prompts, they rarely reveal the step-by-step procedure that human artists follow. We present SakugaFlow, a four-stage pipeline that pairs diffusion-based image generation with a large-language-model tutor. At each stage, novices receive real-time feedback on anatomy, perspective, and composition, revise any step non-linearly, and branch alternative versions. By exposing intermediate outputs and embedding pedagogical dialogue, SakugaFlow turns a black-box generator into a scaffolded learning environment that supports both creative exploration and skills acquisition."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2506.08443",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 3636990,
+    "pdf_sha256": "7c9e877fe1974e045e2bdd3cffca62533c8f003901f5ce752dab327478afba56",
+    "pages": 5,
+    "download_resolved_url": "https://arxiv.org/pdf/2506.08443",
+    "attempts": [],
+    "finding": "SakugaFlow，2025预印本；草图、线稿、颜色、完成四阶段，LLM指导、局部修改、分支版本。",
+    "limitation": "没有受控学习用户研究；技能获取实验列未来工作。中间扩散图不保证等于人类真实落笔过程；作品分支≠session记忆树。",
+    "authors": [
+      "Kawamura, Kazuki",
+      "Rekimoto, Jun"
+    ],
+    "year": "2025"
+  },
+  {
+    "id": "A02",
+    "topic": "art",
+    "title": "Generative AI in Art Education: A Systematic Review of Research Trends, Tool Applications, and Outcomes (2019–2025)",
+    "url": "https://doi.org/10.3390/educsci16010047",
+    "pdf_url": "https://mdpi-res.com/d_attachment/education/education-16-00047/article_deploy/education-16-00047.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查纳入标准、研究表、方法与限制",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 2102778,
+    "pdf_sha256": "5fd6de559ea8086a1dc0c02befa920b62c89e4b7944151ae050057c3513e57d4",
+    "pages": 33,
+    "download_resolved_url": "https://mdpi-res.com/d_attachment/education/education-16-00047/article_deploy/education-16-00047.pdf",
+    "attempts": [
+      {
+        "stage": "metadata",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ],
+    "finding": "Education Sciences 2026卷，2025年12月上线；19项2019–2025范围内实证，检索实际截至2025年8月。高教、东亚、混合方法占多数。",
+    "limitation": "艺术GenAI≠自主Agent；早期、异质、短期；其纳入数不代表整个艺术AI领域只有19篇。"
+  },
+  {
+    "id": "A03",
+    "topic": "art",
+    "title": "Integrating generative artificial intelligence into design and art course: Effects on student achievement, motivation, and self-efficacy",
+    "url": "https://doi.org/10.1080/14703297.2025.2503857",
+    "pdf_url": "https://www.tandfonline.com/doi/pdf/10.1080/14703297.2025.2503857",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "出版商原始摘要＋A02研究表；未下载全文",
+    "pdf_status": "failed",
+    "attempts": [
+      {
+        "stage": "metadata",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "stage": "pdf",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ],
+    "finding": "Chen/Mokmin/Su 2025；64名一年级本科生；ChatGPT教学代理 vs 传统多媒体，准实验；成就、动机、自我效能。",
+    "limitation": "最直接的艺术设计课程教学代理近邻；设计史语境，不能外推手绘技能；详细随机方式、量表、延迟效果尚未核实。"
+  },
+  {
+    "id": "A04",
+    "topic": "art",
+    "title": "DrawMyPhoto: Assisting Novices in Drawing from Photographs",
+    "url": "https://doi.org/10.1145/3325480.3325507",
+    "pdf_url": "https://www.microsoft.com/en-us/research/wp-content/uploads/2019/10/DrawMyPhoto-CC-2019.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "Microsoft原始PDF索引摘要/方法；未下载全文",
+    "pdf_status": "failed",
+    "attempts": [
+      {
+        "stage": "metadata",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "stage": "pdf",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "stage": "metadata",
+        "error": "HTTP Error 403: Forbidden"
+      },
+      {
+        "stage": "pdf",
+        "error": "HTTP Error 403: Forbidden"
+      }
+    ],
+    "finding": "C&C 2019；20人、两组；图像处理分步骤绘画，力度/倾斜实时反馈；专家盲评、问卷访谈、日志。",
+    "limitation": "传统计算绘画辅导，非LLM Agent；单次辅助作品变好不保证无辅助技能迁移。"
+  },
+  {
+    "id": "A05",
+    "topic": "music",
+    "title": "LLaQo: Towards a Query-Based Coach in Expressive Music Performance Assessment",
+    "url": "https://arxiv.org/abs/2409.08795",
+    "pdf_url": "https://arxiv.org/pdf/2409.08795",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查 §V-C及结论",
+    "metadata": {
+      "citation_title": [
+        "LLaQo: Towards a Query-Based Coach in Expressive Music Performance Assessment"
+      ],
+      "citation_author": [
+        "Zhang, Huan",
+        "Cheung, Vincent",
+        "Nishioka, Hayato",
+        "Dixon, Simon",
+        "Furuya, Shinichi"
+      ],
+      "citation_date": [
+        "2024/09/13"
+      ],
+      "citation_online_date": [
+        "2024/09/16"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2409.08795"
+      ],
+      "citation_arxiv_id": [
+        "2409.08795"
+      ],
+      "citation_abstract": [
+        "Research in music understanding has extensively explored composition-level attributes such as key, genre, and instrumentation through advanced representations, leading to cross-modal applications using large language models. However, aspects of musical performance such as stylistic expression and technique remain underexplored, along with the potential of using large language models to enhance educational outcomes with customized feedback. To bridge this gap, we introduce LLaQo, a Large Language Query-based music coach that leverages audio language modeling to provide detailed and formative assessments of music performances. We also introduce instruction-tuned query-response datasets that cover a variety of performance dimensions from pitch accuracy to articulation, as well as contextual performance understanding (such as difficulty and performance techniques). Utilizing AudioMAE encoder and Vicuna-7b LLM backend, our model achieved state-of-the-art (SOTA) results in predicting teachers' performance ratings, as well as in identifying piece difficulty and playing techniques. Textual responses from LLaQo was moreover rated significantly higher compared to other baseline models in a user study using audio-text matching. Our proposed model can thus provide informative answers to open-ended questions related to musical performance from audio data."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2409.08795",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 387341,
+    "pdf_sha256": "49c902daca6ae7e1e78a2fa6fb24768366f588d2b663e4a53f1ed4c5592d77ee",
+    "pages": 5,
+    "download_resolved_url": "https://arxiv.org/pdf/2409.08795",
+    "attempts": [],
+    "finding": "LLaQo，2024预印本v2；音频语言模型，教师评分预测；20名音乐学生/教师评价反馈、建议与鉴赏回答。",
+    "limitation": "答案质量证据，未测学生练习后实际进步；鉴赏差异未显著，部分任务未超过专用非LLM模型。",
+    "authors": [
+      "Zhang, Huan",
+      "Cheung, Vincent",
+      "Nishioka, Hayato",
+      "Dixon, Simon",
+      "Furuya, Shinichi"
+    ],
+    "year": "2024"
+  },
+  {
+    "id": "A06",
+    "topic": "art",
+    "title": "Effects of AI-generated images in visual art education on students’ classroom engagement, self-efficacy and cognitive load",
+    "url": "https://www.nature.com/articles/s41599-025-05860-2",
+    "pdf_url": "https://www.nature.com/articles/s41599-025-05860-2.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查设计、量表、评分与限制",
+    "metadata": {
+      "citation_pdf_url": [
+        "https://www.nature.com/articles/s41599-025-05860-2.pdf"
+      ],
+      "citation_fulltext_html_url": [
+        "https://www.nature.com/articles/s41599-025-05860-2"
+      ],
+      "citation_journal_title": [
+        "Humanities and Social Sciences Communications"
+      ],
+      "citation_journal_abbrev": [
+        "Humanit Soc Sci Commun"
+      ],
+      "citation_publisher": [
+        "Palgrave"
+      ],
+      "citation_issn": [
+        "2662-9992"
+      ],
+      "citation_title": [
+        "Effects of AI-generated images in visual art education on students' classroom engagement, self-efficacy and cognitive load"
+      ],
+      "citation_volume": [
+        "12"
+      ],
+      "citation_issue": [
+        "1"
+      ],
+      "citation_online_date": [
+        "2025/09/30"
+      ],
+      "citation_firstpage": [
+        "1548"
+      ],
+      "citation_lastpage": [
+        ""
+      ],
+      "citation_article_type": [
+        "Article"
+      ],
+      "citation_fulltext_world_readable": [
+        ""
+      ],
+      "citation_language": [
+        "en"
+      ],
+      "citation_doi": [
+        "10.1057/s41599-025-05860-2"
+      ],
+      "citation_springer_api_url": [
+        "http://api.springer.com/xmldata/jats?q=doi:10.1057/s41599-025-05860-2&api_key="
+      ],
+      "citation_reference": [
+        "Achiam J, Adler S, Agarwal S, Ahmad L, Akkaya I, Aleman FL, Almeida D, Altenschmidt J, Altman S, Anadkat S (2023) Gpt-4 technical report. arXiv preprint arXiv:2303.08774",
+        "Avello R, Gajderowicz T, Gómez-Rodríguez VG (2024) Is ChatGPT helpful for graduate students in acquiring knowledge about digital storytelling and reducing their cognitive load? an experiment. Rev Educ Dist 24 (78)",
+        "citation_journal_title=Int Art Early Child Res J; citation_title=Understanding the role of critical and creative thinking in australian primary school visual arts education; citation_author=F Alter; citation_volume=1; citation_issue=1; citation_publication_date=2009; citation_pages=1-12; citation_id=CR3",
+        "citation_journal_title=Computer; citation_title=Generative artificial intelligence and the education sector; citation_author=N Ahmad, S Murugesan, N Kshetri; citation_volume=56; citation_issue=6; citation_publication_date=2023; citation_pages=72-76; citation_doi=10.1109/MC.2023.3263576; citation_id=CR4",
+        "Allingham JU, Ren J, Dusenberry MW, Gu X, Cui Y, Tran D, Liu JZ, Lakshminarayanan B (2023) A simple zero-shot prompt weighting technique to improve prompt ensembling in text-image models. In: Proceedings of the International Conference on Machine Learning",
+        "citation_journal_title=Educ Res; citation_title=Design-based research: A decade of progress in education research?; citation_author=T Anderson, J Shattuck; citation_volume=41; citation_issue=1; citation_publication_date=2012; citation_pages=16-25; citation_doi=10.3102/0013189X11428813; citation_id=CR6",
+        "citation_journal_title=Curr Perspect Educ Res; citation_title=The acceptance and diffusion of generative artificial intelligence in education: A literature review; citation_author=A Baytak; citation_volume=6; citation_issue=1; citation_publication_date=2023; citation_pages=7-18; citation_doi=10.46303/cuper.2023.2; citation_id=CR7",
+        "citation_journal_title=J Cogn Psychother; citation_title=Self-efficacy: The exercise of control; citation_author=A Bandura, WH Freeman, R Lightsey; citation_volume=13; citation_issue=2; citation_publication_date=1999; citation_pages=158-166; citation_doi=10.1891/0889-8391.13.2.158; citation_id=CR8",
+        "Borji A (2022) Generated faces in the wild: Quantitative comparison of stable diffusion, midjourney and DALL-E 2. arXiv preprint arXiv:2210.00586",
+        "citation_title=Toward a Theory of Instruction; citation_publication_date=1974; citation_id=CR10; citation_author=JS Bruner; citation_publisher=Harvard University Press",
+        "citation_journal_title=J Aesthet Educ; citation_title=Instruction in visual art: Can it help children learn to read?; citation_author=K Burger, E Winner; citation_volume=34; citation_issue=3/4; citation_publication_date=2000; citation_pages=277-293; citation_doi=10.2307/3333645; citation_id=CR11",
+        "citation_journal_title=IEEE Trans Multimed; citation_title=Learning to evaluate the artness of AI-generated images; citation_author=J Chen, J An, H Lyu, C Kanan, J Luo; citation_volume=26; citation_publication_date=2024; citation_pages=10731-10740; citation_doi=10.1109/TMM.2024.3410672; citation_id=CR12",
+        "Cao Y, Li S, Liu Y, Yan Z, Dai Y, Yu PS, Sun L (2023) A comprehensive survey of AI-generated content (AIGC): A history of generative AI from GAN to ChatGPT. arXiv preprint arXiv:2303.04226",
+        "citation_journal_title=Cogn Instr; citation_title=Cognitive load theory and the format of instruction; citation_author=P Chandler, J Sweller; citation_volume=8; citation_issue=4; citation_publication_date=1991; citation_pages=293-332; citation_doi=10.1207/s1532690xci0804_2; citation_id=CR14",
+        "citation_journal_title=Comput Educ; citation_title=Effects of different video lecture types on sustained attention, emotion, cognitive load, and learning performance; citation_author=C-M Chen, C-H Wu; citation_volume=80; citation_publication_date=2015; citation_pages=108-121; citation_doi=10.1016/j.compedu.2014.08.015; citation_id=CR15",
+        "citation_journal_title=Heliyon; citation_title=What’s in a text-to-image prompt? The potential of stable diffusion in visual arts education; citation_author=N Dehouche, K Dehouche; citation_volume=9; citation_issue=6; citation_publication_date=2023; citation_pages=16757; citation_doi=10.1016/j.heliyon.2023.e16757; citation_id=CR16",
+        "citation_journal_title=Educ Forum; citation_title=Experience and education; citation_author=J Dewey; citation_volume=50; citation_issue=3; citation_publication_date=1986; citation_pages=241-252; citation_doi=10.1080/00131728609335764; citation_id=CR17",
+        "citation_journal_title=Sci Adv; citation_title=Generative AI enhances individual creativity but reduces the collective diversity of novel content; citation_author=AR Doshi, OP Hauser; citation_volume=10; citation_issue=28; citation_publication_date=2024; citation_pages=5290; citation_doi=10.1126/sciadv.adn5290; citation_id=CR18",
+        "Dhanapal S, Kanapathy R, Mastan J (2014) A study to understand the role of visual arts in the teaching and learning of science. In: Asia-Pacific Forum on Science Learning & Teaching, vol. 15, pp. 1–25",
+        "Du C, Li Y, Qiu Z, Xu C (2024) Stable diffusion is unstable. In: Proceedings of the Advances in Neural Information Processing Systems",
+        "Dhariwal P, Nichol A (2021) Diffusion models beat GANs on image synthesis. In: Proceedings of the Advances in Neural Information Processing Systems",
+        "citation_journal_title=Handb Theories Soc Psychol; citation_title=Self-determination theory; citation_author=EL Deci, RM Ryan; citation_volume=1; citation_issue=20; citation_publication_date=2012; citation_pages=416-436; citation_doi=10.4135/9781446249215.n21; citation_id=CR22",
+        "citation_journal_title=Comput Educ: Artif Intell; citation_title=AI-based learning content generation and learning pathway augmentation to increase learner engagement; citation_author=C Diwan, S Srinivasa, G Suri, S Agarwal, P Ram; citation_volume=4; citation_publication_date=2023; citation_pages=100110; citation_id=CR23",
+        "Epstein Z, Hertzmann A, Herman L, Mahari R, Frank M, Groh M, Schroeder H, Smith A, Akten M, Fjeld J (2023) Art and the science of generative AI: A deeper dive. arxiv 2023. arXiv preprint arXiv:2306.04141",
+        "citation_journal_title=Lang Arts; citation_title=The arts and the creation of mind; citation_author=EW Eisner; citation_volume=80; citation_issue=5; citation_publication_date=2003; citation_pages=340-344; citation_doi=10.58680/la2003322; citation_id=CR25",
+        "citation_journal_title=Int J Educ Arts; citation_title=What can education learn from the arts about the practice of education?; citation_author=EW Eisner; citation_volume=5; citation_issue=4; citation_publication_date=2004; citation_pages=1-13; citation_id=CR26",
+        "Elgammal A., Liu B, Elhoseiny M, Mazzone M (2017) Can: Creative adversarial networks generating “art” by learning about styles and deviating from style norms. In: Proceedings of the International Conference on Computational Creativity",
+        "citation_journal_title=Sch Sci Math; citation_title=The effects of non-cas graphing calculators on student achievement and attitude levels in mathematics: A meta-analysis; citation_author=AJ Ellington; citation_volume=106; citation_issue=1; citation_publication_date=2006; citation_pages=16-26; citation_doi=10.1111/j.1949-8594.2006.tb18067.x; citation_id=CR28",
+        "Gatys LA, Ecker AS, Bethge M (2016) Image style transfer using convolutional neural networks. In: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition",
+        "Gafni O, Polyak A, Ashual O, Sheynin S, Parikh D, Taigman Y (2022) Make-a-scene: Scene-based text-to-image generation with human priors. In: Proceedings of the European Conference on Computer Vision",
+        "citation_journal_title=Commun ACM; citation_title=Generative adversarial networks; citation_author=I Goodfellow, J Pouget-Abadie, M Mirza, B Xu, D Warde-Farley, S Ozair, A Courville, Y Bengio; citation_volume=63; citation_issue=11; citation_publication_date=2020; citation_pages=139-144; citation_doi=10.1145/3422622; citation_id=CR31",
+        "citation_title=Writing Technology: Studies on the Materiality of Literacy; citation_publication_date=2013; citation_id=CR32; citation_author=C Haas; citation_publisher=Routledge",
+        "citation_journal_title=TechTrends; citation_title=Generative artificial intelligence in education, part one: the dynamic frontier; citation_author=Y-C Hsu, Y-H Ching; citation_volume=67; citation_issue=4; citation_publication_date=2023; citation_pages=603-607; citation_doi=10.1007/s11528-023-00863-9; citation_id=CR33",
+        "Ha AYJ, Passananti J, Bhaskar R, Shan S, Southen R, Zheng H, Zhao BY (2024) Organic or diffused: Can we distinguish human art from AI-generated images? arXiv preprint arXiv:2402.03214",
+        "citation_title=Educational Technology a Primer for the 21st Century; citation_publication_date=2019; citation_id=CR35; citation_author=R Huang; citation_publisher=Springer",
+        "citation_journal_title=Comput Hum Behav; citation_title=Does human–ai collaboration lead to more creative art? aesthetic evaluation of human-made and AI-generated haiku poetry; citation_author=J Hitsuwari, Y Ueda, W Yun, M Nomura; citation_volume=139; citation_publication_date=2023; citation_pages=107502; citation_doi=10.1016/j.chb.2022.107502; citation_id=CR36",
+        "Huang Y, Wu W, Wu P, Teng Y (2024) Investigating the impact of integrating prompting strategies in ChatGPT on students learning achievement and cognitive load. In: Proceedings of the International Conference on Innovative Technologies and Learning",
+        "citation_journal_title=Comput Educ: Artif Intell; citation_title=Vision, challenges, roles and research issues of artificial intelligence in education; citation_author=G-J Hwang, H Xie, BW Wah, D Gašević; citation_volume=1; citation_publication_date=2020; citation_pages=100001; citation_id=CR38",
+        "citation_journal_title=Comput Educ; citation_title=A concept map-embedded educational computer game for improving students’ learning performance in natural science courses; citation_author=G Hwang, L Yang, S Wang; citation_volume=69; citation_publication_date=2013; citation_pages=121-130; citation_doi=10.1016/j.compedu.2013.07.008; citation_id=CR39",
+        "Isola P, Zhu J-Y, Zhou T, Efros AA (2017) Image-to-image translation with conditional adversarial networks. In: Proceedings of the IEEE Conference on Computer Vision and Pattern Recognition",
+        "Jiang HH, Brown L, Cheng J, Khan M, Gupta A, Workman D, Hanna A, Flowers J, Gebru T (2023) AI art and its impact on artists. In: Proceedings of the AAAI/ACM Conference on AI, Ethics, and Society",
+        "citation_journal_title=Educ Inf Technol; citation_title=Large language models in education: A focus on the complementary relationship between human teachers and ChatGPT; citation_author=J Jeon, S Lee; citation_volume=28; citation_issue=12; citation_publication_date=2023; citation_pages=15873-15892; citation_doi=10.1007/s10639-023-11834-1; citation_id=CR42",
+        "citation_journal_title=Acad Manag J; citation_title=When and how artificial intelligence augments employee creativity; citation_author=N Jia, X Luo, Z Fang, C Liao; citation_volume=67; citation_issue=1; citation_publication_date=2024; citation_pages=5-32; citation_doi=10.5465/amj.2022.0426; citation_id=CR43",
+        "citation_journal_title=Iran J Comp Educ; citation_title=A comparative study of primary school visual arts curriculum in Australia, Canada, Iran and Ireland; citation_author=I Javaheri Pour, E Abbasi, M Kian, M Hasanpour; citation_volume=4; citation_issue=2; citation_publication_date=2021; citation_pages=1097-1116; citation_id=CR44",
+        "Jin Y, Yoon J, Andrew Self J, Lee K (2024) AI as a catalyst for creativity: Exploring the use of a generative approach in fashion design for improving their inspiration. In: Proceedings of the DRS Biennial Conference, pp. 1–27",
+        "citation_journal_title=Perform Instr; citation_title=Strategies for stimulating the motivation to learn; citation_author=JM Keller; citation_volume=26; citation_issue=8; citation_publication_date=1987; citation_pages=1-7; citation_doi=10.1002/pfi.4160260802; citation_id=CR46",
+        "citation_journal_title=Eng Appl Artif Intell; citation_title=Dual attention and channel transformer-based generative adversarial network for restoration of the damaged artwork; citation_author=P Kumar, V Gupta, M Grover; citation_volume=128; citation_publication_date=2024; citation_pages=107457; citation_doi=10.1016/j.engappai.2023.107457; citation_id=CR47",
+        "citation_journal_title=Tech Soc Sci J; citation_title=The use of audio-visual materials in teaching and learning process in Effia Junior High Schools; citation_author=A Kwegyiriba, RO Mensah, E Ewusi; citation_volume=31; citation_publication_date=2022; citation_pages=106; citation_id=CR48",
+        "citation_journal_title=Learn Individ Differ; citation_title=Chatgpt for good? on opportunities and challenges of large language models for education; citation_author=E Kasneci, K Seßler, S Küchemann, M Bannert, D Dementieva, F Fischer, U Gasser, G Groh, S Günnemann, E Hüllermeier; citation_volume=103; citation_publication_date=2023; citation_pages=102274; citation_doi=10.1016/j.lindif.2023.102274; citation_id=CR49",
+        "citation_journal_title=Educ Inf Technol; citation_title=Exploring students’ perspectives on generative ai-assisted academic writing; citation_author=J Kim, S Yu, R Detrick, N Li; citation_volume=30; citation_issue=1; citation_publication_date=2025; citation_pages=1265-1300; citation_doi=10.1007/s10639-024-12878-7; citation_id=CR50",
+        "citation_journal_title=Educ Inf Technol; citation_title=Prompt aloud!: Incorporating image-generative AI into STEAM class with learning analytics using prompt data; citation_author=U Lee, A Han, J Lee, E Lee, J Kim, H Kim, C Lim; citation_volume=29; citation_issue=8; citation_publication_date=2024; citation_pages=9575-9605; citation_doi=10.1007/s10639-023-12150-4; citation_id=CR51",
+        "citation_journal_title=Chin J Sociol; citation_title=The influences of family background and structural factors on children’s academic performances: A cross-country comparative study; citation_author=M Lyu, W Li, Y Xie; citation_volume=5; citation_issue=2; citation_publication_date=2019; citation_pages=173-192; citation_doi=10.1177/2057150X19837908; citation_id=CR52",
+        "citation_journal_title=Educ J; citation_title=Modified flipped learning as an approach to mitigate the adverse effects of generative artificial intelligence on education; citation_author=AA Lawan, BR Muhammad, AM Tahir, KI Yarima, A Zakari, AH Abdullahi II, A Hussaini, HI Kademi, AA Danlami, MA Sani; citation_volume=12; citation_issue=4; citation_publication_date=2023; citation_pages=136-43; citation_id=CR53",
+        "citation_journal_title=Lang Teach Res; citation_title=Learner-generated content and engagement in second language task performance; citation_author=C Lambert, J Philp, S Nakamura; citation_volume=21; citation_issue=6; citation_publication_date=2017; citation_pages=665-680; citation_doi=10.1177/1362168816683559; citation_id=CR54",
+        "Luong T-T, Tran M-T (2024) Designing a gai-assisted pedagogical task for teaching negotiation skills: A design thinking approach. In: Proceedings of the International Conference on Advances in Education and Information Technology",
+        "Lu Y, Yang X, Li X, Wang XE, Wang WY (2024) Llmscore: Unveiling the power of large language models in text-to-image synthesis evaluation. In: Proceddings of the Advances in Neural Information Processing Systems",
+        "Mayer RE (2002) Multimedia learning. In: Psychology of Learning and Motivation vol. 41, pp. 85–139. Elsevier",
+        "citation_journal_title=TechTrends; citation_title=Generative artificial intelligence in education and its implications for assessment; citation_author=J Mao, B Chen, JC Liu; citation_volume=68; citation_issue=1; citation_publication_date=2024; citation_pages=58-66; citation_doi=10.1007/s11528-023-00911-4; citation_id=CR58",
+        "Marrone R, Cropley D, Medeiros K (2024) How does narrow AI impact human creativity? Creativity Research Journal (0), 1–11",
+        "citation_journal_title=Teach Coll Rec; citation_title=Technological pedagogical content knowledge: A framework for teacher knowledge; citation_author=P Mishra, MJ Koehler; citation_volume=108; citation_issue=6; citation_publication_date=2006; citation_pages=1017-1054; citation_doi=10.1111/j.1467-9620.2006.00684.x; citation_id=CR60",
+        "citation_journal_title=Prev Sch Fail: Altern Educ Child Youth; citation_title=Self-efficacy: A key to improving the motivation of struggling learners; citation_author=H Margolis, PP McCabe; citation_volume=47; citation_issue=4; citation_publication_date=2003; citation_pages=162-169; citation_doi=10.1080/10459880309603362; citation_id=CR61",
+        "Midgley C, Maehr ML, Hruda LZ, Anderman E, Anderman L, Freeman KE, Urdan T (2000) Manual for the patterns of adaptive learning scales. Ann Arbor: University of Michigan, 734–763",
+        "Mordvintsev A, Olah C, Tyka M (2015) Deepdream-a code example for visualizing neural networks. Google Research 2(5)",
+        "Mahajan S, Rahman T, Yi KM, Sigal L (2024) Prompting hard or hardly prompting: Prompt inversion for text-to-image diffusion models. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "Mulian H, Shlomov S, Limonad L, Noccaro A, Buscaglione S (2024) Mimicking the maestro: Exploring the efficacy of a virtual ai teacher in fine motor skill acquisition. In: Proceedings of the AAAI Conference on Artificial Intelligence",
+        "Nichol AQ, Dhariwal P, Ramesh A, Shyam P, Mishkin P, Mcgrew B, Sutskever I, Chen M (2022) Glide: Towards photorealistic image generation and editing with text-guided diffusion models. In: Proceedings of the International Conference on Machine Learning (2022)",
+        "citation_journal_title=Int J Emerg Technol Learn; citation_title=The perception by university students of the use of ChatGPT in education; citation_author=TTA Ngo; citation_volume=18; citation_issue=17; citation_publication_date=2023; citation_pages=4; citation_doi=10.3991/ijet.v18i17.39019; citation_id=CR67",
+        "citation_journal_title=Science; citation_title=Experimental evidence on the productivity effects of generative artificial intelligence; citation_author=S Noy, W Zhang; citation_volume=381; citation_issue=6654; citation_publication_date=2023; citation_pages=187-192; citation_doi=10.1126/science.adh2586; citation_id=CR68",
+        "citation_title=Mindstorms: Children, Computers, and Powerful Ideas; citation_publication_date=2020; citation_id=CR69; citation_author=SA Papert; citation_publisher=Basic Books",
+        "citation_journal_title=Teach Coll Rec; citation_title=Media arts: Arts education for a digital age; citation_author=KA Peppler; citation_volume=112; citation_issue=8; citation_publication_date=2010; citation_pages=2118-2153; citation_doi=10.1177/016146811011200806; citation_id=CR70",
+        "citation_journal_title=Creative Educ; citation_title=Art education and generative ai: An exploratory study in constructivist learning and visualization automation for the classroom; citation_author=JV Pavlik, OM Pavlik; citation_volume=15; citation_issue=4; citation_publication_date=2024; citation_pages=601-616; citation_doi=10.4236/ce.2024.154037; citation_id=CR71",
+        "citation_journal_title=Curr Direct Psychol Sci; citation_title=Cognitive-load theory: Methods to manage working memory load in the learning of complex tasks; citation_author=F Paas, JJ Merrienboer; citation_volume=29; citation_issue=4; citation_publication_date=2020; citation_pages=394-398; citation_doi=10.1177/0963721420922183; citation_id=CR72",
+        "citation_journal_title=UGC Care Group I J; citation_title=Dall-e: Creating images from text; citation_author=MDM Reddy, MSM Basha, MMC Hari, MN Penchalaiah; citation_volume=8; citation_issue=14; citation_publication_date=2021; citation_pages=71-75; citation_id=CR73",
+        "Rombach R, Blattmann A, Lorenz D, Esser P, Ommer B (2022) High-resolution image synthesis with latent diffusion models. In: Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition",
+        "Ramesh A, Dhariwal P, Nichol A, Chu C, Chen M (2022) Hierarchical text-conditional image generation with clip latents. arXiv preprint arXiv:2204.06125 (2022)",
+        "citation_title=The Power of Interest for Motivation and Engagement; citation_publication_date=2015; citation_id=CR76; citation_author=KA Renninger; citation_author=S Hidi; citation_publisher=Routledge",
+        "Radford A, Kim JW, Hallacy C, Ramesh A, Goh G, Agarwal S, Sastry G, Askell A, Mishkin P, Clark J (2021) Learning transferable visual models from natural language supervision. In: Proceedings of the International Conference on Machine Learning",
+        "Ramesh A, Pavlov M, Goh G, Gray S, Voss C, Radford A, Chen M, Sutskever I (2021) Zero-shot text-to-image generation. In: Proceedings of the International Conference on Machine Learning",
+        "citation_journal_title=Sustainability; citation_title=Empowering education with generative artificial intelligence tools: Approach with an instructional design matrix; citation_author=LI Ruiz-Rojas, P Acosta-Vargas, J De-Moreta-Llovet, M Gonzalez-Rodriguez; citation_volume=15; citation_issue=15; citation_publication_date=2023; citation_pages=11524; citation_doi=10.3390/su151511524; citation_id=CR79",
+        "Ruskov M (2023) Grimm in Wonderland: Prompt engineering with MidJourney to illustrate fairytales. arXiv preprint arXiv:2302.08961",
+        "citation_journal_title=Nature; citation_title=Large language models encode clinical knowledge; citation_author=K Singhal, S Azizi, T Tu, SS Mahdavi, J Wei, HW Chung, N Scales, A Tanwani, H Cole-Lewis, S Pfohl; citation_volume=620; citation_issue=7972; citation_publication_date=2023; citation_pages=172-180; citation_doi=10.1038/s41586-023-06291-2; citation_id=CR81",
+        "Skjuve M, Følstad A, Brandtzaeg PB (2023) The user experience of ChatGPT: findings from a questionnaire study of early users. In: Proceedings of the International Conference on Conversational User Interfaces",
+        "citation_journal_title=Int J Educ Technol High Educ; citation_title=Bringing technology to the mature classroom: age differences in use and attitudes; citation_author=RV Staddon; citation_volume=17; citation_issue=1; citation_publication_date=2020; citation_doi=10.1186/s41239-020-00184-4; citation_id=CR83",
+        "citation_title=Art Practice as Research: Inquiry in Visual Arts; citation_publication_date=2010; citation_id=CR84; citation_author=G Sullivan; citation_publisher=Sage",
+        "citation_journal_title=Educ Psychol Rev; citation_title=Cognitive architecture and instructional design: 20 years later; citation_author=J Sweller, JJ Merriënboer, F Paas; citation_volume=31; citation_publication_date=2019; citation_pages=261-292; citation_doi=10.1007/s10648-019-09465-5; citation_id=CR85",
+        "citation_journal_title=Cogn Sci; citation_title=Cognitive load during problem solving: Effects on learning; citation_author=J Sweller; citation_volume=12; citation_issue=2; citation_publication_date=1988; citation_pages=257-285; citation_doi=10.1207/s15516709cog1202_4; citation_id=CR86",
+        "citation_journal_title=Psychol Learn Motiv; citation_title=Cognitive load theory; citation_author=J Sweller; citation_volume=55; citation_publication_date=2011; citation_pages=37-76; citation_doi=10.1016/B978-0-12-387691-1.00002-8; citation_id=CR87",
+        "Tan WR, Chan CS, Aguirre HE, Tanaka K (2017) Artgan: Artwork synthesis with conditional categorical GANs. In: Proceedings of the IEEE International Conference on Image Processing",
+        "citation_journal_title=Front Hum Neurosci; citation_title=The role of the visual arts in enhancing the learning process; citation_author=CW Tyler, LT Likova; citation_volume=6; citation_publication_date=2012; citation_pages=8; citation_doi=10.3389/fnhum.2012.00008; citation_id=CR89",
+        "citation_journal_title=Int J Instr; citation_title=Comparison between generative learning and discovery learning in improving written mathematical communication ability; citation_author=K Uswatun, S Mariani; citation_volume=13; citation_issue=3; citation_publication_date=2020; citation_pages=729-744; citation_id=CR90",
+        "citation_title=Mind in Society: The Development of Higher Psychological Processes; citation_publication_date=1978; citation_id=CR91; citation_author=LS Vygotsky; citation_publisher=Harvard University Press",
+        "citation_journal_title=Sch Psychol Q; citation_title=Measuring engagement in fourth to twelfth grade classrooms: The classroom engagement inventory; citation_author=Z Wang, C Bergin, DA Bergin; citation_volume=29; citation_issue=4; citation_publication_date=2014; citation_pages=517; citation_doi=10.1037/spq0000050; citation_id=CR92",
+        "citation_journal_title=World J Clin Cases; citation_title=Potential and limitations of ChatGPT and generative artificial intelligence in medical safety education; citation_author=X Wang, X-Q Liu; citation_volume=11; citation_issue=32; citation_publication_date=2023; citation_pages=7935; citation_doi=10.12998/wjcc.v11.i32.7935; citation_id=CR93",
+        "citation_journal_title=Comput Hum Behav; citation_title=Investigating American and Chinese subjects’ explicit and implicit perceptions of ai-generated artistic work; citation_author=Y Wu, Y Mou, Z Li, K Xu; citation_volume=104; citation_publication_date=2020; citation_pages=106186; citation_doi=10.1016/j.chb.2019.106186; citation_id=CR94",
+        "citation_journal_title=Int J Manag Educ; citation_title=Investigating student engagement with intentional content: An exploratory study of instructional videos; citation_author=JN Walsh, MP O’Brien, Y Costin; citation_volume=19; citation_issue=2; citation_publication_date=2021; citation_pages=100505; citation_id=CR95",
+        "citation_journal_title=Front Educ; citation_title=Generative artificial intelligence empowers educational reform: current status, issues, and prospects; citation_author=H Yu, Y Guo; citation_volume=8; citation_publication_date=2023; citation_pages=1183162; citation_doi=10.3389/feduc.2023.1183162; citation_id=CR96",
+        "Zhang B (2023) Preparing educators and students for ChatGPT and AI technology in higher education. ResearchGate",
+        "citation_journal_title=PNAS nexus; citation_title=Generative artificial intelligence, human creativity, and art; citation_author=E Zhou, D Lee; citation_volume=3; citation_issue=3; citation_publication_date=2024; citation_pages=052; citation_doi=10.1093/pnasnexus/pgae052; citation_id=CR98",
+        "Zhu J-Y, Park T, Isola P, Efros AA (2017) Unpaired image-to-image translation using cycle-consistent adversarial networks. In: Proceedings of the IEEE International Conference on Computer Vision",
+        "citation_title=AI Art: Machine Visions and Warped Dreams; citation_publication_date=2020; citation_id=CR100; citation_author=J Zylinska; citation_publisher=Open Humanities Press"
+      ],
+      "citation_author": [
+        "Bian, Cunling",
+        "Wang, Xiaofang",
+        "Huang, Yingxue",
+        "Zhou, Shan",
+        "Lu, Weigang"
+      ],
+      "citation_author_institution": [
+        "Ocean University of China, Qingdao, China",
+        "Qingdao Ningxia Road Primary School, Qingdao, China",
+        "Qingdao Ningxia Road Primary School, Qingdao, China",
+        "Qingdao Ningxia Road Primary School, Qingdao, China",
+        "Ocean University of China, Qingdao, China"
+      ]
+    },
+    "resolved_url": "https://www.nature.com/articles/s41599-025-05860-2?error=cookies_not_supported&code=b5ed9c48-3cd7-4736-909c-056f4cfa5236",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 4533253,
+    "pdf_sha256": "c2e3800428e85d11fdec1dfcdd2a56bb928f145d1ccff994fe7a4df88786b22a",
+    "pages": 14,
+    "download_resolved_url": "https://www.nature.com/articles/s41599-025-05860-2.pdf?error=cookies_not_supported&code=6da34aa4-7f02-4e50-902b-1bc2b210dea9",
+    "attempts": [],
+    "finding": "Bian等，2025；78名五年级学生，AI示例图 vs 经典作品图，准实验；投入、自我效能、负荷、作品评价。",
+    "limitation": "教师选择材料，非学生对话Agent；课程、教师保持一致可供实验控制参考；短时、单校。",
+    "authors": [
+      "Bian, Cunling",
+      "Wang, Xiaofang",
+      "Huang, Yingxue",
+      "Zhou, Shan",
+      "Lu, Weigang"
+    ]
+  },
+  {
+    "id": "A07",
+    "topic": "art",
+    "title": "Effects of integrating a structured design thinking strategy into generative AI-supported design learning on students’ design achievement, creative self-efficacy, and problem-solving skills",
+    "url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1847432/full",
+    "pdf_url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1847432/pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查 §3–5",
+    "metadata": {
+      "citation_volume": [
+        "17"
+      ],
+      "citation_journal_title": [
+        "Frontiers in Psychology"
+      ],
+      "citation_publisher": [
+        "Frontiers"
+      ],
+      "citation_journal_abbrev": [
+        "Front. Psychol."
+      ],
+      "citation_issn": [
+        "1664-1078"
+      ],
+      "citation_doi": [
+        "10.3389/fpsyg.2026.1847432"
+      ],
+      "citation_firstpage": [
+        "1847432"
+      ],
+      "citation_language": [
+        "English"
+      ],
+      "citation_title": [
+        "Effects of integrating a structured design thinking strategy into generative AI-supported design learning on students’ design achievement, creative self-efficacy, and problem-solving skills"
+      ],
+      "citation_keywords": [
+        "generative artificial intelligence; design thinking; design education; problem-solving skills; creative self-efficacy"
+      ],
+      "citation_abstract": [
+        "The rapid development of generative artificial intelligence (GAI) offers new opportunities for design education, yet its educational value may be limited without clear instructional guidance. To address this issue, this study integrates a structured design thinking strategy based on the Double Diamond model into GAI-supported design learning to support students’ purposeful and reflective use of GAI tools. An experimental study was conducted in a university-level character design course in China, involving 120 undergraduate students assigned to three conditions: GAI-supported learning with a structured design thinking strategy (GAI-SDTS), GAI-supported learning without the strategy, and traditional design learning. Results showed that students in the GAI-SDTS group achieved higher design achievement, creative self-efficacy, and problem-solving skills than those in the other two groups. These findings suggest that while GAI can support design learning, its educational benefits appear to be strengthened when embedded within a structured design thinking framework. The study also discusses the theoretical and practical implications of integrating generative AI with structured design thinking in higher education design contexts."
+      ],
+      "citation_article_type": [
+        "Original Research"
+      ],
+      "citation_pdf_url": [
+        "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1847432/pdf"
+      ],
+      "citation_xml_url": [
+        "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1847432/xml"
+      ],
+      "citation_fulltext_world_readable": [
+        "yes"
+      ],
+      "citation_online_date": [
+        "2026/06/02"
+      ],
+      "citation_publication_date": [
+        "2026/06/17"
+      ],
+      "citation_author": [
+        "Song, Fenglin ",
+        "Xu, Biao "
+      ],
+      "citation_author_institution": [
+        "Centre for Instructional Technology and Multimedia, Universiti Sains Malaysia, Malaysia",
+        "Centre for Instructional Technology and Multimedia, Universiti Sains Malaysia, Malaysia"
+      ]
+    },
+    "resolved_url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1847432/full",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 3609553,
+    "pdf_sha256": "52ab318ee9c8df122201a11d0be537ad87b80a8bef3aaf5c1c4c7cd37db89f89",
+    "pages": 16,
+    "download_resolved_url": "https://www.frontiersin.org/journals/psychology/articles/10.3389/fpsyg.2026.1847432/pdf",
+    "attempts": [],
+    "finding": "Song/Xu，2026；120名动画本科生，4周；结构化双钻石+GAI / GAI / 传统，Deepseek+Dreamina。两位教师匿名随机顺序评作品，CSE和PSI前后测。",
+    "limitation": "文中称准实验且报告重分随机；设计成就无前测；成品含AI生成，PSI为感知问题解决；没有无AI迁移，不能视为独立设计能力因果证据。",
+    "authors": [
+      "Song, Fenglin ",
+      "Xu, Biao "
+    ]
+  },
+  {
+    "id": "A08",
+    "topic": "art",
+    "title": "Negotiating creator identity: agency and ethical awareness in AI-assisted art education",
+    "url": "https://link.springer.com/article/10.1007/s00146-026-03187-3",
+    "pdf_url": "https://link.springer.com/content/pdf/10.1007/s00146-026-03187-3.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查 §3方法、量表与讨论",
+    "metadata": {
+      "citation_pdf_url": [
+        "https://link.springer.com/content/pdf/10.1007/s00146-026-03187-3.pdf"
+      ],
+      "citation_fulltext_html_url": [
+        "https://link.springer.com/article/10.1007/s00146-026-03187-3"
+      ],
+      "citation_journal_title": [
+        "AI & SOCIETY"
+      ],
+      "citation_journal_abbrev": [
+        "AI & Soc"
+      ],
+      "citation_publisher": [
+        "Springer London"
+      ],
+      "citation_issn": [
+        "1435-5655"
+      ],
+      "citation_title": [
+        "Negotiating creator identity: agency and ethical awareness in AI-assisted art education"
+      ],
+      "citation_online_date": [
+        "2026/06/29"
+      ],
+      "citation_firstpage": [
+        "1"
+      ],
+      "citation_lastpage": [
+        "15"
+      ],
+      "citation_article_type": [
+        "Review"
+      ],
+      "citation_fulltext_world_readable": [
+        ""
+      ],
+      "citation_language": [
+        "en"
+      ],
+      "citation_doi": [
+        "10.1007/s00146-026-03187-3"
+      ],
+      "citation_springer_api_url": [
+        "http://api.springer.com/xmldata/jats?q=doi:10.1007/s00146-026-03187-3&api_key="
+      ],
+      "citation_reference": [
+        "citation_journal_title=Annu Rev Psychol; citation_title=Social cognitive theory: an agentic perspective; citation_author=A Bandura; citation_volume=52; citation_issue=1; citation_publication_date=2001; citation_pages=1-26; citation_doi=10.1146/annurev.psych.52.1.1; citation_id=CR1",
+        "citation_journal_title=Perspect Psychol Sci; citation_title=Toward a psychology of human agency; citation_author=A Bandura; citation_volume=1; citation_issue=2; citation_publication_date=2006; citation_pages=164-180; citation_doi=10.1111/j.1745-6916.2006.00011.x; citation_id=CR2",
+        "citation_journal_title=Qual Res Psychol; citation_title=Using thematic analysis in psychology; citation_author=V Braun, V Clarke; citation_volume=3; citation_issue=2; citation_publication_date=2006; citation_pages=77-101; citation_doi=10.1191/1478088706qp063oa; citation_id=CR3",
+        "citation_journal_title=Education Tech Research Dev; citation_title=Validating student AI competency self-efficacy (SAICS) scale and its framework; citation_author=TK Chiu, M Çoban, IT Sanusi, MA Ayanwale; citation_volume=73; citation_issue=4; citation_publication_date=2025; citation_pages=2785-2807; citation_doi=10.1007/s11423-025-10512-y; citation_id=CR4",
+        "citation_journal_title=Computers and Education: Artificial Intelligence; citation_title=Systematic literature review on opportunities, challenges, and future research recommendations of artificial intelligence in education; citation_author=TK Chiu, Q Xia, X Zhou, CS Chai, M Cheng; citation_volume=4; citation_publication_date=2023; citation_id=CR5",
+        "citation_journal_title=Int J Human-Comput Interact; citation_title=Trust in AI and its role in the acceptance of AI technologies; citation_author=H Choung, P David, A Ross; citation_volume=39; citation_issue=9; citation_publication_date=2023; citation_pages=1727-1739; citation_doi=10.1080/10447318.2022.2050543; citation_id=CR6",
+        "citation_journal_title=J Comput-Mediat Commun; citation_title=Cracking the Tinder code: an experience sampling approach to the dynamics and impact of platform governing algorithms; citation_author=C Courtois, E Timmermans; citation_volume=23; citation_issue=1; citation_publication_date=2018; citation_pages=1-16; citation_doi=10.1093/jcmc/zmx001; citation_id=CR7",
+        "citation_title=Research design: qualitative, quantitative, and mixed methods approaches; citation_publication_date=2017; citation_id=CR8; citation_author=JW Creswell; citation_author=JD Creswell; citation_publisher=Sage publications",
+        "citation_journal_title=MIS Q; citation_title=Perceived usefulness, perceived ease of use, and user acceptance of information technology; citation_author=FD Davis; citation_volume=13; citation_issue=3; citation_publication_date=1989; citation_pages=319-340; citation_doi=10.2307/249008; citation_id=CR9",
+        "citation_journal_title=Educ Res; citation_title=Design-based research: an emerging paradigm for educational inquiry; citation_author=; citation_volume=32; citation_issue=1; citation_publication_date=2003; citation_pages=5-8; citation_doi=10.3102/0013189X032001005; citation_id=CR10",
+        "citation_title=Identity and uprootedness in our time; citation_inbook_title=Identity: Youth and crisis; citation_publication_date=1968; citation_pages=154-159; citation_id=CR11; citation_author=EH Erikson; citation_publisher=Norton",
+        "citation_title=Identity and the life cycle: a reissue; citation_publication_date=1980; citation_id=CR12; citation_author=EH Erikson; citation_publisher=Norton",
+        "citation_journal_title=Daedalus; citation_title=Youth: Fidelity and diversity; citation_author=EH Erikson; citation_volume=117; citation_issue=3; citation_publication_date=1988; citation_pages=1-24; citation_id=CR13",
+        "citation_journal_title=Philosophy & Technology; citation_title=Translating principles into practices of digital ethics: five risks of being unethical; citation_author=L Floridi; citation_volume=32; citation_issue=2; citation_publication_date=2019; citation_pages=185-193; citation_doi=10.1007/s13347-019-00354-x; citation_id=CR14",
+        "citation_journal_title=Technol Forecast Soc Chang; citation_title=Artificial intelligence awareness and career resilience: The mediating role of willingness to protect boundaries in Chinese financial enterprises; citation_author=M Fu; citation_volume=227; citation_publication_date=2026; citation_doi=10.1016/j.techfore.2026.124629; citation_id=CR15",
+        "citation_journal_title=Social Sci; citation_title=Perceptions and acceptance of artificial intelligence: a multi-dimensional study; citation_author=M Gerlich; citation_volume=12; citation_issue=9; citation_publication_date=2023; citation_pages=502; citation_doi=10.3390/socsci12090502; citation_id=CR16",
+        "citation_journal_title=Philos Technol; citation_title=A virtue-based framework to support putting AI ethics into practice; citation_author=T Hagendorff; citation_volume=35; citation_issue=3; citation_publication_date=2022; citation_pages=55; citation_doi=10.1007/s13347-022-00553-z; citation_id=CR17",
+        "citation_journal_title=J Doc; citation_title=Authorship in the age of artificial intelligence; citation_author=L Hajibayova, S Lee; citation_volume=81; citation_issue=5–6; citation_publication_date=2025; citation_pages=1401-1414; citation_doi=10.1108/JD-04-2025-0109; citation_id=CR18",
+        "citation_journal_title=The Clearing House; citation_title=The role of the generations in identity formation: Erikson speaks to teachers of adolescents; citation_author=D Hamman, CB Hendricks; citation_volume=79; citation_issue=2; citation_publication_date=2005; citation_pages=72-75; citation_doi=10.3200/TCHS.79.2.72-76; citation_id=CR19",
+        "citation_journal_title=Idea; citation_title=Artificial intelligence and the copyright dilemma; citation_author=K Hristov; citation_volume=57; citation_publication_date=2016; citation_pages=431; citation_id=CR20",
+        "citation_journal_title=IEEE Transact Artif Intell; citation_title=An overview of artificial intelligence ethics; citation_author=C Huang, Z Zhang, B Mao, X Yao; citation_volume=4; citation_issue=4; citation_publication_date=2022; citation_pages=799-819; citation_doi=10.1109/TAI.2022.3194503; citation_id=CR21",
+        "citation_journal_title=J Adolesc; citation_title=Adolescents’ over-use of the cyber world–Internet addiction or identity exploration?; citation_author=M Israelashvili, T Kim, G Bukobza; citation_volume=35; citation_issue=2; citation_publication_date=2012; citation_pages=417-424; citation_doi=10.1016/j.adolescence.2011.07.015; citation_id=CR22",
+        "Jia, H., Wu, M., Jung, E., Shapiro, A., & Sundar, S. S. (2012). Balancing human agency and object agency: An end-user interview study of the Internet of Things. In Proceedings of the 2012 ACM Conference on Ubiquitous Computing (1185–1188).",
+        "citation_journal_title=Behav Sci; citation_title=Understanding users’ acceptance of artificial intelligence applications: a literature review; citation_author=P Jiang, W Niu, Q Wang, R Yuan, K Chen; citation_volume=14; citation_issue=8; citation_publication_date=2024; citation_pages=671; citation_doi=10.3390/bs14080671; citation_id=CR24",
+        "citation_journal_title=Int J Hum Comput Stud; citation_title=Feeling connected to smart objects? A moderated mediation model of locus of agency, anthropomorphism, and sense of connectedness; citation_author=H Kang, KJ Kim; citation_volume=133; citation_publication_date=2020; citation_pages=45-55; citation_doi=10.1016/j.ijhcs.2019.09.002; citation_id=CR25",
+        "citation_journal_title=J Comput-Mediat Commun; citation_title=AI agency vs. human agency: understanding human–AI interactions on TikTok and their implications for user engagement; citation_author=H Kang, C Lou; citation_volume=27; citation_issue=5; citation_publication_date=2022; citation_doi=10.1093/jcmc/zmac014; citation_id=CR26",
+        "citation_journal_title=Int J Law Inform Technol; citation_title=Artificial intelligence and challenges for copyright law; citation_author=K Kariyawasam; citation_volume=28; citation_issue=4; citation_publication_date=2020; citation_pages=279-296; citation_doi=10.1093/ijlit/eaaa023; citation_id=CR27",
+        "citation_title=Perpetual contact: mobile communication, private talk, public performance; citation_publication_date=2002; citation_id=CR28; citation_publisher=Cambridge University Press",
+        "citation_journal_title=Identity; citation_title=Erikson online: identity and pseudospeciation in the internet age; citation_author=A Kay; citation_volume=18; citation_issue=4; citation_publication_date=2018; citation_pages=264-273; citation_doi=10.1080/15283488.2018.1523732; citation_id=CR29",
+        "citation_journal_title=Telematics Inform; citation_title=What factors contribute to the acceptance of artificial intelligence? A systematic review; citation_author=S Kelly, SA Kaye, O Oviedo-Trespalacios; citation_volume=77; citation_publication_date=2023; citation_doi=10.1016/j.tele.2022.101925; citation_id=CR30",
+        "citation_journal_title=J Mark Res; citation_title=Home-tutoring services assisted with technology: investigating the role of artificial intelligence using a randomized field experiment; citation_author=JH Kim, M Kim, DW Kwak, S Lee; citation_volume=59; citation_issue=1; citation_publication_date=2022; citation_pages=79-96; citation_doi=10.1177/00222437211050351; citation_id=CR31",
+        "citation_journal_title=Inf Organ; citation_title=Human-AI agency in the age of generative AI; citation_author=S Krakowski; citation_volume=35; citation_issue=1; citation_publication_date=2025; citation_doi=10.1016/j.infoandorg.2025.100560; citation_id=CR32",
+        "citation_journal_title=Educ Inf Technol; citation_title=Meta-analysis on effects of artificial intelligence education in K-12 South Korean classrooms; citation_author=D Lee, H Kwon; citation_volume=29; citation_issue=17; citation_publication_date=2024; citation_pages=22859-22894; citation_doi=10.1007/s10639-024-12738-4; citation_id=CR33",
+        "Lee H , Park I (2024) The Roles of Students in Technology-Rich Environments and the Effectiveness of Student Learning. In Lindgren R., Asino, T. I., Kyza, E. A., Looi, C. K., Keifert, D. T., & Suárez, E. (Eds.), Proceedings of the 18th International Conference of the Learning Sciences - ICLS 2024 (pp. 1774-1777). International Society of the Learning Sciences.",
+        "Lee H , Yu W (2026) Reimagining Co-Design for AI-Supported Education. In Proceedings of Society for Information Technology & Teacher Education International Conference (pp. 792-798). Philadelphia, PA: Association for the Advancement of Computing in Education (AACE). \n                https://www.learntechlib.org/primary/p/2129062/\n                \n              ",
+        "Lee H, Kim H, Yan W (2025) Promoting inclusive AI and technology in K-12: A review of context, instructional strategies, and learning outcomes. Computers and Education: Artificial Intelligence, 100478.",
+        "citation_journal_title=Creat Eng; citation_title=Measuring the acceptance of AI-assisted design: developing the AI-assisted design acceptance inventory through its relationship with technology anxiety, creative self-efficacy, and aesthetic sensitivity; citation_author=J Lee, D Rajasinghe, W Lin; citation_volume=1; citation_issue=2; citation_publication_date=2025; citation_pages=19-44; citation_id=CR37",
+        "citation_journal_title=J Consum Res; citation_title=Resistance to medical artificial intelligence; citation_author=C Longoni, A Bonezzi, CK Morewedge; citation_volume=46; citation_issue=4; citation_publication_date=2019; citation_pages=629-650; citation_doi=10.1093/jcr/ucz013; citation_id=CR38",
+        "citation_journal_title=Learned Publishing; citation_title=Can ChatGPT be an author? A study of artificial intelligence authorship policies in top academic journals; citation_author=BD Lund, KT Naheem; citation_volume=37; citation_issue=1; citation_publication_date=2024; citation_pages=13-21; citation_doi=10.1002/leap.1582; citation_id=CR39",
+        "citation_journal_title=ACM Transact Manag Inf Sys (TMIS); citation_title=Trust in a specific technology: An investigation of its components and measures; citation_author=DH Mcknight, M Carter, JB Thatcher, PF Clay; citation_volume=2; citation_issue=2; citation_publication_date=2011; citation_pages=1-25; citation_doi=10.1145/1985347.1985353; citation_id=CR40",
+        "citation_journal_title=Comput Hum Behav; citation_title=Defending humankind: anthropocentric bias in the appreciation of AI art; citation_author=K Millet, F Buehler, G Du, MD Kokkoris; citation_volume=143; citation_publication_date=2023; citation_doi=10.1016/j.chb.2023.107707; citation_id=CR41",
+        "citation_journal_title=Technol Soc; citation_title=A typology of people–environment relationships in the Digital Age; citation_author=S Misra, D Stokols; citation_volume=34; citation_issue=4; citation_publication_date=2012; citation_pages=311-325; citation_doi=10.1016/j.techsoc.2012.10.003; citation_id=CR42",
+        "citation_journal_title=J Creat Behav; citation_title=Artificial intelligence assisted creativity: Conceptualization, instrument development and validation; citation_author=PY Mok, HH Chuang, MM Cheng, TJ Smith; citation_volume=59; citation_issue=1; citation_publication_date=2025; citation_doi=10.1002/jocb.70004; citation_id=CR43",
+        "citation_journal_title=Digital Soc; citation_title=“Where is agency moving to?” Exploring the interplay between AI technologies in education and human agency; citation_author=A Mouta, AM Pinto-Llorente, EM Torrecilla-Sánchez; citation_volume=4; citation_issue=2; citation_publication_date=2025; citation_pages=49; citation_doi=10.1007/s44206-025-00203-9; citation_id=CR44",
+        "citation_journal_title=AI Ethics; citation_title=The uselessness of AI ethics; citation_author=L Munn; citation_volume=3; citation_issue=3; citation_publication_date=2023; citation_pages=869-877; citation_doi=10.1007/s43681-022-00209-w; citation_id=CR45",
+        "citation_journal_title=AI Soc; citation_title=The news framing of artificial intelligence: a critical exploration of how media discourses make sense of automation; citation_author=D Nguyen, E Hekman; citation_volume=39; citation_issue=2; citation_publication_date=2024; citation_pages=437-451; citation_doi=10.1007/s00146-022-01511-1; citation_id=CR46",
+        "citation_journal_title=J Occup Organ Psychol; citation_title=Attitudes towards artificial intelligence at work: Scale development and validation; citation_author=J Park, SE Woo, J Kim; citation_volume=97; citation_issue=3; citation_publication_date=2024; citation_pages=920-951; citation_doi=10.1111/joop.12502; citation_id=CR47",
+        "Pickering, JB, Engen V, Walland P (2017). The interplay between human and machine agency. In: International Conference on Human-Computer Interaction. Springer. Cham. 47–59",
+        "citation_journal_title=Acad Manag Rev; citation_title=Artificial intelligence and management: the automation–augmentation paradox; citation_author=S Raisch, S Krakowski; citation_volume=46; citation_issue=1; citation_publication_date=2021; citation_pages=192-210; citation_doi=10.5465/amr.2018.0072; citation_id=CR49",
+        "citation_journal_title=J Appl Artif Intell; citation_title=Acceptance of artificial intelligence: Key factors, challenges, and implementation strategies; citation_author=N Rane, SP Choudhary, J Rane; citation_volume=5; citation_issue=2; citation_publication_date=2024; citation_pages=50-70; citation_doi=10.48185/jaai.v5i2.1017; citation_id=CR50",
+        "Schreiber G (2024) Reconsidering Agency in the Age of AI. Filozofia, 79(5). \n                https://doi.org/10.31577/filozofia.2024.79.5.5\n                \n              ",
+        "citation_journal_title=Int J Hum Comput Stud; citation_title=The effects of explainability and causability on perception, trust, and acceptance: implications for explainable AI; citation_author=D Shin; citation_volume=146; citation_publication_date=2021; citation_doi=10.1016/j.ijhcs.2020.102551; citation_id=CR52",
+        "citation_title=Algorithmic fact-verification: methods and ethics; citation_publication_date=2026; citation_id=CR53; citation_author=D Shin; citation_publisher=Oxford University Press",
+        "citation_journal_title=AI Soc; citation_title=Automating epistemology: how AI reconfigures truth, authority, and verification; citation_author=D Shin; citation_volume=41; citation_issue=2; citation_publication_date=2026; citation_pages=1553-1559; citation_doi=10.1007/s00146-025-02560-y; citation_id=CR54",
+        "citation_journal_title=Telematics Inform; citation_title=Technology acceptance theories and factors influencing artificial Intelligence-based intelligent products; citation_author=K Sohn, O Kwon; citation_volume=47; citation_publication_date=2020; citation_doi=10.1016/j.tele.2019.101324; citation_id=CR55",
+        "citation_journal_title=J Assoc Inf Syst; citation_title=What do I do in a world of artificial intelligence? Investigating the impact of substitutive decision-making AI systems on employees’ professional role identity; citation_author=F Strich, AS Mayer, M Fiedler; citation_volume=22; citation_issue=2; citation_publication_date=2021; citation_pages=9; citation_id=CR56",
+        "citation_journal_title=J Comput-Mediat Commun; citation_title=Rise of machine agency: A framework for studying the psychology of human–AI interaction (HAII); citation_author=SS Sundar; citation_volume=25; citation_issue=1; citation_publication_date=2020; citation_pages=74-88; citation_doi=10.1093/jcmc/zmz026; citation_id=CR57",
+        "citation_journal_title=Int J Manag Educ; citation_title=AI literacy alone is not enough: Student AI readiness and career adaptability in business and management education; citation_author=M Testa, A Apuzzo, L Pittaway; citation_volume=24; citation_issue=2; citation_publication_date=2026; citation_id=CR58",
+        "citation_journal_title=Educ Inf Technol; citation_title=Artificial intelligence self-efficacy: Scale development and validation; citation_author=YY Wang, YW Chuang; citation_volume=29; citation_issue=4; citation_publication_date=2024; citation_pages=4785-4808; citation_doi=10.1007/s10639-023-12015-w; citation_id=CR59",
+        "citation_journal_title=Comp Educ: Artif Intell; citation_title=AI ethics education: A systematic literature review; citation_author=LJ Wiese, I Patil, DS Schiff, AJ Magana; citation_volume=8; citation_publication_date=2025; citation_id=CR60"
+      ],
+      "citation_author": [
+        "Lee, Hyejeong",
+        "Yu, Wonjin",
+        "Lee, Juwon"
+      ],
+      "citation_author_email": [
+        "hyejeong.lee@utsa.edu",
+        "wyu21@ua.edu",
+        "borauri@sookmyung.ac.kr"
+      ],
+      "citation_author_institution": [
+        "The University of Texas at San Antonio, San Antonio, United States of America",
+        "The University of Alabama, Tuscaloosa, United States of America",
+        "Sookmyung Women’ s University, Seoul, Korea, Republic of"
+      ]
+    },
+    "resolved_url": "https://link.springer.com/article/10.1007/s00146-026-03187-3?error=cookies_not_supported&code=46f30d37-39d8-48e5-86cf-e8aab7b94838",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1127198,
+    "pdf_sha256": "8bcb3b877e308fee677ca693bc5caec736a1497c1c1ee450fb264c2b429712ad",
+    "pages": 15,
+    "download_resolved_url": "https://link.springer.com/content/pdf/10.1007/s00146-026-03187-3.pdf?error=cookies_not_supported&code=87518d8e-a164-49db-9cb8-894bbde5a50c",
+    "attempts": [],
+    "finding": "2026 AI & SOCIETY；韩国艺术高中84名学生、9次周课；前后问卷、课堂观察、反思、28人焦点访谈。",
+    "limitation": "无对照；AI技能自我效能不是客观艺术技能测验。作者身份、自主权和伦理协商值得单独测量。",
+    "authors": [
+      "Lee, Hyejeong",
+      "Yu, Wonjin",
+      "Lee, Juwon"
+    ]
+  },
+  {
+    "id": "E01",
+    "topic": "evaluation",
+    "title": "How educational chatbots support self-regulated learning? A systematic review of the literature",
+    "url": "https://link.springer.com/article/10.1007/s10639-024-12881-y",
+    "pdf_url": "https://link.springer.com/content/pdf/10.1007/s10639-024-12881-y.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查综述纳入和评价维度",
+    "metadata": {
+      "citation_pdf_url": [
+        "https://link.springer.com/content/pdf/10.1007/s10639-024-12881-y.pdf"
+      ],
+      "citation_fulltext_html_url": [
+        "https://link.springer.com/article/10.1007/s10639-024-12881-y"
+      ],
+      "citation_journal_title": [
+        "Education and Information Technologies"
+      ],
+      "citation_journal_abbrev": [
+        "Educ Inf Technol"
+      ],
+      "citation_publisher": [
+        "Springer US"
+      ],
+      "citation_issn": [
+        "1573-7608"
+      ],
+      "citation_title": [
+        "How educational chatbots support self-regulated learning? A systematic review of the literature"
+      ],
+      "citation_volume": [
+        "30"
+      ],
+      "citation_issue": [
+        "4"
+      ],
+      "citation_publication_date": [
+        "2025/03"
+      ],
+      "citation_online_date": [
+        "2024/08/30"
+      ],
+      "citation_firstpage": [
+        "4493"
+      ],
+      "citation_lastpage": [
+        "4518"
+      ],
+      "citation_article_type": [
+        "Article"
+      ],
+      "citation_fulltext_world_readable": [
+        ""
+      ],
+      "citation_language": [
+        "en"
+      ],
+      "citation_doi": [
+        "10.1007/s10639-024-12881-y"
+      ],
+      "citation_springer_api_url": [
+        "http://api.springer.com/xmldata/jats?q=doi:10.1007/s10639-024-12881-y&api_key="
+      ],
+      "citation_reference": [
+        "Ait Baha, T., El Hajji, M., Es-Saady, Y., & Fadili, H. (2023). The impact of educational chatbot on student learning experience. Education and InformationTechnologies, 1–24.",
+        "citation_journal_title=Frontiers in Psychology; citation_title=Implementing the bashayer chatbot in saudi higher education: Measuring the inuence on students’ motivation and learning strategies; citation_author=AM Al-Abdullatif, AA Al-Dokhny, AM Drwish; citation_volume=14; citation_publication_date=2023; citation_pages=1129070-1129070; citation_doi=10.3389/fpsyg.2023.1129070; citation_id=CR2",
+        "citation_journal_title=Learning and Individual Differences; citation_title=Self-set goals improve academic performance through nonlinear effects on daily study performance; citation_author=G Alessandri, L Borgogni, GP Latham, G Cepale, A Theodorou, E Longis; citation_volume=77; citation_publication_date=2020; citation_doi=10.1016/j.lindif.2019.101784; citation_id=CR3",
+        "citation_journal_title=Library Hi tech; citation_title=Chatbots in the library: Is it time?; citation_author=D Allison; citation_volume=30; citation_issue=1; citation_publication_date=2012; citation_pages=95-107; citation_doi=10.1108/07378831211213238; citation_id=CR4",
+        "Arizmendi, C. J., Bernacki, M. L., Raković, M., Plumley, R. D., Urban, C. J., Panter, A., Greene, J. A., & Gates, K. M. (2022). Predicting student outcomes using digital logs of learning behaviors: Review, current standards, and suggestions for future work. Behavior Research Methods, 1–29.",
+        "Ambrose, S. A., Bridges, M. W., DiPietro, M., Lovett, M. C., & Norman, M. K. (2010). How learning works: Seven research-based principles for smart teaching. John Wiley & Sons.",
+        "Azevedo, R. (2018). Using hypermedia as a metacognitive tool for enhancing student learning? the role of self-regulated learning. In: Educational psychologist(pp. 199–209). Routledge.",
+        "Azevedo, R., & Aleven, V. (2013). Metacognition and learning technologies: An overview of current interdisciplinary research. International Handbook of Metacognition and Learning Technologies, 1–16.",
+        "citation_journal_title=Instructional Science; citation_title=Scaffolding self-regulated learning and metacognition - implications for the design of computer-based sca olds; citation_author=R Azevedo, AF Hadwin; citation_volume=33; citation_issue=5/6; citation_publication_date=2005; citation_pages=367-379; citation_doi=10.1007/s11251-005-1272-9; citation_id=CR9",
+        "Azevedo, R., Taub, M., Mudrick, N. V., Millar, G. C., Bradbury, A. E., & Price, M. J. (2017). Using Data Visualizations to Foster Emotion Regulation During Self- Regulated Learning with Advanced Learning Technologies. In J. Buder & F. W. Hesse (Eds.), Informational environments : Effects of use, effective designs (pp. 225–247). \n                  https://doi.org/10.1007/978-3-319-64274-110\n                  \n                ",
+        "citation_journal_title=Interactive Technology and Smart Education; citation_title=Digital storytelling with chatbots: Mapping l2 participation and perception patterns; citation_author=D Bailey, A Southam, J Costley; citation_volume=18; citation_issue=1; citation_publication_date=2021; citation_pages=85-103; citation_doi=10.1108/ITSE-08-2020-0170; citation_id=CR11",
+        "citation_journal_title=International Journal of Educational Technology in Higher Education; citation_title=The benefits and caveats of using clickstream data to understand student self-regulatory behaviors: Opening the black box of learning processes; citation_author=R Baker, D Xu, J Park, R Yu, Q Li, B Cung, P Smyth; citation_volume=17; citation_publication_date=2020; citation_pages=1-24; citation_doi=10.1186/s41239-020-00187-1; citation_id=CR12",
+        "citation_journal_title=Annual Review of Psychology; citation_title=Self-regulated learning: Beliefs, techniques, and illusions; citation_author=RA Bjork, J Dunlosky, N Kornell; citation_volume=64; citation_publication_date=2013; citation_pages=417-444; citation_doi=10.1146/annurev-psych-113011-143823; citation_id=CR13",
+        "citation_journal_title=Machine Learning; citation_title=Bandit algorithms to personalize educational chatbots; citation_author=W Cai, J Grossman, ZJ Lin, H Sheng, JT-Z Wei, JJ Williams, S Goel; citation_volume=110; citation_issue=9; citation_publication_date=2021; citation_pages=2389-2418; citation_doi=10.1007/s10994-021-05983-y; citation_id=CR14",
+        "citation_journal_title=British Journal of Educational Technology; citation_title=Promoting students’ learning achievement and self-efficacy: A mobile chatbot approach for nursing training; citation_author=C-Y Chang, G-J Hwang, M-L Gau; citation_volume=53; citation_issue=1; citation_publication_date=2022; citation_pages=171-188; citation_doi=10.1111/bjet.13158; citation_id=CR15",
+        "citation_journal_title=Educational Technology & Society; citation_title=Chatbot-facilitated nursing education; citation_author=C-Y Chang, S-Y Kuo, G-H Hwang; citation_volume=25; citation_issue=1; citation_publication_date=2022; citation_pages=15-27; citation_id=CR16",
+        "citation_journal_title=Journal of Educational Computing Research; citation_title=A chatbot for learning chinese: Learning achievement and technology acceptance; citation_author=H-L Chen, G Vicki Widarso, H Sutrisno; citation_volume=58; citation_issue=6; citation_publication_date=2020; citation_pages=1161-1189; citation_doi=10.1177/0735633120929622; citation_id=CR17",
+        "citation_journal_title=Journal of School Psychology; citation_title=Self-regulation, motivation, and math achievement in middle school: Variations across grade level and math context; citation_author=TJ Cleary, PP Chen; citation_volume=47; citation_issue=5; citation_publication_date=2009; citation_pages=291-314; citation_doi=10.1016/j.jsp.2009.04.002; citation_id=CR18",
+        "citation_journal_title=Teaching and Teacher Education; citation_title=Professional development in self-regulated learning: Shifts and variations in teacher outcomes and approaches to implementation; citation_author=TJ Cleary, A Kitsantas, E Peters-Burton, A Lui, K McLeod, J Slemp, X Zhang; citation_volume=111; citation_publication_date=2022; citation_doi=10.1016/j.tate.2021.103619; citation_id=CR19",
+        "citation_journal_title=Qualitative Health Research; citation_title=Beyond pico: The spider tool for qualitative evidence synthesis; citation_author=A Cooke, D Smith, A Booth; citation_volume=22; citation_issue=10; citation_publication_date=2012; citation_pages=1435-1443; citation_doi=10.1177/1049732312452938; citation_id=CR20",
+        "Dai, W., Lin, J., Jin, H., Li, T., Tsai, Y. S., Gašević, D., & Chen, G. (2023). Can large language models provide feedback to students? A case study on ChatGPT. In 2023 IEEE International Conference on Advanced Learning Technologies (ICALT) (pp. 323-325). IEEE.",
+        "citation_journal_title=Education and Information Technologies; citation_title=Chatbot application in a 5th grade science course; citation_author=A Deveci Topal, C Dilek Eren, A Kolburan Geçer; citation_volume=26; citation_issue=5; citation_publication_date=2021; citation_pages=6241-6265; citation_doi=10.1007/s10639-021-10627-8; citation_id=CR22",
+        "Dever, D. A., Sonnenfeld, N. A., Wiedbusch, M. D., Schmorrow, S. G., Amon, M. J., & Azevedo, R. (2023). A complex systems approach to analyzing pedagogical agents’ scaffolding of self-regulated learning within an intelligent tutoring system. Metacognition and Learning, 1–33.",
+        "citation_journal_title=Educational Psychology Review; citation_title=The role of direct strategy instruction and indirect activation of self-regulated learning|evidence from classroom observation studies; citation_author=C Dignath, MV Veenman; citation_volume=33; citation_issue=2; citation_publication_date=2021; citation_pages=489-533; citation_doi=10.1007/s10648-020-09534-0; citation_id=CR24",
+        "Du, J., Huang, W., & Hew, K. F. (2021). Supporting students goal setting process using chatbot: Implementation in a fully online course. 2021 IEEE International Conference on Engineering, Technology & Education (TALE), 35–41.",
+        "citation_journal_title=Computers in Human Behavior; citation_title=Motivation matters: Interactions between achievement goals and agent scaffolding for self-regulated learning within an intelligent tutoring system; citation_author=MC Duffy, R Azevedo; citation_volume=52; citation_publication_date=2015; citation_pages=338-348; citation_doi=10.1016/j.chb.2015.05.041; citation_id=CR26",
+        "Fan, Y., Lim, L., van der Graaf, J., Kilgour, J., Raković, M., Moore, J., Molenaar, I., Bannert, M., & Gašević, D. (2022). Improving the measurement of self-regulated learning using multi-channel data. Metacognition and Learning, 1–31.",
+        "citation_journal_title=Computers in Human Behavior; citation_title=Stimulating and sustaining interest in a language course: An experimental comparison of chatbot and human task partners; citation_author=LK Fryer, M Ainley, A Thompson, A Gibson, Z Sherlock; citation_volume=75; citation_publication_date=2017; citation_pages=461-468; citation_doi=10.1016/j.chb.2017.05.045; citation_id=CR28",
+        "citation_journal_title=Learning and Individual Differences; citation_title=Supporting self-efficacy beliefs and interest as educational inputs and outcomes: Framing ai and human partnered task experiences; citation_author=LK Fryer, A Thompson, K Nakao, M Howarth, A Gallacher; citation_volume=80; citation_publication_date=2020; citation_doi=10.1016/j.lindif.2020.101850; citation_id=CR29",
+        "citation_journal_title=Review of Educational Research; citation_title=A theoretical review of winne and hadwin’s model of self-regulated learning: New perspectives and directions; citation_author=JA Greene, R Azevedo; citation_volume=77; citation_issue=3; citation_publication_date=2007; citation_pages=334-372; citation_doi=10.3102/003465430303953; citation_id=CR30",
+        "citation_journal_title=Journal of Educational Psychology; citation_title=Calibrating calibration: A meta-analysis of learning strategy instruction interventions to improve metacognitive monitoring accuracy; citation_author=AP Gutierrez de Blume; citation_volume=114; citation_issue=4; citation_publication_date=2022; citation_pages=681; citation_doi=10.1037/edu0000674; citation_id=CR31",
+        "citation_journal_title=Education Sciences; citation_title=Assessment and learning in knowledge spaces (aleks) adaptive system impact on students’ perception and self-regulated learning skills; citation_author=H Harati, L Sujo-Montes, C-H Tu, SJ Armfield, C-J Yen; citation_volume=11; citation_issue=10; citation_publication_date=2021; citation_pages=603; citation_doi=10.3390/educsci11100603; citation_id=CR32",
+        "Hew, K. F., Huang, W., Du, J., & Jia, C. (2021). Using chatbots in ipped learning online sessions: Perceived usefulness and ease of use. International Conference on Blended Learning, 164–175.",
+        "citation_journal_title=Journal of Computing in Higher Education; citation_title=Using chatbots to support student goal setting and social presence in fully online activities: Learner engagement and perceptions; citation_author=KF Hew, W Huang, J Du, C Jia; citation_volume=35; citation_issue=1; citation_publication_date=2023; citation_pages=40-68; citation_doi=10.1007/s12528-022-09338-x; citation_id=CR34",
+        "citation_journal_title=Journal of Open Innovation: Technology, Market, and Complexity; citation_title=Implementation of chatbot in online commerce, and open innovation; citation_author=MD Illescas-Manzano, N Vicente López, N Afonso González, C Cristofol Rodríguez; citation_volume=7; citation_issue=2; citation_publication_date=2021; citation_pages=125; citation_doi=10.3390/joitmc7020125; citation_id=CR35",
+        "Jeon, J. (2021). Chatbot-assisted dynamic assessment (ca-da) for l2 vocabulary learning and diagnosis. Computer Assisted Language Learning, 1–27.",
+        "citation_journal_title=The Internet and Higher Education; citation_title=From students with love: An empirical study on learner goals, self-regulated learning and sense-making of learning analytics in higher education; citation_author=I Jivet, M Scheffel, M Schmitz, S Robbers, M Specht, H Drachsler; citation_volume=47; citation_publication_date=2020; citation_doi=10.1016/j.iheduc.2020.100758; citation_id=CR37",
+        "Jivet, I., Wong, J., Scheffel, M., Valle Torre, M., Specht, M., & Drachsler, H. (2021). Quantum of choice: How learners’ feedback monitoring decisions, goals and self-regulated learning skills are related. LAK21: 11th International Learning Analytics and Knowledge Conference, 416–427.",
+        "citation_journal_title=International Journal of Social Robotics; citation_title=Adaptive robotic tutors that support self-regulated learning: A longer-term investigation with primary school children; citation_author=A Jones, G Castellano; citation_volume=10; citation_issue=3; citation_publication_date=2018; citation_pages=357-370; citation_doi=10.1007/s12369-017-0458-z; citation_id=CR39",
+        "Klug, J., Ogrin, S., Keller, S., Ihringer, A., & Schmitz, B. (2011). A plea for selfregulated learning as a process: Modelling, measuring and intervening.",
+        "citation_journal_title=International Journal of Educational Technology in Higher Education; citation_title=Educational chatbots for project-based learning: Investigating learning outcomes for a team-based design course; citation_author=JA Kumar; citation_volume=18; citation_issue=1; citation_publication_date=2021; citation_pages=1-28; citation_doi=10.1186/s41239-021-00302-w; citation_id=CR41",
+        "Li, Y., Sha, L., Yan, L., Lin, J., Raković, M., Galbraith, K., Lyons, K., Gašević, D., & Chen, G. (2023). Can large language models write reflectively. Computers and Education: Artificial Intelligence, 4, 100140. \n                  https://doi.org/10.1016/j.caeai.2023.100140\n                  \n                .",
+        "Lim, L., Bannert, M., van der Graaf, J., Singh, S., Fan, Y., Surendrannair, S., Rakovic, M., Molenaar, I., Moore, J., & Gašević, D. (2023). Effects of real-time analytics-based personalized scaffolds on students’ self-regulated learning. Computers in Human Behavior, 107547.",
+        "citation_journal_title=Journal of Educational Technology & Society; citation_title=Enhancing post-secondary writers’ writing skills with a chatbot; citation_author=MP-C Lin, D Chang; citation_volume=23; citation_issue=1; citation_publication_date=2020; citation_pages=78-92; citation_id=CR44",
+        "citation_journal_title=Reading and Writing; citation_title=Reasoning beyond history: Examining students’ strategy use when completing a multiple text task addressing a controversial topic in education; citation_author=A List, H Du; citation_volume=34; citation_issue=4; citation_publication_date=2021; citation_pages=1003-1048; citation_doi=10.1007/s11145-020-10095-5; citation_id=CR45",
+        "citation_journal_title=Computers & Education; citation_title=Content and quantity of highlights and annotations predict learning from multiple digital texts; citation_author=A List, C-J Lin; citation_volume=199; citation_publication_date=2023; citation_doi=10.1016/j.compedu.2023.104791; citation_id=CR46",
+        "citation_journal_title=Applied Sciences; citation_title=Educational ai chatbots for content and language integrated learning; citation_author=K Mageira, D Pittou, A Papasalouros, K Kotis, P Zangogianni, A Daradoumis; citation_volume=12; citation_issue=7; citation_publication_date=2022; citation_pages=3239; citation_doi=10.3390/app12073239; citation_id=CR47",
+        "Matcha, W., Gašević, D., Pardo, A., et al. (2019). A systematic review of empirical studies on learning analytics dashboards: A self-regulated learning perspective. IEEE Transactions on Learning Technologies, 13(2), 226–245.",
+        "citation_journal_title=Studies in Higher Education; citation_title=Examining students’ self-set goals for self-regulated learning: Goal properties and patterns; citation_author=L McCardle, EA Webster, A Haffey, AF Hadwin; citation_volume=42; citation_issue=11; citation_publication_date=2017; citation_pages=2153-2169; citation_doi=10.1080/03075079.2015.1135117; citation_id=CR49",
+        "citation_journal_title=Synthesis Lectures on Human Language Technologies; citation_title=Conversational ai: Dialogue systems, conversational agents, and chatbots; citation_author=M McTear; citation_volume=13; citation_issue=3; citation_publication_date=2020; citation_pages=1-251; citation_doi=10.1007/978-3-031-02176-3; citation_id=CR50",
+        "Meece, J. L. (2023). The role of motivation in self-regulated learning. In Self-regulation of learning and performance(pp. 25–44). Routledge.",
+        "citation_journal_title=Advances in Science, Technology and Engineering Systems; citation_title=Effective learning of tax regulations using different chatbot techniques; citation_author=R Mellado-Silva, A Faúndez-Ugalde, M Blanco-Lobos; citation_volume=5; citation_issue=6; citation_publication_date=2020; citation_pages=439-446; citation_doi=10.25046/aj050652; citation_id=CR52",
+        "Moher, D., Liberati, A., Tetzlaff, J., Altman, D. G., Altman, D., Antes, G., . . . Berlin, J. A., et al. (2009). Preferred reporting items for systematic reviews and metaanalyses: The prisma statement (chinese edition). Journal of Chinese Integrative Medicine, 7(9), 889–896.",
+        "citation_journal_title=Computers and Education: Artificial Intelligence; citation_title=The concept of hybrid human-ai regulation: Exemplifying how to support young learners’ self-regulated learning; citation_author=I Molenaar; citation_volume=3; citation_publication_date=2022; citation_id=CR54",
+        "citation_journal_title=Computers & Education; citation_title=Dynamic scaffolding of socially regulated learning in a computer-based learning environment; citation_author=I Molenaar, C Roda, C Boxtel, P Sleegers; citation_volume=59; citation_issue=2; citation_publication_date=2012; citation_pages=515-523; citation_doi=10.1016/j.compedu.2011.12.006; citation_id=CR55",
+        "citation_journal_title=Journal of Applied Psychology; citation_title=Setting, elaborating, and reecting on personal goals improves academic performance; citation_author=D Morisano, JB Hirsh, JB Peterson, RO Pihl, BM Shore; citation_volume=95; citation_issue=2; citation_publication_date=2010; citation_pages=255; citation_doi=10.1037/a0018478; citation_id=CR56",
+        "citation_journal_title=Frontiers in Artificial Intelligence; citation_title=Chatbots as a tool to scale mentoring processes: Individually supporting self-study in higher education; citation_author=AT Neumann, T Arndt, L Köbis, R Meissner, A Martin, P Lange, H-W Wollersheim; citation_volume=4; citation_publication_date=2021; citation_doi=10.3389/frai.2021.668220; citation_id=CR57",
+        "citation_journal_title=Australasian Journal of Educational Technology; citation_title=Enabling adaptive, personalised and context-aware interaction in a smart learning environment: Piloting the icollab system; citation_author=E Oliveira, PG Barba, L Corrin; citation_volume=37; citation_issue=2; citation_publication_date=2021; citation_pages=1-23; citation_doi=10.14742/ajet.6792; citation_id=CR58",
+        "citation_journal_title=Systematic Reviews; citation_title=The prisma 2020 statement: An updated guideline for reporting systematic reviews; citation_author=MJ Page, JE McKenzie, PM Bossuyt, I Boutron, TC Hoffmann, CD Mulrow, SE Brennan; citation_volume=10; citation_issue=1; citation_publication_date=2021; citation_pages=1-11; citation_doi=10.1186/s13643-021-01626-4; citation_id=CR59",
+        "Panadero, E. (2017). A review of self-regulated learning: Six models and four directions for research. Frontiers in Psychology, 422.",
+        "citation_journal_title=Scandinavian Journal of Educational Research; citation_title=Third wave of measurement in the self-regulated learning field: When measurement and intervention come hand in hand; citation_author=E Panadero, J Klug, S Järvelä; citation_volume=60; citation_issue=6; citation_publication_date=2016; citation_pages=723-735; citation_doi=10.1080/00313831.2015.1066436; citation_id=CR61",
+        "citation_journal_title=Computer Applications in Engineering Education; citation_title=Rediscovering the use of chatbots in education: A systematic literature review; citation_author=JQ Pérez, T Daradoumis, JMM Puig; citation_volume=28; citation_issue=6; citation_publication_date=2020; citation_pages=1549-1565; citation_doi=10.1002/cae.22326; citation_id=CR62",
+        "Perez-Alvarez, R., Jivet, I., Pérez-Sanagustin, M., Scheffel, M., & Verbert, K. (2022). Tools designed to support self-regulated learning in online learning environments: A systematic review. IEEE Transactions on Learning Technologies.",
+        "Pintrich, P. R. (2000). The role of goal orientation in self-regulated learning. In: Handbook of self-regulation(pp. 451–502). Elsevier.",
+        "Raković, M., Bernacki, M. L., Greene, J. A., Plumley, R. D., Hogan, K. A., Gates, K. M., & Panter, A. T. (2022a). Examining the critical role of evaluation and adaptation in self-regulated learning. Contemporary Educational Psychology, 68, 102027.",
+        "Rakovic, M., Fan, Y., Van Der Graaf, J., Singh, S., Kilgour, J., Lim, L., Moore, J., Bannert, M., Molenaar, I., & Gasevic, D. (2022b). Using learner trace data to understand metacognitive processes in writing from multiple sources. LAK22: 12th International Learning Analytics and Knowledge Conference, 130–141.",
+        "citation_journal_title=Key competences for lifelong learning.; citation_author=EC Recommendation; citation_publication_date=2018; citation_doi=10.1111/bjep.12173; citation_id=CR67",
+        "Serban, I. V., Sankar, C., Germain, M., Zhang, S., Lin, Z., Subramanian, S., . . . Ke, N. R., et al. (2017). A deep reinforcement learning chatbot. \n                  arXiv:1709.02349\n                  \n                .",
+        "citation_journal_title=Computers & Education; citation_title=Chatbots for learning: A review of educational chatbots for the facebook messenger; citation_author=P Smutny, P Schreiberova; citation_volume=151; citation_publication_date=2020; citation_doi=10.1016/j.compedu.2020.103862; citation_id=CR69",
+        "citation_journal_title=Journal of Research on Technology in Education; citation_title=Effects of self-regulation scaffolding on online participation and learning outcomes; citation_author=D Song, D Kim; citation_volume=53; citation_issue=3; citation_publication_date=2021; citation_pages=249-263; citation_doi=10.1080/15391523.2020.1767525; citation_id=CR70",
+        "Srivastava, N., Fan, Y., Rakovic, M., Singh, S., Jovanovic, J., Van Der Graaf, J., Lim, L., Surendrannair, S., Kilgour, J., Molenaar, I., et al. (2022). Effects of internal and external conditions on strategies of self-regulated learning: A learning analytics study. LAK22: 12th International Learning Analytics and Knowledge Conference, 392–403.",
+        "citation_journal_title=Computer Applications in Engineering Education; citation_title=Siaaa-c: A student interactive assistant android application with chatbot during covid-19 pandemic; citation_author=SZ Sweidan, SS Abu Laban, NA Alnaimat, KA Darabkh; citation_volume=29; citation_issue=6; citation_publication_date=2021; citation_pages=1718-1742; citation_doi=10.1002/cae.22419; citation_id=CR72",
+        "citation_journal_title=Learning and Instruction; citation_title=How are students’ emotions related to the accuracy of cognitive and metacognitive processes during learning with an intelligent tutoring system?; citation_author=M Taub, R Azevedo, R Rajendran, EB Cloude, G Biswas, MJ Price; citation_volume=72; citation_publication_date=2021; citation_doi=10.1016/j.learninstruc.2019.04.001; citation_id=CR73",
+        "citation_journal_title=Contemporary Educational Psychology; citation_title=Self-regulated learning training programs enhance university students’ academic performance, self-regulated learning strategies, and motivation: A meta-analysis; citation_author=M Theobald; citation_volume=66; citation_publication_date=2021; citation_doi=10.1016/j.cedpsych.2021.101976; citation_id=CR74",
+        "citation_journal_title=Proceedings of the ACM on Human-computer Interaction; citation_title=Let’s talk it out: A chatbot for effective study habit behavioral change; citation_author=X Tian, Z Risha, I Ahmed, AB Lekshmi Narayanan, J Biehl; citation_volume=5; citation_issue=CSCW1; citation_publication_date=2021; citation_pages=1-32; citation_doi=10.1145/3449171; citation_id=CR75",
+        "citation_journal_title=International Journal of Educational Technology in Higher Education; citation_title=Chatbot to improve learning punctuation in spanish and to enhance open and exible learning environments; citation_author=E Vázquez-Cano, S Mengual-Andrés, E López-Meneses; citation_volume=18; citation_issue=1; citation_publication_date=2021; citation_pages=1-20; citation_doi=10.1186/s41239-021-00269-8; citation_id=CR76",
+        "citation_journal_title=Communications of the ACM; citation_title=Eliza|a computer program for the study of natural language communication between man and machine; citation_author=J Weizenbaum; citation_volume=9; citation_issue=1; citation_publication_date=1966; citation_pages=36-45; citation_doi=10.1145/365153.365168; citation_id=CR77",
+        "Winkler, R., & Söllner, M. (2018). Unleashing the potential of chatbots in education: A state-of-the-art analysis. Academy of Management Annual Meeting (AOM).",
+        "citation_journal_title=Educational Psychologist; citation_title=Inherent details in self-regulated learning; citation_author=PH Winne; citation_volume=30; citation_issue=4; citation_publication_date=1995; citation_pages=173-187; citation_doi=10.1207/s15326985ep3004_2; citation_id=CR79",
+        "citation_journal_title=British Journal of Educational Psychology; citation_title=Theorizing and researching levels of processing in self-regulated learning; citation_author=PH Winne; citation_volume=88; citation_issue=1; citation_publication_date=2018; citation_pages=9-20; citation_doi=10.1111/bjep.12173; citation_id=CR80",
+        "Winne, P. H. (2022). Modeling self-regulated learning as learners doing learning science: How trace data and learning analytics help develop skills for self-regulated learning. Metacognition and Learning, 1–19.",
+        "Winne, P. H., & Hadwin, A. F. (1998). Studying as self-regulated engagement in learning. in metacognition in educational theory and practice. Metacognition in Educational Theory and Practice, 277–304.",
+        "citation_journal_title=Frontiers in Artificial Intelligence; citation_title=Are we there yet?-a systematic literature review on chatbots in education; citation_author=S Wollny, J Schneider, D Mitri, J Weidlich, M Rittberger, H Drachsler; citation_volume=4; citation_publication_date=2021; citation_doi=10.3389/frai.2021.654924; citation_id=CR83",
+        "citation_journal_title=Ieee Access; citation_title=Advantages and constraints of a hybrid model k-12 e-learning assistant chatbot; citation_author=EH-K Wu, C-H Lin, Y-Y Ou, C-Z Liu, W-K Wang, C-Y Chao; citation_volume=8; citation_publication_date=2020; citation_pages=77788-77801; citation_doi=10.1109/ACCESS.2020.2988252; citation_id=CR84",
+        "citation_journal_title=British Journal of Educational Technology; citation_title=The mediating effects of needs satisfaction on the relationships between prior knowledge and self-regulated learning through artificial intelligence chatbot; citation_author=Q Xia, TKF Chiu, CS Chai, K Xie; citation_volume=54; citation_issue=4; citation_publication_date=2023; citation_pages=967-986; citation_doi=10.1111/bjet.13305; citation_id=CR85",
+        "citation_journal_title=Journal of Educational Computing Research; citation_title=Conversation technology with micro-learning: The impact of chatbot-based learning on students’ learning motivation and performance; citation_author=J Yin, T-T Goh, B Yang, Y Xiaobin; citation_volume=59; citation_issue=1; citation_publication_date=2021; citation_pages=154-177; citation_doi=10.1177/0735633120952067; citation_id=CR86",
+        "citation_journal_title=International Journal of Educational Technology in Higher Education; citation_title=Systematic review of research on artificial intelligence applications in higher education- where are the educators?; citation_author=O Zawacki-Richter, VI Marín, M Bond, F Gouverneur; citation_volume=16; citation_issue=1; citation_publication_date=2019; citation_pages=1-27; citation_doi=10.1186/s41239-019-0171-0; citation_id=CR87",
+        "citation_journal_title=Interactive Learning Environments; citation_title=An individualized intervention approach to improving university students’ learning performance and interactive behaviors in a blended learning environment; citation_author=J-H Zhang, L-C Zou, J-J Miao, Y-X Zhang, G-J Hwang, Y Zhu; citation_volume=28; citation_issue=2; citation_publication_date=2020; citation_pages=231-245; citation_doi=10.1080/10494820.2019.1636078; citation_id=CR88",
+        "citation_title=Chatbot-based learning of logical fallacies in e writing: Perceived effectiveness in improving target knowledge and learner motivation; citation_publication_date=2023; citation_id=CR89; citation_author=R Zhang; citation_author=D Zou; citation_author=G Cheng; citation_publisher=Interactive Learning Environments",
+        "citation_journal_title=Innovation in Language Learning and Teaching; citation_title=Chatbot-based training on logical fallacy in efl argumentative writing; citation_author=R Zhang, D Zou, G Cheng; citation_volume=17; citation_issue=5; citation_publication_date=2023; citation_pages=932-945; citation_doi=10.1080/17501229.2023.2197417; citation_id=CR90",
+        "Zimmerman, B. J. (2000). Attaining self-regulation: A social cognitive perspective. In Handbook of self-regulation(pp. 13–39). Elsevier.",
+        "citation_journal_title=Theory Into Practice; citation_title=Becoming a self-regulated learner: An overview; citation_author=BJ Zimmerman; citation_volume=41; citation_issue=2; citation_publication_date=2002; citation_pages=64-70; citation_doi=10.1207/s15430421tip4102_2; citation_id=CR92",
+        "Zimmerman, B. J. (2013). Theories of self-regulated learning and academic achievement: An overview and analysis. Self-regulated Learning and Academic Achievement, 1–36."
+      ],
+      "citation_author": [
+        "Guan, Rui",
+        "Raković, Mladen",
+        "Chen, Guanliang",
+        "Gašević, Dragan"
+      ],
+      "citation_author_email": [
+        "rui.guan@monash.edu",
+        "mladen.rakovic@monash.edu",
+        "guanliang.chen@monash.edu",
+        "dragan.gasevic@monash.edu"
+      ],
+      "citation_author_institution": [
+        "Centre for Learning Analytics at Monash, Faculty of Information Technology, Monash University, Clayton, Australia",
+        "Centre for Learning Analytics at Monash, Faculty of Information Technology, Monash University, Clayton, Australia",
+        "Centre for Learning Analytics at Monash, Faculty of Information Technology, Monash University, Clayton, Australia",
+        "Centre for Learning Analytics at Monash, Faculty of Information Technology, Monash University, Clayton, Australia",
+        "School of Informatics, University of Edinburgh, Edinburgh, UK"
+      ],
+      "citation_cover_date": [
+        "2025/03/01"
+      ]
+    },
+    "resolved_url": "https://link.springer.com/article/10.1007/s10639-024-12881-y?error=cookies_not_supported&code=31476163-e01f-48d6-b4b4-cde5bfd34026",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 2095155,
+    "pdf_sha256": "6b2d0f4f28de932dc6d761b74d75fd8e7fbfc84390a27d5c589e6b5472f81831",
+    "pages": 26,
+    "download_resolved_url": "https://link.springer.com/content/pdf/10.1007/s10639-024-12881-y.pdf?error=cookies_not_supported&code=e9ae4a81-5c80-4e27-95a6-1819e9359975",
+    "attempts": [],
+    "finding": "Guan等，2024上线/2025卷；27篇2012–2023研究；SRL过程与学习结果，多种定量/定性方法。",
+    "limitation": "时间段多为前LLM/早期聊天机器人；SRL量表需配行为日志，不当作效果万能解释。",
+    "authors": [
+      "Guan, Rui",
+      "Raković, Mladen",
+      "Chen, Guanliang",
+      "Gašević, Dragan"
+    ]
+  },
+  {
+    "id": "E02",
+    "topic": "evaluation",
+    "title": "Does ChatGPT enhance student learning? A systematic review and meta-analysis of experimental studies",
+    "url": "https://doi.org/10.1016/j.compedu.2024.105224",
+    "pdf_url": null,
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "出版商原始摘要及建议；未获取PDF",
+    "metadata": {},
+    "resolved_url": "https://linkinghub.elsevier.com/retrieve/pii/S0360131524002380",
+    "pdf_status": "no_pdf_link",
+    "attempts": [],
+    "finding": "Deng等，C&E 2025；69项2022–2024实验文章；强调客观能力、复杂任务、长期跟踪和功效分析。",
+    "limitation": "总体ChatGPT证据，非树状或艺术Agent；高阶能力自报与客观表现应区别。"
+  },
+  {
+    "title": "Sensecape: Enabling Multilevel Exploration and Sensemaking with Large Language Models",
+    "url": "https://arxiv.org/abs/2305.11483",
+    "pdf_url": "https://arxiv.org/pdf/2305.11483",
+    "year": "2023",
+    "authors": [
+      "Suh, Sangho",
+      "Min, Bryan",
+      "Palani, Srishti",
+      "Xia, Haijun"
+    ],
+    "status": "开放预印本版本",
+    "pdf_sha256": "4b249c4f6ccf598fb286bb2f55fc6a2188cfc8dd203da2482994a01c85bd8efe",
+    "pdf_bytes": 5878531,
+    "id": "B04",
+    "topic": "branching",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P32; no new network verification",
+    "read_depth": "全文重点核查用户研究与结果",
+    "pdf_status": "reused",
+    "pages": 18,
+    "finding": "Sensecape，UIST 2023；12人对照用户研究，比较非线性知识探索工具；更广概念探索、更多层级组织和回看。",
+    "limitation": "信息探索行为不是无AI学习增益；界面学习成本及多功能混杂。"
+  },
+  {
+    "title": "Graphologue: Exploring Large Language Model Responses with Interactive Diagrams",
+    "url": "https://arxiv.org/abs/2305.11473",
+    "pdf_url": "https://arxiv.org/pdf/2305.11473",
+    "year": "2023",
+    "authors": [
+      "Jiang, Peiling",
+      "Rayan, Jude",
+      "Dow, Steven P.",
+      "Xia, Haijun"
+    ],
+    "status": "开放预印本版本",
+    "pdf_sha256": "e4432c0d654d2fbd58927b055e434fbac4b23b1d043a6ba83d686d35444b015b",
+    "pdf_bytes": 3377508,
+    "id": "B05",
+    "topic": "branching",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P33; no new network verification",
+    "read_depth": "全文重点核查 §9",
+    "pdf_status": "reused",
+    "pages": 20,
+    "finding": "Graphologue，UIST 2023；形成性研究10人，系统用户评价7名熟练ChatGPT用户；将回答转为交互节点关系图。",
+    "limitation": "技术图谱准确度与定性可用性，不是学科知识随机学习实验；图结构不等于分支长期记忆。"
+  },
+  {
+    "title": "DeepTutor: Towards Agentic Personalized Tutoring",
+    "url": "https://arxiv.org/abs/2604.26962",
+    "pdf_url": "https://arxiv.org/pdf/2604.26962",
+    "year": "2026",
+    "authors": [
+      "Zhao, Bingxi",
+      "Zhang, Jiahao",
+      "Ren, Xubin",
+      "Guo, Zirui",
+      "Chu, Tianzhe",
+      "Ma, Yi",
+      "Huang, Chao"
+    ],
+    "status": "预印本",
+    "pdf_sha256": "0a090414472f649a5a8bc802c05f54438d2624743fe6658a888fb3d00851b18c",
+    "pdf_bytes": 15857157,
+    "id": "B06",
+    "topic": "branching",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P01; no new network verification",
+    "read_depth": "沿用上次全文重点核查",
+    "pdf_status": "reused",
+    "pages": 41,
+    "finding": "DeepTutor，2026预印本：知识 grounding、学习者记忆、题目生成、主动渠道；评测以学生模拟与基准为主。",
+    "limitation": "记忆/教学控制近邻；没有验证本问题的分支追问机制。"
+  },
+  {
+    "title": "Planning-Guided Tutoring with Assessment-Driven Memory for Pedagogical LLM Tutors",
+    "url": "https://aclanthology.org/2026.acl-long.325/",
+    "pdf_url": "https://aclanthology.org/2026.acl-long.325.pdf",
+    "year": "2026",
+    "authors": [],
+    "status": "ACL 2026",
+    "pdf_sha256": "3f23721f0ba9cccebf45552334a785c3268e2bae937342547d07deec51260096",
+    "pdf_bytes": 1175868,
+    "id": "B07",
+    "topic": "branching",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P02; no new network verification",
+    "read_depth": "沿用上次全文重点核查",
+    "pdf_status": "reused",
+    "pages": 24,
+    "finding": "ScaffoldLM，ACL 2026：计划引导和评估驱动记忆；主要合成数学辅导数据。",
+    "limitation": "不等于树状session或真人自由打岔实验。"
+  },
+  {
+    "title": "CoLearn: An Agentic Tutor that Learns its Learner in a Human--AI Co-Learning Loop",
+    "url": "https://arxiv.org/abs/2609.21154",
+    "pdf_url": "https://arxiv.org/pdf/2609.21154",
+    "year": "2026",
+    "authors": [
+      "He, Kailai",
+      "Wu, Zhihao",
+      "Zhang, Linhai",
+      "Zhao, Runcong",
+      "He, Yulan",
+      "Li, Jiazheng"
+    ],
+    "status": "arXiv；页面声明EMNLP 2026已接收",
+    "pdf_sha256": "9bbdead99c7950aeec60a1d650fdd7d72b965fcf5ac61058b088d76bc39b2076",
+    "pdf_bytes": 1805832,
+    "id": "B08",
+    "topic": "branching",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P04; no new network verification",
+    "read_depth": "沿用上次全文重点核查",
+    "pdf_status": "reused",
+    "pages": 10,
+    "finding": "CoLearn，2026预印本：追踪学习者技能、误解证据和自适应练习。",
+    "limitation": "全文不声称学习增益；不能把用户偏好或诊断质量当教学因果效果。"
+  },
+  {
+    "title": "Unifying AI Tutor Evaluation: An Evaluation Taxonomy for Pedagogical Ability Assessment of LLM-Powered AI Tutors",
+    "url": "https://aclanthology.org/2025.naacl-long.57/",
+    "pdf_url": "https://aclanthology.org/2025.naacl-long.57.pdf",
+    "year": "2025",
+    "authors": [],
+    "status": "NAACL 2025",
+    "pdf_sha256": "8716f7e9e94c63abbab3e5a3c2ed6f67e39775270fa8c7734c4f7a2334886b61",
+    "pdf_bytes": 2685974,
+    "id": "E03",
+    "topic": "evaluation",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P17; no new network verification",
+    "read_depth": "全文重点核查评价分类与摘要",
+    "pdf_status": "reused",
+    "pages": 18,
+    "finding": "Maurya等，NAACL 2025；MRBench 192对话、1596回答，8维：错误识别/定位、答案泄露、指导、可行动性、连贯、语气、人类相似性。",
+    "limitation": "教学回答评估，不是真人学习增益；艺术域需适配而非照搬数学rubric。"
+  },
+  {
+    "title": "LearnLM: Improving Gemini for Learning",
+    "url": "https://arxiv.org/abs/2412.16429",
+    "pdf_url": "https://arxiv.org/pdf/2412.16429",
+    "year": "2024",
+    "authors": [
+      "LearnLM Team",
+      "Modi, Abhinit",
+      "Veerubhotla, Aditya Srikanth",
+      "Rysbek, Aliya",
+      "Huber, Andrea",
+      "Wiltshire, Brett",
+      "Veprek, Brian",
+      "Gillick, Daniel",
+      "Kasenberg, Daniel",
+      "Ahmed, Derek",
+      "Jurenka, Irina",
+      "Cohan, James",
+      "She, Jennifer",
+      "Wilkowski, Julia",
+      "Alarakyia, Kaiz",
+      "McKee, Kevin R.",
+      "Wang, Lisa",
+      "Kunesch, Markus",
+      "Schaekermann, Mike",
+      "Pîslar, Miruna",
+      "Joshi, Nikhil",
+      "Mahmoudieh, Parsa",
+      "Jhun, Paul",
+      "Wiltberger, Sara",
+      "Mohamed, Shakir",
+      "Agarwal, Shashank",
+      "Phal, Shubham Milind",
+      "Lee, Sun Jae",
+      "Strinopoulos, Theofilos",
+      "Ko, Wei-Jen",
+      "Wang, Amy",
+      "Anand, Ankit",
+      "Bhoopchand, Avishkar",
+      "Wild, Dan",
+      "Pandya, Divya",
+      "Bar, Filip",
+      "Graham, Garth",
+      "Winnemoeller, Holger",
+      "Nagda, Mahvish",
+      "Kolhar, Prateek",
+      "Schneider, Renee",
+      "Zhu, Shaojian",
+      "Chan, Stephanie",
+      "Yadlowsky, Steve",
+      "Sounderajah, Viknesh",
+      "Assael, Yannis"
+    ],
+    "status": "技术报告",
+    "pdf_sha256": "377653c6453184b4d30994f7fcb39d10e67d341711985b294096a6f3b535029a",
+    "pdf_bytes": 28713574,
+    "id": "E04",
+    "topic": "evaluation",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P20; no new network verification",
+    "read_depth": "沿用上次全文重点核查",
+    "pdf_status": "reused",
+    "pages": 35,
+    "finding": "LearnLM，2024技术报告；学习科学引导模型行为与教师偏好评价。",
+    "limitation": "工程/教学行为和偏好不等于保持/迁移；不要把通用正确性当完整教育目标。"
+  },
+  {
+    "title": "Generative AI without guardrails can harm learning: Evidence from high school mathematics",
+    "url": "https://doi.org/10.1073/pnas.2422633122",
+    "pdf_url": "https://hamsabastani.github.io/education_llm.pdf",
+    "year": "2025",
+    "authors": [],
+    "status": "PNAS 2025",
+    "pdf_sha256": "3c480fab94d0b6e466741a181724eba2bb868015f1a16ab998894a3a61067b4a",
+    "pdf_bytes": 1150746,
+    "id": "E05",
+    "topic": "evaluation",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P23; no new network verification",
+    "read_depth": "本轮核查原始PNAS结果；沿用全文",
+    "pdf_status": "reused",
+    "pages": 68,
+    "finding": "Bastani等，PNAS 2025；高中数学RCT。无护栏GPT练习提升但撤去AI后成绩下降，护栏Tutor未显著优于控制的无AI考试。",
+    "limitation": "强证据说明辅助表现≠学习；不证明所有AI都伤害学习，也不证明树状机制有效。"
+  },
+  {
+    "title": "AI tutoring outperforms in-class active learning: an RCT introducing a novel research-based design in an authentic educational setting",
+    "url": "https://doi.org/10.1038/s41598-025-97652-6",
+    "pdf_url": "https://www.nature.com/articles/s41598-025-97652-6.pdf",
+    "year": "2025",
+    "authors": [
+      "Kestin, Greg",
+      "Miller, Kelly",
+      "Klales, Anna",
+      "Milbourne, Timothy",
+      "Ponti, Gregorio"
+    ],
+    "status": "Scientific Reports 2025",
+    "pdf_sha256": "afa6965dfd885fccdeb7ba48bec6a9e8293886db12a02860bbc388fa93e7ff72",
+    "pdf_bytes": 1376057,
+    "id": "E06",
+    "topic": "evaluation",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P24; no new network verification",
+    "read_depth": "沿用上次全文重点核查",
+    "pdf_status": "reused",
+    "pages": 10,
+    "finding": "Kestin等，Scientific Reports 2025；真实课程AI辅导与课堂主动学习RCT。",
+    "limitation": "整体教学包比较，不能归因单独记忆/分支功能；可借鉴前后测、时间效率与学习体验联测。"
+  },
+  {
+    "title": "Tutor CoPilot: A Human-AI Approach for Scaling Real-Time Expertise",
+    "url": "https://arxiv.org/abs/2410.03017",
+    "pdf_url": "https://arxiv.org/pdf/2410.03017",
+    "year": "2024/2025",
+    "authors": [
+      "Wang, Rose E.",
+      "Ribeiro, Ana T.",
+      "Robinson, Carly D.",
+      "Loeb, Susanna",
+      "Demszky, Dora"
+    ],
+    "status": "预印本v2，2025修订",
+    "pdf_sha256": "438c36be6255502f91e616b794d803685cb76237c1c5d1b28ec2e47b577235c0",
+    "pdf_bytes": 1614777,
+    "id": "E07",
+    "topic": "evaluation",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P25; no new network verification",
+    "read_depth": "沿用上次全文重点核查",
+    "pdf_status": "reused",
+    "pages": 33,
+    "finding": "Tutor CoPilot，2024预印本/研究；给人类导师提供实时专家建议的课堂实验。",
+    "limitation": "human-in-the-loop不同于自主Agent，干预实施对象是导师。"
+  },
+  {
+    "title": "The ICAP Framework: Linking Cognitive Engagement to Active Learning Outcomes",
+    "url": "https://doi.org/10.1080/00461520.2014.965823",
+    "pdf_url": "https://education.asu.edu/sites/default/files/lcl/chiwylie2014icap_2.pdf",
+    "year": "2014",
+    "authors": [],
+    "status": "Educational Psychologist",
+    "pdf_sha256": "f8c36893bc649964a9533f64e81cedeefaa77a749fa0a057502e6227a7d0e3ce",
+    "pdf_bytes": 535696,
+    "id": "E08",
+    "topic": "evaluation",
+    "accessed": "2026-10-03 (prior snapshot)",
+    "provenance": "copied from prior library P47; no new network verification",
+    "read_depth": "沿用上次原始来源核查；本轮仅理论引用",
+    "pdf_status": "reused",
+    "pages": 26,
+    "finding": "Chi/Wylie，2014 ICAP：被动、主动、建构、互动认知参与框架。",
+    "limitation": "点击、分支数量不自动代表深度参与；需要内容层面的解释/推理编码。"
+  },
+  {
+    "id": "I05",
+    "topic": "interruption",
+    "title": "Interruption Handling for Conversational Robots",
+    "url": "https://arxiv.org/abs/2501.01568v2",
+    "pdf_url": "https://arxiv.org/pdf/2501.01568v2",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查 §V–VII；另保留出版版图像PDF",
+    "metadata": {
+      "citation_title": [
+        "Interruption Handling for Conversational Robots"
+      ],
+      "citation_author": [
+        "Cao, Shiye",
+        "Moon, Jiwon",
+        "Mahmood, Amama",
+        "Antony, Victor Nikhil",
+        "Xiao, Ziang",
+        "Liu, Anqi",
+        "Huang, Chien-Ming"
+      ],
+      "citation_date": [
+        "2025/01/02"
+      ],
+      "citation_online_date": [
+        "2025/04/26"
+      ],
+      "citation_pdf_url": [
+        "https://arxiv.org/pdf/2501.01568"
+      ],
+      "citation_arxiv_id": [
+        "2501.01568"
+      ],
+      "citation_abstract": [
+        "Interruptions, a fundamental component of human communication, can enhance the dynamism and effectiveness of conversations, but only when effectively managed by all parties involved. Despite advancements in robotic systems, state-of-the-art systems still have limited capabilities in handling user-initiated interruptions in real-time. Prior research has primarily focused on post hoc analysis of interruptions. To address this gap, we present a system that detects user-initiated interruptions and manages them in real-time based on the interrupter's intent (i.e., cooperative agreement, cooperative assistance, cooperative clarification, or disruptive interruption). The system was designed based on interaction patterns identified from human-human interaction data. We integrated our system into an LLM-powered social robot and validated its effectiveness through a timed decision-making task and a contentious discussion task with 21 participants. Our system successfully handled 93.69% (n=104/111) of user-initiated interruptions. We discuss our learnings and their implications for designing interruption-handling behaviors in conversational robots."
+      ]
+    },
+    "resolved_url": "https://arxiv.org/abs/2501.01568v2",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1585407,
+    "pdf_sha256": "a7450c6e3789fb1889075a2c67ec4990678ad7a8d780c0ddaa9a53728ea485b3",
+    "pages": 10,
+    "download_resolved_url": "https://arxiv.org/pdf/2501.01568v2",
+    "attempts": [],
+    "published_pdf": "sources/I05-published.pdf (image-only; retained)",
+    "finding": "RSS 2025；21人，两种任务；121次插话，排除5次脚本事件与5次网络故障后，104/111成功。错误次数与被听见/重视感、满意度负相关。",
+    "limitation": "探索性相关分析；21人有42次任务评价，非42名独立参与者；忽略/总让出两基线为离线推算，不是随机组间体验实验。无教育学习测验。",
+    "authors": [
+      "Cao, Shiye",
+      "Moon, Jiwon",
+      "Mahmood, Amama",
+      "Antony, Victor Nikhil",
+      "Xiao, Ziang",
+      "Liu, Anqi",
+      "Huang, Chien-Ming"
+    ],
+    "year": "2025"
+  },
+  {
+    "id": "I06",
+    "title": "When Users Change Their Mind: Evaluating Interruptible Agents in Long-Horizon Web Navigation",
+    "url": "https://arxiv.org/abs/2604.00892",
+    "pdf_url": "https://arxiv.org/pdf/2604.00892",
+    "topic": "interruption",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "全文重点核查摘要、任务与限制",
+    "pdf_status": "downloaded",
+    "pages": 22,
+    "pdf_bytes": 7659779,
+    "pdf_sha256": "c6a01e2a98e29d214906845f370d39d1e6002d294a62075fea72ceaa1b1cdf09",
+    "finding": "InterruptBench，2026预印本；WebArena-Lite任务，中途添加、修改、撤回要求；评估任务成功和恢复效率。",
+    "limitation": "最贴近有工具Agent被打断后的状态处理；模拟基准，不是用户体验或学习证据。"
+  },
+  {
+    "id": "B09",
+    "title": "Branchat: A Tree-Structured Interface for Efficient Revisitation in Long-Horizon LLM Conversations",
+    "url": "https://doi.org/10.1145/3772363.3798792",
+    "pdf_url": "https://dl.acm.org/doi/pdf/10.1145/3772363.3798792",
+    "topic": "branching",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "仅核查Crossref原始元数据及B02相关工作表",
+    "pdf_status": "failed",
+    "attempts": [
+      {
+        "stage": "pdf",
+        "error": "HTTP 403 on publisher; Crossref metadata retained"
+      }
+    ],
+    "finding": "Branchat，CHI EA 2026，DOI 10.1145/3772363.3798792；标题明确树状长期对话回访。",
+    "limitation": "出版商403，未核查全文、样本或结果；仅作为待读近邻，不据此作效果结论。"
+  },
+  {
+    "id": "I07",
+    "topic": "interruption",
+    "title": "Turn-Taking Strategies for Human-Robot Peer-Learning Dialogue",
+    "url": "https://aclanthology.org/W18-5013/",
+    "pdf_url": "https://aclanthology.org/W18-5013.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "原始摘要和全文方法扫描",
+    "metadata": {
+      "citation_title": [
+        "Turn-Taking Strategies for Human-Robot Peer-Learning Dialogue"
+      ],
+      "citation_author": [
+        "Ranjini Das",
+        "Heather Pon-Barry"
+      ],
+      "citation_conference_title": [
+        "Proceedings of the 19th Annual SIGdial Meeting on Discourse and Dialogue"
+      ],
+      "citation_publication_date": [
+        "2018/7"
+      ],
+      "citation_pdf_url": [
+        "https://aclanthology.org/W18-5013.pdf"
+      ],
+      "citation_firstpage": [
+        "119"
+      ],
+      "citation_lastpage": [
+        "129"
+      ],
+      "citation_doi": [
+        "10.18653/v1/W18-5013"
+      ]
+    },
+    "resolved_url": "https://aclanthology.org/W18-5013/",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1000970,
+    "pdf_sha256": "b3f8cf1514029e405bb9e7841c40a82a903d1c9e9b6ed51158a43a6bcaaba7c4",
+    "pages": 11,
+    "download_resolved_url": "https://aclanthology.org/W18-5013.pdf",
+    "attempts": [],
+    "finding": "SIGDIAL 2018；真人同伴辅导语料→可教机器人轮次策略；grounding和呈现控制。",
+    "limitation": "学习场景直接近邻；非文本实时abort对照。",
+    "authors": [
+      "Ranjini Das",
+      "Heather Pon-Barry"
+    ]
+  },
+  {
+    "id": "E09",
+    "topic": "instrument",
+    "title": "A Manual for the Use of the Motivated Strategies for Learning Questionnaire (MSLQ)",
+    "url": "https://eric.ed.gov/?id=ED338122",
+    "pdf_url": "https://files.eric.ed.gov/fulltext/ED338122.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "原始手册用途核查；未逐页精读",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 1779257,
+    "pdf_sha256": "75ee1ff190ab5b1784d0bbefbf0437a918e72cb2e3ba749ce51b967e7f9480c5",
+    "pages": 75,
+    "download_resolved_url": "https://files.eric.ed.gov/fulltext/ED338122.pdf",
+    "attempts": [
+      {
+        "stage": "metadata",
+        "error": "<urlopen error [SSL: UNEXPECTED_EOF_WHILE_READING] EOF occurred in violation of protocol (_ssl.c:1010)>"
+      }
+    ],
+    "finding": "Pintrich等，1991 MSLQ手册，大学课程动机与学习策略。",
+    "limitation": "成人课程量表不自动适用儿童/艺术短任务；选对应完整子量表，翻译和情境改写后重新检验。"
+  },
+  {
+    "id": "E10",
+    "topic": "instrument",
+    "title": "NASA-TLX Paper-and-Pencil version user manual",
+    "url": "https://www.nasa.gov/human-systems-integration-division/nasa-task-load-index-tlx/",
+    "pdf_url": "https://www.nasa.gov/wp-content/uploads/2026/03/nasa-tlx-v1-0-searchable-text-and-forms.pdf",
+    "accessed": "2026-10-07",
+    "provenance": "new download",
+    "read_depth": "NASA官方说明和用户手册用途核查",
+    "metadata": {},
+    "resolved_url": "https://www.nasa.gov/human-systems-integration-division/nasa-task-load-index-tlx/",
+    "pdf_status": "downloaded",
+    "pdf_bytes": 5459339,
+    "pdf_sha256": "af40c4a1abbb74417b49383cb14c806caca45889030f0b1cd37e15f55c583a40",
+    "pages": 21,
+    "download_resolved_url": "https://www.nasa.gov/wp-content/uploads/2026/03/nasa-tlx-v1-0-searchable-text-and-forms.pdf",
+    "attempts": [],
+    "finding": "NASA-TLX主观工作负荷6维：心理、身体、时间、自评表现、努力、挫败。",
+    "limitation": "非教育专门认知负荷三分量表；原weighted与Raw TLX区别，不能把任意Likert均值称官方标准分。"
+  }
+]

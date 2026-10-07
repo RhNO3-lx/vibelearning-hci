@@ -1,0 +1,1550 @@
+=== PDF PAGE 1 ===
+Weighted Memory Tree: Remembering What Matters for Long-Horizon
+LLM Agents
+Quang Dao1, Purvi Kathalkar2, Kenneth Eaton3
+1Rose-Hulman Institute of Technology
+2Georgia Institute of Technology, 3Georgia Tech Research Institute
+Abstract
+Large language model (LLM) agents have
+demonstrated the ability to solve multi-step
+tasks requiring planning, tool use, and exter-
+nal information access, yet growing execution
+histories increase inference cost and expose
+reasoning to outdated, irrelevant, or misleading
+information, potentially degrading reasoning
+quality. Existing memory approaches organize
+or compress execution histories but provide
+limited mechanisms for deciding which memo-
+ries remain active. We introduce theWeighted
+Memory Tree(WMT), a hierarchical memory
+system that organizes execution into tasks, sub-
+tasks, and actions while assigning each mem-
+ory a dynamic retention score. Event-based
+updates and selection-based decay revise these
+scores, allowing WMT to preserve useful infor-
+mation, fold completed trajectories, suppress
+low-utility content, and retain access to folded
+context. We evaluate WMT on GAIA-Text us-
+ing Qwen3-8B, Gemma 4 E4B, and Llama-
+3.1-8B, with ablations and memory-poisoning
+experiments. Relative to linear memory, WMT
+improves accuracy by an average of 9.97 per-
+centage points while reducing prompt-token
+usage by 32.8%. Memory-poisoning experi-
+ments show that WMT limits the persistence
+and propagation of unreliable information. Our
+results suggest that effective long-horizon agent
+memory depends less on storing more informa-
+tion than on deciding which information should
+remain active.
+1 Introduction
+Large language model (LLM) agents interleave
+reasoning with actions in external environments,
+enabling them to retrieve information, invoke tools,
+and revise plans over multiple steps to solve long-
+horizon tasks such as open-domain research (Yao
+et al., 2023; Schick et al., 2023; Sun et al., 2026).
+Such tasks require agents to preserve evidence, tool
+outputs, and failed attempts encountered earlier in
+the execution, making memory central to maintain-
+ing the task state required for subsequent reasoning
+(Zhang et al., 2025; Guan et al., 2026). As execu-
+tion histories grow, however, outdated observations,
+failed attempts, and incidental details accumulate
+alongside useful information, making it increas-
+ingly difficult to determine which memories should
+continue to influence subsequent decisions.
+A common ReAct-style design preserves execu-
+tion state by appending reasoning steps, tool calls,
+and observations to a linear interaction history (Yao
+et al., 2023). Although this retains the full trajec-
+tory, it treats all memories equally, regardless of
+their utility, causing prompt lengths to grow while
+outdated observations, failed reasoning, and valid
+evidence remain intermixed. Consequently, rele-
+vant information must compete with stale or in-
+cidental content, a limitation that is not resolved
+simply by expanding the context window. Long-
+context studies have shown that language mod-
+els struggle to utilize relevant information within
+lengthy inputs, with performance often degrading
+well below the nominal context-window limit (Liu
+et al., 2024; Levy et al., 2024; Fraga, 2024; He
+et al., 2024; Hsieh et al., 2024; Tian et al., 2025).
+Beyond efficiency and reasoning quality, persis-
+tent agent memory also introduces a security con-
+cern: poisoned records retrieved from long-term
+memory or external knowledge bases can influence
+subsequent agent behavior (Chen et al., 2024; Sri-
+vastava and He, 2025; Ferrag et al., 2026; Dong
+et al., 2025). Long-horizon agents, therefore, re-
+quire mechanisms that regulate which stored infor-
+mation enters the working context.
+Recent work addresses parts of this problem
+through structured or compressed representations
+of execution history. The Task Memory Engine
+(TME) organizes execution as a hierarchical task
+tree and synthesizes prompts from the active task
+path (Ye, 2025). Context-Folding summarizes com-
+pleted subtasks before returning to the parent tra-
+1
+arXiv:2608.20631v1  [cs.AI]  21 Aug 2026
+
+=== PDF PAGE 2 ===
+jectory (Sun et al., 2026). These approaches estab-
+lish the value of preserving task structure and com-
+pressing completed trajectories. However, they do
+not explicitly maintain a dynamic estimate of each
+memory’s continuing utility. As a result, memories
+may remain active even after subsequent evidence
+reduces their relevance or reliability. This moti-
+vates a central question: can long-horizon reason-
+ing be improved by explicitly estimating memory
+utility to regulate what enters the agent’s working
+context?
+To address this challenge, we introduce the
+Weighted Memory Tree(WMT), a hierarchi-
+cal memory architecture that organizes execution
+histories into task, subtask, and action memories
+while assigning each memory a dynamic retention
+score. These scores prioritize memories for con-
+text construction and determine when low-utility
+branches are suppressed, while completed branches
+are folded into compact summaries according to
+task status, allowing WMT to construct prompts
+from the most useful context while reducing re-
+peated token processing and limiting the influence
+of stale or unreliable information (Chen et al.,
+2024). We evaluate WMT on GAIA (Mialon et al.,
+2024) and its text-only subset, GAIA-Text, using
+Qwen3-8B (Yang et al., 2025), Gemma 4 E4B
+(Gemma Team et al., 2026), and Llama-3.1-8B
+(Grattafiori et al., 2024). We compare the full
+framework against a linear-memory baseline and
+three component ablations: an unweighted tree
+(A1), a no-memory controller ablation (A2), and
+an ablation without semantic node retrieval (A3).
+Although mitigating memory poisoning is not
+the primary objective of WMT, we also conduct
+controlled memory-poisoning experiments to eval-
+uate whether structured memory management im-
+proves robustness relative to conventional linear
+memory. Across these experiments, WMT reduces
+attack success rate, poison retrieval rate, blast ra-
+dius, and amplification factor while achieving the
+highest task success rate among all evaluated meth-
+ods. Together, these results suggest that effective
+long-horizon memory depends not only on preserv-
+ing or compressing execution history, but on se-
+lectively retaining task-relevant information while
+suppressing outdated or unreliable content.
+2 Weighted Memory Tree
+We present theWeighted Memory Tree(WMT),
+a memory-management layer that organizes an
+Figure 1:Status-driven workflow of WMT. Agent
+interactions update node scores and branch priorities;
+lifecycle transitions and prompt-selection feedback de-
+termine which memories remain active.
+agent’s execution history as a persistent hierarchy
+and constructs a compact working context for each
+reasoning step. WMT augments an existing base
+agent without modifying its parameters or tool in-
+terface.
+2.1 Problem Definition
+Let q denote a user query and T the tools avail-
+able to the agent. At interaction step t, the
+agent produces an action at, receives an obser-
+vation ot, and records an execution outcome ωt.
+The accumulated interaction history is Ht =
+(q,(a 1, o1, ω1), . . . ,(at−1, ot−1, ωt−1)). A linear-
+history agent repeatedly serializes most or all of
+Ht into each subsequent prompt. WMT instead
+maintains a persistent memory state Mt. Let v⋆
+t
+denote the active task node and B the configured
+context budget. The Prompt Synthesizer selects a
+memory set St and constructs the working context
+as
+St = Γsel (q,M t, v⋆
+t ;B),
+Ct = Serialize (q,T,S t). (1)
+Here, Γsel selects memories from Mt, while
+Serialize formats the selected memories, user
+query, and tool specifications into the working con-
+text Ct. Memories omitted from Ct remain persis-
+tently stored for future retrieval.
+2
+
+=== PDF PAGE 3 ===
+2.2 Overall Workflow
+Figure 1 summarizes the WMT execution loop.
+WMT initializes a root task from the user query and
+constructs a working context whenever an active
+task remains. The base agent performs one interac-
+tion step, and WMT records the resulting tasks, ac-
+tions, observations, and outcomes. Execution out-
+comes update node-level retention scores, which
+are aggregated into branch-level priorities. The
+Memory Controller folds completed branches, sup-
+presses low-priority or superseded branches, and
+reopens resumed branches. Prompt-selection deci-
+sions provide a second feedback signal: selected
+memories have their missed-selection counts reset,
+whereas eligible but unselected memories receive
+selection-based decay. The loop terminates when
+the root task is complete and no active task remains.
+2.3 Hierarchical Memory Tree
+WMT maintains persistent memory as Mt =
+(Gt,V t,E t), where Gt contains global memories, Vt
+contains query-specific memory nodes, and Et con-
+tains parent–child relations between query-specific
+nodes. Global memories store information across
+task branches or conversations, while the query-
+specific tree records execution for the current task.
+The one-shot setting in this work initializes a new
+tree for each query, but in conversation mode, com-
+pleted task summaries may be promoted toG t.
+Following the task-centered representation of
+TME (Ye, 2025), the root node represents the user
+query, task nodes represent goals and subtasks, and
+action nodes record attempted operations, observa-
+tions, and outcomes. Each memory node vi stores
+its content, node type, parent, lifecycle state, reten-
+tion score, missed-selection count, and execution
+metadata. New subtasks are attached to their parent
+task, while actions and observations are attached to
+the current task.
+Let vroot and v⋆
+t denote the root and active
+task nodes, respectively. The active path Pt =
+Path(vroot, v⋆
+t ) contains the task hierarchy from
+the user query to the current subtask and is always
+retained during context construction. For a task
+node v, the branch B(v) is the subtree rooted at v,
+including its descendant task and action nodes.
+A node has lifecycle state zi ∈
+{ACTIVE,COMPLETED,FOLDED,OBSOLETE} .
+For a branch b=B(v b), the branch inherits the
+lifecycle state zvb of its root task nodevb. Lifecycle
+states determine eligibility for prompt construction.
+Suppression marks a root task OBSOLETE without
+deleting it, while task completion and resumption
+trigger folding and reopening, respectively.
+A branch b=B(v b) created at step tb is initial-
+ized with z(tb)
+vb =ACTIVE ; subsequent lifecycle
+operations update this state.
+2.4 Dynamic Retention Scoring
+Let i index memory nodes and t index interaction
+steps. Each memory vi has a retention score u(t)
+i ∈
+[0,1] , which estimates its utility for prioritizing
+memories in future reasoning. Each node receives
+a type-specific initial score.
+Event-based updates.For an action memory vi,
+let ωi ∈ {success,failure} denote its recorded ex-
+ecution outcome. We use ˜u(t+1)
+i to denote the in-
+termediate score after the event-based update and
+before selection feedback. When an outcome is
+recorded or revised, WMT applies
+˜u(t+1)
+i =
+(
+usuccess, ω i = success,
+ufailure, ω i = failure, (2)
+We set usuccess > u failure. Successful actions
+receive higher priority as supporting evidence,
+whereas failures may remain available as warn-
+ings against repeating unsuccessful operations. The
+core updates are fixed rather than learned.
+Selection-based decay.Let ϵi,t ∈ {0,1} indicate
+whether memory vi enters the candidate pool at
+step t, and let si,t ∈ {0,1} indicate whether it is
+selected for the working context. By construction,
+si,t ≤ϵ i,t.
+For a non-global memory, let m(t)
+i denote the
+number of consecutive selection opportunities in
+which vi was eligible but not selected. Its update is
+m(t+1)
+i =
+
+
+
+0, s i,t = 1,
+m(t)
+i + 1, ϵ i,t = 1ands i,t = 0,
+m(t)
+i , ϵ i,t = 0.
+(3)
+For global memories, the implementation re-
+sets the missed-selection count before each de-
+cay update, so their effective streak is always one.
+Let ρ∈(0,1] denote the ordinary decay rate,
+ρG ∈(0,1] the global-memory decay rate, and
+M≥1 the maximum streak exponent. Define the
+effective decay multiplier
+3
+
+=== PDF PAGE 4 ===
+gi(m) =
+(
+ρG, τ i =GLOBAL,
+ρmin{m,M} , τ i ̸=GLOBAL, (4)
+where τi denotes the type of node vi. The imple-
+mented selection-based decay function is therefore
+Di(u, m) = clip[0,1] (u gi(m)).
+We call ϵi,t = 1 and si,t = 0 amissed selection.
+The final retention score is
+u(t+1)
+i =
+(
+Di
+
+˜u(t+1)
+i , m(t+1)
+i
+
+,missed selection,
+˜u(t+1)
+i ,otherwise.
+(5)
+Thus, an eligible but unselected non-global mem-
+ory is multiplied by ρmin{m(t+1)
+i ,M}, whereas an eli-
+gible but unselected global memory is multiplied by
+ρG. Selected memories reset their missed-selection
+counts, while memories outside the candidate pool
+remain unchanged. Elapsed time alone does not
+affect retention.
+Branch-level priority.For a task branch b=
+B(vb), let V (t)
+b denote its memory nodes, F (t)
+b the
+proportion of failed action nodes, and O(t)
+b the pro-
+portion of nodes already marked OBSOLETE . The
+branch priority is
+U (t)
+b =αmax
+vi∈V (t)
+b
+u(t)
+i + β
+|V (t)
+b |
+X
+vi∈V (t)
+b
+u(t)
+i
+−γF (t)
+b −δO (t)
+b ,
+(6)
+where α, β, γ, δ≥0 are fixed coefficients. The
+maximum term preserves a branch containing an
+individually high-value memory, while the mean
+term captures overall branch utility. The final two
+terms penalize branches dominated by failed or
+previously obsolete content.
+Branch priority serves two purposes: it provides
+the Prompt Synthesizer with a cross-branch utility
+signal and provides the Memory Controller with a
+signal for suppression. For each branch eligible for
+lifecycle evaluation, the controller updates the state
+of its root node according to
+z(t+1)
+vb =
+(
+OBSOLETE, U (t)
+b < τ obs,
+z(t)
+vb , U (t)
+b ≥τ obs
+(7)
+where τobs is the obsolescence threshold. Mark-
+ing z(t+1)
+vb =OBSOLETE suppresses the branch and
+its descendants from ordinary context construction
+without deleting the stored execution record. Equa-
+tion 7 defines only the suppression transition. If the
+branch priority remains above the threshold, the
+branch retains its current lifecycle state.
+2.5 Memory Controller and Lifecycle
+Operations
+The Memory Controller applies three lifecycle op-
+erations. First, task completion triggersfolding:
+a completed branch is represented by a compact
+summary while its underlying execution trace re-
+mains in persistent memory (Sun et al., 2026). The
+summary retains the task objective, final result, sup-
+porting evidence, unresolved issues, and relevant
+failure warnings.
+Second, a branch whose priority falls below
+τobs issuppressedby marking its root task node
+OBSOLETE . Supersession or invalidation events
+may trigger the same transition independently of
+the score. Obsolete branches remain stored for
+provenance but are excluded from ordinary context
+construction. A failed action is not automatically
+obsolete; it may remain useful as a warning against
+repeating an unsuccessful operation.
+Third, when execution returns to a folded task,
+the controller restores its root task node to the
+ACTIVE state. The folded summary becomes im-
+mediately available, while underlying memories
+may re-enter the candidate pool when additional
+detail is required. When the root task is complete
+and no active task remains, WMT terminates the
+execution loop. In conversation mode, the com-
+pleted root summary may additionally be promoted
+to global memory.
+2.6 Utility-Aware Prompt Synthesizer
+The Prompt Synthesizer constructs the working
+context defined in Eq. 1. Its candidate pool contains
+the mandatory active path Pt, eligible global mem-
+ories from Gt, eligible task and action memories,
+folded summaries, and failure warnings. Memo-
+ries belonging to OBSOLETE branches are excluded
+from ordinary selection, whereas folded branches
+are represented through their summaries.
+The current implementation uses an LLM-based
+semantic selector rather than a deterministic top-
+k rule. Each candidate is represented by its con-
+tent, memory type, lifecycle state, retention score,
+and, for query-specific memories, the priority of
+its containing branch. Global memories are eval-
+uated using their node-level retention scores and
+4
+
+=== PDF PAGE 5 ===
+semantic relevance because they do not belong to a
+query-specific branch. The selector therefore com-
+bines relevance to the active task with the persistent
+utility signals maintained by WMT.
+The selected memories are serialized after the
+current task and active hierarchy, followed by
+folded summaries and relevant failure warnings.
+After context construction, selected memories are
+marked as accessed and have their missed-selection
+counts reset. Eligible but unselected memories re-
+ceive the decay in Eq. 5, whereas memories out-
+side the candidate pool remain unchanged. WMT
+then recomputes affected branch priorities, and the
+Memory Controller applies any resulting suppres-
+sion transition before the next context-construction
+cycle.
+3 Experimental Setup
+We evaluate WMT along two dimensions: (1) task
+accuracy and prompt-token usage on GAIA-Text
+and the GAIA validation set across three base mod-
+els (§3.1), and (2) robustness under the memory-
+poisoning protocol (§3.2). All configurations use
+the same base-agent scaffold, tools, task instruc-
+tions, and interaction budget; only the memory
+system varies.
+3.1 Benchmark Evaluation
+Benchmarks.We evaluate on the public valida-
+tion split of GAIA (Mialon et al., 2024), contain-
+ing 165 validation questions across three difficulty
+levels. GAIA requires multi-step reasoning, infor-
+mation retrieval, and tool use. We report results on
+two evaluation sets.
+GAIA-Textconsists of the 127 validation ques-
+tions without input files, reducing variability from
+document, image, audio, and spreadsheet process-
+ing while retaining multi-step reasoning and tool
+use.GAIAincludes all 165 validation questions
+and provides a broader end-to-end evaluation. Offi-
+cial reference answers and normalization are used
+for both settings.
+Models and agent configuration.We evalu-
+ate Qwen3-8B (Yang et al., 2025), Gemma 4
+E4B (Gemma Team et al., 2026), and Llama-
+3.1-8B (Grattafiori et al., 2024). Each model
+serves as the frozen reasoning model within the
+same OpenTools-based agent scaffold (Dang et al.,
+2026); only the memory system changes across ex-
+periments. Tools, task instructions and interaction
+limits are held fixed.
+Each benchmark question initializes a new
+query-specific memory tree, with no global mem-
+ory shared across questions. Retention coefficients
+and lifecycle thresholds are fixed for all models.
+Additional component-ablation details are reported
+in the appendix.
+Memory variants.We compare four primary
+memory variants for the benchmark evaluations:
+• No Memoryretains no previous action–
+observation history between reasoning steps
+and provides a lower-bound reference.
+• Linear Historyappends the complete interac-
+tion history to every prompt.
+• Unweighted Treeuses WMT’s hierarchy
+without retention scoring or branch prioritiza-
+tion. Eligible memories are treated uniformly.
+• Full WMTuses the complete framework de-
+scribed in Section 2.
+For the component study, we additionally evalu-
+ateTree + Selection,Tree + Summary, andTree
++ Selection + Summaryto isolate the contribu-
+tions of semantic retrieval and branch folding in-
+dependently of WMT’s full retention-scoring and
+lifecycle mechanisms.
+Evaluation metrics.We reporttask accuracy
+andprompt-token usage, where token usage is the
+total number of input tokens processed across all
+benchmark questions. Token totals are reported in
+millions within each model family to account for
+tokenizer differences.
+Prompt-token accounting includes all
+language-model calls required by the corre-
+sponding configuration, including base-agent
+reasoning, semantic memory selection, and branch
+summarization (when enabled). This ensures that
+reductions attributed to WMT are not obtained
+by excluding the cost of its auxiliary memory
+operations.
+3.2 Memory Poisoning Ablation Setup
+We evaluate WMT under controlled memory-
+poisoning attacks by inserting misleading obser-
+vations into memory during long-horizon execu-
+tion. The experiment tests whether utility-aware
+memory management reduces the persistence and
+propagation of poisoned information relative to lin-
+ear memory.
+5
+
+=== PDF PAGE 6 ===
+Figure 2: A simplified memory-poisoning scenario con-
+taining ordinary task and action memories together with
+intentionally poisoned memories shown in red.
+Ablations.We compare Linear Memory, three
+component ablations, and Full WMT. Unweighted
+Tree (A1) removes retention scoring and branch pri-
+oritization; No Memory Controller (A2) disables
+folding, suppression, and reopening; and No Se-
+mantic Retrieval (A3) retains scoring and lifecycle
+control but retrieves complete selected branches
+rather than individual memories.
+Metrics.We report Attack Success Rate (ASR),
+Poison Retrieval Rate (PRR), Infection Persistence
+(IP), Blast Radius (BR), Amplification Factor (AF),
+Context Compression Ratio (CCR), Task Success
+Rate (TSR), prompt-token usage, and latency. Met-
+ric definitions are provided in Appendix A.1.
+4 Results
+4.1 Benchmark Performance
+Main comparison.Table 1 reports accuracy and
+prompt-token usage for the no-memory, linear-
+history, unweighted-tree, and full WMT config-
+urations. Across both benchmark variants and all
+three base models, WMT achieves the highest ac-
+curacy and the lowest prompt-token usage among
+the memory-based configurations. The no-memory
+condition processes substantially fewer tokens be-
+cause it does not preserve prior interactions, but
+its consistently low accuracy indicates that it is a
+lower-bound performance reference rather than a
+directly comparable memory-efficiency baseline.
+Relative to linear history on GAIA-Text, the
+WMT results correspond to absolute improvements
+of 13.39, 8.66, and 7.87 percentage points with
+Qwen3-8B, Gemma 4 E4B, and Llama-3.1-8B, re-
+spectively, or 9.97 percentage points on average.
+WMT also reduces prompt-token usage by 25.6%,
+42.0%, and 30.8%, for Qwen3-8B, Gemma 4 E4B,
+and Llama-3.1-8B, respectively, with an average
+reduction of 32.8% across the three models.
+The same pattern holds on GAIA. WMT im-
+proves accuracy over linear history by 9.70 percent-
+age points for Qwen3-8B, 4.85 points for Gemma
+4 E4B, and 15.76 points for Llama-3.1-8B, with an
+average improvement of 10.10 percentage points.
+Prompt-token usage decreases by 25.8%, 38.5%,
+and 32.5%, respectively, corresponding to an aver-
+age reduction of 32.2%. The consistent improve-
+ments on both GAIA-Text and GAIA indicate that
+the observed benefit is not restricted to a single
+model family or to the text-only evaluation setting.
+The unweighted tree does not provide the same
+consistent improvement. On GAIA-Text, it im-
+proves slightly over linear history for Gemma 4
+E4B, matches linear history for Llama-3.1-8B, and
+reduces accuracy for Qwen3-8B. A similar pat-
+tern appears on GAIA, where the unweighted tree
+exceeds linear history only for Llama-3.1-8B. In
+contrast, WMT outperforms the unweighted tree
+in all six model–benchmark combinations by 5.46–
+18.11 percentage points while processing fewer
+prompt tokens in every case. These results show
+that hierarchical organization alone is insufficient;
+the benefits of WMT arise from combining the
+tree structure with selective context construction,
+dynamic retention scoring, and lifecycle manage-
+ment.
+Component ablations.Tables 2 and 3, shown
+in the Appendix, further separate the effects of the
+main WMT components. Adding semantic selec-
+tion to an unweighted tree generally improves accu-
+racy, particularly for Qwen3-8B and Llama-3.1-8B,
+but increases token usage across all models. Se-
+lection alone therefore does not guarantee a more
+compact context, because the selector adds model
+calls while the underlying execution branches re-
+main uncompressed.
+Branch summarization has the opposite primary
+effect. It reduces token usage relative to the un-
+weighted tree for every model on both benchmark
+6
+
+=== PDF PAGE 7 ===
+Method Qwen3-8B Gemma 4 E4B Llama-3.1-8B
+Acc. (%)↑Tokens (M)↓Acc. (%)↑Tokens (M)↓Acc. (%)↑Tokens (M)↓
+GAIA-Text
+No Memory 9.45 0.20 14.17 0.13 6.30 0.03
+Linear History 20.47 43.67 24.41 65.27 9.45 73.96
+A1: Unweighted Tree 15.75 39.24 25.20 53.90 9.45 77.13
+Full WMT 33.86 32.48 33.07 37.85 17.32 51.17
+GAIA
+No Memory 12.12 0.21 13.94 0.16 6.06 0.04
+Linear History 20.00 57.51 26.06 75.81 9.09 102.85
+A1: Unweighted Tree 18.18 58.46 25.45 65.09 11.52 101.91
+Full WMT 29.70 42.69 30.91 46.64 24.85 69.45
+Table 1: Performance on GAIA-Text and GAIA across three base models. Accuracy is the percentage of correctly
+completed tasks, and token usage is the total number of prompt tokens in millions. Bold values indicate the highest
+accuracy and lowest token usage among memory-based methods for each model and benchmark.
+variants, but its effect on accuracy is mixed. For
+example, Tree + Summary improves Llama-3.1-8B
+on GAIA-Text but reduces Qwen3-8B accuracy on
+GAIA. Combining selection and summarization im-
+proves the average accuracy of the partial systems,
+although it remains less accurate and generally less
+efficient than the complete WMT.
+Averaging the three models, Full WMT reaches
+28.08% accuracy with 40.50M prompt tokens on
+GAIA-Text, compared with 21.78% accuracy and
+51.98M tokens for the strongest partial config-
+uration by average accuracy. On GAIA, Full
+WMT achieves 28.49% accuracy with 52.93M to-
+kens, whereas the strongest partial configuration
+reaches 21.41% accuracy and uses 73.99M tokens.
+Thus, Full WMT provides the strongest aggregate
+accuracy–efficiency trade-off on both benchmark
+variants. The ablations indicate selection and sum-
+marization address complementary aspects of con-
+text construction, while retention scoring and life-
+cycle control are needed to prioritize useful memo-
+ries and limit the influence of low-utility branches.
+4.2 Memory Poisoning Ablation Results
+The memory-poisoning evaluation in Table 4,
+shown in the Appendix, comprises 100 long-
+horizon scenarios with 297 subtasks and 1,118
+memory entries, including 709 benign and 409 in-
+tentionally poisoned memories.
+As expected, theBaseline Linear Memoryper-
+formed worst across nearly every security metric
+because the entire execution history remained con-
+tinuously accessible, allowing poisoned memories
+to persist and repeatedly influence downstream rea-
+soning. This resulted in the highest attack success
+rate, blast radius, amplification factor, and com-
+plete infection persistence.
+Removing retention scoring and branch priori-
+tization while retaining the hierarchical memory
+structure(A1)substantially improved robustness
+over linear memory. Although A1 achieved the
+same near-zero infection persistence as the full
+system, its higher attack success rate, poison re-
+trieval rate, and lower task success rate indicate
+that treating all retained memories equally allows
+lower-value or misleading information to continue
+affecting reasoning.
+Removing the memory controller(A2)high-
+lights the importance of lifecycle management.
+Without folding and suppression, poisoned memo-
+ries remained active or eligible for ordinary context
+construction, resulting in complete infection persis-
+tence despite moderate improvements in attack suc-
+cess rate and task completion. This suggests that
+reducing immediate exposure alone is insufficient
+if malicious memories remain available throughout
+long-horizon execution.
+The semantic retrieval ablation(A3)demon-
+strates that lifecycle management without semantic
+selection is also insufficient. Although low-priority
+memories could be suppressed, retrieving entire
+task branches increased prompt size and reintro-
+duced irrelevant or poisoned information, leading
+to higher attack success, blast radius, amplification,
+and lower task success than the complete system.
+Thefull WMTachieves the strongest overall
+performance, obtaining the lowest attack success
+rate (0.419), poison retrieval rate (0.097), blast
+radius (0.315), and amplification factor (0.965),
+while matching the lowest infection persistence
+7
+
+=== PDF PAGE 8 ===
+(0.009). It also achieves the highest task success
+rate (0.575) and requires the fewest average prompt
+tokens (131.963), indicating that weighted mem-
+ory selection and semantic retrieval improve both
+robustness and reasoning efficiency.
+5 Related Work
+Memory for LLM agents.Agent-memory sys-
+tems externalize information from the immediate
+context and retrieve or summarize it when relevant.
+Generative Agents stores natural language records
+of past experience and retrieves them according
+to recency, importance, and relevance (Park et al.,
+2023). MemoryBank introduces continually up-
+dated long-term conversational memory (Zhong
+et al., 2023), while MemGPT manages informa-
+tion across different memory tiers to extend effec-
+tive context beyond the model’s immediate window
+(Packer et al., 2024). These systems primarily ad-
+dress persistent conversational or experiential mem-
+ory. WMT instead focuses on the execution state
+accumulated within long-horizon agent tasks and
+on controlling which portions of that state influence
+each reasoning step.
+Recent methods have introduced structure into
+agent working memory. HiAgent organizes action–
+observation histories around subgoals and replaces
+completed subgoal histories with summarized ob-
+servations (Hu et al., 2025). The Task Memory
+Engine represents task execution as a hierarchy and
+constructs prompts from the active task path (Ye,
+2025). Context-Folding creates localized subtrajec-
+tories and folds their completed execution traces
+before returning to the parent task (Sun et al., 2026).
+WMT builds on this task-structured perspective but
+introduces an explicit utility state for each mem-
+ory. Utility is updated from execution outcomes
+and memory-selection behavior, aggregated across
+branches, and used jointly for prompt construction
+and lifecycle control.
+Long-context reliability and memory robustness.
+Long-context studies show that increasing the avail-
+able context does not ensure reliable use of all in-
+cluded information. Models can be sensitive to the
+position of relevant evidence and can exhibit rea-
+soning degradation as input length increases (Liu
+et al., 2024; Levy et al., 2024). These findings
+motivate selecting task-relevant state rather than re-
+peatedly presenting complete interaction histories.
+Persistent agent memory also creates an adver-
+sarial surface. AgentPoison shows that malicious
+records inserted into long-term memory or knowl-
+edge bases can be retrieved and influence subse-
+quent behavior (Chen et al., 2024). Our robustness
+evaluation studies a related but distinct question:
+whether memory organization, utility scoring, life-
+cycle control, and selective context construction re-
+duce the persistence and propagation of unreliable
+records. WMT is not a general-purpose detector of
+factual errors or adversarial inputs; it regulates the
+influence of stored information after that informa-
+tion enters the memory system.
+6 Conclusion
+We introduced the Weighted Memory Tree, a
+memory-management framework that organizes
+agent execution into hierarchical task and action
+memories while explicitly modeling their con-
+tinuing utility. By combining dynamic memory
+scoring, lifecycle management, and utility-aware
+prompt construction, WMT separates persistent
+memory from the context used for immediate rea-
+soning. Across three base models, WMT im-
+proves accuracy over linear history by 9.97 per-
+centage points on GAIA-Text and 10.10 percentage
+points on GAIA, while reducing prompt-token us-
+age by 32.8% and 32.2%, respectively. Controlled
+memory-poisoning experiments further demon-
+strate that structured memory management im-
+proves robustness, with WMT achieving the lowest
+attack success rate, poison retrieval rate, blast ra-
+dius, and amplification factor while attaining the
+highest task success rate among all evaluated meth-
+ods. Component ablations show that hierarchical
+organization, lifecycle management, and semantic
+retrieval each contribute to overall performance,
+with their combination providing the strongest bal-
+ance of robustness, reasoning quality, and prompt
+efficiency. Overall, these findings suggest that ef-
+fective long-horizon agent memory depends not
+only on how information is stored, but on continu-
+ously regulating which information remains active
+to guide future reasoning.
+7 Limitations
+Our evaluation is limited to the GAIA benchmark
+family. GAIA-Text helps isolate text-based reason-
+ing and memory management, while GAIA pro-
+vides a broader evaluation involving attached files;
+nevertheless, both sets share the same task con-
+struction and answer format. Performance may
+differ on interactive web environments, software-
+8
+
+=== PDF PAGE 9 ===
+engineering agents, embodied tasks, or extended
+conversations. Moreover, the benchmark evalu-
+ation initializes a new task tree for every ques-
+tion and therefore does not evaluate the cross-
+conversation global-memory mode described in
+Section 2.3.
+Our evaluation is also limited to relatively small
+open-weight models: Qwen3-8B, Gemma 4 E4B,
+and Llama-3.1-8B. Model scale may affect the
+benefits of memory management. Larger models
+may be better able to ignore stale or irrelevant con-
+text, potentially reducing WMT’s relative accuracy
+gains. However, their higher prompt-processing
+cost may preserve or increase the efficiency ben-
+efits of selective context construction. Because
+we do not evaluate larger models, the interaction
+between model scale and WMT remains an open
+question.
+The current WMT uses hand-specified initial-
+ization values, event-based score updates, branch-
+aggregation coefficients, and obsolescence thresh-
+olds. These parameters are held fixed across the
+evaluated models but may not be optimal for other
+agent architectures or task distributions.
+In addition, retention scores estimate operational
+utility rather than factual correctness. A useful
+memory may be suppressed after repeated non-
+selection, while misleading information may retain
+a high score if it contributes to apparently success-
+ful actions. The LLM-based selector and summary
+generator may also introduce selection or compres-
+sion errors and require additional model calls, so
+WMT’s efficiency advantage may be smaller for
+short tasks with limited execution histories.
+Future work should evaluate WMT on broader
+interactive benchmarks and long-running conversa-
+tions and examine learned alternatives to its fixed
+memory-management rules. A promising direction
+is a reinforcement-learned, budget-aware memory
+policy that conditions initial retention scores and
+subsequent updates on memory content, task state,
+execution outcomes, and selection history. Such
+a policy could jointly adapt branch-aggregation
+coefficients and determine when repeated failures
+justify suppressing or terminating a branch under a
+remaining interaction budget. The Prompt Synthe-
+sizer could also be trained to select memories that
+improve downstream task success while penaliz-
+ing prompt cost and repeated retrieval of unreliable
+content. This extension would require reward func-
+tions that distinguish genuine task correctness from
+merely apparent progress.
+References
+Jarrod Barnes. 2026. Opensec: Measuring incident
+response agent calibration under adversarial evidence.
+Preprint, arXiv:2601.21083.
+Zhaorun Chen, Zhen Xiang, Chaowei Xiao, Dawn Song,
+and Bo Li. 2024. AgentPoison: Red-teaming LLM
+agents via poisoning memory or knowledge bases. In
+Advances in Neural Information Processing Systems,
+volume 37.
+Hy Dang, Quang Dao, and Meng Jiang. 2026.
+Open, reliable, and collective: A community-driven
+framework for tool-using AI agents.Preprint,
+arXiv:2604.00137.
+Pritam Dash, Tongyu Ge, Aditi Jain, Tanmay Shah, and
+Zhiwei Shang. 2026. From untrusted input to trusted
+memory: A systematic study of memory poisoning
+attacks in llm agents.Preprint, arXiv:2606.04329.
+Shen Dong, Shaochen Xu, Pengfei He, Yige Li, Jil-
+iang Tang, Tianming Liu, Hui Liu, and Zhen Xiang.
+2025. Memory injection attacks on LLM agents via
+query-only interaction. InThe Thirty-ninth Annual
+Conference on Neural Information Processing Sys-
+tems.
+Mohamed Amine Ferrag, Norbert Tihanyi, Djallel
+Hamouda, Leandros Maglaras, Abderrahmane Lakas,
+and Merouane Debbah. 2026. From prompt injec-
+tions to protocol exploits: Threats in llm-powered ai
+agents workflows.ICT Express, 12(2):353–383.
+Natanael Fraga. 2024. Challenging LLMs beyond infor-
+mation retrieval: Reasoning degradation with long
+context windows. Preprints.org. Preprint, version 1.
+Gemma Team, Sherif El Abd, Vaibhav Aggarwal, Robin
+Algayres, Alek Andreev, et al. 2026. Gemma 4 tech-
+nical report.arXiv preprint arXiv:2607.02770.
+Aaron Grattafiori, Abhimanyu Dubey, Abhinav Jauhri,
+Abhinav Pandey, Abhishek Kadian, Ahmad Al-
+Dahle, Aiesha Letman, Akhil Mathur, Alan Schelten,
+Alex Vaughan, et al. 2024. The Llama 3 herd of
+models.arXiv preprint arXiv:2407.21783.
+Shengyue Guan, Jindong Wang, Jiang Bian, Bin Zhu,
+Jian-Guang Lou, and Haoyi Xiong. 2026. Evaluating
+LLM-based agents for multi-turn conversations: A
+survey.ACM Transactions on Intelligent Systems
+and Technology, 17(4):85:1–85:40.
+Junqing He, Kunhao Pan, Xiaoqun Dong, Zhuoyang
+Song, Yibo Liu, Qianguo Sun, Yuxin Liang, Hao
+Wang, Enming Zhang, and Jiaxing Zhang. 2024.
+Never lost in the middle: Mastering long-context
+question answering with position-agnostic decom-
+positional training. InProceedings of the 62nd An-
+nual Meeting of the Association for Computational
+Linguistics (V olume 1: Long Papers), pages 13628–
+13642, Bangkok, Thailand. Association for Compu-
+tational Linguistics.
+9
+
+=== PDF PAGE 10 ===
+Cheng-Yu Hsieh, Yung-Sung Chuang, Chun-Liang Li,
+Zifeng Wang, Long Le, Abhishek Kumar, James
+Glass, Alexander Ratner, Chen-Yu Lee, Ranjay Kr-
+ishna, and Tomas Pfister. 2024. Found in the middle:
+Calibrating positional attention bias improves long
+context utilization. InFindings of the Association
+for Computational Linguistics: ACL 2024, pages
+14982–14995, Bangkok, Thailand. Association for
+Computational Linguistics.
+Mengkang Hu, Tianxing Chen, Qiguang Chen, Yao Mu,
+Wenqi Shao, and Ping Luo. 2025. HiAgent: Hier-
+archical working memory management for solving
+long-horizon agent tasks with large language model.
+InProceedings of the 63rd Annual Meeting of the
+Association for Computational Linguistics (V olume 1:
+Long Papers), pages 32779–32798, Vienna, Austria.
+Association for Computational Linguistics.
+Donghyun Lee and Mo Tiwari. 2024. Prompt infec-
+tion: Llm-to-llm prompt injection within multi-agent
+systems.Preprint, arXiv:2410.07283.
+Mosh Levy, Alon Jacoby, and Yoav Goldberg. 2024.
+Same task, more tokens: the impact of input length
+on the reasoning performance of large language mod-
+els. InProceedings of the 62nd Annual Meeting of
+the Association for Computational Linguistics (V ol-
+ume 1: Long Papers), pages 15339–15353, Bangkok,
+Thailand. Association for Computational Linguistics.
+Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paran-
+jape, Michele Bevilacqua, Fabio Petroni, and Percy
+Liang. 2024. Lost in the middle: How language mod-
+els use long contexts.Transactions of the Association
+for Computational Linguistics, 12:157–173.
+Yizhu Liu, Qi Jia, and Kenny Zhu. 2022. Reference-free
+summarization evaluation via semantic correlation
+and compression ratio. InProceedings of the 2022
+Conference of the North American Chapter of the
+Association for Computational Linguistics: Human
+Language Technologies, pages 2109–2115, Seattle,
+United States. Association for Computational Lin-
+guistics.
+Grégoire Mialon, Clémentine Fourrier, Thomas Wolf,
+Yann LeCun, and Thomas Scialom. 2024. GAIA: a
+benchmark for general AI assistants. InThe Twelfth
+International Conference on Learning Representa-
+tions.
+Charles Packer, Sarah Wooders, Kevin Lin, Vivian Fang,
+Shishir G. Patil, Ion Stoica, and Joseph E. Gonzalez.
+2024. Memgpt: Towards llms as operating systems.
+Preprint, arXiv:2310.08560.
+Joon Sung Park, Joseph C. O’Brien, Carrie J. Cai,
+Meredith Ringel Morris, Percy Liang, and Michael S.
+Bernstein. 2023. Generative agents: Interac-
+tive simulacra of human behavior.Preprint,
+arXiv:2304.03442.
+Timo Schick, Jane Dwivedi-Yu, Roberto Dessi, Roberta
+Raileanu, Maria Lomeli, Eric Hambro, Luke Zettle-
+moyer, Nicola Cancedda, and Thomas Scialom. 2023.
+Toolformer: Language models can teach themselves
+to use tools. InAdvances in Neural Information Pro-
+cessing Systems, volume 36.
+Gauri Sharma, Vidhi Kulkarni, Miles King, and Ken
+Huang. 2025. Towards unifying quantitative security
+benchmarking for multi agent systems.Preprint,
+arXiv:2507.21146.
+Saksham Sahai Srivastava and Haoyu He. 2025. Mem-
+orygraft: Persistent compromise of llm agents
+via poisoned experience retrieval.Preprint,
+arXiv:2512.16962.
+Weiwei Sun, Miao Lu, Zhan Ling, Kang Liu, Xuesong
+Yao, Yiming Yang, and Jiecao Chen. 2026. Scaling
+long-horizon agent via context folding. InProceed-
+ings of the 43rd International Conference on Machine
+Learning, volume 306 ofProceedings of Machine
+Learning Research.
+Runchu Tian, Yanghao Li, Yuepeng Fu, Siyang Deng,
+Qinyu Luo, Cheng Qian, Shuo Wang, Xin Cong,
+Zhong Zhang, Yesai Wu, Yankai Lin, Huadong Wang,
+and Xiaojiang Liu. 2025. Distance between relevant
+information pieces causes bias in long-context LLMs.
+InFindings of the Association for Computational Lin-
+guistics: ACL 2025, pages 521–533, Vienna, Austria.
+Association for Computational Linguistics.
+Linlin Wang, Tianqing Zhu, Laiqiao Qin, Longxiang
+Gao, and Wanlei Zhou. 2025. Bias amplification
+in rag: Poisoning knowledge retrieval to steer llms.
+Preprint, arXiv:2506.11415.
+An Yang, Anfeng Li, Baosong Yang, Beichen Zhang,
+Binyuan Hui, Bo Zheng, Bowen Yu, Chang Gao,
+Chengen Huang, Chenxu Lv, et al. 2025. Qwen3
+Technical Report.arXiv preprint arXiv:2505.09388.
+Shunyu Yao, Jeffrey Zhao, Dian Yu, Nan Du, Izhak
+Shafran, Karthik R Narasimhan, and Yuan Cao. 2023.
+React: Synergizing reasoning and acting in language
+models. InThe Eleventh International Conference
+on Learning Representations.
+Ye Ye. 2025. Task memory engine (TME): Enhanc-
+ing state awareness for multi-step LLM agent tasks.
+Preprint, arXiv:2504.08525.
+Zeyu Zhang, Quanyu Dai, Xiaohe Bo, Chen Ma, Rui Li,
+Xu Chen, Jieming Zhu, Zhenhua Dong, and Ji-Rong
+Wen. 2025. A survey on the memory mechanism of
+large language model-based agents.ACM Transac-
+tions on Information Systems, 43(6):1–47.
+Wanjun Zhong, Lianghong Guo, Qiqi Gao, He Ye, and
+Yanlin Wang. 2023. Memorybank: Enhancing large
+language models with long-term memory.Preprint,
+arXiv:2305.10250.
+Yijin Zhou, Xiaoya Lu, Dongrui Liu, Junchi Yan,
+and Jing Shao. 2026. Infa-guard: Mitigating ma-
+licious propagation via infection-aware safeguard-
+ing in llm-based multi-agent systems.Preprint,
+arXiv:2601.14667.
+10
+
+=== PDF PAGE 11 ===
+A Appendix
+A.1 Equations for Evaluation Metrics
+ASR= Cs
+Sc
+(8)
+where Cs is the number of compromised criti-
+cal reasoning steps and Sc is the total number of
+critical reasoning steps. Lower ASR corresponds
+to greater robustness against memory poisoning
+(Ferrag et al., 2026; Dash et al., 2026).
+PRR= Hp
+Hp +H c
+(9)
+where Hp and Hc are the numbers of poisoned
+and clean memories selected by the Prompt Synthe-
+sizer for inclusion in the working context. Lower
+PRR indicates that fewer poisoned memories are
+selected for prompting (Srivastava and He, 2025;
+Dash et al., 2026).
+IP= Pr
+Pi
+(10)
+where Pi is the number of injected poisoned
+memories and Pr is the number of those memories
+that remain active or eligible for ordinary context
+construction after memory management. Lower IP
+indicates stronger long-term resilience. (Lee and
+Tiwari, 2024)
+BR= Tc
+Tp
+(11)
+where Tc is the number of prompt construction
+steps that include contaminated memory and Tp
+is the total number of prompt construction steps.
+Lower Blast Radius indicates that poisoned memo-
+ries influence fewer prompts during task execution.
+(Barnes, 2026; Sharma et al., 2025)
+AF= Hp
+Pi
+(12)
+which measures how frequently injected poi-
+soned memories are repeatedly retrieved relative
+to the number originally inserted. Lower Ampli-
+fication Factor indicates that the memory system
+prevents poisoned memories from repeatedly in-
+fluencing future reasoning. (Wang et al., 2025;
+Sharma et al., 2025)
+CCR= 1
+Tp
+TpX
+i=1
+Tsel,i
+Tcand,i
+(13)
+where Tsel,i is the number of memory tokens se-
+lected for inclusion in the prompt and Tcand,i is the
+total number of candidate memory tokens consid-
+ered at the i-th prompt construction step. Lower
+CCR indicates greater context compression and
+improved prompt efficiency, although it should be
+interpreted alongside Task Success Rate to ensure
+excessive compression does not degrade task per-
+formance. (Liu et al., 2022)
+TSR= 1
+Nt
+NtX
+i=1
+Si, S i =
+(
+1,taskiis successful,
+0,otherwise.
+(14)
+where Nt is the total number of evaluated tasks
+and Si is the binary success indicator for task
+i. Higher TSR indicates that the agent success-
+fully completes a larger proportion of tasks despite
+the presence of adversarial memory contamination.
+(Zhou et al., 2026; Sharma et al., 2025)
+A.2 GAIA-Text and GAIA Component
+Ablations
+Shared evaluation configuration.The compo-
+nent ablations use the same GAIA questions, base-
+agent scaffold, tools, task instructions, and inter-
+action budget as the main benchmark comparison
+in Section 3.1. We evaluate the public GAIA val-
+idation set in two forms: GAIA-Text contains the
+127 questions without attached input files, whereas
+GAIA contains all 165 validation questions.
+We evaluate Qwen3-8B, Gemma 4 E4B, and
+Llama-3.1-8B as frozen reasoning models. Each
+question initializes a new query-specific memory
+tree, and no global memory is transferred across
+benchmark questions. Prompt-token totals include
+every language-model call made by the correspond-
+ing configuration, including base-agent reasoning,
+semantic memory selection, and branch summa-
+rization when those operations are enabled.
+The fixed outcome scores and branch-priority
+coefficients used in all experiments are
+usuccess = 0.75, u failure = 0.30,
+(α, β, γ, δ) = (0.60,0.30,0.20,0.20).
+The same retention configuration is used for all
+three models. Selection-based decay is applied
+only to memories that enter the candidate pool
+but are not selected. Selecting a memory resets
+its missed-selection count to zero. Branch prior-
+ities use fixed penalties γ=δ= 0.20 for the
+11
+
+=== PDF PAGE 12 ===
+proportions of failed and obsolete nodes, respec-
+tively. An eligible branch is marked OBSOLETE
+whenU (t)
+b < τ obs, withτ obs = 0.10.
+Component configurations.The main bench-
+mark table compares No Memory, Linear History,
+Unweighted Tree, and Full WMT. The additional
+configurations below isolate semantic memory se-
+lection and completed-branch summarization:
+• Tree Memoryorganizes the interaction his-
+tory into task, subtask, and action nodes but
+does not use semantic selection, branch sum-
+marization, dynamic retention scoring, or
+score-based suppression.
+• Tree + Selectionadds the LLM-based se-
+mantic selector to Tree Memory. The selec-
+tor chooses memories according to their rele-
+vance to the active task, but no dynamic reten-
+tion or branch-priority signal is provided.
+• Tree + Summaryfolds completed branches
+into compact summaries but does not use se-
+mantic selection or dynamic retention scoring.
+• Tree + Selection + Summarycombines se-
+mantic selection with completed-branch sum-
+marization but omits event-based score up-
+dates, selection-based decay, branch-priority
+aggregation, and score-based suppression.
+• Full WMTcombines hierarchical memory,
+semantic selection, branch summarization,
+event-based retention updates, selection-based
+decay, branch-level priorities, suppression,
+and reopening.
+Tables 2 and 3 report the complete component
+results.
+Model-specific trends.The component abla-
+tions reveal different patterns across model fam-
+ilies. Qwen3-8B obtains its strongest partial-
+configuration accuracy from Tree + Selection on
+both GAIA-Text and GAIA, suggesting that it ben-
+efits from preserving fine-grained evidence and re-
+trieving it selectively. Gemma 4 E4B performs
+best among the partial configurations with Tree +
+Selection + Summary, while Tree + Summary pro-
+duces its lowest prompt-token usage. This pattern
+suggests that summarization removes redundant
+execution history for Gemma, while semantic se-
+lection remains useful for recovering task-specific
+evidence.
+Llama-3.1-8B exhibits a different trend. On
+GAIA-Text, Tree + Summary reaches 19.69% ac-
+curacy, exceeding Full WMT at 17.32%. On
+GAIA, however, Tree + Selection + Summary is
+the strongest partial configuration, and Full WMT
+achieves the best overall Llama result at 24.85%.
+One plausible explanation is that summary-only
+contexts sufficiently remove noisy intermediate
+traces for text-only tasks, whereas the more het-
+erogeneous GAIA tasks benefit from combining
+compression with targeted, utility-aware retrieval.
+These explanations are post hoc hypotheses rather
+than direct measurements of model behavior.
+A.3 Memory-Poisoning Ablation Details
+Evaluation corpus.The memory-poisoning eval-
+uation contains 100 long-horizon scenarios com-
+posed of 297 subtasks and 1,118 memory entries.
+Of these entries, 709 are benign and 409 are inten-
+tionally poisoned. Poisoned entries introduce mis-
+leading observations, fabricated claims, or compro-
+mised tool-derived information into the execution
+history so that they may influence later retrieval
+and reasoning.
+The same scenario structures and injected mem-
+ories are used for each memory configuration. The
+evaluation therefore isolates how memory organi-
+zation, retention scoring, lifecycle management,
+and semantic retrieval affect the persistence and
+propagation of poisoned information.
+Ablation configurations.We compare five mem-
+ory configurations:
+• Linear Memorystores all task and action
+history in a single sequential context. No hier-
+archy, utility scoring, suppression, or selective
+retrieval is used.
+• Unweighted Tree (A1)organizes memories
+into task and action branches but does not use
+retention scoring or branch prioritization.
+• No Memory Controller (A2)computes reten-
+tion scores and branch priorities but disables
+lifecycle operations, including folding, score-
+based suppression, and reopening.
+• No Semantic Retrieval (A3)retains the hi-
+erarchical tree, retention scores, and Memory
+Controller, but prompt construction includes
+the full selected branch rather than semanti-
+cally selecting individual memories.
+12
+
+=== PDF PAGE 13 ===
+Memory Configuration Qwen3-8B Gemma 4 E4B Llama-3.1-8B
+Acc. (%)↑Tokens (M)↓Acc. (%)↑Tokens (M)↓Acc. (%)↑Tokens (M)↓
+Tree Memory 15.75 39.24 25.20 53.90 9.45 77.13
+Tree + Selection 22.05 74.37 25.20 92.02 14.96 101.22
+Tree + Summary 15.75 34.00 25.9828.58 19.6966.83
+Tree + Selection + Summary 18.90 47.33 29.13 31.55 17.32 77.05
+Full WMT 33.86 32.48 33.0737.85 17.3251.17
+Table 2: Component-ablation results on GAIA-Text. Accuracy is the percentage of correctly completed tasks, and
+prompt-token usage is reported in millions. Bold values indicate the best result for each model and metric among
+the reported tree-based configurations.
+Memory Configuration Qwen3-8B Gemma 4 E4B Llama-3.1-8B
+Acc. (%)↑Tokens (M)↓Acc. (%)↑Tokens (M)↓Acc. (%)↑Tokens (M)↓
+Tree Memory 18.18 58.46 25.45 65.09 11.52 101.91
+Tree + Selection 21.21 100.51 26.67 105.57 16.36 134.15
+Tree + Summary 15.15 49.83 24.8536.0216.97 94.25
+Tree + Selection + Summary 15.76 66.84 28.48 42.68 20.00 112.44
+Full WMT 29.70 42.69 30.9146.6424.85 69.45
+Table 3: Component-ablation results on GAIA. Accuracy is the percentage of correctly completed tasks, and
+prompt-token usage is reported in millions. Bold values indicate the best result for each model and metric among
+the reported tree-based configurations.
+• Full WMTuses hierarchical memory, dy-
+namic retention scoring, branch-level prior-
+ities, lifecycle control, and semantic prompt
+construction.
+Attack Success Rate, Poison Retrieval Rate, In-
+fection Persistence, Blast Radius, Amplification
+Factor, Context Compression Ratio, and Task Suc-
+cess Rate are defined in Appendix A.1. We ad-
+ditionally report average prompt-token usage and
+latency. The complete results are reported in Ta-
+ble 4.
+A.4 Worked Example of Memory-Poisoning
+Dynamics
+Figure 2 illustrates how WMT processes ordinary
+and poisoned memories within a single execution
+tree. Blue nodes represent the query and task hier-
+archy, gray nodes represent ordinary action mem-
+ories, and red nodes represent intentionally poi-
+soned memories. The example contains two task
+branches: identifying a candidate paper and extract-
+ing its authors. Its purpose is to illustrate memory-
+state updates rather than establish a canonical rank-
+ing of papers published in 2017.
+Task initialization and event scores.WMT first
+creates a root node for the user query and an active
+child task for identifying the paper. Each action
+performed under this task is inserted as a child
+memory together with its observation and recorded
+outcome. As defined in Eq. 2, the outcome assigns
+the action memory an intermediate retention score
+before any selection feedback is applied. The re-
+ported configuration uses
+(usuccess, ufailure) = (0.75,0.30).
+Thus, a successful action receives ˜ui = 0.75 ,
+whereas a failed action receives ˜ui = 0.30. The
+tilde denotes the event-assigned intermediate score.
+Selection-based decay may subsequently reduce
+this value, producing the final retention scoreu i.
+Selection-based decay in the example.All ac-
+tion memories in Figure 2 are non-global memories.
+Let u[r]
+i denote the score of memory vi after r con-
+secutive missed selections, with u[0]
+i = ˜ui. From
+Eqs. 4 and 5, therth missed selection produces
+u[r]
+i = clip[0,1]
+
+u[r−1]
+i ρmin{r,M}
+
+.
+Consequently, after r consecutive missed selec-
+tions,
+u[r]
+i = clip[0,1]
+
+˜uiρhM (r)
+
+,
+where
+13
+
+=== PDF PAGE 14 ===
+Metric
+Linear
+Memory
+Unweighted
+Tree (A1)
+No Memory
+Controller (A2)
+No Semantic
+Retrieval (A3)
+Full
+WMT
+Attack Success Rate↓0.995 0.631 0.601 0.6800.419
+Poison Retrieval Rate↓0.246 0.125 0.158 0.1390.097
+Infection Persistence↓1.0000.0091.0000.009 0.009
+Blast Radius↓0.906 0.388 0.509 0.6690.315
+Amplification Factor↓6.103 1.280 1.638 1.9770.965
+Task Success Rate↑0.183 0.431 0.451 0.3930.575
+Context Compression Ratio↓1.000 0.8150.6341.000 0.819
+Average Prompt Tokens↓362.143 133.733 146.721 189.770131.963
+Latency (ms)↓0.022 0.081 0.1080.0200.080
+Table 4: Memory-poisoning results for WMT and its ablations. Arrows indicate the preferred direction. Bold values
+indicate the best result for each metric; ties are bolded jointly. Linear Memory retains the full sequential history, A1
+removes weighting, A2 removes lifecycle control, and A3 removes semantic memory selection.
+hM(r) =
+rX
+k=1
+min{k, M}
+=
+
+
+
+r(r+ 1)
+2 , r≤M,
+M r− M(M−1)
+2 , r > M.
+(15)
+This cumulative expression assumes that no in-
+tervening selection or new event-based update oc-
+curs. Selecting the memory resets its missed-
+selection count to zero, while a memory that does
+not enter the candidate pool is not decayed.
+First branch: identifying the paper.The first
+action searches broad encyclopedia pages. Al-
+though the returned information does not provide a
+defensible ranking, the action is recorded as opera-
+tionally successful and therefore receives
+˜uencyclopedia = 0.75.
+The second action searches citation summaries
+and produces evidence supportingAttention Is All
+You Need. It is likewise recorded as successful:
+˜ucitation = 0.75.
+The first poisoned memory is introduced by an
+action that consults an unofficial ranking blog. The
+observation contains an unsupported claim and the
+action is explicitly recorded as a failure. Its event-
+assigned score is
+˜ublog = 0.30.
+WMT preserves this failed action as a warning,
+but the lower score reduces its priority as support-
+ing evidence. The following action retrieves the
+official arXiv record and is recorded as successful:
+˜uarXiv = 0.75.
+Suppose the official arXiv record is selected dur-
+ing subsequent prompt construction. Its missed-
+selection count is then reset to zero. If the poisoned
+blog memory remains eligible but is not selected
+forrconsecutive opportunities, its score becomes
+u[r]
+blog = clip[0,1]
+
+0.30ρ hM (r)
+
+.
+The poisoned record therefore remains in per-
+sistent memory, but its ability to influence later
+prompts decreases with repeated missed selections.
+If it does not enter the candidate pool, its score
+remains unchanged.
+Once the paper-identification task is completed,
+the Memory Controller folds the branch into a
+compact summary. The summary can preserve
+the supported paper identity, the official source,
+and the warning about the failed blog lookup with-
+out replaying the complete branch in subsequent
+prompts.
+Second branch: extracting the authors.After
+the paper-identification branch is completed, WMT
+activates the task for extracting the paper’s authors.
+The first action opens the arXiv abstract page. It
+verifies the title and identifier but does not recover
+the complete author list. Because the action is
+operationally successful, it receives
+˜uabstract = 0.75.
+The second poisoned memory is more diffi-
+cult. An unofficial mirror page returns a fabricated
+single-author claim, but the corresponding action is
+recorded as successful. Event-based scoring there-
+fore assigns
+˜umirror = 0.75,
+14
+
+=== PDF PAGE 15 ===
+the same intermediate score assigned to a clean
+successful action. This case demonstrates that the
+event outcome represents operational success rather
+than factual correctness. A plausible but incorrect
+observation may therefore receive a high initial
+score when the action itself appears successful.
+The final action retrieves the official PDF and
+extracts the complete author list. This action is
+recorded as successful and receives
+˜uPDF = 0.75.
+Once the official result becomes available, the
+Prompt Synthesizer can select it in preference to
+the mirror-page observation. If the mirror memory
+remains eligible but is unselected for r consecutive
+opportunities, its score becomes
+u[r]
+mirror = clip[0,1]
+
+0.75ρ hM (r)
+
+.
+Unlike the failed blog lookup, the mirror mem-
+ory does not receive an immediate low event score.
+Its influence must instead be reduced through se-
+mantic selection, repeated missed-selection decay,
+or an explicit supersession rule. If the official PDF
+result supersedes the mirror claim, the controller
+may mark the poisoned memory OBSOLETE . The
+memory remains stored for provenance but is ex-
+cluded from ordinary context construction.
+Branch-priority updates.After the node scores
+are updated, WMT recomputes each task branch’s
+priority using Eq. 6. In the first branch, the failed
+blog action increases the failed-action proportion
+Fb, thereby lowering the branch priority. If a poi-
+soned memory is subsequently marked OBSOLETE ,
+it also contributes to the obsolete-node proportion
+Ob.
+The second branch initially contains no explicitly
+failed poisoned action because the mirror lookup is
+recorded as successful. Consequently, the failure-
+ratio penalty alone cannot distinguish the poisoned
+mirror memory from a clean successful action. Its
+influence is instead controlled through semantic
+selection, selection-based decay, and supersession
+by the official PDF result. This illustrates the com-
+plementary roles of event-based score assignment
+and selection-based feedback.
+If the recomputed priority of an eligible branch
+satisfies
+U (t)
+b < τ obs = 0.10,
+the Memory Controller applies Eq. 7 and marks
+the branch’s root task nodeOBSOLETE . The branch
+and its descendants are then excluded from ordi-
+nary context construction without being deleted.
+A single low-score memory does not necessarily
+suppress an otherwise useful branch because U (t)
+b
+also incorporates the maximum node score and the
+mean utility of the branch.
+Final context construction.For the final rea-
+soning step, the Prompt Synthesizer retains the
+active task path and can include the folded paper-
+identification summary, the official arXiv record,
+and the author list extracted from the official PDF.
+A compact failure warning may also be included
+when it prevents the agent from revisiting an un-
+trusted source.
+The poisoned blog and mirror memories remain
+in persistent storage but need not enter the working
+context. The resulting prompt therefore contains
+the supported paper identity and author informa-
+tion rather than the complete execution history. The
+example demonstrates two distinct cases: an explic-
+itly failed poisoned memory begins with the lower
+event score ufailure, whereas a plausible poisoned
+memory recorded as successful begins withusuccess
+and must be controlled through selection feedback,
+supersession, and lifecycle management.
+A.5 Inference Runtime and GPU Compute
+Usage
+All experiments were inference-only and were ex-
+ecuted on a server equipped with eight NVIDIA
+Quadro RTX 6000 GPUs, each with 24 GB of de-
+vice memory, for 192 GB of aggregate installed
+GPU memory. Qwen3-8B, Gemma 4 E4B, and
+Llama-3.1-8B were used as frozen reasoning mod-
+els; no parameter training or fine-tuning was per-
+formed. Independent benchmark jobs were sched-
+uled across the available GPUs.
+The complete benchmark grid contains seven
+unique memory configurations, three base models,
+and two evaluation sets, yielding 42 model–dataset–
+configuration settings. GAIA-Text contains 127
+questions, whereas GAIA contains 165 questions.
+Because each setting was evaluated independently
+on its corresponding question set, the benchmark
+grid comprises
+R= 7×3×(127 + 165) = 6,132
+question-level agent executions. Each execu-
+15
+
+=== PDF PAGE 16 ===
+tion initializes a new query-specific memory tree.
+This count covers the GAIA-Text and GAIA bench-
+mark and component-ablation runs; the separate
+memory-poisoning evaluation is not included.
+The retained benchmark artifacts provide
+prompt-token totals but do not contain a consistent
+per-execution wall-clock ledger, device-utilization
+traces, or power measurements. We therefore do
+not report average runtime, total wall-clock time,
+GPU-hours, floating-point operations, or energy
+consumption. Prompt-token volume is instead used
+as the reproducible measure of inference workload.
+After deduplicating configurations that appear in
+both the main and component tables, the seven
+unique configurations processed approximately
+1.028 billion prompt tokens on GAIA-Text and
+1.363 billion on GAIA, for 2.391 billion prompt
+tokens across the complete benchmark grid. Full
+WMT accounts for 121.50 million prompt tokens
+on GAIA-Text and 158.78 million on GAIA, or
+280.28 million in total.
+These totals include all language-model calls re-
+quired by each configuration, including base-agent
+reasoning, semantic memory selection, and branch
+summarization when enabled. Because the three
+model families use different tokenizers, the com-
+bined token count represents aggregate inference
+workload rather than a tokenizer-normalized com-
+parison across models.
+The reported 192 GB denotes aggregate installed
+memory across the eight GPUs and should not be
+interpreted as the memory consumed by an indi-
+vidual run. Peak allocated GPU memory was not
+recorded.
+16

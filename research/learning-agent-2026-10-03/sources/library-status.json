@@ -1,0 +1,24 @@
+{
+  "paper_count": 49,
+  "project_count": 14,
+  "repository_snapshots": 13,
+  "pdf_count": 46,
+  "fulltext_method_checks": 12,
+  "pdf_missing": [
+    {
+      "id": "P08",
+      "url": "https://arxiv.org/abs/2606.20138",
+      "status": "failed"
+    },
+    {
+      "id": "P48",
+      "url": "https://eric.ed.gov/?id=EJ1090502",
+      "status": "failed"
+    },
+    {
+      "id": "P49",
+      "url": "https://pubmed.ncbi.nlm.nih.gov/26162104/",
+      "status": "no_open_pdf_link_extracted"
+    }
+  ]
+}

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!-- Overall paper information-->
+        <meta name="citation_title" content="Real-Time Reactive Speech Synthesis: Incorporating Interruptions">
+        <meta name="citation_conference_title" content="Proc. Interspeech 2017">
+        <meta name="citation_publication_date" content="2017">
+        <meta name="citation_firstpage" content="3996">
+        <meta name="citation_lastpage" content="4000">
+        <!-- Author listing -->
+        <meta name="citation_author" content="Wester, Mirjam">
+        <meta name="citation_author" content="Braude, David A.">
+        <meta name="citation_author" content="Potard, Blaise">
+        <meta name="citation_author" content="Aylett, Matthew P.">
+        <meta name="citation_author" content="Shaw, Francesca">
+        <!-- Paper file/links -->
+        <meta name="citation_pdf_url" content="https://www.isca-archive.org/interspeech_2017/wester17_interspeech.pdf">
+        <meta name="citation_doi" content="10.21437/Interspeech.2017-1250">
+        <meta charset="UTF-8">
+        <title>ISCA Archive - Real-Time Reactive Speech Synthesis: Incorporating Interruptions</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Fonts -->
+        <link rel="stylesheet" href="../resources/fontawesome-free-subset/style.css">
+        <link rel="stylesheet" href="../resources/academicons-1.9.4/css/academicons.min.css">
+
+        <!-- Erratum related -->
+        <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+        <!-- Code (bibtex) -->
+        <script src="../resources/prism/prism.js"></script>
+        <link rel="stylesheet" href="../resources/prism/prism.css">
+        <script src="../resources/jquery-3.5.1.min.js"></script>
+        <script src="../resources/prism/prism-bibtex.js"></script>
+
+        <!-- Overall theme -->
+        <link rel="stylesheet" href="../resources/w3.css">
+        <link rel="stylesheet" href="../resources/w3-theme-blue.css">
+        <script src="../resources/w3.js"></script>
+
+        <!-- ISCA Archive modifications -->
+        <link rel="stylesheet" href="../resources/is.css">
+    </head>
+
+    <body>
+        <div class="w3-top w3-hide-small">
+            <div class="w3-bar w3-grayscale-min w3-theme-d4 w3-center">
+                <a href="https://www.isca-speech.org" class="w3-bar-item w3-button w3-theme-d2 w3-mobile"><i class="icon-home w3-margin-right"></i>ISCA</a>
+                <a href="https://www.isca-archive.org" class="w3-bar-item w3-button w3-mobile">Archive</a>
+                <a href="index.html" class="w3-bar-item w3-button w3-mobile">Interspeech 2017</a>
+            </div>
+        </div>
+
+        <div class="w3-hide-large w3-hide-medium">
+            <div class="w3-bar w3-grayscale-min w3-theme-d4 w3-center">
+                <a href="https://www.isca-speech.org" class="w3-bar-item w3-button w3-theme-d2 w3-mobile"><i class="icon-home w3-margin-right"></i>ISCA</a>
+                <a href="https://www.isca-archive.org" class="w3-bar-item w3-button w3-mobile">Archive</a>
+                <a href="index.html" class="w3-bar-item w3-button w3-mobile">Interspeech 2017</a>
+            </div>
+        </div>
+
+        <div class="w3-theme-l5">
+            <div class="w3-container">
+                <div class="w3-content" style="max-width:1200px;margin-top:60px;margin-bottom:700px">
+                    <div class="w3-container w3-card w3-padding-large w3-white" style="border-radius:20px">
+                        <div id="global-info"  class="w3-margin w3-padding">
+                            <h3 class="w3-center">Real-Time Reactive Speech Synthesis: Incorporating Interruptions</h3>
+                            <h5 class="w3-center">Mirjam Wester, David A. Braude, Blaise Potard, Matthew P. Aylett, Francesca Shaw</h5>
+                        </div>
+
+                        <div id="abstract">
+                            <p>The ability to be interrupted and react in a realistic manner is a
+key requirement for interactive speech interfaces. While previous systems
+have long implemented techniques such as &#8216;barge in&#8217; where
+speech output can be halted at word or phrase boundaries, less work
+has explored how to mimic human speech output responses to real-time
+events like interruptions which require a reaction from the system.
+Unlike previous work which has focused on incremental production, here
+we explore a novel re-planning approach. The proposed system is versatile
+and offers a large range of possible ways to react. A focus group was
+used to evaluate the approach, where participants interacted with a
+system reading out a text. The system would react to audio interruptions,
+either with no reactions, passive reactions, or active negative reactions
+(i.e. getting increasingly irritated). Participants preferred a reactive
+system.
+</p>
+                        </div>
+
+                        <div id="content" class="w3-center" style="margin-top:30px; margin-bottom:20px">
+                            <div class="icon-row">
+                                <a href="wester17_interspeech.pdf"><i class="icon-file-pdf-o w3-grayscale w3-margin-right w3-text-theme w3-xlarge"></i></a>
+                                <a href="#" id="show-bibtex"><i class="icon-book w3-grayscale w3-margin-right w3-text-theme w3-xlarge" title="Show BibTex and copy to clipboard"></i></a>
+                                <a href="#" id="show-citation"><i class="icon-quotes-right w3-grayscale w3-margin-right w3-text-theme w3-xlarge" title="Show citation and copy to clipboard"></i></a>
+                                <a href="#" id="show-doi"><i class="ai ai-doi ai-fw w3-grayscale w3-margin-right w3-text-theme w3-xlarge" title="Show the DOI and copy to clipboard"></i></a>
+                            </div>
+
+                            <div id="popup-box" class="pointer-box"  style="display:none;">
+                                <div class="popup-pointer"></div>
+                                <div class="popup-content">
+                                    <div id=bibtex class="w3-margin w3-padding" style="display:none;">
+                                        <pre class="language-bib"><code id="bibtex-code" class="language-bib">@inproceedings{wester17_interspeech,
+  title     = {{Real-Time Reactive Speech Synthesis: Incorporating Interruptions}},
+  author    = {Mirjam Wester and David A. Braude and Blaise Potard and Matthew P. Aylett and Francesca Shaw},
+  year      = {2017},
+  booktitle = {{Interspeech 2017}},
+  pages     = {3996--4000},
+  doi       = {10.21437/Interspeech.2017-1250},
+  issn      = {2958-1796},
+}</code></pre>
+                                    </div>
+                                    <div id="citation" class="w3-margin w3-padding" style="display:none;">
+                                        <p class='w3-text' style="text-align: left"><b>Cite as</b>: <span id="citation-content">Wester, M., Braude, D.A., Potard, B., Aylett, M.P., Shaw, F. (2017) Real-Time Reactive Speech Synthesis: Incorporating Interruptions. Proc. Interspeech 2017, 3996-4000, doi: 10.21437/Interspeech.2017-1250</span></p>
+                                    </div>
+
+                                    <div id="doi" class="w3-margin w3-padding" style="display: none; border-radius: 5px; border: 2px solid;">
+                                        <b>doi</b>: <span id="actual_doi">10.21437/Interspeech.2017-1250</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            var el = document.getElementById('show-bibtex');
+            el.onclick = showAndCopyBibtex;
+
+            function showAndCopyBibtex() {
+
+                if ($("#bibtex").css("display") == "none") {
+                    $("#bibtex").css("display", "block");
+                    $("#citation").css("display", "none");
+                    $("#doi").css("display", "none");
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText($("#bibtex-code")[0].textContent);
+                    }
+                } else {
+                    $("#bibtex").css("display", "none");
+                }
+
+                if ($("#bibtex").css("display") == "block") {
+                    $("#popup-box").css("display", "block");
+                } else {
+                    $("#popup-box").css("display", "none");
+                }
+            }
+            el = document.getElementById('show-citation');
+            el.onclick = showAndCopyCitation;
+
+            function showAndCopyCitation() {
+
+                if ($("#citation").css("display") == "none") {
+                    $("#citation").css("display", "block");
+                    $("#bibtex").css("display", "none");
+                    $("#doi").css("display", "none");
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText($("#citation-content")[0].textContent);
+                    }
+                } else {
+                    $("#citation").css("display", "none");
+                }
+
+                if ($("#citation").css("display") == "block") {
+                    $("#popup-box").css("display", "block");
+                } else {
+                    $("#popup-box").css("display", "none");
+                }
+            }
+
+
+            el = document.getElementById('show-doi');
+            el.onclick = showDOI;
+
+            function showDOI() {
+                if ($("#doi").css("display") == "none") {
+                    $("#doi").css("display", "block");
+                    $("#citation").css("display", "none");
+                    $("#bibtex").css("display", "none");
+                    if (navigator.clipboard) {
+                        navigator.clipboard.writeText($("#actual_doi")[0].textContent);
+                    }
+                } else {
+                    $("#doi").css("display", "none");
+                }
+
+                if ($("#doi").css("display") == "block") {
+                    $("#popup-box").css("display", "block");
+                } else {
+                    $("#popup-box").css("display", "none");
+                }
+            }
+        </script>
+    </body>
+</html>

@@ -1,0 +1,2088 @@
+=== PDF PAGE 1 ===
+Academic Editors: Kristen Gregory,
+Xi Lin, Ken Luterbach and
+Chris Campbell
+Received: 12 October 2025
+Revised: 20 December 2025
+Accepted: 29 December 2025
+Published: 30 December 2025
+Copyright: © 2025 by the authors.
+Licensee MDPI, Basel, Switzerland.
+This article is an open access article
+distributed under the terms and
+conditions of the Creative Commons
+Attribution (CC BY) license.
+Systematic Review
+Generative AI in Art Education: A Systematic Review of
+Research Trends, Tool Applications, and Outcomes (2019–2025)
+Yihan Jiang *
+ , Yujiao Fan
+ and Zifeng Liu
+School of Teaching and Learning, College of Education, University of Florida, Gainesville, FL 32611, USA;
+yujiaofan@ufl.edu (Y.F.); liuzifeng@ufl.edu (Z.L.)
+* Correspondence: jiangyihan@ufl.edu
+Abstract
+Generative artificial intelligence (GenAI) tools are transforming art education by enabling
+instant creation of textual, visual, audio, and multimodal outputs. This systematic re-
+view synthesizes research on GenAI applications in art education from January 2019 to
+August 2025. Following PRISMA 2020 guidelines, 19 peer-reviewed empirical studies
+across six databases (Web of Science, ScienceDirect, Springer, Taylor & Francis, Scopus,
+and ERIC) met inclusion criteria, which required clear pedagogical implementation with
+students or educators as active participants. Research accelerated from two studies in
+2023 to 14 in 2025, with most studies examining higher education and East Asia contexts
+through mixed methods approaches and grounded in constructivist and cognitive learn-
+ing theories. Text-to-image generation models (DALL-E, Midjourney, Stable Diffusion)
+and conversational AI (ChatGPT) were most frequently implemented across creative pro-
+duction, pedagogical scaffolding, and instructional design applications. Findings from
+this emerging body of research suggest that GenAI has the potential to improve learning
+achievement, creative thinking, engagement, and cultural understanding when integrated
+through structured pedagogical frameworks with intentional instructor design. However,
+these positive outcomes represent early-stage implementation trends in well-resourced
+contexts rather than broadly generalizable conclusions. Successful integration requires
+explicit instructional frameworks, clear ethical guidelines for human-AI collaboration, and
+evolved assessment methods.
+Keywords: generative artificial intelligence; GenAI; art education; systematic review;
+pedagogical integration; creative learning; educational technology
+1. Introduction
+1.1. Art Education and Technology Integration
+Art education helps students build creative expression, visual literacy, critical thinking,
+and problem-solving through fine and visual art practices (Dobbs, 1998; Freedman, 2025;
+E. Zimmerman, 2009). As educational contexts increasingly incorporate digital tools and
+technologies, art education has become a site for examining how emerging technologies
+intersect with fundamental pedagogical goals (Black & Browning, 2011). Over time, teachers
+have brought different technologies into art classrooms. They have used slide projectors
+to show famous artworks, digital cameras to record projects, and software such as Adobe
+Photoshop for image editing. Tablets have also been used for digital drawing (Tillander,
+2011). In most cases, these digital tools have supported teaching and learning rather
+than replaced the creative process itself. Students still made the main artistic choices and
+Educ. Sci. 2026, 16, 47 https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 2 ===
+Educ. Sci. 2026, 16, 47 2 of 33
+carried out their ideas (Bardzell, 2007; Jones, 1986). Yet, these tools have several limits.
+They take time and training to use well. They give little help with idea development
+or concept exploration. They do not do much for students who face creative blocks or
+technical difficulties. They also create extra costs for teachers and schools (Alawad, 2013).
+Prior research on technology integration in art education has examined diverse platforms
+from traditional digital tools to augmented and virtual reality (González-Zamar & Abad-
+Segura, 2020; Huang et al., 2016). However, the rapid emergence of AI tools presents
+a fundamentally different technological landscape, requiring fresh examination of how
+educators can thoughtfully integrate these tools.
+1.2. Generative AI: Distinguishing from Traditional AI in Education
+Research on artificial intelligence (AI) in education has primarily focused on applica-
+tions such as profiling and prediction, assessment and evaluation, adaptive systems and
+personalization, and intelligent tutoring systems (Zawacki-Richter et al., 2019). Mallik and
+Gangopadhyay (2023) categorize AI in education into proactive and reactive engagement.
+Most applications focus on analyzing learner data to provide feedback or predictions,
+without contributing to creative knowledge generation. Generative artificial intelligence
+(GenAI) represents a distinct category of AI that moves beyond responsive optimization
+to active content creation (Samala et al., 2025). GenAI encompasses machine learning sys-
+tems capable of generating novel content, including text, images, audio, and multimodal
+outputs from natural language prompts. Tools like ChatGPT, DALL-E, Midjourney, and
+Stable Diffusion, released in the early 2020s, address many limits of older technologies.
+They can create complex visuals in seconds, help students brainstorm ideas, and reduce
+the technical skills needed to produce high-quality work (Palani & Ramos, 2024; Park,
+2023). This change reshapes how people think about artistic learning and creation (Torres
+Carceller, 2024). For example, a student who cannot draw well can still make detailed
+artwork with text prompts, while a chatbot can give real-time feedback on style, concept,
+or art history. However, these capabilities introduce unprecedented challenges. Ethically,
+questions emerge around authorship, copyright, and the environmental impact of training
+large models (Blair, 2025; Garcia, 2024; Leonard, 2021). Pedagogically, concerns arise about
+diminished skill development when students bypass traditional practice stages, potential
+aesthetic homogenization as GenAI models reflect training data biases, and the question of
+what constitutes meaningful artistic learning when production processes become partially
+automated (Aksoy & Kursun, 2024; Doshi & Hauser, 2023; Holmes & Zhgenti, 2024; Mel-
+chior & Farinosi, 2025). GenAI therefore opens creative access to more people and offers
+new ways to teach art. At the same time, it questions long-held values in art education
+that have focused on process, skill, and personal growth rather than the final product
+(Stewart, 2019).
+1.3. The Literature Gap
+Recent reviews have summarized how AI works and how it has been used in education
+(Tahiru, 2021). Some focused on AI chatbots in classrooms (Labadze et al., 2023; ˙Ipek et al.,
+2023), while others explored AI use across college subjects (Zawacki-Richter et al., 2019).
+However, most of this research centers on STEM fields, leaving art education largely
+unexplored. Studies on AI in art do exist but cover different areas. Some reviews have
+discussed broad technologies such as AR, VR, and machine learning, or systems that
+provide tutoring support (Adeel & Yasmeen, 2025). Others have examined how AI is
+used for creating or analyzing art rather than for teaching art (Oksanen et al., 2023). A
+few broader reviews have looked at AI’s role in creativity and audience engagement but
+did not focus on classroom practices (Then et al., 2023). One review that specifically
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 3 ===
+Educ. Sci. 2026, 16, 47 3 of 33
+focused on K-12 art education found that AI use in this area is still in its early stage (Su &
+Mokmin, 2025). More broadly, even as AI technologies are beginning to be applied to visual
+arts, the maturity level of this field remains low, with most research focuses on testing
+strategies and developing tools rather than systematically applying learning theory to
+guide implementation or examining teaching and learning outcomes (Su & Mokmin, 2024).
+The emergence of GenAI tools adds another layer of complexity to this already un-
+derdeveloped field. As of 2025, empirical research on GenAI in art education remains in
+its nascent stages, with most available studies published within the past year. Reviews
+on GenAI in general education have shown its strong potential for personalizing learning
+and generating content (Mittal et al., 2024). They have also found wide use in higher
+education and positive student attitudes toward these tools (Batista et al., 2024). Even
+with these studies, a gap remains. No systematic review has yet explored how GenAI
+tools are being used for teaching and learning in art education. Current research has not
+examined which learning theories guide GenAI-based art instruction, what evidence shows
+changes in student learning, or what recommendations teachers can follow when using
+these tools. This gap is significant because art education embodies distinctive pedagogical
+purposes that differ from STEM-oriented contexts where GenAI research has concentrated.
+Art education prioritized: (1) iterative creative process over final product (E. Zimmerman,
+2010), (2) development of aesthetic judgment and critical visual literacy (Crawford, 1987),
+and (3) cultural understanding and authentic expression (Ballengee-Morris & Stuhr, 2001).
+Art education also raises specific teaching concerns, such as how to keep the creative
+process active, build basic artistic skills, support critical thinking about beauty and style,
+and protect personal and cultural expression when using GenAI (Eri¸ sti & Freedman, 2024).
+These issues have not yet been discussed in broader reviews that focus only on general
+learning outcomes.
+1.4. Research Questions and Objectives
+This systematic review addresses this gap by synthesizing research on GenAI applica-
+tions in art education from January 2019 to August 2025. To structure this synthesis, we
+organized inquiry around four progressive research questions that move from descriptive
+(what is happening?) through explanatory (how and why?) to prescriptive (what should
+happen?) Specifically, this review investigates four research questions:
+1. What are the temporal trends and research focus areas in GenAI art education
+applications?
+2. What specific GenAI tools are employed and how are they implemented within art
+educational contexts?
+3. What learning theoretical frameworks guide GenAI integration in art education?
+4. What are the documented impacts and what practical recommendations emerge from
+empirical investigations?
+By systematically examining these dimensions, this review aims to provide art edu-
+cators, curriculum developers, and educational policymakers with an evidence-informed
+understanding of: (1) what is currently known about GenAI integration in art education
+contexts, (2) what remains unknown and requires future investigation, and (3) what pro-
+visional guidance the existing evidence base can support for thoughtful implementation.
+This approach acknowledges both the genuine pedagogical promise GenAI offers and the
+legitimate cautions regarding its effects on artistic authenticity, skill development, and
+educational equity.
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 4 ===
+Educ. Sci. 2026, 16, 47 4 of 33
+2. Materials and Methods
+This systematic review was not prospectively registered. The study follows PRISMA
+2020 guidelines (Page et al., 2021) to ensure methodological rigor and transparency through-
+out the review process. This section details the search strategy, eligibility criteria, and data
+extraction and analysis methods employed in this review.
+2.1. Search Strategy
+To ensure systematic comprehensiveness within manageable scope, initial search
+parameters were established: (1) language restriction to English-language peer-reviewed
+publications, (2) temporal scope from January 2019 to August 2025, (3) database selection
+of six platforms. These parameters were applied at the database level to constrain initial
+retrieval. Six databases were searched: Web of Science, ScienceDirect, Springer, Taylor &
+Francis, Scopus, and ERIC. These databases were selected for their coverage of education
+technology, art education, and computer science literature.
+Search terms were developed through preliminary scoping searches and team dis-
+cussion to ensure broad yet focused retrieval. Two core concept clusters were identified:
+(1) generative AI technologies, and (2) art education contexts. These concept clusters were
+combined using the Boolean AND operator to retrieve documents addressing both concepts.
+Table 1 presents the complete search strategy.
+Table 1. Search strategy: key topics and terms.
+Topics Search Terms
+Generative AI Technologies
+“generative artificial intelligence” OR “generative
+AI” OR “AI-generated art” OR “GenAI” OR
+“generative art” OR “GAI”
+Art Education Context
+“art* education” OR “visual art* education” OR “art*
+pedagogy” OR “art* teaching” OR “art* learning”
+OR “artistic learning” OR “digital art* education” 1
+1 The two concepts were combined using the AND operator. * The asterisk (*) represents a wildcard that matches
+any character(s), allowing for variations such as ‘art,’ ‘arts,’ and ‘artistic’.
+2.2. Eligibility Criteria
+We developed our inclusion criteria based on Meline’s (2006) systematic review prin-
+ciples. These criteria focus on research question relevance, methodological quality, and
+pedagogical applicability, ensuring both internal and external validity of our review. The
+inclusion criteria encompassed empirical investigations (quantitative, qualitative, and
+mixed methods) conducted in art educational settings with systematic implementation of
+GenAI tools. Eligible studies featured students or educators as active participants utilizing
+GenAI for structured learning activities with defined objectives and analysis of educational
+processes or outcomes. The exclusion criteria eliminated several categories of literature
+across multiple dimensions. We excluded purely theoretical analyses and opinion pieces
+without empirical foundation, as our focus required evidence-based research. Studies
+involving participants other than students or educators in educational contexts were ex-
+cluded, as were commercial design applications outside educational settings. Critically, we
+excluded studies that merely offered exploratory reflections or tool demonstrations without
+systematic educational implementation. This included research lacking structured learning
+activities, defined educational objectives, or systematic analysis of learning processes and
+skill development impacts. Additionally, we excluded studies focusing on traditional
+digital art tools rather than GenAI implementation, and those providing only superficial
+observations without meaningful analysis of educational outcomes. The specific criteria
+applied for study selection are presented in Table 2.
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 5 ===
+Educ. Sci. 2026, 16, 47 5 of 33
+Table 2. Eligibility criteria for the selection process.
+Criteria Inclusion Exclusion
+Study Design Empirical investigations (quantitative, qualitative,
+mixed methods)
+Purely theoretical analyses; opinion pieces without
+empirical foundation
+Participants
+Studies involving students or educators (in any
+educational level or setting) as active participants
+utilizing GenAI tools
+Studies where participants are neither students nor
+educators (e.g., general public, random museum
+visitors, commercial users) OR studies that do not
+clearly identify participant roles in relation to
+educational contexts
+Context
+Studies conducted in art educational settings with
+systematic implementation of GenAI tools,
+including structured learning activities, defined
+objectives, and analysis of educational processes
+or outcomes
+Commercial design applications outside
+educational contexts; exploratory reflections or
+tool demonstrations without systematic
+educational implementation; traditional digital art
+tools research
+Technology
+Studies implementing GenAI tools (including
+text-to-image generators, conversational AI,
+generative models) in art education
+Studies examining digital art tools without GenAI
+components; studies describing GenAI tools
+without pedagogical implementation
+Analysis Depth
+Studies providing systematic analysis of learning
+processes, skill development, or
+educational outcomes
+Minimal analysis of educational impacts or
+superficial observations
+2.3. Study Selection and Quality Assessment Process
+The study selection process followed standard PRISMA procedures across three phases:
+identification, screening, and inclusion. In the identification phase, database searches across
+six platforms yielded 598 records. Manual searching of reference lists and citation tracking
+identified 2 additional records, bringing the initial pool to 600 publications. All identified
+records were compiled and duplicate records were removed. This deduplication process
+eliminated 32 duplicate records, resulting in 568 unique records for title and abstract
+screening. In the screening phase, two independent reviewers screened all 568 titles and
+abstracts against the eligibility criteria specified in Table 2. Reviewers worked in pairs,
+with each record evaluated by both reviewers to ensure consistent application of criteria.
+Records identified by both reviewers as potentially meeting inclusion criteria advanced
+to full-text review. This title and abstract screening phase resulted in 52 reports identified
+for retrieval. Both reviewers independently assessed the 52 full-text reports against the
+eligibility criteria. Of these, 4 reports could not be obtained, leaving 48 reports for detailed
+eligibility assessment. When reviewers disagreed about eligibility, disagreements were
+resolved through detailed discussion examining the specific criteria of contention. When
+consensus could not be reached through discussion, a third independent reviewer was
+consulted to make the final determination. This process resulted in exclusion of 29 reports
+for the reasons shown in Figure 1. This resulted in 19 studies meeting all inclusion criteria
+for synthesis in the inclusion phase.
+Subsequently, all 19 included studies underwent quality assessment using the Mixed
+Methods Appraisal Tool (MMAT), version 2018 (Hong et al., 2018), a validated instrument
+designed to evaluate methodological rigor across diverse study designs. The MMAT pro-
+vides design-specific criteria for qualitative (5 items), quantitative (5 items), and mixed
+methods (5 items) studies. Both independent reviewers applied the tool to each included
+study, rating each criterion as “Yes,” “No,” or “Can’t tell” according to standardized guide-
+lines. Inter-rater reliability between the two independent reviewers was high, with Cohen’s
+Kappa κ = 0.868. Disagreements in quality ratings were resolved through detailed discus-
+sion until consensus was reached. All included studies indicated sufficient methodological
+quality. Eleven studies (57.9%) met all five quality criteria (100% quality score) for their
+respective study designs. Six studies (31.6%) met four of five criteria (80% quality score).
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 6 ===
+Educ. Sci. 2026, 16, 47 6 of 33
+One study (5.3%) met three of five criteria (60% quality score). One study (5.3%) met two of
+five criteria (40% quality score).
+Figure 1. PRISMA flow diagram of the study selection process.
+The complete screening and selection process is illustrated in the PRISMA flow dia-
+gram (Figure 1). Although the initial search retrieved 600 potential studies, only 19 met all
+the established criteria for inclusion. This substantial reduction is not indicative of a lack of
+relevant literature on generative AI and art education but rather reflects the application of
+rigorous inclusion criteria focused on empirical studies that involve direct teaching and
+learning with students or educators as active participants in structured art educational
+activities. Most excluded studies either lacked systematic pedagogical implementation,
+consisted of attitudinal surveys or reflective accounts from AI users without documented
+teaching and learning outcomes, focused on AI in general education contexts without
+specific application to art education, addressed non-pedagogical uses of AI in art creation
+or analysis, or presented theoretical discussions and tool demonstrations.
+2.4. Data Extraction and Analysis Methods
+Data extraction was conducted systematically by both reviewers to ensure accuracy
+and completeness. For each included study, extracted data included: (1) publication demo-
+graphics (year, geographic distribution, institutional affiliation type, publication channel),
+(2) research focus (educational level, application scenario, theme, methodology, sample
+size), (3) technological specifications (GenAI tools, applications), educational theoretical
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 7 ===
+Educ. Sci. 2026, 16, 47 7 of 33
+frameworks, and (4) outcome measures (impacts, recommendations). Institutional affilia-
+tion types were categorized into single institution and multiple institutions. For regional
+analysis, studies were classified based on the region of the first author’s primary (first-listed)
+institutional affiliation to ensure consistency and avoid duplicate counting. Publication
+venues were classified across journal articles and conference papers. Educational level
+was categorized into three groups: K-12 education, higher education, and teacher educa-
+tion/professional development. Methodologies were classified into three main categories:
+quantitative, qualitative, and mixed methods (Taherdoost, 2022).
+Data were analyzed using descriptive statistics (Kaur et al., 2018) and conventional
+content analysis (Hsieh & Shannon, 2005). Descriptive statistics examined distribution
+patterns across nine dimensions: temporal trends, geographical distribution, publication
+channels, institutional types, educational levels, methodology, sample size, application
+scenarios, and GenAI tools in art education. Following the conventional content analysis
+approach (Hsieh & Shannon, 2005), this review employed inductive coding to categorize
+research focus (theme), technological specifications (GenAI applications), educational theo-
+retical frameworks, and outcome measures (impacts and recommendations). Categories
+emerged from the data through iterative reading and analysis of the included studies,
+without imposing predetermined theoretical frameworks. All data extraction, coding,
+and analysis of the included studies were conducted using Microsoft Excel (version 2023).
+Figures were generated programmatically using Python (version 3.11.9) and the Matplotlib
+library (version 3.10.3) at 300 dpi resolution.
+3. Results
+This section addresses the four research questions posed in this study, progressing
+from the current landscape to implementation specifics, theoretical foundations, and impli-
+cations. It represents an analysis of the currently available empirical literature on GenAI
+in art education. We first examine temporal trends and research focus areas in GenAI
+art education applications. Second, we identify the specific GenAI tools employed and
+their implementations within art educational contexts. Third, we analyze the educational
+theoretical frameworks guiding GenAI integration. Fourth, we summarize the documented
+impacts of GenAI integration. Finally, we synthesize practical recommendations emerging
+from empirical investigations.
+3.1. Trends and Focus Areas of GenAI Applications in Art Education (2019–2025)
+To address the research question on trends and focus areas of GenAI applications in
+art education, we developed Table A1 as an overview of included studies, cataloging key
+characteristics to facilitate subsequent analysis.
+3.1.1. Temporal Distribution and Publication Trends
+As shown in Figure 2, the 19 included studies represent research conducted between
+2023 and 2025, with no eligible studies identified from 2019 to 2022. Only two studies
+were published in 2023 (10.5%), increasing to three in 2024 (15.8%), with an acceleration to
+14 studies in 2025 (73.7%).
+Journal articles comprise 78.9% of publications (n = 15), with conference papers ac-
+counting for 21.1% (n = 4). Prominent journals include Education and Information Technologies
+(3 articles), Interactive Learning Environments (3 articles), and other journals such as Com-
+puters & Education, International Journal of Information and Education Technology, and Journal
+of Educational and Social Research. Conference publications appeared primarily in human–
+computer interaction venues.
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 8 ===
+Educ. Sci. 2026, 16, 47 8 of 33
+Figure 2. Distribution of included studies by year.
+3.1.2. Geographical and Institutional Characteristics
+Analysis of research context regions (Figure 3) reveals where studies were conducted.
+Mainland China dominates as the primary research context, accounting for 36.8% of studies
+(n = 7). The United States follows with 15.8% (n = 3). Notably, 26.3% of studies (n = 5) did
+not report their research context region. Single-country contexts include Taiwan, Singapore,
+and South Korea (5.3% each, n = 1), while one study (Taama, 2025) reported a multi-
+country context spanning Qatar, the United States, and the United Kingdom in an online
+environment (5.3%). Institutional affiliation analysis reveals that multiple institutions
+dominate the research landscape, accounting for 68.4% of studies ( n = 13), while single
+institution studies comprise 31.6% (n = 6).
+Figure 3. Regional context of included studies. Note: Percentages may not sum to exactly 100% due
+to rounding.
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 9 ===
+Educ. Sci. 2026, 16, 47 9 of 33
+To avoid duplicate counting when institutions span multiple countries, the analysis
+focuses on the first author’s first institutional affiliation. When consolidating individual
+countries into broader geographic regions (Figure 4), East Asia dominates with 36.8%
+(n = 7), encompassing Mainland China ( n = 4), Taiwan (n = 1), and South Korea ( n = 2).
+Southeast Asia contributes 26.3% (n = 5), comprising Malaysia (n = 4) and Singapore (n = 1).
+North America accounts for 15.8% (n = 3), with all contributions from the United States.
+Europe represents 10.5% (n = 2), including Spain (n = 1) and Latvia (n = 1). Central Asia
+and the Middle East each contribute 5.3% (n = 1), represented by Kazakhstan and Qatar,
+respectively. Collectively, the Asia-Pacific region demonstrates clear dominance, accounting
+for 63.1% of all research output (East Asia 36.8% + Southeast Asia 26.3%).
+Figure 4. Distribution of studies by institutional region of included studies.
+3.1.3. Educational Contexts and Methodological Approaches
+Higher education contexts dominate the research landscape (Figure 5), appearing
+in 16 studies (84.2%). K-12 education appears in five studies (26.3%), and teacher educa-
+tion/professional development contexts in two studies (10.5%). Some studies span multiple
+educational levels, particularly those examining pedagogical transformation across contexts
+(Heaton et al., 2024; Konakbayeva et al., 2025; Ling et al., 2025b).
+Figure 5. Educational level of included studies.
+Regarding methodological approaches (Figure 6), mixed methods emerged as the
+predominant choice, employed in 12 studies (63.1%), followed by quantitative approaches
+in six studies (31.6%), and qualitative methodology in only one study (5.3%; Heaton et al.,
+2024). Sample sizes among the 18 studies reporting this information ranged from 10 to
+300 participants (M = 66.1, Mdn = 49), and one study (Heaton et al., 2024) was excluded
+from this analysis as it reported participant numbers for only some subgroups without
+providing a total sample size.
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 10 ===
+Educ. Sci. 2026, 16, 47 10 of 33
+Figure 6. Methodology of included studies.
+3.1.4. Application Scenarios in Art Education
+As shown in Table 3, studies were categorized into six categories based on their
+primary application scenario, defined by the dominant educational context and main
+learning objectives.
+Table 3. Application scenarios of included studies.
+Category Studies (Author, Year) Numbers
+Creative Production &
+Design
+Ansone et al. (2025); Chiu and
+Hwang (2025); Hutson and Cotroneo
+(2023a, 2023b); Kicklighter et al.
+(2024); Xu (2025); Zeng et al. (2025)
+7
+Cultural Heritage & Art
+History
+Liu et al. (2025); Ling et al. (2025b);
+Taama (2025); Zhu et al. (2025) 4
+Design-Oriented Art
+Education
+Chen et al. (2025a,2025b); Ling et al.
+(2025a); Kang et al. (2025) 4
+Art Appreciation & Museum
+Learning Hu et al. (2025) 1
+Teacher Education &
+Professional Development Konakbayeva et al. (2025) 1
+Interdisciplinary & Informal
+Learning Heaton et al. (2024); Lee et al. (2024) 2
+Creative production and design (n = 7) form the largest group of studies. These involve
+settings where GenAI is used directly in making or designing art. Examples include art
+programs for learning composition (Ansone et al., 2025), creative digital storytelling (Chiu
+& Hwang, 2025), and digital art courses that teach prompt design (Hutson & Cotroneo,
+2023a, 2023b). Other studies looked at 3D animation studios (Kicklighter et al., 2024),
+creative curriculum design (Xu, 2025), and drawing lessons for primary students (Zeng
+et al., 2025). Cultural heritage and art history (n = 4) involve studies where GenAI supports
+teaching about culture and heritage. Examples include lessons on traditional Chinese
+painting (Liu et al., 2025), rural mural projects (Ling et al., 2025b), art history courses on
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 11 ===
+Educ. Sci. 2026, 16, 47 11 of 33
+Eastern and Arab art (Taama, 2025), and digital illustration classes featuring cross-cultural
+designs (Zhu et al., 2025). Design-oriented art education (n = 4) includes courses that mix
+art and design principles. These studies focused on either art programs that teach design
+history (Chen et al., 2025a, 2025b) or foundation courses common to both fields, such as
+color composition (Ling et al., 2025a) and ceramic crafts (Kang et al., 2025). Art appreciation
+and museum learning (n = 1) refers to contexts that focus on viewing and understanding
+art rather than making it. One study explored a university art appreciation course using
+GenAI to support museum visits (Hu et al., 2025). Teacher education and professional
+development (n = 1) addresses how GenAI is used in teacher training. Konakbayeva et al.
+(2025) studied how visual art teachers used GenAI for collaborative planning and practice
+teaching. Interdisciplinary and informal learning (n = 2) covers contexts outside regular
+art classes or those combining several subjects. These include informal art enrichment
+programs for children (Heaton et al., 2024) and elementary after-school STEAM workshops
+(Lee et al., 2024).
+3.1.5. Research Themes and Focus Areas
+From a thematic perspective, the research themes reveal that studies predominantly
+focus on: (1) Pedagogical integration and instructional innovation, encompassing studies
+examining how GenAI tools can be effectively incorporated into art curricula through
+various instructional approaches. This includes investigations of composition learning
+integration (Ansone et al., 2025), scaffolding instruction (Ling et al., 2025a; Liu et al., 2025;
+Zeng et al., 2025), flipped classroom models with AI-generated virtual instructors (Chen
+et al., 2025a), prompt engineering and iterative creation processes (Hutson & Cotroneo,
+2023a, 2023b), mind mapping approaches (Chiu & Hwang, 2025), color composition instruc-
+tion (Ling et al., 2025a), and AI-assisted design communication in pedagogical practice
+(Kang et al., 2025). (2) Cognitive and affective learning outcomes with studies investigating
+GenAI‘s impact on multiple dimensions of student development. These include creativity
+and creative self-efficacy (Chiu & Hwang, 2025; Kicklighter et al., 2024; Xu, 2025; Zeng
+et al., 2025), critical thinking abilities (Chiu & Hwang, 2025), learning motivation and
+engagement (Chen et al., 2025b; Lee et al., 2024; Zeng et al., 2025), self-efficacy (Chen et al.,
+2025b; Hu et al., 2025), academic achievement and learning performance (Chen et al., 2025a,
+2025b; Hu et al., 2025), and problem-solving capabilities (Hu et al., 2025). (3) Cultural
+heritage education and reproduction explore GenAI’s pedagogical potential in reproduc-
+ing cultural and historical elements in artistic works (Taama, 2025), teaching traditional
+art forms such as Chinese painting (Liu et al., 2025), facilitating cross-cultural heritage
+pattern education (Zhu et al., 2025), and supporting collaborative cultural rejuvenation
+projects (Ling et al., 2025b). (4) Teacher preparation and transformative pedagogy address
+the professional development dimension, examining how educators can be prepared for
+AI-integrated art education. This includes studies on GenAI integration in microteaching
+lesson study for pre-service visual art teachers (Konakbayeva et al., 2025) and broader
+transformative pedagogic reflections on AI integration across multiple educational levels
+(Heaton et al., 2024).
+3.2. GenAI Tools: Types and Art Educational Applications
+3.2.1. Types of GenAI Tools
+In terms of GenAI tools, Table 4 presents a classification of GenAI tools and technolo-
+gies employed.
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 12 ===
+Educ. Sci. 2026, 16, 47 12 of 33
+Table 4. GenAI tools classification of included studies.
+GenAI Type Tool/Model Studies (Author & Year) Numbers
+Text-to-Image Generation
+Models
+DALL-E/DALL-E 2
+Ansone et al. (2025); Heaton et al.
+(2024); Hutson and Cotroneo (2023a);
+Kicklighter et al. (2024); Taama (2025);
+Zhu et al. (2025)
+6
+Craiyon (formerly DALL-E Mini) Hutson and Cotroneo (2023b) 1
+Midjourney Kicklighter et al. (2024); Taama (2025);
+Zhu et al. (2025) 3
+Stable Diffusion Kang et al. (2025); Kicklighter et al.
+(2024); Lee et al. (2024); Zhu et al. (2025) 4
+Leonardo AI Taama (2025) 1
+Playground AI Taama (2025) 1
+Bing Image Creator Taama (2025) 1
+Night Cafe Studio Taama (2025) 1
+BlueWillow Taama (2025) 1
+DreamStudio Lee et al. (2024); Taama (2025) 2
+Perchance AI Heaton et al. (2024) 1
+Doubao AI Zhu et al. (2025) 1
+Dreamina Ling et al. (2025a) 1
+Custom Fine-tuned Diffusion Model Liu et al. (2025) 1
+Photoshop Generative Fill Kicklighter et al. (2024) 1
+Adobe Firefly Kicklighter et al. (2024) 1
+Others (Not Reported) Chiu and Hwang (2025);
+Ling et al. (2025b) 2
+Image Generation Control ControlNet Kang et al. (2025) 1
+Model Training Technique LoRA Training Kang et al. (2025); Zhu et al. (2025) 2
+Conversational AI/Large
+Language Models
+ChatGPT (General)
+Ansone et al. (2025); Chiu and Hwang
+(2025); Heaton et al. (2024); Kicklighter
+et al. (2024); Konakbayeva et al. (2025)
+5
+ChatGPT 3.5 Hu et al. (2025) 1
+ChatGPT 4 Xu (2025) 1
+Custom ChatGPT-driven
+Pedagogical Agent Chen et al. (2025b) 1
+KIMI Ling et al. (2025a) 1
+AI Virtual Instructor
+Technology iFLYTEK Technology Chen et al. (2025a) 1
+Custom Educational
+GenAI Tools
+Mobile AI Synchronous Generation
+Drawing (MAI-SGD) Zeng et al. (2025) 1
+Text-to-image generation models were the most widely adopted category, with DALL-
+E/DALL-E 2 being the most popular platform (used in 6 studies), followed by Midjourney
+(3 studies) and Stable Diffusion (4 studies). Conversational AI tools, particularly ChatGPT,
+appeared in seven studies with varying implementations: five used general ChatGPT,
+while others employed specific versions (ChatGPT 3.5, ChatGPT 4) or developed custom
+pedagogical agents (Chen et al., 2025b). Some studies employed extensive tools: Taama
+(2025) explored eight different text-to-image platforms, while Kicklighter et al. (2024)
+integrated six GenAI tools, including both image generators and conversational AI. This
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 13 ===
+Educ. Sci. 2026, 16, 47 13 of 33
+multi-platform approach suggests educators are evaluating diverse tools to identify optimal
+solutions for specific pedagogical goals. Beyond commercial platforms, advanced and
+custom implementations were present but less common. Kang et al. (2025) employed
+ControlNet with LoRA fine-tuning for precise image generation control, while Zhu et al.
+(2025) utilized LoRA training for cross-cultural design adaptation. Three studies developed
+domain-specific GenAI solutions: a fine-tuned diffusion model for Chinese aesthetic educa-
+tion (Liu et al., 2025), AI-generated virtual instructors (Chen et al., 2025a), and a mobile
+synchronous drawing tool (Zeng et al., 2025), demonstrating emerging trends toward
+specialized educational GenAI development. Two studies (Chiu & Hwang, 2025; Ling et al.,
+2025b) employed AI image generation tools without specifying exact platforms.
+3.2.2. Applications in Art Education
+Regarding the GenAI application, the categories of implementation are creative pro-
+duction and visual content generation, pedagogical scaffolding and learning support, and
+instructional design and teacher support. Table 5 provides an analysis of how these three
+application categories distributed across the 19 studies, with creative production and vi-
+sual content generation representing the most frequent implementation approach, often
+integrated with pedagogical scaffolding and learning support, while instructional design
+and teacher support comprised a smaller proportion of the reviewed applications.
+Table 5. GenAI applications, implementation approaches, and research objectives in art education.
+Author (Year) GenAI Application Category How They Applied in Art Education Research Objectives
+Ansone et al. (2025)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students used text-to-image
+generation to develop compositional
+skills by iteratively refining visual
+outputs through prompt engineering,
+applying fundamental artistic
+principles such as balance, contrast,
+unity, and emphasis
+Explore how bachelor’s-level art
+students perceive and interact with
+generative AI tools in artistic
+composition process
+Chen et al. (2025b) Pedagogical Scaffolding &
+Learning Support
+Students received contextual
+assistance, adaptive feedback and
+interactive dialogue from a
+conversational AI system that
+provided hints, clarifications, and
+tailored guidance to support their
+learning process and
+individual progression
+Examine effects of ChatGPT-driven
+pedagogical agent on student
+achievement, motivation, and
+self-efficacy in a design history course
+Chen et al. (2025a) Instructional Design &
+Teacher Support
+AI-generated virtual instructors
+delivered pre-course materials with
+realistic speech and movement,
+allowing students to access content
+asynchronously in both formal and
+conversational teaching styles
+Investigate the impact of AI-generated
+virtual instructors and conversational
+teaching styles on academic
+achievement, cognitive load, and
+student engagement in flipped
+classroom settings
+Chiu and Hwang (2025)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students engaged in a structured
+four-stage process (Clarify, Ideate,
+Develop, Implement) where GenAI
+supported their storytelling and
+visual creation through guided
+questioning, mind mapping, and
+iterative image refinement to produce
+digital narratives
+Develop an integrated mind mapping
+and GenAI-empowered digital
+storytelling approach based on the
+CIDI model to enhance students’
+creative and critical thinking abilities
+in AI-assisted art creation
+Heaton et al. (2024)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Primary students used AI for cultural
+exploration alongside physical
+painting, secondary students used AI
+for initial concepts while maintaining
+painting skill development, and
+graduate students used AI for critical
+analysis and visualization
+Share transformative pedagogic
+reflections from three art educators
+who integrated AI in their teaching,
+revealing how educators provided
+transformative learning with AI
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 14 ===
+Educ. Sci. 2026, 16, 47 14 of 33
+Table 5. Cont.
+Author (Year) GenAI Application Category How They Applied in Art Education Research Objectives
+Hu et al. (2025) Pedagogical Scaffolding &
+Learning Support
+Students learned to analyze artworks
+through a structured four-stage
+process (Question, Interaction,
+Verification, Examination) where they
+described observations to ChatGPT,
+verified information, and received
+feedback to deepen their art
+appreciation and visual
+understanding
+Evaluate effectiveness of
+ChatGPT-supported QIVE model in
+enhancing college students’ art
+appreciation learning outcomes
+Hutson and Cotroneo
+(2023a)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students crafted prompts using
+DALL-E 2, exploring variations in
+form, style, and content, then used
+Photoshop to recreate AI-generated
+images for creative interpretations,
+while some students used AI to
+generate more realistic interpretations
+of peers’ creations
+Explore utilization of AI-generative
+art tools in traditional
+studio classroom
+Hutson and Cotroneo
+(2023b)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students used AI-generated images as
+starting points in three different ways:
+as base layers for painting over, as
+reference for correcting anatomical
+errors, or as conceptual inspiration for
+entirely new compositions
+Analyze the integration and impact of
+AI-generated art on traditional fine art
+creation within a digital art
+class setting
+Kang et al. (2025)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students used a specialized AI tool
+trained on Korean ceramic works to
+prototype designs through three
+methods: manual sketching, text
+prompts, and hybrid sketch-plus-text
+input, receiving feedback from
+instructors to refine ceramic designs
+Investigate the implementation and
+effectiveness of AI-assisted
+visualization tools in ceramic-crafts
+education for improving design
+communication and
+feedback exchange
+Kicklighter et al. (2024)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students strategically used GenAI as
+an iterative ideation tool at the
+preproduction stage for concept
+exploration and visual
+communication, with the requirement
+that all AI outputs be substantially
+modified before use in final projects
+Explore how GenAI tools can enhance
+students’ creative process and
+productivity in 3D
+animation education
+Konakbayeva et al.
+(2025)
+Instructional Design &
+Teacher Support
+Pre-service visual art teachers used
+GenAI to assist with lesson planning
+and curriculum design during a
+microteaching study, developing
+lessons that they then taught to peers
+in 10 min teaching sessions with
+feedback on their
+instructional competence.
+Evaluate the impact of microteaching
+lesson study with and without GenAI
+support on visual art pre-service
+teachers’ pedagogical
+competence development
+Lee et al. (2024)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students learned to describe ideas
+through structured prompts,
+generated images using AI, and then
+wrote creative stories inspired by the
+AI-generated visuals to combine
+visual and narrative creation
+Explore the potential benefits of
+integrating Stable Diffusion into art
+education-based STEAM classes and
+examine relationships between
+student characteristics and
+AI-generated content
+Ling et al. (2025a)
+Pedagogical Scaffolding & Learning
+Support + Creative Production &
+Visual Content Generation
+Students engaged in a guided
+workflow where they generated
+design prompts, received
+AI-generated visual renderings with
+color schemes, and iteratively refined
+their work based on feedback,
+supported by a dynamic scaffolding
+model adapted to individual
+student needs
+Assess enhancement effect of AIGC
+tools on foundational design
+knowledge in a design course;
+evaluate impact on knowledge
+construction, contextual learning,
+and self-reflection
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 15 ===
+Educ. Sci. 2026, 16, 47 15 of 33
+Table 5. Cont.
+Author (Year) GenAI Application Category How They Applied in Art Education Research Objectives
+Ling et al. (2025b)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Participants in a rural mural project
+completed a four-module learning
+experience that moved from
+understanding local cultural heritage
+to using GenAI to create design
+concepts, then collaboratively refining
+those designs with community
+artisans to produce physical murals
+blending digital and
+traditional techniques
+Design and verify a training
+framework for collaborative creation
+of rural murals based on AIGC to
+improve creative ability, cultural
+understanding and teamwork ability
+Liu et al. (2025)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students progressed through three
+phases: creating artworks without AI,
+then using AI-generated images as
+scaffolds to refine their techniques
+while learning cultural aesthetics, and
+finally creating independently with
+improved understanding
+Optimize diffusion models for
+traditional Chinese painting resource
+generation; construct AI-driven
+scaffolding instruction framework for
+systematic aesthetic
+education support
+Taama (2025)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students explored multiple AI
+platforms to generate images based on
+cultural and historical themes,
+learning to craft detailed prompts,
+evaluate outputs, and present their
+work in a collaborative
+conference setting
+Study the potential of AI programs in
+cultural heritage reproduction and
+determine pedagogical benefits for
+training future artists and art teachers
+Xu (2025) Pedagogical Scaffolding &
+Learning Support
+Students used ChatGPT as a creative
+partner during coursework to
+brainstorm ideas, explore
+compositional decisions, develop
+narratives, and refine their creative
+work with personalized AI assistance
+Explore the integration of ChatGPT-4
+into educational processes and
+analyze its impact on creative
+potential development across three
+artistic disciplines
+Zeng et al. (2025) Pedagogical Scaffolding &
+Learning Support
+An GenAI tool provided real-time
+feedback on students’ sketches,
+generating immediate visual
+responses that showed students how
+their intentions could be realized,
+while also enabling peer and teacher
+feedback through an online
+classroom community
+Construct a practical MAI-SGD tool
+based on a scaffolding teaching
+framework to improve teacher
+instruction effectiveness and provide
+empirical data to support AI
+application in personalized
+art teaching
+Zhu et al. (2025)
+Creative Production & Visual
+Content Generation + Pedagogical
+Scaffolding & Learning Support
+Students learned about intangible
+cultural heritage, used GenAI to create
+patterns inspired by traditional motifs,
+refined designs through collaboration
+with instructors, and applied their
+work to contemporary applications
+like branding and digital media
+Construct a multidimensional model
+for contemporary art education by
+integrating A/R/Tography with
+generative AI technologies to enhance
+ICH’s digital education and
+global communication
+• Creative production and visual content generation;
+GenAI tools in creative production and visual content generation primarily support
+students during the creative production and making stages of art education, functioning as
+co-creation partners in the artistic process. Students engage with text-to-image generation
+models to transform conceptual ideas into visual outputs, requiring them to develop
+proficiency in prompt engineering (Ansone et al., 2025; Heaton et al., 2024; Hutson &
+Cotroneo, 2023a, 2023b; Ling et al., 2025b). This iterative process typically involves multiple
+refinement cycles (Chiu & Hwang, 2025; Kicklighter et al., 2024; Ling et al., 2025a; Lee et al.,
+2024; Zhu et al., 2025), with students adjusting their textual descriptions through three to six
+iterations to achieve desired aesthetic outcomes (Ansone et al., 2025). Applications in this
+category address fundamental artistic principles including compositional balance, contrast,
+unity, and emphasis, while also supporting advanced design considerations such as color
+palette harmonization and conceptual development (Ansone et al., 2025; Ling et al., 2025a;
+Xu, 2025). GenAI serves as a cultural bridge through custom diffusion model fine-tuning,
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 16 ===
+Educ. Sci. 2026, 16, 47 16 of 33
+enabling students to integrate traditional cultural elements into contemporary digital art
+creation (Liu et al., 2025). Related to this, GenAI functions as a culturally informed design
+tool through LoRA training techniques, enabling students to explore and apply specialized
+aesthetic frameworks from traditional ceramic styles (Kang et al., 2025) to cross-cultural
+heritage patterns (Zhu et al., 2025) across their creative portfolios. Additionally, digital
+storytelling represents a specialized application within creative production, where students
+combine narrative development with visual generation across multiple modalities (Chiu
+& Hwang, 2025; Ling et al., 2025a). This often involves sequential GenAI tool integration,
+such as using conversational AI to generate descriptive prompts for color coordination
+and design concepts, which are then fed into image generation systems to create cohesive
+visual narratives (Ling et al., 2025a). The sketch-to-image transformation approach serves a
+pedagogical function by bridging traditional hand-drawing skills with digital enhancement,
+particularly through mobile platforms that provide immediate AI-generated visual feedback
+on student sketches (Zeng et al., 2025).
+• Pedagogical scaffolding and learning support;
+This pedagogical scaffolding and learning support focus on GenAI’s role as an in-
+telligent tutor and learning companion throughout various stages of the artistic learning
+process, from initial concept development through skill acquisition and knowledge con-
+struction (Kang et al., 2025), positioning GenAI not merely as a tool. Conversational AI
+systems provide contextual assistance during creative work sessions, offering hints, clarifi-
+cations, and open-ended dialogue about artistic concepts as students encounter challenges
+(Ansone et al., 2025; Chen et al., 2025b; Hutson & Cotroneo, 2023a). These systems deliver
+adaptive feedback that adjusts to individual student needs, supporting personalized learn-
+ing pathways that account for different skill levels, learning paces, and artistic interests
+(Chen et al., 2025b; Hu et al., 2025; Hutson & Cotroneo, 2023b; Liu et al., 2025). During
+the conceptual development phase, conversational AI provides pedagogical support by
+guiding students through idea generation, helping them understand compositional princi-
+ples, refining plot structures for narrative artworks, and evaluating color harmonization
+possibilities (Heaton et al., 2024; Xu, 2025; Ling et al., 2025a). Lee et al. (2024) illustrates
+these potentials by integrating Stable Diffusion into art-focused STEAM classes, showing
+that GenAI not only facilitated creative image generation but also enhanced divergent and
+convergent thinking, language expression, and student motivation. Some implementations
+employ structured pedagogical frameworks, such as the A/R/Tography approach inte-
+grating artist, researcher, and teacher roles (Zhu et al., 2025), QIVE model, which guides
+students through questioning, interaction, verification, and examination phases while
+integrating GenAI assistance at each stage (Hu et al., 2025); the CIDI (Clarify, Ideate, De-
+velop, Implement) four-stage process for structured creative thinking development (Chiu
+& Hwang, 2025); the four-module framework (knowledge input, content creation, collabo-
+rative creation, and evaluation/feedback), which also reflects this trend by emphasizing
+a systematic instructional design that enables GenAI to play a role throughout the entire
+learning process (Ling et al., 2025b). Additionally, comparative learning across multiple
+GenAI platforms helps students understand different AI tools’ strengths, limitations, and
+use cases (Taama, 2025; Kicklighter et al., 2024). Typically implemented in introductory
+courses, this approach develops AI literacy by requiring students to critically evaluate
+GenAI outputs and make informed tool selections for specific artistic purposes (Heaton
+et al., 2024).
+• Instructional design and teacher support.
+Instructional design and teacher support serve educators during course planning,
+content delivery, and instructional material development phases. GenAI virtual instructor
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 17 ===
+Educ. Sci. 2026, 16, 47 17 of 33
+technology enables the creation of realistic video lectures for flipped classroom models,
+where students access pre-course materials featuring AI-generated presenters that repli-
+cate human gestures, postures, and facial expressions (Chen et al., 2025a). These virtual
+instructors can be customized to match student demographics and can deliver content in
+various styles ranging from formal academic language to conversational approaches with
+personal pronouns and direct address, allowing educators to experiment with different
+pedagogical tones while maintaining content consistency (Chen et al., 2025a). Beyond
+content delivery, conversational AI supports teachers during lesson preparation and cur-
+riculum development stages (Konakbayeva et al., 2025). Educators use AI chatbots to
+brainstorm lesson ideas, structure learning activities, generate teaching materials, and
+develop assessment strategies.
+3.3. Learning Theoretical Frameworks
+The 13 studies that reported learning theoretical frameworks (Table 6) drew on four
+main theoretical orientations: Constructivist Learning Theories (5 studies), Social Con-
+structivist Learning Theories (3 studies), Cognitive Learning Theories (5 studies), and
+Social Cognitive Learning Theories (4 studies). Several studies adopted multiple theoretical
+frameworks. For example, Chen et al. (2025b) combined constructivist learning theories
+(personalized learning) with social cognitive learning theories (self-efficacy and learning
+motivation), while Ling et al. (2025a) integrated constructivist theories (personalized learn-
+ing, blended learning) with cognitive learning theories (cognitive load). Similarly, Zeng
+et al. (2025) drew on both social constructivist theories (Zone of Proximal Development,
+scaffolding) and social cognitive theories (self-efficacy, motivation). This multi-theoretical
+approach, employed by approximately 38% (5 out of 13) of studies. Additionally, ap-
+proximately 37% of the reviewed studies (7 out of 19) do not explicitly state a learning
+theoretical framework.
+Table 6. Learning theoretical frameworks.
+Theory Category Specific Content Author & Year Numbers
+Constructivist Learning
+Theories
+Personalized learning Chen et al. (2025a, 2025b); Ling et al. (2025a) 3
+Scaffolding, experiential learning Chiu and Hwang (2025) 1
+Blended learning Ling et al. (2025a) 1
+Project-oriented learning Taama (2025) 1
+Social Constructivist
+Learning Theories
+Collaborative learning Konakbayeva et al. (2025) 1
+Zone of Proximal Development
+(ZPD), scaffolding Liu et al. (2025); Zeng et al. (2025) 2
+Socio-cultural learning theory Ling et al. (2025b); Liu et al. (2025) 2
+Cognitive Learning
+Theories
+Cognitive load Chen et al. (2025a); Hu et al. (2025); Ling
+et al. (2025a) 3
+Creative autonomy Hutson and Cotroneo (2023a, 2023b) 2
+Social Cognitive Learning
+Theories
+Self-efficacy Chen et al. (2025b); Hu et al. (2025);
+Konakbayeva et al. (2025); Zeng et al. (2025) 4
+Motivation Chen et al. (2025b); Zeng et al. (2025) 2
+No Learning Theoretical
+Framework Not reported
+Ansone et al. (2025); Heaton et al. (2024);
+Kang et al. (2025); Kicklighter et al. (2024);
+Lee et al. (2024); Xu (2025); Zhu et al. (2025)
+7
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 18 ===
+Educ. Sci. 2026, 16, 47 18 of 33
+3.4. Impact Findings and Practical Recommendations
+3.4.1. Impact Findings
+The included studies reported predominantly positive findings regarding impacts of
+structured GenAI integration on student learning, creativity, and engagement. Students
+who received GenAI-supported instruction achieved higher post-test scores and showed
+stronger understanding of artistic styles, color composition, and cultural symbolism (Chen
+et al., 2025a, 2025b; Chiu & Hwang, 2025; Hu et al., 2025; Ling et al., 2025a; Liu et al.,
+2025). It also helped reduce cognitive load and improve information processing, with
+conversational learning designs proving especially effective (Hu et al., 2025; Kang et al.,
+2025). Students became more creative, producing more design drafts, exploring diverse
+artistic styles, and working more efficiently during idea development (Chiu & Hwang,
+2025; Hutson & Cotroneo, 2023a; Kicklighter et al., 2024; Xu, 2025). They also developed
+greater motivation, engagement, and confidence, especially among beginners who had
+previously hesitated to create (Chen et al., 2025b; Hu et al., 2025; Zeng et al., 2025). Over
+time, students began to view GenAI as a genuine creative partner rather than a tool for
+organizing ideas (Heaton et al., 2024; Hutson & Cotroneo, 2023b). The integration of GenAI
+also strengthened cultural understanding, helping students appreciate traditional practices
+and think more critically about cultural representation (Liu et al., 2025; Taama, 2025; Zhu
+et al., 2025). For teachers, it improved lesson quality, feedback detail, and interdisciplinary
+communication (Kang et al., 2025; Konakbayeva et al., 2025). However, challenges persisted,
+such as frustration with mismatched AI outputs, over-reliance on automation, uneven tool
+accessibility, and temporary declines in teacher self-efficacy (Ansone et al., 2025; Lee et al.,
+2024; Ling et al., 2025a).
+The pedagogical impact included improved lesson plan quality, enhanced art-related
+discourse facilitation, and substantially more detailed instructor feedback (Kang et al., 2025;
+Konakbayeva et al., 2025). GenAI supported enhanced design communication, increased
+technical vocabulary use, and created opportunities for interdisciplinary learning experi-
+ences (Heaton et al., 2024; Kang et al., 2025). However, students experienced challenges.
+Some reported frustration when GenAI outputs misaligned with artistic vision, while others
+expressed concerns about over-reliance on AI-generated solutions (Ansone et al., 2025; Ling
+et al., 2025a). Some students preferred AI-mediated interaction over peer collaboration
+(Ling et al., 2025a), while ease-of-use and language proficiency barriers that suggested
+varying effectiveness across learners, with some students facing obstacles that others did
+not encounter (Ansone et al., 2025; Lee et al., 2024). As the instructor level, teaching self-
+efficacy among pre-service educators declined uniformly across conditions, suggesting
+that integrating new technologies may temporarily challenge instructor confidence even as
+pedagogical outcomes improve (Konakbayeva et al., 2025).
+3.4.2. Practical Recommendations
+• Scaffolding and structured guidance;
+Studies recommend using GenAI as a scaffolding tool that supports idea generation
+and creative work while keeping students’ critical thinking and creative control (Ansone
+et al., 2025; Heaton et al., 2024; Kang et al., 2025; Taama, 2025). Teachers are encouraged to
+combine GenAI-assisted activities with manual art projects under supervision to balance
+technology and human creativity. This approach can connect traditional art practices
+with GenAI through inquiry-based learning that values personal expression and reflective
+dialogue (Heaton et al., 2024). Students should be trained to master both traditional artistic
+skills and understanding how to work with AI tools (Hutson & Cotroneo, 2023b; Kang
+et al., 2025).
+• Pedagogical design and learning objectives;
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 19 ===
+Educ. Sci. 2026, 16, 47 19 of 33
+Studies emphasized that effective GenAI integration requires clear instructional frame-
+works and redesigned curricula. Recommended models include the QIVE framework,
+graded GenAI integration, flipped classrooms with conversational AI instructors, STEAM-
+based learning, and mind mapping linked to GenAI-supported storytelling. These models
+aim to improve personalization, interaction, knowledge retention, and critical thinking
+(Chen et al., 2025a, 2025b; Chiu & Hwang, 2025; Hu et al., 2025; Lee et al., 2024; Ling et al.,
+2025a). These models typically share common features: progressive interaction stages, AI
+reflection logs, and three-step workflows involving AI generation, human revision, and
+intelligent review. Additionally, pedagogical innovations should include consequence-free
+experimentation spaces, collaborative assignments where students interpret and build
+upon AI-generated imagery, and continuous curriculum evaluation to stay current with
+GenAI advancements (Hutson & Cotroneo, 2023a; Kicklighter et al., 2024).
+• Assessment and evaluation methods;
+Studies recommended evaluation systems that balance AI and human roles while
+ensuring that teachers first guide students in building basic art knowledge and competency-
+based learning goals before using GenAI (Hu et al., 2025; Hutson & Cotroneo, 2023a; Ling
+et al., 2025a; Xu, 2025). Assessment frameworks must evolve to accommodate GenAI-
+augmented learning by incorporating multidimensional indicators that measure creativity,
+problem-solving ability, artistic thinking development, cultural accuracy, design quality,
+and marketability beyond traditional metrics (Kang et al., 2025; Liu et al., 2025; Taama,
+2025; Zeng et al., 2025; Zhu et al., 2025).
+• Ethical frameworks and transparent policies;
+Ethical use and transparency are central to responsible GenAI integration. Studies
+highlight the need for clear policies on how human and AI contributions are reported, for
+open communication about boundaries of AI use, and for guidelines addressing copyright,
+cultural sensitivity, and job-related concerns (Ansone et al., 2025; Hutson & Cotroneo,
+2023a; Kicklighter et al., 2024; Lee et al., 2024; Taama, 2025; Xu, 2025). Particularly in
+culturally themed projects, researchers suggest improving GenAI’s cultural awareness
+through diverse training data and cross-cultural knowledge systems. They recommend
+co-creation models that combine automation with artistic interpretation to preserve cultural
+meaning and authenticity (Zhu et al., 2025).
+• Technical improvements and system optimization;
+Technical improvements include optimizing GenAI tools for accurate semantic match-
+ing and color semantic matching, expanding dataset diversity, incorporating ethical risk
+monitoring mechanisms, and strengthening teacher training and technical support (Kon-
+akbayeva et al., 2025; Ling et al., 2025a; Liu et al., 2025).
+• Professional development and institutional support.
+Institutional backing is vital for sustainable GenAI integration. Schools and universi-
+ties should develop policies, training programs, and workshops that promote thoughtful
+GenAI use through continuous planning, teaching, observation, and feedback. They should
+also form partnerships and update digital strategies that teach prompt engineering and AI
+literacy as part of structured art education (Ansone et al., 2025; Konakbayeva et al., 2025;
+Ling et al., 2025b; Xu, 2025).
+4. Discussion
+4.1. Implications for Art Education Practice
+This section examines four key implications of GenAI integration in art education practice.
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 20 ===
+Educ. Sci. 2026, 16, 47 20 of 33
+4.1.1. GenAI as Process Tool: Expanding Rather than Replacing Artistic Literacy
+A key feature of GenAI use in art education is its strong focus on text-to-image
+generation, which differs from the text-based applications that dominate most GenAI
+research in general education (Heilala et al., 2025). This distinction reflects art education’s
+fundamental concerns with visual thinking and creative production. In included studies,
+GenAI is treated mainly as a process tool rather than a final product maker. Students
+often combine several tools—traditional materials like ceramics, painting, and sketching;
+digital software such as Procreate, Photoshop, and Adobe Color; and GenAI platforms
+like DALL-E, Stable Diffusion, or customized systems—to refine and expand their creative
+work (Heaton et al., 2024; Hutson & Cotroneo, 2023b; Kang et al., 2025; Ling et al., 2025a;
+Zeng et al., 2025; Zhu et al., 2025). Available findings suggest that GenAI can enhance
+creativity, idea generation, and engagement (Chiu & Hwang, 2025; Kicklighter et al., 2024;
+Xu, 2025). It does not replace traditional skill development but supports it, extending what
+it means to be artistically literate (Andrae, 2025). This reflects long-standing views in art
+education that digital and traditional literacies should work together, not compete (Snyder
+& Bulfin, 2007). The rise in prompt engineering as a new creative skill (Hutson & Cotroneo,
+2023a; Oppenlaender et al., 2025) continues art education’s long history of growth through
+technology. Just as photography and digital art once broadened creative practice, GenAI
+now adds another layer to how students learn, create, and express themselves (Eri¸ sti &
+Freedman, 2024; Choi & Piro, 2009; Paul, 2023).
+However, describing GenAI as a “process tool” needs careful clarification. The re-
+viewed studies do not all show that students consistently refine GenAI outputs through
+meaningful traditional creative work. The extent of integration often depends on several
+conditions: whether the course design explicitly includes both manual and GenAI-based
+stages, whether instructors understand both traditional and AI-supported methods, and
+whether institutions provide support for multi-step creative workflows.
+Different studies treated GenAI in different ways. Some required students to manu-
+ally refine AI-generated outputs (Hutson & Cotroneo, 2023b; Kang et al., 2025). In these
+implementations, GenAI functioned as a starting point or reference within a larger man-
+ual creative process, positioning students as primary creative agents making intentional
+choices about how to transform AI-generated content. Others built GenAI into structured
+learning cycles where refinement happened naturally through repeated iterations (Chiu &
+Hwang, 2025; Liu et al., 2025; Ling et al., 2025a). In these cases, GenAI supported iterative
+exploration rather than providing final products, creating process engagement.
+A smaller number of studies positioned GenAI as a constant feedback system that
+supported students throughout their creative process (Chen et al., 2025b; Zeng et al., 2025).
+In these instances, the boundary between GenAI contribution and student contribution
+became blurred. Studies that documented the integration of GenAI within expanded artistic
+literacy (Liu et al., 2025; Zhu et al., 2025; Ling et al., 2025a) typically involved instructors
+with pedagogical intentionality and curriculum redesign, suggesting that the “process
+tool” characterization applies primarily to carefully designed implementations rather than
+representing an inherent feature of GenAI tools themselves. Conversely, studies lacking
+explicit pedagogical frameworks or instructor guidance (which were excluded from this
+review) likely result in students treating GenAI as a shortcut rather than a process partner.
+4.1.2. Pedagogical Design and Learning Outcomes
+The use of mixed methods and structured pedagogical frameworks, such as the
+QIVE model (Hu et al., 2025), scaffolded instruction (Liu et al., 2025; Zeng et al., 2025),
+and mind mapping with GenAI (Chiu & Hwang, 2025), suggests that effective GenAI
+integration depends far more on intentional instructional design rather than casual tool
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 21 ===
+Educ. Sci. 2026, 16, 47 21 of 33
+adoption. To understand why design matters, it is important to look at how GenAI produces
+learning gains and under what conditions those gains occur. The improvements in learning
+performance found in several studies (Chen et al., 2025a, 2025b; Ling et al., 2025a) suggest
+that GenAI enhances learning through two main pathways.
+First, GenAI provides cognitive scaffolding by reducing unnecessary mental load
+during idea generation. Students face fewer technical obstacles when developing ideas be-
+cause GenAI can quickly create visual samples, allowing them to focus on artistic judgment
+and concept refinement instead of manual execution (Hu et al., 2025; Kang et al., 2025).
+This process is especially clear in courses where GenAI is embedded within structured
+creative stages—ideation, visualization, and refinement—rather than used for immedi-
+ate final production (Ling et al., 2025a; Liu et al., 2025; Zhu et al., 2025). Second, GenAI
+promotes personalized learning through adaptive feedback. Conversational AI can offer
+real-time suggestions matched to a learner’s skill level and interests (Chen et al., 2025b;
+Hu et al., 2025). This aligns with social cognitive theory, which holds that motivation and
+self-efficacy increase when learners receive appropriate challenges and targeted support
+(B. J. Zimmerman & Schunk, 2012).
+However, keeping these benefits outside controlled research settings is difficult. Their
+success depends on teacher expertise in designing adaptive activities and on students’
+willingness to engage with AI feedback. These conditions are not always present in
+real classrooms. Konakbayeva et al. (2025) found that pre-service teachers’ self-efficacy
+declined after AI-supported microteaching interventions, even though lesson quality and
+teaching competence improved. This suggests that while GenAI-enhanced approaches can
+strengthen instructional outcomes, they may simultaneously heighten teachers’ awareness
+of the complexities of teaching, leading to reduced confidence. Similar challenges have long
+existed in digital art education, where teachers report stress, heavier workloads, and limited
+training when new technologies are introduced (Black & Browning, 2011). This indicates
+that professional development must build not only technical skill but also pedagogical
+resilience to handle ongoing technological change (Fernández-Batanero et al., 2021).
+The learning theories behind GenAI use reveal that constructivist and cognitive per-
+spectives dominate among studies with explicit frameworks. Constructivist approaches
+emphasized active exploration and iterative problem-solving (Lester et al., 1999), par-
+ticularly suited to how GenAI tools support experimental ideation. Cognitive theories
+emphasized load reduction and scaffolding (Paas et al., 2003), aligning with GenAI‘s ca-
+pacity to support specific cognitive processes. Yet, more than one-third of studies lacked a
+stated theoretical foundation, showing that GenAI-related art education research is still
+exploratory. Many implementations appear driven by innovation rather than theory, echo-
+ing Selwyn’s (2010) view that educational technology often favors novelty over grounded
+inquiry. Some studies that reported learning gains, such as those by Kicklighter et al. (2024)
+and Xu (2025), did not specify any learning theory, leaving the causes of improvement
+unclear. Future research should move beyond asking whether GenAI improves learning
+and instead focus on how and why these gains occur under different teaching conditions.
+Finally, assessment practices in this field remain limited. Although some studies
+proposed multidimensional evaluation frameworks (Kang et al., 2025; Taama, 2025; Zeng
+et al., 2025; Zhu et al., 2025), most still used post-tests or self-reports. These tools may not
+fully capture art-specific learning dimensions such as aesthetic growth or maintaining a
+personal vision while using generative tools. As a result, higher test scores after GenAI use
+may not truly reflect deeper artistic understanding or creative growth—they might only
+show better prompt-writing ability. This gap in measurement is critical for art educators,
+who must determine whether GenAI integration truly advances artistic learning or simply
+meets performance metrics without enriching the creative process.
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 22 ===
+Educ. Sci. 2026, 16, 47 22 of 33
+4.1.3. Cultural Heritage Education: Opportunities and Critical Considerations
+The application of GenAI in cultural heritage education (Liu et al., 2025; Ling et al.,
+2025b; Taama, 2025; Zhu et al., 2025) improves cultural understanding and cross-cultural
+competencies when implemented with deliberate pedagogical intentionality. Students
+engaged with these applications by translating their tacit cultural knowledge into explicit
+descriptions for GenAI systems, then iteratively refining outputs through critical evaluation
+to ensure cultural accuracy and authenticity. These improvements emerge specifically
+when GenAI is positioned as subordinate to students’ cultural knowledge, when critical
+evaluation of outputs is required, and when educator authority over cultural authenticity
+is maintained. Custom diffusion model fine-tuning for traditional art forms (Liu et al.,
+2025) exemplifies one such intentional approach, demonstrates technical possibilities for
+culturally responsive GenAI applications, addressing concerns about Western bias in
+mainstream generative models (Ghosh et al., 2024). However, the recommendation to
+enhance GenAI’s cultural intelligence through cross-cultural corpus training (Zhu et al.,
+2025) is significant because it comes from researchers who themselves employed technical
+approaches including LoRA training and custom model fine-tuning. Even with such
+specialized interventions, they acknowledge persistent limitations in current systems’
+capacity to authentically represent diverse cultural contexts. This concern extends to
+technical accuracy to encompass issues of cultural appropriation, authenticity, and the
+power dynamics embedded in dataset creation and model training (Ferrara, 2024; Foka
+& Griffin, 2024), raising the question of whose cultural perspectives GenAI privileges.
+Art educators working with GenAI in cultural contexts must therefore cultivate critical
+AI literacy that interrogates not only outputs but also the underlying data structures and
+algorithmic processes that shape cultural representation (Spennemann, 2024). The challenge
+is that deep data interrogation and the customization necessary to address bias necessitate
+technical expertise beyond most educators’ reach. The implication is troubling: positive
+cultural heritage outcomes in this review appear contingent on additional technical work
+that most educators cannot perform, suggesting that GenAI’s cultural heritage potential
+may be accessible primarily to well-resourced institutions with machine learning expertise.
+4.1.4. Equity and Access Challenges
+Although few studies directly examined equity, the strong concentration of research
+in East Asia and higher education raises important concerns about fairness and generaliz-
+ability. The dominance of higher education likely reflects differences in resources because
+universities often have greater access to technology, funding, and time for designing struc-
+tured implementations. In contrast, K-12 schools typically face more limits in infrastructure,
+technical support, and teacher training related to technology use and classroom manage-
+ment (Hew & Brush, 2007; Ross, 2020). This gap highlights a clear imbalance between the
+well-equipped environments studied and the realities of many schools. For example, one
+K-12 study (Zeng et al., 2025) used a carefully designed mobile platform called MAI-SGD
+that required custom development, showing that positive results from such controlled
+settings may not easily apply to resource-limited classrooms without additional investment.
+Another issue is the lack of research from the Global South beyond East and Southeast Asia.
+This absence leaves open questions about how GenAI might work in different educational
+systems, cultural contexts, and levels of technological access. Language accessibility adds a
+further layer of inequality. While conversational tools like ChatGPT can handle multiple
+languages (Lai et al., 2023), many text-to-image generators rely heavily on English-language
+inputs (Reviriego & Merino-Gómez, 2022). Lee et al. (2024) reported that Korean elementary
+students had to use Google Translator to turn their ideas into English before submitting
+prompts to DreamStudio, which performed better with English text. This dependency
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 23 ===
+Educ. Sci. 2026, 16, 47 23 of 33
+matters because translating creative ideas can distort meaning, reduce expressiveness, and
+make spontaneous artistic communication harder. It also reinforces cultural bias because
+students from non-English-speaking communities must adapt to tools trained primarily on
+English-language and Western artistic data, which may underrepresent their own cultural
+traditions and creative voices. Current evidence captures only the earliest implementations
+under privileged conditions. As research expands in 2026 and beyond—ideally encom-
+passing under-resourced schools, diverse cultural contexts, and K-12 settings—the field
+will gain clearer understanding of whether GenAI’s observed benefits generalize across
+educational contexts or require substantial revision based on resource availability, cultural
+fit, and institutional support.
+4.2. Limitations
+Several limitations restrict the scope and generalizability of this review’s findings.
+These limitations fall into three categories: research maturity and evidence depth, general-
+izability and contextual specificity, and incomplete reporting and methodological precision.
+4.2.1. Temporal Limitations and Absence of Long-Term Evidence
+The temporal concentration of 19 studies entirely within 2023–2025 with the majority
+published in 2025 indicates that empirical research on GenAI in art education is extremely
+recent. This recency creates several limitations. This concentration raises questions about
+whether observed patterns will remain stable as the field matures and more diverse imple-
+mentations are studied. Moreover, the field’s novelty means that long-term effects cannot
+yet be documented. GenAI tools suitable for art education have only been widely available
+since 2023, making multi-year longitudinal studies methodologically impossible at this
+stage regardless of researcher intentions. First, all findings describe short-term outcomes
+documented in single courses or semesters; no studies follow students across multiple
+years to examine sustained impacts on artistic development, skill progression, or long-term
+creative identity. We cannot determine whether initial improvements persist after students’
+novelty reactions to GenAI fade or whether sustained engagement with GenAI affects
+students‘ long-term artistic practice. Second, the rapid evolution of GenAI tools makes
+many findings potentially time-bound. Studies conducted with 2024 iterations of tools
+may provide limited guidance for practice using significantly improved tools available in
+2026 or beyond. Third, the concentrations of publications in a single year (2025) suggests
+this research may be riding a peak of institutional attention and funding; longer-term
+sustainability of research and implementation remains unknown.
+4.2.2. Generalizability and Contextual Specificity
+Several factors constrain how broadly these findings can be applied. Across all in-
+cluded studies, the total number of participants is about 1211, spread across a range of
+educational settings and implementation models. Across all included studies, the total
+number of participants is about 1211. Although this provides a reasonable foundation
+for an emerging field, the distribution across diverse contexts and relatively small indi-
+vidual study sample sizes constrain broader generalization. Because this review focused
+specifically on studies involving direct teaching and learning with educators or students,
+we necessarily excluded non-pedagogical perspectives and studies involving non-student
+populations such as museum visitors or hobbyists. While this focus strengthens the peda-
+gogical relevance of our findings, it also means our review does not capture insights from
+studies of GenAI in art education by non-student populations. Moreover, most studies were
+conducted in Asian and higher education contexts, which limits understanding of how
+GenAI might work in K-12 classrooms or under-resourced regions. Educational practices,
+creative pedagogies, and technology adoption patterns vary significantly across cultural
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 24 ===
+Educ. Sci. 2026, 16, 47 24 of 33
+contexts, suggesting that findings from predominantly Asian and higher education imple-
+mentations may not directly transfer to other settings. Beyond these geographic constraints,
+the overlap between art and design education created classification challenges. Some
+studies addressed topics like design history or color composition, which belong to both art
+and design curricula. These were included when authors framed them as art education
+or cross-disciplinary in nature. Future reviews could strengthen definitional clarity by
+distinguishing between art-focused and design-focused studies. Together, these factors
+mean that the reported results reflect a relatively specific population within particular
+cultural and institutional contexts.
+4.2.3. Incomplete Reporting and Methodological Gaps
+Some studies provided incomplete details about participants or GenAI tools. For
+instance, Heaton et al. (2024) described implementations across three education levels
+but only reported participant counts for secondary ( n = 6) and graduate ( n = 14) levels.
+Chiu and Hwang (2025) and Ling et al. (2025b) mentioned using text-to-image generation
+systems but did not specify which tools were employed. Although these omissions limit
+the precision of our characterization, these studies were still included because they demon-
+strated clear teaching design, sufficient analytic detail, and meaningful contributions to the
+review’s guiding questions. Additionally, few studies reported in detail the precise GenAI
+implementation duration, frequency of GenAI use, or fidelity of the pedagogical design
+across classrooms: information needed to understand implementation intensity. These
+reporting gaps mean that readers cannot fully assess whether observed outcomes reflect
+GenAI itself or confounding implementation factors (teacher quality, class size, grading
+structure, motivation effects, etc.). Beyond individual study reporting gaps, the geographic
+distribution of research created methodological barriers to regional comparison. First, some
+studies involved multi-institutional collaborations spanning different countries; to avoid
+duplicate counting, we used the first author’s first institutional affiliation for categorization
+(as reported in Section 3.1.2), but this approach introduces potential inconsistency. Second,
+institutional location did not always correspond to implementation location. Third, studies
+were distributed across different educational levels (K-12 and higher education), diverse
+GenAI tools, and varied pedagogical approaches, creating a small and heterogeneous sub-
+sample unsuitable for comparison. These methodological constraints meant we could not
+empirically determine whether observed outcomes differ systematically across geographic
+regions or national contexts. Consequently, while we can report that findings dispropor-
+tionately reflect Asian and higher education contexts (given the concentration of studies in
+both dimensions), the extent and nature of potential regional bias remains unclear.
+4.3. Future Research Directions
+Future research priorities include evaluation frameworks, longitudinal studies with
+larger samples and more complete reporting of technical specifications and participant
+characteristics to enable meta-analytic synthesis and effect size calculations, cross-cultural
+applicability investigations, and interdisciplinary applications beyond traditional art educa-
+tion contexts (Chen et al., 2025b; Kang et al., 2025; Konakbayeva et al., 2025; Zeng et al., 2025;
+Zhu et al., 2025). Research should also examine differential effectiveness across learner char-
+acteristics, including prior artistic skill levels, cognitive styles, cultural backgrounds, and
+learning preferences. Related to this, understanding for whom and under what conditions
+GenAI enhances learning would enable more precise, equitable implementation. In parallel,
+studies investigating optimal sequencing of traditional and GenAI-augmented instruction
+could identify junctures where GenAI introduction maximally benefits rather than disrupts
+skill development trajectories. Beyond these considerations, future research should also
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 25 ===
+Educ. Sci. 2026, 16, 47 25 of 33
+expand contextual diversity. This includes both resource-diverse settings (rural schools
+and low-income communities to address equity concerns and identify low-infrastructure
+implementation strategies) and format-diverse contexts (informal learning environments
+such as community art programs, museums, and online platforms to extend understanding
+beyond formal education).
+5. Conclusions
+This systematic review synthesized 19 empirical studies on GenAI use in art education
+published between January 2019 and August 2025. The results reveal a rapidly developing
+field with encouraging early outcomes in learning, creativity, and cultural understanding—
+particularly in well-designed and well-supported settings. However, given the small
+sample size, geographic concentration in Asian contexts, and the recency of most studies,
+these findings represent preliminary patterns rather than established trends. Important gaps
+remain regarding long-term effects, effective pedagogical models across diverse contexts,
+equity issues in under-resourced settings, and ethical challenges of GenAI integration.
+The central conclusion is not simply that GenAI improves art education. Rather, GenAI
+can enhance art education only when used under specific conditions: with intentional
+pedagogical design, adequate teacher training, institutional support, clear learning goals,
+and integration alongside traditional art-making methods. These conditions are far from
+universal. In many schools and regions with limited funding, infrastructure, or English-
+language resources, the positive results reported in these studies may not appear without
+major investment.
+This raises several pressing questions for the field. Will educational systems commit
+the resources needed to implement GenAI thoughtfully and equitably? Or will GenAI
+spread through convenience-driven adoption where technology dictates teaching methods
+instead of supporting clear pedagogical goals? Will its benefits remain concentrated in
+resource-rich, English-speaking higher education, widening existing inequalities? And how
+can educators build the resilience and theoretical grounding to use GenAI responsibly while
+continuing to develop imagination, perseverance, and aesthetic judgment—the enduring
+foundations of art education?
+Future research must move beyond proving that GenAI can enhance art learning.
+It must determine how it does so, under what conditions, for whom, and with what
+consequences for art education’s deeper aims. The answers will decide whether GenAI
+becomes a true partner in nurturing human creativity or another short-lived innovation that
+widens educational divides and diverts attention from essential, human-centered learning.
+As this systematic review captures research conducted during an exceptionally dy-
+namic period in both GenAI technology development and educational implementation,
+readers should interpret these findings as representing early-stage patterns rather than
+definitive conclusions. The field’s rapid evolution suggests that follow-up systematic
+reviews conducted in subsequent years will likely reveal expanded empirical evidence,
+potentially confirming, refining, or revising the preliminary patterns identified here.
+Author Contributions: Conceptualization, Y.J. and Z.L.; methodology, Y.J. and Z.L.; formal analysis,
+Y.J. and Y.F.; investigation, Y.J., Y.F., and Z.L.; data curation, Y.J. and Y.F.; writing—original draft
+preparation, Y.J.; writing—review and editing, Y.F. and Z.L.; visualization, Y.F. and Z.L.; validation,
+Y.F. and Z.L.; supervision, Z.L.; project administration, Y.J. and Z.L. All authors have read and agreed
+to the published version of the manuscript.
+Funding: This research received no external funding.
+Institutional Review Board Statement: Not applicable.
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 26 ===
+Educ. Sci. 2026, 16, 47 26 of 33
+Informed Consent Statement: Not applicable.
+Data Availability Statement: Data are available from the corresponding author upon request.
+Acknowledgments: During the preparation of this manuscript, the authors used generative AI tools
+(ChatGPT [GPT-4] and Grammarly) for the purposes of language editing and idea refinement. The
+authors have reviewed, verified, and edited the output and take full responsibility for the content of
+this publication.
+Conflicts of Interest: The authors declare no conflicts of interest.
+Abbreviations
+The following abbreviations are used in this manuscript:
+ACM SIGGRAPH Association for Computing Machinery Special Interest Group on Computer
+Graphics and Interactive Techniques
+AI Artificial Intelligence
+AIGC AI-Generated Content
+CIDI Clarify, Ideate, Develop, Implement
+GAI Generative AI
+GenAI Generative Artificial Intelligence
+K-12 Kindergarten through 12th grade
+LoRA Low-Rank Adaptation
+MAI-SGD Mobile AI Synchronous Generation Drawing
+PRISMA Preferred Reporting Items for Systematic Reviews and Meta-Analyses
+QIVE Questioning, Interaction, Verification, and Examination
+STEAM Science, Technology, Engineering, Arts, and Mathematics
+STEM Science, Technology, Engineering, and Mathematics
+ZPD Zone of Proximal Development
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 27 ===
+Educ. Sci. 2026, 16, 47 27 of 33
+Appendix A
+Table A1. Overview of included studies.
+Author (Year) Research Context
+Region
+Institutional
+Affiliation Type
+(Region)
+Educational Level Application
+Scenario
+Learning Theoretical
+Foundations Methodology Sample Size Research Theme Publication Channel
+Ansone et al.
+(2025) Not reported Single institution
+(Latvia) Higher education Art study programs,
+composition learning Not reported Mixed 10
+Integration of GenAI in
+art education for
+composition tasks
+Journal article;
+Computers
+Chen et al.
+(2025b) Mainland China Single institution
+(Malaysia) Higher education Design history
+course
+Constructivist learning
+theories: personalized
+learning; Social
+cognitive learning
+theories: self-efficacy
+and learning
+motivation
+Quantitative 64
+Effects of GenAI
+integration on student
+achievement,
+motivation, and
+self-efficacy in design
+education
+Journal article;
+Innovations in
+Education and
+Teaching International
+Chen et al.
+(2025a) Mainland China Multiple institutions
+(Malaysia) Higher education
+Design history
+course focusing on
+“The Traceability of
+Chinese Design”
+Cognitive learning
+theories: cognitive load;
+Constructivist learning
+theories: personalized
+learning
+Quantitative 124
+Impact of AI-generated
+virtual instructors and
+conversational teaching
+styles on learning
+outcomes in flipped
+classrooms
+Journal article;
+Education and
+Information
+Technologies
+Chiu and
+Hwang (2025) Taiwan Multiple institutions
+(Taiwan) Higher education
+Art Appreciation
+Course (II), an
+introductory art
+education focusing
+on artist biographies
+and artwork
+characteristics
+Constructivist learning
+theories: scaffolding,
+experiential learning
+Mixed 45
+Enhancing creative and
+critical thinking in
+generative
+AI-empowered creation
+through mind
+mapping approach
+Journal article;
+Interactive learning
+Environments
+Heaton et al.
+(2024) Singapore Multiple institutions
+(Singapore)
+K-12 & Higher
+education
+Informal primary art
+enrichment, formal
+secondary art
+education, and
+graduate-level art
+education
+Not reported Qualitative
+Primary level: Not
+reported; Secondary
+level: 6; Graduate: 14
+Transformative
+pedagogic reflections
+on AI integration in
+art education
+Journal article;
+Pedagogies: An
+International Journal
+Hu et al. (2025) Not reported Multiple institutions
+(Mainland China) Higher education
+University art
+appreciation course
+(Museum Touring)
+Cognitive learning
+theories: self-efficacy,
+cognitive load theory
+Mixed 53
+AI-enhanced art
+appreciation learning
+and its impact on
+learning performance,
+problem-solving, and
+self-efficacy
+Journal article;
+Interactive learning
+Environments
+Hutson and
+Cotroneo
+(2023a)
+United States Multiple institutions
+(United States) Higher education Digital Art Course
+Cognitive learning
+theories: creative
+autonomy
+Mixed 15
+The integration of
+GenAI tools into art
+education, focusing on
+prompt engineering
+and iterative creation
+processes for
+enhanced creativity
+Journal article;
+Metaverse
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 28 ===
+Educ. Sci. 2026, 16, 47 28 of 33
+Table A1. Cont.
+Author (Year) Research Context
+Region
+Institutional
+Affiliation Type
+(Region)
+Educational Level Application
+Scenario
+Learning Theoretical
+Foundations Methodology Sample Size Research Theme Publication Channel
+Hutson and
+Cotroneo
+(2023b)
+United States Multiple institutions
+(United States) Higher education Digital art classroom
+Cognitive learning
+theories: creative
+autonomy
+Mixed 10
+AI integration in art
+education and creative
+processes
+Journal article; The
+International Journal
+of Technologies in
+Learning
+Kang et al.
+(2025) Not reported Multiple institutions
+(South Korea) Higher education Ceramic-crafts
+design courses Not reported Mixed 12
+AI-assisted design
+communication and
+pedagogical practice in
+ceramic arts education
+Journal article;
+Computers &
+Education
+Kicklighter et al.
+(2024) United States Single institution
+(United States) Higher education 3D Animation Studio
+course Not reported Mixed 52
+Integration of GenAI in
+digital art education to
+enhance creativity and
+productivity
+Conference paper;
+ACM SIGGRAPH
+2024 Educator‘s
+Forum
+Konakbayeva
+et al. (2025) Not reported Multiple institution
+(Kazakhstan)
+Higher education &
+teacher educa-
+tion/professional
+development
+Pre-service
+secondary visual art
+teachers,
+collaborative
+planning and
+microteaching
+Social constructivist
+learning theories:
+collaborative learning;
+Social cognitive
+learning theories:
+self-efficacy
+Quantitative 37
+Integration of AI in
+microteaching lesson
+study for preservice
+visual art teacher
+education
+Journal article;
+Educational Process:
+International Journal
+Lee et al. (2024) South Korea Multiple institution
+(South Korea) K-12
+Workshop in
+elementary
+after-school program
+at an elementary
+school
+Not reported Mixed 46
+Students‘ perceptions,
+motivations, and
+behaviors concerning
+the integration of
+generative AI in
+art-focused STEAM
+education
+Journal article;
+Education and
+Information
+Technologies
+Ling et al.
+(2025a) Mainland China Multiple institutions
+(Mainland China) Higher education Color composition
+course
+Constructivist learning
+theories: personalized
+learning, blended
+learning; Cognitive
+learning theories:
+cognitive load
+Mixed 80
+Impact of AIGC on
+mastery of color
+composition
+knowledge and
+learning behaviours in
+design education
+Conference paper;
+Artificial Intelligence
+in HCI
+Ling et al.
+(2025b) Mainland China Multiple institutions
+(Mainland China)
+K-12 & Higher
+education & teacher
+education/
+professional
+development
+Rural mural creation
+for educational
+purposes and
+cultural rejuvenation
+Social constructivist
+learning theories: social
+and cultural learning
+Mixed 30
+AI-Generated
+Content-Supported
+Collaborative Rural
+Mural Creation in
+education
+Conference paper;
+Learning and
+Collaboration
+Technologies
+Liu et al. (2025) Mainland China Multiple institutions
+(Malaysia) K-12
+Classroom
+instruction in
+traditional Chinese
+painting
+Social constructivist
+learning theories: Zone
+of Proximal
+Development (ZPD),
+scaffolding,
+socio-cultural
+learning theory
+Mixed 45
+Integration of
+scaffolding instruction
+and AI-driven diffusion
+models in children’s
+aesthetic education,
+focusing on teaching
+traditional Chinese
+painting of the
+Twenty-Four
+Solar Terms
+Journal article;
+Education and
+Information
+Technologies
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 29 ===
+Educ. Sci. 2026, 16, 47 29 of 33
+Table A1. Cont.
+Author (Year) Research Context
+Region
+Institutional
+Affiliation Type
+(Region)
+Educational Level Application
+Scenario
+Learning Theoretical
+Foundations Methodology Sample Size Research Theme Publication Channel
+Taama (2025) Qatar, United States,
+United Kingdom
+Single institution
+(Qatar) Higher education
+Art education
+curriculum
+integration,
+specifically History
+of Arts courses with
+focus on Eastern and
+Arab cultural
+heritage
+Constructivist learning
+theories:
+project-oriented
+learning
+Mixed 128
+Pedagogical potential
+of artificial intelligence
+programs in
+reproducing cultural
+and historical elements
+in students‘
+artistic works
+Journal article;
+Journal of Educational
+and Social Research
+Xu (2025) Mainland China Single institution
+(Mainland China) Higher education
+Higher education
+creative disciplines
+curriculum
+integration
+Not reported Quantitative 300
+The Impact of AI
+Integration on Creative
+Development in
+Artistic Learning
+Journal article;
+Interactive Learning
+Environments
+Zeng et al.
+(2025) Mainland China Single institution
+(Malaysia) K-12
+Primary school art
+education
+drawing class
+Social constructivist
+learning theories:
+zone of Proximal
+Development (ZPD),
+scaffolding; Social
+cognitive learning
+theories: self-efficacy,
+motivation
+Quantitative 60
+Evaluating the
+effectiveness of a
+scaffolded teaching
+method using a Mobile
+AI synchronous
+generation drawing
+tool (MAI-SGD) on
+children’s artistic
+engagement,
+motivation, and
+creative self-efficacy
+Journal article;
+International Journal
+of Interactive Mobile
+Technologies
+Zhu et al. (2025) Not reported Multiple institutions
+(Spain) Higher education
+Digital illustration
+curriculum focusing
+on Chinese and
+Spanish heritage
+patterns
+Not reported Mixed 80
+Integrating
+A/R/Tography theory
+and GenAI for
+cross-cultural
+education, and
+dissemination of
+Chinese and Spanish
+heritage patterns
+Journal article;
+International
+Journal of
+Information and
+Education Technology
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 30 ===
+Educ. Sci. 2026, 16, 47 30 of 33
+References
+Adeel, T. J., & Yasmeen, K. (2025). An overview of artificial intelligence applications in art education. Journal of Development and Social
+Sciences, 6(2), 357–367. [CrossRef]
+Aksoy, D. A., & Kursun, E. (2024). Behind the scenes: A critical perspective on GenAI and open educational practices. Open Praxis,
+16(3), 457–470. [CrossRef]
+Alawad, A. (2013). Technologies in the art classroom: Using technologies in art classrooms to overcome cultural limitations to support
+teaching and learning. Journal of Fine and Studio Art, 3(1), 1–4. [CrossRef]
+Andrae, S. (2025). Critical thinking and GenAI: A guide to action. In M. W. Kessinger, G. S. Nelson, L. Lennex, & K. F. Nettleton (Eds.),
+Enhancing classroom instruction and student skills with AI (pp. 377–412). IGI Global.
+Ansone, A., Z¯al¯ıte-Supe, Z., & Daniela, L. (2025). Generative artificial intelligence as a catalyst for change in higher education art study
+programs. Computers, 14(4), 154. [CrossRef]
+Ballengee-Morris, C., & Stuhr, P . L. (2001). Multicultural art and visual cultural education in a changing world.Art Education, 54(4),
+6–13. [CrossRef]
+Bardzell, J. (2007). Creativity in amateur multimedia: Popular culture, critical theory, and HCI.Human Technology, 3(1), 12–33. [CrossRef]
+Batista, J., Mesquita, A., & Carnaz, G. (2024). Generative AI and higher education: Trends, challenges, and future directions from a
+systematic literature review. Information, 15(11), 676. [CrossRef]
+Black, J., & Browning, K. (2011). Creativity in digital art education teaching practices. Art Education, 64(5), 19–34. [CrossRef]
+Blair, J. (2025). Art meets AI: Exploring the opportunities and challenges of integrating artificial intelligence in the art classroom.
+American Journal of STEM Education, 14, 59–74. [CrossRef]
+Chen, J., Mokmin, N. A. M., Shen, Q., & Su, H. (2025a). Leveraging AI in design education: Exploring virtual instructors and
+conversational techniques in flipped classroom models. Education and Information Technologies, 30, 16441–16461. [CrossRef]
+Chen, J., Mokmin, N. A. M., & Su, H. (2025b). Integrating generative artificial intelligence into design and art course: Effects on student
+achievement, motivation, and self-efficacy. Innovations in Education and Teaching International, 62(5), 1431–1446. [CrossRef]
+Chiu, M. C., & Hwang, G. J. (2025). Enhancing student creative and critical thinking in generative AI-empowered creation: A
+mind-mapping approach. Interactive Learning Environments, 1–22. [CrossRef]
+Choi, H., & Piro, J. M. (2009). Expanding arts education in a digital age. Arts Education Policy Review, 110(3), 27–34. [CrossRef]
+Crawford, D. W. (1987). Aesthetics in discipline-based art education. Journal of Aesthetic Education, 21(2), 227–239. [CrossRef]
+Dobbs, S. M. (1998). Learning in and through art: A guide to discipline-based art education. Getty Publications.
+Doshi, A. R., & Hauser, O. P . (2023). Generative artificial intelligence enhances creativity but reduces the diversity of novel content.
+arXiv. [CrossRef]
+Eri¸ sti, S. D. B., & Freedman, K. (2024). Integrating digital technologies and AI in art education: Pedagogical competencies and the
+evolution of digital visual culture. Participatory Educational Research, 11, 57–79. [CrossRef]
+Fernández-Batanero, J. M., Román-Graván, P ., Reyes-Rebollo, M. M., & Montenegro-Rueda, M. (2021). Impact of educational technology
+on teacher stress and anxiety: A literature review. International Journal of Environmental Research and Public Health , 18(2), 548.
+[CrossRef]
+Ferrara, E. (2024). GenAI against humanity: Nefarious applications of generative artificial intelligence and large language models.
+Journal of Computational Social Science, 7(1), 549–569. [CrossRef]
+Foka, A., & Griffin, G. (2024). AI, cultural heritage, and bias: Some key queries that arise from the use of GenAI. Heritage, 7(11),
+6125–6136. [CrossRef]
+Freedman, K. (2025). Teaching visual culture: Curriculum, aesthetics, and the social life of art. Teachers College Press.
+Garcia, M. B. (2024). The paradox of artificial creativity: Challenges and opportunities of generative AI artistry. Creativity Research
+Journal, 37, 755–768. [CrossRef]
+Ghosh, S., Venkit, P . N., Gautam, S., Wilson, S., & Caliskan, A. (2024, October 21–23). Do generative AI models output harm while
+representing non-Western cultures: Evidence from a community-centered approach [Conference paper]. AAAI/ACM Conference on AI,
+Ethics, and Society, San Jose, CA, USA. [CrossRef]
+González-Zamar, M. D., & Abad-Segura, E. (2020). Implications of virtual reality in arts education: Research analysis in the context of
+higher education. Education Sciences, 10(9), 225. [CrossRef]
+Heaton, R., Low, J. H., & Chen, V . (2024). AI art education-artificial or intelligent? Transformative pedagogic reflections from three art
+educators in Singapore. Pedagogies: An International Journal, 19(4), 647–659. [CrossRef]
+Heilala, V ., Araya, R., & Hämäläinen, R. (2025, March 31–April 4).Beyond text-to-text: An overview of multimodal and generative artificial
+intelligence for education using topic modeling[Conference paper]. 40th ACM/SIGAPP Symposium on Applied Computing (SAC’25),
+Catania, Italy. [CrossRef]
+Hew, K. F., & Brush, T. (2007). Integrating technology into K-12 teaching and learning: Current knowledge gaps and recommendations
+for future research. Educational Technology Research and Development, 55(3), 223–252. [CrossRef]
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 31 ===
+Educ. Sci. 2026, 16, 47 31 of 33
+Holmes, W., & Zhgenti, S. (2024). Exploring the ethics of generative AI, education, and democracy. Journal of Artificial Intelligence for
+Sustainable Development, 1(1), 1–9. [CrossRef]
+Hong, Q. N., Pluye, P ., Fàbregues, S., Bartlett, G., Boardman, F., Cargo, M., Dagenais, P ., Gagnon, M.-P ., Griffiths, F., Nicolau, B.,
+O’cathain, A., Rousseau, M.-C., & Vedel, I. (2018).Mixed methods appraisal tool (MMAT) version 2018 user guide. Available online:
+https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7182958/ (accessed on 14 September 2025).
+Hsieh, H. F., & Shannon, S. E. (2005). Three approaches to qualitative content analysis. Qualitative Health Research, 15(9), 1277–1288.
+[CrossRef] [PubMed]
+Hu, Y., Chen, J., & Hwang, G. J. (2025). A ChatGPT-supported QIVE model to enhance college students’ learning performance,
+problem-solving and self-efficacy in art appreciation. Interactive Learning Environments, 1–14. [CrossRef]
+Huang, Y., Li, H., & Fong, R. (2016). Using Augmented Reality in early art education: A case study in Hong Kong kindergarten. Early
+Child Development and Care, 186(6), 879–894. [CrossRef]
+Hutson, J., & Cotroneo, P . (2023a). Generative AI tools in art education: Exploring prompt engineering and iterative processes for
+enhanced creativity. Metaverse, 4(1), 2164. [CrossRef]
+Hutson, J., & Cotroneo, P . (2023b). Praxis and augmented creativity: A case study in the use of generative artificial intelligence (AI) art
+in the digital art classroom. The International Journal of Technologies in Learning, 31(1), 113–132. [CrossRef]
+˙Ipek, Z. H., Gözüm, A. I. C., Papadakis, S., & Kallogiannakis, M. (2023). Educational applications of the ChatGPT AI system: A
+systematic review research. Educational Process: International Journal, 12(3), 26–55. [CrossRef]
+Jones, B. J. (1986). Understanding the significance of technology in art education. Art Education, 39(6), 23–24. [CrossRef]
+Kang, W., Lee, H. S., & Hong, J. H. (2025). AI-assisted design communication in ceramic-crafts education: Investigating image
+generation tools for concept representation and pedagogical practice. Computers & Education, 239, 105419. [CrossRef]
+Kaur, P ., Stoltzfus, J., & Yellapu, V . (2018). Descriptive statistics.International Journal of Academic Medicine, 4(1), 60–63. [CrossRef]
+Kicklighter, C., Seo, J. H., Andreassen, M., & Bujnoch, E. (2024, July 27–August 1). Empowering creativity with generative AI in digital art
+education [Conference paper]. ACM SIGGRAPH 2024 Educator’s Forum, Denver, CO, USA. [CrossRef]
+Konakbayeva, U., Baltasheva, P ., Kuanysheva, B., Dauletova, I., Kydyrbayeva, G., & Karataeva, T. (2025). Artificial intelligence in
+microteaching lesson study: Enhancing pre-service teachers’ confidence and instructional Quality.Educational Process: International
+Journal, 15, e2025127. [CrossRef]
+Labadze, L., Grigolia, M., & Machaidze, L. (2023). Role of AI chatbots in education: Systematic literature review. International Journal of
+Educational Technology in Higher Education, 20(1), 56. [CrossRef]
+Lai, V . D., Ngo, N. T., Veyseh, A. P . B., Man, H., Dernoncourt, F., Bui, T., & Nguyen, T. H. (2023). ChatGPT beyond English: Towards a
+comprehensive evaluation of large language models in multilingual learning. arXiv. [CrossRef]
+Lee, U., Han, A., Lee, J., Lee, E., Kim, J., Kim, H., & Lim, C. (2024). Prompt aloud!: Incorporating image-generative AI into STEAM
+class with learning analytics using prompt data. Education and Information Technologies, 29(8), 9575–9605. [CrossRef]
+Leonard, N. (2021). Emerging artificial intelligence, art and pedagogy: Exploring discussions of creative algorithms and machines for art
+education. Digital Culture & Education, 13(1), 20–41. Available online: https://www.digitalcultureandeducation.com/volume-13
+(accessed on 2 September 2025).
+Lester, J. C., Stone, B. A., & Stelling, G. D. (1999). Lifelike pedagogical agents for mixed-initiative problem solving in constructivist
+learning environments. User Modeling and User-Adapted Interaction, 9(1), 1–44. [CrossRef]
+Ling, J., Chen, J., Zhong, C., Zhang, H., Ma, Z., Huang, N., & Ou-yang, L. (2025a). The application of generative artificial intelligence
+in design-based elementary education: A mixed-methods study and dynamic scaffolding model construction based on color
+composition courses. In M. Kurosu (Ed.), Artificial intelligence in HCI. HCII 2025. Lecture notes in computer science (Vol. 15541,
+pp. 59–76). Springer. [CrossRef]
+Ling, J., Huang, N., Xue, A., Ma, Z., Li, H., Wu, J., & Ou-yang, L. (2025b). AI-generated content-supported collaborative rural mural
+creation: A training framework for university and school students, educators, and community members. In B. K. Smith, & M.
+Borge (Eds.), Learning and collaboration technologies. HCII 2025. Lecture notes in computer science (Vol. 15808, pp. 270–292). Springer.
+[CrossRef]
+Liu, R., Pang, W., Chen, J., Balakrishnan, V . A., & Chin, H. L. (2025). The application of scaffolding instruction and AI-driven diffusion
+models in children’s aesthetic education: A case study on teaching traditional Chinese painting of the twenty-four solar terms in
+Chinese culture. Education and Information Technologies, 30, 9129–9160. [CrossRef]
+Mallik, S., & Gangopadhyay, A. (2023). Proactive and reactive engagement of artificial intelligence methods for education: A review.
+Frontiers in Artificial Intelligence, 6, 1151391. [CrossRef]
+Melchior, C., & Farinosi, M. (2025). Toward human-AI co-creativity? An exploration of early Adopters’ perspectives and experiences
+with GenAI. In A. Micalizzi (Ed.), Artificial creativity. CACLFDC 2024. Springer proceedings in humanities and social sciences
+(pp. 183–208). Springer. [CrossRef]
+Meline, T. (2006). Selecting studies for systematic review: Inclusion and exclusion criteria. Contemporary Issues in Communication Science
+and Disorders, 33, 21–27. [CrossRef]
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 32 ===
+Educ. Sci. 2026, 16, 47 32 of 33
+Mittal, U., Sai, S., Chamola, V ., & Sangwan, D. (2024). A comprehensive review on generative AI for education. IEEE Access, 12,
+142733–142759. [CrossRef]
+Oksanen, A., Cvetkovic, A., Akin, N., Latikka, R., Bergdahl, J., Chen, Y., & Savela, N. (2023). Artificial intelligence in fine arts: A
+systematic review of empirical research. Computers in Human Behavior: Artificial Humans, 1(2), 100004. [CrossRef]
+Oppenlaender, J., Linder, R., & Silvennoinen, J. (2025). Prompting AI art: An investigation into the creative skill of prompt engineering.
+International Journal of Human–Computer Interaction, 41(16), 10207–10229. [CrossRef]
+Paas, F., Renkl, A., & Sweller, J. (2003). Cognitive load theory and instructional design: Recent developments. Educational Psychologist,
+38(1), 1–4. [CrossRef]
+Page, M. J., McKenzie, J. E., Bossuyt, P . M., Boutron, I., Hoffmann, T. C., Mulrow, C. D., Shamseer, L., Tetzlaff, J. M., Akl, E. A., Brennan,
+S. E., Chou, R., Glanville, J., Grimshaw, J. M., Hróbjartsson, A., Lalu, M. M., Li, T., Loder, E. W., Mayo-Wilson, E., McDonald, S.,. . .
+Moher, D. (2021). The PRISMA 2020 statement: An updated guideline for reporting systematic reviews. BMJ, 372, n71. [CrossRef]
+Palani, S., & Ramos, G. (2024, June 23–26). Evolving roles and workflows of creative practitioners in the age of generative AI [Conference
+paper]. 16th Conference on Creativity & Cognition, Chicago, IL, USA. [CrossRef]
+Park, Y. S. (2023). Creative and critical entanglements with AI in art education. Studies in Art Education, 64(4), 406–425. [CrossRef]
+Paul, C. (2023). Digital art. Thames & Hudson.
+Reviriego, P ., & Merino-Gómez, E. (2022). Text to image generation: Leaving no language behind.arXiv. [CrossRef]
+Ross, S. M. (2020). Technology infusion in K-12 classrooms: A retrospective look at three decades of challenges and advancements in
+research and practice. Educational Technology Research and Development, 68(5), 2003–2020. [CrossRef]
+Samala, A. D., Rawas, S., Wang, T., Reed, J. M., Kim, J., Howard, N. J., & Ertz, M. (2025). Unveiling the landscape of generative artificial
+intelligence in education: A comprehensive taxonomy of applications, challenges, and future prospects. Education and Information
+Technologies, 30(3), 3239–3278. [CrossRef]
+Selwyn, N. (2010). Looking beyond learning: Notes towards the critical study of educational technology. Journal of Computer Assisted
+Learning, 26(1), 65–73. [CrossRef]
+Snyder, I., & Bulfin, S. (2007). Digital literacy: What it means for arts education. In L. Bresler (Ed.), International handbook of research in
+arts education (pp. 1297–1310). Springer. [CrossRef]
+Spennemann, D. H. (2024). Will artificial intelligence affect how cultural heritage will be managed in the future? Responses generated
+by Four genAI Models. Heritage, 7(3), 1453–1471. [CrossRef]
+Stewart, C. (2019). The dangerous power of art education. Art Education, 72(6), 25–29. [CrossRef]
+Su, H., & Mokmin, N. A. M. (2024). Unveiling the canvas: Sustainable integration of AI in visual art education. Sustainability,
+16(17), 7849. [CrossRef]
+Su, H., & Mokmin, N. A. M. (2025). Artificial intelligence in K-12 art education: A systematic review of applications and evaluations.
+In K. W. Lee, & L. H. Wong (Eds.), Intelligent technology for educational application. ITEA 2024. Communications in computer and
+information science (Vol. 2384, pp. 12–22). Springer. [CrossRef]
+Taama, A. (2025). The pedagogical potential of artificial intelligence programs in the reproduction of cultural and historical elements in
+students’ works.Journal of Educational and Social Research, 15(3), 50–64. [CrossRef]
+Taherdoost, H. (2022). What are different research approaches? Comprehensive review of qualitative, quantitative, and mixed method
+research, their applications, types, and limitations. Journal of Management Science & Engineering Research, 5(1), 53–63. [CrossRef]
+Tahiru, F. (2021). AI in education: A systematic literature review.Journal of Cases on Information Technology, 23(1), 1–20. [CrossRef]
+Then, C., Soewandi, E. J., Danial, M. F., Achmad, S., & Sutoyo, R. (2023, October 18–20). The impact of artificial intelligence on art—A
+systematic literature review [Conference paper]. 9th Information Technology International Seminar (ITIS), Batu Malang, Indonesia.
+[CrossRef]
+Tillander, M. (2011). Creativity, technology, art, and pedagogical practices.Art Education, 64(1), 40–46. [CrossRef]
+Torres Carceller, A. (2024). The ARTificial revolution: Challenges for redefining art education in the paradigm of generative artificial
+intelligence. Digital Education Review, 45, 84–90. [CrossRef]
+Xu, M. (2025). Interaction between students and artificial intelligence in the context of creative potential development. Interactive
+Learning Environments, 33(7), 4460–4475. [CrossRef]
+Zawacki-Richter, O., Marín, V . I., Bond, M., & Gouverneur, F. (2019). Systematic review of research on artificial intelligence applications
+in higher education—Where are the educators? International Journal of Educational Technology in Higher Education , 16(1), 39.
+[CrossRef]
+Zeng, S., Rahim, N., & Xu, S. (2025). Integrating mobile AI in art education: A study on children’s engagement and self-efficacy.
+International Journal of Interactive Mobile Technologies, 19(11), 112–142. [CrossRef]
+Zhu, X., Duan, B., Cao, X., & Tan, Y. (2025). Developing a digital illustration curriculum based on A/R/Tography: Integrating
+AI-generated art and Chinese-Spanish heritage patterns for cross-cultural education. International Journal of Information and
+Education Technology, 15(8), 1573–1583. [CrossRef]
+https://doi.org/10.3390/educsci16010047
+
+=== PDF PAGE 33 ===
+Educ. Sci. 2026, 16, 47 33 of 33
+Zimmerman, B. J., & Schunk, D. H. (2012). Motivation: An essential dimension of self-regulated learning. In P . A. Alexander, & P . H.
+Winne (Eds.), Motivation and self-regulated learning (pp. 1–30). Routledge.
+Zimmerman, E. (2009). Reconceptualizing the role of creativity in art education theory and practice. Studies in Art Education, 50(4),
+382–399. [CrossRef]
+Zimmerman, E. (2010). Creativity and art education: A personal journey in four acts. Art Education, 63(5), 84–92. [CrossRef]
+Disclaimer/Publisher’s Note: The statements, opinions and data contained in all publications are solely those of the individual
+author(s) and contributor(s) and not of MDPI and/or the editor(s). MDPI and/or the editor(s) disclaim responsibility for any injury to
+people or property resulting from any ideas, methods, instructions or products referred to in the content.
+https://doi.org/10.3390/educsci16010047

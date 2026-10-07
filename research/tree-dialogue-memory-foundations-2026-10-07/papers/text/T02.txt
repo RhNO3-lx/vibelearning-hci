@@ -1,0 +1,608 @@
+=== PDF PAGE 1 ===
+ED 302 821
+AUTHOR
+TITLE
+INSTITUTION
+SPONS AGENCY
+PUB DATE
+CONTRACT
+GRANT
+NOTE
+PUB TYPE
+EDRS PRICE
+DESCRIPTORS
+DOCUMENT RESUME
+CS 009 472
+Spiro, Rand J.; And Others
+Cognitive Flexibility Theory: Advanced Knowledge
+Acquisition in Ill-Structured Domains. Technical
+Report No. 44..
+Bolt, Beranek aad Newman, Inc., Cambridge, Mass.;
+Illinois Univ., Urbana. Center for the Study of
+Reading.
+Army Research Inst. for the Behavioral and Social
+Sciences, Alexandria, Va.; Josiah Macy, Jr.
+Foundation, New York, N.Y.; Office of Educational
+Research and Improvement !ED), Washington, DC.;
+Office of Naval Research, Arlington, Va.
+Oct 88
+DEG-0087-C1001
+B852001; MDA903-86-K-0443; N00014-87-G-0165;
+N00014-88-K-0077; N00014-88-K-0286
+15p.
+Reports - Research/Technical (143)
+MF01/PC01 Plus Postage.
+Computer Assisted Instruction; *Concept Formation;
+Educational Methods; *Learning Processes; Medical
+Education; Medical Students; *Misconceptions; Reading
+Research
+IDENTIFIERSCognitive Complexity; *Cognitive Flexibility; Context
+Dependence; Hypertext; *Knowledge Acquisition;
+Schematic Concept Formation
+ABSTRACT
+Advanced knowledge acquisition in a subject area is
+different in many important ways from introductory learning (and from
+expertise). In this paper some of the special characteristics of
+advanced learning of complex conceptual material are discussed. The
+paper notes that these characteristics are often at odds with the
+goals and tactics of introductory instruction and with psychological
+biases in learning. The paper alludes to research in biomedical
+cognition that has revealed a substantial incidence of misconception
+attributable to various forms of oversimplification and outlines the
+factors that contribute to suboptimal learning at the advanced stage.
+A sketch of a theoretical orientation for more successful advanced
+knowledge acquisition in ill-structured domains, Cognitive
+Flexibility Theory, is then presented. This orientation emphasizes:
+the use of multiple mental and pedagogical representations; the
+promotion of multiple alternative systems of linkage among knowledge
+elements; the promotion of schema assembly (as opposed to the
+retrieval of prepackaged schemas); the centrality of "cases of
+application" as a vehicle for engendering functional conceptual
+understanding; and the need for participatory learninc, tutorial
+guidance, and adjunct support for aiding the management of
+complexity. The paper also discusses a computer hypertext approach
+that implements Cognitive Flexibility Theory. (Fifteen references are
+attached.) (Author/RAE)
+
+
+=== PDF PAGE 2 ===
+CENTER FOR THE STUDY OFREADING
+A READING RESEARCH AND EDUCATION CENTER REPORT
+Technical Report No. 441
+COGNITIVE FLEXIBILITY THEORY:
+ADVANCED KNOWLEDGE ACQUISITION
+IN ILL-STRUCTURED DOMAINS
+Rand J. Spiro
+University of Illinois at Urbana-Champaign
+Richard L. Coulson, Paul J. Feitovich,
+and Daniel K. Anderson
+Southern Illinois University School of Medicine
+"PERMISSION TOREPRODUCE THIS
+MATERIAL HAS BEENGRANTED BY
+TO THE EDUCATIONALRESOURCES
+INFORMATION CENTER(ERIC).'
+October 1988
+University of Illinois at Urbana-Champaign
+51 Gerty Drive
+Champaign, Illinois 61820
+U S DEPARTMENT OfEDUCATION
+Office of Educational Researchand Improvement
+EDUCATIONAL RESOURCESERIC)INFORMATIORESOURCES
+0 This document has beenreproduced
+received from the personor organitation
+as
+originating it
+Minor changes have beenmade to improve
+reproduction quality
+Points of Vie* or opinionsseWd111011$ docu-
+ment do not necesSerilyrepresent official
+OE RI position or policy
+The research reported in thispaper was supported by grants from the Army
+Research Institute (MDA90346-K-0443), theOffice of Naval Research (N00014.88-
+K -0286, N00014-87-G4165, N0001448-K-0077), theJosiah Macy Foundation
+(B852001), and the Office of Educational Researchand Improvement (OEG 0087-
+C1001). The publication does not necessarily reflectthe views of the agencies
+supporting the research. To appear in Tenth Annual Conferenceof the CognitiveScience Socket. Hillsdale, NJ: Erlbaum.
+2
+
+
+=== PDF PAGE 3 ===
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory-1
+Abstract
+Advanced knowledge acquisition in a subject area isdifferent in many important ways from
+introductory learning (and from expertise). In this paper we discusssome of the special characteristics
+of advanced learning of complex conceptual material. We note howthese characteristics are often at
+odds with the goals and tactics of introductory instr..ction and with psychologicalbiases in learning.
+We allude to our research in biomedical cognition that has revealeda substantial incidence of
+misconception attributable to various forms of oversimplification, andwe outline the factors that
+contribute to suboptimal learning at the advanced stage. We then sketcha theoretical orientation for
+more successful advanced knowledge acquisition in ill-structured domains, Cognitive Flexibility Theory.
+This orientation emphasizes:the use of multiple mental and pedagogical representations; the
+promotion of multiple alternative systems of linkage among knowledge elements; thepromotion of
+schema assembly (as opposed to the retrieval of prepackaged schemas); the centralityof "cases of
+application" as a vehicle for engendering functional conceptual understanding;and the need for
+participatory learning, tutorial guidance, and adjunct support for a;ding themanagement of complexity.
+A computer hypertext approach that implements Cognitive Flexibility Theory is discussed.
+rl0
+
+
+=== PDF PAGE 4 ===
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory- 2
+COGNITIVE FLEXIBILITY THEORY:
+ADVANCED KNOWLEDGE ACQUISITION
+IN ILL-STRUCTURED DOMAINS
+The Goals of Advanced Knowledge Acquisition
+In our work we have been interested in "advanced knowledge acquisition"--learningbeyond the
+introductory stage for a subject area, but before the achievement of practiced expertisethat comes with
+massive experience. This often neglected intermediate stage is important becau...ethe aims and means
+of advanced knowledge acquisition are different from those of introductory learning.In introductory
+learning the goal is often mere exposure to content and the establishment ofa general orientation to a
+field; objectives of assessment are likewise confined to the simple effects ofexposure (e.g., recognition
+and recall). At some point in learning about a knowledge domain the goal must change;at some point
+students mist "get it right." This is the stage of advanced knowledge acquisition (Feltovich, Spiro, &
+Coulson, in press; Spiro, Feltovich, & Coulson, in press; Spiro, Vispoel, Schmitz, Samarapungavan, &
+Boerger, 1987): The learner must attain a deeper understanding of content material,reason with it,
+apply it flexibly in diverse contexts.Obstacles to advanced knowledge acquisition include conceptual
+complexity and the increasing ill-structuredness that comes into play withmore advanced approaches
+to a subject area. By ill-structuredness we mean that many concepts (interacting contextually)are
+pertinent in the typ;cal case of knowledge application, and that theirpatterns of combination are
+inconsistent across case applications of the same nominal type.(See Spiro, et al., 1987, for a more
+detailed treatment of the nature and consequences of ill-structuredness.)
+The methods of education in introductory and advanced learningseem, in many ways, to be at odds.
+For example, compartmentalizing knowledge, presenting clear instances (and not themany pertinent
+exceptions), and employing reproductive memory criteria are often in conflict with the realities of
+advanced learning--knowledge which is intertwined and dependent, has significant context-dependent
+variations, and requires the eility to respond flexibly to "messy" application situations.These
+discrepancies in aims and tactic... (along with many others thatwe have observed) raise the possibility
+that introductory learning, even when itis "successful," lays foundations in knowledge and in an
+approach to learning that interfere with advanced acquisition.As we have seen repeatedly
+demonstrated, that possibility is an actuality (Coulson, Feltovich, & Spiro, 1986; Feltovich,et al., in
+press; Spiro, et al., in press; Spiro, et al., 1987).
+Deficiencies in Advanced Knowledge Acquisition
+Medical school is an archetype of an advanced knowledge acquisition setting (Feltovich,et al., in
+press).Medical students have already had introductoryexposure to many of the subject antas of
+biological science that they go on to study in medical school, but theyare certainly not yet e. pert.
+Furthermore, the goals of medical education are clearly those of advanced knowledge acquisition.
+Important aspects of conceptual complexity must now be mastered (superficial familiarity withkey
+concepts is no longer sufficient); and the ability to apply knowledge from formal instruction to real-
+world cases is certainly something that is expected of those studyingto be physicians.
+In our laboratory we have been studying medical students' learning, understanding and application of
+important but difficult biomedical science concepts. This effort has revealed widely heldsystematic
+misconceptions among students, despite their having been exposedto appropriate information
+(Coulson, et al., 1986; Feltovich, et al., in press; Spiro, et al., inpress; Spiro, et al., 1987). Stubborn
+misconception, notwithstanding usual classroom efforts at instruction, have been foundfor difficult
+concepts in other areas as well (e.g., physics: Champaign, Gunstone, & Klopfer, 1985; White, 1984).
+4
+
+
+=== PDF PAGE 5 ===
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory- 3
+The biomedical misconceptions that we have identified are of various kinds (Feltovich,et al., in press;
+Spiro, et al., in press). These include contentive errors, often involving overgeneralization; for example,
+areas of subject matter are seen as being more similar than they really are.Errors attributable to
+dysfunctional biases in mental representation are also observed; for example, dynamicprocesses are
+often represented more statically.Prefigurative "world views" that underlie learners' understanding
+processes also cause problems; for example, the presupposition that the world works in sucha way that
+"parts add up to wholes" leads students to decompose complexprocesses into components that are
+treated (mistakenly) as independent.Furthermore, at all these levels misconceptions interact in
+reciprocally supportive ways, and combine to yield higher order misconceptions (Coulson,et al., 1986;
+Feltovich, et al., in press). Failures of understanding compound themselves, buildingup durable chains
+of larger scale misconception.
+Reductive biases: The pervasive role of oversimplification in the development cfmisconceptions. A
+predominant share of the misconceptions (and networks of misconception) thatwe have identified
+reflect one or another kind of oversimplification of complex material-- associated with learners' earlier
+experiences with introductory learning, and even influenced bymany experiences with advanced
+learning. Misconceptions of advanced material result both from interference from earlier, simplified
+treatments of that material and from a prevailing mode of approaching the learningprocess in general
+that fosters simplificational strategies and leaves learners withoutan appropriate cognitive repertoire
+for the processing of complexity (Feltovich, et al., in press; Spiroet al., in press; Spiro, et al., 1987).
+We have termed the general tendency to reduce importantaspects of complexity the reductive bias.
+Several forms of the bias have been identified, selected examples of which follow (see Coulson,et al.,
+1986; Feltovich, et al., in press; Spiro, et al., in press) for wimples of biomedicalmisconceptions
+corresponding to the types of reductive bias listed):
+1.Oversimplification of complex and irregular structure.Superficial similarities among related
+phenomena are treated as unifying characteristics. Interacting components are treatedas independent.
+Incomplete conceptual accounts are presented (or accepted by the learner)as being comprehensive.
+Instances that are referred to as belonging to the same generic categoryare treated in a uniform
+manner despite their being highly diverse.The irregular is treated as regular, the nonroutineas
+routine,thedisorderly asorderly,thecontinuousas,liscrete,the dynamic asstatic,the
+multidimensional as unidimensional. (This first reductive bias is themost general one, encompassing
+many of the specific ones listed below.)
+2. Overreliance on a single basis for mental representation. A single, encompassingrepresentational
+logic is applied to complex concepts and phenomena thatare inadequately covered by that logic. For
+example: Understanding of a new concept is reduced to the features ofa (partially) analogous concept.
+New, highly divergent examples are understood by exclusive referenceto a single prototype. A single
+schema or theory is profferred and preferred, despite the fact that itscoverage is significantly
+incomplete. Complexly multifaceted content has its understanding narrowedto just those aspects
+covered by a single organizational scheme. And so on.
+3.Overreliance on "top down" processing.Understanding and decision making in knowledge
+application situations (i.e., cases) rely too exclusivelyon generic abstractions (i.e., concepts, theories,
+etc.); detailed knowledge of case structure is not used enough (i.e., knowledge of "howcases go, as well
+as reasoning from specific case precedents).
+4. Context-independent conceptual representation. Thecontexts in which a concept is relevant are
+treated as having overly uniform characteristics.This promotes the representation of conceptual
+knowledge in a manner too abstract for effective application (i.e., without sufficient regardfor the
+specifics of application in context). Conceptsare insufficiently tailored to their uses; concepts are not
+5
+
+
+=== PDF PAGE 6 ===
+Spiro, Coulson, Feltovich, & AndersenCognitive flexibility Theory- 4
+recognized as relevant when, in fact, they are; andconcepts are mistakenly judged to be relevant in
+contexts where they are not.
+S. Overreliance on precompiled knowledge structures. Fixed protocolsor rigidly prepackaged schemas
+are presented to learners and used by them as recipes for what to do innew cases.
+6. Rigid compartmentalization of knowledgecomponents. Components of knowledge that are in factinterdependent are treatedas being separable from each other. Learners develop mistaken beliefs in
+the independence of the components.Relate*, where knowledge components do function
+independently, it may nevertheless be thecase that conveying relationships between their conceptual
+structures would aid understanding; these connectionsare not drawn.When components areinterrelated, there is a tendency touse just one linkage scheme, thereby underrepresenting the richness
+of interconnection in the system and promotingnarrow, doctrinaire viewpoints (see the problem of
+single representations).
+7.Passive transmission of knowledge.Knowledge is preemptively encoded undera schemedetermined by external authority (e.g.,a textbook) or a scheme which facilitates delivery anduse.
+Knowledge is "handed" to the learner. The preemptive encodingis passively received by the learner,
+and useful benefits that result from personalized knowledgerepresentations, derivable from active
+exploration and involvement in the subjectarea, do not develop. When active, participatory learning is
+encouraged, adequate support for themanagement of increased indeterminacy and cognitive !load
+not provided (e.g., mentor guidance, memory aids, etc.).
+The next section will outline our theoretical approachto remedying the problems of advanced
+knowledge acquisition that are caused by these reductivebiases.
+Cognitive Flexibility The, Ty:
+Themes of Advanced Knowledge Acquisition
+Where has our research on the problems of advancedknowledge acquisition led us? Toan overalltheoretical orientation that inmany ways derives its fundamental themes from the specific nature of
+those learning problems, as the problems relateto the characteristics of ill-structured domains and the
+special goals of advanced knowledge acquisition(i.e., mastery of conceptual complexity and knowledge
+application/transfer).
+In this section we provide a brief discussion ofour most fundamental, theoretically motivated remedies
+for the problems of advanced knowledge acquisition.The following themes constitute different facets
+of what we call cognitive flexibility (Spiro,et al., 1987). The themes are, in a sense, conditions for
+developing mastery of complexity and knowledgetransferability. Each of the headlined theoretical
+commitments has received some form of implementation,zither in our experiments or in our theory-
+based computer hypertext systems (includingone prototype that implements the theory's principles of
+advanced knowledge acquisition in cardiovascular medicine,the Cardioworld Explorer).Given the
+extreme limitations of space, the themes are discussed schematically andin the abstract; detailed
+development of theoretical rationales, examples ofour concrete instantiations of the themes (in the
+biomedical domain and others thatwe have studied), and patterns of empirical support fcr our claims
+can be found in our cited papers.
+1.Avoidance of Oversimplification and Overregularization.Because of the strong bias towards
+oversimplification that we have observed, it is clearthat advanced knowledge acquisition must placea
+high premium on making salient thoseways that knowledge is not as simple and orderly as it might first
+seem in introductory treatments. Where the problem isso often a presumption of simplicity and
+regularity, the remedy is to take specialmeasures to demonstrate complexities and irregularities.It is
+
+
+=== PDF PAGE 7 ===
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory- 5
+important to lay barn the limitations of initial, firstpass understandings, to highlight exceptions, to
+show how the superficially similar is dissimilar and how superficial unitiesare broken.Where
+conceptual error frequently occurs from atomistic decomposition of complexlyinteracting information,
+followed by misguided attempts at "additive" reassembly of the decomposedelements, the remedy is to
+take pains 'o highlight component interactions, to clearly demonstratethe intricate patterns of
+conceptual combination.
+This is a very general theme, encompassingmany of the others that follow in this list.Cognitiveflexibility involves the selectiveuse of knowledge to adaptively fit the needs of understanding and
+decision making in a particular situation; the potentialfor maximally adaptive knowledge assembly
+depends on having available as full a representation ofcomplexity to draw upon as possible.
+2. Multiple Representations. Single representations(e.g., a single schema, organizational logic, line of
+argument, prototype, analogy, etc.) will miss important facets of complexconcepts. Cognitive flexibility
+is dependent upon having a diversified repertoire ofways of thinking about a conceptual topic.
+Knowledge that will have to be used inmany ways has to be learned, represented, and tried out (in
+application) in many ways.
+The use of multiple representations is importantat different levels. For example, we have found
+multiple analogies to be very useful in understanding complexindividual concepts (Spiro, et al., in
+press; see the example below of force production by muscle fibers;see also Collins & Gentner, in
+press; White & Frederiksen, 1987). Howe-er, the importance of multiple representationsmay be even
+more important for larger units of analysis. For example,we have found that students' understandings
+of the entire domain of biomedical knowledge isadversely affected by the tendency to use justone way
+of modeling the various phenomena theyencounter, one that comes from the metaphor of the machine.
+This one "lens" leads them to take for granted certainissues related to the nature of explanations, the
+structure of mental models of functional systems, andso on. These students develop understandings
+that do not capture important aspects of the biomedical domain(e.g., inherently organic processes).
+Their understandings would bemore complete if they were to augment the selective view that results
+from their mechanistic bias with other understandingsthat selectively emerge from the unique aspects
+of other cognitive "lenses," for example, fromorganicist metaphors (Feltovich, et al., in press).
+The need for multiple representations appliesnot only LI complex concepts, but to casesas well. In an
+ill-structured domain, cases (examples,occurrences, events--occasions of use of conceptual knowledge)
+tend to be complex and highly variable,one to the next. The complexity of cases requires that they be
+represented from multiple theoretical/conceptualperspectives--if cases are treated narrowly by
+characterizing them using a too limited subset of their relevantperspectives, the ability to process
+future cases will be limited. First, there will bean assumption that cases are simpler than they in fact
+are, and attempts to deal with new cases will prematurely concludeafter they are only partially
+analyzed.Second, there will be insufficient preparednessto deal with the specific patterns of
+interaction of theoretical/conceptual perspectiveswithin cases. Third, to the extent that performance
+in future cases will require reasoning fromsets of precedent cases (which is always a greate- need in ill-
+structured domains), the likelihood of havingcase representations available is prior knowledge which
+are maximally apt in their relation to some new case is lessened to theextent that cases ore narrowly
+represented in memory. This is especiallyso when there is substantial across-case dissimilarity; the
+relative novelty of a new case inan ill-structured domain will require more elaborate efforts to find
+appropriate precedents--the wider the variety that isavailable, the better the chances of findinga fit.
+An Example of Multiple Representations: IntegratedMultiple Analogies for Complex Concepts. As
+we have said, our studies of medical students have indicated thatone of the most serious contributors
+to the problems of advanced knowledge acquisition is theuse of a single knowledge representation.
+Complex concepts can rarely be adequately representedusing a single schema, theoretical perspective,
+7
+4
+
+
+=== PDF PAGE 8 ===
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory()
+line of exposition, and so on. Nevertheless, in practice, complexconcepts frequently are represented in
+some single fashion, with substantial consequences.
+Our remedy has been to approach learning in all of the domains thatwe have studied with the goal of
+promoting multiple representations(e.g.,multiple precedent cases fora new case;multiple
+organizational schemes for representing thesame content material in our computer hypertexts; etc.).
+Here we will briefly consider just the case of analogy.We have discovered a large number of
+misconceptions that result from the overextended application ofanalogies (Spiro, et al., in press). To
+combat the negative effects of a powerful and seductive singleanalogy, we employ sets of integrated
+multiple analogies. Whenever a source concept inan analogy is missing important aspects of a target
+concept, or the source concept is in some way misleading about thetarget concept, we introduce
+another analogy to counteract those specific negative effects of the earlier analogy.
+So, where we ford that misconceptions about the nature of forceproduction by muscle fibers often
+devt.lop because of a common analogy to the operation of rowingcrews (sarcomere "arms" and "oars"
+both generate force by a kind of "pulling"), other analogiesare introduced to mitigate the negative
+effects of the limited rowing crew analogy (Spiro,et al., in press). An analogy to turnbuckles corrects
+misleading notions about the nature of relative movement and thegross structures within the muscle.
+An analogy to "finger handcuffs" covers important information missingin the rowing crew analogy
+about limits of fiber length (the elastin coveringon muscle fiber bundles constricts at long lengths,
+stopping extension in a manner similar to the cross-hatched finger cuffswhen you try to pull a finger
+out of each end). And so on. A composite imaging technique that helps theuser to integrate the
+multiple analogies, so that the correct aspect- of each analogycan be selectively instantiated in relevant
+contexts of use of the target concept, has alst, been developed. The procedure facilitatesthe learning
+of a concept (through the pedagogical benefits of analogy),while maintaining the integrity of the
+concept's complexities (by using multiple analogies tocover the concept's multifacetedness and to
+vitiate the force of incorrect aspects ofany single analogy). (Also see Bunstein, 1983.)
+Theory-based hypertext systems to implement the themes of advanced knowledgeacquisition in ill-
+structured domains: The importance of revisiting andrearranging in the development of multiple
+representations. Much of the work on computer hypertext systems has been drivenby the power of
+the technology, rather than bya coherent view of the cognitive psychology of nonlinear and
+multidimensional learning and instruction.In contrast, our hypertext approaches havea basis in
+cognitive theory--they derive from the themes of Cognitive FlexibilityTheory. And their realm of
+operation is specified; they are especially targetedat advanced knowledge acquisition in ill-structured
+domains.(Thereis no pointin imposing the extra cognitive load of nonlinearity and
+multidimensionality if the domain being studied is simple and well-structured,or if the goals of learning
+are the more easily attainable ones of introductory treatments.) We will brieflycharacterize our
+approach to implementing Cognitive Flexibility Theory incomputer hypertext systems.
+Our hypertext systems build multiple representations ina manner that can be understood using a
+metaphor of landscape exploration. Deep understanding ofa complex landscape will not be obtainedfrom a single traversal.Similarly for a conceptual landscape.Rather, the landscape must be criss-
+crossed in many directions to master its complexity andto avoid having the fullness of the domain
+attenuated (Spiro, et al., 1987; Wittgenstein, 1953). Thesame sites in a landscape (the same cases or
+concepts in a knowledge domain) should be revisited from different directions,thought about from
+different perspectives, andso on. There is a limit to how much understanding of a complex entity can
+be achieved in a single treatment, ina single context, for a single purpose.By r^peating the
+presentation of the same complexcase or concept information in new contests, additional aspects of the
+multifacetedness of these "landscape sites"are brought out, enabling the kind of rich representations
+necessary in a complex and ill-structured domain. Thus, cogmtive flexibilityis fostered by a flexible
+approach to learning and instruction. Thesame content material is covered in different ways, at
+S
+
+
+=== PDF PAGE 9 ===
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory- 7
+different times, in order to demonstrate the potential flexibility ofuse inherent in that content (Spiro &
+Jehng, in press; Spiro et al., 19P7).
+3. Centrality of Cases. The more ill-structured the domain,the poorer the guidance for knowledge
+application that "top-down" structures will generally provide.That is, the way abstract concepts
+(theories, general principles, etc.) should be usedto facilitate understanding and to dictate action innaturally occurringcases becomes increasingly indeterminate inill-structured domains.Theapplication of knowledge to cases inan ill-structured domain (i.e., a domain in whichcases areindividually multidimensional, and irregularly relatedone to the next) cannot be prescribed in advance
+by general principles. This is because, in ill-structured domains,there is great variability fromcase to
+case regarding which conceptual elements will be relevant and in whatpattern of combination. In an
+ill-structured domain, general principles will notcapture enough of the structured dynamics ofcases;
+increased flexibility in responding to highly diversenew cases comes increasingly from reliance on
+reasoning from precedent cases.
+Thus, examples/cases cannot be assigned the ancillarystatus of merely illustrating abstract principles
+(and then being discardable); thecases are key--examples are necessary, and not just nice (Feltovich,et
+al., in press; Spiro & Jehng, in press; Spiro, et al., 1987).
+4. Conceptual Knowledge as Knowledge-In-Use. Not only is itmore difficult to count on top down
+prescriptions for performance in new cases inan ill-structured domain (i.e., abstract concepts/theories
+inadequately determine responses tonew cases), but there is also considerable indeterminateness in
+defining conditions for accessing conceptualstructures in the first place, to engage the guidance the
+conceptual structures do offer. It is not that abstract knowledge hasno role in ill-structured domains,
+but that its role is highly intertwined with that of case-centeredreasoning. Put another way, in an ill-
+structured domain there will be greatly increased variabilityacross cases in the way the same concept is
+used or applied. Thus it is harder to get from features ofcases to the concepts that might need to be
+applied to those cases. And it is harderto apply a concept, once accessed, if it has many different kinds
+of uses across cases--concepts must be tailoredto their application contexts. The Wittgensteinian
+dictum that meaning is determined byuse clearly applies in ill-structured domains.If a concept's
+meaning in use cannot be determined universallyacross cases (as in an ill-structured doma. A), then one
+must pay much more attention to the details of how the concept is used--knowledgein practice, rather
+than in the abstract (Spiro & Jehng, inpress; Spiro, et al., 1987; Wittgenstein, 1953).
+In medical training, this issue of variability and combinationin concept instantiation has an obvious
+implication for the traditional difficulty of integratingthe biomedical basic science parts of the
+curriculum with the clinical parts. Physicians' practice wouldbe improved if in problematic situations
+they could apply the interacting basic biomedical scienceconcepts that underlie the clinical situation
+that is posing the problem. However, it isvery difficult for medical students to learn how to get to the
+basic science concepts from clinical presenting features, partlybecause of the great variability across
+clinical cases in the way thoseconcepts get instantiated. A key feature of our Cardioworid Explorer
+hypertext is that it permits the learner to selectively examine the fullrange of uses of any selected basic
+science concept (or any selected combination of concepts)across cases with differing clinical features,
+teaching the patterns of concept application and thusfacilitating access to conceptual information in
+clinical contexts (as wellas fostering an understanding of the different ways that a given concept has to
+be tailored to be clinically relevant).
+Again, in an ill-structured domain the meaning ofa concept is intimately connected to its patterns of
+use. When the uses (instances, cases) of the same concept havea complex and irregular distribution
+(i.e., the domain is ill-structured), adequateprepackaged prescriptions for proper activation of the
+concept cannot be provided (i.e., concept instantiation is non-routine).Instead, greater weight (than in
+a well-structured domain) must be given to activatingconcepts in a new case by examination of family
+9
+
+
+=== PDF PAGE 10 ===
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory- 8
+resemblances across the features of pastcases that have been called (labeled as instances of) that
+concept.
+S. Schema Assembly (from Rigidity to Flexibility).In an ill-structured domain, emphasismust be
+shifted from retrieval of intact, rigid, precompiled knowledgestructures, to assembly of knowledge from
+different conceptual and precedent case sources to adaptivelyfit the situation at hand (Spiro, 1980;Spiro, et al., 1987).This follows, again, from characteristics of ill-structureddomains.Since ill-structuredness implies kinds of complexity and irregularitythat militate against the use of knowledge
+structures that assume routinizability acrosscases, the role of intact schema retrieval must be
+diminished--greater across-case differencescause a necessary decline in the ability of any large, single
+precompilation to fit a wide variety ofcases. In complex and ill-structured domains, one cannot haveaprepackaged schema for everything!As ill-structuredness increases, the use of rigid knowledge
+structures (i.e., the same precompiled knowledge structure used formiy cases) must be replaced by
+flexible, recombinable knowledge structures.For any particular case, many small precompiled
+knowledge strucures will need to be used. And there willbe relatively little repetition of patterns
+across case-specific assemblies of these smaller pieces of precompiled knowledge.Accordingly, in
+knowledge acquisition for cognitive flexibility, the "storage offixed knowledge is devalued in favor of
+the mobilization of potential knowledge" (Spiro, et al., 1987;see also Schank, 1982.)
+6. Noncompartmentalizstion of Concepts and Cases (MultipleInterconnectedness). Because of the
+complex and irregular way that abstract conceptual featuresweave through cases/examples in ill-
+structured domains, knowledge cannot be neatly compartmentalized.In order to enable the situation-
+dependent, adaptive schema assembly from disparate knowledgesources that characterizes cognitive
+flexibility, those multiple sources must be highlyinterconnected.Concepts cannot be treated dsseparate "chapters."Retroactive assembly of independently taught, and noninterrelated,constituentconceptual aspects too often fails. Also, althoughcases have to be focused on separately, so that the
+complexity of case structure is conveyed, they shouldnot be taught in just that way--connections across
+cases must also be established. Rather than relegating conceptsor cases to separate compartments,
+chapters, and so on, our systems strive for multipleinterconnectedness (of cases and concepts) along
+multiple conceptual and clinical dimensions.
+Our approach to fostering multiple interconnectedness of knowledgerepresentations in our hypertextsis to code case segments witha multidimensional vector indicating the relevance of a variety of
+thematic/conceptual dimensions to thatcase segment (Spiro & Jehng, in press). (Positive values in the
+vector also point to commentary, providing expert guidance aboutthe nature of the conceptual
+dimension's instantiation in that particularcase segment; this helps with the problem of teaching
+conceptual knowledge-in-use discussed earlier). Then,as the hypertext program guides the learner in
+criss-crossing the domain's "landscape," by exploringpatterns of overlap in the vectors for different case
+segments, knowledge representations are builtup in which parts of cases are connected with many
+parts of other cases, along many conceptual/theoretical dimensions ofcase-segment similarity. In that
+way, many alternative paths are established to get fromone part of the overall knowledge base to any
+other part of the knowledge base that aspects ofsome future case may signal as relevant. Thus, the
+potential for flexible, situation-adaptive schema assemblyis fostered (along with such other virtuesas
+the establishment of multiple routes formemory access to any node in the system).
+So, for example, in the Cardioworld Exploressegments of clinical cases are encoded with a vector of
+clinical and basic biomedical science themesthat are relevant to each segment. The systemcan thenestablish connections betweena segment of one case and segments of many other cases, along the
+various (conceptual and clinical) thematicdimensions represented in the vector.In case-based
+instruction, it is often true that thereare important, instructive relationships between an aspect of one
+case and aspects of others. Such relationships are rarely brought out. Our hypertextsystems capture
+these many lessons that are missed in strict case-by-case(or problem-by-problem) instruction.In do
+10
+
+
+=== PDF PAGE 11 ===
+,.,-. Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory- 9
+ill-structured domain, facilitating retrieval of multiple (partial) precedents is important,because
+understanding what to do in a given case context will usually require referenceto more than any single
+prototype--the case in question will be "kind of like this earlierone, kind of like that one," and so on.
+Also, understanding of the case in question will require that variousconcepts be brought to bear and
+integrated; this, too, is facilitated by the multiple conceptual coding scheme employedin our systems.
+There are several other benefits of the multiple-conceptual coding ofmultiple case segments. A
+power/efficiency advantage is that it allows the hypertextsto automatically generate large numbers of
+lessons (many "landscape criss-crossings").If, for example, each of 20cases is divided into an average
+of 10 case segments, each with a valueon 15 relevant thematic dimensions, there is a many-fold
+increase in the number of possible automatizable instructional comparisonsand contrasts that results
+from having 200 case segments (instead of 20 full cases) intertwined byrelationships in the 15-slotvector.
+Also, the use of case segments prevents the subsumptionto a "common denominator" that occurs when
+larger structural units are used: An interesting local element ofa case will tend to get lost if it has
+features that are not prer!nt in other parts of the case (when the monolithiccase is the structural unit).
+Using small case segments (minicases) helps to retain the plurality of situations.
+There is another virtue of the division into case segments and themultidimensional coding of the
+segments that relates to keeping case understanding from being overly simplified. Inan ill-structured
+knowledge domain, by definition, there is sufficient variabilityacross cases (due in part to the
+interaction of the many factors that makeup complex cases) that the set of cases that might be
+nominally grouped together under some schemaor classification will be greatly variable in their
+particulars. A case, instead of being representedas one kind of thing, conveying one kind of "lesson," is
+instead clearly shown to the learner to be many things. Cases of thesame nominal type have different
+segments or scenes that are demonstrated not to be the same, and each of the segments is shownto
+have multiple significances. Therefore, thecommon temptation to nest cases uniquely under a single
+superordinate conceptual category will be resisted, making it less likely thatthe complex relationships
+among cases in a domain will be artificially regularized. In an ill-structured domain,cases are related
+to many different concepts of the domain, and it promotes dysfunctional simplificationto hierarchically
+nest or "slot" cases under single conceptual categories (e.g., "The followingcases are examples of X
+[only] "). When there is considerable across-case variability,as there will be in an ill-structured domain,
+cognitive flexibility requires that case information be coded conceptually forthe many different kinds of
+use that new situations may require.
+The thematic coding scheme and the landscape criss-crossingsystem of instruction result in a weblike
+multiple interconnectedness on multiple dimensions that isnot subject to the limitations of instruction
+that is characterized by a single organizational slant.Instead of a single text with a single
+organizational scheme and a single sequencing of comparisons andcontrasts, our hypertexts allow the
+same information to be automatically reconfigured according to a huge number of possible
+organizational schemes, determined by using subsets of the multiplethematic coding space--our
+hypertexts enable the virtually limitless automatic generation ofnew text configurations. Because of the
+richness of ill-structured domains suchas biomedical science, each of these text configurations teaches
+some case- (experience-) grounded lessons that would not have been taught (or easilyseen if taught)
+from another text's organizational perspectiveSuch additional experiences and perspectivesare
+always helpful in a complex domain- -a physician never learns all that it would be helpful to learn
+(which is why additional experience is always valued ina physician).Hypertext systems like the
+Cardioworid Explorer systematically consolidate theprocess of acquiring experience.
+Yet another virtue of the multiple interconnectedness along multiple dimensionsof the representations
+that our systems build has to do with the problem of reciprocal misconceptioncompounding that we
+
+
+=== PDF PAGE 12 ===
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory- 10
+have observed in our studies of medical students and physicians (Coulson,et al., 1986; Feltovich, et al.,
+in press). Misconceptions bolster each other and combine to form seductivelyentienchednetworks of
+misconception.Our approach helps to forestall the development of misconceptionnetworks bydeveloping a kind ofpositive reciprocation.Becausecorrectly conceived representations witha high
+degree of multiple interconnectedness are established,the fresh entry of fallacious knowledge atany node
+in the weblike network will fire offso many connections that it would be likely to activate some
+misconception-disabling correctknowledge. Before you can go too far wrong,you are likely to touch
+something that sets you right.
+7. Active Participation, Tutorial Guidance, and Adjunct Supportfor the Management of Complexity.
+In an ill-structured domain, knowledge cannot just be handedto the learner. A priori codifications of
+knowledge are likely to misrepresent.(That is part of what ill- structuredness means.) Hencethe
+importance, increasingly widely recognized today, ofactive learner involvement in knowledge
+acquisition, accompanied by opportunistic guidance byexpert mentors (which can be incorporated in a
+computer program--it does not have to be live, one-to-one guidance).Furthermore, aids must beprovided to help the learner manage the added complexitythat comes with ill-structure. Our hypertext
+programs allow learners to explore complex conceptual landscapes inmany directions, with expert
+guidance and various kinds of cognitive support (e.g., integrated visualdisplays). When there are limitsto theexplicittransmission of knowledge, learners will need special kinds of help infiguring things out
+for themselves (see Barrows & Tamblyn, 1980; Collins, Brown,& Newman, in press; Spiro, et al.,
+1987).
+Recapitulation: A Shift from Single to Multiple Representationsand from GenericSchema Retrieval to Situation-Specific Knowledge Assembly
+In general, we argue that the goals of advanced knowledgeacquisition in complex and ill-structured
+domains can best be attained (and the problemswe have identified avoided) by the development of
+mental representations that supportcognitive flexibility.Central to the cultivation of cognitive flexibility
+are approaches to learning, instruction, and knowledge representation that:(a) allow an importantrole formultiple representations;(b) view learning as the multidirectional and multiperspectival "criss-
+crossing" of cases and concepts that makeup complex domains' "landscapes" (with resulting
+interconnectedness along multiple dimensions); and (c) foster theability to assemble diverse
+knowledge sources to adaptively it the needs ofa particular knowledge application situation (rather
+than the search for a precompiled schema that fits thesituation). We suggest that theory-based
+computer hypertext systems can implement the goals and strategies of CognitiveFlexibility Theory,
+engendering multiple cognitive representations thatcapture the real-world complexities of the kinds of
+cases to which abstract conceptual knowledge must be applied.
+
+
+=== PDF PAGE 13 ===
+P
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility i-aeory- 11
+References
+Barrows, H. S., & Tamblyn, R. M. (1980). Problem-based learning. New York: Springer.
+Burstein, M. (1983). Concept formation by incremental analogical reasoningand debts
+Pmceedings of the International Machine Learning Workshop, Champaign, IL.
+Champagne, A. B., Gunstone, R. F., & Klopfer, L. E. (1985). Effectingchanges in cognitive structures
+among physics students. In L. H. West & A. L. Pines (Eds.), Cognitive structure and conceptual
+change. Orlando, FL: Academic Press.
+Collins, A., Brown, J. S., & Newman, S. E. (in press). Cognitive apprenticeship:Teaching the craft of
+reading, writing, and mathematics. In L B. Resnick (Ed.), Cognition andinstmction: Issues and
+agenda. Hillsdale, NJ: Erlbaum.
+Collins, A., & Gentner, D. (in press). How people construct mental models.In S. Quinn & D. Holland
+(rds.), Cultural models in thought and language. Cambridge: CambridgeUniversity Press.
+Coulson, R. L, Feltovich, P. J., & Spiro, R. J. (1986). Foundations ofa misunderstanding of the
+ultrastmctural basis of myocardial failure: A reciprocating network of oversimplifications(Tech.
+Rep. No. 1). Springfield: Southern Illinois University School of Medicine,Conceptual Knowledge
+Research Project.
+Feltovich, P. J., Spiro, R. J., & Coulson, R. L. (in press). Thenature of conceptual understanding in
+biomedicine: The deep structure of complex ideas and the development ofmisconceptions. In D.
+Evans & V. Patel (Eds.), The cognitive sciences in medicine. Cambridge, MA:M.I.T. Press.
+Schack, R. C. (1982). Dynamic memory. Cambridge: Cambridge UniversityPress.
+Spiro, R. J. (1980). Accommodative reconstruction inprose recall. Journal of Verbal Learning and
+Verbal Behavior, 19, 84-95.
+Spiro, R. J., Feltovich, P. J., & Coulson, R. L. (in press) Multipleanalogies for complex concepts:
+Antidotes for analogy-induced misconception in advanced knowledgeacquisition.In S.
+Vosniadou & A. Ortony (Eds.), Similarity and analogicalreasoning.Cambridge: Cambridge
+University Press.
+Spiro, R. J., & Jehng, J. C. (in press). Randomaccess instruction: Theory and technology for the
+nonlinear and multidimensional traversal of complex subjectmatter.In D. Nix & R. J. Spiro
+(Eds.), The Handy Project: New directions in multimedia instruction.Hillsdale, NJ: Erlbaum.
+Spiro, R. J., Vispoel, W. L., Schmitz, J., Samarapungavan, A.,& Boerger, A. (1987). Knowledge
+acquisition for application: Cognitive flexibility and transfer in complexcontent domains. In B. C.
+Britton & S. Glynn (F.ds.), Executive controlprocesses. Hillsdale, NJ: Erlbaum.
+White, B. v. (1984). Designing computergames to help physics students understand Newton's Law of
+Motion. Cognition and Instruction, 1, 69-108.
+13
+
+
+=== PDF PAGE 14 ===
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory- 12
+White, B. Y., & Frederllcsen, J. R. (1987, November). Causalmodel progressions asafoundation for
+intelligent learning environments(BBN Report No. 6686).Cambridge, MA: Bolt Beranek and
+Newman, Inc.
+Wittgenstein, L. (1953).Philosophica.' investigations.New York: Macmillan.
+14
+
+
+=== PDF PAGE 15 ===
+41
+Spiro, Coulson, Feltovich, & AndersonCognitive Flexibility Theory- 13
+Author Note
+The authors would like to acknowledge the contributionsof Jane Adami and Joan Feltovichto variousaspects of this research.

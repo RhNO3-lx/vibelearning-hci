@@ -1,0 +1,1062 @@
+=== PDF PAGE 1 ===
+Review
+Phases of inquiry-based learning: Deﬁnitions and the
+inquiry cycle
+Margus Pedastea,*,Mario Mäeotsa,Leo A. Siimana,Ton de Jongb,
+Siswa A.N. van Riesenb,Ellen T. Kampb,Constantinos C. Manolic,
+Zacharias C. Zachariac,Eleftheria Tsourlidakid
+a University of Tartu, Salme 1a, 50103 Tartu, Estonia
+b University of Twente, GW/IST Postbus 217, 7500 AE Enschede, The Netherlands
+c University of Cyprus, P. O. Box 20537, 1678 Nicosia, Cyprus
+d Ellinogermaniki Agogi Scholi Panagea Savva, Dimitriou Panagea St., 15351 Pallini, Greece
+ARTICLE INFO
+Article history:
+Received 18 March 2014
+Received in revised form 19 February 2015
+Accepted 20 February 2015
+Available online 25 February 2015
+Keywords:
+Inquiry-based learning
+Inquiry cycle
+Inquiry phases
+Inquiry-based learning framework
+ABSTRACT
+Inquiry-based learning is gaining popularity in science curricula, international research and
+development projects as well as teaching. One of the underlying reasons is that its success
+canbesigniﬁcantlyimprovedduetotherecenttechnicaldevelopmentsthatallowtheinquiry
+processtobesupportedbyelectroniclearningenvironments.Inquiry-basedlearningisoften
+organized into inquiry phases that together form an inquiry cycle. However, different varia-
+tions on what is called the inquiry cycle can be found throughout the literature. The current
+article focuses on identifying and summarizing the core features of inquiry-based learn-
+ing by means of a systematic literature review and develops a synthesized inquiry cycle
+that combines the strengths of existing inquiry-based learning frameworks. The review was
+conducted using the EBSCO host Library; a total of 32 articles describing inquiry phases
+or whole inquiry cycles were selected based on speciﬁc search criteria. An analysis of the
+articles resulted in the identiﬁcation of ﬁve distinct general inquiry phases: Orientation,
+Conceptualization,Investigation,Conclusion,andDiscussion.Someof thesephasesaredivided
+into sub-phases. In particular, the Conceptualization phase is divided into two (alterna-
+tive)sub-phases,QuestioningandHypothesisGeneration;theInvestigationphaseisdivided
+into three sub-phases, Exploration or Experimentation leading to Data Interpretation; and
+the Discussion phase is divided into two sub-phases, Reﬂection and Communication. No
+framework bringing together all of these phases and sub-phases was found in the litera-
+ture. Thus, a synthesized framework was developed to describe an inquiry cycle in which
+allof thesephasesandsub-phaseswouldbepresent.Inthisframework,inquiry-basedlearn-
+ing begins with Orientation and ﬂows through Conceptualization to Investigation, where
+several cycles are possible. Inquiry-based learning usually ends with the Conclusion phase.
+TheDiscussionphase(whichincludesCommunicationandReﬂection)ispotentiallypresent
+at every point during inquiry-based learning and connects to all the other phases, because
+it can occur at any time during (discussion in-action) or after inquiry-based learning when
+looking back (discussion on-action).
+© 2015 The Authors. Published by Elsevier Ltd. This is an open access article under the
+CC BY-NC-ND license (
+http://creativecommons.org/licenses/by-nc-nd/4.0/).
+* Corresponding author. Tel.:+372 7376021; fax:+372 5156095.
+E-mail address: margus.pedaste@ut.ee(M. Pedaste).
+http://dx.doi.org/10.1016/j.edurev.2015.02.003
+1747-938X/© 2015 The Authors. Published by Elsevier Ltd. This is an open access article under the CC BY-NC-ND license (http://creativecommons.org/
+licenses/by-nc-nd/4.0/).
+Educational Research Review 14 (2015) 47–61
+Contents lists available at ScienceDirect
+Educational Research Review
+journal homepage: www.elsevier.com/locate/edurev
+
+
+=== PDF PAGE 2 ===
+Contents
+1. Introduction ................................................................................................................. .......................................................................................................... 48
+2. Method ....................................................................................................................... .............................................................................................................. 49
+2.1. Search procedure ............................................................................................................ ........................................................................................ 50
+2.2. Data analysis ............................................................................................................... ............................................................................................. 50
+3. Findings and discussion ........................................................................................................ ............................................................................................. 51
+3.1. Variety of inquiry phases ..................................................................................................... ................................................................................ 51
+3.2. Descriptions of general inquiry phases ........................................................................................................................................................... 54
+3.3. Inquiry-based learning framework ............................................................................................. ...................................................................... 55
+4. Conclusions .................................................................................................................. ........................................................................................................... 57
+Acknowledgements .............................................................................................................................................................................................................. 58
+References ............................................................................................................................................................................................................................... 60
+1. Introduction
+Inquiry-based learning is an educational strategy in which students follow methods and practices similar to those of pro-
+fessional scientists in order to construct knowledge (Keselman, 2003). It can be deﬁned as a process of discovering new
+causal relations, with the learner formulating hypotheses and testing them by conducting experiments and/or making ob-
+servations (
+Pedaste, Mäeots, Leijen, & Sarapuu, 2012). Often it is viewed as an approach to solving problems and involves
+the application of several problem solving skills (Pedaste & Sarapuu, 2006). Inquiry-based learning emphasizes active par-
+ticipation and learner’s responsibility for discovering knowledge that is new to the learner (de Jong & van Joolingen, 1998).
+In this process, students often carry out a self-directed, partly inductive and partly deductive learning process by doing ex-
+periments to investigate the relations for at least one set of dependent and independent variables (
+Wilhelm & Beishuizen,
+2003). It should be added that in the context of this study we are focusing on learners: what is new knowledge to them is
+not, in most cases, new knowledge to the world, even if the approach can be ﬂexibly used by scientists in making their dis-
+coveries of new knowledge. In addition, it should be noted that an investigation does not always involve empirical
+testing.
+Severalquantitativestudiessupporttheeffectivenessof inquiry-basedlearningasaninstructionalapproach.
+Alﬁeri,Brooks,
+Aldrich, and Tenenbaum (2011), for example, performed a meta-analysis comparing inquiry to other forms of instruction,
+such as direct instruction or unassisted discovery, and found that inquiry teaching resulted in better learning (mean effect
+size of d =0.30). A meta-analysis by
+Furtak, Seidel, Iverson, and Briggs (2012)incorporated studies using a broad range of
+terms to describe inquiry-based learning (e.g., mastery learning, constructivist teaching); they reported an overall mean effect
+size of 0.50 in favor of the inquiry approach over traditional instruction. A positive trend supporting inquiry-based science
+instruction over traditional teaching methods was found in a research synthesis by
+Minner, Levy, and Century (2010).I n
+addition, it has been demonstrated that web-based guided inquiry-based learning can improve different inquiry skills, such
+as identifying problems, formulating questions and hypotheses, planning and carrying out experiments, collecting and ana-
+lyzing data, presenting the results, and drawing conclusions (
+Mäeots, Pedaste, & Sarapuu, 2008). Recent technological
+advancements increase the success of applying inquiry-based learning even more (de Jong, Sotiriou, & Gillet, 2014). Edu-
+cational policy bodies worldwide regard inquiry-based learning as a vital component in building a scientiﬁcally literate
+community (
+European Commission, 2007; National Research Council, 2000). Therefore, it is valuable to examine inquiry-
+basedlearningfurtherinmoredetailandidentifyitscoreelements.Inthisarticlewepresentsuchasearchforthekeyelements
+of inquiry-based learning. In doing so, we have taken an approach where we have focused only on inquiry-based learning
+describedunderthisterm.Severalrelatedareashavebeenexcluded,suchasdiscoverylearning,project-basedlearning,game-
+based learning, and problem-based learning, as including these concepts would make our study too broad and the outcomes
+might not be easily applicable in the practical context in developing inquiry activities by teachers or educational
+designers.
+Inquiry-based learning aspires to engage students in an authentic scientiﬁc discovery process. From a pedagogical per-
+spective,thecomplexscientiﬁcprocessisdividedintosmaller,logicallyconnectedunitsthatguidestudentsanddrawattention
+to important features of scientiﬁc thinking. These individual units are called inquiry phases, and their set of connections
+forms an inquiry cycle. The educational literature describes a variety of inquiry phases and cycles. For example, the 5E learn-
+ingcyclemodel(
+Bybeeetal.,2006 )listsﬁveinquiryphases:Engagement,Exploration,Explanation,Elaboration,andEvaluation.
+An inquiry cycle proposed byWhite and Frederiksen (1998)also identiﬁes ﬁve inquiry phases, but labels them as Ques-
+tion, Predict, Experiment, Model, and Apply. An apparent distinction between these examples is that the initial phases of
+the 5E cycle (Engagement and Exploration) suggest starting with an inductive (empirical/data-driven) approach, whereas
+theﬁrsttwophasesof theWhiteandFrederikseninquirycycle(QuestionandPredict)suggestadeductive(theory/hypothesis-
+driven) approach. However, both induction and deduction can coexist in an inquiry cycle. In fact,
+Klahr and Dunbar (1988)
+characterized the scientiﬁc reasoning process as a dual search in two spaces, which they call experiment space and hy-
+pothesis space. How researchers choose to balance inductive and deductive approaches in an inquiry cycle can inﬂuence
+the selection and/or arrangement of inquiry phases.
+48 M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 3 ===
+Inquiry cycles follow from a historical progression of instructional models and therefore represent a contemporary view
+that is built upon a solid historical foundation.Bybee et al. (2006)discussed the origins of the 5E instructional model and
+show that early frameworks began with deﬁning a list of fundamental conceptual phases. For example,Dewey (1933)out-
+linedseveralimportantaspectsof inquiry-basedlearning,suchasdeﬁningaproblem,formulatingahypothesis,andconducting
+tests. Later frameworks elaborated on the interaction between phases, the sequencing of phases, modiﬁcations in termi-
+nology, and the necessity of particular phases. Bybee et al. emphasized that prior instructional models served as a foundation
+to build newer models. Therefore, many contemporary inquiry cycles implicitly reﬂect aspects of earlier frameworks such
+as the empirical cycle by
+de Groot (1969).
+The way an inquiry cycle is presented usually suggests an ordered sequence of phases. However, researchers are also
+usuallycarefultoaddadisclaimerthatinquiry-basedlearningisnotaprescribed,uniformlinearprocess.Connectionsbetween
+the phases may vary depending on the context. In an inquiry cycle proposed by
+Justice et al. (2002), a single inquiry phase
+(Self-reﬂection/Self-evaluation) directly connects to all other phases. The authors argued that this particular inquiry phase,
+which encourages learner self-awareness, is needed at all inquiry phases. How inquiry phases are arranged in an inquiry
+cycle can depend on the nature of the phase.
+de Jong and Njoo (1992), for example, made a distinction between inquiry
+processes that directly generate or transform information (transformative processes) and processes that manage the learn-
+ing process (regulative processes). As seen with the various terms applied for different inquiry phases, certain diversity also
+appears in understanding the relations and sequencing of the inquiry phases within inquiry cycles, for example, whether
+regulative processes are related to the whole, overarching inquiry-based learning or to each speciﬁc phase. Clariﬁcation would
+help avoid confusion among teachers and instructional designers who work with inquiry-based learning approaches.
+Based on our initial analysis of several articles (
+Bybee et al., 2006; Justice et al., 2002; White & Frederiksen, 1998)w e
+found that different descriptions of inquiry cycles in the research literature originating from different researchers use various
+terminologies to label phases that are essentially the same. A preference for one term over another is not consequential as
+long as the terminology has been clearly deﬁned and understood. But what is important is to ﬁnd out how many inquiry
+phases are actually unique and conceptually independent. Another assumption we make is that the diversity of inquiry cycles
+can be simpliﬁed according to the framework by
+Klahr and Dunbar (1988)in which inquiry reasoning processes are divided
+into two parts. The two parts relate to the inductive/deductive dichotomy in scientiﬁc reasoning, and in the case of diverse
+inquiry cycles it may be that different researchers have constructed different cycles based on placing more emphasis on one
+approach over the other. It is important to examine how inquiry phases relate to the path along which an inquiry reason-
+ing process proceeds.
+Therefore, we feel there is a need for an analysis of the terms used for describing inquiry phases in order to provide a
+comprehensive inquiry cycle that is aligned with the most common understandings about inquiry-based learning. A rigor-
+ous and systematic review that identiﬁes and extracts the core components of inquiry-based learning is then able to provide
+abroadframeworktoorganizethemanyspeciﬁcimplementationsof inquirycyclesdescribedbyvariousresearchers.Itshould
+offer a contemporary and concise summary of how inquiry-based learning is structured. It is also worth mentioning that
+most previous instructional models only focused on transformative learning processes and did not include regulative pro-
+cesses as independent inquiry phases. The interaction between transformative and regulative processes is now viewed as a
+key element in inquiry-based learning (
+de Jong & van Joolingen, 1998).
+Although the literature on inquiry cycles and phases presents a variety of terms for phases and connections between
+phases, the successful application of inquiry cycles in situations ranging from in-classroom activities (Meyerson & Secules,
+2001) to computer-based environments (de Jong et al., 2010; Mäeots, Pedaste, & Sarapuu, 2011) suggests an underlying com-
+monality that is at the core of inquiry-based learning.
+The goal of this article is to identify and summarize the core features of inquiry cycles from the viewpoint of the learn-
+ingprocessbysystematicallyreviewingtheliteratureoninquiryphasesandcycles.Theoutcomeof thisreviewisasynthesized
+inquiry cycle that combines the strengths of existing inquiry-based learning frameworks.
+In the current article the following research questions were addressed:
+(1) Which inquiry phases are necessary for complete inquiry-based learning?
+(2) How should the inquiry phases be arranged to inquiry cycles and an inquiry-based learning framework?
+2. Method
+A systematic literature review was conducted in order to identify the core phases of inquiry-based learning and how
+the different phases are involved in the learning process. The EBSCO host Library (
+www.ebscohost.com) database was used
+to search for articles using the search terms:inquiry phases, inquiry stages, inquiry cycle, inquiry models, inquiry learning pro-
+cesses, inquiry-based learning. The search was limited to the term ‘inquiry’ in different contexts since it was important to
+focus on how this particular and widely used term had been used in several policy documents (European Commission, 2007,
+2011; National Research Council, 2000, 2006; Rocard et al., 2007) or in national curricula. The EBSCO host Library was se-
+lectedbecausethisdatabasehasmeta-dataof morethan64,000journals,6millionbooks,and400,000conferenceproceedings.
+This exceeds the numbers in Scopus or ISI Web of Knowledge. In the following sections, an overview of the search and data-
+analysis processes is presented.
+49M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 4 ===
+2.1. Search procedure
+The ﬁrst step in the search procedure (Fig.1) was the selection of the educational databases referenced in EBSCO host
+Library.Thefollowingdatabaseswereincluded: Academic Search Complete, Central & Eastern European Academic Source, E-Journals,
+ERIC, PsycARTICLES, PsycINFO, andTeacher Reference Centre. To specify the search to retrieve a high number of academically
+relevant research articles, the following search criteria were set in EBSCO: (1) related words applied; (2) search within the
+full text of the articles; (3) full text available; (4) published since 1972 (the earliest year available); and (5) academic jour-
+nals as a source type. The search was carried out on 1 December 2012 and resulted in 535 matches for the term “inquiry
+phases”; 920 matches for the term “inquiry stages”; 294 matches for the term “inquiry cycle”; 528 matches for the term
+“inquiry models”; 51 matches for the term “inquiry learning processes”; and 2000 matches for the term “inquiry-based learn-
+ing”. Most of the articles retrieved in this initial step did not focus on educational issues (e.g., ‘inquiry cycle’ is a software
+engineering term used for improving a set of requirements, ‘inquiry models’ can refer to professional ethics in the medical
+ﬁeld, ‘inquiry phase’ is sometimes a synonym for discovery phase in legal terminology). Eliminating these non-relevant search
+matches therefore narrowed down the results to 60 articles that addressed inquiry in an educational context as an ap-
+proach for learning.
+2.2. Data analysis
+The systematic review process for the 60 selected articles consisted of three steps. First, each article was categorized
+into one of two groups depending on the information it contained: (1) descriptions of general inquiry phases only;
+(2) descriptions of inquiry phases along with possible inquiry cycles (see
+Appendix A). All articles that did not
+include at least one of these types of information were excluded from the following analysis, which reduced the
+number of selected articles to 32. Second, the terms describing inquiry phases were extracted from each article.
+Third, available descriptions of the reported inquiry phases were collected from the articles selected for the
+analysis and sources outside the articles, if necessary, in order to clarify their content and relations with other
+phases.
+Comparative analysis of the data extracted from the 32 articles involved compiling deﬁnitions of the inquiry phases, de-
+termining their position in the inquiry cycle, and eliminating redundancy between phases. If a speciﬁc term was not deﬁned
+by the authors, then the meaning of the term in the context of the article was analyzed in order to classify the term within
+the framework of the authors’ other terms. Next, the terms of the inquiry activities were sequenced, and the inquiry phases
+described by different authors with different terms were compared. This helped to build a system of terms that served the
+study as a database for ﬁnding the most common inquiry phases and for merging multiple sub-processes to form bigger
+modules.
+“inquiry phases” N = 535
+“inquiry stages” N = 920
+“inquiry cycle” N = 294
+“inquiry models” N = 528
+“inquiry learning processes”
+N = 51
+“inquiry-based learning“
+N = 2000 
+Academic Search Complete, 
+Central & Eastern European 
+Academic Source, E-
+Journals, ERIC, 
+PsycARTICLES, PsycINFO, 
+and Teacher Reference 
+Centre
+Included
+AHFS Consumer Medication Information, ATLA Religion Database with 
+ATLASerials, Business Source Complete, Communication & Mass Media Complete, 
+Dentistry & Oral Sciences Source, European Views of the Americas: 1493 to 1750, 
+GeoRef, GeoRef In Process, GreenFILE, Health Source - Consumer Edition, Health 
+Source: Nursing/Academic Edition, Library, Information Science & Technology 
+Abstracts, MasterFILE Premier, MEDLINE, MLA Directory of Periodicals, MLA 
+International Bibliography, Newswires, Philosopher's Index, Regional Business News, 
+SPORTDiscus
+Excluded
+Addressing inquiry in an 
+educational context as an 
+approach of learning
+N = 60
+Selection of EBSCO host 
+Library databases
+Process
+Search for specific terms in 
+selected databases
+Limitations in Thesaurus 
+terms
+rorschach test, philosophy, psychotherapy, personality tests, culture, personality
+assessment, counseling, career development, medical care, patients, mental health, 
+pathological psychology, philosophers, projective techniques, therapeutics, ethics, 
+medical personnel, mental health services, parent & child, associations, institutions, 
+etc., child welfare, history, realism, judgments (law), abduction (logic), nursing, courts, 
+criminal law, equality, government policy, metaphysics, pluralism, human rights, 
+public health, religion, anthropology, saving& investment, business cycles, leadership, 
+dietetics, dietitians, narcissism, interpersonal relations, personality, emotions
+(psychology), self-esteem, ability, adventure education, architecture – study & 
+teaching, audiovisual materials, authority, bio-bibliography, candy, community
+organization, communities, computer engineering, computer users, undergraduates
+Fig. 1. Flowchart of the literature search procedure.
+50 M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 5 ===
+3. Findings and discussion
+The review of the 32 articles allowed us to generate an initial overview of the common phases across the articles and
+was the basis for proposing a comprehensive inquiry-based learning framework. It was decided that this synthesis would
+be limited to the articles found by the systematic search in order to avoid unsystematic collection of articles that would
+decrease the reliability of the study. First, we describe how we merged the variety of terms that were used to describe inquiry
+phases in the articles analyzed in this study. Next, the common inquiry phases are introduced, and ﬁnally, these are syn-
+thesized in a new framework that captures the core of the inquiry cycles presented in the 32 articles selected in this literature
+search.
+3.1. Variety of inquiry phases
+The review process resulted in a list of 109 different terms for inquiry phases (see
+Appendix A). These terms showed
+considerable overlap, which became evident when comparing the descriptions of the phases. Therefore, in the ﬁrst round
+of analysis, the meaning of the terms used by different authors was analyzed, and the terms were grouped according to
+similar criteria, creating a list of 34 slightly different inquiry activities. The reduction from 109 to 34 terms occurred through
+a process of comparing deﬁnitions of different terms and eliminating redundancies. Next, in the second round these 34 pro-
+cesses were sequenced and re-organized into 11 prospective phases; in the third round of analysis these 11 were ﬁnally
+merged into ﬁve general inquiry phases along with a few sub-phases (see
+Fig.2). We took into account that a cycle that
+would present too many phases could adversely affect student learning in an environment for inquiry-based learning, and,
+therefore, discussions also focused on merging terms to reach an optimal number of phases. The details of this process as
+well as the reasons for merging the processes into phases will follow.
+Six out of the 32 articles initiated the inquiry cycle with ‘orientation’, ‘introducing a topic’ or ‘theory’ (group 1 in
+Fig.2),
+followed up by ‘learning challenge’, ‘anchor’, ‘ﬁnd my topic’, ‘engage’, ‘learner investigates scientiﬁcally oriented questions’
+Fig. 2. Visualization of the process by which the initial 34 groups of inquiry activities were merged into bigger groups and ﬁnally into ﬁve general inquiry
+phases.
+51M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 6 ===
+(group 3). Some articles also described an intermediate process, simple ‘observation’ or ‘exploration’ of the behavior (group
+2). Overall, all of these activities fall under the term ‘orientation’, since their aim is to get the learner started with a new
+topic for investigation. One has to explore or observe a phenomenon in order to get interested in it, to read some theory in
+order to know the scientiﬁcally oriented questions related to this particular phenomenon, and to engage him or herself with
+the issue through a challenging anchor point. In addition, it was found that ‘orientation’ was the most frequently used term
+in talking about these three initial processes: the term ‘orientation’ was used in four of the articles, whereas all other terms
+were used only once or twice. Thus, it was decided that the ﬁrst inquiry phase in the compiled inquiry cycle should be
+Orientation.
+The inquiry cycle continued (or in some articles began) with asking more speciﬁc scientiﬁc questions that might be spe-
+ciﬁcresearchquestionsormoreopenquestionsaboutaparticulardomain.Thisprocesswasaverycommononeintheliterature
+review; 14 out of the 32 articles described it using the following terms: ‘ask’, ‘question’, ‘ask questions’, ‘developing a ques-
+tion’, ‘initial inquiry question’, ‘generating a scientiﬁc question’, ‘set up of inquiry question’, ‘raising and revising questions’,
+‘decide my inquiry question or hypothesis’, ‘intent’ (group 4). This set of terms suggested that the second inquiry phase in
+our provisional inquiry cycle should be Questioning, because it covers the meaning behind all of the terms used in the 14
+articles.
+Hypothesis Generation was introduced in the provisional inquiry cycle as the third stage, because it was very common
+in the reviewed research articles. Eleven out of the 32 articles introduced it through the following terms: ‘predict’, ‘making
+predictions’, ‘hypothesize’, ‘hypothesis generation’, ‘setting hypotheses’, ‘hypothesize ideas’, ‘brainstorming solutions’, ‘gen-
+erate testable hypotheses’ (group 8). Despite the differences in terms used by the authors, these all indicated a need to have
+a hypothesis or prediction before the learner can start with planning an exploration or investigation. Three slightly differ-
+ent intermediate processes that help move from questioning toward hypothesis generation were also identiﬁed. The ﬁrst
+of these (group 5) was described through phrases such as ‘determining what needs to be known’, ‘deﬁne problem’, ‘iden-
+tifying the problem’, ‘identiﬁcation of a question or questions’. These processes can be related to the previous phase of
+Questioning. Similarly, the other two processes (groups 6 and 7) can be related to the process of Hypothesis Generation,
+since these describe processes that are needed to collect information for formulating hypotheses. These processes were de-
+scribed by different authors through the following phrases: ‘searching for information on the web’, ‘analysing’, or ‘needs
+assessment’. These processes guide learners toward hypothesis generation. Overall, however, it was clear that there was an
+overlap between the processes for generating hypotheses and questioning. Therefore, it was decided for the ﬁnal inquiry
+cycle to position Questioning and Hypothesis Generation as sub-phases that together form a more general inquiry phase
+termed Conceptualization.
+The Hypothesis Generation sub-phase or general Conceptualization phase was followed by a distinct planning process
+that was characterized in 10 articles as ‘plan my methods’, ‘carrying out a plan’, ‘experiment design’, ‘develop action plan’,
+‘design studies’, ‘planning’, ‘plan question’, ‘designing experiments’, or ‘design of an investigation to address them [ques-
+tions]’ (group 9). A slightly different process was introduced by two other authors: ‘equipment and actions [planning what
+is needed according to methods]’ and ‘identifying resources’ (group 10). In our initial analysis, all of these activities were
+combined in an inquiry activity called Planning. In the subsequent analysis, Planning is considered as a sub-process within
+the Investigation phase, which is the third general inquiry phase after Orientation and Conceptualization in the compiled
+inquiry cycle.
+The Investigation phase was characterized in 11 articles through the following terms: ‘investigate’, ‘observe’, ‘observa-
+tion’, ‘collect my evidence’, ‘conduct observation’, ‘explore’, ‘exploration’, ‘initial observation’ (group 11). ‘Investigate’ was a
+term used by three authors, ‘observation’ by ﬁve authors and ‘exploration’ by three authors. It was understood that inves-
+tigation is somewhat more systematic and based on a plan, while observation and exploration may have more ﬂexibility.
+Two types of investigation processes were distinguished: Exploration and Experimentation. Exploration is seen as a sub-
+phase of Investigation and more related to a simple observation process. In this process, students make discoveries related
+to their questions without clear hypotheses in mind. Experimentation is a sub-phase where students collect evidence con-
+cerning a hypothesis; it is derived from the ideas introduced in the articles that differentiated an investigation process. Both
+Exploration and Experimentation involve Planning.
+Processes in groups 12–15 were uncommon and were left out of the general inquiry-based learning framework but can
+still be considered as activities within the Investigation phase: ‘wonder’, ‘resources’, ‘accessing data of their choice to address
+the question’, ‘sign system exploration’, ‘create’, ‘generate’.
+Another process involved in the planning processes in both the Exploration and Experimentation sub-phase is data col-
+lection (group 16). The data collection process was indicated by the following terms: ‘research’, ‘recording and organizing
+data’, ‘gathering data’, ‘investigate’, ‘investigation’, ‘experiment’, ‘experimentation’, ‘implement plan’, ‘collect and analyse
+data’, ‘collecting data’.
+Next (groups 18–21), processes conducted after the simple data analysis were described through several terms that in-
+dicate follow-up activities to help in drawing conclusions: ‘organizing data’, ‘synthesizing’, ‘generating a synthesis’, ‘data
+interpretation, ‘integrating different pieces of information to answer the driving question’, ‘model’, ‘learner formulates ex-
+planations from evidence’, ‘transmediation’. No speciﬁc phase was created for these activities in the current synthesis. These
+activities concerning more advanced data analysis are part of the sub-phase Data Interpretation, which thus consists of both
+simple and advanced data analysis. In the ﬁnal version of the inquiry cycle, Data Interpretation is seen as one sub-phase of
+the Investigation phase, together with the Exploration and Experimentation sub-phases. These processes form a coherent
+52 M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 7 ===
+set where a learner could move backwards and forwards several times if Data Interpretation leads to revising an Experi-
+mentation plan or stimulates additional Exploration.
+The next process could be characterized as (Data) Analysis. The process of data analysis was the one most frequent one
+in the articles analyzed in the review (explicitly present in this narrow meaning in 16 articles). The terms used included
+‘analyse and represent my evidence’, ‘assessing data’, ‘analysis’, ‘explain’, ‘analyse’, ‘ﬁnd patterns’, ‘evaluating and making
+senseof onlineinformation’,‘collectandinterpretdata’,‘learnergivesprioritytoevidenceinrespondingtoquestions’,‘analyse
+evidence’, ‘analysing data’, ‘examination and analysis of empirical data’, ‘analysing these data to identify patterns and make
+inferences’.
+Finally, 14 articles included a conclusion process (group 25), and the same number of articles had a discussion process
+(group 28). In some cases, several additional processes that support arriving at conclusions were introduced: ‘reﬁnement’,
+‘reﬁne theory’, celebration’, ‘construction’, ‘reasoning with models’, and ‘problem solving and developing course/
+experiment’(groups22–24).Theconclusionanddiscussionprocessesoccasionallyoverlapped.Sometimesconclusionsfollowed
+discussion or communication (a term that was often used in descriptions of discussion), but most frequently, conclusions
+were based on investigation and analysis and later communicated to others. Therefore, it was still possible to emphasize
+these two as separate phases of inquiry-based learning. The Conclusion phase was characterized using the following terms:
+‘my conclusions’, ‘ﬁnding relationships and drawing conclusions’, ‘inference’, ‘conclusion’, ‘devise explanations or mecha-
+nisms for the patterns’, ‘report’, ‘draw(ing) conclusions’, ‘conclusion/evaluation’, ‘learner connects explanations to scientiﬁc
+knowledge’, ‘drawing inferences and conclusions and justifying them’, ‘drawing conclusions and making judgments based
+on them’ (group 25). Within these descriptions, ‘conclusion’ was a recurring term, and it was used in the inquiry-based learn-
+ing framework synthesized in the current study.
+The Discussion phase was elaborated through the following terms: ‘discuss’, ‘debate’, ‘share and discuss my inquiry’, ‘dis-
+cussing with others’, ‘communicating new understanding’, ‘elaborate’, ‘communicating results’, ‘argument’, ‘discussion and
+presentation of new content’, ‘communication’, ‘learner communicates and justiﬁes explanations’, ‘present inquiry’ (group
+28). Discussion and communication were both very common in the list of terms used to describe this process. However,
+communication sometimes indicated only a unidirectional process where a student communicates his/her conclusions to
+others, but discussion was always seen as a wider bidirectional process. Therefore, we decided to use the term ‘Discussion’
+to describe the ﬁfth general phase of the inquiry cycle.
+While some authors saw the potential for either Conclusion or Discussion to be the ﬁnal phase of the inquiry cycle, several
+other authors indicated that conclusions should be veriﬁed and/or generalized through discussion and other speciﬁc ac-
+tivities. Therefore, Discussion can be seen as a separate ﬁnal phase of the inquiry cycle. However, it could also be seen as a
+phase that is conducted in parallel with Conclusion or all other phases where the information gathered in a phase needs
+discussion. Discussion among students throughout an inquiry enactment becomes more apparent when the inquiry activi-
+ties at task require collaboration. Our analysis revealed four articles that distinguished a phase for generating generalizations
+based on the conclusions: ‘offer solutions’, ‘generate theory’, and ‘model’ (group 26); however, these overlapped with the
+phase of conclusion. In eight studies, emphasis was placed on evaluating inquiry-based learning, using the terms ‘evaluat-
+ing success’, ‘evaluate’, ‘evaluation’, ‘evaluate action’, ‘evaluate inquiry’, ‘comparing new knowledge to prior knowledge’, ‘test
+the explanations’ (group 27). Evaluation can be considered to be a process relating to conclusion or reﬂection (
+Leijen, Valtna,
+Leijen, & Pedaste, 2012). Therefore, evaluation of inquiry-based learning is positioned as a process falling between the Con-
+clusion and Discussion phases (in particular, between the Conclusion phase and the Reﬂection sub-phase). In addition, based
+on ﬁve of the articles analyzed in the current study, Reﬂection can be distinguished as a separate inquiry sub-phase, cap-
+turedbytermssuchas‘reﬂect’,‘reasoningwithevidenceaboutphenomenon’,and‘reﬂection’(group29).Oneof thedistinctions
+between Communication and Reﬂection as sub-phases of Discussion concerns the object that is being communicated or
+discussed. Communication will probably be more related to experimentation or exploration outcomes, whereas reﬂection
+will more often concern the processes involved. However, reﬂection-related activities sometimes also included ‘predict the
+outcomes of new experiments’, ‘prediction’, ‘decision’, ‘preservation’ (groups 30–32). Thus, it was reasonable to introduce
+Reﬂection as one of the sub-phases of the Discussion phase of the general inquiry cycle. In this case, Communication is a
+discussion process between a learner and his/her peers or teacher and Reﬂection is regarded as an inner discussion of the
+learner.
+The articles analyzed in the current study supported the distinction of two more future-oriented stages (groups 33 and
+34) which, however, were not directly related to inquiry-based learning and were therefore not included as inquiry cycle
+processes synthesized in the current work. These processes were labeled as ‘apply’, ‘applying knowledge to new situa-
+tions’, ‘application and expansion’, ‘apply new knowledge to solve practical problems’ or ‘new/future inquiries’, and ‘starting
+new questions to investigate’.
+In conclusion, based on the initial analysis, eleven common and most frequently seen (based on the number of articles
+in which particular terms were used) phases were identiﬁed, in the following order based on the sequence of the inquiry
+cycle: Orientation, Questioning, Hypothesis Generation, Planning, Observation, Investigation, Analysis, Conclusion, Discus-
+sion, Communication, and Reﬂection. However, it was not practical to retain 11 phases, because inquiry-based learning is
+often referred as a complex and diﬃcult learning process for the learners (
+de Jong & van Joolingen, 1998; Veermans, van
+Joolingen, & de Jong, 2006) and therefore, a smaller number of phases helps to better present the whole inquiry-based learn-
+ing.Theinitiallistof 11inquiryphaseswasreduced,notbyeliminatinganyparticularphase,butbydoinganin-depthanalysis
+as described earlier to organize similar phases into groups (e.g., Planning, Observation, and Analysis were re-grouped under
+53M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 8 ===
+Exploration, Experimentation, and Data Interpretation and all three of these sub-phases were grouped under Investigation,
+as described earlier).
+3.2. Descriptions of general inquiry phases
+The analysis of the descriptions and the deﬁnitions of inquiry phases presented in the articles reviewed led to a new
+inquiry-based learning framework that includes ﬁve general inquiry phases (seeTable1 for deﬁnitions): Orientation, Con-
+ceptualization, Investigation, Conclusion, and Discussion. In general, this cycle is similar to several others; however, it uses
+termsthathavebeenextractedascoretermsfromthearticlesfoundinthisreview,anditcoverstheprocessesbehindmost
+of the inquiry phases described in these articles. Further, it can be expected that this cycle also covers many inquiry-based
+learning frameworks that were not found in the current search and might therefore be compatible with teachers’ current
+understanding of inquiry-based learning and help to structure their teaching according to this framework of learners’ pro-
+cesses.Forexample,
+deJong(2006b) alsoprovidedaninquirycyclethatconsistsofﬁvegeneralphasesandafewsub-phases.
+Inhiswork,thegeneralphaseswereOrientation,HypothesisGeneration,Experimentation,DrawingaConclusion,andMaking
+anEvaluation.Experimentationhadsub-phasesof experimentdesign,prediction,anddatainterpretation.Inournewcycle,
+Conceptualization is broader than Hypothesis Generation as it also involves an additional sub-phase, Questioning. Investi-
+gation is broader and involves Exploration in addition to Experimentation and Data Interpretation. Discussion is broader
+than Making an Evaluation, including both Reﬂection (which contains description, critique, evaluation, and discussion in a
+narrowcontextofreﬂection,see
+Leijenetal.,2012 )andCommunicationaboutﬁndings.Otherinquiry-basedlearningframe-
+works can similarly be seen as falling within the framework proposed in the current study. In order to enable that type of
+comparison,thissectionelaboratesonthedescriptionsofphasesandsub-phasesofthenewinquiry-basedlearningframework.
+Orientationfocuses on stimulating interest and curiosity in relation to the problem at hand. During this phase the learn-
+ingtopicisintroducedbytheenvironmentorgivenbytheteacherordeﬁnedbythelearner(
+Scanlon,Anastopoulou,Kerawalla,
+& Mulholland, 2011). The main variables of the domain are identiﬁed during the Orientation phase, and its outcome is a
+problem statement.
+Conceptualization is a process of understanding a concept or concepts belonging to the stated problem. It is divided into
+two sub-phases, Questioning and Hypothesis Generation. These sub-phases yield similar yet distinguishable outcomes: Ques-
+tioning arrives at a research question or more open questions about a domain, while Hypothesis Generation arrives at a
+testable hypothesis. Both of these are based on theoretical justiﬁcation and contain independent and dependent variables,
+but have one key difference – the hypothesized direction of the relation between variables given in the hypothesis is not
+present in the case of a research question (
+Mäeots et al., 2008). In general, hypothesizing is a formulation of a statement or
+a set of statements (de Jong, 2006a), while questioning is a formulation of investigable questions (White & Frederiksen, 1998).
+Thus, the outcomes of the Conceptualization phase are research questions or hypotheses to be investigated or both if ﬁrst
+research questions are formulated and then hypotheses are generated based on these.
+Investigation is the phase where curiosity is turned into action in order to respond to the stated research questions
+or hypotheses (
+Scanlon et al., 2011). The sub-phases of Investigation are Exploration, Experimentation, and Data
+Table 1
+Phases and sub-phases of the synthesized inquiry-based learning framework.
+General phases Deﬁnition Sub-phases Deﬁnition
+Orientation The process of stimulating curiosity about a topic
+and addressing a learning challenge through a
+problem statement
+Conceptualization The process of stating theory-based questions and/
+or hypotheses.
+Questioning The process of generating research questions
+based on the stated problem.
+Hypothesis Generation The process of generating hypotheses regarding
+the stated problem.
+Investigation The process of planning exploration or
+experimentation, collecting and analysing data
+based on the experimental design or exploration.
+Exploration The process of systematic and planned data
+generation on the basis of a research question.
+Experimentation The process of designing and conducting an
+experiment in order to test a hypothesis.
+Data Interpretation The process of making meaning out of collected
+data and synthesizing new knowledge.
+Conclusion The process of drawing conclusions from the data.
+Comparing inferences made based on data with
+hypotheses or research questions.
+Discussion The process of presenting ﬁndings of particular
+phases or the whole inquiry cycle by
+communicating with others and/or controlling the
+whole learning process or its phases by engaging
+in reﬂective activities.
+Communication The process of presenting outcomes of an inquiry
+phase or of the whole inquiry cycle to others
+(peers, teachers) and collecting feedback from
+them. Discussion with others.
+Reﬂection The process of describing, critiquing, evaluating
+and discussing the whole inquiry cycle or a speciﬁc
+phase. Inner discussion.
+54 M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 9 ===
+Interpretation. Students explore/observe, design different experiments by changing variable values, make predictions, and
+interpret outcomes (de Jong, 2006a; Lim, 2004; White & Frederiksen, 2005). In general, exploration is a systematic way of
+carrying out an investigation with the intention of ﬁnding a relation among the variables involved (Lim, 2004). In this case
+there is no need for stating a hypothesis, but careful planning is still needed in order to save resources (e.g., time, materi-
+als, money). However, experimentation concentrates on making and applying a strategic plan for the experiment with a
+speciﬁc timeline, and it naturally follows from the Hypothesis Generation phase. In this case evidence for testing a hypoth-
+esis will be collected and in planning the experiment the variables that should be kept constant or varied in conducting an
+experiment should be deﬁned. Both Exploration and Experimentation involve the design and implementation of the inves-
+tigative activities, and an intermediate outcome is the design or plan of the exploration or experiment. For example, if the
+domain requires speciﬁc equipment or materials to be used, the choice of the materials and equipment is part of the design
+developed during the Exploration or Experimentation phase. During Exploration and Experimentation data will be collect-
+ed. The Data Interpretation sub-phase is focused on making meaning out of collected data and synthesis of new
+knowledge (
+Bruce & Casey, 2012; Justice et al., 2002; Lim, 2004; White & Frederiksen, 1998; Wilhelm & Walters, 2006). The
+ﬁnal outcome of the Investigation phase is an interpretation of the data (a formulation of the relations between variables)
+that will permit returning to the original research question or hypothesis and drawing a conclusion regarding what was
+asked or hypothesized.
+Conclusionis the phase in which the basic conclusions of a study are stated (
+de Jong, 2006a). In this phase learners address
+their original research questions or hypotheses and consider whether these are answered or supported by the results of
+the study (
+Scanlon et al., 2011; White, Shimoda, & Frederiksen, 1999). It may lead to new theoretical insights. The outcome
+of the Conclusion phase is a ﬁnal conclusion about the ﬁndings of inquiry-based learning, responding to the research ques-
+tions or hypotheses.
+Discussioncontains the sub-phases of Communication and Reﬂection. Communication can be seen as an external process
+where students present and communicate their ﬁndings and conclusions to others, and receive feedback and comments
+from others (see
+Scanlon et al., 2011) and sometimes listen to others and articulate one’s own understandings (Bruce & Casey,
+2012). Reﬂection is deﬁned as the process of reﬂecting on anything in the learner’s mind, e.g., on the success of the inquiry
+processorcyclewhileproposingnewproblemsforanewinquirycycleandsuggestinghowtheinquiry-basedlearningprocess
+could be improved (
+Lim, 2004; White & Frederiksen, 1998). It is mainly viewed as an internal process (What did I do? Why
+did I do so? Did I do well? What are the other options in a similar situation?). Within this process, several activities, such
+as role-play, writing a diary or narrative, and guiding questions, can be distinguished as support for this (
+Runnel, Pedaste,
+& Leijen, 2013), and these can help students’ reﬂections to reach speciﬁc levels of quality: description, justiﬁcation, cri-
+tique, and discussion (Leijen et al., 2012). Thus, reﬂection is often more focused on the inquiry-based learning process and
+communication on domain-related outcomes of this process. Both Discussion sub-phases can be seen as occurring at two
+possible levels: (1) communicating or reﬂecting on the whole process at the end of the inquiry-based learning or (2) in re-
+lation to a single phase in the cycle.
+3.3. Inquiry-based learning framework
+Based on the overview of the proposed inquiry phases and sub-phases and their deﬁnitions, an inquiry-based
+learning framework was developed (see
+Fig. 3). The arrows in Fig. 3 demonstrate different pathways through the
+framework. Although the cycle often (in 13 articles out of 32 reviewed in our study) starts with Orientation, it displays
+ﬂexibility in the pathways that can be followed. Three possible inquiry cycles can be traced by following the arrows: (a)
+Orientation–Questioning–Exploration–Data Interpretation (possibility in the cycle to go back to Questioning)–Conclusion;
+(b) Orientation–Hypothesis Generation–Experimentation–Data Interpretation (possibility in the cycle to go back to Hypoth-
+esis Generation)–Conclusion; and (c) Orientation–Questioning–Hypothesis Generation–Experimentation–Data Interpretation
+(possibility in the cycle to go back to Questioning or Hypothesis Generation)–Conclusion. Even more ﬂexibility can be created
+by linking the framework with design-based research (
+Barab & Squire, 2004). In this case the research could start in the
+Conceptualization phase and have several short cycles between the Conceptualization phase and the Investigation phase.
+However, for design-based research the investigation phase should not test a model or theory under development but dif-
+ferentfeaturesof thenaturalisticenvironmentwherethetheory/modelshouldwork.Aftercollecting‘backgroundinformation’
+the learner (or researcher) could turn back to the Conceptualization phase to test the model/theory in mind. If, after several
+loops, the ‘notional test’ is successful, then the theory or model itself could be tested.
+TheDiscussionphasecanbeseenasasetof processesthatare“optional”fortheinquirycycle,becauseforanindividuallearner,
+inquiry-based learning outcomes can often be arrived at without any Communication or Reﬂection. However, the quality of the
+wholeinquiry-basedlearninganditsrelatedlearninggainscandependonthediscussionsduringeachinquiryphaseand/orafter
+completingallof theotherphases.SeveralauthorshaveincludedDiscussionasaculminatinginquiryphase(
+Bruce&Casey,2012;
+Conole, Scanlon, Littleton, Kerawalla, & Mulholland, 2010; Valanides & Angeli, 2008), while others consider Conclusion as the
+ﬁnal stage of an inquiry cycle (de Jong & van Joolingen, 2008; National Research Council, 1996; Tatar, 2012).
+Based on our framework we recommend starting the inquiry-based learning process with Orientation, where students
+not only get an idea about the topic to be investigated but are also introduced to the problem to be solved. If students’ cu-
+riosity is already raised from previous studies or interests, this phase is often not needed (which is especially the case with
+55M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 10 ===
+researchers doing research). In the following step, students have different possibilities for forming the key concept to be
+studied in the inquiry-based learning process: hypothesis-driven approach or question-driven approach. If the students have
+no speciﬁc idea and only a general plan of what to explore, they should start from more open question(s) that guide them
+to the exploration of a phenomenon (data-driven approach, pathway ‘a’). In this case, it is expected that students will return
+to the Conceptualization phase if they have speciﬁed, revised or derived new ideas from the Exploration phase or data gath-
+ered, but they can also move directly from Exploration to Data Interpretation and Conclusion. If the students have a more
+speciﬁc, often theory-based idea about what to investigate, then a hypothesis-driven approach is suitable (‘b’). A slight de-
+viation from the latter could be the question-driven approach, where students have a question and their next goal is to collect
+background information for stating a speciﬁc hypothesis as a possible answer to the question (‘c’). In conclusion, the three
+suggested but not the only possible pathways are the following:
+(a) Orientation–Questioning–Exploration–Questioning–Exploration–Data Interpretation–Conclusion (the loop between
+Questioning and Exploration can be repeated several times, but it is also possible to move directly from the ﬁrst Ex-
+ploration to Data Interpretation; Communication and Reﬂection can be added to every phase);
+(b) Orientation–Hypothesis Generation–Experimentation–Data Interpretation–Hypothesis Generation–Experimentation–
+Data Interpretation–Conclusion (the loop between Hypothesis Generation–Experimentation–Data Interpretation can
+be repeated several times, but it is also possible to move directly from the ﬁrst Data Interpretation to Conclusion;
+Communication and Reﬂection can be added to every phase);
+(c) Orientation–Questioning–Hypothesis Generation–Experimentation–Data Interpretation–(Questioning) Hypothesis
+Generation–Experimentation–Data Interpretation–Conclusion (the loop between Hypothesis Generation–
+Experimentation–Data Interpretation can be repeated several times, but it is also possible to move directly from the
+ﬁrst Data Interpretation to Conclusion; after Data Interpretation it might be necessary to revise Questions, but more
+often only Hypotheses are revised; Communication and Reﬂection can be added to every phase).
+ThepathwayintheInvestigationphasedependsprimarilyontheactionstakenduringtheConceptualizationphase.TheQues-
+tioning sub-phase can precede the Hypothesis Generation and/or the Exploration sub-phases. In both Exploration and
+Experimentation
+Questioning Hypothesis
+Generation
+Exploration
+Data 
+Interpretation
+Conclusion
+Communication
+Reflection
+ORIENTATIONCONCEPTUALIZATIONINVESTIGATIONCONCLUSION
+Orientation
+DISCUSSION
+Fig. 3. Inquiry-based learning framework (general phases, sub-phases, and their relations).
+56 M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 11 ===
+Experimentation, planning is an important activity to avoid inappropriate use of resources, such as time, materials, and
+money. Data Interpretation is the next step after either the Exploration or Experimentation sub-phases where data are
+collected. Here students analyze data according to a speciﬁc strategy and method planned in the Exploration or
+Experimentation sub-phases and make their ﬁrst interpretations of the data. From Data Interpretation, it is possible to move
+forward to the Conclusion phase or go back to the Conceptualization phase to revise existing or deﬁne new questions or
+hypotheses, which makes inquiry-based learning a cyclical process. If some issues have been discovered in Exploration or Ex-
+perimentation, it might be a good idea to turn back to change the plan or experiment design made in a particular sub-phase
+without changing research questions or hypotheses. If a student collected enough data for conﬁrming his or her hypothesis or
+foransweringthestatedquestion(s),thenheorshemayproceedtothenextphaseforstatingﬁnalconclusions.Thesearestated
+in the Conclusion phase, where the outcomes of the Investigation phase are compared with the output of the Conceptualization
+phase. In case the data-collection was not as successful as planned (according to the ﬁndings in the Data Interpretation sub-
+phase), the student can go back to the Conceptualization phase to re-state a question or hypothesis, which serves as new input
+for the Investigation phase. In this case, the results of Data Interpretation serve the student as new theoretical knowledge for
+him/hertoformulatequestionsorhypotheses.However,goingbacktotheConceptualizationphaseisnotonlyaconsequenceof
+insuﬃcient or disconﬁrming data. Moving back may also be in response to new ideas that arise out of the collected data during
+interpretation. Thus, inquiry-based learning can be seen as cyclical on multiple levels, and it is evident how the pathways de-
+scribed in this synthesis can form different inquiry cycles. In addition, the starting point of the cycle can be ﬂexibly varied. For
+example, one might start from Exploration of a phenomenon and later move to Conceptualization to formulate meaningful
+hypotheses.
+InallphasesfromOrientationtoConclusion,theprocessesoftheDiscussionphasearealsopossible.TheDiscussionphase
+isheredeﬁnedfromlearners’perspectiveintheinquiry-basedlearningcontext.BothCommunicationandReﬂectioncanbe
+seen as on-going processes, which help students receive feedback about their learning process by sharing their domain-
+related outcomes and process-related ideas with others. This means direct communication among peer students, teacher,
+etc.However,itcouldalsoinvolveguidedmonitoringofstudents’learningprocessbyusingreﬂectionactivities.Inthiscontext,
+discussioncanbeseenasaprocesssupportingmeta-cognitionorregulativeprocessesof inquirylearningasproposedby
+de
+JongandNjoo(1992) .Twotypesofreﬂectioncanbedistinguished( Schön,1987):(a) reﬂection-in-action,wherethestudents
+evaluate their study process while conducting the activities of a speciﬁc phase and collect particular information for this
+whileplanningandmonitoringlearningactivitiesor(b) reﬂection-on-action,wherethestudentsevaluatetheirstudyprocess
+after completing the whole inquiry cycle. In both cases, students use the results of their reﬂection to revise the activities
+engaged in during speciﬁc phases (e.g., re-stating their research question) or as an input for a new inquiry cycle. Therefore,
+it follows that the effect of one’s reﬂection on the success of inquiry phases or the improvement of inquiry skills is strongly
+related to the quality of the reﬂection. Similarly, Communication can be viewed as ‘in-action’ communication or
+‘on-action’ communication, i.e. it is either part of an inquiry phase or performed as a separate activity at the end of the
+inquiry cycle.
+The new inquiry-based learning framework presented in
+Fig.3 broadly reﬂects a contemporary view of inquiry-based
+learning. It is derived from a systematic review of inquiry-based learning frameworks found in the educational research
+literature and is an attempt to cover many different implementations of inquiry-based learning. Early frameworks of inquiry-
+based learning may have neglected meta-cognitive processes, which in
+Fig.3 are found in the Discussion phase and are also
+in connection with the four transformative general inquiry phases. The possibility that inquiry-based learning may primar-
+ily follow an inductive or deductive reasoning approach, as
+Klahr and Dunbar (1988)discuss, is captured inFig.3 through
+the use of various sub-phases within the Conceptualization and Investigation phases. However, the framework is not limited
+to either one approach since the pathways connecting phases in
+Fig.3 allow for iterations and cyclical movement, thereby
+increasing the range of possible inquiry process implementations. Overall, the framework brings together core elements of
+inquiry-based learning and connects them in such a way as to show that multiple implementations of inquiry cycles can
+develop out of a single framework.
+4. Conclusions
+The main goal of the current study was to provide instructional designers and teachers with a synthesized inquiry-
+based learning framework from learners’ perspective that can be used to ensure an effective inquiry-based learning process.
+In a number of other studies in the past, many alternative inquiry cycles have been introduced containing an unreasonably
+high number of different terms to describe the various inquiry activities. This made it hard for novice designers and teach-
+ers to understand which are the core phases and processes of inquiry-based learning. Without this information, their ﬁrst
+attempts to achieve generally effective inquiry-based learning for students could lead to failure. Therefore, in the current
+study a systematic literature review was conducted in order to identify and summarize the core features of the inquiry-
+based learning process and to synthesize a framework that combines the strengths of existing inquiry-based learning
+frameworks. It is expected that the use of the new framework extracted from the literature review can be the key to success
+in implementing inquiry-based learning effectively.
+The inquiry-based learning framework proposed in the current study on the basis of the analysis of the literature con-
+sists of ﬁve general phases and nine sub-phases for inquiry-based learning. These inquiry phases and related processes can
+57M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 12 ===
+be organized in different pathways that could be followed when designing speciﬁc learning situations. The basic version
+starts from the Conceptualization phase, where students have the option to move on to the Investigation phase through
+generating either questions or hypotheses. A set of questions is needed to make a plan and begin with exploration, while a
+hypothesis-driven approach guides students to more structured experimentation in the Investigation phase. In addition, a
+particular inquiry cycle can be adapted by placing different emphases on the Discussion phase. In the simplest case, stu-
+dents could just present their inquiry-based conclusions to others, while in a more sophisticated process communication
+and reﬂection could be important processes that are invoked in every general inquiry phase as well as at the end of a learn-
+ing cycle. For example, students, by themselves or in a group of peers, can discuss their learning process and outcomes of
+the Conceptualization phase before moving on to Investigation.
+The value of this synthesized framework lies in the possibility that it could form the basis for a general structure of
+inquiry-based learning environments (such as Go-Lab,
+http://www.golabz.eu/ , SCY-Lab, http://scy-net.eu/ or Ark of
+Inquiry, http://arkoﬁnquiry.eu/), which provides teachers and students with structured and scaffolded inquiry activities.
+The synthesized framework takes into account the strengths of the reviewed studies and avoids rare variations. The
+framework supports structuring the complex inquiry-based learning process and, eventually, designing guidance that is
+necessary in order to enhance the eﬃciency of the learning process. Thus, it can be argued that this framework could be
+applied widely in designing inquiry cycles in the context of both virtual and real-world environments. In this context
+it can also be a guide for teachers. For example, the phases identiﬁed in the framework can be seen as different stages in
+the learning process that are characterized by their input, actions, and output. In this way, the inquiry-based learning
+framework supports teachers and designers in analyzing what is needed as input by the learners in each stage and what is
+the expected output. In a structured learning environment there are two options for the designers. One is to provide all
+input information, guidance for actions, and information about expected outcomes to the learners when they “enter” a par-
+ticular phase. Another option is to leave more freedom to the learners while guiding them toward a productive learning
+process based on the speciﬁc issues that have been detected during the learning process. In the ﬁrst case, the framework
+could be applied for designing the main structure of the learning environment, while in the second case, it is important to
+take into account students’ needs that should frame the design and content principles of supportive elements of a learning
+environment.
+Acknowledgements
+The reported work was partially funded by the European Union in the context of the Go-Lab project (Grant Agreement
+no. 317601) under the Information and Communication Technologies (ICT) theme of the 7
+th Framework Programme for R&D
+(FP7). This document does not represent the opinion of the European Union, and the European Union is not responsible for
+any use that might be made of its content. We would like to acknowledge the Go-Lab project team members, who contrib-
+uted through discussions in developing the understanding of the phases and their relations in inquiry-learning cycle – Anjo
+Anjewierden, Sten Govaerts, Eﬃe Lai-Chong Law, Nikos Zygouritsas.
+Appendix A. Articles used in the analysis of inquiry phases and inquiry cycles
+Reference Level of
+information
+presented
+Domain of
+the study
+List of inquiry phases (reference included if cycle derived from another source)
+Banerjee (2010) Phases Inquiry framework Learner investigates scientiﬁcally oriented questions, Learner gives priority to evidence
+in responding to questions, Learner formulates explanations from evidence, Learner
+connects explanations to scientiﬁc knowledge, Learner communicates and justiﬁes
+explanations
+Bell, Urhahne, Schanze,
+& Ploetzner (2010)
+Phases +Cycle Collaborative
+inquiry learning;
+Inquiry framework
+Orientation/question, Hypothesis generation, Planning, Investigation, Analysis/
+interpretation, Model, Conclusion/evaluation, Communication, Prediction
+Bevevino, Dengel, &
+Adams (1999)
+Phases Constructivist
+theory in the
+classroom
+Exploration, Discussion and presentation of new content, Application and expansion
+Bruce & Casey (2012) Phases Digital literacy Ask, Investigate, Create, Discuss, Reﬂect ( Bruce & Bishop, 2002;Community of
+Informatics Initiative (CII, 2009)
+Conole et al. (2010) Phases Healthy eating Find my topic, Decide my inquiry question or hypothesis, Plan my methods, equipment
+and actions, Collect my evidence, Analyse and represent my evidence, My conclusions,
+Share and discuss my inquiry (
+Anastopoulou et al., 2009)
+Çorlu & Çorlu (2012) Phases Physics teachers Identifying the problem, Analysing, Setting hypotheses, Generating a synthesis, Problem
+solving and developing a course/experiment
+Etkina et al. (2010) Phases Physics Observe, Find patterns, Devise explanations or mechanisms for the patterns, Test the
+explanations, Predict the outcomes of new experiments, Apply new knowledge to solve
+practical problems (
+Etkina & van Heuvelen, 2007)
+Friedman et al. (2010) Phases +Cycle Higher education Ask, Investigate, Create, Discuss, Reﬂect (Community of Informatics Initiative (CII, 2009)
+Gilbert (2009) Phases +Cycle Early childhood 5E Inquiry Cycle: Engage, Explore, Explain, Elaborate, Evaluate (Llewellyn, 2002)
+58 M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 13 ===
+Appendix A. (Continued)
+Reference Level of
+information
+presented
+Domain of
+the study
+List of inquiry phases (reference included if cycle derived from another source)
+Gunawardena et al.
+(2006)
+Phases Instructional
+design model
+Learning challenge (i.e., a case, problem, or an issue), Initial exploration, Resources,
+Reﬂection, Preservation
+Gutwill & Allen (2012) Phases Science learning in
+museums
+Asking questions, Making predictions, Designing experiments, Analysing data,
+Reasoning with models, Drawing conclusions, Communicating results (e.g.,
+Minstrell & van Zee, 2000; White & Frederiksen, 1998)
+Kuhn & Dean (2008) Phases Educationally
+disadvantaged,
+low-achieving
+middle-school
+students
+Intent (identifying the question to be asked), Analysis (designing an investigation, and
+interpreting data), Inference (drawing conclusions), Argument (entering claims into
+scientiﬁc discourse) (
+Kuhn, 2001, 2002, 2005)
+Kuhn & Pease (2008) Phases Middle-school
+students
+Identiﬁcation of a question or questions, Design of an investigation to address them,
+Examination and analysis of empirical data, Drawing inferences and conclusions and
+justifying them (
+Klahr, 2000; National Research Council, 1996), Identifying a question,
+Accessing data of their choice to address the question, Analysing these data to identify
+patterns and make inferences, Drawing conclusions and making judgments based on
+them
+Larotta (2007) Phases Inquiry in the adult
+classroom
+Observe, Wonder, Explain, Generate Theory
+Lim (2004) Phases +Cycle Designing inquiries
+on the web
+Ask, Plan, Explore, Construct, Reﬂect
+Meyerson & Secules
+(2001)
+Phases Social studies Anchor, Generate, Research, Debate, Offer solution
+Palincsar, Collins,
+Marano, &
+Magnusson (2000
+)
+Phases Learning
+disabilities
+Engage, Investigate, Explain, Report
+Popov & Tevel (2007) Phases Physics Question, Predict, Experiment, Model, Apply ( White & Frederiksen, 2000)
+Li, Moorman, & Dyjur
+(2010)
+Phases +Cycle Mathematics Ask, Investigate, Create, Discuss, Reﬂect ( Community of Informatics Initiative
+(CII, 2009)
+Scanlon et al. (2011) Phases Technology Orientation, Set up inquiry question, Plan question, Conduct investigation, Analyse
+evidence, Draw conclusions, Present inquiry, Evaluate inquiry (e.g.White et al., 1999)
+Smyrnaiou, Foteini, &
+Kynigos (2012)
+Phases Physics Orientation, Hypothesis generation, Experimentation, Conclusion ( de Jong & van
+Joolingen, 2008)
+Spronken-Smith &
+Kingham (2009)
+Phases Geography Developing a question, Determining what needs to be known, Identifying resources,
+Gathering data, Assessing data, Synthesizing, Communicating new understandings,
+Evaluating success (
+Justice et al., 2002)
+Steinke & Fitch (2011) Phases Higher education Theory, Generate testable hypotheses, Collect and analyze data, Reﬁne theory
+(Kantowitz, Roediger, & Elmes, 2009)
+Tatar (2012) Phases Science
+laboratories
+Ask questions, Design studies, Collect and interpret data, Draw conclusions (National
+Research Council, 1996)
+Valanides & Angeli
+(2008)
+Phases Science Conducting observation, Recording and organizing data, Discussing with others,
+Drawing conclusions, Reasoning with evidence about a phenomenon
+van Joolingen, de Jong,
+& Dimitrakopoulou
+(2007
+)
+Phases Science Orientation, Hypothesis generation, Experimentation, Conclusion, Evaluation ( de Jong,
+2006a)
+Wall, Higgins, Glasner,
+Mahmout, &
+Gormally (2009
+)
+Phases +Cycle Learning to learn Cycle1: Deﬁne problem, Assess needs, Hypothesise ideas, Develop action plan,
+Implement plan, Evaluate action, Decisions (Reﬂect, Explain, Understand action)
+Cycle 2: Redeﬁne problem, Assess needs, Develop new hypothesis, Revise action plan,
+Implement revised plan, Evaluate action, Decisions (Reﬂect, Explain, Understand action)
+(adapted from
+Kemmis & McTaggart, 1988)
+Wecker, Kohnle, &
+Fischer (2007)
+Phases Computer literacy Hypothesis generation, Experiment design, Data interpretation ( de Jong &
+van Joolingen, 1998; Schwartz, Lin, Brophy, & Bransford, 1999; van Joolingen, de Jong,
+Lazonder, Savelsbergh, & Manlove, 2005
+)
+White & Frederiksen
+(2005)
+Phases +Cycle Mathematics Question, Hypothesize, Investigate, Analyse, Model, Evaluate ( White & Frederiksen,
+1998)
+Wilhelm & Walters
+(2006)
+Phases +Cycle Mathematics
+Science
+Llewelyn’s Inquiry Model: Introducing a topic, Assessing prior knowledge, Providing
+exploration, Raising and revising questions, Brainstorming solutions, Carrying out a
+plan, Collecting data, Organizing data, Finding relationships and drawing conclusions,
+Communicating results, Comparing new knowledge to prior knowledge, Applying
+knowledge to new situations, Stating a new question to investigate (
+Llewellyn, 2002)
+Youngquist &
+Pataray-Ching (2004)
+Phases Early childhood
+classroom
+Observation, Initial inquiry question, Sign system exploration, Analysis,
+Transmediation, Reﬁnement, Celebration, New/further inquiries (adapted fromShort,
+Harste, & Burke, 1996)
+Zhang & Quintana
+(2012)
+Phases Online inquiry,
+middle school
+Online inquiry: Generating a scientiﬁc question (driving question), Searching for
+information on the web, Evaluating and making sense of online information,
+Integrating different pieces of information to answer the driving question (
+Quintana,
+Zhang, & Krajcik, 2005)
+59M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 14 ===
+References
+Alﬁeri, L., Brooks, P. J., Aldrich, N. J., & Tenenbaum, H. R. (2011). Does discovery-based instruction enhance learning? Journal of Educational Psychology,
+103, 1–18. doi:10.1037/a0021017.
+Anastopoulou, S., Kerwalla, L., Littleton, K., Ainsworth, S., Twiner, A., & Conole, G. (2009).Facilitating the expression of learner voices in the participatory design
+of technology to support inquiry learning. Paper presented at the CAL 2009 Learning in Digital Worlds, March 2009, Brighton, UK.<http://oro.open.ac.uk/
+22307/>.
+Banerjee, A. (2010). Teaching science using guided inquiry as the central theme: a professional development model for high school science teachers.Science
+Educator, 19, 1–9.
+Barab, S., & Squire, K. (2004). Design-based research: putting a stake in the ground. The Journal of the Learning Sciences, 13, 1–14.
+Bell,T.,Urhahne,D.,Schanze,S.,&Ploetzner,R.(2010).Collaborativeinquirylearning:models,tools,andchallenges.InternationalJournalo f ScienceEducation,
+32, 349–377. doi:10.1080/09500690802582241.
+Bevevino, M., Dengel, J., & Adams, K. (1999). Constructivist theory in the classroom. internalizing concepts through inquiry learning. The Clearing House:
+A Journal of Educational Strategies, Issues and Ideas, 72, 275–278.<http://dx.doi.org/10.1080/00098659909599406>.
+Bruce, B. C., & Bishop, A. P. (2002). Using the web to support inquiry-based literacy development. Journal of Adolescent and Adult Literacy, 45, 706–
+714.
+Bruce, B. C., & Casey, L. (2012). The practice of inquiry: a pedagogical ‘sweet spot’ for digital literacy? Computers in the Schools, 29, 191–206.
+doi:10.1080/07380569.2012.657994.
+Bybee, R., Taylor, J. A., Gardner, A., van Scotter, P., Carlson, J., Westbrook, A., et al. (2006). The BSCS 5E instructional model: Origins and effectiveness. Colorado
+Springs, CO: BSCS.
+Community of Informatics Initiative (CII). (2009).Inquiry based learning cycle. <http://www.inquiry.uiuc.edu/>Retrieved 25.03.13.
+Conole, G., Scanlon, E., Littleton, K., Kerawalla, L., & Mulholland, P. (2010). Personal inquiry: innovations in participatory design and models for inquiry
+learning. Educational Media International, 47, 277–292. doi:10.1080/09523987.2010.535328.
+Çorlu, M. A., & Çorlu, M. S. (2012). Scientiﬁc inquiry based professional development models in teacher education. Educational Sciences: Theory & Practice,
+12, 514–521.
+de Groot, A. (1969). Methodology: Foundations of inference and research in the behavioral sciences. Paris: Mouton & Co.
+de Jong, T. (2006a). Computer simulations – technological advances in inquiry learning. Science, 312, 532–533. doi:10.1126/science.1127750.
+de Jong, T. (2006b). Scaffolds for scientiﬁc discovery learning. In J. Elen & R. E. Clark (Eds.), Dealing with complexity in learning environments (pp. 107–128).
+London: Elsevier Science Publishers.
+de Jong, T., & Njoo, M. (1992). Learning and instruction with computer simulations: learning processes involved. In E. de Corte, M. Linn, H. Mandl, & L.
+Verschaffel (Eds.), Computer-based learning environments and problem solving (pp. 411–429). Berlin, Germany: Springer-Verlag.
+de Jong, T., Sotiriou, S., & Gillet, D. (2014). Innovations in STEM education: the Go-Lab federation of online labs. Smart Learning Environments, 1, 3.
+de Jong, T., & van Joolingen, W. R. (1998). Scientiﬁc discovery learning with computer simulations of conceptual domains. Review of Educational Research,
+68, 179–202. doi:10.2307/1170753.
+de Jong, T., & van Joolingen, W. R. (2008). Model-facilitated learning. In J. M. Spector, M. D. Merrill, J. van Merriënboer, & M. P. Driscoll (Eds.), Handbook of
+research on educational communications and technology (3rd ed., pp. 457–468). New York: Lawrence Erlbaum.
+deJong,T.,vanJoolingen,W.R.,Giezma,A.,Girault,I.,Hoppe,U.,Kindermann,J.,etal.(2010).Learningbycreatingandexchangingobjects:theS CYexperience.
+British Journal of Educational Technology, 41, 909–921. doi:10.1111/j.1467-8535.2010.01121.x.
+Dewey, J. (1933). How we think. Boston: Heath.
+Etkina, E., Karelina, A., Ruibal-Villasenor, M., Rosengrant, D., Jordan, R., & Hmelo-Silver, C. E. (2010). Design and reﬂection help students develop scientiﬁc
+abilities: learning in introductory physics laboratories. Journal of the Learning Sciences, 19, 54–98. doi:10.1080/10508400903452876.
+Etkina, E., & van Heuvelen, A. (2007). Investigative science learning environment – a science process approach to learning physics. In E. F. Redish & P. Cooney
+(Eds.), PER-based reforms in calculus-based physics (Vol. 1, pp. 1–48). College Park, MD: American Association of Physics Teachers.
+European Commission (2007). Science education now: A renewed pedagogy for the future of Europe. Brussels: European Commission. [Retrieved 03.14],
+<http://ec.europa.eu/research/science-society/document_library/pdf_06/report-rocard-on-science-education_en.pdf>.
+European Commission (2011). Towards responsible research and innovation in the information and communication technologies and security technologies
+ﬁeld. Brussels: European Commission. [Retrieved 03.14], <http://ec.europa.eu/research/science-society/document_library/pdf_06/mep-rapport-
+2011_en.pdf>.
+Friedman, D. B., Crews, T. B., Caicedo, J. M., Besley, J. C., Weinberg, J., & Freeman, M. L. (2010). An exploration into inquiry-based learning by a multidisciplinary
+group of higher education faculty. Higher Education, 59, 765–783. doi:10.1007/s10734-009-9279-9.
+Furtak,E.M.,Seidel,T.,Iverson,H.,&Briggs,D.C.(2012).Experimentalandquasi-experimentalstudiesof inquiry-basedscienceteaching.Revi ewof Educational
+Research, 82, 300–329. doi:10.3102/0034654312457206.
+Gilbert,A.(2009).UtilizingsciencephilosophystatementstofacilitateK-3teachercandidates’developmentof inquiry-basedsciencepractice .EarlyChildhood
+Education, 36, 431–438. doi:10.1007/s10643-009-0302-7.
+Gunawardena, C. N., Ortegano-Layne, L., Carabajal, K., Frechette, C., Lindemann, K., & Jennings, B. (2006). New model, new strategies: instructional design
+for building online wisdom communities. Distance Education, 27, 217–232. doi:10.1080/01587910600789613.
+Gutwill, J. P., & Allen, S. (2012). Deepening students’ scientiﬁc inquiry skills during a science museum ﬁeld trip. Journal of the Learning Sciences,21, 130–181.
+doi:10.1080/10508406.2011.555938.
+Justice, C., Warry, W., Cuneo, C. L., Inglis, S., Miller, S., Rice, J., et al. (2002). A grammar for inquiry: linking goals and methods in a collaboratively taught
+social sciences inquiry course. In The Alan Blizzard Award paper: The award winning papers. Windsor: Special Publication of the Society for Teaching
+and Learning in Higher Education and McGraw-Hill Ryerson.
+Kantowitz, B. H., Roediger, H. L., & Elmes, D. G. (2009). Experimental psychology: Understanding psychological research (9th ed.). Belmont, CA: Wadsworth.
+Kemmis, S., & McTaggart, R. (1988). The action research planner. Geelong: Deakin University.
+Keselman, A. (2003). Supporting inquiry learning by promoting normative understanding of multivariable causality. Journal of Research in ScienceTeaching,
+40, 898–921. doi:10.1002/tea.10115.
+Klahr, D. (2000). Exploring science: The cognition and development of discovery processes. Cambridge, MA: MIT Press.
+Klahr, D., & Dunbar, K. (1988). Dual space search during scientiﬁc reasoning. Cognitive Science, 12, 1–55.
+Kuhn,D.(2001).Whydevelopmentdoes(anddoesn’t)occur:Evidencefromthedomainof inductivereasoning.InR.Siegler&J.McClelland(Eds.),Mech anisms
+of cognitive development: Neural and behavioral perspectives (pp. 221–249). Mahwah, NJ: Lawrence Erlbaum Associates.
+Kuhn, D. (2002). What is scientiﬁc thinking and how does it develop? In U. Goswami (Ed.), Handbook of childhood cognitive development (pp. 371–393).
+Oxford, UK: Blackwell.
+Kuhn, D. (2005). Education for thinking. Cambridge, MA: Harvard University Press.
+Kuhn, D., & Dean, J. (2008). Scaffolded development of inquiry skills in academically disadvantaged middle-school students. Journal of Psychologyof Science
+and Technology, 1, 36–50. doi:10.1891/1939-7054.1.2.36.
+Kuhn, D., & Pease, M. (2008). What needs to develop in the development of inquiry skills? Cognition and Instruction, 26, 512–559. doi:10.1080/
+07370000802391745.
+Larotta, C. (2007). Inquiry in the adult classroom: an ESL literacy experience. Adult Learning, 18, 25–29.
+Leijen, Ä., Valtna, K., Leijen, D. A. J., & Pedaste, M. (2012). How to determine the quality of students’ reﬂections? Studies in Higher Education, 37, 203–217.
+doi:10.1080/03075079.2010.504814.
+60 M. Pedaste et al./Educational Research Review 14 (2015) 47–61
+
+=== PDF PAGE 15 ===
+Li, Q., Moorman, L., & Dyjur, P. (2010). Inquiry-based learning and e-mentoring via videoconference: a study of mathematics and science learning of Canadian
+rural students. Educational Technology Research and Development, 58, 729–753. doi:10.1007/s11423-010-9156-3.
+Lim, B. (2004). Challenges and issues in designing inquiry on the web. British Journal of Educational Technology, 35, 627–643. doi:10.1111/j.0007-
+1013.2004.00419.x.
+Llewellyn, D. (2002). Inquire within: Implementing inquiry-based science standards. Thousand Oaks, CA.: Corwin Press.
+Mäeots, M., Pedaste, M., & Sarapuu, T. (2008). Transforming students’ inquiry skills with computer-based simulations. In 8th IEEE International Conference
+on Advanced Learning Technologies, 1–5 July. Santander, Spain. doi:10.1109/ICALT.2008.239.
+Mäeots, M., Pedaste, M., & Sarapuu, T. (2011). Interactions between inquiry processes in a Web-based learning environment. In 11th IEEE International
+Conference on Advanced Learning Technologies, 6–8 July. Athens, USA. doi:10.1109/ICALT.2011.103.
+Meyerson, P., & Secules, T. (2001). Inquiry cycles can make social studies meaningful – learning about the controversy in Kosovo. The Social Studies,92,
+267–271. doi:10.1080/00377990109604014.
+Minner, D. D., Levy, A. J., & Century, J. (2010). Inquiry-based science instruction – what is it and does it matter? Results from a research synthesis years
+1984 to 2002. Journal of Research in Science Teaching, 47, 474–496. doi:10.1002/tea.20347.
+Minstrell, J., & van Zee, E. (Eds.), (2000). Inquiring into inquiry learning and teaching in science. Washington, DC: American Association for the Advancement
+of Science.
+National Research Council (1996). National science education standards. Washington, DC: National Academy Press.
+National Research Council (2000). Inquiry and the national science education standards. Washington, DC: National Academy Press.
+National Research Council (2006). America’s lab report: Investigations in high school science. Washington, DC: National Academy Press.
+Palincsar, A. S., Collins, K. M., Marano, N. L., & Magnusson, S. J. (2000). Investigating the engagement and learning of students with learning disabilities in
+guided inquiry science teaching. Language, Speech, and Hearing Services in Schools, 31, 240–251.
+Pedaste, M., Mäeots, M., Leijen, Ä., & Sarapuu, S. (2012). Improving students’ inquiry skills through reﬂection and self-regulation scaffolds. Technology,
+Instruction, Cognition and Learning, 9, 81–95.
+Pedaste, M., & Sarapuu, T. (2006). Developing an effective support system for inquiry learning in a Web-based environment. Journal of Computer Assisted
+Learning, 22(1), 47–62.
+Popov, O., & Tevel, I. (2007). Developing prospective physics teachers’ skills of independent experimental work using outdoors approach. Journal of Baltic
+Science Education, 6, 47–57.
+Quintana,C.,Zhang,M.,&Krajcik,J.(2005).Aframeworkforsupportingmetacognitiveaspectsof onlineinquirythroughsoftware-basedscaffoldi ng.Educational
+Psychologist, 40, 235–244.<http://dx.doi.org.ezproxy.utlib.ee/10.1207/s15326985ep4004_5>.
+Rocard, M., Csermely, P., Jorde, D., Lenzen, D., Walberg-Henrikson, H., & Hemmo, V. (2007). Science education now: A renewed pedagogy for the future of
+Europe. Brussels: European Commission: Directorate-General for Research.
+Runnel,M.I.,Pedaste,M.,&Leijen,A.(2013).Modelforguidingreﬂectioninthecontextof inquiry-basedscienceeducation.Journalof BalticScie nceEducation,
+12, 107–118.
+Scanlon,E.,Anastopoulou,S.,Kerawalla,L.,&Mulholland,P.(2011).Howtechnologyresourcescanbeusedtorepresentpersonalinquiryandsuppor tstudents’
+understanding of it across contexts. Journal of Computer Assisted Learning, 27, 516–529. doi:10.1111/j.1365-2729.2011.00414.x.
+Schön, D. A. (1987). Teaching artistry through reﬂection-in-action. In Jossey-Bass higher education series:Educating the reﬂective practitioner (pp. 22–40).
+San Francisco, CA: Jossey-Bass Publishers.
+Schwartz, D. L., Lin, X., Brophy, S., & Bransford, J. D. (1999). Toward the development of ﬂexibly adaptive instructional designs. In C. M. Reigeluth (Ed.),
+Instructional-design theories and models: A new paradigm of instructional theory (Vol. 2, pp. 183–213). Mahwah, NJ: Erlbaum.
+Short, K. G., Harste, J. C., & Burke, C. (1996). Creating classrooms for authors and inquirers (2nd ed.). Portsmouth, NH: Heinemann.
+Smyrnaiou, Z., Foteini, M., & Kynigos, C. (2012). Students’ constructionist game modeling activities as part of inquiry learning processes. Electronic Journal
+of e-Learning, 10, 235–248.
+Spronken-Smith, R., & Kingham, S. (2009). Strengthening teaching and research links: the case of a pollution exposure inquiry project. Journal of Geography
+in Higher Education, 33, 241–253. doi:10.1080/03098260802276813.
+Steinke,P.,&Fitch,P.(2011).Outcomeassessmentfromtheperspectiveof psychologicalscience:theTAIMapproach.NewDirectionsforInstitutio nalResearch,
+149, 15–26. doi:10.1002/ir.377.
+Tatar,N.(2012).Inquiry-basedsciencelaboratories:ananalysisof pre-serviceteachers’beliefsaboutlearningsciencethroughinquiryandthe irperformances.
+Journal of Baltic Science Education, 11, 248–266.
+van Joolingen, W. R., de Jong, T., & Dimitrakopoulou, A. (2007). Issues in computer supported inquiry learning in science. Journal of Computer Assisted
+Learning, 23, 111–119. doi:10.1111/j.1365-2729.2006.00216.x.
+vanJoolingen,W.R.,deJong,T.,Lazonder,A.W.,Savelsbergh,E.R.,&Manlove,S.(2005).Co-Lab:researchanddevelopmentof anonlinelearningenv ironment
+for collaborative scientiﬁc discovery learning. Computers in Human Behavior, 21, 671–688. doi:10.1016/j.chb.2004.10.039.
+Valanides, N., & Angeli, C. (2008). Distributed cognition in a sixth-grade classroom: an attempt to overcome alternative conceptions about light and color.
+Journal of Research on Technology in Education, 40, 309–336.
+Veermans, K. H., van Joolingen, W. R., & de Jong, T. (2006). Using heuristics to facilitate scientiﬁc discovery learning in a simulation learning environment
+in a physics domain. International Journal of Science Education, 28, 341–361. doi:10.1080/09500690500277615.
+Wall, K., Higgins, S., Glasner, E., Mahmout, U., & Gormally, J. (2009). Teacher enquiry as a tool for professional development: investigating pupils’ effective
+talk while learning. The Australian Educational Researcher, 36, 93–117. doi:10.1007/bf03216901.
+Wecker,C.,Kohnle,C.,&Fischer,F.(2007).Computerliteracyandinquirylearning:whengeekslearnless.Journalof ComputerAssistedLearning,2 3,133–144.
+doi:10.1111/j.1365-2729.2006.00218.x.
+White, B. Y., & Frederiksen, J. (2005). A theoretical framework and approach for fostering metacognitive development. Educational Psychologist, 40, 211–223.
+White, B. Y., & Frederiksen, J. R. (1998). Inquiry, modeling, and metacognition: making science accessible to all students. Cognition and Instruction, 16,
+3–118. doi:10.1207/s1532690xci1601_2.
+White, B. Y., & Frederiksen, J. R. (2000). Metacognitive facilitation: An approach to making scientiﬁc inquiry accessible to all. In J. Minstrell & E.van Zee
+(Eds.), Inquiring into inquiry, learning and teaching in science (pp. 331–370). Washington, DC.: American Association for the Advancement of Science.
+White, B. Y., Shimoda, T. A., & Frederiksen, J. R. (1999). Enabling students to construct theories of collaborative inquiry and reﬂective learning: computer
+support for metacognitive development. International Journal of Artiﬁcial Intelligence in Education, 10, 151–182.
+Wilhelm,J.A.,&Walters,K.L.(2006).Pre-servicemathematicsteachersbecomefullparticipantsininquiryinvestigations.InternationalJourn alof Mathematical
+Education in Science and Technology, 37, 793–804. doi:10.1080/00207390600723635.
+Wilhelm, P., & Beishuizen, J. J. (2003). Content effects in self-directed inductive learning. Learning and Instruction, 13, 381–402. doi:10.1016/
+S0959-
+4752(02)00013-0.
+Youngquist, J., & Pataray-Ching, J. (2004). Revisiting “play”: analyzing and articulating acts of inquiry. Early Childhood Education Journal, 31,171–178.
+doi:10.1023/B:ECEJ.0000012135.73710.0c.
+Zhang, M., & Quintana, C. (2012). Scaffolding strategies for supporting middle school students’ online inquiry processes. Computers & Education, 58, 181–196.
+doi:10.1016/j.compedu.2011.07.016.
+61M. Pedaste et al./Educational Research Review 14 (2015) 47–61

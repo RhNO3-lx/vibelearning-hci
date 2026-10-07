@@ -1,0 +1,1247 @@
+=== PDF PAGE 1 ===
+DOCUMENT RESUME
+ED 355 508CS 011 255
+AUTHORJacobson, Michael :J.; Spiro, Rand J.
+TITLEHypertext Learning Environments, Cognitive
+Flexibility, and the Transfer of Complex Knowledge:
+An Empirical Investigation.
+INSTITUTIONCenter for the Study of Reading, Urbana, IL.
+SPONS AGENCYIllinois Univ., Champaign. Coll. of Education.;
+Office of Educational Research and Improvement (ED),
+Washington, DC.
+REPORT NOCSR-TR-573
+PUB DATEApr 93
+CONTRACTG0087-C1001-90
+NOTE37p.
+PUB TYPEReportsResearch/Technical (143)
+EDRS PRICEMF01/PCO2 Plus Postage.
+DESCRIPTORS*Cognitive Processes; College Freshmen;College
+Sophomores; Difficulty Level; Higher Education;
+*Hypermedia; *Instructional Effectiveness; *Transfer
+of Training
+IDENTIFIERS*Knowledge Acquisition
+ABSTRACT
+Although the use of hypertext systems for learning
+complex knowledge has been attracting recent attention,there have
+been few discussions in the hypertext literatureon issues related to
+the cognitive prerequisites for learningconceptually demanding
+material. A study was conducted to investigatea theory-based
+hypertext learning environment that provided instructionin a complex
+and ill-structured domain. Subjectswere 34 first- and second-year
+university students who were paid for their participationin the
+study. The experimental treatment incorporatedseveral features
+derived from recent cognitive learning theory, inparticular a
+hypertext procedure that presented the instructionalmaterial in
+multiple contexts to highlight different facetsof the knowledge. The
+main results of the study revealed that althoughthe control
+treatment led to higher performanceon the measures of "memory" for
+factual knowledge, the more hypertext-liketreatment promoted
+superior knowledge "transfer." Overall, thesefindings suggest that
+hypertext learning environments that present theinstructed knowledge
+by explicitly demonstrating critical interrelationshipsbetween
+abstract and case-specific knowledge components inmultiple contexts
+would be better at preparing students touse knowledge in new ways
+and in new situations. (Five figures andseven tables are include; a
+list of 59 references is attached.) (Author/SR)
+***********************************************************************
+Reproductions supplied by EDRSare the best that can be made
+from the original document.
+***********************************************************************
+
+
+=== PDF PAGE 2 ===
+Technical Report No. 573
+HYPERTEXT LEARNING ENVIRONMENTS,
+COGNITIVE FLEXIBILITY, AND THE
+TRANSFER OF COMPLEX KNOWLEDGE:
+AN EMPIRICAL INVESTIGATION
+Michael J. Jacobson
+Rand J. Spiro
+University of Illinois at Urbana-Champaign
+April 1993
+Center for the Study of Reading
+TECHNICAL
+REPORTS
+College of Education
+UNIVERSITY OF ILLINOIS AT URBANA-CHAMPAIGN
+174 Children's Research Center
+51 Gerty Drive
+Champaign,61820
+BEST COPY AVIC,11
+4;
+U.S. DEPARTMENT OFEDUCATIONOffice or Educationat Researchend impmvement
+EDUCATIONAL RESOURCESINFORMATIONCENTER (ERIC)
+Pfrusdocument has berm reproducedasreCewed from the person ororganilationongtnating tt
+rManor changes have beenmade to improvereproduction ouallty
+Points of view or opinionsstated in this docu.ment do not necessarilyrepresent othmaiOERI posMon or pokey
+
+
+=== PDF PAGE 3 ===
+CENTER FOR THE STUDY OF READING
+Technical Report No. 573
+HYPERTEXT LEARNING ENVIRONMENTS,
+COGNITIVE FLEXIBILITY, AND THE
+TRANSFER OF COMPLEX KNOWLEDGE:
+AN EMPIRICAL INVESTIGATION
+Michael J. Jacobson
+Rand J. Spiro
+University of Illinois at Urbana-Champaign
+April 1993
+College of Education
+University of Illinois at Urbana-Champaign
+174 Children's Research Center
+51 Getty Drive
+Champaign, Illinois 61820
+
+
+=== PDF PAGE 4 ===
+1992-93 Editorial Advisory Board
+MUM Bottom leyChristopher Kolar
+Eurydice M. BouchereauBrian A. Levine
+Clark A. ChinnElizabeth MacDonell
+Judith DavidsonMoinserrat Mir
+Colleen P. GilranePunyashloke Mishra
+lieriberto GodinaJane Montes
+Richard HomeBillie Jo Rylance
+Carole JanischShobha Sinha
+Melinda A. Wright
+MANAGING EDITOR
+Fran Lehr
+MANUSCRIPT PRODUCTION ASSISTANT
+Delores Plowman
+
+
+=== PDF PAGE 5 ===
+Jacobson & Spiro
+Abstract
+An Empirical Investigation - 1
+Although the use of hypertext systems for learning complex knowledge has been attracting recent
+attention, there have been few discussions in the hypertext literatureon issues related to the cognitive
+prerequisites for learning conceptually demanding material. A study was conducted to investigatea
+theory-based hypertext learning environment that provided instruction in a complex and ill-structured
+domain. The experimental treatment incorporated several features derived from recent cognitive
+learning theory, in particular a hypertext procedure that presented the instructional material in multiple
+contexts to highlight different facets of the knowledge. The main results of the study revealed that
+although the control treatment led to higher performance on themeasures ofmemoryfor factual
+knowledge, the more hypertext-like treatment promoted superior knowledgetransfer.Overall, these
+findings suggest that hypertext learning environments that present the instructed knowledge by explicitly
+demonstrating critical interrelationships between abstract and case-specific knowledge components in
+multiple contexts would be better at preparing students to use knowledge innew ways and in new
+situations.
+
+
+=== PDF PAGE 6 ===
+Jacobson & SpiroAn Empirical Investigation - 2
+HYPERTEXT LEARNING ENVIRONMENTS, COGNITIVE FLEXIBILITY,
+AND THE TRANSFER OF COMPLEX KNOWLEDGE:
+AN EMPIRICAL INVESTIGATION
+The application of hypertext systems to educational situations has been attracting considerable attention
+recently (e.g., Beeman et al., 1987, 1988; Conklin, 1987; Crane & Mylonas, 1988; Dede, 1987, 1988;
+Jonassen, 1986, 1988; Lehrer, 1991; Spiro & Jehng, 1990). Whereas some hypertextprograms have been
+used primarily as knowledge storage and access systems, other applications of this technology have
+attempted to structure learning environments with explicit instructional goals.Many of these
+instructionally oriented hypertext systems have been developed in complex domains andare intended
+for students at an advanced stage of learning (e.g., Beeman et al., 1987, 1988; Crane & Mylonas, 1988).
+Unfortunately, there have been few discussions in the hypertext literatureon issues related to the
+cognitive prerequisites for learning conceptually demanding knowledge. Directly relevantto this concern
+is recent cognitive instructional research on learning complex knowledge. For example,a number of
+studies have documented serious conceptual misunderstandings of complex knowledgeamong students
+at different instructional levels (e.g., Feltovich, Spiro, & Coulson, 1989; McCloskey, 1983; Perkins &
+Simmons, 1989; Vosniadou & Brewer, 1989; White, 1983) and the frequent failure of studentsto
+appropriately transfer previously acquired knowledge (e.g., Branford, Franks, Vye, & Sherwood, 1989;
+Brown, 1989; Gick & Holyoak, 1987; Lave, 1988; Schoenfeld, 1983). There has also been theoretical
+work that attempts to address learning problems such as these (e.g., Brown, Collins, & Duguid,1989;
+Cognition & Technology Group, 1992; Glaser, 1990). In addition to addressing the issues of complexity
+and transfer, the recently articulated theory of learning and instruction that is centralto this report,
+cognitive flexibility theory, has also been specifically discussed '.erns of its applicability to guiding the
+design of hypertext learning environments (Spiro, Coulson, Feltovich, & Anderson, 1988; Spiro,
+Feltovich, Jacobson, & Coulson, 1992a, 1992b; Spiro & Jehng, 1990).
+This report discusses a study that explored selected theoretical and design issues associated with theuse
+of hypertext learning environments to promote the acquisition and transfer of complex and ill-structured
+knowledge.' Specifically, two approaches for structuring hypertext learning environmentswere used to
+provide instruction in a conceptually irregular domain, the social impact of technology.The
+experimental treatment incorporated design features derived from cognitive flexibility theory, in
+particular a procedure that provided several presentations of the instructional material inmultiple
+contexts to highlight different facets of the knowledge. This approach was postulated to develop flexible
+cognitive structures that would enhance the ability of learnersto transfer their previously acquired
+knowledge to new application situations. The control treatment useda minimal hypertext/computer-
+based drill that consisted of several design features thatwere antithetical to those of the experimental
+condition. The control condition was intended to present thesame instructional content in a more rigid
+and decontextualized manner and was hypothesized to foster greatermastery of factual knowledge, but
+with a lesser level of achievement on tests of knowledge transfer. The possibleinfluence of fundamental
+epistemic beliefs held by the students concerning thenature of knowledge and learning on their ability
+to learn using a hypertext environment was also investigated.
+'Ill-structured knowledge domainsare comprised of many concepts that are relevant in a typical
+knowledge application situation and where the application ofa concept or combination of concepts can
+vary widely across different case situations (Spiro et al., 1988; for a discussion,see Jacobson & Spiro,
+1991).
+1
+
+
+=== PDF PAGE 7 ===
+Jacobson & SpiroAn Empirical Investigation - 3
+Theoretical ant! Research Perspectives
+Cognitive flexibility Theory
+This recent cognitive theory of case-based learning has been specifically articulatedto address problems
+associated with the acquisition and transfer of complex knowledge (Spiro et a1.,1988). A central theme
+of cognitive flexibility theory (CFI') is that the oversimplification of complex knowledge isa significant
+contributing factor to many examples of learning failure (e.g., Coulson, Feltovich, & Spiro,1989;
+Feltovich et al., 1989; Myers, Feltovich, Coulson, Adami, & Spiro, 1990; Spiroet al., 1988; Spiro,
+Vispoel, Schmitz, Samaraptmgavan, & Burger, 1987).CFT proposes a number of instructional
+principles that are intended to avoid inappropriate oversimplifications of complex knowledgeat an
+advanced instructional level, but in a manner that makes understanding this material cognitively
+tractable. In particular, there are five CFT instructional principles thatare relevant for the present study
+(see Spiro et al., 1988, for a more detailed discussion):
+1.Multiple knowledge representations.The use of a monolithic or unidimensional depiction of
+complex and ill-structured knowledge frequently misrepresents important conceptual facetsof the
+domain (Spiro et al., 1987; Spiro et a1., 1988). CET recommends employing multipleways to represent
+knowledge in instructional activities (e.g., multiple themes, multiple analogies, multiple intellectualpoints
+of view) to reflect more accurately the multifaceted nature of complex knowledge.
+2. Link and tailor abstract concepts to different case examples. In ill-structuredcontent areas, there
+is considerable variability in terms of how abstract concepts apply to actualcase situations. CFT
+recommends illustrating abstract concepts using multiplec.se examples to demonstrate to the learner
+the nuances of abstract conceptual variability associated with ill-structured domainsto the learner (Spiro
+et al., 1988, Spiro & Jehng, 1990).
+3. Early introduction of domain complexity. A common instructional approach isto break a complex
+topic into small conceptual units, learn these units in isolation, at:d thento combine the units.
+Unfortunately, this approach tends to oversimplify and decontextualize complexmaterial (e.g., Brown,
+1989; Spiro et al., 1988). As an alternative, CFI' recommends the early introduction ofcomplexity in
+a cognitively manageable manner that still reflects some of the multifaceted interactions of various
+conceptual elements (Spiro & Jehng, 1990). The advanced learner is thusprepared for a deeper
+explication of the knowledge with further study that isnot qualitatively different from the earlier
+instruction.
+4. Stress the interrelated and web-like nature of knowledge. CFTproposes that the demonstration of
+conceptual interrelationships in multiple contexts helps cultivatea rich and flexible understanding of a
+complex content area. In contrast, teaching isolated and abstractedknowledge elements may produce
+more rigid or "inert" knowledge representations that limit the ability of the learnerto apply the
+knowledge in new knowledge application situations (Bereiter & Scardamalia,1985; Bransford et al.,
+1989; Spiro et al., 1987).
+S. Encourage knowledge assembly. In a complex and ill-structured domain,frequently there is germane
+knowledge from a variety of previously learned conceptual andcase sources that is relevant to a novel
+knowledge application situation. Rather than requiring the learnerto retrieve from memory a single,
+precompiled monolithic knowledge schema thatmay not be appropriate to a new situation, CFT
+proposes that the learner assemble relevant abstract conceptual and case-specific knowledgecomponents
+for a given knowledge application or problem-solving task.
+In addition to these general instructional recommendations, CFTmay be used to provide a theoretical
+framework to guide the development of hypertext learning environments(Spiro et al., 1988; Spiro et al.,
+
+
+=== PDF PAGE 8 ===
+Jacobson & SpiroAn Empirical Investigation - 4
+1992a, 1992b; Spiro & Jehng, 1990).Several prototype proof-of-concept hypertext and hypermedia
+systems that implement CFT design recommendations have been developed. As will be detailed below,
+the experimental and control treatments of this study varied in their utilization of these five CFT
+principles for research purposes.
+Epistemic Beliefs about the Organization of Knowledge and the Nature of Learning
+Another relatively recent area of cognitive inquiry of potential relevance to hypertext and hypermedia
+investiga ors and developers involves research into the influence on learning associated with epistemic
+cognition, specifically student beliefs aboct the structure of knowledge and the nature of learning. In
+contrast to metacognition, which refers to cognitive monitoring and self-regulatory processes, epistemic
+cognition is concerned with the nature and influence of presumably nondomain specific general belief
+systems related to the acquisition and structure of knowledge (e.g., Kitchener, 1986; Schommer, 1990).
+Schoenfeld (1983) proposed that an individual's fundamental belief systems may operate ata "control'
+level that shapes a person's behavior in solving problems. These epistemic beliefs,2 which may not be
+consciously held, could determine the kind of cognitive resources the student accesses in performing
+learning and problem-solving tasks, even rendering inaccessible large amounts of information available
+in long-term memory that could be easily retrieved under different circumstances. A student's epistemic
+beliefs have been associated with such learning problems as the failure to integratenew knowledge with
+prior knowledge, use of rigid criteria for monitoring reading comprehension, and poor performanceon
+comprehension measures (Schommcr, 1990). There have also been suggestions that epistemic beliefs
+favoring the oversimplification of complex and ill-structured knowledge contribute to the formation of
+conceptual misunderstandings at post-introductory stages of learning (Feltovich et al., 1989; Spiroet al.,
+1988). To date, no studies have been reported that explore epistemic cognition within the context of
+using a hypertext learning environment. This issue may be particularly important in tryingto ascertain
+the effectiveness of innovative computer learning environments thatmay have characteristics (e.g.,
+nonlinear access to interrelated knowledge components, emphasis on knowledge transfer and
+independent thinking instead of rote memorization of prespecified facts) that conflict with particular
+epistemic beliefs held by the student.
+Overview of Study and Experimental Hypotheses
+The hypertext materials used in the study consisted of two main parts. In partone, the "reading stage,"
+both groups read the same instructional content in a hypertext format basedon the first three CFT
+design features discussed above (use multiple knowledge representations, link abstractconcepts to case
+examples, and early introduction of complexity). In part two, the "study stage," the experimentalgroup
+received a hypertext treatment, Thematic Criss-Crossing Hypertext, that also implemented the fourth
+and fifth CFT design principles (stress knowledge interrelationships and emphasize knowledge assembly).
+At the same stage, the Minimal Hypertext/Drill control group completeda computer-based drill over
+facts and thematic concepts taken from the "reading stage" thatwas intended to provide a highly
+contrasting instructional activity compared to the Thematic Criss-Crossing Hypertext activity.
+It was hypothesized that the Minimal Hypertext/Drill control group, which received structured practice
+over prespecified material, would achieve higher scores on the predominantly memory tests of factual
+knowledge than the experimental group. However, themore rigidly structured knowledge of the control
+group was anticipated to be less accessible to flexible, situation-specific manipulation for novel
+'In this report, the term epistemic is used rather than epistemology. While epistemologyis concerned
+with the study of the nature of knowledge and its limits and validity, epistemicrefers to the more
+general character of knowledge or knowing as a type of experience. Thus,we prefer the term epistemic
+for the broader connotative sense it conveys.
+
+
+=== PDF PAGE 9 ===
+Jacobson & SpiroAn Empirical Investigation - 5
+knowledge application situations, resulting in lowerscores on the transfer test than for the experimental
+Thematic Criss-Crossing Hypertext group.
+In terms of the influence of epistemic beliefs on the subjects' abilityto learn using the experimental
+materials, it was expected that some learners would prefer instructional approachesthat tend toward
+context simplification (rather than complexity) and that stress the memorization of prespecified
+knowledge (Spiro et al., 1987). Learners holding such beliefs, whichwe refer to as simple epistemic
+beliefs and preferences (simple EBP), were expected to be less ableto learn with the nonlinear and
+multidimensional computer environment that was used in the experimentalhypertext treatment. In
+contrast, we anticipated that learners with more complex epistemic beliefs and preferencesmplex
+EBP)who welcomed working with complex knowledge in multipleways and who valued mid active
+learner construction of knowledge--would be more successful at learning with theexperimental hypertexttreatment.
+Method
+Subjects
+Subjects were freshman and sophomore university students whowere paid for their participation in the
+study. They were randomly assigned to one of three experimentaltreatment groups (22 to Thematic
+Criss-Crossing Hypertext and 11 each to Minimal Hypertext/Drill I andMinimal Hypertext/Drill II).
+Of the 39 subjects who completed the study, three had missing dataand were eliminated from the pool.
+To obtain an equal number of subjects in the experimentaltreatment groups, two additional subjects
+were selected at random and dropped from the final statistical analysis. In the final pool of34 subjects
+(17 in each group), 25 (73.5%) were female and 9 (26.5%)were male.
+Content
+The topic for the instructional treatments, the impact of technologyon twentieth-century society and
+culture, is a complex domain that may also be characterizedas being conceptually ill-structured due to
+its multidisciplinary nature and the highly diverse and dynamicallychanging real world situations to
+which this knowledge must be applied. This instructional domainis also one with which university-level
+students were assumed tc have some familiarity because of previousexposure to formal course workin the soul and natural scLences,common information sources (such as newspapers, magazines, and
+television), and personal experience from living inour technology-rich, late-twentieth-century culture.
+However, the social impact of technology is nota standard undergraduate academic major for students
+to specialize in, thus minimizing a possible confounding factor resulting fromcertain subjects possessing
+an extensive degree of prior knowledge in this area. Instructionally, itwas anticipated that the subjects
+would be able to learn some of the advanced intellectualdimensions of this field found in the scholarly
+literature in the period of time available for the study (aboutfive hours of instructional time on the
+computer). Family, this topic was hoped to be ofsome general interest to the subjects and thus to
+motivate more compliant subject behavior during the administrationof the study. The content for the
+hypertext program used in this study, Technologyand the Twentieth Century: Impact on Society and
+Culture, was prepared by the first author after conducting readingsin the professional literature (e.g.,
+Berman, 1988; Bernstein, 1987; Bijker, Hughes, & Pinch,1987; Borchert & Stewart, 1979; Callon, 1987;
+Camenisch, 1987; De Vries, 1987; El lul, 1954/1964;Goldberg & Strain, 1987; Howard, 1985a, 1985b;
+Murphy, Mickunas, & Pilotta, 1986; Siegel & Markoff,1985).
+
+
+=== PDF PAGE 10 ===
+Jacobson & SpiroAn Empirical Investigation- 6
+Cognitive flexibility Hypertext Design Features Common to BothExperimental and
+Control Conditions
+Three CFT design principles were implemented in the hypertext materials used byboth groups during
+the reading stage (see Table 1). This section describes these theory-basedelements and shows selected
+screens from the reading stage portion of the hypertext program used by both groups.
+[Insert Table 1 about here.]
+Multiple representations of knowledge. The use of multiple representations of knowledgein instruction
+is a central recommendation of CFT that is intended to help avoidthe oversimplification of difficult
+material.The hype' ext materials that were presented to bothgroups during the reading stage
+attempted to represent some of the complexity associated with the socialimpact of technology domain
+through the use of six case examples and six abstract conceptualor thematic dimensions of analysis
+applied to each example. The six cases described different examples oftechnology and society in such
+diverse areas as medicine, automotive transportation, andcomputers (see Table 2). These cases were
+analyzed from the perspective of six different broadscope and partially overlapping thematic dimensions
+of analysis: Socially Constructed Nature of Technolois ActorNetworks; Progress - Problems; Freedom-
+Control; Technological Efficiency; and Community- Alienation.
+[Insert Table 2 about here.]
+Tailor abstract concepts to case examples. Inan ill-structured domain, there is substantial variability
+in the application of abstract concepts to specificcase situations. To help illustrate this conceptual
+variability, the six cases were subdivided into smaller units referredto as minicases. Each minicase
+consisted of a short section of text describinga portion of the case, a list of the relevant themes, and
+thematic commentaries that described how the conceptual themesare tailored to the particular case.
+The minicases were analyzed from the perspective of the six socialimpact of technology themes and
+applicable themes were placed in a Theme List (see Table 3 fora matrix of three cases, their minicase
+text sections, and the associated theme vectors). For example, in the firstminicase of the "Aborted
+Introduction of the French Electric Car," the applicable themeswere the Socially Constructed Nature of
+Technology and Actor Networks, while in the second minicase section,"The EDF Plan" (see Figure 1),
+five themes were analyzed as being relevant. In addition,thematic commentaries were written that
+briefly explained the relationship of the abstract themesto the specific minicase texts (see Figure 2).
+[Insert Table 3 about here.]
+Early Introduction of complexity. The minicase sectionswere intended to present some aspects of the
+conceptual complexity and ill-structuredness associated with the socialimpact of technology domain, but
+in a manner made more cognitively tractable by the factthat the multiple themes could be understood
+against a smaller, more manageable amount of backgroundinformation. Much could be learned fromthe study of even a single minicase. For example, "TheEDF Plan" (the second minicase text section
+of the case "The Aborted Introduction of the French ElectricCar") described how in the 1970s the
+engineers at the Electricite de France utility attemptedto develop an electric car. They were not only
+concerned with technological factors of the project, but also withthe numerous social ramifications that
+would result from the implementation of sucha new technology (see Figure 1).This case-specificinformation was analyzed in terms ofmore abstract conceptual dimensions, the social impact of
+technology themes. As "The EDF Plan" minicase is fairly richin content, five of the six social impact
+of technology themes were identifiedas being relevant and were listed in the Theme List (see Figure
+2). The commentaries for these themes, suchas Community - Alienation (also shown in Figure 2), each
+elaborated on the minicase-specific material in differentways. In a similar manner as "The EDF Plan,"
+each minicase--with its text, themes, and themecommentaries--provided a relatively self-contained unit
+I t)BEST COPY AVIZZLE
+
+
+=== PDF PAGE 11 ===
+Jacobson & SpiroAn Empirical Investigation- 7
+of instruction that was short, yet revealed significantaspects of the conceptual complexity associated with
+this subject matter. Further elements of domain complexitywere then introduced as the learner read
+each of the minicase text sections foran entire case in conjunction with the attendant themes and
+commentaries.Over the course of the study, this instructional cyclewas repeated as additional
+ccntrasting cases were introduced.
+[insert Figures 1 and 2 about here.]
+Main Features of the Experimental Condition
+As noted earlier, the experimental group useda Thematic Criss-Crossing Hypertext procedure during
+the study stage that incorporated two additional CFI' design principles:interrelated nature of knowledge
+and knowledge assembly (see Table 1).The hypertext Implementation of these two CET design
+principles are discussed in turn.
+Stress interrelated and web-like nature of knowledge. The ThematicCriss-Crossing Hypertext allowed
+a theme-based exploration of the minicase text sections in which the initial linear sequencingof material
+used in the reading stage was re-edited by theprogram to permit the nonlinear linking of minicases
+based on different theme combinations. Thisrearrangement of the hypertext link/node relationships
+between the minicase text sectionswas intended to demonstrate different conceptual and case
+interrelationships that may have been unnoticed by the subjectduring the reading stage. Over the
+course of the entire study, subjects in the Thematic Criss-Crossing Hypertexttreatment reread minicase
+text sections and the applicable theme commentaries for 15 differenttheme combinations. As an
+illustration, the theme combinations of Progress- Problems and Community - Alienation were applicable
+to 10 minicases in 4 cases (see Table 3 for some of tho minicases matchingthese two themes; Figure
+3 shows one minicase from the UTOPIA Project with thesetwo themes listed in the Theme List), while
+the theme combinations of Freedom- Control and Technological Efficiency were relevant to 14 minicases
+drawn from all 6 cases. Overall, the "criss-crossings" of theminicases from the contrasting intellectual
+perspectives represented by the theme combinationswere intended to demonstrate abstract conceptual
+interconnections across different case e.;amples and thusto highlight different facets of the domain
+knowledge. The theme combinations for this studywere preselected to insure that all subjects had read
+the same material and covered an appropriately diversemix of themes and minicases. (Future research
+is planned that would investigate learningoutcomes associated with learner selection of theme
+combinations.)
+[Insert Figure 3 about here.]
+Encourage the assembly of knowledge from differentconceptual and case sources. CFI' suggests that
+over reliance on rote memory is a problematic cognitive learningstrategy in a complex and ill-structured
+domain because acquired knowledge frequentlymust be applied in ways that differ from the initial
+knowledge encoding situation. For thisreason, the Thematic Criss-Crossing Hypertext procedure made
+no explicit attempt to foster memorization of specific abstractor case-specific knowledge. Instead, the
+Thematic Criss-Crossing Hypertext procedurepresented different ensembles of relevant case-specific
+texts based on various abstract conceptual criteria. Itwas hypothesized that the experimental subjectsreceiving this interconnectedexposure to the instructional materials would be better able to assemble
+their acquired knowledge for applicationon the transfer tasks than the control subjects receiving the
+more rote memory oriented control drill treatment.
+
+
+=== PDF PAGE 12 ===
+Jacobson & SpiroAn Empirical Investigation- 8
+Main Features of the Control Condition
+Reading stage.Two control conditions (referred toas Minimal Hypertext/Drill I and Minimal
+Hypertext/Drill II) were developed that presented slightlydifferent materials during the reading stage
+but used the same computer-based drill design for thestudy stage. Previous studies investigating CFTattempted to induce a flexibleor rigid cognitive representation of the domain knowledge partially
+through directions to the subjects during theknowledge-acquisition period to concentrateon eithermultiple themes or a single theme, dependingon the treatment condition (Hartman & Spiro, 1989; Spiro
+et al., 1987). A similar procedure was adapted foruse in this study, with the experimental group
+instructed to concentrate on multiple themes applicableto the ...ases and the control group instructed
+to concentrate on a single important theme for eachcase.
+However, there were concerns that encoding differencesduring the reading stage between the
+experimental and the control conditions could confoundthe primary research interest, whichwas theinfluence of the Thematic Criss-CrossingHypertext procedure compared to the computer-baseddrillin the study stage.Consequently two slightly different control conditionswere created:MinimalHypertext/Drill I and Minimal Hypertext/Drill II.In the Minimal Hypertext/Drill I condition, the
+subjects were given instructions that each of the sixcases best exemplified one of the six themes anda couple of sentences of text were added to eachcase to highlight the relevant theme. The Minimal
+Hypertext/Drill I subjects were then given furtherdirections that although the other themesmay havesome degree of applicability, they were to concentrateon the single most important theme identified
+for each case. In the Minimal Hypertext /DrillII control condition, the same reading stage instructions
+and content were administeredas with the experimental Thematic Criss-Crossing Hypertext condition.
+See Table 4 for a summary of the differences betweenthe three treatment conditions.
+[Insert Table 4 about here.]
+Study stage.The computer-based drill administeredto the control group during the study stagepossessed a number of features thatwere intended to be antithetical to those used for the Thematic
+Criss-Crossing Hypertext treatment in the experimentalgroup. The design for the control treatment
+was based on an approach developed by Siegel and Misselt(1984) that incorporated a number offeatures that have been recommended forcomputer-based drills, such as: promote automaticitythroughpractice, create conceptual interference using thereview of old items as new onesare introduced, anduse spaced practice and review (Salisbury, 1990). The drillprogram for the control treatment presenteda series of multiple-choice questions basedon factual and thematic content from the reading stage and
+provided feedback in terms of thecorrectness of the subject's response. All itemswere required to beanswered correctly at least two times before beingremoved from the item queue. Missed items received
+additional practice by having another drillquestion inserted before reviewing the misseditem, theninserting two different drill questions beforethe missed item, and finally inserting three differentdrillquestions before the missed item.
+There were several ways in which thiscomputer-based drill design approachwas intended' to contrastwith the CFT design principles used in theThematic Criss-Crossing Hypertexttreatment. For example,studying the Technology and Societycontent area through the use of multiple-choice questionsinherentlysimplified and abstracted the material comparedto the case-based Thematic Criss-Crossing Hypertextprocedure.Also, the mastery approach reflected in thedrill program (e.g., answer each questioncorrectly at least two times, provide additionalspaced exposure to missed items) tendedto emphasizerote memorization, in marked contrast to the CFTprinciple to stress knowledge assembly from differentconceptual and case sources.
+
+
+=== PDF PAGE 13 ===
+Jacobson & SpiroAn Empirical Investigation - 9
+Additional Treatment Features
+There are additional features of the experimental and control treatments that deserve brief
+mention. In the reading stage, general descriptions of the social impact of technology themeswere
+available by selecting Help. The subjects were required to read the general theme descriptions during
+Sessions 1 and 2 of the study, and these theme descriptions were also optionally availableas the subjects
+read thtt hypertext materials during all sessions.In addition, the subjects in both conditions were
+required to read all of the thematic commentaries in all of the minicase text sections during thereading
+stage. Tb&. program would alert the subject if a theme commentary had been skipped and would place
+the subject at the first occurrence of a missed theme commentary.
+During the study stage, an intrinsic feature of the control treatmentwas its interactivity, as the
+computer-based drill provided specific feedback to the subject in terms of thecorrectness of his or her
+responses. In contrast, the experimental Thematic Criss-Crossing Hypertext treatment involved less
+overt interactivity as it primarily consisted of a reading-oriented activity.To compensate for the
+different degree of interactivity associated with the control and experimentaltreatments, a short Theme
+Identification module was developed for the experimental treatment. This involved presentingminicase
+text sections that had been previously read, and required the subject to select the social impact of
+technology themes she or he thought were applicable (the original Theme Listwas hidden during this
+activity).After the themes were selected, the program compared the subject's theme list with the
+original theme list, provided a short message about theaccuracy of the subject's list, and displayed the
+original theme list for the subject to study if desired.
+The Minimal Hypertext/Drill I and II groups also received practice identifying themes,but within the
+cower/ of the computer-based drill. For example, a minicase text section would be presented with five
+different combinations of themes listed for the subject to select from. In keeping with theoverall format
+of the drill, a missed theme identification questionwas placed in the queue of missed items so that the
+subject would see that question for additional practice. Although the theme identificationquestions for
+both groups required a higher order analysis of the minicasetext sections (i.e., not just use of rote
+memory) to determine the appropriate themes, the drill treatment still tendedto implicitly emphasize
+the memorization of a particular answer for theme identification items. Thisoccurred because a missed
+theme identification question was placed in the incorrect itemqueue, so that the subject saw the same
+question.. everal times (the program did insert spacing items and scrambled the order of the multiple-
+choice answer and the distracter options to help minimize surface positioncues that might reveal the
+answer).Overall, the drill treatment on theme identificationwas designed to present similar
+instructional content as the experimental treatment involving theme identification,but in a manner
+intended to foster more rigid cognitive representations of the materialthrough an instructional
+procedure that emphasized rote memory.
+Test Materials
+A vocabulary test (French, Ekstrom, & Price, 1963)was given to provide an easily administered, general
+measure of verbal ability (Anderson & Freebody, 1979). An EBP instrumentwas also administered to
+provide a measure of the types of beliefs held by the subjectsconcerning the nature of learning and the
+organization of knowledge. This instrumentwas initially developed by the second author, Paul Feltovich,
+and Richard Coulson for an epistemic cognition study involvingmedical school students. The version
+of the EBP instrument used in this study consisted of 19 pairs of relatedstatements, with one statement
+positively worded and the second statement negatively worded. Subjectsrated the degree to which they
+
+
+=== PDF PAGE 14 ===
+Jacobson & SpiroAn Empirical Investigation- 10
+agreed or disagreed with each item on a 7-point Likert scale? Four representativeitems from the EBP
+instrument are listed in Table 5.
+[Insert Table S about here.]
+The main dependent measures were short-answer questionson the Technology and Society content and
+two problem-solving essays written after reading new problem scenarios relatedto technology and
+society. (Because of space limitations, less pertinent secondarydalthat were collected in the study are
+not discussed in this paper; see Jacobson, 1990.) The scenario for the rustproblem- solving essay
+administered after Session 2 placed the subject in the role ofan educational technology consultant to
+the school board of a large urban school district who hadto write a short report on the impact of
+educational technologies on the school district.For the Session 4 test, the scenario describedahypothetical United Nations task force investigating alternativeworld energy sources, environmental
+problems, and economic disruptions after theyear 2000. The subject was given the role of the project
+director who had to write an overview of the task force'sreport. For each essay, the subjects were given
+15 minutes to write their analysis of key issues and theirproposed solutions to problems posed in the
+scenario. As these essays were intended to be transfermeasures, they were on topics unrelated to the
+cases presented during the learning phase of the study.
+Experimental Procedure
+The study was administered on four separate days, Sessions14, for approximately two hours on eachday.Sessions were held on either Monday and Wednesdayor Tuesday and Thursday for two
+consecutive weeks. At Session 1, a pretestwas given and basic instruction was provided on the use of
+the Macintosh computer hardware and the hypercardprogrammed experimental software. The subjects
+studied the instructional content in the hypertextprogram on each of the four sessions of the study
+during the reading stage and study stage activities,reading one case at Session 1, two cases each during
+Sessions 2 and 3, and the last case during Session 4. Themain evaluation instruments were completedat the end of Sessions 2 and 4.
+Results
+-This section summarizes the major statistical resultsof the study. The first research hypothesis dealt
+with the possible differences in the performanceon the short-answer questions and the problem-solving
+essays between subjects in the two Minimal Hypertext/Drilltreatment conditions (n(MinimalHypertext/Drill I) = 8; n(Minimal Hypertext/DrillII) = 9). A multivariate analysis of variance
+(MANOVA) was run that compared the MinimalHypertext/Drill I and Minimal Hypertext/Drill II
+groups on the short-answer and problem-solving essay questions;no significant difference between the
+two Minimal Hypertext/Drill groups was found (Wilks' lambda= 0.89), F(4,12) = 037, p = .83. Forall subsequent analysis, the Minimal Hypertext/DrillI and Minimal Hypertext/Drill Hgroups werecollapsed into a single Minimal Hypertext/Drillgroup, resulting in two treatment groups (Thematic
+Criss-Crossing Hypertext and Minimal Hypertext/Drill)comprised of 17 subjects each.
+Analysis of variance revealedno significant difference between the two groupson short-answer factualquestions answered after readinga short technology and society case administered during thepretest,F(1,32) = 0.34, p = .56. However, the MinimalHypertext/Drill group achieved significantly higher
+mean scores on the short-answer questions of factual knowledgefor both the Session 2 and Session 4tests (see Table o for means; between subjectseffects: F(1,32) = 2.79, p= .05.As the main
+'In the administration of this instrument,the negatively worded form ofone item was inadvertentlypresented twice, thus leavinga total of 37 items for statistical analysis.
+
+
+=== PDF PAGE 15 ===
+Jacobson & SpiroAn Empirical Investigation - 11
+experimental hypotheses were directional in nature, one-tailed levels of significance are reported.) The
+Minimal Hypertext/Drill subjects completed their study stage sessions in a significantly shorter period
+of time (calculated by summing the number of minutes spent in the study stage for each of the four
+sessions; Minimal Hypertext/Drill: M = 82.62 minutes, SD = 15.09; Thematic Criss-Crossing Hypertext:
+M = 125.04 minutes, SD = 25.00; between groups: F(1,32) = 37,?9, p < .01). Using the total study
+stage duration in conjunction with the estimate of verbal ability (vocabulary score) as covariates, a
+between- and within-subjects repeated measures ANCOVA was then run that confirmed the Minimal
+Hypertext/Drill group achieved significantly higher scores on the short-answer tests over the Thematic
+Criss-Crossing Hypertext group (between subjects effects: F(1,30) = 14.54, p < .01). Together, these
+findings indicate that the Minimal Hypertext/Drill treatment was more effective and efficient than the
+Thematic Criss-Crossing Hypertext treatment at promoting the acquisition of factual knowledge.
+[Insert Table 6 about hem]
+Higher order conceptual transfer was assessed through the problem-solvingessays that were scored by
+the first author and two other trained raters who were all blind to the subjects' treatment assignments.
+The raters were instructed to assign letter grades to the essays ranging from E- to A+ (i.e.,a 15 point
+scale) based on a holistic rating of the responses.In determining the holistic score, the raters
+considered the analysis of key issues of the problem, quality of the resolution for the scenario conflict,
+overall originality of ideas (especially new ideas, not just copying ideas already contained in the scenario
+passage), writing quality, and persuasiveness of the essay. All essays were scored individually by the
+raters and scoring discrepancies were resolved through discussion. In a follow-up reliability analysis, two
+additional trained raters scored a randomly selected group of the problem-solvingessays (27 and 38,
+respectively) (Garner, Alexander, Gillingham, Kulikowi^h, & Brown, 1991). Theessay scores were then
+collapsed to a 5-point scale reflecting E to A grades and a percentage agreement interrater reliability
+procedure was employed (Baker & Niemi, 1991). The percentage agreement plusor minus one point
+between the initial group consensus scores of the essays and the scores of the two follow-upraters was
+81.8% and 81.6%, respectively. Statistical analysis of the problem-solving essayscores was based on the
+initial three rater group consensus scores. In contrast to the short-answerscores, the mean scores on
+the problem-solving essay tasks were consistently higher for the Thematic Criss-Crossing Hypertext
+group (Table 6 and Figure 4). Although the Session 2 scores were not significantly different between
+the two groups, F(1,32) = 0.48,p = 0.25, by Session 4 the Thematic Criss-Crossing Hypertextgroup had
+achieved significantly higher problem-solving essay scores than the Minimal Hypertext/Drillgroup,
+F(1,32) = 7.03, p < .01.
+[Insert Figure 4 about here.]
+As noted above, the Minimal Hypertext/Drill group completed their study stagetreatment in
+significantly less time than the Thematic Criss-Crossing Hypertextgroup. Using the study stage duration
+and vocabulary scores as covariates in a SPFAC 2.2 design (Kirk, 1982) revealeda significant group-by-
+session interaction (within-subjects interaction: F(1,30)= 2.82, p = .05). This last analysis (which is
+consistent with the significant difference found on the ANOVA of the Session 4essay scores reported
+earlier) indicates that when the problem-solving essay scoresare adjusted for differences in verbal ability
+and the longer study stage duration of the Thematic Criss-Crossing Hypertext, there is stilla significant
+difference between the Thematic Criss-Crossing Hypertext and the Minimal Hypertext/Drillgroups on
+the essays by the last session of the study.That is, the Thematic Criss-Crossing Hypertext essay
+performance is significantly greater by Session 4 even when the extra study time is statisticallyused
+against it.
+
+
+=== PDF PAGE 16 ===
+Jacobson & SpiroAn Empirical Investigation - 12
+Epistemic Beliefs and Preferences
+Three subjects failed to complete all items on the EBP instrument and thuswere excluded from the
+analyses conducted in this section. The negatively worded itemswere recoded positively (i.e., 1 = 7, 2
+= 6, etc.), and a score for each subject was calculated by totaling the Likert scale selections for each
+item, yielding a possible range of 37 to 259 for the EBP instrument (larger numbersindicated more
+complex EBP). This instrument was found to havea moderately high internal reliability (Cronbach's
+alpha = 0.75), and there was no significant correlation between the EBP and vocabularytest scores (r
+= 0.14, p > .05).Subjects with a score above the mean (M= 155, SD = 17) were assigned to a
+"complex EBP" group and subjects below the meanwere assigned to a "simple EBP" group. A
+significant interaction was found for the experimental treatmentgroup x EBP group on the problem-
+solving essays (between-subjects effect F(1,27)= 5.50,p < .01) (see Table 7 and Figure 5). As there
+was no significant within-group "session" effect, the Session 2 and Session 4 problem-solvingessay scores
+were collapsed to a single overall problem-solving essay score. Simple main effectswere then tested,
+using Dunn's procedure to set the significance level at .035as the error rates for simple main effects
+tests are not mutually orthogonal (Kirk, 1982). Two significant simple main effectswere found: (a)
+treatment group at the complex EBP level, F (1,27) = 7.89, p < .01; and (b) EBPgroup using the
+Thematic Criss-Crossing Hypertext, F (1,27)= 4.42, p = .02.These findings indicated that the
+significant interaction was due to: (a) higher essayscores for the complex EBP subjects in the Thematic
+Criss-Crossing Hypertext group as compared to the loweressay scores for the complex EBP subjects
+in the Minimal Hypertext/Drill group; and (b) higheressay scores of the complex EBP subjects
+compared to the simple EBP subjects after receiving the experimentalThematic Criss-CrossingHypertext treatment.
+[Insert Table 7 about here.]
+[Insert Figure 5 about here.]
+Discussion
+Computer-Based Drills and the Inculcation of Inert Knowledge
+The finding that the Minimal Hypertext/Drillgroup had higher scores on the factual knowledge items
+was in the predicted direction.Given the greater amount of factual knowledge possessed by the
+Minimal Hypertext/Drill subjects, the questionmay be asked:Why could not the Minimal
+Hypertext/Drill group vse this knowledgeas well as the Thematic Criss-Crossing Hypertext group on
+the problem-solving transfer tasks?
+There are two related cognitive interpretations for the lackof knowledge transfer in the Minimal
+Hypertext/Drill group: rigid knowledge representations (Spiroet al., 1987) and inert knowledge (e.g.,
+Bereiter & Scardamalia, 1985; Bransford et al., 1989).Spiro and associates (1987) proposed that
+simplifying instructional strategies can produ-3 rigid and monolithicrepresentations of knowledge that
+inhibit the ability of learners to use their knowledge innew contexts. Such rigid types of knowledge
+structures are hypothesized to consist of a limited number ofaccess routes to the previously acquired
+knowledge. This would require the learner to retrieve andapply the knowledge under conditions that
+were highly similar to those that existed during the initial instruction. A similarview has been
+articulated by Bereiter and Scardamalia (1985) and Eransfordet al. (1989), who adopt Whitehead's
+(1929) notion of "inert knowledge." As the "periodic table"analogy suggests, inert knowledge does not
+interact or combine with other knowledge the studentpossesses. Two distinguishing characteristics ofinert knowledge are:(a) the accurate ability of students to reproduce knowledge underone set ofconditions (i.e., those matching the encoding context),and (b) the inability of students to apply this
+knowledge in new knowledge applicationcontexts (i.e., a transfer situation).
+1Cr
+
+
+=== PDF PAGE 17 ===
+Jacobson & SpiroAn Empirical Investigation - 13
+From these two similar perspectives, the Minimal Hypertext/Drillgroup had developed rigid or inert
+knowledge structures for their social impact of technology knowledge. The knowledge acquiredby the
+Minimal Hypertext /Drill group was bound to certain contexts associated with the encodingprocess (i.e.,
+the simplified and abstracted multiple-choice format in which the knowledgewas practiced in the drill).
+The short-answer questions covered primarily factual information ina manner similar to the multiple-
+choice format of the drill items (indeed, a number of the questions covered thesame material). Given
+the similarity of the knowledge application situation associated with the short-answerquestions to the
+multiple-choice items used in the study stage, it is not surprising that the Minimal Hypertext/Drillgroup
+performed at a significantly higher level on the factual knowledge tests than the Thematic Criss-Crossing
+Hypertext group. However, when the Minimal Hypertext/Drill subjectswere required to use their
+knowledge in a context that contrasted sharply from the original knowledge-acquisitioncontext, the
+problem-solving essay, they performed at a significantly lower level than the ThematicCriss-Crossing
+Hypertext group. As predicted, the Minimal Hypertext/Drill subjectswere less able to access their
+acquired knowledge and to link it in a situation appropriatemanner to the new knowledge-application
+tasks.
+Thematic Criss-Crossing Hypertext: Promoting the Transfer of Knowledge
+The significant transfer effects found by Session 4 with the Thematic Criss-CrossingHypertext treatment
+were consistent with the theoretical framework of the study. The first CFT instructional principle used
+in the this treatment, demonstrate the interrelated and web-likenature of knowledge, presented the
+minicase text sections from various intellectual perspectives associatedwith the different theme
+combinations. This allowed various case-specific elements of knowledgeto be explicitly linked and
+interconnected to each other and to the abstract technology and society themes.
+The second instructional principle attempted to promote knowledgeassembly and to de-emphasize rote
+memorization. It may also be that part of the effectiveness of the Thematic Criss-CrossingHypertext
+treatment was due to the actual modeling of knowledge assembly through thecomputer re-editings of
+the link relationships between the minicases basedon different theme combinations. The Thematic
+Criss-Crossing Hypertext procedure essentially demonstrateda way in which different hypertext
+knowledge cranponents (i.e., the minicases and themes) could be combined andrecombined in different
+ways.It could be that exposure over time to this hypertext-based modeling ofknowledge assembly
+helped the subjects to internalize and improve theirown ability to cognitively assemble knowledge from
+diverse conceptual and case sources.
+Although a significant difference between the twogroups on the transfer measure did not appear until
+the Session 4 problem-solving essay task, this delayed manifestation ofthe instructional effectiveness of
+the Thematic Criss-Crossing Hypertext was expected fortwo reasons. First, the Thematic Criss-Crossing
+Hypertext treatment represented a completelynew type of instructional activity for the subjects and they
+may have needed a couple of sessions to become familiar with it. Second, andmore importantly, we
+had anticipated that the subjects would requirea period of time in order to assimilate the wide range
+of thematic and case associations thatwere presented during their instructional treatment. Given the
+positive findings of transfer even over the limited two week period of thepresent study, we are planning
+future research into the longer termuse of hypertext learning environments of this type and their
+application in real classroom situations.
+
+
+=== PDF PAGE 18 ===
+Jacobson & SpiroAn Empirical Investigation - 14
+Implications for the Design and Use of Hypertext Learning Environments
+A central concern of this study was the investigation of theory-based design principles fora hypertext
+learning environment to provide instruction in a complex and ill-structuredcontent area. There are
+several important implications of this research project for the design anduse of hypertext systems in
+instructional settings. This section discusses some of the specific design features of theCFI' hypertext
+treatment, and concludes with a general consideration of the instructional applications of technology-
+based learning environments of this type.
+Multiple virtual links to case-based hypertext nodes. Thereare several hypertext design features used
+for the Thematic Criss-Crossing Hypertext treatment thatvary from other instructional hypertext systems
+described in the literature.During the reading stage, the hypertext links to the minicaseswere
+essentially linear in nature, being determined by the narrative flow of thetext ssctions associated witheach case.Hierarchical access to the abstract, theme list, and themecommentary nodes was then
+available from each of the minicases. The hypertext links and nodes thatwere initially used in the
+reading stage thus represented a set of knowledgeaccess routes that were analogous to a traditional
+written text with a linear discourse structure supplemented by footnotesand references (e.g., the theme
+lists and thematic commentaries). For the Thematic Criss-CrossingHypertext activity used during the
+study stage, however, the hypertext linkages between the minicaseswere frequently nonlinear and cut
+across the different cases. The different theme combinations for Thematic Criss-Crossing Hypertext
+procedure (Spiro & Jehng, 1990) were usedas the basis for generating multiple virtual sets of links
+between the minicase text section nodes. This approach is in sharpcontrast to the more common use
+of fixed links to different nodes found in other instructional hypertextdesign approaches (e.g., Beemar
+et al., 1987, 1988; Crane & Mylonas, 1988; Jonassen, 1986).During the Thematic Criss-Crossing
+Hypertext, the restructuring of the link/node relationships between the minicasespermitted numerous
+different traversals of the hypertext minicase knowledge-base by usingprincipled criteria concerning
+cognitively relevant relationships between the abstract and ease-specificcomponents of the knowledge
+domain. As noted earlier, the theme combinations selected for the ThematicCriss-Crossing Hypertext
+procedure were predetermined to insure similarcoverage of the acquisition materials by subjects in the
+experimental group. Future research is planned to explore the instructionalconsequences of learner
+selected theme combinations and learner created themes.
+Minimizing cognitive overload and disorientation in hypertext learningenvironments. One problemdiscussed in the hypertext literatureconcerns possible cognitive overload and disorientation that may
+occur when using hypertext system., (Charney, 1987; Conklin, 1987; Edwards& Hardman, 1989;
+Jonassen, 1986; Smith, Weiss, & Ferguson, 1987; Spiro & Jehng,1990). Another problem involves the
+possible lack of guidance as to what are the instructionally importantfacets of the hypertext knowledgebase.These problems art minimized with hypertext learningenvironments employing cognitive
+flexibility theory design elements, primarily through theuse of the minicase (Spiro & Jehng, 1990). The
+learner is given small and cognitively manageable unitsto study (i.e., the minicase text sections) that still
+reflect aspects of the domain's conceptual complexity andill-structuredness. The problem of cognitive
+disorientation is also managed by using the minicaseas the primary hypertext node from which a limited
+set of instructionally relevant links are available (i.e., theme list, thematiccommentary, general theme
+descriptions, abstract). The learner cannot become lost becauseshe or he is only one link away from
+any given minicase and the orienting information available from that node, suchas the on-line help or
+a general abstract of the case. (See Spiro & Jehng, 1990,pp. 183-188, for an extended discussion of
+these and other advantages of using minicasesas organizational foci.)Also, important facets of the
+instructional materials are made explicit through the thematiccommentaries, which detail how the
+abstract knowledge themes are related to the case-specificinformation depicted in a given minicase textsection.
+
+
+=== PDF PAGE 19 ===
+Jacobson & SpiroAn Empirical Investigation - 15
+Cognitive flexibility theory and the design of hypertext learning environments. The present study
+represents the first -;mpirical attempt to evaluate the appropriateness of selected cognitive flexibility
+theory design recommendations for the development of a hypertext learning environment, Given the
+superiority of the Thematic Criss-Crossing Hypertext group on the transfer test, the design prescriptions
+of cognitive flexibility theory for the development of instructional hypertext systems should be further
+explored. Research could be directed towards different issues related to cognitive flexibility theory
+hypertexts such as the degree of learner control over case and theme selection, learner developed
+instructional sequences, different delivery modes for providing expert-like thematic commentary (e.g.,
+written vs. spoken), use of graphical aids to represent complex abstract and case-specific
+interrelationships, and so forth.
+Interaction of Epistemic Beliefs and Preferences and Type of Computer Learning
+Environment
+Earlier work by Anderson and Freebody (1979) has documented the high correlation betweenscores
+on vocabulary tests and other measures of verbal and intellectual ability.However there was no
+significant correlation between the scores on the EBP instrument and the vocabulary test. This fuirling
+suggests that the basic beliefs held by a student concerning the nature of learning and know/edge
+constitute an independent factor from the cluster of cognitive skills generally associated with verbal and
+intellectual ability. Further research is needed to explore the relationship between general cognitive
+skill and the learner's epistemic beliefs using additional measures of verbal, intellectual, and academic
+competence than those employed in the present study.
+A significant interaction was found between the EBP of the subjects, the type of experimentaltreatment
+they received, and their performance on the problem-solving essay tasks. Whereas these findings should
+be viewed as exploratory because of the pilot nature the EBP instrument, the overall results of this
+portion of the study are consistent with earlier research that has demonstrated the influence ofan
+individual's epistemic beliefs on learning (e.g., Feltovich et a1.,1989; Schoenfeld, 1983; Schommer, 1490).
+A component of this interaction was that the subjects with complex EBP whowere assigned to the
+Minimal Hypertext/Drill control condition had transfer essayscores averaged for the two sessions that
+were significantly lower than the complex EBP subjects in the Thematic Criss-Crossing Hypertext
+experimental condition. This finding is consistent with the conventional wisdom that regardscomputer-
+based drills as being more appropriate for low-level factual memorization. Given the increasingfocus
+of contemporary educational practice to stress higher order thinking and knowledgetransfer skills, we
+feel a finding that students holding a more complex set of epistemic beliefs should learnless well with
+the long term use of a computer-based drill as not being problematic.
+Another, potentially moi e important, fmding was that the subjects with complex EBP whoreceived the
+Thematic Criss-Crossing Hypertext treatment scored higheron their transfer essay task compared to
+the subjects with simple EBP who received thesame treatment. A likely explanation for this finding
+is that subjects with simple EBP had difficulty with the nonlinear and multidimensionalnature of the
+experimental hypertext system. Further research could investigate how students with simpleEBP can
+be better prepared to use and learn from an instructional approach suchas the Thematic Criss-Crossing
+Hypertext that employs multiple knowledge representations and nonlinear linkagesto demonstrate
+various knowledge component interrelationships. Other topics future cognitive instructionalresearch
+could explore are how these epistemic beliefs and preferences might be shaped byparticular learning
+experiences, the degree to which they developor change over time, and how they might influence
+learning with different types of technology-based and nontechnology -basedlearning environments.
+
+
+=== PDF PAGE 20 ===
+Jacobson & SpiroAn Empirical Investigation - 16
+Conclusion
+This report has discussed research on the transfer of complex knowledge resulting from the use of an
+innovative theory-based hypertext learning environment. In particular, the demonstration of significant
+transfer effects that were highly consistent with the study's cognitive theoretical framework is notable
+given the limited duration of the study. The results of this experiment suggest that an instructional
+hypertext system that demonstrates critical conceptual interrelationships and the assembly of different
+case-specific and abstract knowledge components would prepare students to use their knowledge in new
+ways and in new situations, as shown in the superiority of the Thematic Criss-Crossing Hypertext group
+on the transfer tests. In contrast, instructional systems that tend to emphasize the acquisition of factual
+knowledge, such as computer-based drills, may be quite effective at preparing students for tests requiring
+the recall of factual information. Unfortunately, in this study it was found that subjects who usedan
+instructional computing design of this latter type were less capable of applying their acquired knowledge
+to new contexts.In addition, researchers may wish to assess underlying epistemic beliefs and
+preferences held by students concerning the nature of knowledge and learning, given the indication in
+this study that such beliefs and preferences may enhance or constrain the educational effectiveness of
+a given type of technology-based learning environment.It is hoped that this research will stimulate
+further investigation into the cognitive learning processes required to acquire and transfer complex
+knowledge and the ways technology-based learning environments may be used to assist students in
+developing rich, interconnected, and usable knowledge in a wide range of domains.
+2 u
+
+
+=== PDF PAGE 21 ===
+Jacobson & SpiroAn Empirkal Investigation- 17
+References
+Anderson, R. C., & Freebody, P. (1979).Vocabulary knowledge (Tech. Rep. No.136). Urbana-Champaign: University of Illinois, Centerfor the Study of Reading.
+Baker, E. L, & Niemi, D. (1991).Assessing deep understanding of science andhistory through hypertext.Paper presented at the annual meeting ofthe American Educational ResearchAssociation, Chicago.
+Beeman, W. 0., Anderson, K. T., Bader, G.,Larkin, J., McClard, A.McQuillan, P, & Shields, M.(1987). Hypertext and pluralism: Fromlineal to non-lineal thinking. In Hypertext'87 papers (pp. 67-88).Chapel Hill: University of North CarolinaPress.
+Beeman, W. 0., Anderson, K., Bader,G., Larkin, J., McClard, A. P., McQuillan,P., & Shields, M.(1988). Intennedia: A case study of innovationin higher education (Final reportto the Annenberg/CPBProject). Providence, RI: Brown University,Office of Program Analysis, Institutefor Research andScholarship.
+Bereiter, C., & Scardamalia, M. (1985).Cognitive coping strategies and theproblem of "inertknowledge." In S. F. Chipman, J. W. Segal,& R. Glaser (Eds.), Thinking andlearning skills: Currentresearch and open questions (Vol. 2,pp. 65-80). Hillsdale, NJ: Erlbaum.
+Berman, M. (1988). All that is solid meltsinto air: The experience of modernity.New Yot.Penguin.
+Bernstein, B. J. (1987). The artificialheart should not be used. In B.Leone (Ed.), Science andtechnology (Vol. 1, pp. 293-298). St. Paul,MN: Greenhaven Press.
+Bijker, W. E., Hughes, T. P., &Pinch, T. J. (Eds.). (1987). The socialconstruction of technologicalsystems: New directions in the sociology andhistory of technology. Cambridge, MA:The MIT Press.
+Borchert, D. M., & Stewart, D. (Eds.).(1979). Being humana technological age. Athens, OH: OhioUniversity Press.
+Bransford, J. D., Franks, J. J., Vye, N.J., & Sherwood, R. D. (1989). Newapproaches to instruction:Because wisdom can't be told. In S. Vosniadou& A. Ortony (Eds.), Similarityand analogical reasoning(pp. 470-497). Cambridge: CambridgeUniversity Press.
+Brown, A. L. (1989). Analogical learningand transfer: What develops? In S.Vosniadou, & A. Ortony(Eds.), Similarity and analogical reasoning(pp. 470-497). Cambridge: CambridgeUniversity Press.
+Brown, J. S., Collins, A., & Duguid,P. (1989). Situated cognition andthe culture of learning.Educational Researcher, 18, 32-42.
+Callon, M. (1987). Society in themaking: The study of technologyas a tool for sociological analysis. InW. E. Bijker, T. P. Hughes, & T. Pinch(Eds.), The social construction oftechnological systems (pp. 83-103). Cambridge, MA: The MIT Press.
+Camenisch, P. F. (1987). Medicaltechnologies and communities of moralvalue. In S. E. Goldberg &C. R. Strain (Eds.), Technologicalchange and the transformation of America(pp. 117-132). Carbondale:Southern Illinois University.
+Charney, D. (1987). Comprehendingnon-linear text: The role of discoursecues and reading strategies.In Hypertext '37 papers (pp. 109-120).Chapel Hill: University of NorthCarolina Press.
+BEST COPYAMBLE
+
+
+=== PDF PAGE 22 ===
+Jacobson & SpiroAn Empirical Investigation - 18
+Cognition & Technology Group. (1992). Technology and the design of generative learning environments.
+In T. M. Duffy, & D. J. Jonassen (Eds.), Constructivism and the technology of instruction: A conversation
+(pp. 77-89). Hillsrlale, NJ: Erlbaum.
+Conklin, J. (1987). Hypertext: An introduction and survey. IEEE Computer, 20(9), 1741.
+Coulson, R. L., Feltovich, P. J., & Spiro, R. J. (1989). Foundations of a misunderstanding of the
+ultrastructural basis of myocardial failure: A reciprocation network of oversimplifications. The Journal
+of Medicine and Philosophy, 14, 109-146.
+Crane, G., & Mylonas, E. (1988). The Perseus project: Interactive curriculum on classical Greek
+civilization. Educational Technology, 28(11), 25-32.
+Dede, C. J. (1987). Empowering environments, hypermedia and microworlds. The Computing Teacher,
+15(3), 20-24, 61.
+Bede, C. J. (1988). The probable evolution of artificial intelligence based educational devices.
+Technological Forecasting and Social Change, 34, 115-133.
+DeVries, W. C. (1987). The artificial heart should be used. In B. Leone (Ed.), Science and technology:
+Opposing view point sources (Vol. 1, pp. 289-292). St. Paul, MN: Greenhaven Press.
+Edwards, D. M., & Hardman, L. (1989). "Lost in hyperspace": Cognitive mapping and navigation in a
+hypertext environment. In R. McAleese (Ed.), Hypertext: Theory into practice. Norwood, NJ: Ablex.
+Ellul, J. (1964). The technological society (J. Wilkinson, Trans.). New York: Vintage Books. (Original
+work published 1954)
+Feltovich, P. J., Spiro, R. J., & Coulson, R. L. (1989). The nature of conceptual understanding in
+biomedicine: The deep structure of complex ideas and the development of misconceptions. In D. Evans
+& V. Pate (Eds.), The cognitive sciences in medicine (pp. 113-172). Camoridge, MA: The MIT Press
+(Bradford Books).
+French, J. W., Ekstrom, R. B., & Price, L. A. (1963). Kit of reference tests for cognitive factors.
+Princeton, NJ: Educational Testing Service.
+Garner, R., Alexander, P. A., Gillingham, M. G., Kulikowich, J. M., & Brown, R. (1991). Interest and
+learning from text. American Educational Research Journal, 28, 643-659.
+Gick, M. L., & Holyoak, K. J. (1987). The cognitive basis of knowledge transfer. In S. M. Cormier, &
+J. D. Hagman (Eds.), Transfer of learning: Contemporary research and applications (pp. 9-46). New York
+: Academic Press.
+Glaser, R. (1990). The reemergence of learning theory within instructional research. American
+Psychologist, 45, 29-39.
+Goldberg, S. E., & Strain, C. R. (Eds.). (1987). Technological change and the transformation of America.
+Carbondale: Southern Illinois University.
+Hartman, D. K., & Spiro, R. J. (1.989). Explicit text structure instruction for advanced knowledge
+acquisition in complex domains: A post-structuralist perspective. Paper presented at the annual meeting
+of the American Educational Research Association, San Francisco.
+
+
+=== PDF PAGE 23 ===
+Jacobson & SpiroAn Eripirical Investigation - 19
+Howard, R. (1985a). Brave new workplace. New York: Viking.
+Howard, R. (1985b). UTOPI: Where workers craft new technology. Technology Review, 88(3), 42-49.
+Jacobson, M. J. (1990). Knowledge acquisition, cognitive flexibility, and the instructional applications of
+hypertext: A comparison of contrasting designs for computer-enhanced learning environments. Unpublished
+doctoral dissertation, University of Illinois at Urbana-Champaign.
+Jacobson, M. J., & Spiro, R. J. (1991).A framework for the contextual analysis of computer-based learning
+environments (Tech. Rep. No. 527). Urbana-Champaign: University of Illinois, Center for the Study of
+Reading.
+Jonassen, D. H. (1986). Hypertext principles for text and courseware design. Educational Psychologist,
+21, 269-292.
+Jonassen, D. H. (1988). Designing structured hypertext and structuring access to hypertext. Educational
+Technology, 28(11), 13-16.
+Kirk, R. E. (1982). Experimental design: Procedures for the behavioral sciences (2nd ed.). Monterey, CA:
+Brooks/Cole.
+Kitchener, K. S. (1986). The reflective judgment model: Characteristics, evidence, and measurement. In
+R. A. Mines & K. S. Kitchener (Eds.), Adult cognitive development (pp. 76-91). New York: Praeger.
+Lave, J. (1988). Cognition in practice: Mind, mathematics and culture in everyday life. Cambridge:
+Cambridge University Press.
+Lehrer, R. (1991). Authors of knowledge: Patterns of hypermedia design. Paper presented at the annual
+meeting of the American Educational Research Association, San Francisco.
+McCloskey, M. (1983). Naive theories of motion. In D. Gentner & A. L. Stevens (Eds.), Mental models.
+Hillsdale, NJ: Erlbaum.
+Murphy, J. W., Mickunas, A., & Pilotta, J. J. (Eds.). (1986). The underside of high-tech: Technology and
+the deformation of human sensibilities. Westport, CN: Greenwood Press.
+Myers, A. C., Feltovich, P. J., Coulson, R. L., Adami, J. F., & Spiro, R. J. (1990). Reductive biases in
+the reasoning of medical stu lents: An investigation in the domain of acid-base balance. In B. Bender,
+R. J. Hiemstra, A. J. J. A. Scherbier, & R. P. Zwierstra (Eds.), Teaching and assessing clinical
+competence. Groningen, the Netherlands: BoekWerk Publications.
+Perkins, D. N., & Simmons, R. (1989). Patterns of misunderstanding: An integrative model for science,
+math, and programming. Review of Educational Research, 58, 303-326.
+Salisbury, D. F. (1990). Cognitive psychology and its implications for designing drill and practice
+programs for. computers. low gal of Computer-Based Instruction, 17(1), 23-30.
+Schoenfeld, A. H. (1983). Beyond the purely cognitive: Belief systems, social cognitions, and
+metacognitions as driving forces in intellectual performance. Cognitive Science, 7, 329-363.
+Schommer, M. A. (1990). Effects of beliefs about the nature of knowledge on comprehension. Journal
+of Educational Psychology, 82, 498-504.
+
+
+=== PDF PAGE 24 ===
+Jacobson & SpiroAn Empirical Investigation - 20
+Siegel, L. M., & Markoff, J. (1985). the high cost of high tech: The dark side of the chip. New York:
+Harper & Row.
+Siegel, M. A., & Misselt, A. L. (1984). Adaptive feedback and review paradigm for computer-based
+drills. Journal of Educational Psychology, 76, 310-317.
+Smith, J. B., Weiss, S. F., & Ferguson, G. J. (1987). A hypertext writing environment andits cognitive
+basis. In Hypertext '87 papers (pp. 195-214). Chapel Hill: University of North Carolina.
+Spiro, R. J., Coulson, R. L., Feltovich, P. J., & Anderson, D. K. (1988). Cognitive flexibilitytheory:
+Advanced knowledge acquisition in ill-structured domains. Tenth annual conference ofthe Cognitive
+Science Society (pp. 375-383). Hillsdale, NJ: Erlbaum.
+Spiro, R. J., Feltovich, P. J., Jacobson, M. J., & Coulson, R. L (1992a). Cognitive flexibility,
+constructivism, and hypertext Random access instruction for advanced knowledge acquisitionin ill-
+structured domains. In T. M. Duffy, & D. J. Jonassen (Eds.), Constructivism and the technologyof
+instruction: A conversation (pp. 121-128). Hillsdale, NJ: Eribaum.
+Spire, R. J., Feltovich, P. J., Jacobson, M. J., & Coulson, R. L. (1992b). Knowledgerepresentation,
+content specification, and the development of skill in situation-specific knowledge assembly: Some
+constructivist issues as they relate to Cognitive Flexibility Theory and hypertext. In T.M. Duffy & D.
+J. Jonassen (Eds.), Constructivism and the technology of instruction: A conversation (pp. 57-75).Hillsdale,
+NJ: Erlbaum.
+Spiro, R. J., & Jehng, J. C. (1990). Cognitive flexibility, randomaccess instruction, and hypertext: Theory
+and technology for the nonlinear and multidimensional traversal of complex subjectmatter. In D. Nix
+& R. J. Spiro (Eds.), Cognition, education, and multimedia (pp. 163-205). Hillsdale, NJ:Erlbaum.
+Spiro, R. J., Vispoel, W. L., Schmitz, J. G., Samarapungavan, A., & Boerger,A. E. (1987). Knowledge
+acquisition for application: Cognitive flexibility and transfer in complexcontent domains. In B. K. Britton
+& S. M. Glnn (Eds.), Executive control processes in reading (pp. 177-199). Hillsdale,NJ: Erlbaum.
+Vosniadou, S., & Brewer, W. F. (1989). The concept of the earth's shape:A study of conceptual change
+in childhood (Tech. Rep. No. 467). Urbana-Champaign: University of Illinois,Center for the Study ofReading.
+White, B. Y. (1983). ThinkerTools: Causal models, conceptual change, andscience education. Cognition
+and Instruction, 7, 41-65.
+Whitehead, A. N. (1929). The aims of education and otheressays. New York: Macmillan.
+
+
+=== PDF PAGE 25 ===
+Jacobson & SpiroAn Empirical Investigation - 21
+Author Notes
+This research was supported in part by grants from the University of Illinois Graduate College and
+College of Education to the first author and in part by a grant from the Army Research Institute Office
+of Basic Research (MDA903-86-K-0443) to the second author. Additional support was provided by the
+Office of Educational Research and Improvement under Cooperative Agreement No. G0087-C1001-90
+with the Center for the Study of Reading. The authors gratefully acknowledge the help and support of
+research programmer Susan Rav lin. The first author also thanks his dissertation committee--Rand J.
+Spiro (thesis supervisor), Michael L. Waugh, James A. Levin, J. R. Dennis, and Klaus Witzfor all of
+their help.
+2 6
+
+
+=== PDF PAGE 26 ===
+Table 1
+Cognitive Flexibility Theory Instructional Principles and Hypertext Design Features
+Theory PrinciplesHypertext Features
+Reading Stage: Minimal Hypertext/Drill and
+Thematic Criss-Crossing Hypertext Treatment Groups
+Multiple forms of knowledge repzesentation
+Link abstract concepts to case examples
+Incrementally introduce complexity
+Multiple social impact of technology themes and
+multiple cases
+Theme list and theme commentaries that accompany
+case presentations
+Minicase organizational structure
+Study Stage: Thematic Criss-Crossing Hypertext Treatment Group
+Stress interrelated and web-like nature of knowledge
+Explicit demonstration of different combinations of
+abstract and case-specific knowledge components
+Reread minicases exemplifying different
+combinations of themes
+Knowledge assembly from different conceptual and
+case sources
+
+
+=== PDF PAGE 27 ===
+Table 2
+Titles and Short Descriptions of the Six Social Impact of Technology Cases
+Case 1: The Aborted Introduction of the French
+Electric Car
+The political, economic, and technological successes
+and failures associated with the attempt to radically
+alter the social structure of French society during
+the 1970s through what was intended to be a major
+innovation: the development and deployment of an
+electric car.
+Case 2: The UTOPIA Project: Computers Unions,
+and Printing
+A recent research project known as UTOPIA
+(which is a Swedish acronym for "training,
+technology, and products from a skilled worker's
+perspective") that attempted to allow trade unions a
+role in the design and implementation of new
+printing industry technologies.
+Case 3: Jehovah's Witnesses and Blood Transfusion
+The impact on the health-care community resulting
+from the rejection by the Jehovah's Witnesses of the
+medical technology associated with blood
+transfusions.
+Case 4: Privacy and Computer Data Banks
+Personal, legal, financial, social, and ethical issues
+related to the increasing reliance of modern society
+on massive computer data bases storing extensive
+information on millions of people.
+Case 5: High Technology, Automation, and the
+Worker
+A new generation of highly automated factories
+provide high productivity and manufacturing quality
+with low labor costs and pose the question: How
+long will it be before no people are required in
+plants of this type?
+Case 6: The Dilemma of the Artificial Heart
+The debate on human subject research employing
+the artificial heart.
+
+
+=== PDF PAGE 28 ===
+Table 3
+Theme and Minicase Matrix for Three Cases of the"Technology and the Twentieth Century:
+Impact on Society and Culture" Hypertext
+Case Title and SectionSOCOACNEPRPRTEEFFRCOCOAL
+FRENCH ELECTRIC CAR
+Backgroundxx
+The Planxxxx x
+Technological Predicationsxx
+Implementing the Planxx x
+Opposition...xx
+Technological Problemsxxx
+Mirage of Post-Industrial...xxxx
+End of French Electric Carxx
+THE UTOPIA PROJECT
+Project UTOPIAxx x
+Technology and Unionsxxxx
+Computers and Printingxxxx
+The Union's Alternativesxx xx
+Technical Compromisesx xx x
+Impact of Project UTOPIAxxxxx
+JEHOVAH'S TVITNESSES
+Backgroundxxx xx
+Health Community...x xx
+Medical Care...x xx
+Alternative Blood...x xx
+Conclusionx x
+Note: SOCO = Socially Constructed Nature ofTechnology; ACNE = Actor Networks; PRPR= Progress-Problems; TEEF = Technological Efficiency;FRCO = Freedom-Control; COAL= Community-Alienation.
+l.0
+
+
+=== PDF PAGE 29 ===
+Table 4
+Summary of MAjor Features of the Control and Experimental Conditions
+Condition"Reading Stage" Features"Study Stage" Features
+Minimal Hypertext/Drill I
+(Control I)
+Minimal Hypertext/Drill II
+(Control II)
+Thematic Criss-Crossing Hypertext
+(Experimental)
+Read minicases and theme
+commentaries; note single most
+important theme for each case
+Read minicases and theme
+commentaries; note multiple
+themes for each minicase text
+section
+Read minicases and theme
+commentaries; note multiple
+themes for each minicase text
+section
+Computer-based drill on theme
+identification and factual
+information
+Computer-based drill on theme
+identification and factual
+information
+Theme identification; "Thematic
+Criss- Crossing." reread different
+minicases based on various
+technology and society theme
+combinations
+
+
+=== PDF PAGE 30 ===
+Table 5
+Representative Items from Epistemic Beliefs and Preferences Instrument
+Learning works best when students are told exactly what theyare supposed to learn and what they
+have to do. Everything should be made explicit to students. The bestway to learn is to read and re-
+read textual material until you almost know it by heart.
+6.I have a strong preference for simplicity and orderliness. Whenever possible, I prefernot to encounter
+complex concepts in school (although I deal with complexity when I have to).
+19.The parts of a whole system tend to be alike (i.e., systems tend to be homogeneous). Uniformityof
+explanation throughout a system is a very high goal.
+22.Learning is essentially an active process in whichyou acquire the ability to construct understandings
+to fit new situations by assembling information you have encountered on various occasions in thepast.
+3 l)
+
+
+=== PDF PAGE 31 ===
+Table 6
+Short-Answer and Problem-Solving Essay Test Scores
+Short AnswerEssay
+TreatmentSession 2Session 4Session 2Session 4
+Group
+Minimal Hypertext/Drill`
+Mean69.7165.207.657.24
+SD 13.9416.732.872.56
+Thematic Criss-Crossing
+Hypertext*
+Mean62.8856.428.419.47
+SD 13.4514.653.542.35
+Note: Scores for short-answer questions are percentage correct; scores for problem-solvingessays
+are on a scale of 0 to 14.
+= 17.
+
+
+=== PDF PAGE 32 ===
+Table 7
+Problem-Solving Essay Scores (Averaged for Session 1 and Session 2) for Experimental
+Treatment and Epistemic Beliefs and Preferences Groups
+Treatment GroupSimple EBPComplex EBP
+Minimal Hypertext/Drill
+Mean8.226.75
+SD 1.791.89
+n 9.006.00
+Thematic Criss-Crossing Hypertext
+Mean7.8910.29
+SD 3.251.32
+n 9.007.00
+Note: Essay scores scale of 0 to 14; three subjects were not included because of missingdata on the
+epistemic beliefs and preferences instrument.
+
+
+=== PDF PAGE 33 ===
+Electric Car
+2. The EDF Plan
+The EDP* engineers presenteda plan for
+the French electric car that determined
+not only the precise characteristics of
+the vehicle it wished to promote, but also
+the social universe in which the vehicle
+would function.First, the EDF defined a
+certain history by depictinga society of
+urban post - industrial consumers who
+were grappling with new social
+movements. On the one hand, the motor
+vehicle was considered responsible for
+the air pollution and noise that plagued
+cities. On the other hand, it was
+irretrievably linked to a consumer
+society in which the private car
+constituted a fundamental aspect of
+status.
+However, electric propulsion would
+render the car common place by
+decreasing its performance and reducing
+it to a simple, useful object. The electric
+car could lead to a new era in public
+transport in the hands of new social
+groups that were struggling to improve
+conditions in the city by means of science
+and technology.
+Abstract
+.:
+Figure 1. Sample "minicase"text section from the "Aborted Introduction of the FrenchElectricCar."
+
+
+=== PDF PAGE 34 ===
+Electric Car
+2. The EDF Plan
+Community - Alienation
+Two different communities are alluded to in thispassage,
+which are assumed to be alienated from each other.The
+consumer societywhich is based upon the status of the
+private car and is vested in the old industrialsociety--is in
+competition with new social groups advocating, inpart, for a
+diminished role for the automobile (one of simple
+transportation and not status) that will help promotethe
+post-industrial society.
+HelpObstructThemes
+THEMES
+Social Technology
+Actor Networks
+*Progress - Problems
+Technological Efficiency
+*Community - Alienati?
+'OF
+Qu't
+Figure 2. Sample thematiccommentary for "minicase" text section from the "AbortedIntroduction of the French Electric Car."
+4
+
+
+=== PDF PAGE 35 ===
+UTOPIA Project
+5_ Technical Compromises
+A number of different technical approaches
+towards using the computer in the printing
+industry have been influenced by the
+UTOPIA Project. For example, due to
+technical limitations it is impossible to
+work with en entire newspaper page
+directly on even the largest computer
+monitors. Consequently, the page must be
+reduced on the display, which makes the
+text and pictures too small to clearly see,
+or only a portion of the page may be shown
+on the screen, which disrupts the ability of
+the workers to visualize the whole.
+A technical compromise to deal with this
+problem allows the printer to have
+different "views" of the document. One view
+allows the entire page to be displayed, with
+reduced text and pictures, while other
+views allow the worker to magnify the
+HelpAbstractThemes
+Themes: Progress - Problems, community
+- Alienation
+display while
+document. T
+used si multar
+a portion of t
+one part of th
+view of the er
+another part
+In addition, U
+only train wa
+Systems, but
+"computer sc
+more broad] y
+should be bet
+capabilities o
+printing cyst
+quickly to net'
+THEMES
+Social Technology
+ProgressProblems
+Technological Efficiency
+*CommunityAlienation
+Figure3.Sample minicase text section from the "UTOPIA Project" showing ThematicCriss-
+Crossing Hypertext theme combinations and the Theme List.
+
+
+=== PDF PAGE 36 ===
+Minimal
+Hypertext/Drill
+Thematic
+Criss-Crossing
+Hypertext
+Session 2Session 4
+Figure 4. Mean Session 2 and Session 4 problem-solvingessay scores for Minimal
+Hypertext/Drill and Thematic Criss-Crossing Hypertextgroups.
+
+
+=== PDF PAGE 37 ===
+4.#
+a)
+80
+Cl,
+c
+as
+a)
+2
+im Minimal
+Hypertext/Drill
+ii Thematic Criss-Crossing
+Hypertext
+SimpleComplex
+EBPEBP
+Figure 5. Mean problem-solving essay scores (averaged for Session 2 and Session 4) for
+treatment and epistemic beliefs and preferences (EBP) groups.

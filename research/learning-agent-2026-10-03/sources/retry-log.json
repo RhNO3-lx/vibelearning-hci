@@ -1,0 +1,34 @@
+[
+  {
+    "id": "P08",
+    "retry": "failed",
+    "url": "https://arxiv.org/pdf/2606.20138",
+    "error": "HTTP Error 406: Not Acceptable"
+  },
+  {
+    "id": "P31",
+    "retry": "ok",
+    "url": "https://arxiv.org/pdf/2308.06921"
+  },
+  {
+    "id": "P39",
+    "retry": "ok",
+    "url": "https://arxiv.org/pdf/2308.02773"
+  },
+  {
+    "id": "P23",
+    "retry": "ok",
+    "url": "https://hamsabastani.github.io/education_llm.pdf"
+  },
+  {
+    "id": "P47",
+    "retry": "ok",
+    "url": "https://education.asu.edu/sites/default/files/lcl/chiwylie2014icap_2.pdf"
+  },
+  {
+    "id": "P48",
+    "retry": "failed",
+    "url": "https://www.ida.org/-/media/feature/publications/e/ef/effectiveness-of-intelligent-tutoring-systems-a-meta-analytic-review/d-8391.ashx",
+    "error": "HTTP Error 404: Not Found"
+  }
+]

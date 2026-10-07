@@ -1,0 +1,2188 @@
+--- Page 1 ---
+JCST Papers
+Only for Academic and Non-Commercial Use
+Thanks for Reading!
+ Survey
+Computer Architecture and Systems
+Artificial Intelligence and Pattern Recognition
+Computer Graphics and Multimedia
+Data Management and Data Mining
+Software Systems
+Computer Networks and Distributed Computing
+Theory and Algorithms
+Emerging Areas
+ 
+JCST URL: https://jcst.ict.ac.cn
+SPRINGER URL: https://www.springer.com/journal/11390
+E-mail: jcst@ict.ac.cn
+Online Submission: https://mc03.manuscriptcentral.com/jcst
+JCST WeChat
+Subscription Account
+Twitter: JCST_Journal
+LinkedIn: Journal of Computer Science and Technology
+
+--- Page 2 ---
+ 
+From MOOC to MAIC: Reimagine Online Teaching and Learning
+Through LLM-Driven Agents
+Ji-Fan Yu1 (于济凡), Daniel Zhang-Li2 (张李牛牛), Zhe-Yuan Zhang2 (张哲源), Yu-Cheng Wang2 (王禹诚)
+Hao-Xuan Li3 (黎昊轩), Joy Jia Yin Lim2 (林佳音), Zhan-Xin Hao1 (郝展欣), Shang-Qing Tu2 (涂尚卿)
+Lu Zhang1 (张　露), Xu-Sheng Dai1 (戴旭升), Jian-Xiao Jiang1 (蒋建骁), Shen Yang1 (杨　慎)
+Fei Qin1 (覃　菲), Ze-Kun Li1 (李泽坤), Bing-Lin Liu2 (刘炳麟), Xin Cong4 (从　鑫)
+Bin Xu2 (许　斌), Distinguished Member, CCF, Lei Hou2 (侯　磊), Man-Li Li1 (李曼丽), Juan-Zi Li1 (李涓子)
+Hui-Qin Liu1, * (刘惠琴), Yu Zhang1 (张　羽), Zhi-Yuan Liu2, * (刘知远), Distinguished Member, CCF
+and Mao-Song Sun2 (孙茂松), Distinguished Member, CCF
+1 School of Education, Tsinghua University, Beijing 100084, China
+2 Department of Computer Science and Technology, Tsinghua University, Beijing 100084, China
+3 College of AI, Tsinghua University, Beijing 100084, China
+4 Department of Statistics and Data Science, Tsinghua University, Beijing 100084, China
+E-mail: yujifan@tsinghua.edu.cn; zlnn23@mails.tsinghua.edu.cn; zheyuan4@andrew.cmu.edu
+wang-yc24@mails.tsinghua.edu.cn; hx-li25@mails.tsinghua.edu.cn; lin-jy23@mails.tsinghua.edu.cn
+zhanxin_hao@mail.tsinghua.edu.cn; tsq25@mails.tsinghua.edu.cn; lou-zhan24@mails.tsinghua.edu.cn
+dxs23@mails.tsinghua.edu.cn; jjx23@mails.tsinghua.edu.cn; yangshen22@mails.tsinghua.edu.cn
+qinfei.2018@tsinghua.org.cn; li-zk25@mails.tsinghua.edu.cn; lbl23@mails.tsinghua.edu.cn;
+congxin1995@tsinghua.edu.cn; xubin@tsinghua.edu.cn; houlei@tsinghua.edu.cn; marylee@mail.tsinghua.edu.cn
+lijuanzi@tsinghua.edu.cn; liuhq@tsinghua.edu.cn; zhangyu2011@tsinghua.edu.cn; liuzy@tsinghua.edu.cn
+sms@tsinghua.edu.cn
+Received September 30, 2025; accepted December 30, 2025.
+Abstract    Since the first instances of online education, where courses were uploaded to accessible and shared
+online platforms, this form of scaling the dissemination of human knowledge to reach a broader audience has
+sparked extensive discussion and widespread adoption. Since personalized learning still holds significant potential
+for improvement, new artificial intelligence (AI) technologies have been continuously integrated into this learn-
+ing format, resulting in a variety of educational AI applications such as educational recommendation and intelli-
+gent tutoring. The emergence of intelligence in large language models (LLMs) has allowed these educational en-
+hancements to be built upon a unified foundational model, enabling deeper integration. In this context, we pro-
+pose MAIC (Massive AI-Empowered Course), a new form of online education that leverages LLM-driven multi-
+agent systems to construct an AI-augmented classroom, balancing scalability with adaptivity. Beyond exploring
+the conceptual framework and technical innovations, we conduct preliminary experiments at Tsinghua Universi-
+ty, Beijing, one of the leading universities in China. Drawing from more than 100 000 learning records of more
+than 500 students, we obtain a series of valuable observations and initial analyses. This project will continue to
+evolve, ultimately aiming to establish a comprehensive open platform that supports and unifies research, technol-
+ogy, and applications to explore the possibilities of online education in the era of large-model AI. We envision this
+platform as a collaborative hub that brings together educators, researchers, and innovators to collectively explore
+ 
+ 
+Regular Paper
+Special Issue: Celebrating the 40th Anniversary of JCST
+The work was supported by the National Natural Science Foundation of China under Grant No. 62407027, the Tsinghua Uni-
+versity Initiative Scientific Research Program under Grant No. 2024THZWJC11, and a grant from the Institute for Guo Qiang, Ts-
+inghua University.
+*Corresponding Author (Hui-Qin Liu provided guidance and advice on educational experiments and theoretical analysis. Zhi-
+Yuan Liu guided system architecture and algorithm design.)
+Yu JF, Zhang-Li D, Zhang ZY et al. From MOOC to MAIC: Reimagine online teaching and learning through LLM-driv-
+en  agents.  JOURNAL  OF  COMPUTER  SCIENCE  AND  TECHNOLOGY,  41(1):  394−414,  Jan.  2026.  DOI: 10.1007/
+s11390-025-6000-0, CSTR: 32374.14.s11390-025-6000-0
+©Institute of Computing Technology, Chinese Academy of Sciences 2026
+
+--- Page 3 ---
+the future of AI-driven online education.
+Keywords    intelligent tutoring system, large language model (LLM), multi-agent system, online education
+ 
+ 1    Introduction
+Explicit Background: Evolution for Scalability. The
+evolution of online education stands as a testament to
+humanity’s relentless pursuit of knowledge, transcend-
+ing  the  limitations  of  time  and  space[1].  From  the
+humble beginnings of oral tradition to the advent of
+the  printed  book[2, 3],  education  has  continuously
+sought  ways  to  expand  its  reach.  However,  for  cen-
+turies, the traditional model of education was bound
+by the constraints of physical classrooms, limited re-
+sources,  and  localized  instruction.  The  dawn  of  the
+Internet  marked  a  revolutionary  shift,  heralding  the
+age of online education, where the dream of universal
+access  to  knowledge  began  to  take  a  tangible  form.
+Specifically,  the  Massive  Open  Online  Course
+(MOOC)  phenomenon  marks  a  significant  milestone
+in  the  evolution  of  online  education,  reflecting  both
+technological  advancement  and  educational  innova-
+270
+100
+tion[4]. Since then, platforms such as edX①, which in-
+volves  institutions  such  as  MIT  and  Harvard,  and
+Coursera②, which originates from Stanford, have inte-
+grated  learning  resources  from  more  than 
+renowned  universities[5, 6].  These  platforms  have  at-
+tracted more than  million learners globally, pro-
+gressively realizing the scalability of online education.
+Implicit Motivation: Determination of Adaptivity.
+However, this paradigm of serving thousands of learn-
+ers from diverse backgrounds through one pre-record-
+ed video[7] (as shown in Fig.1) struggles to align with
+the  educational  philosophy  of “teaching  in  accor-
+dance  with  individual  aptitudes”[8, 9].  This  challenge
+has become a significant reason for the subsequent ef-
+forts  that  introduce  AI  techniques  into  online  learn-
+ing. To achieve the adaptivity of learning, a series of
+tasks such as learning path planning[10, 11], course rec-
+ommendation[12–14],  and  intelligent  tutoring[15, 16]—
+driven  by  technologies  like  recommendation  systems
+ 
+Teach
+Learn
+Course Content Creation
+Video Creation
+Recording Editing
+Preparing
+Writing
+Scripts
+Teacher
+ Video
+Video
+Students
+MOOC
+ MAIC
+Personalize:
+Customize the Course
+Read:
+Construct Teaching Agenda and KB
+Student
+Teacher Agent 
+ Classmate Agents 
+Assistant Agent 
+ Analyzer Agent 
+TextbooksSlides
+Exercises
+ Videos
+Course Description
+Course Objective
+Teaching Style
+Watching
+MOOC Videos
+Student Exercises
+Plan:
+Generate Functions
+and Agents
+Upload:
+Upload Materials
+Teacher
+Offine
+Mentoring
+Doing
+Quiz
+1 Video for N   Students  N Agents for 1 Student 
+$ 25 000 
+60 Hours
+Less Than $ 2 and 30 min per Course to Make a Course
+Designing
+Today, let's talk about
+large language models.
+We know that they
+learn from a massive
+amount of data, but ...
+Wow! If there are plenty
+of data, how can we
+know the relation to
+certain abilities? Can
+you explain more?
+Let's do a little quiz!
+What is the first stage to
+train an LLM?
+A. Pre-training; B. SFT;
+C. Instruction tuning;
+D. RLHF
+Based on your quiz
+results, I suggest you
+to improve by learning
+some prerequisite
+courses, such as ...
+Teacher
+ 
+Fig.1.  MOOC vs MAIC (Massive AI-Empowered Course) from the aspects of teaching and learning.
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 395
+ ①https://www.edx.org/, Jan. 2026.
+ ②https://www.coursera.org/, Jan. 2026.
+
+--- Page 4 ---
+and dialogue generation— have been employed to en-
+hance the student learning experience.
+Although  these  technologies  have  been  applied
+across  various  aspects  of  teaching  and  learning,  the
+significant differences among the supporting tasks be-
+fore,  during,  and  after  instruction  have  posed  chal-
+lenges for unifying them under a single deep learning
+framework[17].  Such  fragmentation  has,  in  part,  de-
+layed the emergence of a new platform where AI and
+online learning are fully integrated. However, with the
+rapid  advancement  of  generative  AI[18],  large  lan-
+guage  models  (LLMs)  have  created  fresh  opportuni-
+ties for AI-powered learning paradigms. Models such
+as GPT-4[19] and LLaMA[20] possess strong generaliza-
+tion  capabilities  and  encapsulate  vast  parametric
+knowledge,  allowing  for  the  flexible  configuration  of
+intelligent  agents[21] built  upon  them.  Currently,
+LLM-driven multi-agent systems[22] have already been
+explored for applications such as social simulation[23]
+and the execution of complex tasks such as software
+development[24].  This  progress  opens  up  a  potential
+pathway  for  introducing  multi-agent  systems  to  cre-
+ate entirely new online teaching and learning experi-
+ences.
+Proposal  of  MAIC.  At  the  critical  juncture  of  a
+new era defined by LLMs and multi-agent systems in
+online  education,  we  introduce  MAIC  (Massive  AI-
+Empowered Course). MAIC is dedicated to exploring
+the integration of multi-agent systems across various
+stages  of  online  learning,  including  course  construc-
+tion,  project-based  learning,  classroom  instruction,
+and analysis, with the goal of balancing the scalabili-
+ty and adaptivity of online education. The core con-
+cept of MAIC is to construct a series of LLM-driven
+agents  to  support  the  whole  teaching  and  learning
+processes  in  the  online  educational  environment.  As
+shown  in Fig.1,  the  paradigm  of  MOOC  and  MAIC
+can be featured with two primary aspects as follows.
+Teaching.  This  action  is  primarily  performed  by
+instructors. In MOOCs, instructors are responsible for
+thoroughly  preparing  course  materials,  drafting  lec-
+ture  notes,  and  spending  considerable  time  meticu-
+lously  recording  courses.  The  final  output  typically
+consists  of  a  series  of  pre-recorded  instructional
+videos.  Within  the  proposed  MAIC  framework,  in-
+structors  initiate  the  course  development  process  by
+uploading  diverse  raw  instructional  resources.  Lever-
+aging  a  collaborative  multi-agent  architecture  with
+human-in-the-loop  oversight,  the  system  facilitates
+the  interactive  construction  of  didactic  slide  decks
+and the automated provisioning of associated experi-
+ential learning environments. This integrated pipeline
+enables  end-to-end  AI-assisted  authoring  of  courses,
+spanning  pedagogical  content  structuring,  multi-
+modal resource synthesis, and computational environ-
+ment  orchestration,  thus  streamlining  the  scalable
+production of AI-centric curricula.
+Learning. In MOOCs[7], a single set of course ma-
+terials is designed to serve thousands of students with
+diverse  backgrounds,  and  the  pace  of  instruction  is
+predetermined  by  instructors,  leaving  room  for  im-
+proving  personalized  adaptation  based  on  individual
+student  needs[25].  In  MAIC,  course  delivery  is  au-
+tonomously  completed  by  AI  instructor  agents  that
+dynamically adapt pedagogical strategies in real time,
+conditioned on multimodal student interaction traces
+and  latent  knowledge  state  estimation.  The  system
+further  deploys  role-specialized  AI  peers,  including
+teaching  assistants  and  customizable  classmates,
+which enables learners to curate personalized collabo-
+rative  ecologies  for  dialectical  engagement,  affective
+support,  and  metacognitive  prompting.  Crucially,
+MAIC extends adaptive learning to cooperative tasks,
+in  which  students  are  assigned  to  finish  the  given
+tasks with peer AI agents. It integrates real-time adap-
+tation, social learning, and contextual task generation,
+aiming to guide students with suitable challenges.
+In this paper, we introduce the concept of MAIC,
+and  present  an  intuitive  and  user-friendly  solution
+that accommodates the needs of various users, includ-
+ing students and educators. This platform comes pre-
+equipped with a suite of intelligent agents and tools
+that support course analysis and the construction of
+new MAIC course examples. Additionally, MAIC in-
+tegrates  several  learning  analytics  tools  powered  by
+large models, enabling quick access to learning data,
+forecasting academic outcomes, and automating tasks
+such as interviews and assessments.
+500
+With the support of Tsinghua University, Beijing,
+one of China’s top universities, we conduct an explo-
+ration  of  this  new  learning  model  over  a  period  of
+more  than  three  months.  Assisted  by  over  stu-
+dent  volunteers,  we  implement  the  study  using  two
+courses: the AI course “Towards Artificial General In-
+telligence” (TAGI)  and  the  learning  science  course
+“How to Study in the University” (HSU). During this
+pilot,  we  collect  over 100 000 behavioral  records.
+Based on the data from these courses, along with stu-
+dent  survey  measurements  and  qualitative  interview
+results, we conduct an initial analysis of the features
+396 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1
+
+--- Page 5 ---
+and performance of the MAIC system. In subsequent
+sections, we will introduce key components, technical
+implementation, and real-world results③.
+ 2    Related Work
+The evolution of education has undergone several
+transformative  phases[5, 14, 26].  Below,  we  review  the
+developments in chronological order.
+Pre-ITS Era. Before the rise of intelligent tutor-
+ing  systems  (ITSs)[27],  education  was  dominated  by
+traditional  paradigms  such  as  Aristocratic  Educa-
+tion[28] and Classroom Education[29], which were con-
+strained  by  physical  and  temporal  limitations.  The
+advent  of  the  Internet  led  to  scalable  education
+paradigms such as MOOC[30] and Live Class[31]. While
+these  platforms  significantly  broadened  access,  they
+lacked  individualized  support,  highlighting  the  need
+for  more  responsive  educational  technologies.  Some
+rule-based intelligent tutoring systems were proposed
+in 1990s[32], which opened a path to more scalable ed-
+ucation systems[33].
+Deep  Learning  Stage.  Early  AI  integrations  into
+education began with Question Answering (QA) sys-
+tems, which aim to emulate pedagogical interactions.
+Systems such as Knowledge-Based Question Answer-
+ing  (KBQA)[34] and  methods  inspired  by  Socratic
+Questioning[35] allow  for  basic  automated  dialogue.
+Landmark  systems  such  as  AutoTutor[36] and
+SCOT[37] support  natural  language  interactions,  yet
+are  limited  by  predefined  scripts  and  knowledge
+boundaries.  More  recent  systems  such  as  MAssist-
+ant[38] improve contextual understanding but still op-
+erate within narrow functional scopes. To address the
+need  for  personalized  learning  pathways,  adaptive
+testing systems emerged[39]. Techniques such as Deep
+Knowledge  Tracing  (DKT)[40],  and  NeuralCD  (Neu-
+ral  Cognitive  Diagnosis)[41] use  machine  learning  to
+dynamically  adjust  question  difficulty  and  content
+based on learner performance.
+LLM  Age. With  advances  in  LLMs,  educational
+chatbots  gained  prominence.  Systems  such  as  Khan-
+migo④ and  ChatGPT-Edu⑤ leverage  LLMs  to  pro-
+vide  more  flexible  and  context-aware  interactions.
+These platforms enable continuous dialogue and sup-
+port  across  diverse  subjects,  offering  a  more  immer-
+sive experience than earlier QA systems. Building on
+chatbot  capabilities,  single-agent  systems  such  as
+EduChat[42] and LittleMu[16] integrate additional edu-
+cational  functionalities,  such  as  feedback  generation
+and  exercise  recommendation,  within  a  unified  AI
+agent.  The  limitations  of  single-agent  systems
+prompted  research  into  collaborative  multi-agent  ar-
+chitectures  for  more  complex  educational  tasks.
+Frameworks such as CODIA⑥ and the proposed MA-
+IC leverage LLM-driven agents, where these systems
+support  rich,  synchronous  classroom-like  experiences
+and  scale  personalized  instruction  through  agent  co-
+operation. By distributing capabilities across special-
+ized modules, they achieve a new level of adaptivity
+and engagement.
+Towards Ideal ITS. The ultimate goal of ITSs is
+to  create  an  adaptive,  empathetic,  and  cognitively
+supportive learning environment—an ideal ITS. While
+current  systems,  including  multi-agent  platforms,
+have made significant strides, persistent gaps remain.
+Achieving this vision hinges on two axes: 1) scalabili-
+ty-cost-efficient  authoring,  deployment,  and  delivery
+at massive scale; 2) adaptivity-fine-grained, real-time
+diagnosis and guidance tailored to each learner.
+ 3    MAIC
+In this section, we introduce the major components
+for implementing the MAIC platform. Specifically, we
+present  the  main  workflows  designed  for  certain
+teaching  process  and  the  adaptive  engine  integrated
+with  the  designed  multi-agent  learning  environment,
+shown in Fig.2.
+ 3.1    Teaching: MAIC Course Preparation
+MAIC-Craft: Anything to MAIC. MAIC-Craft is a
+sub-system  in  MAIC  that  develops  a  standardized
+course  preparation  workflow  (shown  in Fig.3)  to
+transform vast amounts of weakly structured and het-
+erogeneous  learning  resources  into  highly  structured
+and  adaptive  learning  materials,  unifying  the  inges-
+tion  and  structuring  of  diverse  formats  and  modali-
+ties.  Targeting  at  scalability,  this  workflow  is  de-
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 397
+ ③For advanced open-source technologies and impressive cases of MAIC, please refer to the project site: https://project.maic.chat/,
+Jan. 2026.
+ ④https://blog.khanacademy.org/teacher-khanmigo/, Jan. 2026.
+ ⑤https://openai.com/index/introducing-chatgpt-edu/, Jan. 2026.
+ ⑥https://code.bdaa.pro/, Jan. 2026.
+
+--- Page 6 ---
+signed to streamline the workload of experts while ac-
+commodating diverse educational resource formats, fa-
+cilitating the scalability of this online learning model
+for  broader  implementation.  The  course  preparation
+workflow of MAIC-Craft consists of two stages: read
+and plan.
+ 3.1.1    Read Stage
+At  this  stage,  instructors  (and  authorized  teach-
+ 
+Teaching
+Learning
+Adaptive Engine
+Multi-Agent Classroom Learning
+MAIC-Craft
+ANY Educational
+Material
+ 
+ Read
+MAIC Course
+MAIC Agents
+Plan
+Cognitive Student Modeling
+Interview
+Student Profile
+- Basic Information
+- Academic Profile
+- Interest Profile
+Token-Level Personalization
+Dm
+Student
+Profile
+In-Depth
+Discussion
+Emotional
+Companionship
+Teacher
+Assistant
+Classmate
+Lecture
+Scripts
+1. Query Generation
+Q1
+Q1
+Qn
+Adapted
+Content LLM
+Pedagogical Theories3. Generation
+Dm
+DmEducational
+Sources
+2. Open-Ended RAG
+Multi-Modal
+Content Extraction
+Knowledge Base
+Construction
+Classroom
+ManagementTeaching and
+Initiation
+Bloom's Taxonomy
+Vygotsky's ZPD
+UDL
+ 
+Fig.2.  Illustration of the conceptual structure of MAIC. RAG: retrieval-augmented generation. 
+(a) (b)
+Any
+Input
+Slides Content Extraction
+Knowledge Base Construction
+Course Component Generation
+Pn
+P4
+P3Textual
+Content
+...
+P2
+P1
+Visual
+Content
+P1
+ P2
+ P3
+ P4 ...
+ Pn
+Description Generation
+P1
+ P1
+P1
+P1
+ P1
+P1
+D1
+Multi-Agent
+Processing
+Chapter 1: Multi-Agent Systems
+ Section 1: Introduction
+ 
+D1
+D2
+P1
+ P1
+P2
+ P2
+Knowledge Base Generation
+Dn
+ Pn
+ Pn
+...
+...
+...
+LectureScript
+Supply Narrative Guidance for
+Real-Time Teaching
+Question Generation and
+Assessment
+Quiz
+...
+...
+Agent Generation
+Teacher
+Classmate(s)
+Assistant
+Analyzer
+Manager
+Other Agents
+Teach & Answer
+Questions
+Initiate Ideas &
+Discussions
+Maintain Order
+& Assist
+Analyze Learning
+Performance
+Control the Class
+Customized by
+Users!
+?
+Slides Videos
+Audios Docs
+D1
+D1
+Core Visual Presentation with
+Layouts and Interactive Elements
+Canvas
+Section 2: Recent Work
+ 
+Fig.3.  Illustration of the course preparation workflow of MAIC-Craft. (a) Read stage. (b) Plan stage.
+398 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1
+
+--- Page 7 ---
+R = fRig1ijRj
+~R = f(Ri; D i; K )g1ijRj
+Ri
+Di
+K
+ing assistants) are involved by providing any educa-
+tional  material.  With  the  assistance  of  multi-agent
+systems  empowered  by  LLMs,  they  upload  a  set  of
+educational  resources ,  which  can  in-
+clude course slides, textbooks, videos, audio lectures,
+or any combination thereof. These resources are then
+transformed  into  highly  structured  intelligent  learn-
+ing  resources  along  with
+multiple  AI  agents  designed  for  classroom  construc-
+tion. The  and  here correspond to a single re-
+source unit and its comprehensive textual description,
+respectively,  while  denotes  the  knowledge-aware
+section extracted from each resource.
+Rt
+i
+Rv
+i
+Rt
+i
+f 1
+T : Ri ! (Rt
+i; R v
+i )
+f 1
+T
+Multimodal  Content  Extraction. MAIC-Craft  em-
+ploys multimodal LLMs (MLLMs) to capture content
+across  diverse  modalities.  For  any  given  educational
+resource, the system extracts textual content  and
+visual content , where  encompasses direct textu-
+al  content,  transcribed  content  from  audio  sources,
+i.e., .  This  functional  model 
+leverages multimodal architectures and can be contin-
+uously  improved  through  emerging  LLM  techniques.
+The  implementation  integrates  vision-language  mod-
+els for visual processing, automatic speech recognition
+for audio transcription, and document parsers for tex-
+tual extraction, all within a unified processing pipeline.
+(Rt
+i; R v
+i )
+f 2
+T : (Rt
+i; R v
+i ) !
+Di
+f 3
+T : (Rt
+i; R v
+i ; D i) ! K
+K
+~R
+Knowledge  Base  Construction.  After  preprocess-
+ing the uploaded resources, MAIC-Craft employs ex-
+traction  functions  to  complete  the  read  stage.  The
+multimodal content  is processed by an ML-
+LM-based method that generates comprehensive and
+pedagogically-aware descriptions, i.e., 
+ . Simultaneously, MAIC-Craft implements a knowl-
+edge extraction methodology that organizes the edu-
+cational  content  into  a  structured  knowledge  base,
+building  taxonomic  relationships  across  different  re-
+source  modalities,  i.e., ,  where
+  represents  the  structured  knowledge  base  compo-
+nents that constitute the final structured resource set
+ . The knowledge base maintains long-context coher-
+ence across extensive educational content and teach-
+ing smoothness.
+ 3.1.2    Plan Stage
+At  this  stage,  instructors  (and  authorized  teach-
+ing assistants) are involved through human-AI collab-
+orative  refinement  processes.  Based  on  the  highly
+structured  resources,  MAIC-Craft  constructs  an  in-
+structional  action  representation  language,  enabling
+the  incorporation  of  flexible  teaching  functions  such
+as interactive content presentation, adaptive question-
+ing,  and  multimodal  content  delivery  into  preset
+classrooms. This naturally integrates with related ed-
+ucational  technologies  like  lecture  script  generation
+and adaptive question generation. Meanwhile, leverag-
+ing intelligent agent construction techniques, the plat-
+form utilizes the processed content to provide teach-
+ers  with  AI-driven  pedagogical  agents,  facilitating
+comprehensive  course  planning  and  foundational
+structure development.
+C
+C = (type; content; metadata)
+type
+metadata
+Course Component Generation. MAIC-Craft con-
+ceptualizes educational activities as structured course
+components. Each course component  is defined as
+ , where  indicates the
+component category (e.g., Canvas, Quiz, LectureScri-
+pt), content details  the  educational  material,  and
+  provides pedagogical context. This approach
+reflects principles of modularity and extensibility, al-
+lowing  course  components  to  be  easily  configurable
+and reusable across different educational contexts.
+(Cn; ^RC)
+f 4
+T : ~R ! ~Rcomponents
+f 5
+T : ~R !
+~Rquiz
+Each component is associated with the generation
+of  specific  type  of  educational  content,  denoted  as
+ . Among these components, the most funda-
+mental  component  category  is  Canvas,  as  it  consti-
+tutes  the  core  visual  presentation  framework  of  the
+instructional  process.  Category  Canvas  components
+integrate  visual  layouts,  interactive  elements,  and
+structured content presentation, while category Quiz
+components  provide  question  generation  and  assess-
+ment  logic,  and  category  LectureScript  components
+supply narrative guidance. Based on this foundation,
+MAIC-Craft  provides  a  course  content  generation
+pipeline based on long-context encoding methods and
+multimodal  understanding,  supporting  both  funda-
+mental  teaching  procedures  and  interactive  compo-
+nents,  i.e., .  The  system  provides
+component  generation  functions  such  as 
+  for quiz creation. All generated components are
+subject to instructor review and refinement, ensuring
+pedagogical quality and correctness.
+aT
+aTA
+Agent Generation. Instructors can provide person-
+alized  pedagogical  information  (including  teaching
+styles, voice characteristics, and supplementary course
+materials) to build customized teaching agents, such
+as teacher agent  and teaching assistant agent .
+MAIC-Craft  provides  agentization  toolkits  imple-
+mented  via  LLMs,  supporting  high-level  customiza-
+tion  of  these  pedagogical  agents.  The  uploaded  sup-
+plementary  materials  are  segmented  and  integrated
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 399
+
+--- Page 8 ---
+into  different  intelligent  agents  using  the  RAG  (re-
+trieval-augmented  generation)  technology,  enabling
+contextually-aware  and  personalized  educational  in-
+teractions.  These  technological  innovations  are  thor-
+oughly  evaluated  in  concurrent  academic  investiga-
+tions.
+ 3.2    MAIC Adaptive Engine
+To address the limitations of standardized curricu-
+la, MAIC introduces the adaptive engine, which dy-
+namically  transforms  uniform  instructional  text  into
+learner-specific content conditioned on each student’s
+background  and  interests.  Specifically,  we  employ  a
+two-stage  pipeline:  1)  cognitive  student  modeling,
+which  constructs  a  detailed  profile  for  each  student,
+and  2)  token-level  personalization,  which  adapts
+scripts at a granular level.
+ 3.2.1    Cognitive Student Modeling
+Effective personalization begins with a comprehen-
+sive student model. Meanwhile, as LLM-based knowl-
+edge  tracing  techniques  become  more  mature[43],  we
+employ a conversational agent to engage the student
+in  a  natural  dialogue  to  capture  both  academic  and
+affective  data.  Academic  features  (e.g.,  major,  year)
+inform an initial estimate of the student’s knowledge,
+while  affective  features  (e.g.,  interests,  hobbies)  pro-
+vide context for enhancing the script’s relevance and
+engagement. The unstructured conversational history
+is then parsed by a summarization agent. This agent
+extracts  salient  details  and  organizes  them  into  a
+structured  profile  containing  machine-readable  tags
+(e.g.,  Domain:  Sport.  Category:  Basketball),  which
+serves as a robust and actionable model for personal-
+ization.  Listing  A1⑦ shows  an  example  of  our  con-
+structed student profile.
+ 3.2.2    Token-Level Personalization
+Based on the established student model, we adapt
+the  standardized  script  to  the  student’s  needs.  Our
+objective  is  to  perform  subtle,  token-level  adjust-
+ments that enhance relevance and engagement with-
+out  altering  the  core  pedagogical  content.  This  pro-
+cess  unfolds  in  two  primary  phases:  knowledge  re-
+trieval and content adaptation.
+Open-Ended Knowledge Retrieval. To ground the
+personalization in factually accurate and contextually-
+rich  information,  we  design  an  open-ended  retrieval
+mechanism, which mitigates the risk of LLM halluci-
+nations by providing relevant, up-to-date information
+for the generation phase. First, we employ an LLM to
+analyze the student model and the educational topic
+of the standardized content, and create precise search
+queries. These queries are then executed, and the re-
+sults undergo retrieval and filtering to prioritize high-
+quality  educational  and  scholarly  sources.  Subse-
+quently, the retrieved documents are segmented into
+semantic chunks, embedded as vectors, and stored in
+a  temporary  vector  database.  We  identify  the  top-k
+most relevant chunks based on their cosine similarity
+to  the  original  content,  to  serve  as  supplementary
+context for the next generation phase.
+Pedagogically-Guided  Content  Adaptation. In  the
+final phase, we employ an RAG framework to rewrite
+the educational script while maintaining instructional
+integrity. Initially, a rule-based filter assesses content
+segments to determine their personalization suitabili-
+ty,  preserving  short,  transitional,  or  elementary  sen-
+tences in their original form. For eligible segments, we
+design a structured prompt to guide the content gen-
+eration, operationalizing established pedagogical theo-
+ries, as follows.
+1) Bloom’s  taxonomy:  to  ensure  adaptations  ap-
+propriately scaffolded across a hierarchy of cognitive
+levels, from basic knowledge to advanced synthesis.
+2) Vygotsky’s  zone  of  proximal  development
+(ZPD): to select and adapt content that is optimally
+challenging and promotes learning.
+3) Universal design for learning (UDL): to inform
+diverse  adaptations,  such  as  contextually  relevant
+analogies and illustrative examples.
+This  prompt  is  explicitly  constrained  to  preserve
+core  concepts,  maintain  logical  structure,  and  make
+only subtle changes. To ensure a natural and coher-
+ent output, it removes any direct mentions of person-
+alization (e.g., “Based on your interest...”). This prin-
+cipled approach ensures the final content is not only
+personalized, but also pedagogically effective.
+ 3.3    Learning: Multi-Agent Classroom
+Building  on Subsections 3.1 and 3.2,  focusing  on
+scalability and adaptivity, real deployments must bal-
+ance and co-optimize in both directions. We then dive
+into the details of the environment (shown in Fig.4),
+400 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1
+ ⑦https://jcst.ict.ac.cn/en/supplement/c2f85ed8-5f28-4a37-a5ea-ffdf4a3a9ac4, Jan. 2026.
+
+--- Page 9 ---
+a  carefully  designed  multi-agent  education  environ-
+ment  that  couples  scale-efficient  orchestration  with
+learner-level personalization.
+ 3.3.1    Environment Principles
+MAIC-CPL:  Classroom  Peer  Learning. Student
+learning in MAIC follows a “1 Student user + N AI
+Agents” model.  In  such  an  environment,  the  AI
+teacher  controls  the  learning  progress  based  on  the
+highly  structured  instructional  action  representation
+language  mentioned  earlier,  explains  course  content,
+poses  questions,  and  navigates  PowerPoint  slides,
+while  the  AI  teaching  assistant  maintains  classroom
+order  and  prevents  content  deviation.  Students  can
+interrupt the teacher at any time, ask questions, and
+engage in discussions, and the intelligent agents con-
+tinuously adjust the teaching process and some con-
+tent based on the students’ performance. The design
+principles  for  constructing  this  immersive  adaptive
+classroom  originate  from  the  following  two  con-
+cerns[44]. 1) How to ensure that the classroom covers
+the core classroom behaviors? 2) How to maintain the
+entirety  of  the  interaction  within  the  natural  flow
+during the class?
+In addressing the first concern, we systematically
+classify classroom interaction behaviors in accordance
+with established educational principles, as delineated
+in Schwanke’s seminal work[45]. 1) Teaching and Initi-
+ation (TI) encompasses the instructive actions of the
+teacher  and  the  responsive  feedback  or  insights  pro-
+vided  by  students;  2)  In-depth  Discussion  (ID)  in-
+volves the alignment, deliberation, and iterative ques-
+tion-and-answer  exchanges  between  the  teacher  and
+students,  which  are  instrumental  in  facilitating  stu-
+dents’ conceptual comprehension; 3) Emotional Com-
+panionship  (EC)  pertains  to  the  encouragement  of
+student learning, the cultivation of a conducive learn-
+ing environment, and the provision of emotional sus-
+tenance;  4)  Classroom  Management  (CM)  refers  to
+the maintenance of order, the organization of disrup-
+tive elements, and the steering of classroom discourse.
+bAr = frigj bArj
+ri
+Recognizing  that  these  pedagogical  behaviors
+manifest  through  diverse  class  roles  (represented  as
+ , with each  signifying a distinct role),
+it is imperative to ensure the variety and breadth of
+the agents’ roles within the educational setting.
+Addressing the second concern, we emphasize the
+necessity of meticulously and rhythmically orchestrat-
+ing the interactions among the various agents within
+the system, in harmony with the course content. We
+introduce an innovative session controller designed to
+regulate  the  flow  of  classroom  interactions,  contin-
+gent  upon  the  class’s  dynamic  state  and  under  the
+aegis of a central managerial agent[22].
+Based on these principles, we design multiple class-
+mate agents for diverse roles, implement class control,
+and ultimately derive the multi-agent classroom process.
+ 3.3.2    Classmate Agents
+To enhance the educational experience and emu-
+ 
+Good question! ...
+Interact with the Class Here ...
+Teacher
+Assistant
+Classmate
+(b)
+User
+Dialogue History
+Class Roles
+Assistant
+Teacher
+ Classmate(s)
+ User
+Manager
+Current Slide
+P36/58 
+Who speaks
+next? ...
+(a)
+From Single-Agent to Multi-Agent
+Multi-Agent System
+- What are Multi-Agent Systems?
+- How to Understand These Systems?
+Applications
+- Social Simulation
+- Software Development
+- ...
+Now Let's talk about LLM empowered multi-agent
+systems. At the right side of the slide, we can see their
+exciting applications in different fields. What's more, ...
+I can't wait for the incredible future with these systems!
+I heard that some behaviors emerge in these agents!
+Wow, that sounds really interesting! As our classmate
+said, are there any patterns similar to human groups?
+ 
+Fig.4.  Illustration of the classroom learning environment of MAIC. (a) Course management. (b) Interactions in MAIC.
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 401
+
+--- Page 10 ---
+ai 2 A
+A =  (LLM; prompt A) ;
+A , bAr
+
+PA
+late the dynamics of traditional classroom settings, we
+currently preset a variety of student-like agents, each
+imbued  with  unique  personality  traits,  to  comple-
+ment the teaching agents. These agents are designed
+to  perform  roles  similar  to  those  of  peers,  enriching
+the interactive landscape of the learning environment.
+In this scholarly work, we introduce an initial set of
+four  archetypal  student  agents,  while  also  providing
+users with the flexibility to customize and introduce
+additional  engaging  student  agents  onto  the  educa-
+tional  platform.  Each  agent  is  facilitated
+through prompting LLMs and associated with one or
+more class roles, denoted as: 
+ , where  is the role customization operation,
+and  is  the  system  prompt  with  agent  descrip-
+tion[44].
+
+  Class Clown (TI, EC, CM). To spark creativity,
+engender  a  lively  classroom  ambiance,  and  act  as  a
+supportive peer, this agent also assists the teacher in
+steering the class’s focus when the learner’s attention
+wanders.
+
+  Deep Thinker (TI, ID). It is designed to facili-
+tate profound contemplation and to pose thought-pro-
+voking questions that challenge and extend the intel-
+lectual boundaries of the classroom.
+
+  Note  Taker (TI,  CM).  With  a  penchant  for
+summarizing and disseminating key points from class
+discussions,  it  assists  in  cognitive  organization  and
+the retention of information for all participants.
+
+  Inquisitive Mind (TI, EC). Characterized by a
+propensity for inquiring about lecture content, it fos-
+ters a culture of inquiry and dialogue, prompting oth-
+ers  to  engage  in  critical  thinking  and  collaborative
+discourse.
+Unlike Standardized Operating Procedures (SOPs)
+commonly  used  in  multi-agent  systems[24, 46],  class-
+room scenarios function as dynamic, interactive envi-
+ronments  without  rigid  workflows,  resembling  an
+evolving  group  discussion.  In  these  settings,  agents
+must determine the appropriate timing for their inter-
+actions, adapting to the fluid nature of classroom dis-
+course.  To  address  this  need,  we  design  a  controller
+that  observes  classroom  dynamics,  makes  informed
+decisions, and manages agent behaviors based on the
+current state of the class. The session controller is com-
+posed of the class state receptor and the manager agent.
+ 3.3.3    Classroom Management
+Class  State  Receptor. The  Class  State  Receptor
+captures the ongoing classroom dialogue, with the his-
+t
+Ht = ∪(u
+aj
+i )t
+ui
+aj
+au
+St
+St =
+{
+Pt; H tj bAr
+}
+Pt  P
+t
+tory up to time  represented as , where
+  is the utterance made by agent  or a user (de-
+noted as ). The class state  integrates this inter-
+action  data,  structured  as .  Here,
+  represents  the  learning  materials  covered  up
+to time . This design prioritizes adaptability and re-
+al-time  decision  making,  aligning  with  pedagogical
+principles that emphasize responsiveness to the evolv-
+ing needs of learners within an educational setting.
+St
+fL
+fL : St ! f(at; ) jat 2 A; n ( g
+n
+
+Manager  Agent. MAIC  contains  a  hidden  meta-
+agent responsible for regulating the dynamics of class-
+room  interactions.  This  agent  receives  the  current
+state of the class , monitors the flow of the class,
+interprets ongoing activities, and determines the sub-
+sequent  action  to  be  executed,  ensuring  that  the
+learning  environment  remains  adaptive  and  respon-
+sive. The task  of the Manager Agent can be for-
+mally  defined  as ,
+where  denotes a specific function and the selected
+action  will  be  carried  out,  transitioning  the  class  to
+the next state. After executing an action, the system
+enters a waiting phase for a time window . During
+this period, if a user responds or waiting time elapses,
+the Manager Agent is triggered to make a new deci-
+sion. This design reflects key educational principles by
+prioritizing  a  learner-centered  approach,  maintaining
+fluid  class  engagement,  and  promoting  timely  and
+contextually  relevant  instructional  adjustments,
+thereby enhancing the overall educational experience.
+This classroom management method is the core of
+MAIC's  learning  stage.  Currently,  we  collect  suffi-
+cient interaction data and employ several foundation
+models[47, 48] via fine-tuning or context engineering for
+implementation.
+ 3.3.4    Cooperative Tasks with Peer Agents
+N
+We also implement a toy environment in which a
+student collaborates with  AI peer agents to com-
+plete a designed task by the course teacher. The task
+is  divided  into  milestones,  issues,  defined  by  a  brief
+instruction,  and  collaborative  agents  involved.  The
+setup enforces accountable participation by assigning
+clear ownership to the student and limiting unsolicit-
+ed  assistance,  reducing  cognitive  offloading.  A  coun-
+selor  agent  monitors  interactions  and  adaptively  ad-
+justs scaffolding to match the student’s performance,
+providing  guidance  without  removing  challenge.  To
+cultivate real-world collaboration skills, agents reveal
+only partial reasoning and execution states, prompt-
+402 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1
+
+--- Page 11 ---
+ing  the  student  to  coordinate,  request  information,
+and plan jointly rather than consume fully completed
+outputs.
+ 4    Key Technique Evaluation
+MAIC  is  a  complex  LLM-based  intelligent  agent
+system that encompasses various specific technologies.
+In line with our design targets, we evaluate the tech-
+niques  along  two  axes:  scalability  and  adaptivity.
+Specifically,  the  teaching  system  involves  multiple
+processes  for  content  generation  and  knowledge  un-
+derstanding,  while  on  the  learning  side,  it  requires
+evaluating the effectiveness of agent construction and
+classroom management capabilities. We focus on pre-
+senting  two  core  functions:  lecture  script  generation
+and  course  management,  which  are  fundamental  to
+the teaching and learning aspects of MAIC. The eval-
+uation of other technologies will be continuously up-
+dated. Notably, these assessments provide only an ini-
+tial view of specific aspects of MAIC and its effective-
+ness in real-world practice will be further explored in
+Section 5.
+ 4.1    Learning Material Generation
+Evaluation
+To validate MAIC-Craft’s core generation capabil-
+ities, we evaluate the multimodal content understand-
+ing and pedagogical synthesis technologies that pow-
+er  our  Read-Generation  pipeline.  While  MAIC-Craft
+extends beyond script generation to encompass com-
+plete course creation, these foundational technologies
+are essential for all generation stages.
+ 4.1.1    Experimental Setup
+The  evaluation  task  is  to  automatically  generate
+pedagogically  effective  lecture  scripts  from  presenta-
+tion  slides,  where  the  system  must  process  multi-
+modal slide content (text, images, diagrams) and pro-
+duce  coherent  instructional  narratives  suitable  for
+classroom  delivery.  We  assess  MAIC-Craft  using  20
+diverse university presentations spanning STEM and
+humanities  disciplines.  The  evaluation  compares  our
+integrated  processing  approach  against  established
+baselines:  1)  iterative  processing,  which  generates
+scripts slide-by-slide without cross-page context, and
+2) direct prompting, which applies basic multimodal
+generation without pedagogical guidance.
+ 4.1.2    Evaluation Metrics
+Following  established  evaluation  frameworks  in
+educational  content  generation[17, 49],  we  assess  both
+automated  and  human-judged  dimensions.  For  auto-
+mated  evaluation,  we  measure:  1)  content  under-
+standing (content), which measures how well the gen-
+erated scripts accurately reflect and synthesize infor-
+mation  from  the  presentation  slides;  2)  long-context
+coherence (coherence), which assesses whether scripts
+maintain narrative consistency and logical flow across
+the  entire  presentation;  and  3)  pedagogical  design
+(pedagogy),  which  evaluates  the  quality  of  instruc-
+tional  tone,  clarity,  and  learner  engagement  in  the
+generated  scripts.  For  human  evaluation,  drawing
+from the Community of Inquiry framework[50], we as-
+sess: 1) consistency— the factual accuracy and align-
+ment  with  source  slide  content;  2)  readability— the
+linguistic fluency and ease of comprehension; and 3)
+coherence—the logical organization and smooth tran-
+sitions between instructional segments.
+ 4.1.3    Results
+As  shown  in Table 1,  MAIC-Craft  demonstrates
+superior  performance  across  both  automated  metrics
+(3.89  overall)  and  human  evaluation  rankings.  The
+ 
+Table  1.    MAIC-Craft Core Technology Validation Results
+Method Automated Evaluation Human Evaluation
+Content Coherence Pedagogy Overall Consistency Readability Coherence
+Iterative processing 3.68 3.72 3.75 3.72 1.47 1.48 1.31
+Direct prompting 3.73 3.74 3.78 3.75 – – –
+Teacher refined – – – – 2.12 2.16 2.25
+MAIC-Craft 3.86 3.89 3.92 3.89 2.44 2.37 2.44
+w/o visual 3.61 3.77 3.68 3.69 – – –
+w/o context 3.84 3.66 3.84 3.78 – – –
+Note: Automated scores (1–5 scale), human ranking (1–3 scale, the higher the better). “–” represents no evaluation conducted. Bold
+scores represent the best performances.
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 403
+
+--- Page 12 ---
+human evaluation particularly validates MAIC-Craft’s
+effectiveness,  with  consistently  higher  preference
+scores  compared  with  iterative  processing  and  even
+teacher-refined versions. Key findings are as follows.
+● Multimodal  Understanding  Advantage.  MAIC-
+Craft’s comprehensive processing significantly outper-
+forms single-modality approaches, validating our inte-
+gration strategy that addresses the requirement for di-
+verse input format handling.
+● Long-Context  Coherence.  Strong  coherence
+scores  in  both  automated  (3.89)  and  human  evalua-
+tion  (2.44)  demonstrate  MAIC-Craft’s  ability  to
+maintain narrative consistency across extended educa-
+tional  content,  directly  addressing  the  long-context
+understanding challenges identified in MAIC-Craft.
+● Pedagogical  Intelligence.  Superior  pedagogy
+scores (3.92) and consistent human preference across
+all dimensions confirm that MAIC-Craft’s structured
+instructional design principles effectively enhance edu-
+cational content quality beyond simple content gener-
+ation, supporting our human-AI collaborative frame-
+work approach.
+These  results  validate  that  the  core  technologies
+powering  MAIC-Craft’s  generation  stage  possess  the
+fundamental capabilities required for high-quality ed-
+ucational content creation across multiple modalities
+and formats.
+ 4.2    Personalization Evaluation
+In this subsection, we conduct expert evaluations
+for  the  personalization  effectiveness  of  our  adaptive
+engine.
+ 4.2.1    Data Construction
+To  evaluate  the  personalization  capability  of  the
+adaptive engine, we construct a dataset covering five
+university-level courses across diverse disciplines: To-
+wards Artificial General Intelligence (TAGI, comput-
+er science), How to Study in University (HSU, educa-
+tion),  Biology  (BIO,  natural  science),  Probability
+Theory  and  Mathematical  Statistics  (PTMS,  mathe-
+matics), and Psychology (PSY, psychology). For each
+course,  we  extract  self-contained  instructional  seg-
+ments from validated, human-authored curricula. To
+simulate varied learner contexts, we generate synthet-
+ic  yet  realistic  student  profiles  that  reflect  heteroge-
+neous  academic  backgrounds  and  personal  interests,
+validated  against  representative  university  enroll-
+60
+17 806
+2 573
+ment  distributions.  The  final  dataset  consists  of 
+samples  with  words  and  retrieved  sup-
+porting documents.
+ 4.2.2    Baselines
+We benchmark our system’s personalized instruc-
+tional  content  against  the  original  human-authored
+materials. To disentangle the contributions of individ-
+ual  components,  we  further  implement  two  ablation
+settings:  1)  system-level  ablation,  where  the  back-
+bone  model  is  evaluated  with  and  without  retrieval
+augmentation to assess the role of external grounding;
+2) model-level ablation, where the backbone LLM is
+replaced with alternative foundation models (GPT-4o,
+OpenAI-o1)  under  identical  retrieval  conditions,  to
+examine the influence of model choice on personaliza-
+tion quality.
+ 4.2.3    Human Evaluation
+  0:8
+We conduct a blind expert evaluation on the con-
+structed  dataset.  Five  annotators  with  expertise  in
+pedagogy  and  instructional  design  independently  as-
+sess anonymized outputs along six pedagogical dimen-
+sions:  instructional  accuracy,  expressive  clarity,  logi-
+cal coherence, student engagement, linguistic natural-
+ness,  and  personalization  relevance.  Each  sample  is
+double-coded  by  two  reviewers,  yielding  high  inter-
+rater reliability (Kendall’s ). We aggregate the
+final  scores  in Table 2 to  compare  win-rates  across
+conditions.
+ 4.2.4    Results
+92:2
+33:8
+87:0
+35:9
+86:0
+33:8
+The  results  demonstrate  a  clear  pedagogical  ad-
+vantage  of  personalization.  Compared  with  human-
+authored  materials,  our  system  achieves  markedly
+higher scores in learner-centered dimensions: personal-
+ization relevance (  vs ) and student engage-
+ment  (  vs ).  Notably,  annotators  also  pre-
+ferred  the  system’s  linguistic  naturalness  (  vs
+ ),  commenting  that  while  human  materials  are
+accurate, they are often perceived as “dry” and “im-
+personal”, whereas the personalized outputs integrate
+analogies and contexts resonant with individual learn-
+ers.
+77:8 ! 53:7
+Ablation  settings  further  confirm  these  findings.
+Removing  retrieval  causes  sharp  declines  in  instruc-
+tional  accuracy  ( )  and  expressive  clarity
+404 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1
+
+--- Page 13 ---
+75:5 ! 53:0
+( ),  underscoring  its  necessity  for  factual
+grounding and clarity. Backbone substitution reveals
+that model choice strongly influences affective dimen-
+sions: while alternative retrieval-augmented baselines
+perform reasonably, our chosen backbone consistent-
+ly leads in engagement, naturalness, and relevance.
+82:4
+Overall,  our  system  attains  the  highest  score
+( ),  validating  the  effectiveness  of  retrieval-aug-
+mented  personalization  over  both  standardized  hu-
+man materials and alternative system variants.
+ 4.3    Learning Side Evaluation
+500
+Classroom  Manager  Agent. Subsection 3.1.2 also
+mentions several relevant techniques of MAIC learn-
+ing. The classroom manager agent is the keypoint of
+the classroom controlling. However, the evaluation of
+this process is highly subjective, making it challeng-
+ing to establish an objective scoring system for assess-
+ment.  Therefore,  in  the  practical  implementation  of
+the TAGI and HSU courses, we select  actual sys-
+tem  decisions  and  extract  their  corresponding  class-
+room scenarios. We recruit expert teachers and teach-
+ing  assistants  to  manually  annotate  these  scenarios.
+Based  on  this  annotated  data,  we  derive  the  results
+shown in Fig.5. These results illustrate the alignment
+between the actions chosen by the manager agent and
+those  selected  by  human  instructors  in  determining
+the  next  course  action.  Specifically,  we  evaluate  the
+implementation with and without role description, de-
+tecting the effects of contextual information.
+ 4.3.1    Results
+Statistical  analysis  reveals  that  omitting  role  de-
+scriptions  for  each  agent  reduces  the  classifier’s  per-
+formance. Although the LLM can sometimes identify
+the  correct  agent  by  referencing  partial  behaviors
+from the chat history, the inclusion of comprehensive
+role  descriptions  markedly  enhances  performance.
+This suggests that while leveraging chat history as in-
+put for the scene controller can provide some benefits,
+it  is  insufficient  for  consistently  generating  accurate
+outputs.
+The current results, however, remain below opti-
+mal  levels,  indicating  further  opportunities  to  en-
+hance  the  user  experience.  Despite  the  suboptimal
+performance,  interacting  agents  demonstrate  the  ca-
+pacity  to  partially  offset  these  shortcomings.  This
+compensatory  effect  is  due  to  the  LLM’s  ability  to
+manage user queries beyond the predefined functions,
+as  evidenced  by  our  subsequent  behavioral  study,
+where user ratings do not significantly decline in the
+ablation setting.
+However,  enhancing  the  accuracy  of  the  con-
+troller  agent  remains  advantageous  as  agents  can
+more effectively manage the tasks they are designed
+for.  For  example,  the  teacher  agent  is  tailored  to
+adopt a softer, more instructive tone, but it may be
+less  effective  in  handling  safety-related  cases  com-
+pared with the assistant agent. Improved accuracy en-
+sures  that  each  agent  operates  within  its  designed
+scope,  contributing  to  a  more  seamless  and  effective
+instructional process.
+ 5    Empirical Evaluation
+To  explore  how  students  utilize  the  MAIC  plat-
+form for learning and to evaluate the learning effec-
+tiveness  within  an  authentic  educational  setting,  a
+large-scale user study is conducted. Following ethical
+approval  from  the  Tsinghua  University  Science  and
+ 
+Table  2.    Expert Evaluation Across Six Pedagogical Dimensions
+Method Ablation Acc (%) Cla (%) Coh (%) Eng (%) Nat (%) Rel (%) Overall (%)
+Human-authored – 55.5 56.5 57.9 35.9 33.8 33.8 45.5
+Ours – 77.8 75.5 76.2 87.0 86.0 92.2 82.4
+w/o retrieval System 53.7 53.0 53.4 67.3 69.0 65.7 60.3
+GPT-4o Model 55.9 56.8 57.2 55.8 54.1 54.8 55.9
+OpenAI-o1 Model 57.1 58.2 55.2 54.0 57.1 53.4 55.8
+Note:  Acc:  accuracy,  Cla:  clarity,  Coh:  coherence,  Eng:  engagement,  Nat:  naturalness,  Rel:  relevance.  We  compare  our  system
+against human-authored content and show two ablation settings: 1) system-level (w/o retrieval augmentation) and 2) model-level
+(LLM backbones with retrieval augmentation). Bold scores represent the best performances and the underlined ones indicate the
+second best performances.
+ 
+40 50 60 70 80 90
+Precision
+Manager Agent
+w/o Description
+TAGI
+HSU
+Overall
+ 
+Fig.5.  Manager agent precision.
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 405
+
+--- Page 14 ---
+Technology Ethics Committee (Certificate No: THU-
+04-2024-56),  we  implement  a  two-month  experimen-
+tal  intervention  within  the  course  Towards  General
+Artificial  Intelligence  (TGAI).  While  over  500  stu-
+dents initially registered, a total of 319 students ulti-
+mately completed the course within the study period.
+This  investigation  aims  to  address  three  core  re-
+search  objectives:  1)  to  characterize  student  engage-
+ment patterns during course learning and human-AI
+interactions,  and  2)  to  determine  the  learning  out-
+comes  achieved  by  students  following  the  MAIC  in-
+tervention, and 3) to evaluate the quality of the AI-
+generated  instruction  and  interaction  on  the  MAIC
+platform. Preliminary observations derived from this
+study are detailed in the subsequent subsections. Due
+to  the  page  limitation,  we  report  detailed  results  of
+the quality of the AI-generated instruction and inter-
+action on the MAIC platform in the Appendix⑧.
+ 5.1    Student Engagement in MAIC
+Analyzing the log data enabled us to further in-
+vestigate  students’ engagement  in  the  MAIC  course
+and their interaction dynamics with the multiple AI
+agents. The results revealed a clear divergence in stu-
+dent approach: among all the students who successful-
+ly completed the entire course (N = 319), 13.7% pri-
+marily  adopted  an “observational  mode”,  while  the
+vast  majority  (86.3%)  actively  engaged  in  interac-
+tions with the various AI agents.
+5:24
+SD = 6:62
+21:28
+SD = 16:94
+Subsequent qualitative data gathered through stu-
+dent interviews offered insight into these distinct ap-
+proaches.  Students  who  adopted  the  observational
+mode indicated that they were able to smoothly fol-
+low  the  AI  instructor’s  explanations  without  cogni-
+tive interruption. They specifically reported that this
+approach facilitated “uninterrupted thinking” and re-
+sulted in “a more cohesive learning experience”. For
+students who actively chose the interactive mode, the
+average  number  of  messages  sent  per  student  per
+module was  ( ), with an average mes-
+sage length of  Chinese characters ( ).
+Qualitatively,  these  interactive  students  described
+their  experience  as  gaining “a  supportive  environ-
+ment for self-expression”, where they felt “zero pres-
+sure to ask questions and receive immediate feedback
+from  different  perspectives”,  highlighting  the  per-
+ceived benefits of the interactive setting for personal-
+ized inquiry.
+11
+To  comprehensively  unfold  students’ interaction
+with  multiple  AI  agents,  we  systematically  catego-
+rized  and  consolidated  student  activities  into  seven
+distinct activity types, which are visually represented
+in Fig.6.  These  categories  include  asking  questions,
+initiating ideas, responding to AI’s questions, negoti-
+ating  and  verifying,  regulating  AI  roles,  regulating
+class process, and sharing emotion. Notably, the be-
+haviors of asking questions and initiating ideas were
+the most prevalent, accounting for 79% of all record-
+ed  activities.  Furthermore,  it  is  important  to  note
+that some students managed and controlled different
+intelligent  agent  roles  and  the  class  progress.  These
+management-related  behaviors  account  for %
+(Fig.6), for example, “Please go back to the previous
+slide” or “Please  explain  that  in  simpler  terms”,
+demonstrating  strong  autonomy  and  self-regulated
+learning abilities. In the interviews, some students al-
+so mentioned, “I don’t just ask for knowledge; I might
+ask, I want to learn more, or I hope to explore some-
+thing new in a certain field, to manage and regulate
+the AI’s responses.”
+  
+Student Activity Type
+Regulating Classmates
+Initiating Ideas
+Negotiating and Verifying
+Asking Questions
+Sharing Emotions
+Responding
+Regulating Process 
+1.5% 18.1%
+0.7%
+9.6%
+5.3%
+3.9%
+60.9%
+ 
+Fig.6.  Ratios of student activities.
+ 
+Overall, the high level of proactive questioning in-
+dicates that students are eager to engage when given
+the  opportunity,  underscoring  the  importance  of  de-
+signing AI tools that foster inquiry-based learning[51].
+Questioning is an important behavior that reflects ac-
+tive  learning  in  students,  which  ultimately  leads  to
+better academic performance. Finally, the occurrence
+of  management-related  behaviors  suggests  that  stu-
+dents  already  realize  their  active  role  in  their  learn-
+ing process, which align with previous study[52].
+ 5.2    Learning Outcomes in MAIC
+Students’ learning outcomes on the MAIC cours-
+406 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1
+ ⑧https://jcst.ict.ac.cn/en/supplement/c2f85ed8-5f28-4a37-a5ea-ffdf4a3a9ac4, Jan. 2026.
+
+--- Page 15 ---
+es  were  evaluated  from  three  perspectives:  learning
+performance  (the  baseline  test,  performance  in  mod-
+ule  tests  and  final  course  test),  technology  accep-
+tance through questionnaires, and self-reported high-
+er-order thinking scores.
+Test Results. The baseline test was conducted one
+day  prior  to  the  course,  consisting  of  10  multiple-
+choice questions. Module tests were conducted at the
+end  of  each  module,  focusing  primarily  on  the  con-
+tent covered in the module. Each module test consist-
+ed of 10 multiple-choice questions. All the test items
+were created by the course teacher and teaching assis-
+tants. The correlation analysis showed that test scores
+are strongly associated with class engagement. Specifi-
+cally,  the  frequency  (measured  by  the  logarithm  of
+the  number  of  messages  per  module MsgNum)  and
+length of in-class chat messages (measured by the log-
+arithm of the number of characters per message and
+module MsgLen)  sent  by  students,  prominent  fea-
+tures of the MAIC system, were positively correlated
+with standardized module test scores, as presented in
+Table 3.
+  
+Table  3.    Correlation of Students’ Message-Aware Behaviors
+and Test Results
+(log(M sgN um))
+ 
+(log(M sgLen)) 
+AvgQuiz 0.341*** 0.202*
+FinalExam 0.346*** 0.333**
+Note: Values shown in the table are normalized.
+ 
+ =
+0:14
+p = 0:021
+A regression analysis on students’ average module
+test  scores  was  performed,  controlling  normalized
+scores of the baseline test as the covariate. As Table 4
+shows,  the  average  message  length  (AvgMsgLen)  is
+found to be a significant predictor of the final exam
+performance ( , ).
+  
+Table  4.    Regression Results of Final Exam on the Length of
+Messages
+
+ SE 95% CI
+t 
+p 
+(Constant) 25 .46 [19.13 31.79] 8.02 <0.001
+AvgMsgLen 0 .14 0.25 [0.02 0.26] 2.36 0.021
+Baseline 2 .02 0.43 [1.46 3.36] 4.05 <0.001
+Note: SE: standard error. CI: confidence interval.
+ 
+N = 111
+t = 3:05
+p = 0:002
+t = 2:81
+p = 0:005
+t = 3:98
+p < 0:001
+Technology  Acceptance. We  also  evaluate  stu-
+dents’ attitude  changes  towards  generative  AI  tools
+before and after the course. The results demonstrated
+a  significant  increase  in  technology  acceptance
+( , , ).  Further  analysis  of
+specific dimensions of acceptance revealed significant
+improvements in habit ( , ), effort ex-
+pectancy ( , ), and facilitating condi-
+t = 3:22
+p = 0:002
+tions  ( , ).  These  findings  indicate
+that the immersive learning experience on the MAIC
+platform successfully facilitates the development of a
+positive and constructive attitude towards the use of
+generative AI tools. Interview responses also reflect an
+enhanced  understanding  and  acceptance  of  AI  tech-
+nologies. One student remarked: “I used to be quite
+resistant to AI, mainly because it was too complicat-
+ed, but after this course, I found that it was not that
+complicated. I learned some of its principles.”
+t = 2:32
+p = 0:02
+t = 2:37
+p = 0:02
+High-Order  Thinking.  We  explore  the  perceived
+impact of taking the TAGI course on the MAIC plat-
+form on students’ higher-order thinking skills by com-
+paring  student  responses  from  pre- and  post-course
+questionnaires.  The  results  of  paired-sample t-tests
+showed  significant  increases  in  students’ perceptions
+of the course’s positive effects on both abstract think-
+ing  ( , )  and  critical  thinking
+( , ). These findings suggest that stu-
+dents perceived the learning experience on the MAIC
+platform  as  an  enhancement  to  their  higher-order
+thinking capabilities.
+Interviews  further  illuminated  these  perceptions.
+One student stated: “I think it might make me more
+confident in asking these questions and think more. I
+also  approach  problems  from  multiple  perspectives,
+although I won’t completely accept what the AI says;
+I always think about it more.”
+Few students articulated a noticeable deficiency in
+opportunities  for  deep,  substantive  discussion  within
+the course structure. For instance, one student com-
+mented on the limitations compared with a tradition-
+al setting: “(In a real classroom) After class, I can ask
+the  teacher  to  explain  it  to  me  again.  Teachers  will
+directly tell me whether my question is correct, valu-
+able, or not, based on their understanding. The teach-
+er’s  questions  can  challenge  my  ingrained  cognition
+and  help  me  break  my  own  limitations,  but  the  AI
+teacher and AI classmates in this course do not seem
+capable of doing that”.
+This  student  further  criticized  the  focus  of  the
+content: “This  course  is  purely  about  knowledge  or
+concepts  because  the  teacher’s  teaching  is  quite  me-
+chanical. The course is rich in theoretical knowledge,
+but there is almost no ‘life thinking’, ‘life enlighten-
+ment’, or any philosophical reflections outside of arti-
+ficial intelligence.”
+Both  quantitative  and  qualitative  observations
+collectively  suggest  that  while  students  broadly  ac-
+knowledge  the  MAIC  platform’s  potential  to  foster
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 407
+
+--- Page 16 ---
+abstract and critical thinking, it may not have fully
+facilitated the deep, challenging, and personally rele-
+vant  intellectual  engagement  needed  to  promote  all
+aspects  of  higher-order  thought.  Therefore,  future
+work will focus on integrating more advanced cogni-
+tive  strategies  into  the  agents’ design  and  introduc-
+ing more complex problem-solving scenarios and chal-
+lenging content to better support the development of
+higher-order thinking.
+ 6    Future Work
+Building upon the foundational framework of MA-
+IC, several critical directions warrant further investi-
+gation  to  advance  the  integration  of  AI  and  educa-
+tional theory.
+First,  future  work  should  consider  developing
+LLMs that are not only technically proficient but al-
+so deeply grounded in established pedagogical princi-
+ples and cognitive science. This entails constructing a
+domain-specific foundational model for education-one
+that  internalizes  curricular  structures,  learning  pro-
+gressions,  knowledge  states  and  cognitive  load  theo-
+ry— thereby  enabling  the  generation  of  learning  re-
+sources that are both instructionally sound and cogni-
+tively  optimized.  Specifically,  course  plans  generated
+by MAIC-Craft could be more well-aligned with peda-
+gogical  principles,  with  less  hallucinations  and  more
+Socratic  educational  practice  designs.  It  would  serve
+as a unified and an education-centric knowledge base,
+ensuring fidelity to learning objectives while support-
+ing adaptive content delivery.
+Second,  there  are  also  sufficient  needs  about  en-
+riching  collaborative  learning  environments  through
+more sophisticated multi-agent simulations. Specifical-
+ly, we will extend MAIC to support dynamic team in-
+teractions with different roles in project-based learn-
+ing,  where  AI  agents  not  only  build  task  execution,
+but also model metacognitive strategies, social regula-
+tion,  and  epistemic  discourse.  It  requires  advancing
+human-centered  agent  design,  where  agents  act  not
+merely as tools, but also as responsive, socially aware
+collaborators that adapt to the evolving needs, group
+dynamics, and affective states of learners.
+Third, from a pedagogical perspective, we plan to
+continually investigate the co-learning trajectories and
+outcomes  in  a  multi-agent  classroom  as  well  as  the
+abovementioned MAIC-PBL. Meanwhile, with the ex-
+panding breadth of courses and topics, learning objec-
+tives steadily increase, where we aim to analyze the
+learning  style  and  outcomes  of  students  in  solving
+complex problem or projects.
+Finally,  a  long-term  vision  involves  aligning  AI
+more  closely  with  biological  and  human  intelligence.
+It includes exploring brain-inspired architectures that
+mirror human memory, attention, and reasoning pro-
+cesses,  and  leveraging  such  insights  to  design  multi-
+agent  systems  with  fine-grained  cognitive  fidelity.
+Building human-like agents at a behavioral level, we
+aspire to create AI-augmented classrooms that do not
+just simulate teaching, but also authentically emulate
+the nuanced, empathetic, and adaptive nature of hu-
+man instruction.
+ 7    Predicted Impact
+The implementation of MAIC in online education
+is expected to revolutionize the learning experience by
+enhancing both scalability and adaptability. By lever-
+aging  multi-agent  systems,  MAIC  can  dynamically
+adjust  to  the  needs  of  individual  learners,  providing
+personalized  learning  paths  that  were  previously
+unattainable  in  traditional  MOOCs.  This  personal-
+ized  approach  not  only  improves  learning  outcomes
+but  also  provides  access  to  high-quality  education
+across  diverse  socio-economic  backgrounds,  as  it  re-
+duces the dependency on human instructors for con-
+tent delivery.
+Moreover, MAIC is anticipated to address some of
+the  inherent  challenges  of  traditional  online  educa-
+tion, such as the one-size-fits-all model and the lack of
+real-time  adaptability[53].  The  integration  of  AI-driv-
+en agents as teachers, teaching assistants, and class-
+mates creates a more interactive and responsive learn-
+ing  environment.  This  shift  promises  to  increase  en-
+gagement and motivation among students, potential-
+ly leading to higher completion rates and deeper un-
+derstanding of the material.
+However, it is crucial to acknowledge that the in-
+troduction of such a transformative system could also
+have  unintended  consequences.  There  may  be  a
+widening gap between students who adapt well to AI-
+powered learning environments and those who strug-
+gle  with  this  new  mode  of  education.  Additionally,
+the reliance on AI systems could lead to reduced op-
+portunities  for  human  instructors,  potentially  dimin-
+ishing  the  role  of  educators  in  the  learning  process.
+These impacts need to be carefully monitored and ad-
+408 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1
+
+--- Page 17 ---
+dressed through ongoing evaluation and refinement of
+the MAIC system.
+ 8    Conclusions
+In this paper, we provided a concise overview of
+the  development  trajectory  of  online  education  and
+technological  opportunities  that  arise  in  the  era  of
+large language models (LLMs). Considering the prin-
+ciples of adaptivity and scalability, along with the so-
+phisticated  design  of  LLM-driven  multi-agent  sys-
+tems, we explored how existing MOOC can be trans-
+formed into MAIC (Massive AI-Empowered Courses)
+and  discussed  new  paradigms  of  teaching  and  learn-
+ing. We proposed a comprehensive solution, analyzed
+key technical components, and implemented each step
+of  the  process.  Our  approaches  are  practically  de-
+ployed in several courses at Tsinghua University, Bei-
+jing, leading to a series of preliminary observations of
+student  behavior.  These  initial  findings  suggest  that
+highly personalized classrooms built with new AI-as-
+sisted learning technologies can achieve high quality,
+and  student  behaviors  demonstrate  the  effectiveness
+of the teaching process.
+ Acknowledgements    We give the greatest ap-
+preciation  to  Yisi  Zhan  for  practicing  her  course
+“How to Study in the University” on MAIC. We sin-
+cerely thank Jie Cao, Ruimiao Li, Letian Ma, Jiaxin
+Fan, Yang Dang, Yongqi Li, and Zhaochun Wen for
+their full and commited support for educational data
+collections and analysis. We thank Yuanchun Wang,
+Hanming Li for toolkit development. We thank Nan
+Zhang,  Ruixin  Ni,  Zehang  Li,  Yuqiu  Liu,  Yanpeng
+Wang, and Danqi Zheng for their outstanding project
+management,  coordination,  engineering  implementa-
+tion, and product design.
+ Conflict of Interest    The authors declare that
+they have no conflict of interest.
+References 
+ Ng A. The online revolution: Education for everyone. In
+Proc. the  22nd  ACM  International  Conference  on  Infor-
+mation & Knowledge Management, Oct. 27–Nov. 1, 2013,
+pp.1913–1914. DOI: 10.1145/2505515.2514698.
+[1]
+ Fröbel F. The Education of Man. D. Appleton and Com-
+pany, 1887.
+[2]
+ Halstead M, Taylor M J. Values in Education and Educa-
+tion  in  Values.  Routledge,  2005.  DOI: 10.4324/
+9780203973554.
+[3]
+ Daniel J. Making sense of MOOCs: Musings in a maze of
+myth, paradox and possibility. Journal of Interactive Me-
+dia in Education, 2012, 2012(3): Article No. 18. DOI: 10.
+5334/2012-18.
+[4]
+ Pappano  L. The  year  of  the  MOOC. The  New  York
+Times, 2012, 2(12): 2012.
+[5]
+ Papadakis S. MOOCs 2012-2022: An overview. Advances
+in  Mobile  Learning  Educational  Research , 2023, 3(1):
+682–693. DOI: 10.25082/AMLER.2023.01.017.
+[6]
+ Reich  J,  Ruipérez-Valiente  J  A. The  MOOC  pivot. Sci-
+ence, 2019, 363(6423): 130–131. DOI: 10.1126/science.
+aav7958.
+[7]
+ Reich  J. Rebooting  MOOC  research. Science, 2015,
+347(6217): 34–35. DOI: 10.1126/science.1261627.
+[8]
+ Zhu M, Sari A R, Lee M M. A comprehensive systematic
+review  of  MOOC  research:  Research  techniques,  topics,
+and  trends  from  2009  to  2019. Educational  Technology
+Research and Development, 2020, 68(4): 1685–1710. DOI:
+10.1007/s11423-020-09798-x.
+[9]
+ Nabizadeh  A  H,  Leal  J  P,  Rafsanjani  H  N,  Shah  R  R.
+Learning path personalization and recommendation meth-
+ods: A survey of the state-of-the-art. Expert Systems with
+Applications, 2020, 159: 113596. DOI: 10.1016/j.eswa.
+2020.113596.
+[10]
+ Zhong Q, Yu J, Zhang Z, Mao Y, Wang Y, Lin Y, Hou L,
+Li J, Tang J. Towards a general pre-training framework
+for adaptive learning in MOOCs. arXiv: 2208.04708, 2022.
+https://arxiv.org/abs/2208.04708, Feb. 2026.
+[11]
+ Jiang W, Pardos Z A, Wei Q. Goal-based course recom-
+mendation. In Proc. the 9th International Conference on 
+Learning  Analytics  &  Knowledge,  Mar.  2019,  pp.36–45.
+DOI: 10.1145/3303772.3303814.
+[12]
+ Zhang  H,  Huang  T,  Lv  Z,  Liu  S,  Zhou  Z. MCRS:  A
+course  recommendation  system  for  MOOCs. Multimedia
+Tools and Applications, 2018, 77(6): 7051–7069. DOI: 10.
+1007/s11042-017-4620-2.
+[13]
+ Jing X, Tang J. Guess you like: Course recommendation
+in MOOCs. In Proc. the International Conference on Web
+Intelligence,  Aug.  2017,  pp.783–789.  DOI: 10.1145/
+3106426.3106478.
+[14]
+ Yilmaz R, Yurdugül H, Yilmaz F G K, Şahin M, Sulak S,
+Aydin F, Tepgeç M, Müftüoğlu C T, Oral Ö. Smart MOOC
+integrated  with  intelligent  tutoring:  A  system  architec-
+ture and framework model proposal. Computers and Edu-
+cation:  Artificial  Intelligence, 2022, 3: 100092. DOI: 10.
+1016/j.caeai.2022.100092.
+[15]
+ Tu S, Zhang Z, Yu J, Li C, Zhang S, Yao Z, Hou L, Li J.
+LittleMu:  Deploying  an  online  virtual  teaching  assistant
+via heterogeneous sources integration and chain of teach
+prompts.  In Proc. the  32nd  ACM  International  Confer-
+ence  on  Information  and  Knowledge  Management,  Oct.
+2023, pp.4843–4849. DOI: 10.1145/3583780.3615484.
+[16]
+ Kabudi  T,  Pappas  I,  Olsen  D  H. AI-enabled  adaptive
+learning systems: A systematic mapping of the literature.
+Computers and Education: Artificial Intelligence , 2021, 2:
+100017. DOI: 10.1016/j.caeai.2021.100017.
+[17]
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 409
+
+--- Page 18 ---
+ Epstein  Z,  Hertzmann  A,  The  Investigators  of  Human
+Creativity. Art and the science of generative AI. Science,
+2023, 380(6650): 1110–1111. DOI: 10.1126/science.
+adh4451.
+[18]
+ OpenAI. GPT-4 technical report. arXiv: 2303.08774, 2023.
+https://arxiv.org/abs/2303.08774, Feb. 2026.
+[19]
+ Touvron H, Lavril T, Izacard G, Martinet X, Lachaux M
+A, Lacroix T, Rozière B, Goyal N, Hambro E, Azhar F,
+Rodriguez  A,  Joulin  A,  Grave  E,  Lample  G.  LLaMA:
+Open  and  efficient  foundation  language  models.  arXiv:
+2302.13971, 2023. https://arxiv.org/abs/2302.13971, Feb.
+2026.
+[20]
+ Chen W, Su Y, Zuo J, Yang C, Yuan C, Qian C, Chan C
+M, Qin Y, Lu Y, Xie R, Liu Z, Sun M, Zhou J. Agent-
+Verse:  Facilitating  multi-agent  collaboration  and  explor-
+ing  emergent  behaviors  in  agents.  arXiv:  2308.10848v1,
+2023. https://arxiv.org/abs/2308.10848v1, Feb. 2026.
+[21]
+ Wu Q, Bansal G, Zhang J, Wu Y, Zhang S, Zhu E, Li B,
+Jiang L, Zhang X, Wang C. AutoGen: Enabling next-gen
+LLM  applications  via  multi-agent  conversation  frame-
+work.  arXiv:  2308.08155v1,  2023. https://arxiv.org/abs/
+2308.08155v1, Feb. 2026.
+[22]
+ Park J S, O’Brien J, Cai C J, Morris M R, Liang P, Bern-
+stein M S. Generative agents: Interactive simulacra of hu-
+man  behavior.  In Proc. the  36th  Annual  ACM  Sympo-
+sium  on  User  Interface  Software  and  Technology,  Oct.
+29–Nov.  1,  2023,  Article  No.  2.  DOI: 10.1145/3586183.
+3606763.
+[23]
+ Qian C, Cong X, Liu, Yang C, Chen W, Su Y, Dang Y,
+Li J, Xu J, Li D, Liu Z, Sun M. Communicative agents
+for  software  development.  arXiv:  2307.07924v4,  2023.
+https://arxiv.org/abs/2307.07924v4, Feb. 2026.
+[24]
+ Yu J, Wang Y, Zhong Q, Luo G, Mao Y, Sun K, Feng
+W, Xu W, Cao S, Zeng K, Yao Z, Hou L, Lin Y, Li P,
+Zhou  J,  Xu  B,  Li  J,  Tang  J,  Sun  M.  MOOCCubeX:  A
+large knowledge-centered repository for adaptive learning
+in MOOCs. In Proc. the 30th ACM International Confer-
+ence  on  Information  &  Knowledge  Management,  Nov.
+2021, pp.4643–4652. DOI: 10.1145/3459637.3482010.
+[25]
+ Pal  Chowdhury  S,  Zouhar  V,  Sachan  M.  AutoTutor
+meets  large  language  models:  A  language  model  tutor
+with  rich  pedagogy  and  guardrails.  In Proc. the  11th
+ACM Conference on Learning @ Scale, Jul. 2024, pp.5–15.
+DOI: 10.1145/3657604.3662041.
+[26]
+ Nwana  H  S. Intelligent  tutoring  systems:  An  overview.
+Artificial  Intelligence  Review, 1990, 4(4): 251–277. DOI:
+10.1007/BF00168958.
+[27]
+ Hexter J H. The education of the aristocracy in the re-
+naissance. The  Journal  of  Modern  History, 1950, 22(1):
+1–20. DOI: 10.1086/237314.
+[28]
+ Giroux  H  A,  Penna  A  N. Social  education  in  the  class-
+room: The dynamics of the hidden curriculum. Theory &
+Research in Social Education, 1979, 7(1): 21–42. DOI: 10.
+1080/00933104.1979.10506048.
+[29]
+ Dang F, Tang J, Li S. MOOC-KG: A MOOC knowledge
+graph  for  cross-platform  online  learning  resources.  In
+[30]
+Proc. the 9th International Conference on Electronics In-
+formation and Emergency Communication (ICEIEC), Jul.
+2019. DOI: 10.1109/ICEIEC.2019.8784572.
+ Brockfeld T, Müller B, de Laffolie J. Video versus live lec-
+ture  courses:  A  comparative  evaluation  of  lecture  types
+and  results. Medical  Education  Online , 2018, 23(1):
+1555434. DOI: 10.1080/10872981.2018.1555434.
+[31]
+ Mislevy R J, Gitomer D H. The role of probability-based
+inference in an intelligent tutoring system. User Modeling
+and  User-Adapted  Interaction, 1995, 5(3/4): 253–282.
+DOI: 10.1007/BF01126112.
+[32]
+ Aleven  V.  Rule-based  cognitive  modeling  for  intelligent
+tutoring systems. In Advances in Intelligent Tutoring Sys-
+tems,  Nkambou  R,  Bourdeau  J,  Mizoguchi  R  (eds.),
+Springer-Verlag, 2010, pp.33–62. DOI: 10.1007/978-3-642-
+14363-2_3.
+[33]
+ Cui W, Xiao Y, Wang H, Song Y, Hwang S W, Wang W.
+KBQA:  Learning  question  answering  over  QA  corpora
+and knowledge bases. Proceedings of the VLDB Endow-
+ment, 2017, 10(5): 565–576. DOI: 10.14778/3055540.
+3055549.
+[34]
+ Carey  T  A,  Mullan  R  J. What  is  Socratic  questioning?
+Psychotherapy:  Theory,  Research,  Practice,  Training ,
+2004, 41(3): 217–226. DOI: 10.1037/0033-3204.41.3.217.
+[35]
+ Nye B D, Graesser A C, Hu X. AutoTutor and family: A
+review of 17 years of natural language tutoring. Interna-
+tional Journal of Artificial Intelligence in Education, 2014,
+24(4): 427–469. DOI: 10.1007/s40593-014-0029-5.
+[36]
+ Schultz K, Bratt E O, Clark B, Peters S, Pon-Barry H,
+Treeratpituk P. A scalable, reusable spoken conversation-
+al tutor: SCoT. In Proc. the AIED 2003 Workshop on Tu-
+torial Dialogue Systems: With a View Toward the Class-
+room, Jul. 2003, pp.367–377.
+[37]
+ Jiang L, Hu S, Huang M, Wang Z, Yang J, Ye X, Zheng
+W.  MAssistant:  A  personal  knowledge  assistant  for
+MOOC learners. In Proc. the 2019 Conference on Empiri-
+cal Methods in Natural Language Processing and the 9th 
+International Joint Conference on Natural Language Pro-
+cessing (EMNLP-IJCNLP): System Demonstrations, Nov.
+2019, pp.133–138. DOI: 10.18653/v1/D19-3023.
+[38]
+ Meijer R R, Nering M L. Computerized adaptive testing:
+Overview  and  introduction. Applied  Psychological  Mea-
+surement, 1999, 23(3): 187–194. DOI: 10.1177/
+01466219922031310.
+[39]
+ Piech  C,  Bassen  J,  Huang  J,  Ganguli  S,  Sahami  M,
+Guibas  L,  Sohl-Dickstein  J.  Deep  knowledge  tracing.  In
+Proc. the 29th International Conference on Neural Infor-
+mation Processing Systems , Dec. 2015, pp.505–513. DOI:
+10.5555/2969239.2969296.
+[40]
+ Wang  F,  Liu  Q,  Chen  E,  Huang  Z,  Chen  Y,  Yin  Y,
+Huang Z, Wang S. Neural cognitive diagnosis for intelli-
+gent education systems. In Proc. the AAAI Conference on
+Artificial Intelligence, Feb. 2020, pp.6153–6161. DOI: 10.
+1609/aaai.v34i04.6080.
+[41]
+ Dan Y, Lei Z, Gu Y, Li Y, Yin J, Lin J, Ye L, Tie Z,
+Zhou Y, Wang Y, Zhou A, Zhou Z, Chen Q, Zhou J, He
+[42]
+410 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1
+
+--- Page 19 ---
+L, Qiu X. EduChat: A large-scale language model-based
+chatbot  system  for  intelligent  education.  arXiv:
+2308.02773, 2023. https://arxiv.org/abs/2308.02773, Feb.
+2026.
+ Li  H,  Yu  J,  Ouyang  Y,  Liu  Z,  Rong  W,  Liu  H,  Li  J,
+Xiong  Z. Explainable  few-shot  knowledge  tracing. Fron-
+tiers  of  Digital  Education, 2025, 2(4):  Article  No. 34.
+DOI: 10.1007/s44366-025-0071-x.
+[43]
+ Zhang  Z,  Zhang-Li  D,  Yu  J,  Gong  L,  Zhou  J,  Hao  Z,
+Jiang  J,  Cao  J,  Liu  H,  Liu  Z,  Hou  L,  Li  J.  Simulating
+classroom  education  with  LLM-empowered  agents.  In
+Proc. the 2025 Conference of the Nations of the Americas 
+Chapter of the Association for Computational Linguistics: 
+Human  Language  Technologies ,  Apr.  2025,  pp.10364–
+10379. DOI: 10.18653/v1/2025.naacl-long.520.
+[44]
+ Schwanke D. Classroom interaction research: A survey of
+recent  literature. The  Journal  of  Classroom  Interaction,
+1981, 16(2): 8–10.
+[45]
+ Hong S, Zheng X, Chen J, Cheng Y, Wang J, Zhang C,
+Wang Z, Yau S K S, Lin Z, Zhou L, Ran C, Xiao L, Wu
+C. MetaGPT: Meta programming for multi-agent collabo-
+rative framework. arXiv: 2308.00352v4, 2023. https://arx-
+iv.org/abs/2308.00352v4. Feb. 2026.
+[46]
+ Hu  S,  Tu  Y,  Han  X,  He  C,  Cui  G,  Long  X,  Zheng  Z,
+Fang Y, Huang Y, Zhao W, Zhang X, Thai Z, Zhang K,
+Wang C, Yao Y, Zhao C, Zhou J, Cai J, Zhai Z, Ding N,
+Jia C, Zeng G, Li D, Liu Z, Sun M. MiniCPM: Unveiling
+the potential of small language models with scalable train-
+ing strategies. arXiv: 2404.06395, 2024. https://arxiv.org/
+abs/2404.06395, Feb. 2026.
+[47]
+ Team GLM. ChatGLM: A family of large language mod-
+els from GLM-130B to GLM-4 all tools. arXiv: 2406.12793,
+2024. https://arxiv.org/abs/2406.12793, Feb. 2026.
+[48]
+ Kurdi G, Leo J, Parsia B, Sattler U, Al-Emari S. A sys-
+tematic review of automatic question generation for edu-
+cational purposes. International Journal of Artificial Intel-
+ligence in Education, 2020, 30(1): 121–204. DOI: 10.1007/
+s40593-019-00186-y.
+[49]
+ Garrison D R, Arbaugh J B. Researching the community
+of  inquiry  framework:  Review,  issues,  and  future  direc-
+tions. The  Internet  and  Higher  Education, 2007, 10(3):
+157–172. DOI: 10.1016/j.iheduc.2007.04.001.
+[50]
+ Xie X. Influence of AI-driven inquiry teaching on learn-
+ing  outcomes. International  Journal  of  Emerging  Tech-
+nologies in Learning (iJET), 2023, 18(23): 59–70. DOI: 10.
+3991/ijet.v18i23.45473.
+[51]
+ Cain W. Prompting change: Exploring prompt engineer-
+ing in large language model AI and its potential to trans-
+form education. TechTrends, 2024, 68(1): 47–57. DOI: 10.
+1007/s11528-023-00896-0.
+[52]
+ Rizvi S, Rienties B, Rogaten J, Kizilcec R F. Beyond one-
+size-fits-all  in  MOOCs:  Variation  in  learning  design  and
+persistence of learners in different cultural and socioeco-
+nomic  contexts. Computers  in  Human  Behavior, 2022,
+126: 106973. DOI: 10.1016/j.chb.2021.106973.
+[53]
+Ji-Fan Yu received his B.E. degree
+in  software  engineering  from  Beihang
+University,  Beijing,  in  2018,  and  his
+Ph.D. degree in computer science and
+technology  from  Tsinghua  University,
+Beijing, in 2024. He currently works at
+Tsinghua  University’s  School  of  Edu-
+cation, where his research is on artificial intelligence in
+education.
+Daniel  Zhang-Li received  his  B.E.
+and M.S. degrees in computer science
+and technology from Tsinghua Univer-
+sity, Beijing, in 2021 and 2023, respec-
+tively. He is currently a Ph.D. candi-
+date in computer science and technolo-
+gy  at  Tsinghua  University.  His  re-
+search interest lies in large language models and applica-
+tion agents.
+Zhe-Yuan  Zhang received  his  LLB
+degree  in  philosophy,  politics,  and
+economy, and his M.S. degree in com-
+puter science and technology from Ts-
+inghua University, Beiing, in 2022 and
+2025,  respectively.  He  is  currently  a
+Ph.D. student at Carnegie Mellon Uni-
+versity, Pittsburgh. His research focuses on human-agent
+interaction.
+Yu-Cheng  Wang received  his  B.E.
+degree in computer science from Zhe-
+jiang  University,  Hangzhou,  in  2020.
+He  is  currently  a  master  student  in
+the  Knowledge  Engineering  Group  at
+Tsinghua  University’s  Department  of
+Computer  Science  and  Technology,
+Beijing. His research focuses on artificial intelligence in
+education.
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 411
+
+--- Page 20 ---
+Hao-Xuan Li received his B.E. and
+M.S. degrees at the School of Comput-
+er  Science  and  Technology  from  Bei-
+hang University, Beijing, in 2022 and
+2025,  respectively.  He  is  currently  a
+first-year Ph.D. candidate at the Col-
+lege  of  AI,  Tsinghua  University,  Bei-
+jing. His research focuses on cognitive science and AI for
+education.
+Joy Jia Yin Lim received her B.E.
+degree  in  computer  science  and  tech-
+nology from Tsinghua University, Bei-
+jing, in 2023. She is currently a mas-
+ter  student  at  the  Department  of
+Computer  Science  and  Technology,
+Tsinghua  University,  Beijing.  Her  re-
+search focuses on large language models and their appli-
+cations in education.
+Zhan-Xin  Hao received  her  B.Ed.
+degree in education from Beijing Nor-
+mal  University,  Beijing,  her  M.A  de-
+gree  in  educational  assessment  from
+University  College  London,  London,
+and  her  Ph.D.  degree  in  educational
+assessment from the University of Ox-
+ford,  Oxford.  She  is  currently  a  postdoctoral  fellow  at
+Tsinghua  University’s  School  of  Education,  where  her
+research focuses on artificial intelligence in education.
+Shang-Qing  Tu received  his  B.E.
+degree  in  computer  science  and  tech-
+nology  from  Beihang  University,  Bei-
+jing, in 2022. He is currently a Ph.D.
+student  at  the  Department  of  Com-
+puter  Science  and  Technology,  Ts-
+inghua  University,  Beijing.  His  re-
+search focuses on large language models and their appli-
+cations in education.
+Lu Zhang received her B.S. degree
+in  geophysics  from  Tongji  University,
+Shanghai,  in  2021.  She  is  currently  a
+master student at the School of Edu-
+cation,  Tsinghua  University,  Beijing.
+Her  research  interests  focus  on  the
+practical applications of generative ar-
+tificial intelligence in teaching and learning, with a par-
+ticular  emphasis  on  AI-enabled  innovative  pedagogical
+models and their implications for AI in education.
+Xu-Sheng Dai received his B.S. de-
+gree in economics from the University
+of New South Whale, Sydney, in 2023.
+He  is  currently  a  master  student  at
+the  School  of  Education,  Tsinghua
+University, Beijing. His research inter-
+ests focus on paradigmatic innovation
+of  pedagogy  leveraged  by  generative  artificial  intelli-
+gence.
+Jian-Xiao  Jiang received  his  B.E.
+degree  in  computer  science  and  tech-
+nology from the Department of Com-
+puter  Science  and  Technology,  Ts-
+inghua University, Beijing, in 2023. He
+is  currently  a  master  student  at  the
+School of Education, Tsinghua Univer-
+sity,  Beijing.  His  research  leverages  educational  data
+mining and generative AI to rigorously evaluate and ad-
+vance AIED innovations.
+Shen Yang is currently a senior un-
+dergraduate  student  at  the  Depart-
+ment of Computer Science and Tech-
+nology,  Tsinghua  University,  Beijing.
+His  research  focuses  on  the  applica-
+tion  of  large  language  models  and
+agents in education.
+412 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1
+
+--- Page 21 ---
+Fei  Qin received  her  Ph.D.  degree
+in educational economics and manage-
+ment  from  the  School  of  Education,
+Tsinghua  University,  Beijing,  and  is
+currently a postdoctoral fellow at the
+School of Education, Tsinghua Univer-
+sity, Beijing. Her research interests fo-
+cus on AI-empowered education and student agency de-
+velopment.
+Ze-Kun Li received his B.E. degree
+in data science and big data technolo-
+gy from Chongqing University, Chong-
+qing,  in  2025.  He  is  currently  a  mas-
+ter  student  at  the  School  of  Educa-
+tion, Tsinghua University, Beijing. His
+research  focuses  on  artificial  intelli-
+gence  in  education,  large  language  models,  and  multi-
+agent systems.
+Bing-Lin  Liu is  currently  a  junior
+undergraduate student at the Depart-
+ment of Computer Science and Tech-
+nology,  Tsinghua  University,  Beijing.
+His  research  focuses  on  human-agent
+interaction.
+Xin  Cong is  an  assistant  professor
+at  the  Department  of  Statistics  and
+Data Science, Tsinghua University. He
+received  his  Ph.D.  degree  from  Chi-
+nese Academy of Sciences, Beijing, in
+2023.  His  research  interests  include
+large  language  models,  autonomous
+agent, and intelligent data analysis.
+Bin  Xu is  a  professor  at  the  De-
+partment  of  Computer  Science  and
+Technology, Tsinghua University, Bei-
+jing.  He  received  his  Ph.D.  degree  at
+Tsinghua University, Beijing, in 2006.
+He  is  also  a  distinguished  member  of
+CCF and honorary chair of CCF tech-
+nical  committee  of  computer  applications.  He  is  work-
+ing on exciting areas of artificial intelligence.
+Lei  Hou is  a  research  associate  at
+the  Department  of  Computer  Science
+and Technology, Tsinghua University,
+Beijing.  He  received  his  Ph.D.  degree
+in  computer  science  and  technology
+from  Tsinghua  University,  Beijing,  in
+2016.  His  research  interests  include
+knowledge graph construction and applications and large
+language models.
+Man-Li  Li is  a  professor  at  the
+School of Education, Tsinghua Univer-
+sity,  Beijing.  She  received  her  Ph.D.
+degree in education from Peking Uni-
+versity, Beijing, in 1998. She current-
+ly serves as the chair of the Academic
+Committee of the School of Education,
+Tsinghua University, Beijing. Her research interests in-
+clude  higher  education,  engineering  education,  K–12
+school reform, online education, and educational equity.
+Juan-Zi Li is a professor at the De-
+partment  of  Computer  Science  and
+Technology, Tsinghua University, Bei-
+jing. She received her Ph.D. degree in
+computer science and technology from
+Tsinghua University, Beijing, in 2000.
+She currently serves as the director of
+the  Knowledge  Intelligence  Center  at  the  Institute  for
+Artificial Intelligence, Tsinghua University, Beijing. Her
+research  interests  include  knowledge  graphs  and  social
+network mining.
+Hui-Qin Liu is a research fellow at
+the  School  of  Education,  Tsinghua
+University,  Beijing.  She  received  her
+Ph.D. degree in management from Ts-
+inghua  University,  Beijing,  in  2006.
+She currently serves as the director of
+the  Tsinghua  University  Engineering
+Education Research Center, Beijing. Her research inter-
+ests  include  higher  education  policy  and  management,
+graduate  education,  engineering  education,  and  future
+education and learning.
+Ji-Fan Yu et al.: Reimagine Online Teaching and Learning Through LLM-Driven Agents 413
+
+--- Page 22 ---
+Yu  Zhang is  a  professor  at  the
+School of Education, Tsinghua Univer-
+sity,  Beijing.  She  received  her  Ph.D.
+degree  in  economics  and  education
+from Teachers College, Columbia Uni-
+versity,  New  York,  in  2011.  She  cur-
+rently serves as Party Secretary of the
+School of Education, Tsinghua University, and Program
+Chair of the “Brain, Neuroscience and Education” of the
+American  Educational  Research  Association.  Her  re-
+search interests include economics of education, quanti-
+tative evaluation of education policy innovation, and in-
+terdisciplinary education measurement integrating cogni-
+tive neuroscience and machine learning.
+Zhi-Yuan Liu is a professor at the
+Department of Computer Science and
+Technology, Tsinghua University, Bei-
+jing.  He  received  his  Ph.D.  degree  in
+computer  science  from  Tsinghua  Uni-
+versity, Beijing, in 2011. His research
+interests  include  knowledge  graphs
+and  semantic  computing,  and  social  computing  and
+computational social science.
+Mao-Song Sun is a professor at the
+Department of Computer Science and
+Technology, Tsinghua University, Bei-
+jing.  He  received  his  Ph.D.  degree  in
+computational  linguistics  from  City
+University of Hong Kong, Hong Kong,
+in 2004. He currently serves as Execu-
+tive Deputy Director of the Institute for Artificial Intel-
+ligence, Tsinghua University, Beijng, Chair of the Com-
+puter  Science  degree  evaluation  subcommittee  at  Ts-
+inghua University, Beijng, and Director of the Tsinghua
+University Center for Large-Scale Online Education Re-
+search,  Beijng.  His  research  interests  include  natural
+language processing, large language models, Chinese in-
+formation processing, and social computing.
+414 J. Comput. Sci. & Technol., Jan. 2026, Vol.41, No.1

@@ -1,0 +1,561 @@
+{
+  "status": "ok",
+  "message-type": "work",
+  "message-version": "1.0.0",
+  "message": {
+    "indexed": {
+      "date-parts": [
+        [
+          2026,
+          10,
+          6
+        ]
+      ],
+      "date-time": "2026-10-06T17:35:53Z",
+      "timestamp": 1791308153872,
+      "version": "4.3.1"
+    },
+    "reference-count": 56,
+    "publisher": "Informa UK Limited",
+    "issue": "5",
+    "funder": [
+      {
+        "DOI": "10.13039/501100004595",
+        "name": "Universiti Sains Malaysia",
+        "doi-asserted-by": "publisher",
+        "award": [
+          "R502-KR-ARU005-0000000585-K134"
+        ],
+        "award-info": [
+          {
+            "award-number": [
+              "R502-KR-ARU005-0000000585-K134"
+            ]
+          }
+        ],
+        "id": [
+          {
+            "id": "10.13039/501100004595",
+            "id-type": "DOI",
+            "asserted-by": "publisher"
+          }
+        ]
+      }
+    ],
+    "content-domain": {
+      "domain": [
+        "www.tandfonline.com"
+      ],
+      "crossmark-restriction": true
+    },
+    "short-container-title": [
+      "Innovations in Education and Teaching International"
+    ],
+    "published-print": {
+      "date-parts": [
+        [
+          2025,
+          9,
+          3
+        ]
+      ]
+    },
+    "DOI": "10.1080/14703297.2025.2503857",
+    "type": "journal-article",
+    "created": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          8
+        ]
+      ],
+      "date-time": "2025-05-08T07:10:16Z",
+      "timestamp": 1746688216000
+    },
+    "page": "1431-1446",
+    "update-policy": "https://doi.org/10.1080/tandf_crossmark_01",
+    "source": "Crossref",
+    "is-referenced-by-count": 32,
+    "title": [
+      "Integrating generative artificial intelligence into design and art course: Effects on student achievement, motivation, and self-efficacy"
+    ],
+    "prefix": "10.1080",
+    "volume": "62",
+    "author": [
+      {
+        "ORCID": "https://orcid.org/0009-0001-9749-5331",
+        "authenticated-orcid": false,
+        "given": "Jing",
+        "family": "Chen",
+        "sequence": "first",
+        "affiliation": [
+          {
+            "name": "Universiti Sains Malaysia",
+            "place": [
+              "Penang, Malaysia"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0003-1411-5557",
+        "authenticated-orcid": false,
+        "given": "Nur Azlina Mohamed",
+        "family": "Mokmin",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Universiti Sains Malaysia",
+            "place": [
+              "Penang, Malaysia"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      },
+      {
+        "ORCID": "https://orcid.org/0000-0002-7106-1455",
+        "authenticated-orcid": false,
+        "given": "HanJun",
+        "family": "Su",
+        "sequence": "additional",
+        "affiliation": [
+          {
+            "name": "Universiti Sains Malaysia",
+            "place": [
+              "Penang, Malaysia"
+            ]
+          }
+        ],
+        "role": [
+          {
+            "vocabulary": "crossref",
+            "role": "author"
+          }
+        ]
+      }
+    ],
+    "member": "301",
+    "published-online": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          8
+        ]
+      ]
+    },
+    "reference": [
+      {
+        "key": "e_1_3_4_2_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.CAEAI.2024.100219"
+      },
+      {
+        "key": "e_1_3_4_3_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/SU151712983"
+      },
+      {
+        "key": "e_1_3_4_4_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.21432/CJLT27959"
+      },
+      {
+        "key": "e_1_3_4_5_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.9781/IJIMAI.2024.02.006"
+      },
+      {
+        "key": "e_1_3_4_6_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/INFO15110676"
+      },
+      {
+        "key": "e_1_3_4_7_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.9781/IJIMAI.2025.02.007"
+      },
+      {
+        "key": "e_1_3_4_8_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/CSTE62025.2024.00032"
+      },
+      {
+        "key": "e_1_3_4_9_1",
+        "volume-title": "Statistical power analysis for the behavioral sciences",
+        "author": "Cohen J.",
+        "year": "1988",
+        "unstructured": "Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.). Lawrence Erlbaum.",
+        "edition": "2"
+      },
+      {
+        "key": "e_1_3_4_10_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.JHLSTE.2024.100481"
+      },
+      {
+        "key": "e_1_3_4_11_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.COMPEDU.2021.104421"
+      },
+      {
+        "key": "e_1_3_4_12_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1126/SCIENCE.ADH4451"
+      },
+      {
+        "key": "e_1_3_4_13_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/14703297.2023.2195846"
+      },
+      {
+        "key": "e_1_3_4_14_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.9734/AJESS/2020/V10I430273"
+      },
+      {
+        "key": "e_1_3_4_15_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/14703297.2024.2427039"
+      },
+      {
+        "key": "e_1_3_4_16_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.LINDIF.2024.102547"
+      },
+      {
+        "key": "e_1_3_4_17_1",
+        "volume-title": "Guidance for generative AI in education and research",
+        "author": "Holmes W.",
+        "year": "2023",
+        "unstructured": "Holmes, W., & Miao, F. (2023). Guidance for generative AI in education and research. UNESCO Publishing."
+      },
+      {
+        "key": "e_1_3_4_18_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.COMPEDU.2022.104684"
+      },
+      {
+        "key": "e_1_3_4_19_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s11191-022-00392-6"
+      },
+      {
+        "key": "e_1_3_4_20_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1111/JCAL.12814"
+      },
+      {
+        "key": "e_1_3_4_21_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.54517/M.V4I1.2164"
+      },
+      {
+        "key": "e_1_3_4_22_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/14703297.2025.2484613"
+      },
+      {
+        "key": "e_1_3_4_23_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3641235.3664438"
+      },
+      {
+        "key": "e_1_3_4_24_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1103/PhysRevPhysEducRes.19.020150"
+      },
+      {
+        "key": "e_1_3_4_25_1",
+        "first-page": "75",
+        "volume-title": "Handbook of research on science education",
+        "author": "Koballa T. R.",
+        "year": "2013",
+        "unstructured": "Koballa, T. R., & Glynn, S. M. (2013). Attitudinal and motivational constructs in science learning. In S. K. Abell & N. G. Lederman (Eds.), Handbook of research on science education (pp. 75–102). Lawrence Erlbaum."
+      },
+      {
+        "key": "e_1_3_4_26_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.NEPR.2008.07.003"
+      },
+      {
+        "key": "e_1_3_4_27_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.CAEAI.2024.100221"
+      },
+      {
+        "key": "e_1_3_4_28_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1002/ASE.2270"
+      },
+      {
+        "key": "e_1_3_4_29_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/978-3-031-36336-8_81"
+      },
+      {
+        "key": "e_1_3_4_30_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1145/3613904.3642393"
+      },
+      {
+        "key": "e_1_3_4_31_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.14742/ajet.8923"
+      },
+      {
+        "key": "e_1_3_4_32_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.COMPEDU.2020.104035"
+      },
+      {
+        "key": "e_1_3_4_33_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10956-022-10014-z"
+      },
+      {
+        "key": "e_1_3_4_34_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/educsci13040410"
+      },
+      {
+        "key": "e_1_3_4_35_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1155/2022/9439634"
+      },
+      {
+        "key": "e_1_3_4_36_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/ACCESS.2024.3468368"
+      },
+      {
+        "key": "e_1_3_4_37_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s40692-023-00270-2"
+      },
+      {
+        "key": "e_1_3_4_38_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/14703297.2024.2319184"
+      },
+      {
+        "key": "e_1_3_4_39_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/14703297.2024.2413053"
+      },
+      {
+        "key": "e_1_3_4_40_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1080/2331186X.2023.2243134"
+      },
+      {
+        "key": "e_1_3_4_41_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/INFORMATICS11020037"
+      },
+      {
+        "key": "e_1_3_4_42_1",
+        "volume-title": "Motivation and self-regulated learning: Theory, research, and applications",
+        "author": "Schunk D. H.",
+        "year": "2008",
+        "unstructured": "Schunk, D. H., & Zimmerman, B. J. (Eds.). (2008). Motivation and self-regulated learning: Theory, research, and applications. Lawrence Erlbaum."
+      },
+      {
+        "key": "e_1_3_4_43_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.15858/engtea.73.1.201803.95"
+      },
+      {
+        "key": "e_1_3_4_44_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s10956-018-9754-0"
+      },
+      {
+        "key": "e_1_3_4_45_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/SU16177849"
+      },
+      {
+        "key": "e_1_3_4_46_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1186/s40561-023-00237-x/FIGURES/13"
+      },
+      {
+        "key": "e_1_3_4_47_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s42438-023-00407-7"
+      },
+      {
+        "key": "e_1_3_4_48_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3390/EDUCSCI13100998"
+      },
+      {
+        "key": "e_1_3_4_49_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1109/IISA59645.2023.10345878"
+      },
+      {
+        "key": "e_1_3_4_50_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1037/0022-3514.70.4.767"
+      },
+      {
+        "key": "e_1_3_4_51_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s00146-024-01979-z"
+      },
+      {
+        "key": "e_1_3_4_52_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1177/07356331231191125"
+      },
+      {
+        "key": "e_1_3_4_53_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.CAEAI.2022.100061"
+      },
+      {
+        "key": "e_1_3_4_54_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.CAEAI.2023.100147"
+      },
+      {
+        "key": "e_1_3_4_55_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1016/J.SBSPRO.2011.04.158"
+      },
+      {
+        "key": "e_1_3_4_56_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.3389/fpsyg.2022.843484"
+      },
+      {
+        "key": "e_1_3_4_57_1",
+        "doi-asserted-by": "publisher",
+        "DOI": "10.1007/s11423-020-09868-0"
+      }
+    ],
+    "container-title": [
+      "Innovations in Education and Teaching International"
+    ],
+    "original-title": [],
+    "language": "en",
+    "link": [
+      {
+        "URL": "https://www.tandfonline.com/doi/pdf/10.1080/14703297.2025.2503857",
+        "content-type": "unspecified",
+        "content-version": "vor",
+        "intended-application": "similarity-checking"
+      }
+    ],
+    "deposited": {
+      "date-parts": [
+        [
+          2025,
+          9,
+          15
+        ]
+      ],
+      "date-time": "2025-09-15T04:59:02Z",
+      "timestamp": 1757912342000
+    },
+    "score": 1,
+    "resource": {
+      "primary": {
+        "URL": "https://www.tandfonline.com/doi/full/10.1080/14703297.2025.2503857"
+      }
+    },
+    "subtitle": [],
+    "short-title": [],
+    "issued": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          8
+        ]
+      ]
+    },
+    "references-count": 56,
+    "journal-issue": {
+      "issue": "5",
+      "published-print": {
+        "date-parts": [
+          [
+            2025,
+            9,
+            3
+          ]
+        ]
+      }
+    },
+    "alternative-id": [
+      "10.1080/14703297.2025.2503857"
+    ],
+    "URL": "https://doi.org/10.1080/14703297.2025.2503857",
+    "relation": {},
+    "ISSN": [
+      "1470-3297",
+      "1470-3300"
+    ],
+    "issn-type": [
+      {
+        "value": "1470-3297",
+        "type": "print"
+      },
+      {
+        "value": "1470-3300",
+        "type": "electronic"
+      }
+    ],
+    "subject": [],
+    "published": {
+      "date-parts": [
+        [
+          2025,
+          5,
+          8
+        ]
+      ]
+    },
+    "assertion": [
+      {
+        "value": "The publishing and review policy for this title is described in its Aims & Scope.",
+        "order": 1,
+        "name": "peerreview_statement",
+        "label": "Peer Review Statement"
+      },
+      {
+        "value": "http://www.tandfonline.com/action/journalInformation?show=aimsScope&journalCode=riie20",
+        "URL": "http://www.tandfonline.com/action/journalInformation?show=aimsScope&journalCode=riie20",
+        "order": 2,
+        "name": "aims_and_scope_url",
+        "label": "Aim & Scope"
+      },
+      {
+        "value": "2025-05-08",
+        "order": 3,
+        "name": "published",
+        "label": "Published",
+        "group": {
+          "name": "publication_history",
+          "label": "Publication History"
+        }
+      }
+    ]
+  }
+}

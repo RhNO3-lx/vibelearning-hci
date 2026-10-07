@@ -1,0 +1,2366 @@
+=== PDF PAGE 1 ===
+MemForest: An Efficient Agent Memory System with Hierarchical
+Temporal Indexing
+Han Chen
+National University
+of Singapore
+Singapore, Singapore
+chenhan@u.nus.edu
+Zining Zhang
+National University
+of Singapore
+Singapore, Singapore
+zzn@nus.edu.sg
+Wenqi Pei
+National University
+of Singapore
+Singapore, Singapore
+wenqi_pei@u.
+nus.edu
+Bingsheng He
+National University
+of Singapore
+Singapore, Singapore
+dcsheb@nus.edu.sg
+Ming Wu
+Zero Gravity Labs
+United States
+ming@0g.ai
+Jason Zeng
+Zero Gravity Labs
+United States
+jason@0g.ai
+Michael Heinrich
+Zero Gravity Labs
+United States
+michael@0g.ai
+Wei Wu
+Zero Gravity Labs
+United States
+wei@0g.ai
+Hongbao Zhang
+Zero Gravity Labs
+United States
+peter@0g.ai
+Abstract
+Memory is a fundamental component for enabling long-context
+LLM agents, supporting persistent state across interactions through
+a continuous serve-and-update lifecycle. We presentMemForest,
+a memory framework that reformulates agent memory as a write-
+efficient temporal data management problem. Canonical facts serve
+as durable write units, separating persistent evidence from sum-
+maries and indexes that can be refreshed locally. MemForest breaks
+the sequential bottleneck via parallel chunk extraction, decoupling
+memory construction into concurrent, independent operations.
+To further eliminate coarse-grained maintenance, we introduce
+MemTree, a hierarchical temporal index that organizes memory as
+time-ordered trees rather than flat global summaries. This design re-
+places full-state rewrites with localized per-node updates, reducing
+maintenance cost to the affected tree paths while preserving tempo-
+rally evolving states. We evaluate MemForest on LongMemEval-S
+and LoCoMo. With Qwen3-30B, MemForest reaches 81.8% pass@1
+on LongMemEval-S and 84.09% on LoCoMo categories 1–4, while
+achieving build rates6 .0× and9 .5× those of EverMemOS in our
+measured LongMemEval-S and LoCoMo workloads, respectively.
+Keywords
+LLM agents, agent memory, persistent memory, temporal indexing,
+hierarchical retrieval, write-efficient memory
+1 Introduction
+Large language model (LLM) agents are increasingly expected to
+sustain personalized and stateful behavior across interactions that
+span days, weeks, or months [24, 26, 43]. This requirement arises
+in applications such as conversational assistants, long-lived task
+agents, and interactive social agents, where useful behavior depends
+on preserving user preferences, prior commitments, and accumu-
+lated experiences over time. This, in turn, requires an efficient
+and effective memory system that transforms interaction streams
+into a structured memory state that remains useful as evidence
+accumulates and user state evolves. Recent memory systems have
+made substantial progress in managing long-context interactions
+through hierarchical structures, online/offline consolidation, and
+Code:https://github.com/Concyclics/MemForest
+temporal graphs [3, 9, 13, 17, 27]. At the same time, recent database
+systems work has begun to treat LLM+retrieval workloads as first-
+class data systems, optimizing retrieval–inference pipelining, cache
+reuse, and persistent vector infrastructures for LLM applications
+[1, 14, 31, 39]. In this paper, we focus on improving the efficiency
+and effectiveness of persistent agent memory systems under this
+systems perspective.
+Current memory systems can be viewed as having three core
+functions:extraction, which converts raw interactions into persis-
+tent memory records;retrieval, which fetches relevant context for
+downstream response generation; andmaintenance, which updates,
+consolidates, and restructures existing knowledge over time [9, 42].
+In continuous workloads, the placement and dependencies of these
+stages determine how quickly new evidence becomes queryable
+[3, 9, 13, 17]. Figure 1 summarizes the resulting build-rate–accuracy
+operating points.
+Two dependency patterns recur. First, LLM-based extraction and
+maintenance can form state-dependent request chains before new
+evidence becomes queryable; EverMemOS, for example, performs
+streaming event extraction followed by consolidation [13]. Second,
+some profile- or summary-centric paths periodically rewrite com-
+pact hot states such as user profiles or global summaries [17, 24].
+Even when only minor new evidence arrives, such a path must
+reread and rewrite the maintained object. As memory accumulates,
+this imposes a maintenance cost and latency floor that scales with
+maintained-state size rather than with newly arrived evidence.
+However, improving write efficiency alone is not sufficient, be-
+cause long-context agent memory is inherently temporal [11, 20,
+27, 34]. User states evolve, facts are revised, and older information
+often remains necessary for complex reasoning. For example, if a
+user first lived in Boston, later moved to New York, and then relo-
+cated to San Francisco, a memory system should support not only
+the current-state query of where the user lives now, but also histor-
+ical and transition queries such as where the user lived before New
+York and when the move occurred. We therefore frame long-context
+agent memory as a write-efficient temporal data management prob-
+lem, in which persistent memory must remain incrementally main-
+tainable while preserving historical state evolution [2, 8]. The core
+challenge is to overcome the trade-off between write efficiency and
+faithful temporal memory representation: a system must minimize
+arXiv:2605.23986v3  [cs.DB]  6 Sep 2026
+
+=== PDF PAGE 2 ===
+Chen et al.
+0.1 0.5 1 5 10
+50
+60
+70
+80
+90
+Public-prompt pass@1 (%)
+6.0×
+(a) LongMemEval-S
+MemForest
+0.1 0.5 1 5 10
+50
+60
+70
+80
+90
+9.5×
+(b) LoCoMo
+MemForest
+Input-normalized build rate (turns/s, log scale) →
+Zep Local MemoryOS EverMemOS Mem0 MemForest
+Figure 1: Qwen3-30B accuracy and memory-build rate on
+LongMemEval-S and LoCoMo categories 1–4.
+the serial delays ofextractionand the state-size-dependent costs
+ofmaintenancein order to maximize update throughput, while
+rigorously preserving historical states for long-context reasoning
+in order to maximize answer accuracy.
+In this paper, we proposeMemForest, a memory architecture
+designed around this write-efficient temporal objective. MemFor-
+est combines parallel chunk extraction, canonical fact consolida-
+tion, andMemTree—a hierarchical temporal index that materializes
+scoped memory as time-ordered trees rather than flat records or
+repeatedly rewritten profiles. MemForest adopts a similar high-
+level intuition to write-optimized indexing in database systems,
+where update costs are reduced by avoiding repeated rewrites of
+compact indexed state, as exemplified by LSM-trees [23], although
+the maintained object here is persistent agent memory rather than
+key-value state. Parallel chunk extraction dismantles the serialex-
+tractionbottleneck by decoupling and processing new interactions
+concurrently. Canonical fact consolidation repairs the semantic
+fragmentation inherently introduced by such parallelization. To
+optimizemaintenance, MemTree replaces full-state rewrites with
+localized per-node updates and lazy summary regeneration, so that
+index-maintenance cost scales with the affected tree paths and dis-
+tinct dirty nodes rather than with the total accumulated memory
+size (Section 4.4). At query time, MemForest leverages this structure
+to perform coarse-to-fineretrieval, navigating from broad interval
+summaries down to precise leaf-level evidence [7, 29, 30].
+We evaluate MemForest on two long-context memory bench-
+marks, LongMemEval-S and LoCoMo [20, 34]. With Qwen3-30B,
+MemForest reaches 81.8% pass@1 on LongMemEval-S and 84.09%
+on LoCoMo categories 1–4. Its build rate is6 .0× and9 .5× that of
+EverMemOS in our measured LongMemEval-S and LoCoMo work-
+loads, respectively. This efficiency matters because, in long-horizon
+deployments,extractionandmaintenancecosts are paid repeatedly
+as new sessions arrive rather than once as offline preprocessing.
+Overall, MemForest improves the memory substrate by accelerat-
+ing write operations, explicitly preserving temporal state evolution,
+and exposing retrieval across multiple granularities.
+Our contributions are threefold:
+• We characterize how LLM-in-the-loop extraction and state-
+size-dependent profile or summary maintenance determine
+the write critical path of long-context memory systems.
+• We introduce MemForest, a memory architecture that re-
+solves these bottlenecks by combining parallel extraction
+with hierarchical temporal indexing, enabling localized
+updates, variable-granularity retrieval, and a persistent,
+queryable, and temporally evolving memory substrate un-
+der continuous writes.
+• We show that this architectural shift improves the speed–
+accuracy trade-off on LongMemEval-S, where MemForest
+is the strongest overall system among the evaluated stateful
+baselines, while remaining competitive on LoCoMo with
+substantially reduced write-path cost across both bench-
+marks.
+The remainder of this paper is organized as follows. Section 2
+introduces the workload model and problem formulation for long-
+context agent memory. Section 3 presents the system overview of
+MemForest and its core structure, MemTree. Section 4 provides
+the design and implementation details of its extraction, retrieval,
+and maintenance workflows. Section 5 evaluates MemForest on
+LongMemEval-S and LoCoMo. Section 6 provides ablation studies
+and analysis of the key design choices. We review related work in
+Section 7, and conclude this paper in Section 8.
+2 Background and Problem Formulation
+2.1 Workload Model
+We consider a long-lived agent that interacts with a user through a
+sequence of sessions
+D=(𝑆 1, 𝑆2, . . . , 𝑆𝑇 ),(1)
+where each session 𝑆𝑡 is a multi-turn interaction arriving over
+time. The system must continuously extract new sessions, maintain
+memory across the full interaction horizon, and answer future
+queries against the accumulated memory state. This workload has
+three key properties. First, new sessions should become queryable
+without requiring full reconstruction of prior memory. Second, once
+written, memory may be queried many times by downstream tasks,
+including current-state lookup, multi-session recall, knowledge
+updates, and temporal reasoning. Third, practical systems may need
+to support merge, deletion, or migration as memory policies evolve
+over time [13, 19, 27, 32]. This setting is reflected in long-context
+benchmarks such as LoCoMo and LongMemEval [20, 34].
+Existing memory systems typically consist of three stages:ex-
+traction, which converts newly arrived interactions into memory
+records;maintenance, which updates, merges, reorganizes, or re-
+freshes existing memory state; andretrieval, which recalls relevant
+memory for downstream response generation [9, 17, 42]. Figure 2
+illustrates this common workflow. Unlike one-shot long-context
+prompting, memory construction is therefore not a one-time pre-
+processing step, but part of an ongoing mixed read-write workload.
+2.2 Write-Path and Temporal Design Trade-offs
+We compare prior systems along two dimensions that shape con-
+tinuous memory: dependencies on the online write path and the
+representation used to preserve temporal evidence.
+
+=== PDF PAGE 3 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+Table 1: Temporal-memory designs and write-path complexity.
+System Persistent representation Temporal accumulation Implemented write path LLM-wave depthMem0 Indexed fact store Timestamped facts under configured ingestion metadata LLM ADD/UPDATE/DELETE decision over retrieved candidates𝑂( ⌈𝑁/𝑃⌉)∗+𝑂(𝑁)MemoryOS Short-, mid-, and long-term tiers Recent memory with promotion and background consolidation Session-chain update and state-dependent promotion𝑂(𝑁)EverMemOS Event logs and consolidated memory Timestamped events plus semantic consolidation Episode/event extraction followed by consolidation𝑂(𝑁)LightMem Compressed indexed memories Recent online records plus offline/background updates Extraction/compression with state-dependent updates𝑂( ⌈𝑁/𝑃⌉)∗; impl.𝑂(𝑁)MemPalace Fidelity-first raw history Timestamped raw events Lightweight indexing; abstraction deferred to retrieval0Zep Local Bi-temporal graph and episodic store Versioned graph edges with retained provenance Ordered episode extraction and graph maintenance𝑂(𝑁)MemForest (ours)Scoped, time-ordered MemTrees Canonical facts plus interval summaries Parallel extraction and local dirty-path refresh𝑂( ⌈𝑁/𝑃⌉ +log𝑁)
+𝑁 counts method-native input units in one complete build and 𝑃 is the per-instance LLM-worker budget; ∗ marks parallel-feasible extraction whose released add loop is serial. The
+column counts autoregressive request waves, not token or non-LLM work; fixed𝑃leaves MemForest’s bound𝑂(𝑁).
+User Input
+User InputHistory Dialogue
+Extraction Maintenance
+User Query
+Retrieval LLM
+Response
+Agent Memory
+LLM-based hotspot
+Figure 2: A generic workflow of agent memory systems. New
+dialogue history first goes throughextraction, thenmainte-
+nanceupdates the existing memory state, and future user
+queries triggerretrievalover the maintained memory. In
+many existing systems, the dominant LLM hotspot lies on
+the write path of extraction and maintenance.
+2.2.1 Write-Path Dependencies.Representative systems combine
+different persistent representations with different write workflows.
+Table 1 separates these two design dimensions. LLM work enters
+the write path through event extraction and consolidation in Ever-
+MemOS, extraction and compression in LightMem, graph extraction
+and linking in Zep, or updates over retrieved facts and tiered state in
+Mem0 and MemoryOS [3, 9, 13, 17, 27]. MemPalace instead indexes
+raw history and defers abstraction to retrieval [22]. These choices
+move different amounts of work among construction, maintenance,
+and query-time reconstruction.
+2.2.2 Issues in Temporal Memory Systems.Temporal memory adds
+a second requirement [11, 20, 27, 34]. Long-context memory must
+preserve not only what is true now, but also what used to be true and
+when transitions occurred. For example, if a user lived in Boston,
+later moved to New York, and then relocated to San Francisco, the
+system should support current-state, historical-state, and transition
+queries over the same trajectory.
+Existing baselines preserve temporal evidence through concrete,
+different mechanisms. EverMemOS keeps relative time expressions
+together with resolved absolute dates in episodic and event memo-
+ries, then uses LLM-guided multi-round retrieval [13]. MemPalace
+indexes timestamped raw sessions, while LightMem and MemoryOS
+separate recent from consolidated or tiered memory [9, 17, 22]. Zep/-
+Graphiti maintains bi-temporal graph edges and source episodes
+with validity and provenance [ 27]. MemTree instead organizes
+canonical facts into scoped, time-ordered hierarchies for coarse-
+to-fine access. These mechanisms move temporal work among
+write-time extraction, state maintenance, and query-time recon-
+struction. Our objective is to preserve evolving state while limiting
+refresh to the affected access paths.
+2.3 Problem Formulation
+We first introduce the following concepts.
+Persistent stateconsists of the canonical memory contents
+that define the durable semantics of the system. In MemForest,
+this includes canonical facts, fact-to-tree mappings, cluster states,
+session references, and the tree structures that preserve temporally
+organized memory within each scope.
+Derived artifactsare auxiliary structures materialized from
+persistent state to accelerate access. In MemForest, these include
+interval summaries, node embeddings, and root-level index entries.
+They improve efficiency, but they are not the source of truth and
+can be selectively refreshed after writes.
+Write-path latencymeasures the wall-clock time required to
+convert newly arrived interaction history into queryable memory.
+This is the primary systems metric for write responsiveness.
+Token costmeasures the total model input/output usage in-
+curred during memory construction and maintenance. This cap-
+tures model-side resource consumption even when latency is par-
+tially hidden by parallelism.
+Given a continuous session stream D, our goal is to maintain
+a persistent memory substrate M that improves the efficiency of
+continuous memory construction while preserving the fidelity of
+temporally evolving state. In particular, we seek a design whose
+write cost is governed by the size of the incoming update rather
+than the size of the entire accumulated memory, and whose systems
+behavior can be evaluated along two primary dimensions: write-
+path latency and token cost. MemForest addresses this objective
+through three design choices: it uses canonical facts as stable write
+units, separates persistent state from derived access artifacts, and
+materializes scoped memory as a temporal index that supports
+localized maintenance and coarse-to-fine retrieval.
+3 MemForest Overview
+MemForest is a persistent temporal memory substrate for long-
+context agents that supports three workflows—ingestion, retrieval,
+and maintenance—over a shared persistent state. Figure 3 shows
+the end-to-end system, and Figure 4 illustrates the core temporal
+index.
+Design rationale.MemForest targets three requirements of long-
+horizon agent memory under continuous writes. First, new sessions
+should be incorporated incrementally with low write-path latency,
+so that memory remains fresh and queryable without introducing a
+serialization bottleneck on the update path. Second, updates should
+preserve temporally evolving state rather than collapsing memory
+into a single latest-state summary. The resulting memory must
+
+=== PDF PAGE 4 ===
+Chen et al.
+`
+I had ice
+creamtoday Extraction
+Manager
+Entity & Scene
+Router
+Entity Trees
+Scene Trees
+Session Trees
+Cluster States
+Fact Manager
+Summary Manager
+Recall Trees
+RootIndex
+Tree Browse
+Fact
+TreeNode
+Retrieval
+Extraction Maintenance
+MemForest
+Planner*
+Fact
+Figure 3: MemForest overview. New sessions are converted
+into canonical facts, materialized into scoped MemTrees, and
+queried through forest recall followed by tree browse. Main-
+tenance edits only affected persistent state and selectively
+refreshes derived artifacts such as summaries, embeddings,
+and RootIndex rows. Optional modules are marked with∗.
+remain queryable not only for current-state lookup, but also for
+historical-state and temporal reasoning queries. Third, the write
+path should avoid any global memory object or global all-fact main-
+tenance step. Each update should modify only the affected region
+of memory, so that maintenance cost depends on the size of new
+evidence rather than the size of accumulated state.
+MemForest addresses these requirements through three design
+choices. It uses canonical facts as stable write units, separates per-
+sistent state from derived access artifacts, and materializes scoped
+memory as temporal indexes that support localized maintenance
+and coarse-to-fine retrieval.
+3.1 Shared Memory Substrate
+The core abstraction of MemForest is a shared memory substrate
+with two layers:persistent stateandderived artifacts. Persistent state
+stores the durable semantics of memory and serves as the source of
+truth. In MemForest, it includes canonical facts, fact-to-tree map-
+pings, cluster states, and the scoped tree structures themselves.
+Derived artifacts are auxiliary access structures regenerated from
+persistent state to accelerate retrieval and maintenance, including
+interval summaries, node embeddings, and root-level index rows.
+This separation is central to the system design. Writes modify
+only affected persistent regions, while dependent derived artifacts
+are refreshed selectively rather than through full-state rewriting.
+As a result, the same substrate can support incremental writes,
+localized maintenance, and later lifecycle operations such as merge
+or deletion without global state reconstruction.
+3.2 MemTree as a Scoped Temporal Index
+MemTree is the core storage abstraction of MemForest. Each ma-
+terialized scope is represented as a balanced temporal tree whose
+leaves preserve fine-grained evidence in chronological order, whose
+internal nodes summarize contiguous time intervals, and whose
+root provides a coarse representation for tree-level recall. Unlike
+flat memory stores, MemTree preserves state evolution directly
+in the index: older states remain accessible as earlier leaves and
+intervals rather than being overwritten by a latest-state summary.
+May 2023 → Jan 2025
+Move from Boston to Miami
+May 2023 → Feb 2024
+Move from Boston to Davis
+Feb 2024 → Jan 2025
+Move from Davis to Miami
+When and
+why my friendBob leftBoston?
+May 2023
+ToDavis
+for work
+Sep 2023
+Joint
+Rental
+Jan 2024
+Change
+Roomie
+Jul 2024
+Move to
+Miami
+MemTree about Bob’s Residence
+Nov 2023
+Self
+Rental
+Jan 2025
+Buy a
+house
+Tree Browser
+I heard Bob
+bought ahouserecently
+[Jan 2025]
+Figure 4: MemTree. Leaves preserve time-ordered evidence,
+internal nodes summarize contiguous intervals, and the root
+supports coarse tree-level recall. The same structure supports
+both query-time browse and localized refresh after writes.
+MemTree serves two roles at once. On the write path, updates
+affect only touched leaves and ancestor regions, enabling localized
+maintenance. At query time, the same structure supports coarse-to-
+fine retrieval, allowing search to begin at root or interval summaries
+and descend only where finer evidence is needed.
+MemForest materializes three complementary tree families. Ses-
+sion trees preserve dialogue order and local fidelity. Scene trees
+provide broader semantic access through clustered latent topics.
+Entity trees provide direct access to recurring subjects that accu-
+mulate evidence over time. Together, they expose dialogue-, topic-,
+and entity-scoped access paths over the same persistent substrate,
+so that retrieval can choose the scope that best matches a query
+rather than being tied to a single global index.
+3.3 Workflow Overview
+Ingestion workflow.Ingestion avoids coupling each new session
+to a shared global object. Raw interaction streams are processed
+chunk-locally, consolidated into canonical facts, routed into session-
+, entity-, and scene-level scopes, and materialized into the corre-
+sponding MemTrees. Because a new session is decomposed into
+stable write units and inserted only into affected scopes, write cost
+tracks the incoming update rather than the size of accumulated
+memory as history grows.
+Retrieval workflow.Retrieval separates coarse pruning from fine-
+grained evidence search so that LLM cost is spent only where it
+improves answer quality. MemForest first performs forest-level re-
+call to select a small set of candidate trees, then browses within
+those trees to locate answer-bearing evidence. This two-stage de-
+sign keeps semantic and temporal grouping intact during coarse
+pruning while allowing evidence search to descend from root and
+interval summaries to leaf-level facts or dialogue units only where
+needed for the current query.
+Tree browse supports two operating modes under the same
+retrieval stack: a lightweight embedding-only mode suitable for
+latency-sensitive settings, and an LLM-guided mode that supports
+higher-accuracy evidence localization when additional traversal
+cost is acceptable. In the default high-accuracy configuration, Mem-
+Forest further uses a planner to generate targeted per-tree sub-
+queries based on recalled root summaries; Section 6.2 analyzes the
+effect of planner use and browse policy.
+
+=== PDF PAGE 5 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+Maintenance workflow.Maintenance reuses the ingestion-side
+locality principle so that incremental updates, merge, deletion, and
+related lifecycle operations remain bounded by the affected state
+rather than the full accumulated memory. Rather than rewriting
+a global memory object, MemForest edits only affected persistent
+regions and then selectively refreshes dependent derived artifacts,
+so that maintenance cost scales with touched scopes and access
+paths for each lifecycle operation.
+4 Implementation Details
+Section 3 described the overall MemForest architecture. We now
+present the implementation of its core mechanisms.
+4.1 Extraction Workflow
+The extraction workflow converts raw interaction streams into
+canonical facts and materializes them into scoped MemTrees through
+four stages: parallel extraction, canonicalization, routing, and tree
+materialization.
+Parallel extraction.Given a session
+𝐷=(𝑢 1, 𝑢2, . . . , 𝑢𝑇 ),(2)
+MemForest partitions it into fixed-size chunks
+C (𝐷)={𝑐 𝑖 }⌈𝑇/𝑏⌉
+𝑖=1 , 𝑐 𝑖 =(𝑢 (𝑖−1)𝑏+1 , . . . , 𝑢min(𝑖𝑏,𝑇) ).(3)
+Chunks are processed independently up to the concurrency budget,
+exposing inference parallelism and avoiding the long serialized
+extraction path of profile-centric systems. This creates a latency–
+token trade-off: smaller chunks expose more parallel requests and
+bound each generation, but repeat prompt/schema input and JSON
+scaffolding; larger chunks amortize that overhead but reduce paral-
+lelism and can lose answer-bearing evidence as context grows [18].
+For short sessions or below serving saturation, repeated prefill can
+outweigh the parallel-latency benefit.
+Canonicalization.Because chunk-local extraction fragments mem-
+ory, MemForest canonicalizes the outputs before indexing. Each
+canonical fact contains retrieval-ready fact text, temporal anchors,
+entity labels, and scene labels, and is stored in the Fact Manager as
+the system’s stable write unit. Canonicalization uses normalized
+exact matching, embedding-retrieved candidates, and a bounded
+LLM equivalence check. Equivalent records merge provenance and
+occurrence times; contradictory or non-equivalent updates remain
+separate time-anchored facts. Canonicalization does not verify fac-
+tuality, but retained provenance supports targeted correction.
+Routing.Canonical facts are then routed into session, entity, and
+scene scopes. Session scope comes directly from the source dialogue.
+Entity scope is induced from normalized entity labels. Scene scope
+is induced by clustering over canonical facts and maintained with
+cluster states containing centroids and member-fact identifiers. A
+fact may enter multiple scopes; multi-assignment is not resolved by
+forcing one winning tree. Scene assignment uses cosine similarity
+to active cluster centroids, creates a new scene below the activation
+threshold, and merges clusters only above the configured merge
+threshold. Session and scene paths remain available when an entity
+overlay is not activated. This stage remains lightweight and requires
+no additional LLM calls after extraction.
+Tree materialization.Finally, routed facts are inserted into the
+corresponding MemTrees. Entity and scene trees use atomic facts
+as leaves, while session trees use original dialogue units to preserve
+a high-fidelity channel. Instead of rewriting a compact global state,
+MemForest inserts only the new evidence into affected scopes.
+4.2 Retrieval Workflow
+At query time, MemForest separates retrieval intoforest recalland
+tree browse. Forest recall selects candidate trees; tree browse locates
+answer-bearing evidence inside them.
+Forest recall.Given a query 𝑞, MemForest first recalls candidate
+trees from the forest. Root summaries provide a natural coarse
+retrieval unit, but may lose localized lexical cues. Atomic facts
+often preserve stronger signals for entity names, dates, and short
+event descriptions. MemForest therefore usesunion recall.
+First, we retrieve the top-𝑘 trees using root-summary embed-
+dings:
+𝐶root (𝑞)=TopK  sim(𝑒(𝑞), 𝑒(𝑟 𝑇 ))
+𝑇∈ F ,(4)
+where 𝑒(𝑞) is the query embedding, 𝑒(𝑟 𝑇 ) is the embedding of tree
+𝑇 ’s root summary, andF is the forest. All similarities are cosine
+similarities over normalized Qwen3 embeddings. The Fact Manager,
+RootIndex, and NodeIndex use FAISSIndexFlatIPexact search.
+Second, we retrieve the top-𝑘atomic facts,
+𝑅fact (𝑞)=TopK 𝑓
+ sim(𝑒(𝑞), 𝑒(𝑓)) ,(5)
+map each fact back to the trees in which it appears, and collect
+𝐶fact (𝑞)=
+Ø
+𝑓∈𝑅 fact (𝑞)
+Trees(𝑓),(6)
+whereTrees(𝑓)denotes the set of trees containing fact𝑓.
+We then rank trees in the union pool by
+score(𝑞, 𝑇)=max  sim(𝑒(𝑞), 𝑒(𝑟 𝑇 )), 𝑠 fact (𝑞, 𝑇),(7)
+where
+𝑠fact (𝑞, 𝑇)=
+ 
+
+max
+𝑓∈𝑇∩𝑅 fact (𝑞)
+sim(𝑒(𝑞), 𝑒(𝑓))if𝑇∩𝑅 fact (𝑞)≠∅,
+−∞otherwise.
+(8)
+The final recalled tree set is
+𝐶(𝑞)=TopK 𝑇∈𝐶 root (𝑞)∪𝐶 fact (𝑞) score(𝑞, 𝑇).(9)
+Root recall captures scope-level relevance, while fact-to-tree recall
+recovers trees whose relevance is concentrated in local evidence.
+Tree browse.MemForest then browses within the recalled trees
+by descending from root and interval summaries to finer-grained
+branches until reaching leaf evidence. The retrieved leaves are
+resolved back to canonical facts or dialogue units, reranked, and
+assembled into the final answer context.
+This browse stage supports two modes. In embedding-only mode,
+a promising child is one of the highest cosine-scoring child sum-
+maries. In LLM-guided mode, the browser presents child summaries
+and a tree-specific query to the branch-selection prompt, which se-
+lects the next child identifiers. Both modes share the same recalled
+trees and MemTree structure; they differ only in branch-selection
+policy at each tree level.
+
+=== PDF PAGE 6 ===
+Chen et al.
+Planner-guided per-tree subqueries.In the high-accuracy setting,
+tree browse can be paired with a planner. Given the original query
+and the recalled root summaries, the planner generates one tar-
+geted subquery per tree. This helps because different recalled trees
+often correspond to different aspects of the question, and the root
+summary provides a compact tree-level description.
+The planner is therefore a traversal controller rather than an an-
+swer generator. Without it, the original query 𝑞 is used for all trees.
+With it, browse proceeds using specialized per-tree subqueries.
+Section 6.2 studies its effect on retrieval quality and efficiency.
+4.3 Maintenance Workflow
+The main systems idea of MemForest is to separateeager struc-
+tural maintenancefromlazy semantic refresh. Structural edits are
+applied immediately, while summaries and other derived artifacts
+are refreshed later through dirty-node batching.
+Eager structural maintenance.When new evidence arrives, Mem-
+Forest routes each record into its affected trees, creates new leaves,
+updates placement maps, and performs any required insertion, split,
+or rebalance. Under the bounded-fan-out balancing policy, a 𝑘-ary
+tree with 𝑁 leaves touches only the new leaf and its ancestor path,
+so structural maintenance affects
+𝑂(log 𝑘 𝑁)(10)
+nodes per affected tree. Normal temporal updates append time-
+anchored leaves, including superseded states, and split overflowing
+nodes upward to preserve bounded fan-out. Explicit source retrac-
+tion is handled by the deletion path. A write completes after its
+dirty summaries are refreshed.
+Lazy semantic refresh.Within each write batch, records are
+grouped by touched tree and affected ancestors are marked dirty.
+Dirty nodes are deduplicated, grouped by level, and refreshed
+bottom-up before the write returns. Entity and scene leaves can
+pass through their canonical fact payload directly, whereas session
+leaves summarize raw dialogue units. Internal nodes summarize
+their children only after lower levels have been refreshed. Because
+multiple writes may share ancestors, each dirty node is summa-
+rized at most once per flush. Refresh is scheduled level-parallel, and
+nodes from different trees can be batched together. Algorithm 1
+summarizes the process. Summary regeneration is the LLM-based
+maintenance step: a parent waits for its refreshed children, while
+same-level nodes and nodes in different trees form independent
+request waves.
+Lifecycle operations.The same local-update principle extends to
+other lifecycle operations.
+Merge.Canonical-fact merge requires semantic equivalence and
+combines provenance and occurrence times; non-equivalent state
+updates remain distinct. Tree rebalance follows the bounded-fan-
+out invariant. MemForest then reconciles cluster states and the
+corresponding trees. If two scopes align to the same merged tree,
+only their touched subtrees are merged; otherwise unmatched trees
+can be copied directly.
+Delete.State evolution retains superseded facts. If source dialogue
+is retracted, MemForest removes the corresponding facts and tree
+Algorithm 1:MemTree maintenance with eager structure
+and lazy refresh
+Input :forest stateM, incoming canonical factsF, incoming
+dialogue unitsS
+Output :updated persistent state and refreshed derived artifacts
+1B ←RouteAndActivate( M,F,S )
+2foreach(𝑇 , 𝑅) ∈ Bdo
+3foreach𝑟∈SortByTime(𝑅)do
+4ℓ←CreateLeaf(𝑟)
+5AttachAndRebalance(𝑇 , ℓ, 𝑟 .time)
+6UpdatePlacementMap(𝑟, 𝑇 , ℓ)
+7MarkDirtyAncestors(ℓ)
+8T aff ← {𝑇| (𝑇 , 𝑅) ∈ B }
+9D ←CollectDirtyNodesByLevel( T aff )
+10for𝜆←0toMaxLevel( D )do
+11foreach𝑢∈ D [𝜆]in paralleldo
+12if𝜆=0∧TreeType(𝑢) ∈ {entity,scene}then
+13𝑢.summary←Passthrough(𝑢.payload)
+14else if𝜆=0then
+15𝑢.summary←SummarizeCellText(𝑢.payload)
+16else
+17𝑢.summary←SummarizeChildren(𝑢.children)
+18foreach𝑢∈AffectedNonLeafNodes( T aff )in paralleldo
+19𝑢.embedding←Embed(𝑢.summary)
+20RefreshRootRows( M,T aff )
+21returnM
+nodes, locally rebalances affected trees, updates the mappings, and
+refreshes only invalidated summaries and embeddings.
+Migration.External memory can be imported as another materi-
+alized forest and integrated through the same merge path. Compat-
+ible scopes reuse the canonical-fact and subtree merge procedures
+above, unmatched trees are copied directly, and only affected sum-
+maries and root-index entries are refreshed. Migration therefore
+reuses constructed state instead of replaying the source dialogues.
+4.4 Cost Rationale and Update Locality
+MemForest shares the high-level intuition of write-optimized struc-
+tures such as LSM-trees [23]: expensive maintenance is deferred
+and batched rather than triggered as repeated full-state rewrites.
+The deferred work here is semantic refresh, and we next quantify
+how this keeps maintenance cost bound to local updates.
+Let 𝐹 be the number of incoming canonical facts,𝑈 the maximum
+number of trees touched by one fact, 𝑁 the maximum number of
+leaves in a touched tree, and 𝑘 the branching factor. Across the
+batch, structural maintenance touches one root-to-leaf path per
+fact–tree assignment:
+𝑇struct =𝑂(𝐹𝑈log 𝑘 𝑁).(11)
+Across a batch, let 𝐷 be the number of distinct dirty nodes after
+ancestor deduplication. Summary regeneration depends on 𝐷, not
+
+=== PDF PAGE 7 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+on total memory size:
+𝑇refresh ∝
+ℎ∑︁
+𝜆=0
+|𝐷𝜆 |, 𝐷=
+ℎØ
+𝜆=0
+𝐷𝜆,(12)
+where 𝐷𝜆 is the dirty-node set at level 𝜆 and ℎ=⌈log 𝑘 𝑁⌉ . Thus to-
+tal refresh work is 𝑂(𝐷) and a touched tree has at most 𝑂(log 𝑘 𝑁)
+dependency levels. With an LLM worker budget 𝑃, the actual num-
+ber of refresh request waves is Íℎ
+𝜆=0 ⌈|𝐷 𝜆 |/𝑃⌉ ; tree levels remain
+sequential, as analyzed in Section 5.4.
+The key claim is therefore locality: semantic maintenance is
+bounded by affected paths and distinct dirty nodes rather than by
+the full accumulated memory state. Under bounded fan-out and
+balanced MemTrees, structural insertion and dirty-path dependency
+depth are 𝑂(log 𝑘 𝑁) ; extraction scales with incoming content, and
+refresh work scales with𝐷.
+4.5 Tree-Level Concurrency and Snapshot
+Semantics
+Each MemTree owns an independent reader–writer lock. Insertion
+and summary refresh take the touched tree’s write lock, so dis-
+tinct trees proceed concurrently while same-tree writes serialize.
+Range queries, browse, and snapshot export use shared read locks;
+fact-store and root-index updates use separate component locks.
+The online auto_update path refreshes dirty summaries and root
+vectors before returning, and snapshot save atomically renames a
+completed temporary directory into place. Detailed cross-session
+conflict measurements are reported in Appendix D.3.
+5 Evaluation
+We now evaluate MemForest as an end-to-end long-context mem-
+ory system. Throughout this section, we usewrite pathto refer to
+the extraction and maintenance pipeline that transforms incoming
+dialogue history into queryable persistent memory. Our evalua-
+tion studies three questions: (1) how effective MemForest is on
+long-context conversational memory benchmarks, (2) how the two
+retrieval operating modes of MemForest compare in answer quality,
+and (3) how much the system reduces write-path and query-time
+cost relative to representative baselines.
+5.1 Experimental Setup
+All systems first transform each benchmark history into persistent
+memory through their native write paths.MemForest-Planner
+uses union recall and planner-guided tree browsing;MemForest-
+Embeduses the same memory but embedding-only descent.
+We evaluate three generative backbones: Qwen3-4B, Qwen3-
+30B-A3B, and Gemma-4-12B-IT [33], with Qwen3-Embedding-0.6B
+fixed for retrieval [37, 41]. Models are served on dedicated H100
+GPUs using vLLM 0.18.0 and FlashAttention [4].
+LongMemEval-S contains 500 question-specific instances across
+six categories; LoCoMo contains 1,986 questions across single-hop,
+multi-hop, open-ended, temporal, and adversarial categories [20,
+34]. We compare EverMemOS [13], LightMem [9], MemoryOS [17],
+MemPalace [22], and Mem0 [ 3]. Following Zhou et al. [ 44], Zep
+Local is implemented with the open Graphiti temporal-graph core,
+Neo4j, and self-hosted generation and embedding services. It repre-
+sents the local Graphiti design, not the Zep Cloud service.
+We report pass@1, native write rate, and query latency. Final
+answers are evaluated by deepseek-v4-flash [35] at temperature
+zero using each benchmark’s public judge prompt. LongMemEval-S
+uses all 500 questions; the primary LoCoMo result uses categories
+1–4 (1,540 questions), while adversarial category 5 is reported sepa-
+rately in Appendix A.4. Mem0 receives source event timestamps,
+ingests LoCoMo histories per session with complete message cov-
+erage, and uses a global top-10 flat budget.
+We preserve each baseline’s native construction, retrieval, and
+answer interface. Flat systems use a final top-10 fact budget. Mem-
+Forest retrieves ten native tree units before expansion, MemPalace
+retrieves ten sessions, and Zep uses its native per-evidence-class
+limit for heterogeneous graph objects. Equal-flat-fact retrieval is
+evaluated separately in Section 6.2. Configurations and validation
+records are available in the baseline guide and Appendix A.2.
+5.2 Main Result on LongMemEval
+Table 2 reports LongMemEval-S pass@1. Across three backbones,
+a MemForest variant achieves the highest overall accuracy. Planner
+reaches 72.60% and 81.80% under Qwen3-4B and Qwen3-30B; under
+Gemma, MemForest-Embed reaches 78.40%, 0.40 points above Ever-
+MemOS. A MemForest variant also has the highest temporal score
+under each backbone (tied between its two modes at Qwen3-4B).
+Planner is stronger overall in both Qwen settings, whereas Embed
+is 0.60 points higher under Gemma, showing that browse-time re-
+finement remains backbone-dependent. Section 5.4 compares this
+answer quality with memory-build rate.
+Under Qwen3-30B, Planner leads on single-session user, multi-
+session, and temporal questions, while Zep Local leads assistant-
+side and knowledge-update questions. Relative to Embed, Planner
+gains 3.40 overall points and improves five of six categories, with
+its largest gains on knowledge update and multi-session. Thus the
+shared MemTree already supports strong temporal access, while
+planner refinement mainly helps evidence selection across prefer-
+ences, updates, and sessions.
+5.3 Main Result on LoCoMo
+Table 3 reports categories 1–4. MemForest-Planner is 1.10 points
+below EverMemOS under Qwen3-4B and effectively tied under
+Qwen3-30B (84.09% versus 84.22%). The 30B tie reflects comple-
+mentary strengths: EverMemOS leads single-hop by 2.97 points
+and temporal by 0.31, whereas Planner leads multi-hop by 2.84 and
+open-ended by 16.67. A MemForest variant leads multi-hop and
+open-ended under both Qwen backbones.
+Planner improves over Embed by 1.50 and 3.51 overall points
+under Qwen3-4B and Qwen3-30B; its 30B gains include 8.33 points
+on open-ended and 8.10 on temporal, although Embed is slightly
+better on Qwen3-4B multi-hop and open-ended. Under Gemma,
+EverMemOS leads overall by 5.91 points but temporal by only 0.31,
+showing that the remaining difference is category- and backbone-
+dependent. Together with Section 5.4, these results place MemForest
+on a favorable quality–efficiency operating point.
+
+=== PDF PAGE 8 ===
+Chen et al.
+Table 2: LongMemEval-S pass@1. SS = single-session; K-Upd.
+= knowledge update.
+Method Overall SS-User SS-Pref. SS-Asst. K-Upd. Multi Temp.
+Qwen3-4B-Instruct-2507
+MemForest-Planner 72.60 95.71 70.00 83.93 70.51 59.40 70.68
+MemForest-Embed 69.40 88.57 53.33 83.93 60.26 60.90 70.68
+EverMemOS 61.20 84.29 66.67 69.64 64.10 55.64 48.12
+LightMem 68.80 94.2976.6735.7179.49 65.4164.66
+MemoryOS 64.20 87.14 46.67 89.29 50.00 57.14 60.90
+MemPalace 60.00 91.43 36.67 33.93 65.38 63.91 52.63
+Mem0 44.80 82.86 33.33 26.79 43.59 42.11 38.35
+Zep Local 69.60 94.29 53.3398.2175.64 59.40 54.89
+Qwen3-30B-A3B-Instruct-2507
+MemForest-Planner 81.80 97.14 83.33 83.93 75.64 76.69 81.20
+MemForest-Embed 78.40 94.29 80.00 83.93 69.23 72.93 78.20
+EverMemOS 67.00 91.43 53.33 75.00 79.49 62.41 51.13
+LightMem 70.20 95.7186.6737.50 79.49 64.66 66.92
+MemoryOS 63.80 87.14 60.00 89.29 62.82 52.63 53.38
+MemPalace 53.60 81.43 50.00 35.71 62.82 52.63 42.86
+Mem0 50.20 91.43 46.67 26.79 60.26 42.86 40.60
+Zep Local 71.00 95.71 63.3396.43 82.0556.39 57.14
+Gemma-4-12B-IT
+MemForest-Planner 77.80 95.71 63.33 46.43 82.05 74.44 85.71
+MemForest-Embed 78.40 94.29 60.00 46.43 84.62 74.44 87.97
+EverMemOS 78.00 95.71 83.33 76.79 84.62 72.93 69.17
+LightMem 77.0097.14 86.6737.50 80.7775.1980.45
+MemoryOS 66.00 95.71 70.00 94.64 66.67 47.37 55.64
+MemPalace 72.80 88.57 50.00 94.64 79.49 60.90 68.42
+Mem0 59.20 91.43 50.00 23.21 74.36 54.89 54.89
+Zep Local 75.60 94.29 66.6796.43 89.7463.16 63.16
+5.4 Write-Path Efficiency
+Table 4 reports source turns per second from the measured Qwen3-
+30B build workloads. MemForest reaches6 .0× and9 .5× the Ever-
+MemOS build rate on LongMemEval-S and LoCoMo, respectively.
+The trace manifest records the underlying measurements.
+LLM-wave critical path.Table 1 counts complete-build autore-
+gressive request waves. For 𝐷ℓ dirty summaries at level ℓ, 𝐷=Í
+ℓ 𝐷ℓ, tree height𝐻, and𝑃workers, MemForest has
+𝐶MF =
+ 𝑁
+𝑃
+
++
+𝐻∑︁
+ℓ=0
+ 𝐷ℓ
+𝑃
+
+=𝑂
+ 𝑁+𝐷
+𝑃
+
++𝐻
+
+.
+Bounded extraction yield and balanced bounded fan-out give 𝐷=
+𝑂(𝑁) and 𝐻=𝑂(log𝑁) , hence 𝑂( ⌈𝑁/𝑃⌉ +log𝑁) . This is depen-
+dency depth, not total work: fixed 𝑃 gives 𝑂(𝑁) , and token/non-
+LLM costs remain. The evaluated Mem0, MemoryOS, EverMemOS,
+LightMem, and Zep Local paths retain an 𝑂(𝑁) LLM chain; Mem-
+Palace has zero LLM depth but 𝑂(𝑁) indexing. At 𝑃= 128, Fig-
+ure 7(c) shows 2.83× refresh speedup over the serial baseline for
+𝑛=100and 14.21×for𝑛=4,000.
+Figure 8(c–d) separates extraction, canonicalization, routing,
+structural insertion, dirty refresh, index update, and persistence.
+Autoregressive extraction and dirty refresh account for 83.58% of
+measured build time; including hybrid canonicalization raises the
+LLM-involved share to 90.57%, while structural insertion, index up-
+date, and persistence together remain below 1%. Parent summaries
+depend on refreshed children, whereas same-level and cross-tree
+calls form independent waves. A throughput-calibrated serial replay
+Table 3: LoCoMo categories 1–4 pass@1.
+Method Overall Single-Hop Multi-Hop Open-Ended Temporal
+Qwen3-4B-Instruct-2507
+MemForest-Planner 78.12 80.86 81.21 53.12 75.70
+MemForest-Embed 76.62 79.43 81.56 56.25 71.03
+EverMemOS79.22 83.7179.79 47.9276.32
+LightMem 66.17 69.68 68.79 40.62 62.31
+MemoryOS 65.45 71.70 71.99 39.58 51.09
+MemPalace 51.56 55.77 68.79 29.17 32.09
+Mem0 47.86 45.66 52.84 39.58 51.71
+Zep Local 68.70 78.36 62.77 34.38 58.88
+Qwen3-30B-A3B-Instruct-2507
+MemForest-Planner 84.09 84.66 86.88 67.71 85.05
+MemForest-Embed 80.58 82.88 85.11 59.38 76.95
+EverMemOS84.22 87.6384.04 51.0485.36
+LightMem 60.52 62.07 62.06 44.79 59.81
+MemoryOS 68.31 75.98 72.34 50.00 50.16
+MemPalace 55.84 59.81 72.70 33.33 37.38
+Mem0 59.22 58.86 61.35 58.33 58.57
+Zep Local 76.75 82.52 76.95 56.25 67.60
+Gemma-4-12B-IT
+MemForest-Planner 82.66 80.98 89.36 57.29 88.79
+MemForest-Embed 81.69 80.38 87.23 57.29 87.54
+EverMemOS88.57 90.84 89.72 63.54 89.10
+LightMem 78.90 81.33 79.43 50.00 80.69
+MemoryOS 78.51 80.98 83.33 57.29 74.14
+MemPalace 55.71 58.98 77.30 28.12 36.45
+Mem0 48.38 44.71 57.09 39.58 52.96
+Zep Local 69.55 74.91 68.79 26.04 69.16
+Table 4: Qwen3-30B memory-build rates.
+LongMemEval-S LoCoMo
+Method Turns/s Rate/Zep Turns/s Rate/Zep
+MemForest 2.841 24.9× 7.020 32.5×
+EverMemOS 0.471 4.1×0.738 3.4×
+Mem0 1.397 12.3×0.586 2.7×
+MemoryOS 0.202 1.8×0.245 1.1×
+Zep Local 0.114 1.0×0.216 1.0×
+MF-PMF-E
+EverMemOSZep LocalMemoryOS
+Mem0
+0
+2
+4
+6
+8
+Latency (s)
+4.63
+2.19
+8.49
+2.83
+2.29
+0.22
+(a) Qwen3-30B
+MF-PMF-E
+EverMemOSZep LocalMemoryOS
+Mem0
+0.0
+2.5
+5.0
+7.5
+10.0
+4.35
+2.42
+10.97
+2.44
+1.10
+0.29
+(b) Qwen3-4B
+Retrieval Answer
+Figure 5: Retrieval and answer latency. MF-P and MF-E denote
+MemForest-Planner and MemForest-Embed.
+estimates 54.58 and 9.88 minutes for extraction and dirty refresh,
+compared with measured parallel times of 122.31 and 27.92 seconds
+(26.8× and 21.2× speedups). These are measured finite-resource
+
+=== PDF PAGE 9 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+gains. Appendix D and Appendix E report replay sensitivity, re-
+quest/token statistics, and method-level write dependencies.
+This connects the cost model to wall-clock behavior: parallelism
+preserves total extraction and refresh work but compresses it into
+fewer request waves. Larger trees expose more same-level refresh
+calls, yielding the increasing speedup in Figure 7(c).
+5.5 Query-Time Latency
+We next evaluatequery-time latency, the online cost of retriev-
+ing memory and producing an answer after memory has been
+constructed. This is a secondary but practical metric alongside
+write-path efficiency.
+Figure 5 separates retrieval and answer latency under the 30B
+and 4B answer backbones. For Zep Local, we reuse the frozen
+benchmark graphs and report a serial 50-question LongMemEval
+sample after five warm-up questions; this excludes the queueing
+delay from the original high-concurrency benchmark run.
+Overall latency.MemForest exposes a clearlatency–accuracy
+trade-offthrough its two retrieval modes. The embedding-only
+variant achieves2.19s(30B) and2.42s(4B) total latency, comparable
+to MemoryOS and substantially faster than EverMemOS. The LLM-
+guided variant increases total latency to4.63sand4.35s, reflecting
+the additional reasoning cost during tree browsing.
+Retrieval vs. answer cost.The breakdown shows that the main
+difference between the two MemForest variants lies inretrieval
+time, not answer generation. MemForest-Planner spends2.4–2.6s
+on retrieval, compared to only0.47–0.54sfor MemForest-Embed,
+while answer time remains relatively stable across the two variants.
+This indicates that planner-guided browsing primarily adds cost on
+the retrieval side, while leaving the downstream answer generation
+stage largely unchanged.
+Comparison with baselines.Compared with EverMemOS, Mem-
+Forest reduces query latency substantially (e.g.,4.63s vs. 8.49s
+under 30B). Part of EverMemOS’s larger answer-side latency comes
+from itsself-judgestyle answer workflow, which introduces extra
+reasoning overhead after retrieval. By contrast, MemForest keeps
+the online path simpler once evidence has been assembled. Com-
+pared with MemoryOS, MemForest-Embed achieves similar latency
+with higher accuracy (Sections 5.2 and 5.3), indicating a more fa-
+vorable quality–latency balance. Mem0 remains the fastest system
+because its retrieval pipeline is minimal, but this comes with a large
+drop in answer quality. Zep Local requires 2.83s (30B) and 2.44s
+(4B) in total for each measured query. Its native graph retrieval
+and reranking account for 2.50s and 2.13s, respectively; answer
+generation accounts for 0.34s and 0.30s.
+Scaling.A frozen-index scaling test composes 1, 2, 4, and 8
+forests, increasing state from 1,428 facts and 250 trees to 10,781 facts
+and 1,868 trees. Under fixed top-10 Embed retrieval, p95 remains
+41.79–44.13 ms; this microbenchmark excludes Planner, answer
+generation, construction, and loading.
+Operating points.Across the two Qwen backbones, Planner adds
+1.93–2.44s to total latency; across both benchmarks, it improves
+overall accuracy by 1.50–3.51 points over Embed. Because both
+1 2 3 4 5 6 7 8
+Merged instances N
+0
+500
+1000
+1500
+2000
+Cumulative time (s)
+(a) Cumulative write time
+Sequential write
+Migration merge
+1 2 3 4 5 6 7 8
+Merged instances N
+0.5
+1.0
+1.5
+2.0
+2.5
+3.0
+Speedup (seq./merge)
+1.00x
+1.68x
+2.09x
+2.38x
+2.70x 2.70x
+2.53x 2.42x
+(b) Migration speedup
+Figure 6: Sequential rewriting versus migration merge: cu-
+mulative time (left) and speedup (right).
+Table 5: State size after sequential rewriting and migration
+merge.
+𝑁Seq Facts Mig Facts Seq Trees Mig Trees
+1 1,435 1,435 249 249
+2 2,692 2,716 375 405
+3 4,061 4,098 562 607
+4 5,540 5,590 733 792
+5 6,860 6,922 895 967
+6 8,101 8,174 1,044 1,128
+7 9,426 9,511 1,200 1,296
+8 10,705 10,801 1,362 1,472
+modes share one materialized forest, deployments can select Em-
+bed for latency-sensitive queries and Planner when tree-specific
+refinement is worthwhile, without rebuilding memory.
+5.6 Efficient Migration
+Beyond the initial write path, persistent memory must support post-
+construction maintenance such as migration, consolidation, and
+synchronization. We build a migration workload by progressively
+combining one to eight independently constructed LongMemEval
+instances. Because the instances represent different users, this is a
+synthetic multi-source stress workload rather than one user’s accu-
+mulating history.Sequential writereplays every source history into
+a growing state, whereasmigration mergecombines already mate-
+rialized MemForest states through the merge path in Section 4.3.
+Both strategies are evaluated on memory scale and on the wall-
+clock cost of producing the merged state; the question-answering
+experiments in this paper are not replayed against the merged state,
+so we do not report post-merge answer accuracy here.
+Figure 6 shows that migration merge is consistently faster. It
+exceeds 2× speedup from 𝑁=3, peaks at 2.70× around 𝑁=5–6, and
+remains above 2.4× at 𝑁=8. The gain comes from reusing prior con-
+struction: migration avoids repeated LLM extraction over already
+processed histories, copies unaffected trees directly, and refreshes
+only the paths touched by cross-forest reconciliation.
+Table 5 shows comparable materialized state. Across all 𝑁 , fact
+counts differ by less than 1% and tree counts by at most about
+8%; at 𝑁=8, sequential write and migration produce 10,705 versus
+10,801 facts and 1,362 versus 1,472 trees. Small differences arise from
+stochastic extraction and summary refresh together with routing
+
+=== PDF PAGE 10 ===
+Chen et al.
+100 1,000 10,000
+Facts per tree n
+0
+10
+20
+30
+40
+50
+API-call reduction ratio
+(eager / batch)
+(a) Batch vs eager API calls
+Branch factor k
+k=3
+k=5
+k=8
+k=10
+k=12
+k=16
+50 100 200 500 1000 1200
+Facts per MemTree n
+0
+10
+20
+30
+40
+50Wall-clock time (s)
+6.9s
+12.8s
+16.6s
+35.0s
+40.6s
+46.0s
+(b) Build-time breakdown
+P1 Structure (embed+routing)
+P2 Summarize (LLM)
+P3 Embed (root FAISS)
+1 4 8 16 32 64 128
+max parallel requests
+2
+4
+6
+8
+10
+12
+14Speedup
+(c) Parallel speedup (k=10)
+n=100
+n=1200
+Serial baseline
+n=500
+n=4000
+4 8 16 24 32
+Children per summary call k
+0.65
+0.70
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00Per-fact recall
+Kcap = 16
+(d) Per-call summary capacity
+Capacity-safe (k ≤ Kcap)
+per-fact recall (±1 SE, 30 groups)
+4 6 8 10 12 16
+Branching factor k
+0.10
+0.15
+0.20
+0.25
+0.30
+0.35Root-summary per-fact recall
+(e) End-to-end root recall
+n=200
+n=1200
+Qwen3-30B
+Qwen3-4B
+Figure 7: Write-path scalability diagnostics for MemTree. (a) Batch mark-dirty reduces LLM summary calls relative to eager
+per-insert rewriting. (b) MemTree build stages are profiled from 50 to 1,200 facts. (c) Level-parallel flush yields larger speedups
+on larger trees, showing improved scalability with data size. (d) Per-call summary capacity remains stable up to a moderate
+fan-out before dropping. (e) End-to-end root recall peaks at moderate branching factors, motivating the default 𝑘 settings used
+in MemForest.
+decisions during merge. Baseline adapters instead accept continued
+source-history writes; MemForest’s merge interface targets memory
+transfer and synchronization scenarios such as expert memory
+transfer and distributed construction [12, 16, 28].
+Comparable state sizes indicate reuse of canonical facts and un-
+affected subtrees, not omission of materialized state. This supports
+combining independently built memories without replaying their
+source histories.
+Overall, migration extends MemForest’s write-efficiency benefit
+to post-construction maintenance by reusing already materialized
+memory state.
+6 Ablation Study
+The main results show that MemForest improves both answer qual-
+ity and write-path efficiency. We now ask a more targeted question:
+which design choices are necessary for these gains? We organize
+the ablations around the two central design choices of MemForest.
+First, we study write-path scalability, focusing on the MemTree
+mechanisms that make maintenance local and scalable. Second,
+we study retrieval accuracy on a controlled LongMemEval sub-
+set, isolating the role of temporal tree views and selective browse
+policies.
+6.1 Write-Path Scalability
+We first study the write path, since MemForest’s main systems
+contribution is not merely faster extraction, but the ability to keep
+long-horizon memory maintenance local as memory grows. The
+key question is therefore whether MemTree maintenance remains
+scalable under increasing tree size, and whether moderate fan-out
+is necessary to balance efficiency and summary quality.
+Lazy maintenance reduces redundant LLM work and improves
+scalability.Figure 7(a) compares eager per-insert rewriting against
+MemForest’s batch mark-dirty update strategy. Batch refresh sub-
+stantially reduces summary calls, and the reduction becomes larger
+as the number of facts per tree grows. This shows that lazy mainte-
+nance is not a small implementation optimization: it is what pre-
+vents repeated writes from triggering redundant LLM regeneration
+along overlapping ancestor paths.
+The same locality benefit appears in parallel execution. Fig-
+ure 7(c) shows that level-parallel flush yields larger speedups for
+larger trees, because bigger trees expose more same-level nodes
+that can be refreshed concurrently. In other words, the gain from
+MemTree maintenance improves with data scale rather than disap-
+pearing at larger workloads. Across 250,118 trees from two com-
+plete Qwen builds, the maximum observed height is four, with no
+bounded-fan-out violations. This confirms height-bounded struc-
+tural paths on the evaluated writes.
+Moderate fan-out is necessary for both efficiency and summary
+quality.Figures 7(d) and 7(e) study the branching factor 𝑘. Increas-
+ing 𝑘 makes trees shallower and can reduce maintenance depth,
+but it also overloads each summary call. Per-call summary recall
+remains high up to about 𝑘≈ 16, after which it drops more sharply,
+indicating a soft summary-capacity knee. End-to-end root recall
+peaks at moderate 𝑘 values rather than at the extremes: small 𝑘
+deepens the summarization chain and accumulates cascade loss,
+while overly large 𝑘 makes each summary too flat and lossy. These
+results justify the use of moderate fan-out defaults in MemForest
+rather than treating𝑘as an arbitrary tuning knob.
+MemTree maintenance grows below linearly over the observed
+range.Figure 7(b) isolates structure/routing, LLM summary refresh,
+and root embedding. Increasing one tree from 50 to 1,200 facts
+(24×) raises this time from 6.9 to 46.0 seconds (6.7×); extraction is
+excluded and remains linear in incoming content.
+Chunk size controls the latency–token trade-off.Figure 8(a–b)
+sweeps chunk size on an assembled long session. Larger chunks
+reduce total tokens chiefly by extracting fewer facts: Gold Coverage
+falls and tokens/fact eventually worsens, consistent with lost-in-the-
+middle effects [18]. We select 𝑏= 2because it preserves 100% Gold
+Coverage, remains near peak throughput, and uses fewer tokens
+per fact than 𝑏= 1. In deployment, the largest chunk that preserves
+
+=== PDF PAGE 11 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+50
+75
+100
+Gold (%)
+selected b = 2
+(a) Chunk-size trade-off
+0
+4
+8
+Facts/s
+1 2 4 8 16 32 48 64 All
+Chunk size (turns)
+0
+1000
+2000Tok/fact
+0 1 2 3 4
+Extracted facts (K)
+0.5
+1.5
+2.5
+3.5Total tokens (M)
+1
+2
+4
+8163248
+64All
+larger chunks
+(b) Yield vs. token work
+0 40 80 120
+Mean wall time (s)
+Extraction (LLM)
+Dirty refresh (LLM)
+Routing (Emb.+CPU)
+Canon. (LLM+Emb.)
+Index update (Emb.)
+Persistence (I/O)
+Insert (CPU)
+(c) Seven-stage write path
+122.31s (68.05%)
+27.92s (15.53%)
+15.54s (8.64%)
+12.57s (6.99%)
+1.13s (0.63%)
+0.24s (0.13%)
+0.03s (0.02%)
+102 103
+Wall time (s, log)
+Extraction
+Dirty refresh
+122.31s
+54.58 min
+26.8×
+27.92s
+9.88 min
+21.2×
+(d) Serial vs. parallel
+Measured parallel Serial replay
+75 80 85 90
+Gold-fact coverage (%)
+MemTree
+Log-Time
+Flat Log
+Triplet Graph
+Scratchpad+BG
+Validity
+(e) Equal-budget coverage
+k = 10 k = 30 k = 50
+Figure 8: Extraction, write-path, and retrieval diagnostics. (a) Chunk-size coverage, throughput, and tokens/fact. (b) Extracted
+yield versus total token work. (c) Seven-stage write-path time. (d) Calibrated serial replay versus measured parallel execution.
+(e) Equal-budget coverage; each box spans𝑘=10to𝑘=50, and the three ticks mark𝑘=10,30,50.
+fidelity and exposes enough parallel requests provides the practical
+control under the available serving budget.
+6.2 Temporal Representation and Retrieval
+Controls
+We map 319/321 official LoCoMo temporal questions to support-
+ing facts, using 82 for selector development and 237 for held-out
+evaluation. All methods share facts, timestamps, embeddings, and
+budgets; selectors tune only on development data. Coverage is
+macro per-question mapped-gold recall.
+Figure 8(e) shows that Log-Time leads MemTree by 0.7 points
+at 𝑘= 10; they are within 0.1 points at 𝑘= 30, and MemTree leads
+at 𝑘= 50(92.0%). This places MemTree as a high-recall option at
+larger budgets, while flat logs avoid summary construction. Full
+curves and confidence intervals are in Appendix B.
+The curve separates two operating regimes: temporal reranking
+is strongest under a tight fact budget, while hierarchical expansion
+preserves more mapped evidence as the budget grows. MemTree
+thus provides a structured high-recall candidate source for down-
+stream selection.
+Routing accuracy and scene stability.A manual audit finds 124/127
+(97.6%) entity assignments valid but only 9/127 complete. Fragmen-
+tation lowers embedding-browse accuracy from 76.2% to 50.0% on
+LoCoMo and 78.1% to 67.6% on LongMemEval. Scene-threshold
+Jaccard mean/p05 is at least 0.9997/0.9996 (4B) and 0.9650/0.8829
+(30B). These results support multi-scope placement and browse;
+full labels are in Appendix B.4.
+We next study retrieval accuracy on a controlled 60-question
+LongMemEval subset, constructed by sampling 10 questions from
+each of the six question types. To reduce the influence of single-
+sample answer variance, we report pass@8 in the main text and
+provide the full question IDs in Appendix F. These experiments
+serve as retrieval diagnostics rather than replacements for the
+full-benchmark results in Section 5.2. We focus on two questions:
+whether multiple temporal tree views are necessary, and whether
+planner-guided tree browse improves evidence access once candi-
+date trees have been recalled.
+Structured views provide the measured gain; session trees preserve
+a fallback.Table 6 compares tree-family combinations under the
+same planner-guided LLM browse setting. Among single views,
+Table 6: Tree-family ablation on the 60-question Long-
+MemEval subset. We report 30B pass@8 under llm+planner
+browse.
+Variant 30B pass@8
+entity+scene+session86.7
+entity+scene86.7
+entity+session 85.0
+session only 85.0
+scene+session 83.3
+scene only 81.7
+entity only 63.3
+session only reaches85.0%pass@8, scene only reaches81.7%,
+andentity onlyreaches63.3%.
+The entity+scene combination reaches86.7%, matching the
+full three-family setting on this subset. Thus entity and scene trees
+supply the measured structured-retrieval gain, while the session
+tree retains raw conversational evidence as a fallback; it adds no
+measured pass@8 gain on this subset.
+Planner-guided LLM browse yields the highest measured accuracy.
+We next compare the six retrieval variants in Table 7 on the same
+60-question subset. flat-10 omits trees, root-only omits descent,
+emb/llm selects branches by embedding/LLM, and +planner adds
+per-tree subqueries. This comparison isolates how much the tem-
+poral tree structure and browse policy each contribute.
+The first result is that neither flat retrieval nor root-only recall is
+sufficient. Flat top-10 retrieval reaches78.3%, while root-only recall
+is lower at73.3%. Together, these two baselines show that neither
+directly retrieving a flat top-10 set nor stopping at coarse root sum-
+maries can match the retrieval power of temporal MemTree browse.
+The system must both preserve temporal scopes and descend within
+them to reach answer-bearing evidence.
+The second result is that browse policy materially affects accu-
+racy. Embedding-only browse already improves substantially over
+both flat and root-only baselines, reaching85.0%; pure LLM-guided
+browse reaches88.3%; and planner-guided LLM browse reaches the
+best result,90.0%. Once candidate trees have been recalled, planner-
+generated per-tree subqueries make browse more targeted by using
+each tree’s root summary to specialize the search intent. This is
+especially useful in the LLM-guided setting, where the browser
+
+=== PDF PAGE 12 ===
+Chen et al.
+Table 7: Retrieval and browse ablation on the 60-question
+LongMemEval subset. We report 30B pass@8 only.
+Variant 30B pass@8
+flat-10 78.3
+root-only 73.3
+emb 85.0
+emb+planner 83.3
+llm 88.3
+llm+planner90.0
+can exploit not only semantic similarity but also more structured
+intent such as temporal focus, state transitions, or finer-grained
+disambiguation. The added planner cost is acceptable here, because
+a single LLM call steers the subsequent per-tree LLM browse calls.
+By contrast, planner guidance does not help embedding browse:
+planner-guided embedding browse slightly drops to83.3%. Under
+embedding-only descent, the rewritten query is still reduced to a
+vector similarity signal. Unlike LLM-guided branch selection, em-
+bedding similarity cannot reliably preserve richer browse intent
+such as time ranges, before/after relations, or transition constraints;
+it mostly captures semantic relatedness. In that setting, the extra
+planner call adds noticeable cost without a comparably targeted
+retrieval benefit. For this reason, the final system retains two op-
+erating modes: a lightweight embedding-only mode for latency-
+sensitive deployments, and a planner-guided LLM-guided mode for
+the high-accuracy setting.
+7 Related Work
+Existing memory systems for LLM agents differ mainly in how
+memory is constructed, how persistent state is organized, and how
+that state is maintained as interactions accumulate. We review the
+work most related to MemForest along these three dimensions.
+Memory Construction.A common direction is to build long-
+term memory by extracting salient information from interactions
+and storing it as persistent records. SeCom studies how mem-
+ory units should be constructed and retrieved for conversational
+agents [25]. Mem0 emphasizes practical long-term memory for per-
+sonalization and retrieval [3]. LightMem and MemoryOS introduce
+staged memory handling across short-, mid-, and long-term com-
+ponents, separating online use from offline consolidation and man-
+aged updates [9, 17]. Context-dependent memory frameworks high-
+light modular memory handling across interaction contexts [10].
+MemForest focuses specifically on construction-path parallelism:
+it extracts short windows concurrently, consolidates them into
+canonical facts, and materializes indexes from that state.
+Memory Organization.A second line of work studies how
+memory should be organized after it is written. MemForest aligns
+with this line, but differs in the representation it materializes: it
+organizes canonical facts into per-scope temporal trees so that re-
+trieval can proceed from root summaries to leaf evidence within
+an explicit temporal hierarchy, rather than centering the design on
+recollection workflows or dynamically selected structures. Ever-
+MemOS models memory as a lifecycle of semantic consolidation and
+recollection [13]. A-Mem explores agentic memory organization,
+while H-Mem, HiMem, and Adapt investigate hybrid, hierarchical,
+or adaptive structures for long-context agents [15, 19, 36, 38, 40].
+These systems move beyond flat memory stores and show that
+retrieval quality depends strongly on memory structure.
+MemPalace and EverMemOS retain timestamped histories; Light-
+Mem and MemoryOS use recent/background stores; and Zep uses
+a bi-temporal graph [9, 13, 17, 22, 27]. These designs preserve his-
+tory but shift work across construction, maintenance, and retrieval;
+Sections 6.2 and 5 compare controls and native systems.
+Memory Maintenance.Another important question is how
+memory should evolve after it is written. MemForest differs from
+prior work by making a canonical, mergeable memory state with
+explicit temporal update semantics a first-class design goal: canon-
+ical facts are persistent state, summaries are derived artifacts re-
+generated incrementally, and this separation supports temporal
+preservation, incremental reorganization, and migration without
+replaying raw sessions. RMM treats memory as a reflective process,
+refining what is retained and how stored memory is later used [32].
+At the other end of the design space, fidelity-first systems such
+as MemPalace preserve raw or near-verbatim history and defer
+abstraction to query time [22]. These approaches make different
+trade-offs between write-time processing and query-time reasoning,
+but neither centers on canonical, locally maintainable persistent
+state as its primary abstraction.
+8 Conclusion
+We presented MemForest, a long-context agent memory system
+that reframes persistent memory as a write-efficient temporal data-
+management problem. Canonical facts decouple persistent state
+from derived artifacts, while scoped, time-ordered MemTrees lo-
+calize structural and summary maintenance and preserve current,
+historical, and transition evidence. Across three backbones, a Mem-
+Forest variant leads LongMemEval-S; under Qwen it nearly matches
+EverMemOS on LoCoMo, while Gemma exposes model depen-
+dence. Controls position MemTree as a structured high-recall option
+among logs, intervals, scratchpads, and temporal graphs.
+The same forest supports two query-time modes: Embed mini-
+mizes latency, while Planner trades extra browsing for higher Qwen
+accuracy. Direct merge extends local maintenance beyond inges-
+tion, remaining 2.4–2.7× faster than sequential rewriting at larger
+scales while producing comparable state sizes.
+MemForest optimizes write latency rather than aggregate to-
+kens: parallel extraction and level-wise refresh shorten the critical
+path but repeat prompt, schema, and structured-output overhead.
+Retained provenance supports targeted correction of extraction
+errors; automatic factuality verification remains future work.
+
+=== PDF PAGE 13 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+References
+[1] Shubham Agarwal, Sai Sundaresan, Subrata Mitra, Debabrata Mahapatra, Ar-
+chit Gupta, Rounak Sharma, Nirmal Joshua Kapu, Tong Yu, and Shiv Saini.
+2025. Cache-Craft: Managing Chunk-Caches for Efficient Retrieval-Augmented
+Generation.Proc. ACM Manag. Data3, 3, Article 136 (June 2025), 28 pages.
+doi:10.1145/3725273
+[2] Bruno Becker, Stephan Gschwind, Thomas Ohler, Bernhard Seeger, and Peter
+Widmayer. 1996. An asymptotically optimal multiversion B-tree.The VLDB
+Journal5, 4 (1996), 264–275.
+[3] Prateek Chhikara, Dev Khant, Saket Aryan, Taranjeet Singh, and Deshraj Ya-
+dav. 2025. Mem0: Building production-ready ai agents with scalable long-term
+memory.arXiv preprint arXiv:2504.19413(2025).
+[4] Tri Dao. 2024. FlashAttention-2: Faster Attention with Better Parallelism and
+Work Partitioning. InInternational Conference on Learning Representations (ICLR).
+[5] DeepSeek. 2026.Context Caching. https://api-docs.deepseek.com/guides/kv_
+cache
+[6] DeepSeek. 2026.Models and Pricing. DeepSeek. https://api-docs.deepseek.com/
+quick_start/pricing
+[7] Darren Edge, Ha Trinh, Newman Cheng, Joshua Bradley, Alex Chao, Apurva
+Mody, Steven Truitt, Dasha Metropolitansky, Robert Osazuwa Ness, and Jonathan
+Larson. 2024. From local to global: A graph rag approach to query-focused
+summarization.arXiv preprint arXiv:2404.16130(2024).
+[8] Ramez Elmasri, Gene TJ Wuu, and Yeong-Joon Kim. 1990. The time index:
+An access structure for temporal data. InProceedings of the 16th International
+Conference on Very Large Data Bases. 1–12.
+[9] Jizhan Fang, Xinle Deng, Haoming Xu, Ziyan Jiang, Yuqi Tang, Ziwen Xu, Shumin
+Deng, Yunzhi Yao, Mengru Wang, Shuofei Qiao, Huajun Chen, and Ningyu Zhang.
+2026. LightMem: Lightweight and Efficient Memory-Augmented Generation.
+InThe Fourteenth International Conference on Learning Representations. https:
+//openreview.net/forum?id=dyJ0GWpjJB
+[10] Pengyu Gao, Jinming Zhao, Xinyue Chen, and Long Yilin. 2025. An efficient
+context-dependent memory framework for llm-centric agents. InProceedings of
+the 2025 Conference of the Nations of the Americas Chapter of the Association for
+Computational Linguistics: Human Language Technologies (Volume 3: Industry
+Track). 1055–1069.
+[11] Yubin Ge, Salvatore Romeo, Jason Cai, Raphael Shu, Yassine Benajiba, Monica
+Sunkara, and Yi Zhang. 2025. Tremu: Towards neuro-symbolic temporal reason-
+ing for llm-agents with memory in multi-session dialogues. InFindings of the
+Association for Computational Linguistics: ACL 2025. 18974–18988.
+[12] Tooraj Helmi. 2025. Decentralizing AI Memory: SHIMI, a Semantic Hierarchical
+Memory Index for Scalable Agent Reasoning.arXiv preprint arXiv:2504.06135
+(2025).
+[13] Chuanrui Hu, Xingze Gao, Zuyi Zhou, Dannong Xu, Yi Bai, Xintong Li, Hui
+Zhang, Tong Li, Chong Zhang, Lidong Bing, et al. 2026. EverMemOS: A Self-
+Organizing Memory Operating System for Structured Long-Horizon Reasoning.
+arXiv preprint arXiv:2601.02163(2026).
+[14] Guoyu Hu, Shaofeng Cai, Tien Tuan Anh Dinh, Zhongle Xie, Cong Yue, Gang
+Chen, and Beng Chin Ooi. 2025. HAKES: Scalable Vector Database for Embedding
+Search Service.Proceedings of the VLDB Endowment18, 9 (2025), 3049–3062.
+[15] Mengkang Hu, Tianxing Chen, Qiguang Chen, Yao Mu, Wenqi Shao, and Ping
+Luo. 2025. Hiagent: Hierarchical working memory management for solving
+long-horizon agent tasks with large language model. InProceedings of the 63rd
+Annual Meeting of the Association for Computational Linguistics (Volume 1: Long
+Papers). 32779–32798.
+[16] Paul Jackson and Jane Klobas. 2008. Transactive memory systems in organi-
+zations: Implications for knowledge directories.Decision support systems44, 2
+(2008), 409–424.
+[17] Jiazheng Kang, Mingming Ji, Zhe Zhao, and Ting Bai. 2025. Memory os of ai
+agent. InProceedings of the 2025 Conference on Empirical Methods in Natural
+Language Processing. 25972–25981.
+[18] Nelson F. Liu, Kevin Lin, John Hewitt, Ashwin Paranjape, Michele Bevilacqua,
+Fabio Petroni, and Percy Liang. 2024. Lost in the Middle: How Language Models
+Use Long Contexts.Transactions of the Association for Computational Linguistics
+12 (2024), 157–173. doi:10.1162/tacl_a_00638
+[19] Mingfei Lu, Mengjia Wu, Feng Liu, Jiawei Xu, Weikai Li, Haoyang Wang, Zheng-
+dong Hu, Ying Ding, Yizhou Sun, Jie Lu, et al. 2026. Choosing How to Remember:
+Adaptive Memory Structures for LLM Agents.arXiv preprint arXiv:2602.14038
+(2026).
+[20] Adyasha Maharana, Dong-Ho Lee, Sergey Tulyakov, Mohit Bansal, Francesco
+Barbieri, and Yuwei Fang. 2024. Evaluating very long-term conversational
+memory of llm agents. InProceedings of the 62nd Annual Meeting of the Association
+for Computational Linguistics (Volume 1: Long Papers). 13851–13870.
+[21] Mem0. 2026. Memory Benchmarks. https://github.com/mem0ai/memory-
+benchmarks. Judge prompts referenced by immutable repository commits.
+[22] milla-jovovich. 2026.MemPalace. https://github.com/milla-jovovich/mempalace
+[23] Patrick O’Neil, Edward Cheng, Dieter Gawlick, and Elizabeth O’Neil. 1996. The
+log-structured merge-tree (LSM-tree).Acta informatica33, 4 (1996), 351–385.
+[24] Charles Packer, Vivian Fang, Shishir_G Patil, Kevin Lin, Sarah Wooders, and
+Joseph_E Gonzalez. 2023. MemGPT: towards LLMs as operating systems. (2023).
+[25] Zhuoshi Pan, Qianhui Wu, Huiqiang Jiang, Xufang Luo, Hao Cheng, Dongsheng
+Li, Yuqing Yang, Chin-Yew Lin, H. Vicky Zhao, Lili Qiu, and Jianfeng Gao. 2025.
+SeCom: On Memory Construction and Retrieval for Personalized Conversational
+Agents. InThe Thirteenth International Conference on Learning Representations.
+https://openreview.net/forum?id=xKDZAW0He3
+[26] Joon Sung Park, Joseph O’Brien, Carrie Jun Cai, Meredith Ringel Morris, Percy
+Liang, and Michael S Bernstein. 2023. Generative agents: Interactive simulacra
+of human behavior. InProceedings of the 36th annual acm symposium on user
+interface software and technology. 1–22.
+[27] Preston Rasmussen, Pavlo Paliychuk, Travis Beauvais, Jack Ryan, and Daniel
+Chalef. 2025. Zep: a temporal knowledge graph architecture for agent memory.
+arXiv preprint arXiv:2501.13956(2025).
+[28] Alireza Rezazadeh, Zichao Li, Ange Lou, Yuying Zhao, Wei Wei, and Yujia Bao.
+2025. Collaborative memory: Multi-user memory sharing in llm agents with
+dynamic access control.arXiv preprint arXiv:2505.18279(2025).
+[29] Alireza Rezazadeh, Zichao Li, Wei Wei, and Yujia Bao. 2025. From Isolated
+Conversations to Hierarchical Schemas: Dynamic Tree Memory Representation
+for LLMs. InThe Thirteenth International Conference on Learning Representations.
+https://openreview.net/forum?id=moXtEmCleY
+[30] Parth Sarthi, Salman Abdullah, Aditi Tuli, Shubh Khanna, Anna Goldie, and
+Christopher D Manning. 2024. Raptor: Recursive abstractive processing for
+tree-organized retrieval. InThe Twelfth International Conference on Learning
+Representations.
+[31] Ji Sun, Guoliang Li, James Pan, Jiang Wang, Yongqing Xie, Ruicheng Liu, and
+Wen Nie. 2025. GaussDB-Vector: A Large-Scale Persistent Real-Time Vector
+Database for LLM Applications.Proceedings of the VLDB Endowment18, 12
+(2025), 4951–4963.
+[32] Zhen Tan, Jun Yan, I-Hung Hsu, Rujun Han, Zifeng Wang, Long Le, Yiwen Song,
+Yanfei Chen, Hamid Palangi, George Lee, et al. 2025. In prospect and retrospect:
+Reflective memory management for long-term personalized dialogue agents.
+InProceedings of the 63rd Annual Meeting of the Association for Computational
+Linguistics (Volume 1: Long Papers). 8416–8439.
+[33] Gemma Team, Sherif El Abd, Vaibhav Aggarwal, Robin Algayres, Alek Andreev,
+Olivier Bachem, Ian Ballantyne, Cormac Brick, Victor Cărbune, Michelle Casbon,
+et al. 2026. Gemma 4 technical report.arXiv preprint arXiv:2607.02770(2026).
+[34] Di Wu, Hongwei Wang, Wenhao Yu, Yuwei Zhang, Kai-Wei Chang, and Dong Yu.
+2025. LongMemEval: Benchmarking Chat Assistants on Long-Term Interactive
+Memory. InThe Thirteenth International Conference on Learning Representations.
+https://openreview.net/forum?id=pZiyCaVuti
+[35] Anyi Xu, Bangcai Lin, Bing Xue, Bingxuan Wang, Bingzheng Xu, Bochao Wu,
+Bowei Zhang, Chaofan Lin, Chen Dong, Chenchen Ling, et al. 2026. DeepSeek-
+V4: Towards Highly Efficient Million-Token Context Intelligence.arXiv preprint
+arXiv:2606.19348(2026).
+[36] Wujiang Xu, Zujie Liang, Kai Mei, Hang Gao, Juntao Tan, and Yongfeng Zhang.
+2025. A-Mem: Agentic Memory for LLM Agents. InThe Thirty-ninth Annual
+Conference on Neural Information Processing Systems. https://openreview.net/
+forum?id=FiM0M8gcct
+[37] An Yang, Anfeng Li, Baosong Yang, Beichen Zhang, Binyuan Hui, Bo Zheng,
+Bowen Yu, Chang Gao, Chengen Huang, Chenxu Lv, et al. 2025. Qwen3 technical
+report.arXiv preprint arXiv:2505.09388(2025).
+[38] Zihe Ye, Jingyuan Huang, Weixin Chen, and Yongfeng Zhang. 2026. H-Mem:
+Hybrid Multi-Dimensional Memory Management for Long-Context Conversa-
+tional Agents. InProceedings of the 19th Conference of the European Chapter of the
+Association for Computational Linguistics (Volume 1: Long Papers). 7756–7775.
+[39] Runjie Yu, Weizhou Huang, Shuhan Bai, Jian Zhou, and Fei Wu. 2025. AquaPipe:
+A Quality-Aware Pipeline for Knowledge Retrieval and Large Language Models.
+Proc. ACM Manag. Data3, 1, Article 11 (Feb. 2025), 26 pages. doi:10.1145/3709661
+[40] Ningning Zhang, Xingxing Yang, Zhizhong Tan, Weiping Deng, and Wenyong
+Wang. 2026. HiMem: Hierarchical Long-Term Memory for LLM Long-Horizon
+Agents.arXiv preprint arXiv:2601.06377(2026).
+[41] Yanzhao Zhang, Mingxin Li, Dingkun Long, Xin Zhang, Huan Lin, Baosong Yang,
+Pengjun Xie, An Yang, Dayiheng Liu, Junyang Lin, et al. 2025. Qwen3 embedding:
+Advancing text embedding and reranking through foundation models.arXiv
+preprint arXiv:2506.05176(2025).
+[42] Zeyu Zhang, Quanyu Dai, Xiaohe Bo, Chen Ma, Rui Li, Xu Chen, Jieming Zhu,
+Zhenhua Dong, and Ji-Rong Wen. 2025. A survey on the memory mechanism of
+large language model-based agents.ACM Transactions on Information Systems
+43, 6 (2025), 1–47.
+[43] Wanjun Zhong, Lianghong Guo, Qiqi Gao, He Ye, and Yanlin Wang. 2024. Memo-
+rybank: Enhancing large language models with long-term memory. InProceedings
+of the AAAI conference on artificial intelligence, Vol. 38. 19724–19731.
+[44] Wei Zhou, Xuanhe Zhou, Shaokun Han, Hongming Xu, Guoliang Li, Zhiyu Li,
+Feiyu Xiong, and Fan Wu. 2026. Are We Ready For An Agent-Native Memory
+System?arXiv preprint arXiv:2606.24775(2026).
+
+=== PDF PAGE 14 ===
+Chen et al.
+A Prompts
+A.1 LLM-as-Judge Prompts
+LongMemEval Judge Prompt
+Your task is to label an answer to a LongMemEval question as CORRECT
+or WRONG.
+You will be given:
+(1) question type
+(2) question
+(3) gold answer
+(4) generated answer
+Be generous with grading: (1) accept semantically equivalent answers; (2)
+accept equivalent relative and absolute time expressions; (3) accept more
+specific but consistent answers; (4) mark WRONG only for contradiction,
+missing key facts, answering a different question, or incorrect abstention.
+Question type: {question_type}
+Question: {question}
+Gold answer: {gold_answer}
+Generated answer: {generated_answer}
+Return JSON only with {"label": "CORRECT"} or {"label": "WRONG"}.
+LoCoMo Judge Prompt
+Your task is to label an answer to a question as CORRECT or WRONG.
+You will be given:
+(1) question
+(2) gold answer
+(3) generated answer
+Be generous with grading: (1) accept semantically equivalent answers; (2)
+accept equivalent relative and absolute time expressions; (3) accept more
+specific but consistent answers; (4) mark WRONG only for contradiction,
+missing key facts, non-answer, or incorrect abstention.
+Question: {question}
+Gold answer: {gold_answer}
+Generated answer: {generated_answer}
+Return JSON only with {"label": "CORRECT"} or {"label": "WRONG"}.
+A.2 Retrieval and Answer Interfaces
+Flat-item systems in the main tables expose a global final top-𝑘= 10
+context. We preserve each method’s schema-aware answer interface
+because the returned objects differ: MemForest returns canonical
+facts and tree-derived evidence, EverMemOS returns episodic/recol-
+lection contexts, and other flat systems expose their native memory
+records. MemForest uses its native top-𝑘= 10tree-browse setting
+and fully expands selected tree units; the equal-flat-fact comparison
+is confined to the controlled retrieval study. Zep Local is not de-
+scribed as an equal ten-fact comparison: its native Graphiti search
+uses a limit of 10 per evidence class and serializes heterogeneous
+edges, nodes, episodes, and communities. Table A1 reports the re-
+sulting object counts and context-token lengths separately. Frozen
+answers are judged with deepseek-v4-flash, temperature zero,
+and thinking disabled.
+The pinned EverMemOS rows preserve event timestamps in
+memory units and event logs and use its agentic retrieval mode.
+Round one performs hybrid retrieval and an LLM sufficiency check;
+if evidence is insufficient, LLM-refined queries drive a second re-
+trieval round before final reranking. The released configuration
+keeps the final response budget at ten memory units.
+Following Zhou et al. [44], the Zep Local row uses the released
+Graphiti/Neo4j adapter: Graphiti v0.24.1, Neo4j 5.26.2, raw-episode
+ingestion, and self-hosted generation and Qwen3-Embedding-0.6B
+endpoints. It is a reproducible local Graphiti realization, not Zep
+Cloud. The six-cell budget summary, its source manifest, and the
+aggregation script preserve the table’s result-to-code path.
+The native recipe therefore usually serializes approximately 20
+heterogeneous objects, not ten flat facts. Small cross-backbone
+context-length differences arise because Graphiti extraction builds
+a different graph for each generative backbone.
+We take both public prompts from the Mem0 benchmark reposi-
+tory [21]. LongMemEval uses root commit 7ba1bd3. LoCoMo cate-
+gories 1–4 use the tuned public prompt in commit edcd6f1. The
+headline scope follows the released public runners. At the pinned
+commit, the Mem0 harness uses the explicit setting
+CATEGORIES_TO_EVALUATE = [1,2,3,4].
+It marks the 446 category-5 questions as excluded from scoring
+and reports public headline results as 1,410/1,540 at top-200 and
+1,273/1,540 at top-50. 1 The pinned EverMemOS runner likewise
+applies filter_category:[5], and its reported LoCoMo evalua-
+tion contains 1,540 questions [ 13].2 The public prompt assumes
+a non-empty reference answer, so it cannot define the policy for
+adversarial category 5; we retain the strict answerability judge for
+that category.
+A.3 Strict/Public Judge Sensitivity
+The tuned public LoCoMo template explicitly accepts dates within
+14 days and durations within 50% in its date-tolerance rule.3 The
+paired diagnostic freezes retrieval and generated answers. It changes
+only the judge prompt and contains3methods ×3votes ×[172
+LongMemEval questions ×2judge arms +200LoCoMo questions
+×3judge arms ]= 8,496successful judge calls, with zero judge er-
+rors. The reported temporal slices contain 122 LongMemEval and
+150 LoCoMo questions within those broader frozen samples. On
+LoCoMo temporal, the corresponding public evaluation prompt
+increases EverMemOS, MemForest, and Mem0 by 17.33, 16.00, and
+5.33 points. On LongMemEval temporal, the increases are 4.92, 2.46,
+and 4.92 points. The effect varies by benchmark and method, includ-
+ing MemForest. Under both prompts, the temporal ordering on both
+benchmarks remains MemForest, EverMemOS, then Mem0. The
+released stratified table reports every numerator and denominator.
+A.4 LoCoMo Adversarial Category
+Category 5 evaluates answerability instead of supplying the non-
+empty reference answer assumed by the released public LLM-judge
+runners. The headline comparison follows the released scope of
+1,540 questions; we evaluate the 446 category-5 questions sepa-
+rately with the same strict answerability prompt for every method.
+MemoryOS obtains the highest category-5 score under all three
+backbones.
+1https://github.com/mem0ai/memory-benchmarks/blob/
+edcd6f1d42400837b1fcb6997716f1769dc51a37/benchmarks/locomo/
+prompts.py; https://github.com/mem0ai/memory-benchmarks/blob/
+edcd6f1d42400837b1fcb6997716f1769dc51a37/README.md
+2https://github.com/EverMind-AI/EverMemOS/blob/
+539db77d5cc804c875246e34611fd266bf8c1e5d/evaluation/config/datasets/locomo.
+yaml
+3Seeprompts.py, line 228.
+
+=== PDF PAGE 15 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+Table A1: Zep Local native retrieval budget. Object columns report the mean number serialized per question. Context tokens
+use the exact serialized context and one fixed Qwen tokenizer; they exclude the answer instruction and question.
+Backbone Benchmark Edges Nodes Episodes Communities Context tokens avg. Context tokens p95
+Qwen3-4B LongMemEval-S 5.00 5.00 9.99 0.00 3,269 4,542
+Qwen3-4B LoCoMo 5.00 4.97 10.00 0.00 1,360 1,626
+Qwen3-30B LongMemEval-S 5.00 5.00 9.99 0.00 3,125 4,412
+Qwen3-30B LoCoMo 5.00 5.00 10.00 0.00 1,210 1,413
+Gemma-4-12B-IT LongMemEval-S 5.00 5.00 9.99 0.00 3,105 4,364
+Gemma-4-12B-IT LoCoMo 5.00 5.00 10.00 0.00 1,168 1,348
+20 30 40 50 60 70 80 90
+Strict judge accuracy (%)
+20
+40
+60
+80Public judge accuracy (%)
+LongMemEval, n = 500
+20 30 40 50 60 70 80 90
+Strict judge accuracy (%)
+LoCoMo Cat.1--4, n = 1540
+MemForest EverMemOS Mem0 Qwen3-4B Qwen3-30B Gemma-4-12B
+Figure A1: Paired strict/public-prompt sensitivity with frozen
+retrieval and answers. The diagonal denotes no change.
+A.5 Mem0 Budget Occupancy and
+Answer-Prompt Coupling
+This subsection is a separate sensitivity diagnostic for the public
+Mem0 Platform-v3 top-50/top-200 protocol. It is not the source of
+the 72.18% LongMemEval temporal value cited in R3-W6, which
+EverMemOS imports from the official MemOS baseline table.
+The corrected Qwen3-30B Mem0 snapshot contains 121,594
+memory units across 500 isolated LongMemEval-S stores, or 243.2
+units per question on average. Top-10 exposes 4.18%, top-50 ex-
+poses 20.92%, and top-200 exposes 83.11% of a local store on average;
+top-200 exhausts 40/500 stores. On temporal questions it exposes
+82.48% and exhausts 8/133 stores. We therefore treat the public
+top-200 result as a different-budget, broad high-coverage setting at
+this memory scale, not as a direct selective-retrieval comparison.
+The exact store-level occupancy distribution is released with the
+corrected Mem0 results.
+Forcing one schema-neutral answer prompt changes schema
+interpretation, abstention, and evidence use because methods seri-
+alize heterogeneous objects differently. We therefore retain native
+schema-aware answer interfaces in the main protocol and use equal-
+budget retrieval coverage, rather than shared-prompt QA, as the
+representation-level diagnostic.
+B Temporal Retrieval Controls
+B.1 Temporal Diagnostic Subset Map
+Several temporal subsets serve distinct diagnostic purposes. Ta-
+ble B1 makes their relationship explicit; these diagnostic subsets
+do not replace the full-benchmark pass@1 results.
+B.2 Fixed-Retrieval Dual-Time Control
+To isolate context rendering from retrieval, both arms use the same
+top-30 fact IDs for all 321 official LoCoMo temporal questions. The
+answer backbone is Qwen3-30B and the paired answers are judged
+with the same public LoCoMo judge. Table B2 shows a net gain of
+ten correct answers; this targeted diagnostic does not replace the
+main-table protocol or establish that the complete LoCoMo gap is
+removed.
+Table B2: Dual-time rendering with retrieval IDs held fixed.
+Context arm Correct / 321 Pass@1 Paired change
+Fact text only 245 76.32% –
+Fact text + dual time 255 79.44% +14 /−4
+Exact paired McNemar𝑝=0.0309. Dual time preserves source conversation time, resolved event
+time, the original temporal expression, and its resolution base.
+B.3 Log-TimeRerank Development Grid
+Log-TimeRerank scores each fact using semantic similarity plus
+weighted lexical and temporal features. We freeze an 82-question
+development split and a disjoint 237-question held-out split by
+question ID. The predefined grid is lexical weight{0, 0.04, 0.08, 0.12}
+and temporal weight {0, 0.5, 1.0, 1.5}. Table B3 reports development
+top-10 macro coverage. The selected pair(0.12, 1.0) is the best point
+in this grid. Because 0.12 lies on the grid boundary, the search does
+not establish an optimum beyond the predefined range. Across the
+16 settings, development coverage ranges from 76.67% to 82.60%.
+Table B3: Log-TimeRerank development macro coverage (%).
+Temporal \Lexical 0 0.04 0.08 0.12
+0.0 77.89 77.48 79.92 81.79
+0.5 77.89 79.11 80.33 82.20
+1.0 76.67 77.89 79.1182.60
+1.5 76.67 77.48 78.70 80.57
+Selection sensitivity.For transparency, the lightweight MemTree
+selector is also selected on the same development split, over 96
+predefined combinations of tree-prior, novelty, and redundancy
+weights. Its top-10 development coverage ranges from 79.07% to
+82.40%, and the selected setting is (0.30, 0.00, 0.00). Both selectors
+are tuned on the same development split, selected once, and frozen
+
+=== PDF PAGE 16 ===
+Chen et al.
+Table A2: Final evaluation protocol and sensitivity controls.
+Component Main setting Sensitivity control Reporting rule
+Retrieval budget Native top-10 units; MemFor-
+est expands tree units; Zep uses
+per-class limit 10
+Equal flat-fact sweep; Mem0
+occupancy at top-50/200
+Report unit semantics and Zep object counts
+separately
+Timestamp Evaluated REST path writes
+benchmark time to metadata.
+created_at/event_time;
+SDK fallback uses timestamp;
+LoCoMo batches stay within
+one source session
+Automated date-range and
+batch-coverage gates
+Reject runtime dates and incomplete coverage
+Answer prompt Native schema-aware interface Shared schema-neutral
+prompt
+Treat shared-prompt scores as diagnostic
+Judge Benchmark-specific
+public prompts with
+deepseek-v4-flash
+Strict paired judge Main tables use the corresponding public
+prompt
+LoCoMo Cat.5 Strict answerability judge Not applicable Report separately because the public prompt as-
+sumes non-empty gold
+Table A3: LoCoMo category-5 strict answerability pass@1.
+Method Qwen3-4B Qwen3-30B Gemma-4-12B-IT
+MemForest-Planner 29.60 35.87 10.09
+MemForest-Embed 22.87 32.29 9.42
+EverMemOS 23.77 19.73 8.97
+LightMem 11.66 14.13 14.13
+MemoryOS42.38 44.84 28.92
+MemPalace 14.57 15.92 16.59
+Mem0 21.30 22.42 13.90
+Zep Local 10.09 11.43 6.73
+across all held-out budgets. The narrower observed MemTree range
+indicates lower sensitivity on these grids, while the held-out results
+establish that its advantage emerges when the pre-answer evidence
+budget is sufficient rather than at every𝑘.
+Table B4: Held-out macro gold-fact coverage across final evi-
+dence budgets (%).
+Representation 5 10 20 30 50 100
+Flat Log 71.8 79.1 84.7 86.4 89.0 94.6
+Log-Time 71.8 80.3 84.7 87.3 91.0 95.1
+Validity Interval 71.2 77.1 80.0 82.8 86.2 90.4
+Scratchpad+Background 68.4 77.6 82.3 84.2 87.5 90.9
+Triplet Graph 70.3 78.8 83.1 85.5 88.0 93.9
+MemTree 71.0 79.6 84.0 87.4 92.0 96.4
+B.4 Routing, Browse, and Fragmentation
+Diagnostics
+Planner and Embed use different native candidate pools and the
+same lightweight semantic/time reranker; Planner adds one LLM
+browse call. The scene sweep rebuilds routes from frozen facts and
+embeddings, so its Jaccard score measures assignment stability.
+Table B1: Temporal diagnostic subsets and their non-
+overlapping purposes.
+# Questions Purpose
+321 Official LoCoMo raw-category-2 temporal set
+used for category accounting and the frozen-
+output error audit.
+319 Category-2 questions with author-annotated gold-
+fact mappings for candidate coverage; two ques-
+tions without reliable mappings are excluded.
+82 + 237 Disjoint development and held-out partitions of
+the 319 mapped questions; only the 82-question
+split selects Log-TimeRerank and lightweight
+MemTree-selector weights.
+249 Separate cross-benchmark LoCoMo/Long-
+MemEval routing and fragmentation audit, rather
+than a further split of the 321-question set.
+231 Supported mappings retained after independent
+review and author adjudication: 130 LoCoMo
+and 101 LongMemEval questions; 18 unsupported
+rows are excluded with reasons.
+Table B5: Compact routing and retrieval diagnostics.
+Diagnostic Result Boundary
+Active entity routing 124/127 precision PASS; 3/127 excep-
+tions; exact-all 9/127
+Entity trees are a selective precision
+overlay; other scopes remain avail-
+able
+Planner vs. Embed +0.49 to +2.37 pp macro coverage
+over𝑘=5. . .100
+Quality–cost comparison with one
+extra LLM browse call
+Scene threshold 4B mean/p05≥0.9997/0.9996;
+30B≥0.9650/0.8829
+Perturbs 𝜃= 0.84, 0.92around de-
+fault 0.88
+Specific-tree fragmen-
+tation
+4/130 LoCoMo; 37/101 Long-
+MemEval
+Evidence may remain reachable
+through union recall and fallback
+
+=== PDF PAGE 17 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+The fragmentation audit retains 231/249 supported mappings
+after independent review and author adjudication. Under embed-
+ding browse, fragmented versus unfragmented questions score 2/4
+(50.00%) versus 96/126 (76.19%) on LoCoMo and 25/37 (67.57%) ver-
+sus 50/64 (78.13%) on LongMemEval. The released audit records
+separate model-assisted labels, independent review, author deci-
+sions, exclusions, and validation summaries. Together, the audit
+supports high-precision active routes but not a single-route design:
+incomplete entity coverage and the LongMemEval fragmentation
+gap motivate redundant scope assignment, union recall, and multi-
+tree browse.
+B.5 Extraction and Tree-Shape Sensitivity
+The following configuration diagnostics support the defaults used
+by MemForest without using benchmark pass@1 to select the re-
+ported operating points.
+C Chunk-Size Diagnostic for Raw-Fact
+Extraction
+We study extraction chunk size in a separate diagnostic setting,
+since this operating-point choice is not the main contribution of
+MemForest and is therefore deferred from the main ablation sec-
+tion. The purpose of this experiment is to examine how raw-fact
+extraction degrades as chunk granularity increases.
+To create a controlled stress setting, we manually assemble long
+sessions by concatenating multiple original conversations, then
+run the same raw-fact extraction pipeline under different chunk
+presets. This setup is therefore a diagnostic stress test rather than
+the benchmark’s native dialogue layout, and is intended to expose
+how the extraction pipeline behaves as chunk granularity is varied.
+We evaluate each setting usingGold Coverage, a diagnostic
+retention metric rather than an end-to-end QA metric. For each
+question, we identify its gold supporting turn range and the key
+answer-bearing span within that range, such as an entity, date,
+number, or short attribute phrase. A question is covered if at least
+one extracted fact produced from a chunk intersecting the gold
+range still preserves that key span after normalization.
+Table C1 shows a clear constrained operating point. Whole-
+session extraction is both the least faithful and one of the least
+efficient settings, while chunk sizes beyond 8 turns show visible
+fidelity degradation. Very small chunks preserve answer-bearing
+information, but 2-turn extraction provides the best overall balance:
+it preserves 100% Gold Coverage, remains near the best throughput
+regime, and improves token efficiency over 1-turn extraction. We
+therefore use 2-turn extraction as the default write-path setting in
+the main system.
+MemTree branching factor.Figure C1 separates the two con-
+straints behind the default branching factor. Increasing𝑘 makes the
+tree shallower, but eventually asks one autoregressive summary call
+to preserve too many child facts. The selected moderate operating
+region balances dependency depth against summary retention; it is
+not tuned on the benchmark answer judge.
+Table C1: Chunk-sweep study for raw-fact extraction on the
+assembled-long-session benchmark.
+Preset Gold Coverage (%) Facts/s Token/fact
+1-turn 100 7.40 868
+2-turn 100 7.00 767
+4-turn 100 1.90 811
+8-turn 99 1.52 647
+16-turn 94 1.37 682
+32-turn 95 1.26 832
+48-turn 88 0.62 1127
+64-turn 72 0.46 1271
+whole 55 0.52 2505
+2 4 6 8 10 12 16 20 24 32
+Children per summary call k
+0.65
+0.70
+0.75
+0.80
+0.85
+0.90
+0.95
+1.00Per-fact recall
+Kcap = 16
+(a) Per-call summary capacity
+Capacity-safe (k Kcap)
+per-fact recall (±1 SE, 30 groups)
+4 6 8 10 12 16
+Branching factor k
+0.10
+0.15
+0.20
+0.25
+0.30
+0.35Root-summary per-fact recall
+(b) End-to-end root recall: 30B vs 4B
+Facts per tree
+n=200
+n=1200
+Summarizer
+Qwen3-30B
+Qwen3-4B
+Figure C1: MemTree branching-factor diagnostics. (a) Per-
+fact retention in one summary call remains high through
+a moderate number of children and then declines. (b) End-
+to-end root-summary recall peaks at moderate branching
+factors across two tree sizes and two summarizers. Here 𝑘
+denotes tree branching factor, not final retrieval top- 𝑘; these
+controlled summary-retention measurements are not bench-
+mark pass@1.
+D System Cost, Scaling, Freshness, and
+Migration
+D.1 Matched Request-Level Token Probe
+The same three-stream trace averages 435.7K input and 451.9K out-
+put tokens over 258.3 extraction calls, and 177.2K input and 77.6K
+output tokens over 320.0 dirty-refresh calls. In matched histori-
+cal service logs, 46 stable windows with one running request, no
+queued request, and no prompt processing sustain a median 140.8
+output tokens/s (p10–p90: 140.2–145.9). Request-level fits give ef-
+fective prompt rates of 2.67K–21.85K tokens/s, depending on prefix
+reuse. Applying 𝑇serial =𝑇 in/𝑟prefill +𝑇 out/𝑟decode +𝑛 req𝑡fixed defines
+a throughput-calibrated serial replay of the logged request stream.
+Across the observed prefill-rate range, replay takes 52.76–56.41
+minutes for extraction and 9.23–10.52 minutes for dirty refresh.
+Figure 8(c–d) uses the respective midpoints, 54.58 and 9.88 minutes,
+versus measured parallel walls of 122.31 and 27.92 seconds (26.8×
+and 21.2× speedups). This replay holds the request stream fixed and
+sets the maximum in-flight request count to one; eager per-insert
+refresh would instead change the request sequence.
+Under this self-hosted vLLM scheduler, prefix reuse reduces
+MemForest prefill relative to EverMemOS but not Mem0. Request
+length alone does not explain the result: MemoryOS has the largest
+p95 lengths, while Zep Local makes far more requests. MemForest’s
+
+=== PDF PAGE 18 ===
+Chen et al.
+Table D1: Self-hosted vLLM APC request diagnostic over 20 matched LoCoMo messages. Token p95 uses the nearest-rank
+definition. Cached input is measured from prompt_tokens_details.cached_tokens: it is vLLM avoided prefill, not a provider-
+billed cache class or a semantic prompt partition.
+Method Req. Input avg. Input p95 Uncached avg. Uncached p95 Output avg. Output p95 Cache share
+MemForest 19 1,196 2,482 498 2,482 267 670 58.38%
+EverMemOS 29 1,098 1,594 897 1,594 187 380 18.29%
+Mem0 13 1,306 1,741 515 1,520 155 459 60.59%
+MemoryOS 40 482 2,837 366 1,941 167 1,474 24.07%
+Zep Local 190 723 1,536 317 1,124 58 195 56.14%
+Table D2: MemForest write-stage breakdown (179.74 seconds
+total).
+Stage Time Share Mean calls Main work
+Extraction 122.31 s 68.05% 258.3 LLM LLM
+Canonicalize/dedup 12.57 s 6.99% 31.3 LLM + 49 emb. Hybrid
+Routing 15.54 s 8.64% 5.7 emb. Embedding + CPU
+Bucketize/insert 0.03 s 0.02% 0 CPU
+Dirty refresh 27.92 s 15.53% 320.0 LLM LLM
+Index update 1.13 s 0.63% 3.0 emb. Embedding
+Persistence 0.24 s 0.13% 0 I/O
+Table D3: Mean provider-billed token use and direct cost over
+three probes.
+Method Cached in Miss in Output Total Cost (¢) Eff.
+MemForest 15.45k 7.51k 3.64k 26.60k 0.212 5.28×
+EverMemOS 3.37k 24.57k 3.45k 31.40k 0.442 2.53×
+Mem0 13.65k 4.44k 1.27k 19.37k 0.102 11.00×
+MemoryOS 1.88k 8.84k 2.44k 13.15k 0.193 5.81×
+Zep Local 47.66k 66.77k 6.06k 120.48k 1.118 1.00×
+Cost efficiency is normalized to Zep Local. Costs use provider-returned billable token classes and the
+official non-thinking DeepSeek-V4-Flash price [6].
+measured advantage comes from parallel extraction cells and same-
+level, cross-tree refresh waves. Caching reduces repeated prefill
+but not dynamic prefill or autoregressive decoding; the self-hosted
+deployment has no per-token API bill.
+The DeepSeek billing probe measures a separate provider-billed
+cache metric. We verified that the ten MemForest extraction re-
+quests in the Qwen/vLLM and DeepSeek probes have the same ten
+prompt hashes and the same fixed 6,014-character system prefix.
+They are submitted as one burst (9.7 ms and 17.3 ms start-time
+spans, respectively). vLLM reports cache hits for nine of these ten
+requests (12,944 avoided-prefill tokens), whereas DeepSeek reports
+zero. This is consistent with backend semantics rather than a lost
+accounting field: DeepSeek requires a complete persisted prefix
+unit, its common-prefix example first identifies the prefix after two
+requests complete, and cache construction can take seconds [ 5].
+Therefore Table D1 characterizes local serving work, while Table D3
+alone determines the reported API bill; cache shares and rankings
+are not compared across the two backends.
+The cold-to-warm change is largest for MemForest because its
+long extraction instruction is shared by one concurrent first wave:
+vLLM can reuse scheduled blocks within that wave, while DeepSeek
+Table D4: Cold-start versus verified warm-cache DeepSeek
+billing. Hit share is provider-reported hit input divided by
+total input; cost is US cents per 20-message native probe.
+Warmups are excluded from both columns.
+Method Cold hit Warm hit Cold cost Warm cost
+MemForest 0.00% 67.28% 0.413 0.212
+EverMemOS 1.83% 12.06% 0.479 0.442
+Mem0 50.60% 75.47% 0.166 0.102
+MemoryOS 7.27% 17.52% 0.225 0.193
+Zep Local 38.60% 41.65% 1.138 1.118
+Table D5: Embedding retrieval as frozen state grows.
+Forests Facts Trees Root rows p50 p95
+1 1,428 250 210 37.63 ms 41.79 ms
+2 2,694 463 369 39.14 ms 43.58 ms
+4 5,553 950 754 39.10 ms 44.13 ms
+8 10,781 1,868 1,455 39.24 ms 42.23 ms
+cannot bill a hit until the prefix unit has persisted. We use the veri-
+fied warm-cache result for steady-state cost efficiency and report
+cold-start behavior separately.
+For API billing, we probe three distinct LoCoMo conversations
+(conv-26, conv-42, and conv-43), truncate each to 20 messages,
+and rebuild every method from an empty store. Two additional
+conversations, conv-47 and conv-48, warm each method under
+the same isolated provider user_id and are excluded from mea-
+sured totals. We verify cache-eligible fixed templates; the second
+native warmup produces a nonzero hit for every method. All 15
+measured cells complete without failed requests. Table D3 reports
+an unweighted mean because every probe has the same message
+count; per-conversation records are released with the probe. Memo-
+ryOS makes 34–38 requests and consumes 9.09k–18.93k total tokens
+because its LLM-generated session grouping changes how often
+the heat-triggered profile/knowledge update fires.
+D.2 Frozen-Index Query Scaling
+The sweep uses fixed top-10 embedding browse and excludes plan-
+ner calls, answer generation, index loading, and memory construc-
+tion. A separate synthetic structural sweep varies both facts per tree
+
+=== PDF PAGE 19 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+Table D6: Session-level entity/scene-tree write concentration.
+Scope Trees/sess. Facts/tree mean/med/p95/max Within Across
+All trees 7.60 5.39/3/19/53 67.1% 89.3%
+Specific trees 6.65 5.04/2/21/53 63.7% 16.6%
+“Specific” excludes the globalentity:userfallback. Within is the share of session–tree buckets
+containing at least two facts; Across is the share of within-user session pairs sharing at least one tree.
+and number of trees. Across the two complete 500-question Qwen
+builds, the audit covers 250,118 trees; observed maximum height is
+four and no tree violates the conservative bounded-fan-out height
+check.
+D.3 Freshness Contract and Write
+Concentration
+Section 4.5 states the online tree-level concurrency contract. Each
+asynchronous B+ tree has an independent reader–writer lock: in-
+sertion and refresh are writers, whereas range query, browse prim-
+itives, and state export are readers. Distinct trees and concurrent
+readers therefore proceed independently; only a writer and another
+operation on the same tree conflict. The online auto-update path
+refreshes dirty trees and root vectors before returning. Snapshot
+save exports each tree under its read lock, writes a temporary direc-
+tory, and renames the completed snapshot into place. The released
+source snapshot contains the evaluated lock and scheduler imple-
+mentation.
+Session-level write concentration.We attribute canonical facts to
+their first source session and join them to the final entity and scene
+trees in the same three representative LongMemEval streams used
+by Figure 8(c–d). Table D6 reports all 147 sessions. A within-session
+collision is a session–tree bucket containing more than one fact.
+Across-session overlap compares session pairs only within the same
+independent user stream. The released audit directory contains
+the 1,117 session–tree rows, manifest, summary, and regeneration
+script.
+Repeated same-session assignments do not trigger one LLM
+refresh per fact: each tree is marked dirty once and shared ancestors
+are summarized once per flush. Across sessions, 16.6% of pairs
+share a specific entity/scene tree; including the globalentity:user
+fallback raises overlap to 89.3%, making it the primary lock hotspot.
+This fallback can be partitioned into independently built subforests
+and consolidated through the same migration merge evaluated in
+Section 5.6.
+Provenance links extraction errors to affected leaves and derived
+artifacts for targeted deletion and refresh.
+D.4 Migration-State Scaling
+Sequential replay and migration merge produce comparable persis-
+tent states: facts differ by less than 1% and trees by at most about
+8%. The procedures need not be bit-identical because extraction,
+routing, and summary refresh contain model or heuristic decisions,
+but the measured migration speedup does not come from collapsing
+or discarding memory state.
+E Detailed Write-Path and Parallelism Analysis
+Table D7: Memory scale under sequential write and migration
+merge.
+𝑁Seq Facts Mig Facts Seq Trees Mig Trees
+1 1,435 1,435 249 249
+2 2,692 2,716 375 405
+3 4,061 4,098 562 607
+4 5,540 5,590 733 792
+5 6,860 6,922 895 967
+6 8,101 8,174 1,044 1,128
+7 9,426 9,511 1,200 1,296
+8 10,705 10,801 1,362 1,472
+This appendix details the released write-path dependencies sum-
+marized in Section 5.4. One complete memory instance contains
+𝑁 method-native input units and has a per-instance LLM worker
+budget 𝑃. Actual worker limits are run-time configuration parame-
+ters rather than complexity constants. A star denotes dependency-
+feasible parallel calls whose released per-instance ingestion path
+is serial. Because APIs batch dialogue differently, 𝑁 denotes na-
+tive units rather than equal-size text chunks; wall-clock latency is
+measured on complete question or conversation stores.
+The comparison reports autoregressive-LLM dependency depth,
+not constant-time token work. Prompt/output length, CPU and
+database work, serving saturation, and persistence remain measur-
+able costs. Extraction creates the method’s first persistent memory
+representation; maintenance reconciles, summarizes, or indexes
+it. A stage is LLM-based when an autoregressive result lies on its
+commit path.
+E.1 Method-Specific Dependency Boundaries
+Mem0.One add extracts facts, retrieves candidates, and uses a
+second LLM to choose add/update/delete/no-op actions. Isolated ex-
+traction prompts are independent, but the evaluated adapter awaits
+the complete stateful add before issuing the next. Concurrent adds
+can reconcile against and mutate the same old record; decoupling
+extraction would require ordered commits, per-record locking, or
+optimistic validation. We therefore report the implemented 𝑂(𝑁)
+add chain while marking extraction as dependency-feasible parallel
+work.
+MemoryOS..Raw QA append is non-LLM, while queue eviction
+can trigger page continuity, meta-summary, profile, and knowledge
+updates. Profile and knowledge analysis already use two workers
+within a trigger, but both depend on selected mid-term pages and
+same-user queue/profile commits remain ordered. A hot profile can
+also make a triggered LLM input grow with history.
+EverMemOS..Streaming boundary detection observes unresolved
+conversation history, so later boundaries depend on earlier deci-
+sions and one conversation has 𝑂(𝑁) ordered extraction depth.
+Once MemCells are frozen, embedding and indexing distinct cells
+add no history-dependent LLM call and can be scheduled con-
+currently. Optional foresight/profile extractors are disabled in the
+evaluated configuration.
+
+=== PDF PAGE 20 ===
+Chen et al.
+Table E1: Detailed write-path decomposition. Complexity denotes logical dependency depth. A star marks dependency-feasible
+parallel calls whose released per-instance ingestion path is serial.
+System Extraction path LLM Maintenance path LLM
+Mem0 History-independent extraction:𝑂( ⌈𝑁/𝑃⌉ ) ∗; released add loop𝑂(𝑁)Yes Candidate search and reconciliation per add;𝑂(𝑁)ordered commits Yes
+MemoryOS Raw QA append;𝑂(𝑁)ordered queue operations No At most𝑁triggered page/meta-summary and profile updates, each with up to
+𝑂(𝑁)profile input
+Yes
+EverMemOS Boundary detection and MemCell formation;𝑂(𝑁)ordered stream Yes Embedding/index persistence for at most𝑁emitted cells;𝑂(𝑁)work No
+LightMem Post-segmentation extraction:𝑂( ⌈𝑁/𝑃⌉ ) ∗; released add loop𝑂(𝑁)Yes Frozen-snapshot consolidation:𝑂( ⌈𝑁/𝑃⌉ )independent LLM waves Yes
+MemPalace Deterministic chunk/drawer formation;𝑂(𝑁)non-LLM work No Embedding and append/index insertion;𝑂(𝑁)work, no semantic rewrite No
+Zep Local Node/edge extraction per episode;𝑂(𝑁)ordered episode chain Yes𝑂(𝑁)ordered LLM chain; backend search Í
+𝑖 𝑔(𝐺 𝑖 ), index- and
+graph-dependent
+Yes
+MemForestImplemented gather plus semaphore;𝑂( ⌈𝑁/𝑃⌉ )request waves Yes Í𝐻
+ℓ=0 ⌈𝐷 ℓ /𝑃⌉=𝑂( ⌈𝐷/𝑃⌉ +𝐻)level-ordered waves Yes
+LightMem.Buffer accumulation and segmentation are ordered,
+but emitted segments could be extracted in bounded parallel waves;
+the released benchmark runner instead awaits each add_memory.
+Its maintenance workers summarize independent entries from one
+frozen candidate snapshot and serialize only non-LLM mutations
+under a write lock. Thus the evaluated extraction path is serial,
+whereas its snapshot-based LLM maintenance already uses 𝑃= 5
+workers.
+MemPalace.Chunk and drawer creation, embedding, and in-
+dex insertion use no autoregressive LLM and perform 𝑂(𝑁) work.
+Preparation and embedding can be parallelized subject to ordered
+identifier/timestamp commit. Zero LLM depth does not imply zero
+CPU or database cost, and the method does not perform LLM tem-
+poral reconciliation on write.
+Zep Local / Graphiti.Native add_episode extracts and resolves
+nodes/edges, invalidates superseded facts, and commits graph ob-
+jects. Episodes in one namespace are awaited sequentially because
+later resolution observes the updated graph; within-episode op-
+erations and independent namespaces can still run concurrently.
+We denote indexed candidate-search and graph-query work before
+episode 𝑖 by 𝑔(𝐺 𝑖 ) because it depends on graph size, indexes, and
+query plans. The ordered LLM chain buys versioned facts, prove-
+nance, and topology and is not an asymptotic claim about every
+Graphiti deployment.
+MemForest.Extraction cells do not read accumulated memory
+and take 𝑂( ⌈𝑁/𝑃⌉) request waves. For 𝑀𝑠 new facts in scope 𝑠,
+structural CPU work is Í
+𝑠 𝑂(𝑀 𝑠 log𝑁 𝑠 ). Dirty-summary regener-
+ation performs 𝑂(𝐷) total LLM work but allows same-level and
+cross-tree nodes to run together. If 𝐷ℓ is the number of dirty sum-
+maries at level ℓ and 𝐻 is the maximum touched-tree height, the
+exact request-wave depth is
+ 𝑁
+𝑃
+
++
+𝐻∑︁
+ℓ=0
+ 𝐷ℓ
+𝑃
+
+=𝑂
+ 𝑁+𝐷
+𝑃
+
++𝐻
+
+.
+For a complete build with bounded extraction yield and balanced
+bounded fan-out, 𝐷=𝑂(𝑁) and 𝐻=𝑂(log𝑁) , so this becomes
+𝑂( ⌈𝑁/𝑃⌉ +log𝑁) . Routing, structural insertion, index update, and
+persistence are non-LLM. With fixed 𝑃, the LLM request-wave
+bound remains 𝑂(𝑁) , while non-LLM structural work remains
+localized to inserted facts and touched trees. The contribution is
+bounded parallel waves and localized dependency, not sublinear
+total work or end-to-end latency.
+The table analyzes schedules and state dependencies in the re-
+leased paths evaluated here. Redesigned parallel schedulers are
+outside its scope.
+F LongMemEval Diagnostic Subset for Ablation
+For the retrieval ablations in Section 6.2, we construct a balanced
+60-question diagnostic subset by sampling 10 questions from each
+LongMemEval question type. Table F1 lists the full question IDs.
+
+=== PDF PAGE 21 ===
+MemForest: An Efficient Agent Memory System with Hierarchical Temporal Indexing
+Table F1: Question IDs in the 60-question LongMemEval di-
+agnostic subset (10 per type).
+Question Type Question IDs
+Knowledge Update01493427,031748ae,0977f2af,
+18bc8abd,1cea1afa,4d6b87c8,
+69fee5aa,852ce960,a1eacc2a,
+f9e8c073
+Multi-Session1a8a66a6 , 60bf93ed_abs, 73d42213,
+81507db6, 88432d0a_abs, aae3761f,
+d682f1a2, e5ba910e_abs,
+gpt4_d84a3211,
+gpt4_f2262a51
+Single-Session (Assistant)0e5e2d1a,1568498a,16c90bf4,
+561fabcd,6222b6eb,7161e7e2,
+71a3fd6b,7a8d0b71,8cf51dda,
+c7cf7dfd
+Single-Session (Preference)06f04340,0edc2aef,195a1a1b,
+1a1907b4,1d4e3b97,35a27287,
+6b7dfb22,75832dbd,a89d7624,
+caf03d32
+Single-Session (User)001be529,311778f1,545bd2b5,
+5d3d2817,60d45044,94f70d80,
+af8d2e46,c5e8278d,caf9ead2,
+faba32e5
+Temporal Reasoning4dfccbf7,982b5123,e4e14d04,
+gpt4_18c2b244, gpt4_1e4a8aec,
+gpt4_2487a7cb,
+gpt4_68e94287, gpt4_7a0daae1,
+gpt4_e072b769,
+gpt4_f420262d

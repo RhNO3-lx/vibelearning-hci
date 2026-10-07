@@ -1,0 +1,617 @@
+=== PDF PAGE 1 ===
+S L 
+INDEX 
+(NASA- TLX) 
+v 1.0 
+Nl\5/\ 
+Ames Research Center 
+
+=== PDF PAGE 2 ===
+Table of Contents 
+1. Background 1 
+2. Description 2 
+2.1 General Information 
+2.2 Sources of Load (Weights) 
+2.3 Magnitude of load (Ratings) 
+2.4 Weighting and Averaging Procedure 
+3. Experimental Procedure 4 
+3.1 Instructions 
+3.2 Familiarization 
+3.3 Ratings 
+3.4 Weights 
+3.5 Summary 
+4. Data Analysis Procedure 6 
+4 . t Tally Sheet 
+4.2 Worksheet 
+4.3 Summary 
+5. Bibliography 8 
+6 . Subject Instructions : Rating Scales 11 
+7. Subject Instructions : Sources -of-Workload Evaluation 12 
+Appendix A. Rating Scale Definitions 13 
+Appendix B . Sources · of-Workload Comparison Cards 14 
+Appendix C. Rating Sheet t 7 
+Appendix D. Sources-of -Workload Talty Sheet 18 
+Appendix E. Weighted Rating Worksheet l9 
+
+=== PDF PAGE 3 ===
+NASA Task load Index (NASA-TLX) 
+Version 1.0 
+Paper and Pencil Package 
+This booklet contains the mater-ials necessary to collect subjective 
+workload assessments with the NASA Task load Jndex. This procedure for 
+colletting workload ratings was developed by the Human Performance Group 
+at NASA Ames Research Center during a three year research effort that 
+involved more than 40 laboratory. simulation . and inflight experiments . 
+Although the technique is still undergoing evaluation. this booklet is being 
+distributed to allow other researchers to use it in their own experiments . 
+Comments or suggestions about the procedure would be greatly apprec.iated . 
+This package is intended to fill a "nuts and bolts" function of describing the 
+procedure . A bibli~graphy provides background information about previous 
+empirical findings and the logic that supports the procedure . 
+1. BACKGROUND 
+The NASA Task load Index is a multi -dimensional rating procedure 
+that provides an overall workload score based on a weighted average or rat ­
+ings on six subscates: Mental Demands . Physical Demands . Temporal 
+Demands. Own Performance . Effort . and Frustration . A definttion of each 
+subscale is provided in Appendix A. 
+An earlier version of the scale had nine subscales . It was designed to 
+reduce between -rater variability by using the a priori workload definitions of 
+. subjects to weight and average subscale ratings . This technique (referred to 
+as the ''NASA Bipolar Rattng Scale") was quite successful in reducing 
+between -rater variability . and it provided diagnostic information about the 
+magnitudes of different sources of load from subscaJe ratings (Hart . Bat ­
+tiste. & lester. 1984: Vidulich &. Tsang. l98Sa & b) . However . its sensi ­
+tivity to experimental manipulations. while better than found for other popu ­
+lar techniques and for a global unidimensional workload rating . was still not 
+considered sufficient . In addition . it was felt that nine subscales are too 
+many. making the scale impractical to use in a simulation or operational 
+environment. Finally , several of the subscales were found to be irrelevant to 
+workload (e .g .. fatigue) or redundant (e .g .. Stress and Frustration) . For 
+these reasons . the NASA Task load Index was developed . Some of the 
+subscales from the original scale were revised or combined . others deleted . 
+1 
+
+=== PDF PAGE 4 ===
+and two added . Three dimensions relate to the demands imposed on the 
+subject tMental. Physical . and Temporal Demands) and three to the interac ­
+tion of a subject with the task (Effort . Frustration . and Performance) . 
+Although it is clear that definitions of workload do indeed vary among 
+experimenters and among subjects (contributing to confusion in the work­
+load literature and between -rater variability). it was found that the specific 
+sources of loading imposed by different tasks are an even more important 
+determinant of workload experiences . Thus. the current version of the scale 
+(the Task load Index) combines subscale ratings that are weighted accord­
+ing to their subjective importance to raters in a specific task . rather than 
+their a priori relevance to raters ' definitions of workload in general. 
+2. DESCRIPTION 
+2.1. General Information 
+The degree to which each of the six factors contribute to the workload 
+of the specific task to be evaluated. from the raters · perspectives. is deter ­
+mined by their responses to pair-wise comparisons among the six factors . 
+Magnitude ratings on each subscale are obtained after each performance of a 
+task or task segment. Ratings of factors deemed most important in creating 
+the workload of a task are given more weight in computing the overall work­
+load score. thereby enhancing the sensitivity of the scale. 
+The weights and ratings may or may not covary . For example . it is 
+poss ible for mental demands to be the primary source of loading for a task . 
+even though the magnitude of the mental demands might be low. Con­
+versely . the time pressure under which a task is performed might be the pri­
+mary source of its workload . and ttie time demands might be rated as being 
+high for some versions of the task and low for others. 
+Since subjects can give ratings quickly. it may be poss ible to obtain 
+them in operational settings However. a videotaped replay or computer 
+regeneration of the operator 's activities may be presented as a mnemonic. aid 
+that can be stopped after each segment to obtain ratings retospec tively. It 
+was shown in a helicopter simulation and in a supervisory <:ontrol simulation 
+(Hart. Battiste . Chesney . Ward . & McElroy. 1986: Haworth . Bivens. and 
+Shively . 1986) that little information was lost when ratings were given 
+retrospectively : a high correlation was found between ratings that were 
+obtained "online" and those that were obtained retrospectively with a visual 
+re-creation of the ta sk. 
+2 
+
+=== PDF PAGE 5 ===
+The Task load Index has been tested in a variety of experimental 
+tasks that range hom simulated flight to supervisory <.ontrol simulations and 
+laboratory tasks (e.g .. the Sternberg memory task . choice reaction time. 
+critical instability tracking . compensatory tracking . mental arithmetic . men­
+tal rotation . target acquisition. grammatical reasoning . etc .). The results of 
+the first validation study are summarized in Hart & Stave! and (in press) . 
+The derived workload scores have been found to have substantially less 
+between -rater variability than unidimensional workload ratings . and the sub­
+scales provide diagnostic information about the sources of load 
+2.2. Sources of Load (Weights) 
+The NASA Task load Index is a two -part evaluation procedure con­
+sisting of both weights and ratings. The first requirement is for each ra\er 
+to evaluate the contribution of each factor (its weight) to the workload of a 
+specific task . These weights account for two potential sourc.es of between ­
+rater variability : differences in workload definition between raters within a 
+task. and differences in the sources of workload between tasks . In addition . 
+the weights themselves provide diagnostic information about the nature of 
+the workload imposed by the task . 
+There are 15 possible pair-wise comparisons of the six scales 
+(Apppendix B) . Each pair is presented on a card . Subjects circle the 
+member of each pair that conttibuted more to the workload of that task . 
+The number of times that each factor is selected is tallied . The tallies can 
+range from 0 (not relevant) to 5 (more important than any other factor) . 
+A different set of weights is obtained for each dis tine tly different task 
+or task element upon its completion . The same set of weights can be used 
+for many different versions of the same task if the contrtbutions of the six 
+factors to their workload ts fairly similar . For example . the same set of 
+weights was used for many different versions of a target ac.quisition task in 
+which time pressure . target acquisition difficulty . and decision making load 
+were varied . Obtaining separate weights for different exper imental manipu ­
+lation s increased the sensitivity of the derived workload score only slightly . 
+and did not warrant the additional time required to gather them . On the 
+other hand . the weights obtained from the same subjects for a compen satory 
+tracking task or a memory search task would not have been appropriate for 
+the target acquisition task . 
+l 
+
+=== PDF PAGE 6 ===
+2.3. Magnitude of load (Ratings) 
+The second requirement is to obtain numerical ratings for each scale 
+that reflect the magnitude of that factor in a given task. The scales are 
+presented on a rating sheet (Appendix C). Subjects respond by marking 
+each sc.ale at the desired location . In operational situations . rating sheets or 
+verbal responses are more practical . while a computerized version (available 
+from NASA Ames Research Center) is more efficient for most simulation 
+and laboratory settings . Ratings may be obtained either during a task . after 
+task segments . or following an entire task . Each scale is presented as a 
+12-cm line divided into 20 equal •ntervals anchored by l>ipolar descriptors 
+(e.g .. High/Low) . The 21 vertical tic.k marks on each scale divide the scale 
+from 0 to 100 in increments of 5. If a subject marks between two ticks. the 
+value of the right tick is used (i.e .. round up) . 
+2.(. Weightlng and Averaging Procedure 
+The overaU workload score for each subject is computed by multiply­
+ing each rating by the weight given to that factor by that subject. The sum 
+of the weighted ratings for each task is divided by 15 (the sum of the 
+weights). (See Appendix D and E for a sample Tally Sheet and Worksheet .) 
+3. EXPERIMENTAl PROCEDURE 
+The usual sequence of events for collecting data with the NASA Task 
+load Index is as follows: 
+3.1. Instructions 
+Subjects read the scale definitions and instructions. A set of 
+generic instructions is included in Section 6. Some modifica­
+tions may be necessary depending on your situation . 
+3.2. Familiarization 
+Subjects practice using the rating scales after performing a few 
+tasks to insure that they have developed a standard technique 
+for dealtng with the scales . 
+3.3. Ratings 
+Subjects perform the experimental tasks. providing ratings on 
+the six subscales following all task conditions of interest . The 
+number of rating sheets needed equals the number of subjects X 
+( 
+
+=== PDF PAGE 7 ===
+the number of task conditions (including practice) . 
+3.4. Weights 
+Subjects complete the "Sources-of -Workload Evaluation" once 
+for each task or group of tasks included in the experiment that 
+share a common structure (although difficulty levels may vary) . 
+For example. in an experiment with several memory tasks and 
+several tracking tasks. two Sources -of-Workload Evaluations 
+would be performed : one for the memory tasks and one for the 
+tracking tasks . One set of cards should be made in advance of 
+the experiment for each subject X evaluation condition combina · 
+tion . The pairs of factors should be cut apart and presented 
+individually in a different. randomly selected. order to each sub­
+ject . Subject instructions for doing the Sources -of-Workload 
+Evaluation are in Section 7. (Note that the exact time when the 
+weights are obtained is not critical. However . in order for them 
+to provide useful information . they must be obtained after at 
+least some exposure to the relevant task conditions .) 
+3.5. Summary 
+Following this procedure. you should end up with : (1) a set of work­
+load weights from each subject for each &!~.~~of similar tasks. and (2) at 
+least one rating sheet for each subject for each experimental task . Typi­
+cally. we have run within-subject experiments - and therefore ended up with a 
+larger number of rating sheets for each subject . 
+To conserve paper and speed up the subsequent anafysis . we often 
+enclose the Rating Sheet and the Sources-of -Workload comparison cards in 
+clear plastic . Subjects mark the scales with an erasable felt tip marker . 
+Immediately after they are marked. the experimenter transfers the responses 
+onto the app.ropriate form or worksheet . Then the plastic sheets are cleaned 
+and reused. If this procedure is followed . DOUBLE CHECK YOURSELF 
+BEFORE ERASING THE SUBJECT'S RESPONSES! 
+4. DATA ANALYSIS PROCEDURE 
+The procedure for computing a weighted workload score follows : 
+5 
+
+=== PDF PAGE 8 ===
+1.1. Tally Sheet 
+For each subject. the '!Sources-of-Workload Tally Sheet" 
+(Appendix 0) is used to compute the weight for each factor . 
+The scorer simply leafs through the evaluation cards and puts a 
+mark on the appropriate row of the tally column for each 
+response of the subject (e.g .. each time the subject circled 
+"Mental Demandu on a comparison card. the experimenter would 
+put a mark in the 'Mental Demand 11 row of the tally column) . 
+After going through the Sources -of-Workload evaluation . the 
+experimenter adds the tallies for each scale and writes the totals 
+in the "Weight" column . 
+1.2 . Worksheet 
+The Weight column from the tally sheet is then transferred to 
+the 'Weighted Rating Workshee t" (Appendix E). Each subject 
+would have his or her individual workload parameters count 
+placed on a separate worksheet for the appropriate task or set of 
+similar tasks . If subjects rated more than one task , the 
+appropriate number of copies of the worksheet should be made . 
+Ratings are placed in the "Raw Rating" column of the worksheet . 
+The 11Adjusted Rating" is formed by multiplying the Raw Rating 
+by the Sources-of-Workload Weight. The adjusted ratings are 
+summed across the different scales . The sum is divided by 15 
+to obtain the overall weighted workload score for the subject in 
+that one task condition . 
+The weighted ratings are then used as a dependent measure in what­
+ever type of analyses the experimenter chooses. 
+Figure 1 depicts the composition of a weighted workload score graphi ­
+cally . The bar graph on the left represents six subscale ratings . The width 
+of the subscale bars reflects the importance of each factor (its weight) . and 
+the height represents the magnitude of each factor (its rating) in a particular 
+task . The weighted workload score (the bar on the right) represents the 
+average area of the subscale bars . 
+1.3. Summary 
+The above procedure. although simple . can be laborious for a large 
+experiment. Thus it is highly advantageous to computerize the procedure . 
+A set of programs that run on IBM-PC compatible machines has been 
+6 
+
+=== PDF PAGE 9 ===
+100 
+80 
+(!) 
+z 60 
+~ 40 
+cr 
+20 
+0 
+,... 
+f-
+OVERALLWORKLOAD(OW)= 
+MEAN OF WEIGHTED RATINGS 
+I 
+'=- -~~:::~:::: ~ 
+f.- ~ ::::::;::: r" ,_ ::::::f::: ,_ .......... ["-
+;: ~ :: }' :: 
+PO MD TO OP EF FR 
+IMPORTANCE WEIGHT 
+j 
+OVERALL 
+WORKLOAD 
+Figure 1: Graphic example of the composition of a 
+weighted workload score 
+written to gather ratings and weights . and compute the weighted workload 
+scores . These are available upon request from NASA Ames Research 
+Center . However. if this is not a viable option . aU the necessary materials 
+are induded in this booklet . If you have any questions . comments, or 
+suggestions please do not hesitate to contact us . This procedure is stilt 
+under evaluation and we are always looking for new ideas . 
+1 
+
+=== PDF PAGE 10 ===
+5 . BIBLIOGRAPHY 
+Biferno . M . A. (1985) . Mental workload measureme6t : Event-related poten­
+tials and ratings of workload and fatigue (NASA CR 177354). 
+Moffett Field . CA : NASA Ames Research Center . 
+Bortolussi. M. R .. Kantowitz . B. H .. &. Hart . S . G. (1985) . Measuring pilot 
+workload in a motion base trainer : A comparison of four tech ­
+niques . In R S. Jensen & J Adrion (Eds .) . Proceedings of the 
+Third Sympo sium on Aviation Psychology (pp . 263-270) . 
+Columbus . OH : OSU Aviation Psychology Laboratory . 
+Hart. S G .. Battiste . V .. & lester . P T . (1984) . Popcorn : A supervisory 
+control simulation for workload and performance research . In 
+Twentieth Annual Conference on Manual Control (pp . 431 ~ 454) . 
+Washington . D .C. : NASA Conference Publication 2341. 
+Hart . S G .. Battiste . V . Chesney. M. A .. Ward . M . M .. and McElroy . M. 
+(1986) . Comp arison of workload . performance . and cardiovascu ­
+lar measures : Type A personalities vs Type B Working paper 
+Moffett Field. CA NASA Ames Research Center . 
+Hart. S G.. Sellers . J. J.. & Guthart . G. ( 1984) . The impact of response 
+selection and respon se execution difficulty on the subjective 
+experience of workload . Proceedings of the 28th Annual Meeting 
+of the Human Factors Society (pp . 132-736) . Santa Monica . 
+CA : Human Factors Society . 
+Hart . S . G .. Shively . R. J.. ViduUch. M. A .. & Miller, R. C. {1986) . The 
+effec t s o f stimu lus modality and ta.sk integrality : Predicting 
+dual -task perfNmance and workload from single -task levels . In 
+Twenty-First Annual Conference on Manual Control (pp . S.t -
+5.18) Washington . D. C.: NASA Conference Publication 2~28 . 
+Hart . S . G .. &. Staveland . l. E. (In pres s) . Development of a multi ­
+di men s~onal workload rating scale : Results of empirical and 
+theoretical res earch. In P . A. Hancock It N. Meshkat i (Eds .). 
+Human Mental Workload. Amsterdam . The Netherlands : 
+Elsevier . 
+8 
+
+=== PDF PAGE 11 ===
+Haworth . l. A .. Bivens . C. C.. &. Shively. R. J . (1986) . An investigation of 
+single -piloted advanced cockpit and control configurations for 
+nap -of-the -earth helicopter combat mission tasks . Proceedings 
+of the 1986 Meeting of the American Helicopter Society (pp . 
+657 -672) . Washington . D.C. 
+Kantowitz . B. H .. Hart . S . G .. Bortolussi . M. R .. Shively. R. J.. It Kan­
+towitz . S. C. {1984) . Measuring pilot workload in a moving­
+base simulator : 11 Building levels of workload . In Twentieth 
+Annual Conference on Manual Control (pp . 359-372) . Washing ­
+ton . D.C. : NASA Conferenc,e Publication 2341 . 
+Miller. R. C .. &. Hart . S . G. (198-4). Assessing the subject ive workload of 
+directional orientat ion tasks . tn Twentieth Annual Conference 
+on Manual Control (pp. 85-95) . Washington . D.C.: NASA 
+Conference Publication 2341. 
+Mosier . K. l.. &. Hart. S . G. {1986) . levels of information processing in a 
+Fitts law task (liPF itts) . In Twenty-First Annual Conference 
+on Manual Control (pp . 4.1-415). Washington . DC . NASA 
+Conference Publica tion 2428 . 
+Staveland . l. E .. Hart . S . G .. &. Yeh. Y -Y. (1986) . Memory and subjective 
+workload assessment . In Twenty-First Annual Meeting on 
+Manual Control. (pp . 7.1-7.13}. Washington . D.C.: NASA 
+Conference Publication 2428 . 
+Vidulich. M. A .. &. Tsang . P . S . (1985a) . Techniques of subjective work­
+load assessment: A compari son of two methodologies . In R. S . 
+Jensen&. J . Adrion (Eds .). Proceedings of the Third Symposium 
+on Aviation Psychology (pp . 239-246) . Columbus . OH: OSU 
+Aviation P sychology laboratory . 
+Vidulich . M. A .. &. Tsang . P . S . (198Sb) . Asse ssing subjective workload 
+asse ssment : A comparison of SWAT and the NASA-Bipolar 
+methods . Proceedings of the Human Factors Society 29th 
+Annual Meeting. {pp. 71-75). Santa Monica . CA: Human Fac­
+tors Society . 
+g 
+
+=== PDF PAGE 12 ===
+Vidulich . M. A. & Tsang . P S (1986) . Collecting NASA Workload Rat-
+ings A Paper and Pencil Package . Working Paper . Moffett 
+Field . CA: NASA Ames Research Center . 
+Vidulich . M A & Tsang. P S (in press) Techniques of subjective work ­
+load assessment A comparison of SWAT and the NASA Bipo­
+lar Method . Ergonomics. 
+Yeh . Y · Y . & Wickens . C D . {1985) . The effect of varying task difficulty 
+on subjective workload . In Proceedings of the Human Factors 
+Society 29th Annual Meeting. (pp . 765-769}. Santa Monica . 
+CA Human Factors Society . 
+to 
+
+=== PDF PAGE 13 ===
+6. SUBJECT INSTRUCTIONS: RATING SCALES 
+We are not only interested in assessing your performance but also the 
+experiences you had during the different task conditions . Right now we are 
+going to describe the technique that will be used to examine your experi­
+ences . In the most general sense we are examining the "workload" you 
+experienced . Workload is a difficult concept to define precisely . but a simple 
+one to understand generally . The factors that influence your experience of 
+workload may come from the task itself . your feelings about your own per­
+formance . how much effort you put in. or the stress and frustration you felt . 
+The workload contributed by different task elements may change as you get 
+more familiar with a task . perform easier or harder versions of it . or move 
+from one task to another. Physical components of workload are relatively 
+easy to conceptualize and evaluate . However . the mental components of 
+workload may be more difficult to measure 
+Since workload is something that is experienced individually by each 
+person. there are no effective nrulers" that can be used to estima~e the work­
+load of different activities . One way to find out about workload is to ask 
+people to describe the feeling s they experienced . Because workload may be 
+caused by many different factors . we would like you to evaluate several of 
+them individually rather than lumping them into a single global evaluation of 
+overall workload This set of six rating scales was developed for you to use 
+in evaluating your experiences during different tasks . Please read the 
+descriptions of the scales carefully . If you have a question about any of the 
+scales in the table . please ask me about it . It is extremely important that 
+they be clear to you . You may keep the descriptions with you for reference 
+during the experiment . 
+After performing each of the tasks . you will be given a sheet of rating 
+scales . You will evaluate the task by putting an "X" on each of the six scales 
+at the point which matches your experience . Each line has two endpoint 
+descriptors that describe the scale . Note that "own performance" goes from 
+"good 11 on the left to 'bad" on the right . This order has been confusing for 
+some people . Please consider your responses carefully in distinguishing 
+among the different task conditions . Consider each scale individually . Your 
+ratings will play an important role in the evaluation being conducted. thus . 
+your active participation is essential to the succe ss of this experiment and is 
+greatly appreciated by all of us . 
+11 
+
+=== PDF PAGE 14 ===
+7. SUBJECT INSTRUCTIONS : SOURCES-OF-WORKLOAD 
+EVALUATION 
+Throughout this experiment the rating scales are used to assess your 
+experiences in the different task conditions . Scales of this sort are extremely 
+useful. but their utility suffers from the tendency people have to interpret 
+them in individual ways . For example. some people feel that mental or tem­
+poral demands are the essential aspects of workload regardless of the effort 
+they expended on a given task or the level of performance they achieved . 
+Others feel that if they per~.)rmed well the workload must have been low and 
+if they performed badly it must have been high . Yet others feel that effort or 
+feelings of frustration are the most important factors in workload: and so 
+on The results of previous studies have already found every conceivable 
+pattern of values In addition . the factors that create levels of workload 
+differ depending on the task . for example. some tasks might be difficult 
+because they must be completed very quickly . Others may seem easy or 
+hard because of the intensity of mental or physical effort required . Yet oth~ 
+ers feel difficult because they cannot be performed well. no matter how 
+much effort is expended . 
+The evaluation you are about to perform is a technique that has been 
+developed by NASA to assess the relative importance of six factors in deter­
+mining how much workload you experienced . The procedure is simple : You 
+will be presented with a series of pairs of rating scale titles (for example . 
+Effort vs. Mental Demands) and asked to choose which of the items was 
+more important to y~~! experience of workload in the task(s) that you just 
+performed _ Each pair of scale titles will appear on a separate card . 
+9!.~!~ . t~~ . ?~~!~Tit.!! ~~-~! .... ~-~~~- ~~~!.~ ... !!!.~ ~~!.~ .. ~.!!'_ep.!ta!_l.!_ contributor 
+~~-~~!~~~~ !.C?~~~~ .. ~p-~~~~~.J~~-!1~ __ }/~~~!!orme~ in this experiment . 
+After you have finished the entire series we will be able to use the pat­
+tern of your choices to create a weighted combination of the ratings from 
+that task into a summary workload score . Please consider your choices care­
+fully and make them consistent with how you used the rating scales during 
+the particular task you were asked to evaluate . Don't think that there is any 
+correct pattern. we are only interested in your opinions. 
+If you have any questions . please ask t.hem now . Otherwise. start 
+whenever you are ready Thank you for your participation 
+12 
+
+=== PDF PAGE 15 ===
+MENTAL 
+DEMAND 
+PHYSICAl 
+DEMAND 
+TEMPORAl 
+DEMAND 
+PERFORMANCE 
+EFFORT 
+FRUSTRATION 
+LEVEL 
+Appendix A. 
+RATING SCALE DEFINITIONS 
+Low/High 
+Low/High 
+Low/High 
+goodjpoor 
+Low/High 
+Low/High 
+How much mental and perceptual 
+activit y was required (e g . thinking . 
+dedding _ calculating remembering . 
+looking . searching . etc )' Was the 
+task easy or demanding . simple or 
+c.omplex. exacting or forgiving? 
+How much physical activity was 
+required (e.g .. pushing . pulling . turn ­
+ing. controlling. activating . etc.)7 
+Was the task easy or demanding . 
+slow or brisk. slack or strenuous . 
+restful or laborious 7 
+How much time pressure did you feel 
+due to the rate or pau at which the 
+tasks or task elements occurred? Was 
+the pace slow and leisurely or rapid 
+and frantic? 
+How successful do you think you were 
+in accomplishing the goals of the task 
+set by the experimenter (or yourself)? 
+How satisfied were you with your per­
+formance in accomplishing these 
+goals? 
+How hard did you have to work (men­
+tally and physically) to accomplish 
+your level or performance 7 
+How insecure . discouraged . irritated 
+stressed and annoyed versus secure . 
+gratified . content . relaxed and wmpla· 
+cent did you feel during the task 1 
+13 
+
+=== PDF PAGE 16 ===
+Appendi>< B. 
+Sources -of· Workload Comparison Cards 
+14 
+
+=== PDF PAGE 17 ===
+Effort Temporal Demand 
+or or 
+Performance Frustration 
+• • • • • 
+Temporal Demand Physical Demand 
+or • or 
+Effort Frustration 
+• • • • • 
+• 
+Performance Physical Demand 
+or • or 
+Fru~tration Temporal Demand 
+• 
+• 
+• 
+• . • . 
+Physical Demand Temporal Demand 
+or or 
+Performance 15 Mental Demand 
+
+=== PDF PAGE 18 ===
+Frustration Performance 
+or or 
+Effort Mental Demand 
+. .. • • 
+• 
+Performance Mental Demand 
+or or 
+• 
+Temporal Demand Effort 
+... 
+Mental Demand • Effort 
+or • or 
+• 
+Physical Demand Physical Demand 
+• • • 
+Frustration 
+or 
+Mental Demand 
+16 
+
+=== PDF PAGE 19 ===
+Appendix C 
+Subject 10: ____ Task 10:------
+RATING SHEET 
+MENTAL DEMAND 
+I I I 
+Low High 
+PHYSICAL DEMAND 
+I I I I I I I I I I 
+Low High 
+TEMPORAL DEMAND 
+I I l I I I I I I 1 
+Low High 
+PERFORMANCE 
+1 I I I 1 I I I 
+Good Poor 
+EFFORT 
+I I I I I I I I I I 
+Low High 
+FRUSTRATION 
+I I I I I I I I 
+Low High 
+11 
+
+=== PDF PAGE 20 ===
+Appendix D. 
+Subject tO: Date:------
+-
+SOURCES-OF-WORKLOAD TALLY SHEET 
+·----· ,..---...... 
+Scale Tille Tally Weight 
+MENTAl DEMAND 
+PHYSICAL DEMAND 
+TEMPORAL DEMAND 
+PERFORMANCE 
+EFFORT 
+FRUSTRATION 
+Total count = 
+(NOTE - The total count is included as a check . If 
+the total count is not equal to 15. then something has 
+been miscounted . Also. no weight can have a value 
+greater than 5.) 
+18 
+
+=== PDF PAGE 21 ===
+Appendix E. 
+Subjed ID: ----- Task ID: 
+-·-·---------~··-·--------
+WEIGHTED RATING WORKSHEET 
+·------ ·····---- -·-··- - - · r--· 
+Scale Title Weight Raw Adjusted Rating 
+Rating (Weight X Raw) 
+-
+MENTAl DEMAND 
+PHYSICAl DEMAND 
+t---·--·------- --
+TEMPORAl DEMAND 
+-
+PERFORMANCE 
+EFFORT 
+----- --
+FRUSTRATION 
+·-
+Sum of "Adjusted Rating" Column = 
+WEIGHTED RATING = 
+(i.e .. (Sum of Adjusted Ratings)/15J D 
+19 

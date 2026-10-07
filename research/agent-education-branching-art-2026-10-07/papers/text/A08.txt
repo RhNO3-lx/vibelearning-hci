@@ -1,0 +1,1372 @@
+=== PDF PAGE 1 ===
+Vol.:(0123456789)
+AI & SOCIETY 
+https://doi.org/10.1007/s00146-026-03187-3
+REVIEW
+Negotiating creator identity: agency and ethical awareness 
+in AI‑assisted art education
+Hyejeong Lee1  · Wonjin Yu2 · Juwon Lee3
+Received: 16 May 2026 / Accepted: 15 June 2026 
+© The Author(s) 2026, modified publication 2026
+Abstract
+Artificial intelligence (AI) is influencing creative work, negotiating not only how artists create but also how they understand 
+their own identity as creators. This study examines how art high school students navigate AI’s role in their creative processes, 
+using identity formation theory as a framework. While existing research primarily focuses on AI’s technical benefits, such 
+as efficiency and productivity, there has been little exploration of how AI alters young creators’ self-concept and autonomy. 
+This study investigates whether students perceive AI as a mere tool, a collaborator, or a potential threat to their creative 
+identity. It also explores how AI’s increasing presence affects students’ confidence in their originality, their sense of author-
+ship, and their ethical concerns about AI-generated content, particularly regarding copyright and creative ownership. The 
+findings reveal that students have mixed views on AI: some embrace it as a source of inspiration and efficiency, while others 
+express discomfort about its potential to undermine human creativity. These results highlight the need for AI education that 
+extends beyond technical training to include discussions on ethics, authorship, and career adaptability in an AI-driven crea-
+tive industry. By understanding how students construct their creative identities in relation to AI, educators and policymakers 
+can better support them in navigating an evolving digital landscape.
+ Keywords artificial intelligence · art education ·  creator identity ·  identity formation · ethical awareness
+1 Introduction
+The rapid adoption of artificial intelligence (AI) has trans-
+formed a wide range of domains, including education and 
+the creative industries. In creative contexts, AI presents a 
+qualitatively different challenge from traditional digital tech-
+nologies. Rather than simply supporting task performance, 
+generative AI actively participates in idea generation and 
+content creation, thereby influencing the nature of creative 
+work itself (Millet et al. 2023; Shin 2021).
+This shift complicates the process of technology adop-
+tion. As AI becomes embedded in creative workflows, users 
+may no longer perceive it as a passive tool, but as an active 
+agent that influences both process and outcome (Jiang et al. 
+2024; Lee and Park, 2024). In artistic domains, this transfor-
+mation raises fundamental questions about authorship, origi-
+nality, and the role of human (Shin 2026b). The growing 
+presence of generative AI in creative industries has intensi-
+fied tensions between automation and artistic authorship. 
+While AI offers practical benefits such as efficiency, speed, 
+and inspiration, it also introduces concerns regarding owner-
+ship, fairness, and the legitimacy of AI-assisted work. These 
+tensions are particularly salient for adolescents, who are in 
+the process of forming their identities as creators and future 
+professionals.
+Despite the rapid integration of AI into creative practices, 
+existing research has largely focused on technical skills, tool 
+use, and efficiency-oriented outcomes. Relatively little atten-
+tion has been paid to how young learners interpret AI’s role 
+in creative processes, or how these experiences shape their 
+ * Hyejeong Lee 
+ hyejeong.lee@utsa.edu
+ Wonjin Yu 
+ wyu21@ua.edu
+ Juwon Lee 
+ borauri@sookmyung.ac.kr
+1 The University of Texas at San Antonio, San Antonio, 
+United States of America
+2 The University of Alabama, Tuscaloosa, 
+United States of America
+3 Sookmyung Women’ s University, Seoul, Korea, Republic of
+
+=== PDF PAGE 2 ===
+ AI & SOCIETY
+creator identity, sense of agency, and ethical reasoning (Lee 
+et al., 2025) This gap is especially critical in art education, 
+where identity formation is a central component of learning.
+To address these gaps, the present study examines how 
+high school art students experience and interpret AI integra-
+tion in a classroom setting. Specifically, this study investi-
+gates the following research questions:
+RQ1. How do art high school students’ perceptions of 
+AI’s impact on art, careers, and creative work change 
+after participating in an AI-supported class?
+RQ2. How do students conceptualize AI’s role in the 
+creative process, as a tool, a collaborator, or a threat 
+to creator identity?
+RQ3. How does AI integration negotiate students’ per-
+ceptions of creator identity and agency?
+RQ4. How do students’ ethical concerns about AI 
+interact with their acceptance of AI and their self-
+perception as future creators?
+These questions foreground the tensions students experi-
+ence between the practical affordances of AI (e.g., efficiency, 
+speed, and creative support) and their ethical concerns and 
+identity-related uncertainties.
+By addressing these questions, this study provides insight 
+into how young creators make sense of AI in artistic con-
+texts. The findings contribute to research on AI education 
+by moving beyond skill acquisition to examine the interplay 
+among competence, identity, and ethics, and offer implica-
+tions for designing learning environments that support stu-
+dents in navigating human-AI collaboration.
+2  Literature review
+2.1  AI acceptance of AI technologies
+When new technologies emerge and develop, user accept-
+ance of those technologies has become an important topic. 
+One of the most widely used theoretical frameworks in these 
+discussions is the Technology Acceptance Model (TAM) 
+(Davis 1989; Choung et al. 2023; Kelly et al. 2023 ). The 
+TAM explains that technology acceptance is primarily influ-
+enced by perceived usefulness and perceived ease of use 
+(Choung et al. 2023; Shin 2021). In other words, the more 
+users perceive a technology as improving efficiency and pro-
+ductivity, the higher the likelihood they will accept it (Ger -
+lich 2023; Sohn and Kwon 2020). Trust in technology is also 
+discussed as a crucial factor influencing the acceptance of AI 
+(Mcknight et al. 2011). This trust is formed based on percep-
+tions regarding the reliability, transparency, and fairness of 
+the system (Rane et al. 2024). These technology acceptance 
+factors also apply to AI, particularly in how users understand 
+and trust the decision-making processes and outcomes of AI 
+systems (Rane et al. 2024). Based on this perspective, exist-
+ing studies have primarily relied on the TAM framework to 
+explain user acceptance of technology (Jiang et al. 2024; 
+Kelly et al. 2023). In particular, many studies related to AI 
+acceptance tend to focus on how to facilitate user accept-
+ance (Rane et al. 2024). This approach presupposes AI as a 
+functional tool, and discussion on how users understand and 
+interpret the role of AI is relatively limited. These studies 
+also do not always present consistent results regarding AI 
+acceptance (Jiang et al. 2024).
+AI is developing at a much faster pace than existing tech-
+nologies and is demonstrating a new technological paradigm 
+that actively intervenes in task performance, moving beyond 
+technology used merely passively. These changes increase 
+the likelihood that AI will be perceived not merely as an 
+execution tool, but as an entity that intervenes in human 
+judgment and creative processes (Millet et al. 2023). Due 
+to these characteristics, it is argued that understanding AI 
+acceptance requires discussion within a broader context that 
+extends beyond TAM (Jiang et al. 2024; Kelly et al. 2023). 
+For example, while some studies report high levels of user 
+acceptance of AI technology, others find significant levels 
+of resistance (Jiang et al. 2024). These conflicting results 
+may be due to the fact that attitudes toward AI can vary 
+depending on how users perceive the role of AI and what 
+the context is.
+Jiang et al. (2024) suggest that attitudes toward AI accept-
+ance may differ depending on whether users perceive AI as 
+a service provider that assists human activities or as a task 
+replacement system. As such, the perception of the role of 
+AI goes beyond mere acceptance and is also connected to 
+how users define their own roles. In fact, AI systems that 
+support human activities, such as shopping recommen-
+dations or customer service, and AI systems that directly 
+replace human labor can elicit different user reactions. Fur-
+thermore, studies have reported that user backlash may occur 
+if AI is perceived as a threat to uniquely human cognitive 
+abilities, such as artistic creativity (Longoni et al. 2019; 
+Millet et al. 2023). This reaction is not merely a rejection 
+of technology but is related to the perception that unique 
+human creativity or expertise is under threat, and it can be 
+particularly strong in areas closely related to identity, such as 
+creative work. (Millet et al. 2023; Strich et al. 2021). These 
+reactions may be related to perceptions of threats to profes-
+sional identity or technological overload, and these factors 
+can act as deterrents to AI-based systems (Kim et al. 2022; 
+Strich et al. 2021).
+Overall, user attitudes and perceptions regarding AI 
+acceptance may be influenced by various contextual factors 
+rather than exhibiting consistent patterns (Jiang et al. 2024). 
+AI acceptance, therefore, needs to be understood not merely 
+as the usefulness or ease of use of the technology, but as a 
+process of interpreting how users perceive AI and how it 
+
+=== PDF PAGE 3 ===
+AI & SOCIETY 
+relates to their own roles (Jiang et al. 2024). Rather than 
+being explained solely by factors such as technical char -
+acteristics, perceived utility, or ease of use, AI acceptance 
+should be examined from a more multifaceted perspective, 
+including how users interpret the role and significance of AI 
+systems. Particularly given the increasing use of AI in K-12 
+classrooms, a deeper understanding and discussion regarding 
+learners’ AI acceptance is necessary.
+2.2  Human–AI agency in learning environments
+Human agency refers to an individual’s ability to act inde-
+pendently and influence their environment (Bandura 2001; 
+Mouta et al. 2025). Humans are described as autonomous 
+beings who shape their own behavior through abilities such 
+as intentionality, self-regulation, prediction, and self-reflec-
+tion (Bandura 2006). This agency is understood not merely 
+as a characteristic of the individual, but as a process formed 
+within social relationships and temporal contexts (Bandura 
+2006). This perspective is also significantly applicable in the 
+context of education. In other words, learners can be under-
+stood not merely as recipients of knowledge, but as agents 
+who actively participate in their own learning process.
+Beyond questions of acceptance, the growing involve-
+ment of AI in decision-making and content generation raises 
+important questions about agency. This is particularly sig-
+nificant because agency has traditionally been understood 
+as a uniquely human capacity (Schreiber, 2024). As AI has 
+moved beyond being a passive tool and begun to actively 
+intervene in human activities through content creation, 
+decision support, and problem-solving, this assumption is 
+increasingly challenged (Krakowski 2025). Due to these 
+changes, some studies understand AI technology from the 
+perspective of human-AI interaction (e.g., Courtois and Tim-
+mermans 2018) or propose the concept of machine agency 
+(e.g., Pickering et al. 2017; Sundar 2020). In particular, since 
+human and machine agencies coexist in AI-based environ-
+ments, tensions regarding the distribution of authority and 
+control may arise between humans and AI (Jia et al. 2012; 
+Kang and Lou 2022; Kang and Kim 2020). For example, 
+while users may positively evaluate the efficiency and con-
+venience provided by AI, they may simultaneously experi-
+ence concerns that human control may be weakened (Jia 
+et al. 2012; Kang and Kim 2020).
+This tension extends beyond simple functional interaction 
+between humans and AI to the question of ‘who makes the 
+decision’ and ‘who takes responsibility’ regarding judgments 
+when using AI (Jia et al. 2012; Kang and Kim 2020). In other 
+words, learners may perceive AI as a simple tool or as an 
+entity that influences decision-making, and this difference 
+in perception directly affects the agency experience. Further-
+more, human-AI interaction can manifest in various forms, 
+such as cooperation, control, and resistance. Representative 
+concepts explaining these relationships are automation and 
+augmentation (Krakowski 2025; Raisch and Krakowski 
+2021). Automation refers to AI replacing tasks previously 
+performed by humans, while augmentation refers to humans 
+and AI collaborating to expand upon those tasks (Raisch and 
+Krakowski 2021). This perspective suggests the potential for 
+AI technology to evolve into a hybrid agency where humans 
+and AI work together to solve problems, rather than com-
+pletely replacing humans (Raisch and Krakowski 2021). This 
+distinction between automation and augmentation is closely 
+linked to how learners perceive AI and define their own roles 
+(Raisch and Krakowski 2021). For instance, if AI is perceived 
+as an auxiliary tool, agency is maintained; however, if AI 
+is perceived as driving the outcome, it can lead to a loss of 
+control (Jia et al. 2012; Kang and Kim 2020).
+This discussion holds significant implications in the con-
+text of education. This is because, as AI technology actively 
+intervenes in learning support, content creation, and prob-
+lem-solving processes, the learner’s role and mode of control 
+may also change. Consequently, in educational research, it 
+is becoming increasingly important to understand learners 
+as active agents and to adopt a perspective that considers 
+their agency (Mouta et al. 2025). This perspective is par -
+ticularly important for adolescent learners, as they are in 
+a critical period for identity formation where individuals 
+explore their abilities and roles (Erikson 1988). Adolescent 
+learners form diverse identity experiences while exploring 
+their capabilities and potential through new technologies and 
+creative activities (Kay 2018). However, there has not yet 
+been sufficient discussion on how learners experience and 
+interpret their agency in an AI-based environment.
+Furthermore, AI technology exhibits characteristics dis-
+tinct from existing technologies. For instance, unlike tradi-
+tional technologies where users select and execute specific 
+functions (e.g., coloring), generative AI demonstrates a top-
+down interaction style that automatically generates results 
+beyond user input (Mouta et al. 2025). This top-down inter -
+action alters the structure of interaction between users and 
+technology, raising concerns that it may weaken learners’ 
+agency. Changes in this interaction structure can have a 
+direct impact on the sense of control and agency that learn-
+ers experience in their creative process (Mouta et al. 2025). 
+Therefore, in the context of AI education, an approach that 
+considers learners’ agency and participation experiences 
+alongside the functionality of the technology itself is neces-
+sary (Mouta et al. 2025).
+2.3  Creator identity formation
+Identity formation is described as a developmental process 
+in which an individual seeks to understand who they are 
+and how they relate to society (Erikson 1988; Hamman 
+and Hendricks 2005). Erikson’s psychosocial development 
+
+=== PDF PAGE 4 ===
+ AI & SOCIETY
+theory explains human development as a lifelong process of 
+identity formation (Erikson 1968; Hamman and Hendricks 
+2005). Individuals form their values and roles through vari-
+ous social experiences and role exploration. This process 
+of identity formation takes place not only through internal 
+exploration but also through interaction with social and cul-
+tural contexts.
+Particularly, adolescence is understood as a crucial stage 
+in identity development, serving as a period for explor -
+ing one’s future roles, values, and social position (Erikson 
+1988). During this period, individuals experiment with 
+multiple possibilities and re-examine existing beliefs and 
+norms. Erikson (1988) explained that adolescents form their 
+identity through evaluating values and norms conveyed by 
+social environments such as family, school, and media. 
+Additionally, Blos (1967) described adolescence as the “sec-
+ond individuation stage,” emphasizing the emergence of an 
+independent identity distinct from family. Because identity 
+formation occurs through continuous interaction with social 
+and environmental contexts, technological environments can 
+also serve as important spaces where identity is constructed 
+and negotiated. Digital technologies provide adolescents 
+with expanded opportunities to access information, engage 
+in social interaction, and experiment with different forms 
+of self-expression (Katz and Aakhus 2002). At the same 
+time, these environments may also introduce challenges 
+such as information overload, fragmented self-presentation, 
+and identity confusion (Israelashvili et al. 2012; Misra and 
+Stokols 2012).
+In identity formation theory, creative activity plays a par-
+ticularly important role, as it allows individuals to express 
+their thoughts, values, and abilities while constructing 
+a sense of self through meaningful production (Hamman 
+and Hendricks 2005). For adolescents, engaging in creative 
+activities provides opportunities to explore their capabilities, 
+communicate socially, and negotiate their identities within 
+broader cultural contexts. In this context, AI differs from 
+conventional technologies in its capacity to more actively 
+intervene in the identity formation process through interac-
+tion and co-generation. Specifically, generative AI can influ-
+ence how individuals perceive their roles and contributions 
+by directly participating in content creation and decision-
+making processes (Schreiber, 2024).
+However, in AI-based creative environments, the struc-
+ture of creative processes is fundamentally transformed. AI 
+can intervene in multiple stages of creation, including idea 
+generation, image production, and writing, thereby blurring 
+the boundaries of authorship and contribution (Schreiber, 
+2024). As a result, learners must continuously interpret and 
+renegotiate their roles in relation to AI during the creative 
+process. Through these interactions, learners may recon-
+struct their identities not merely as technology users, but 
+as creators. By comparing and interpreting AI-generated 
+outputs alongside their own contributions, learners engage 
+with the question of “who is the creator”, leading to a redefi-
+nition of their roles. This process reflects a core mechanism 
+of identity formation, as identity is shaped through ongoing 
+interaction with social and technological contexts (Erikson 
+1988; Katz and Aakhus 2002).
+Importantly, learners’ perceptions of AI’s role influence 
+this process in different ways. When AI is perceived as 
+dominant in the creative process, learners may experience a 
+diminished sense of control and perceive their creator iden-
+tity as threatened (Kang and Lou 2022; Jiang et al. 2024). In 
+contrast, when AI is understood as a supportive tool, learn-
+ers are more likely to maintain agency and strengthen their 
+sense of identity through perspectives of augmentation and 
+human–AI collaboration (Raisch and Krakowski 2021).
+Despite these emerging insights, research examining 
+how learners’ creator identity develops and transforms in 
+AI-based creative environments, and how these identity 
+processes relate to their perceptions of and reactions to AI 
+remains limited.
+2.4  Ethical and authorship challenges 
+in AI‑generated content
+As AI technology advances, related research is being 
+actively discussed in the field of education. However, exist-
+ing AI-related research has often focused on effectiveness, 
+performance, learning outcomes, and practical applications 
+of AI technologies (Chiu et al. 2023). While these studies 
+have contributed to demonstrating the potential for educa-
+tional applications of AI, the ethical, social, and identity 
+issues have received relatively less attention. In particular, 
+the emergence of generative AI raises the need for new dis-
+cussions, as AI goes beyond being a mere tool and directly 
+participates in content creation and (Schreiber, 2024; Kari-
+yawasam 2020).
+In this context, existing research on AI ethics has largely 
+been discussed from a principle-based perspective, focusing 
+on fairness, transparency, accountability, and explainability 
+(Floridi 2019; Hagendorff 2022 ; Munn 2023; Wiese et al. 
+2025). These discussions are grounded in concerns that AI 
+may cause broader societal issues such as labor displace -
+ment, inequality, and the spread of misinformation (Nguyen 
+and Hekman 2024). However, these discussions have pri -
+marily focused on norms and principles at the system level, 
+while the ways in which such ethical issues are experienced 
+and interpreted by students, particularly in creative contexts, 
+remain less examined.
+Generative AI differs from previous technologies in 
+which it intervenes in domains traditionally considered 
+uniquely human, such as creativity and authorship. These 
+characteristics lead to the perception of AI not merely as a 
+technical tool, but as an active role in the creative process, 
+
+=== PDF PAGE 5 ===
+AI & SOCIETY 
+which can create tensions (Schreiber, 2024). Consequently, 
+AI-based creation shifts the focus from simply using tech-
+nology to examining how creation is defined and understood. 
+One of the central questions in AI-generated content is the 
+issue of authorship, particularly the question of “who is the 
+creator” (Hristov 2016; Huang et al. 2022). Although AI 
+can make substantial contributions to the creative process, 
+it is generally not recognized as an author under current 
+academic and legal standards (Lund and Naheem 2024). 
+As a result, the boundaries of contribution and responsi-
+bility among humans, AI systems, and developers become 
+increasingly blurred (Hajibayova and Lee 2025). In addi-
+tion, while discussions are underway regarding declaration 
+policies specifying the use of AI and authorship attribution 
+standards, consistent standards have not yet been sufficiently 
+established in the contexts of creative writing and educa-
+tion (Hajibayova and Lee 2025; Lund and Naheem 2024). 
+In addition, AI-generated content presents significant chal-
+lenges to existing copyright systems. Issues such as owner-
+ship of AI-generated outputs, the use of training data, and 
+the difficulty of determining originality remain unresolved. 
+Given that AI-generated content is created based on existing 
+data, the debate over whether such results can be regarded 
+as genuine creation continues (Hajibayova and Lee 2025).
+These ethical considerations are not limited to general 
+issues but are closely related to learners’ experiences in AI-
+based art education. When learners perceive AI as replac-
+ing human creativity, they may experience concerns about 
+a loss of control (Jiang et al. 2024 ; Kang and Lou 2022 ). 
+Therefore, ethical issues in AI-based art education need to 
+be understood, as they are closely connected to technology 
+acceptance, agency, and identity formation, particularly in 
+how learners interpret their roles and contributions (Jiang 
+et al. 2024; Kang and Lou 2022). However, research on 
+learners’ ethical tensions and perceptions of authorship in 
+AI-based creative environments remains limited, particularly 
+in terms of how these experiences connect to attitudes and 
+reactions toward AI and students’ future career.
+2.5  Research gap
+Rapid advancements in AI are transforming creative work 
+across disciplines, influencing not only how creative prod-
+ucts are generated but also how creators understand their 
+roles within the process. While AI-integrated tools increas-
+ingly mediate artistic production, far less is known about 
+how sustained engagement with AI influences students’ 
+evolving sense of themselves as creators.
+Existing research has largely focused on the functional 
+affordances of AI in creative contexts, such as increased effi-
+ciency, productivity, and idea generation. Studies frequently 
+examine technical skill acquisition, workflow optimiza-
+tion, or learning outcomes associated with AI-supported 
+environments (Chiu et al. 2023). However, these instrumen-
+tal perspectives overlook a deeper and more complex dimen-
+sion: how collaboration with AI negotiates students’ creative 
+identity, perceived autonomy, and authorship.
+From the perspective of identity formation theory (Erik -
+son 1980; 1988), identity is not a fixed trait, but a dynamic 
+construct shaped through social interaction and environmen-
+tal engagement. As students interact with AI systems that 
+generate, suggest, and modify creative outputs, they may 
+renegotiate their self-concept as creators. AI may be posi-
+tioned as a neutral tool, an active collaborator, or even a 
+competing agent that challenges human originality. These 
+shifting positions can influence students’ sense of agency, 
+creative ownership, and long-term career outlook.
+Furthermore, while prior research has examined self-effi-
+cacy in technology-enhanced learning, limited attention has 
+been paid to how AI-supported creative experiences simulta-
+neously affect technical confidence, creative autonomy, and 
+broader career perceptions. The tension between increas-
+ing AI competence and emerging concerns about job dis-
+placement, skill erosion, or copyright and authorship raises 
+important questions about how students reconcile empower-
+ment with uncertainty.
+In addition, ethical concerns surrounding AI-generated 
+art, including questions of originality, intellectual property, 
+and the encroachment of machine systems into uniquely 
+human domains, remain underexplored in relation to stu-
+dents’ identity negotiation processes. How students inter -
+pret these ethical tensions may shape not only their attitudes 
+toward AI but also their willingness to embrace or resist 
+AI-integrated creative practices.
+To address these gaps, the present study examines how 
+students conceptualize AI within their creative processes and 
+how these perceptions relate to changes in self-efficacy, crea-
+tive autonomy, and career outlook. By integrating quantita-
+tive measures of AI-related competence and perception with 
+qualitative analyses of students’ reflections and classroom 
+interactions, this study offers a multidimensional account of 
+how AI participation intersects with creator identity forma-
+tion in educational settings.
+3  Methods
+3.1  Participants and contexts
+Participating students in this study were 84 tenth-grade stu-
+dents enrolled in a public high school located in a metro -
+politan city in South Korea. The participants included 21 
+male and 63 female students, aged 15 to 16 years. Most 
+students reported little or no prior experience with AI-gen-
+erated images (n = 75, 89.3%). The participating school is a 
+specialized arts-focused high school with an emphasis on 
+
+=== PDF PAGE 6 ===
+ AI & SOCIETY
+animation, media creation, and related fields. The school 
+emphasizes nurturing creative individuals who integrate 
+imagination, artistic sensibility, and intellectual growth. 
+Accordingly, many students at the school demonstrate strong 
+interests in creative production and artistic expression.
+The classroom implementation was led by one high 
+school teacher with 23 years of teaching experience. The 
+teacher has extensive expertise in educational technology 
+and has actively integrated digital tools into her instructional 
+practice. She is also the author of a practice-oriented book 
+on AI integration for teachers, reflecting her professional 
+experience and leadership in technology-enhanced teaching.
+Institutional Review Board approval was obtained from 
+the authors’ institution. All participants provided informed 
+consent for participation and academic publication, includ-
+ing authorization to use survey responses, interview data, 
+and photographs of classroom activities.
+3.2  Classroom curriculum
+The curriculum was developed using a design-based research 
+approach, characterized by iterative design, implementation, 
+and refinement in collaboration with classroom teachers and 
+the research team (Design-Based Research Collective 2003) 
+using the  Lee and Yu (2026) framework. This approach 
+enabled the development of a learning environment that was 
+both theoretically grounded and responsive to the realities of 
+classroom practice. The intervention was implemented over 
+the course of one academic semester and consisted of 10 
+weekly instructional sessions. Across the semester, the cur-
+riculum was intentionally structured to progressively support 
+students’ development of AI understanding, creative appli-
+cation, and critical reflection. To support implementation 
+consistency, all sessions followed a common instructional 
+sequence and used the same core learning activities, AI 
+tools, and project structure within the same course context.
+In the early phase of the intervention, the first three ses-
+sions focused on building foundational knowledge of AI. 
+During this period, students were introduced to core con-
+cepts underlying AI systems, including how generative AI 
+produces outputs and processes information. Following 
+this, session four shifted toward future-oriented thinking, 
+encouraging students to explore the potential impact of 
+AI on society and creative industries. These sessions also 
+invited students to reflect on possible future career paths in 
+relation to emerging technologies. Next, spanning sessions 
+five through seven, centered on hands-on creative practice. 
+Students engaged with generative AI tools such as Canva 
+and Adobe Express to produce visual artifacts, with par -
+ticular emphasis placed on experimentation, iteration, and 
+the integration of AI into their creative workflows. In the 
+later phase, sessions eight and nine were dedicated to stu-
+dent presentations and peer feedback. Students shared their 
+AI-assisted creative works, articulated their creative pro-
+cesses, and reflected on the role of AI within their projects. 
+The final session served as a wrap-up, providing structured 
+opportunities for guided reflection on their overall learn-
+ing experiences, including their evolving perceptions of AI, 
+their identities as creators, and related ethical considerations. 
+Overall, the curriculum was designed not only to enhance 
+students’ technical competence in using AI tools but also to 
+foster a deeper critical understanding of AI’s role in creative 
+work, support the development of their emerging creator 
+identities, and cultivate ethical awareness in AI-mediated 
+contexts (Figs.  1, 2).
+3.3  Research design and data source
+This study employed a mixed-methods design to examine 
+how students’ perceptions, identity, and ethical reason-
+ing related to AI evolved through participation in an AI-
+integrated art course (Creswell and Creswell 2017 ). A 
+convergent design was adopted, in which quantitative and 
+qualitative data were collected within the same instructional 
+context and integrated during interpretation to provide a 
+comprehensive understanding of students’ experiences. 
+Quantitative findings were used to identify broad patterns 
+in students’ AI-related perceptions, while qualitative find-
+ings were used to contextualize and explain those patterns.
+Quantitative data were collected through pre- and post-
+surveys. The survey measured four constructs: students’ 
+self-efficacy in AI knowledge and skills, perceptions of AI’s 
+Fig. 1  Classroom activity
+
+
+=== PDF PAGE 7 ===
+AI & SOCIETY 
+impact on work, ethical beliefs regarding AI-assisted art, and 
+career-related attitudes. The instrument was adapted from 
+prior studies, including Chiu et al. (2025) and Wang and 
+Chuang ( 2024) for AI self-efficacy, Park et al. ( 2024) for 
+perceptions of AI’s impact on work, Lee et al. (2025) and 
+Mok et al. (2025) for ethical beliefs regarding AI-assisted 
+art, and Fu (2026) and Testa et al. (2026) for career-related 
+attitudes. Items were revised for high school students and 
+the art education context and then reviewed by experts in 
+educational technology and art education. Cronbach’s alpha 
+coefficients for the four subscales demonstrated acceptable 
+to high internal consistency, ranging from 0.78 to 0.91 in the 
+pre-survey and from 0.80 to 0.93 in the post-survey.
+To complement the survey data and capture the complex-
+ity of students’ experiences, multiple sources of qualitative 
+data were collected. Classroom observations were conducted 
+throughout the intervention and documented through field 
+notes focused on students’ interactions with AI tools, par -
+ticipation patterns, creative decision-making, and emerging 
+ethical concerns. In the final session, all students completed 
+open-ended written reflection prompts about their expe-
+riences with AI-assisted artmaking, their perceptions of 
+AI’s role in creative work, their identities as creators, and 
+related ethical considerations. In addition, semi-structured 
+focus group interviews were conducted with 28 voluntary 
+participants across five classes, with five to seven students 
+participating from each class. Each focus group lasted 
+approximately 30 min and was conducted after the final 
+reflection session to further explore students’ experiences, 
+perceptions, and reasoning. Student artifacts, including AI-
+assisted creative outputs were collected and reviewed as 
+supplementary contextual evidence. These artifacts helped 
+contextualize how students integrated AI tools into their 
+creative processes. These multiple quantitative and qualita-
+tive data sources enabled triangulation and provided a richer 
+understanding of how students experienced and interpreted 
+AI in creative contexts.
+3.4  Data analysis and trustworthiness
+Quantitative data from the pre- and post-surveys were ana-
+lyzed using paired-samples t-tests to examine changes in 
+students’ AI-related perceptions and self-efficacy. Before 
+conducting the paired-samples t-tests, the normality of 
+the difference scores was examined, and no substantial 
+violations were identified. Qualitative data were analyzed 
+using thematic analysis (Braun and Clarke 2006). The 
+analysis followed a hybrid inductive-deductive approach. 
+Initial coding was guided by the study’s conceptual focus 
+on creator identity, agency, and ethical awareness, while 
+additional codes were developed inductively from stu-
+dents’ written reflections, focus group interviews, and 
+observational notes. Three researchers participated in the 
+coding process. The researchers first reviewed the qualita-
+tive data, generated initial codes, and then discussed cod-
+ing differences through analytic meetings until consensus 
+was reached. Themes were refined by comparing codes 
+across data sources, revisiting representative excerpts, and 
+ensuring coherence within themes and clear distinctions 
+across themes.
+Particular attention was given to how students described 
+AI as a tool, collaborator, or source of uncertainty, and 
+how these conceptualizations related to their percep-
+tions of creator identity, agency, and ethical awareness. 
+To enhance trustworthiness, analytic memos and an audit 
+trail were maintained throughout the coding process to 
+document initial codes, code revisions, theme develop-
+ment, and key analytic decisions. Because the research 
+team was involved in the design and implementation of the 
+AI-integrated art curriculum, reflexivity was addressed by 
+documenting researcher assumptions and checking emerg-
+ing interpretations across interview, reflection, observa-
+tion, and artifact data.
+Fig. 2  Student artwork using generative AI
+
+=== PDF PAGE 8 ===
+ AI & SOCIETY
+4  Results
+4.1  Changes in AI perceptions and self‑efficacy
+To examine changes in students’ AI-related perceptions 
+and self-efficacy, paired-samples t-tests were conducted 
+comparing pre- and post-survey responses. Before con-
+ducting the paired-samples t-tests, the normality of the 
+difference scores was examined. No substantial violations 
+were identified. Table  1 shows the results across four 
+domains.
+Results indicate statistically significant improve-
+ments in three of the four AI self-efficacy items. Students 
+reported increased ability to explain how AI generates 
+outputs (Item 2; t =  − 2.345, p = 0.023), understand how 
+AI recognizes images and language (Item 3; t  =  − 2.312, 
+p = 0.025, d = 0.25), and effectively use AI-based programs 
+or applications (Item 4; t  =  − 2.542, p = 0.014, d = 0.28). 
+Although students’ confidence in using AI to obtain 
+desired results (Item 1) increased from pre- to post-test, 
+the change was not statistically significant (t  =  − 1.659, 
+p = 0.103). Overall, these findings suggest that participa-
+tion in the AI-integrated learning experience was associ-
+ated with strengthened procedural and conceptual under -
+standing of AI technologies.
+Students’ beliefs about AI’s potential to replace 
+human jobs (Item 5) slightly decreased from pre- to 
+post-test, though this change was not statistically sig-
+nificant (t  = 1.815, p = 0.075). Similarly, perceptions that 
+AI would significantly impact human occupations (Item 
+6) remained largely unchanged (t  =  − 0.198, p = 0.844). 
+These results suggest that while students developed greater 
+AI competence, their broader beliefs about AI’s societal 
+and occupational impact remained relatively stable.
+No statistically significant changes were observed in 
+students’ ethical perceptions of AI-assisted creative work 
+(Items 7 & 8). Both the pre- and post-surveys indicate that 
+students consistently viewed art as an inherently human 
+domain. Agreement with the view that uniquely human 
+domains such as art should not be encroached upon by AI 
+remained stable. These findings underscore the persistence 
+of students’ deeply held belief that artistic creation should 
+remain uniquely human.
+Students’ overall career optimism (Item 9) did not 
+change significantly (t  = 0.248, p = 0.805). However, per-
+sistence in the face of career challenges (Item 10) showed 
+a statistically significant decrease (t  = 2.388, p = 0.020, 
+d = 0.26), indicating a slight reduction in self-reported 
+perseverance following the intervention. The decrease in 
+Item 10 shows that, as students developed a more con-
+crete understanding of AI’s potential impact, they may 
+have engaged in more critical reflection about their future 
+careers.
+These findings indicate that while the AI-integrated 
+learning experience enhanced students’ technical compe-
+tence, it did not lead to corresponding changes in their 
+broader beliefs or attitudes. Instead, the results point to 
+emerging tensions related to creator identity, ethical judg-
+ment, and future career expectations. To further examine 
+these tensions, the following sections draw on qualitative 
+data to explore how students make sense of the role of AI 
+in creative processes (ontology), their identity as creators 
+(agency), and the ethical implications of AI-assisted crea -
+tion (ethics).
+Table 1  Survey results
+Component Question Pre Post t p
+Self-efficacy in AI knowledge and skills 1. I can use AI to obtain the results I need 3.455 3.673  − 1.659 0.103
+2. I can explain how AI generates its outputs 3.036 3.382  − 2.345 0.023
+3. I can understand how AI recognizes images and language 3.073 3.455  − 2.312 0.025
+4. I can effectively use programs or applications that incorporate AI 
+technologies
+3.091 3.473  − 2.542 0.014
+Perceptions of AI impact on work 5. I believe that in the future, a large portion of human jobs will be 
+replaced by AI
+4.200 3.945 1.815 0.075
+6. believe that AI will have a significant impact on human occupa-
+tions
+4.473 4.491  − 0.198 0.844
+AI-assisted art and ethics 7. I believe that artworks created with the help of AI can be recog-
+nized as a form of art
+2.036 2.236  − 1.334 0.188
+8. I believe that art is a unique human domain that cannot be replaced 
+by machines and AI technology
+4.127 4.145  − 0.134 0.894
+Career pathway 9. I feel positive about my future career 3.909 3.873 0.248 0.805
+10. Even when I face challenges in my career path, I will persist in art 3.945 3.636 2.388 0.020
+
+=== PDF PAGE 9 ===
+AI & SOCIETY 
+4.2  Conceptual typologies of AI perception 
+in creative work
+To address the second research question, this study exam-
+ined how students conceptualize the role of AI in the crea-
+tive process. Analysis of student responses revealed three 
+dominant orientations: AI as a tool, a collaborative partner, 
+and a potential threat (Fig. 3). These categories are not mutu-
+ally exclusive but rather represent a continuum of perception 
+through which students interpret AI’s role in creative work.
+4.2.1  Tool‑oriented perspectives: AI as a productivity tool
+A substantial number of students conceptualized AI primar-
+ily as a functional tool that enhances efficiency and reduces 
+the burden of repetitive or time-consuming tasks. In this 
+view, AI is positioned as an assistive mechanism that sup-
+ports, rather than alters, the creative process. Students fre-
+quently emphasized speed, convenience, and the ability to 
+externalize mental imagery:
+“With just a few words, it quickly and conveniently 
+created the drawings I wanted.” (Student ID 1108)
+“It helped visualize the images I was imagining 
+quickly.” (Student ID 1219)
+Others highlighted AI’s role in offloading tedious pre-
+paratory work:
+“It handles tasks like sketching outlines or basic 
+groundwork that I usually find tedious, which saves 
+time and makes the process more efficient.” (Student 
+ID 1502)
+“AI helps with tasks that are close to manual labor, 
+making the process easier.” (Student ID 1521)
+In addition, some students associated AI with improved 
+output quality:
+“AI can be a tool that produces higher-quality 
+results.” (Student ID 1401)
+These responses position AI as an instrumental 
+extension of human capability, where efficiency gains 
+are foregrounded while authorship remains firmly 
+human-centered.
+4.2.2  Partner‑oriented perspectives: AI as a creative 
+partner
+Beyond a purely instrumental role, many students 
+described AI as an active collaborator that contributes to 
+idea generation and creative exploration. In this orienta -
+tion, AI is not merely executing tasks but participating 
+in the creative process by offering suggestions, feedback, 
+and unexpected outputs. Students described using AI as a 
+source of inspiration:
+“Sometimes, when I struggle with inspiration, I 
+enter keywords into AI and give specific commands. 
+It helps me brainstorm ideas for stories or illustra-
+tions.” (Student ID 1425)
+“There were moments when I got unexpectedly good 
+ideas from AI.” (Student ID 1529)
+Others framed AI as a supportive collaborator:
+“AI can act as a supporter that provides feedback and 
+ideas.” (Student ID 1129)
+“Humans and AI can collaborate to create better 
+work.” (Student ID 1318)
+In this perspective, creativity is understood as a dis-
+tributed process, where human intention and machine-
+generated suggestions interact dynamically. AI is thus 
+positioned as a co-creative agent that expands, rather than 
+replaces, human ideation.
+(a) Tool-oriented perspective: Control usage
+(b) Partner-oriented perspective: Feedback loop
+(c) Threat-oriented perspective: Loss of agency
+Fig. 3  Conceptual typologies of AI perception in creative work
+
+=== PDF PAGE 10 ===
+ AI & SOCIETY
+4.2.3  Threat‑oriented perspectives: AI as a threat 
+to creativity and human labor
+In contrast, a third group of students expressed concern, 
+discomfort, or even strong resistance toward AI in creative 
+contexts. These perceptions framed AI as a disruptive force 
+that may undermine creativity, human agency, and the value 
+of artistic labor. Some students described an initial sense of 
+awe accompanied by unease:
+“It was fascinating to use AI for the first time, but also 
+a bit scary to see how advanced it already is.” (Student 
+ID 1306)
+Others articulated concerns about the pace of technologi-
+cal advancement:
+“The speed at which AI is developing is almost fright-
+ening, and it seems difficult for individuals to keep 
+up.” (Student ID 1231)
+A recurring theme was the fear that efficiency may come 
+at the expense of artistic depth:
+“I’m worried that in creative fields, efficiency will 
+increase while artistic value decreases.” (Student ID 
+1432)
+Students also expressed concerns about dependency and 
+skill erosion:
+“If I use AI too much, I might forget how to come up 
+with ideas on my own.” (Student ID 1310)
+Finally, several students raised concerns about labor dis-
+placement and the devaluation of human artists:
+“If AI can create professional-quality illustrations in 
+seconds, why would anyone pay an artist?” (Student 
+ID 1409)
+“If AI keeps improving, will there still be a need for 
+human artists?” (Student ID 1406)
+These responses reflect broader anxieties about automa-
+tion, suggesting that students perceive AI not only as a tool 
+or partner but also as a potential competitor that challenges 
+the sustainability of human-centered creative work.
+4.3  Creator identity and perceived autonomy
+To address the third research question, this study examined 
+how AI integration negotiates students’ perceptions of crea-
+tor identity and agency. Analysis revealed a continuum of 
+perceived autonomy, ranging from strong human-centered 
+control to diminished agency under AI influence (Fig.  4).
+4.3.1  High autonomy: AI as assistive support
+Students in this group maintained a strong sense of author -
+ship and viewed AI as a supplementary tool that enhances 
+efficiency without compromising creative control.
+“I still make all the creative choices. AI just helps with 
+small things, like generating references or basic color-
+ing.” (Student ID 1547)
+Some students explicitly rejected the idea that AI poses 
+a significant threat:
+“After using AI, I realized it’s not as powerful as I 
+expected. The results weren’t always satisfying, and 
+it didn’t feel like it could replace artists. It’s useful 
+for simple tasks, but not a real substitute.” (Student 
+ID 1231)
+For these students, creativity remains fundamentally 
+human-driven, with AI serving as a limited augmentation 
+tool.
+4.3.2  Moderate autonomy: AI as co‑creator
+Students in the moderate autonomy group described a more 
+entangled relationship with AI, where creative control is 
+shared, negotiated, and sometimes dependent on AI-gener -
+ated suggestions.
+“AI helped structure my ideas, but I still edit what it 
+gives me, and the final decision is mine.” (Student ID 
+1309)
+Here, authorship becomes collaborative. While students 
+retain ultimate control, they acknowledge that AI meaning-
+fully shapes the direction and development of their work.
+Fig. 4  Agency and orientation 
+spectrum
+
+
+=== PDF PAGE 11 ===
+AI & SOCIETY 
+4.3.3  Low autonomy: AI as replacement
+Students with low perceived autonomy expressed concern 
+that AI may displace their role as creators or diminish their 
+creative agency.
+“I used to draw everything from my imagination. 
+Now I start with AI, and it creates things for me. I’m 
+not sure if that makes me a better artist or a lazier 
+one.” (Student ID 1107)
+“I feel anxious that rapid advancements in AI may 
+prevent me from securing a job in the future.” (Stu-
+dent ID 1407)
+This perspective reflects anxiety about over-reliance 
+on AI and the potential erosion of foundational creative 
+skills. For these students, AI introduces tension into their 
+identity as creators, raising questions about authenticity, 
+effort, and ownership.
+4.4  Ethical tensions and identity negotiation
+The fourth research question examined how ethical con-
+cerns surrounding AI intersect with students’ acceptance 
+of AI and their self-perception as future creators. Findings 
+indicate that ethical considerations are deeply intertwined 
+with identity formation and significantly shape students’ 
+attitudes toward AI.
+A central concern involved authorship and originality. 
+Students questioned whether AI-generated outputs could 
+be legitimately attributed to themselves:
+“AI-generated art looks too similar to real artists’ 
+work, which makes me uncomfortable and feels 
+unethical.” (Student ID 1526)
+“What AI creates cannot be considered art. It feels 
+like mass-produced results rather than genuine crea-
+tion.” (Student ID 1104)
+Transparency in AI training data emerged as another 
+major issue:
+“We need transparent processes, especially about 
+how AI learns from data and existing artwork.” (Stu -
+dent ID 1422)
+“AI is trained on other people’s work. When I use 
+it, am I unknowingly stealing?” (Student ID 1513)
+Some students articulated strong ethical rejection of AI 
+in creative contexts:
+“Training AI on copyrighted artwork without con-
+sent is not acceptable. Machines cannot engage in 
+artistic practice.” (Student ID 1327)
+“Using other artists’ work through AI to generate 
+outputs is not art. It feels unethical.” (Student ID 
+1235)
+Others framed AI use as a form of unfair advantage:
+“In situations where people should be evaluated based 
+on their own abilities, using AI is like cheating.” (Stu-
+dent ID 1134)
+Beyond legal concerns, students also questioned whether 
+AI can possess the essential qualities of creativity:
+“AI doesn’t have feelings, memories, or experiences. 
+How can it create real art?” (Student ID 1110)
+“Please don’t describe AI as drawing.” (Student ID 
+1528)
+“The moment we give AI the status of a creator, the 
+boundaries of art collapse.” (Student ID 1535)
+These responses suggest that some students were hesitant 
+to recognize AI as a legitimate creative agent. Ethical con-
+cerns, therefore, are not merely external considerations but 
+are central to how students define creativity, authorship, and 
+their own identities as creators.
+5  Discussion
+This study examined how AI-integrated creative learning 
+environments influence students’ self-efficacy, perceptions 
+of AI, and the formation of creator identity. By integrat-
+ing quantitative and qualitative findings, the results reveal 
+a complex pattern: while students developed stronger AI-
+related competencies, their perceptions of creativity, author-
+ship, and future careers became more nuanced.
+5.1  AI competence and acceptance
+The quantitative findings demonstrate clear gains in AI-
+related self-efficacy, particularly in students’ understanding 
+of how AI systems function and their ability to use AI tools 
+effectively. These results suggest that the instructional inter-
+vention successfully supported both conceptual and proce-
+dural engagement with AI (Lee and Kwon 2024).
+However, although students increased their AI knowl-
+edge, these gains did not translate into more optimistic per-
+ceptions of AI’s societal impact or positive attitudes toward 
+AI-generated artwork. This implies that AI competence does 
+not necessarily correspond to AI acceptance, since they 
+may be influenced by various contextual factors (Jiang et al. 
+2024; Shin 2026a). Students’ beliefs about AI’s influence on 
+jobs remained largely unchanged, and notably, career persis-
+tence decreased significantly. This divergence suggests that 
+increased competence does not lead to increased confidence 
+
+=== PDF PAGE 12 ===
+ AI & SOCIETY
+in the future. Instead, greater exposure to AI may prompt 
+more critical and realistic reflections on career stability and 
+competition.
+The survey findings suggest that AI education increased 
+students’ technical competence without leading to uncritical 
+acceptance of AI in creative work. While students demon-
+strated significant gains in self-efficacy in AI skills, their 
+broader perceptions of AI remained differentiated and, in 
+some cases, resistant. Notably, students’ agreement with 
+statements suggesting that AI would fully replace human 
+jobs decreased after hands-on experience, whereas their 
+belief that AI would have a substantial impact on occupa-
+tions remained consistently high. These patterns indicate 
+that students came to distinguish between technological 
+replacement and technological influence, recognizing AI as 
+unlikely to fully substitute human creators while still capa-
+ble of reshaping work processes, particularly in terms of 
+efficiency and task distribution.
+5.2  From AI as Tool to AI as ontological question
+Qualitative findings further reveal that students do not hold 
+a single, unified perception of AI. Instead, they position AI 
+along a continuum as a tool, a collaborator, or a threat. These 
+varying conceptualizations reflect not only functional inter-
+pretations but also deeper ontological stances regarding the 
+nature of creativity and authorship.
+Importantly, these positions are not merely descriptive 
+but shape how students engage with AI in practice. Viewing 
+AI as a tool maintains a clear boundary between human and 
+machine, whereas seeing AI as a partner introduces a more 
+distributed model of creativity. In contrast, perceiving AI as 
+a threat reflects a breakdown of this boundary, where AI is 
+seen as encroaching upon or replacing human creative roles.
+5.3  Negotiation of creator identity and career 
+persistence
+These differing perceptions of AI roles are closely tied to 
+variations in perceived agency and autonomy. Students 
+who viewed AI as a tool maintained strong agency and a 
+stable sense of authorship, while those who perceived AI 
+as a collaborator experienced shared or negotiated control. 
+In contrast, students who viewed AI as a threat reported 
+diminished autonomy and expressed concern about losing 
+their role as creators.
+This continuum suggests that AI integration did not 
+appear to uniformly enhance or diminish students’ sense of 
+agency; rather, it introduced new conditions under which 
+students perceived and negotiated their agency in AI-assisted 
+creative work. Students are not simply adopting AI tools 
+but actively renegotiating what it means to be a creator in 
+an AI-mediated environment. In this sense, AI appeared to 
+serve as a context through which students reflected on and 
+negotiated their roles and identity as creators in AI-assisted 
+creative processes (Erikson 1988; Katz and Aakhus 2002), 
+prompting reflection on authorship (Hristov 2016; Huang 
+et al. 2022), originality, and the value of human contribu-
+tion (Hajibayova and Lee 2025). Identity formation theory 
+suggests that adolescents’ sense of self develops through 
+interaction with social and technological contexts (Erikson 
+1988; Katz and Aakhus 2002). For aspiring artists, working 
+with AI raises fundamental questions such as “Am I still the 
+creator?” and “What does authorship mean in AI-assisted 
+art?”.
+Interestingly, students reported a decrease in uncondi-
+tional career persistence in the survey, indicating a shift 
+away from idealized narratives of perseverance. Rather than 
+signaling diminished motivation, this change may reflect 
+increased realism about the evolving structure of creative 
+work in an AI-influenced context. As students recognized 
+that AI may not eliminate creative professions but could 
+alter entry pathways and redistribute routine labor, they may 
+have begun to reconsider a creative career. In this sense, AI 
+education appears to have fostered reflective reconsidera-
+tion rather than resignation, supporting a view of learning 
+that emphasizes critical awareness over compliance. While 
+students gain technical competence, they also encounter 
+challenges to their assumptions about creativity, author -
+ship, and future careers. The observed decrease in career 
+persistence, therefore, should not be interpreted as a nega -
+tive outcome or instructional failure. Rather, it may reflect 
+a process of reflection, questioning, and negotiation regard-
+ing AI-assisted creativity and authorship, in which students 
+move from simplified or optimistic assumptions toward more 
+complex and critical understandings of AI’s role in society. 
+This tension may be a necessary condition for deeper learn-
+ing. Instead of reinforcing uncritical optimism, effective AI 
+education may require creating spaces where students can 
+grapple with uncertainty, ambiguity, and ethical complexity.
+5.4  Ethical tensions of identity formation
+Ethical concerns emerged as a central dimension of this 
+identity negotiation process. This concern aligns with 
+broader debates in AI ethics and intellectual property author-
+ship (Floridi 2019; Hajibayova and Lee 2025). Students’ 
+ethical and artistic boundaries remained firmly intact. Stu-
+dents had low acceptance for AI-created output as arts in 
+both pre- and post-survey. This resistance aligns with the 
+lack of change observed in survey items related to the irre-
+placeability of human creativity and the ethical legitimacy of 
+AI-generated art. Following the interviews, students posed 
+questions about authorship, copyright, and the legitimacy of 
+AI-generated work, often linking these concerns directly to 
+their own identity as creators.
+
+=== PDF PAGE 13 ===
+AI & SOCIETY 
+Numerous students resisted attributing creative agency to 
+AI, emphasizing the importance of human intention, expe-
+rience, and emotional depth. These responses suggest that 
+ethical considerations are not peripheral but foundational to 
+how students define creativity itself. The rejection of AI as 
+a legitimate creator reflects an attempt to preserve bounda-
+ries between human and machine in the face of increasingly 
+blurred distinctions.
+5.5  Implications for research in AI education
+Our findings highlight the importance of distinguishing 
+between competence and endorsement in AI education 
+research. While students demonstrated significant gains in 
+technical understanding and skills, these gains did not trans-
+late into uncritical acceptance of AI as a legitimate creative 
+agent. Instead, students engaged with AI in a selective and 
+critical manner, using it pragmatically while maintaining 
+clear ethical and identity-based boundaries. This suggests 
+that increased competence may, in some cases, heighten 
+critical awareness rather than promote acceptance. These 
+findings challenge implicit assumptions in AI education 
+that skill development naturally leads to positive attitudes 
+toward AI. Future research should therefore move beyond 
+linear models of learning outcomes and examine the com-
+plex, and at times conflicting, relationships among compe-
+tence, identity, and ethical judgment in AI-mediated learning 
+environments.
+5.6  Implications for art education in the age of AI
+Our study highlights that AI-integrated instruction should 
+move beyond a sole focus on technical skill development. 
+Our findings suggest design principles and core components 
+for AI-integrated art education (Fig.  5). In the context of 
+art education, this involves a more comprehensive approach 
+that addresses multiple dimensions of learning. First, foun-
+dational artistic skills and knowledge remain essential. AI 
+should not replace core artistic competencies but rather build 
+upon them. Second, students must develop active agency 
+in working with AI. This includes not only learning how 
+to use AI tools, but also how to direct, critique, and inten-
+tionally integrate AI into their creative processes. Third, art 
+education should explicitly address creator identity. As AI 
+becomes embedded in creative workflows, students need 
+structured opportunities to reflect on authorship, ownership, 
+and what it means to create in collaboration with non-human 
+agents. Finally, ethical understanding must be treated as a 
+core component rather than an add-on. Students’ awareness 
+of issues such as copyright and data use functions as a criti-
+cal lens through which they evaluate the legitimacy of AI-
+generated work.
+These findings call for a reorientation of art education 
+toward balancing artistic skill, human agency, identity for -
+mation, and ethical reasoning. Without these components, 
+students may develop technical competence without the con-
+ceptual and ethical frameworks needed to navigate AI-rich 
+environments. These findings highlight the need for a more 
+holistic model of AI-integrated art education that balances 
+art skill development with identity formation and AI ethical 
+understanding.
+5.7  Implications for career education
+This study contributes to emerging discussions on career 
+sensemaking in the age of AI. Students did not perceive AI 
+merely as a classroom tool, but as a force with the poten-
+tial to influence creative labor and future career trajecto-
+ries. Notably, increased exposure to AI was associated with 
+reduced career persistence, suggesting that learning about AI 
+may introduce uncertainty alongside adaptability. Students’ 
+responses reflected a dual process: growing awareness of 
+AI’s capabilities alongside concerns about their own future 
+roles. These findings suggest that career education should 
+move beyond promoting adaptability alone and instead 
+support students in navigating ambiguity, uncertainty, and 
+questions about their roles in rapidly evolving creative work 
+environments.
+6  Conclusion
+This research reveals a deep ambivalence toward AI in 
+creative work. Students recognize AI’s potential for effi-
+ciency, inspiration, and collaboration, but they also strug-
+gle with issues of identity, career pathways, and ethics. 
+Fig. 5  Four elements in AI-integrated art education
+
+=== PDF PAGE 14 ===
+ AI & SOCIETY
+While some students see AI as an enhancement to their 
+creative process, others feel it undermines their role as 
+artists. These results suggest that AI literacy education 
+must extend beyond technical proficiency. Schools must 
+incorporate critical discussions on authorship, ethics, and 
+career adaptability, helping students develop a balanced 
+perspective on AI’s role in creativity. Future research 
+should explore how these attitudes evolve over time and 
+what pedagogical strategies can best support students in 
+integrating AI without compromising their creative iden-
+tity. As AI continues to redefine artistic production, educa-
+tors must ensure that young creators retain their agency, 
+refine their artistic skills, and critically engage with the 
+ethical challenges of AI-assisted creativity. Without such 
+guidance, there is a risk that students will either over-rely 
+on AI to the detriment of their own development or reject 
+it entirely due to uncertainty and fear. A nuanced and well-
+structured approach to AI education will be essential in 
+preparing students for a future where human and machine 
+creativity coexist. The future research needs to implement 
+classroom intervention with new curricula combined eth-
+ics and creator reformation in AI-assisted art education.
+Author contributions H.L. conceptualized the study, conducted data 
+collection, performed data analysis, and wrote the original draft. H.L. 
+also contributed to revising the manuscript. W.Y. contributed to data 
+analysis and original draft. J.L. contributed to conceptualization, data 
+collection, data analysis, and original draft.  All authors reviewed and 
+approved the final manuscript.
+Data availability The data of this study are available from the corre -
+sponding author upon reasonable request.
+Declarations 
+Conflict of interest The authors declare that there are no competing 
+interests.
+Open Access  This article is licensed under a Creative Commons 
+Attribution-NonCommercial-NoDerivatives 4.0 International License, 
+which permits any non-commercial use, sharing, distribution and repro-
+duction in any medium or format, as long as you give appropriate credit 
+to the original author(s) and the source, provide a link to the Creative 
+Commons licence, and indicate if you modified the licensed material. 
+You do not have permission under this licence to share adapted material 
+derived from this article or parts of it. The images or other third party 
+material in this article are included in the article's Creative Commons 
+licence, unless indicated otherwise in a credit line to the material. If 
+material is not included in the article's Creative Commons licence and 
+your intended use is not permitted by statutory regulation or exceeds 
+the permitted use, you will need to obtain permission directly from the 
+copyright holder. To view a copy of this licence, visit http:// creat iveco 
+mmons. org/ licen ses/ by- nc- nd/4. 0/.
+References
+Bandura A (2001) Social cognitive theory: an agentic perspective. 
+Annu Rev Psychol 52(1):1–26
+Bandura A (2006) Toward a psychology of human agency. Perspect 
+Psychol Sci 1(2):164–180
+Braun V, Clarke V (2006) Using thematic analysis in psychology. Qual 
+Res Psychol 3(2):77–101
+Chiu TK, Çoban M, Sanusi IT, Ayanwale MA (2025) Validating stu-
+dent AI competency self-efficacy (SAICS) scale and its frame-
+work. Education Tech Research Dev 73(4):2785–2807
+Chiu TK, Xia Q, Zhou X, Chai CS, Cheng M (2023) Systematic lit-
+erature review on opportunities, challenges, and future research 
+recommendations of artificial intelligence in education. Comput-
+ers and Education: Artificial Intelligence 4:100118
+Choung H, David P, Ross A (2023) Trust in AI and its role in the 
+acceptance of AI technologies. Int J Human-Comput Interact 
+39(9):1727–1739
+Courtois C, Timmermans E (2018) Cracking the Tinder code: an expe-
+rience sampling approach to the dynamics and impact of platform 
+governing algorithms. J Comput-Mediat Commun 23(1):1–16
+Creswell JW, Creswell JD (2017) Research design: qualitative, quanti-
+tative, and mixed methods approaches. Sage publications
+Davis FD (1989) Perceived usefulness, perceived ease of use, 
+and user acceptance of information technology. MIS Q 
+13(3):319–340
+Design-Based Research Collective (2003) Design-based research: an 
+emerging paradigm for educational inquiry. Educ Res 32(1):5–8
+Erikson EH (1968) Identity and uprootedness in our time. In: Erik -
+son E (ed) Identity: Youth and crisis. Norton, New York, NY, 
+pp 154–159
+Erikson EH (1980) Identity and the life cycle: a reissue. Norton, W. W
+Erikson EH (1988) Youth: Fidelity and diversity. Daedalus 117(3):1–24
+Floridi L (2019) Translating principles into practices of digital eth-
+ics: five risks of being unethical. Philosophy & Technology 
+32(2):185–193
+Fu M (2026) Artificial intelligence awareness and career resilience: 
+The mediating role of willingness to protect boundaries in Chinese 
+financial enterprises. Technol Forecast Soc Chang 227:124629
+Gerlich M (2023) Perceptions and acceptance of artificial intelligence: 
+a multi-dimensional study. Social Sci 12(9):502
+Hagendorff T (2022) A virtue-based framework to support putting AI 
+ethics into practice. Philos Technol 35(3):55
+Hajibayova L, Lee S (2025) Authorship in the age of artificial intel-
+ligence. J Doc 81(5–6):1401–1414
+Hamman D, Hendricks CB (2005) The role of the generations in iden-
+tity formation: Erikson speaks to teachers of adolescents. The 
+Clearing House 79(2):72–75
+Hristov K (2016) Artificial intelligence and the copyright dilemma. 
+Idea 57:431
+Huang C, Zhang Z, Mao B, Yao X (2022) An overview of artificial 
+intelligence ethics. IEEE Transact Artif Intell 4(4):799–819
+Israelashvili M, Kim T, Bukobza G (2012) Adolescents’ over-use of the 
+cyber world–Internet addiction or identity exploration? J Adolesc 
+35(2):417–424
+Jia, H., Wu, M., Jung, E., Shapiro, A., & Sundar, S. S. (2012). Bal-
+ancing human agency and object agency: An end-user interview 
+study of the Internet of Things. In Proceedings of the 2012 ACM 
+Conference on Ubiquitous Computing (1185–1188).
+Jiang P, Niu W, Wang Q, Yuan R, Chen K (2024) Understanding users’ 
+acceptance of artificial intelligence applications: a literature 
+review. Behav Sci 14(8):671
+Kang H, Kim KJ (2020) Feeling connected to smart objects? A mod-
+erated mediation model of locus of agency, anthropomorphism, 
+and sense of connectedness. Int J Hum Comput Stud 133:45–55
+
+=== PDF PAGE 15 ===
+AI & SOCIETY 
+Kang H, Lou C (2022) AI agency vs. human agency: understanding 
+human–AI interactions on TikTok and their implications for user 
+engagement. J Comput-Mediat Commun 27(5):zmac014
+Kariyawasam K (2020) Artificial intelligence and challenges for copy-
+right law. Int J Law Inform Technol 28(4):279–296
+Katz JE, Aakhus M (eds) (2002) Perpetual contact: mobile communica-
+tion, private talk, public performance. Cambridge University Press
+Kay A (2018) Erikson online: identity and pseudospeciation in the 
+internet age. Identity 18(4):264–273
+Kelly S, Kaye SA, Oviedo-Trespalacios O (2023) What factors con-
+tribute to the acceptance of artificial intelligence? A systematic 
+review. Telematics Inform 77:101925
+Kim JH, Kim M, Kwak DW, Lee S (2022) Home-tutoring services 
+assisted with technology: investigating the role of artificial 
+intelligence using a randomized field experiment. J Mark Res 
+59(1):79–96
+Krakowski S (2025) Human-AI agency in the age of generative AI. Inf 
+Organ 35(1):100560
+Lee D, Kwon H (2024) Meta-analysis on effects of artificial intel-
+ligence education in K-12 South Korean classrooms. Educ Inf 
+Technol 29(17):22859–22894
+Lee H , Park I (2024) The Roles of Students in Technology-Rich Envi-
+ronments and the Effectiveness of Student Learning. In Lindgren 
+R., Asino, T. I., Kyza, E. A., Looi, C. K., Keifert, D. T., & Suárez, 
+E. (Eds.), Proceedings of the 18th International Conference of the 
+Learning Sciences - ICLS 2024 (pp. 1774-1777). International 
+Society of the Learning Sciences.
+Lee H , Yu W (2026) Reimagining Co-Design for AI-Supported Edu-
+cation. In Proceedings of Society for Information Technology 
+& Teacher Education International Conference (pp. 792-798). 
+Philadelphia, PA: Association for the Advancement of Comput-
+ing in Education (AACE). https:// www. learn techl ib. org/ prima 
+ry/p/ 21290 62/
+Lee H, Kim H, Yan W (2025) Promoting inclusive AI and technology 
+in K-12: A review of context, instructional strategies, and learn-
+ing outcomes. Computers and Education: Artificial Intelligence, 
+100478.
+Lee J, Rajasinghe D, Lin W (2025) Measuring the acceptance of AI-
+assisted design: developing the AI-assisted design acceptance 
+inventory through its relationship with technology anxiety, crea-
+tive self-efficacy, and aesthetic sensitivity. Creat Eng 1(2):19–44
+Longoni C, Bonezzi A, Morewedge CK (2019) Resistance to medical 
+artificial intelligence. J Consum Res 46(4):629–650
+Lund BD, Naheem KT (2024) Can ChatGPT be an author? A study of 
+artificial intelligence authorship policies in top academic journals. 
+Learned Publishing 37(1):13–21
+Mcknight DH, Carter M, Thatcher JB, Clay PF (2011) Trust in a spe-
+cific technology: An investigation of its components and meas-
+ures. ACM Transact Manag Inf Sys (TMIS) 2(2):1–25
+Millet K, Buehler F, Du G, Kokkoris MD (2023) Defending human-
+kind: anthropocentric bias in the appreciation of AI art. Comput 
+Hum Behav 143:107707
+Misra S, Stokols D (2012) A typology of people–environment relation-
+ships in the Digital Age. Technol Soc 34(4):311–325
+Mok PY, Chuang HH, Cheng MM, Smith TJ (2025) Artificial intel -
+ligence assisted creativity: Conceptualization, instrument develop-
+ment and validation. J Creat Behav 59(1):e70004
+Mouta A, Pinto-Llorente AM, Torrecilla-Sánchez EM (2025) “Where 
+is agency moving to?” Exploring the interplay between AI tech-
+nologies in education and human agency. Digital Soc 4(2):49
+Munn L (2023) The uselessness of AI ethics. AI Ethics 3(3):869–877
+Nguyen D, Hekman E (2024) The news framing of artificial intelli-
+gence: a critical exploration of how media discourses make sense 
+of automation. AI Soc 39(2):437–451
+Park J, Woo SE, Kim J (2024) Attitudes towards artificial intelligence 
+at work: Scale development and validation. J Occup Organ Psy -
+chol 97(3):920–951
+Pickering, JB, Engen V, Walland P (2017). The interplay between 
+human and machine agency. In: International Conference on 
+Human-Computer Interaction. Springer. Cham. 47–59
+Raisch S, Krakowski S (2021) Artificial intelligence and manage-
+ment: the automation–augmentation paradox. Acad Manag Rev 
+46(1):192–210
+Rane N, Choudhary SP, Rane J (2024) Acceptance of artificial intel -
+ligence: Key factors, challenges, and implementation strategies. J 
+Appl Artif Intell 5(2):50–70
+Schreiber G (2024) Reconsidering Agency in the Age of AI. Filozofia, 
+79(5). https:// doi. org/ 10. 31577/ filoz ofia. 2024. 79.5.5
+Shin D (2021) The effects of explainability and causability on percep-
+tion, trust, and acceptance: implications for explainable AI. Int J 
+Hum Comput Stud 146:102551
+Shin D (2026a) Algorithmic fact-verification: methods and ethics. 
+Oxford University Press
+Shin D (2026b) Automating epistemology: how AI reconfigures truth, 
+authority, and verification. AI Soc 41(2):1553–1559
+Sohn K, Kwon O (2020) Technology acceptance theories and factors 
+influencing artificial Intelligence-based intelligent products. Tele-
+matics Inform 47:101324
+Strich F, Mayer AS, Fiedler M (2021) What do I do in a world of artifi-
+cial intelligence? Investigating the impact of substitutive decision-
+making AI systems on employees’ professional role identity. J 
+Assoc Inf Syst 22(2):9
+Sundar SS (2020) Rise of machine agency: A framework for study -
+ing the psychology of human–AI interaction (HAII). J Comput-
+Mediat Commun 25(1):74–88
+Testa M, Apuzzo A, Pittaway L (2026) AI literacy alone is not enough: 
+Student AI readiness and career adaptability in business and man-
+agement education. Int J Manag Educ 24(2):101394
+Wang YY, Chuang YW (2024) Artificial intelligence self-effi-
+cacy: Scale development and validation. Educ Inf Technol 
+29(4):4785–4808
+Wiese LJ, Patil I, Schiff DS, Magana AJ (2025) AI ethics education: 
+A systematic literature review. Comp Educ: Artif Intell 8:100405
+Publisher's Note Springer Nature remains neutral with regard to 
+jurisdictional claims in published maps and institutional affiliations.
