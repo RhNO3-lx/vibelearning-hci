@@ -4,6 +4,8 @@ import type { Action, AppState } from "../model";
 type MapView = {
   selectedConcept: string | null;
   selectionOrigin: "tree" | "knowledge";
+  tab: "tree" | "knowledge" | "both";
+  relationMode: "prerequisite" | "recommended" | "both";
 };
 type WindowMessage =
   | { kind: "ready" | "dock" | "hide" | "shutdown" }
@@ -20,6 +22,7 @@ export function useMapWindow(options: {
   onDismiss: () => void;
   onHide: () => void;
 }) {
+  const desktop = window.vibeDesktop;
   const params = new URLSearchParams(window.location.search);
   const detached = params.get("view") === "map";
   const channelName = useRef(
@@ -70,17 +73,27 @@ export function useMapWindow(options: {
       document.title = "Vibe Learning · 学习地图";
       bc.postMessage({ kind: "ready" });
     }
+    const nativeUnsubscribe = desktop?.onMapWindowChange((state) => {
+      if (detached) return;
+      setOpened(state.opened);
+      if (!state.opened) {
+        latest.current.onDismiss();
+        if (state.collapse) latest.current.onHide();
+      }
+    });
     const unload = () => {
-      bc.postMessage({ kind: detached ? "dock" : "shutdown" });
+      if (!desktop || !detached)
+        bc.postMessage({ kind: detached ? "dock" : "shutdown" });
       if (!detached) popup.current?.close();
     };
     window.addEventListener("beforeunload", unload);
     return () => {
       window.removeEventListener("beforeunload", unload);
+      nativeUnsubscribe?.();
       bc.close();
       if (!detached) popup.current?.close();
     };
-  }, [detached, dismiss]);
+  }, [detached, dismiss, desktop]);
   useEffect(() => {
     if (!detached && opened)
       channel.current?.postMessage({
@@ -94,6 +107,8 @@ export function useMapWindow(options: {
     options.state,
     options.view.selectedConcept,
     options.view.selectionOrigin,
+    options.view.tab,
+    options.view.relationMode,
   ]);
   useEffect(() => {
     if (detached && synchronized)
@@ -103,9 +118,11 @@ export function useMapWindow(options: {
     synchronized,
     options.view.selectedConcept,
     options.view.selectionOrigin,
+    options.view.tab,
+    options.view.relationMode,
   ]);
   useEffect(() => {
-    if (!opened) return;
+    if (!opened || desktop) return;
     const timer = setInterval(() => {
       if (popup.current?.closed) dismiss();
     }, 500);
@@ -117,7 +134,16 @@ export function useMapWindow(options: {
     channel: channelName.current,
   }).toString();
   const url = mapUrl.href;
-  const open = useCallback(() => {
+  const open = useCallback(async () => {
+    if (desktop) {
+      try {
+        const opened = await desktop.openMap(channelName.current);
+        setOpened(opened);
+        return opened;
+      } catch {
+        return false;
+      }
+    }
     if (popup.current && !popup.current.closed) {
       popup.current.focus();
       return true;
@@ -131,9 +157,13 @@ export function useMapWindow(options: {
     popup.current = child;
     setOpened(true);
     return true;
-  }, [url]);
+  }, [url, desktop]);
   const close = useCallback(
     (collapse = false) => {
+      if (desktop) {
+        void desktop.dockMap(collapse);
+        return;
+      }
       if (detached) {
         channel.current?.postMessage({ kind: collapse ? "hide" : "dock" });
         setTimeout(() => window.close(), 40);
@@ -142,7 +172,7 @@ export function useMapWindow(options: {
         if (collapse) latest.current.onHide();
       }
     },
-    [detached, dismiss],
+    [detached, dismiss, desktop],
   );
   const dispatch = useCallback(
     (action: Action) => {

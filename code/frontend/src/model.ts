@@ -1,3 +1,9 @@
+import {
+  repairRecommendations,
+  sessionConceptIds,
+  canRemoveRelation,
+  createsPrerequisiteCycle,
+} from "./sessionGraph";
 export type Activity = "concept" | "quiz" | "project" | "flashcard";
 export type Page =
   "learn" | "sessions" | "knowledge" | "agents" | "skills" | "settings";
@@ -86,7 +92,8 @@ export interface Relation {
   id: string;
   source: string;
   target: string;
-  type: "recommended";
+  type: "recommended" | "prerequisite";
+  sessionId?: string;
 }
 export interface Evidence {
   id: string;
@@ -125,6 +132,7 @@ export interface Settings {
 }
 export interface AppState {
   version: 1;
+  graphVersion?: 2;
   activeSessionId: string;
   sessions: Session[];
   turns: Turn[];
@@ -202,7 +210,13 @@ export type Action =
   | { type: "setKBs"; items: KnowledgeBase[] }
   | { type: "setAgents"; items: AgentConfig[] }
   | { type: "setSkills"; items: SkillConfig[] }
-  | { type: "addRecommendation"; source: string; target: string }
+  | {
+      type: "addRecommendation";
+      source: string;
+      target: string;
+      sessionId?: string;
+    }
+  | { type: "addPrerequisite"; source: string; target: string }
   | { type: "removeRecommendation"; id: string }
   | { type: "reverseRecommendation"; id: string }
   | { type: "settings"; patch: Partial<Settings> }
@@ -271,7 +285,7 @@ function refreshSummaries(turns: Turn[], parentId: string | null): Turn[] {
       : t,
   );
 }
-export function reducer(state: AppState, action: Action): AppState {
+function reduceState(state: AppState, action: Action): AppState {
   switch (action.type) {
     case "reset":
       return action.state;
@@ -589,15 +603,36 @@ export function reducer(state: AppState, action: Action): AppState {
       return { ...state, agents: action.items };
     case "setSkills":
       return { ...state, skills: action.items };
-    case "addRecommendation": {
+    case "addRecommendation":
+    case "addPrerequisite": {
+      const type =
+        action.type === "addRecommendation" ? "recommended" : "prerequisite";
+      const sessionId =
+        action.type === "addRecommendation"
+          ? (action.sessionId ?? state.activeSessionId)
+          : undefined;
       if (
         action.source === action.target ||
         ![action.source, action.target].every((id) =>
           state.concepts.some((c) => c.id === id && !c.deleted),
         ) ||
+        (sessionId &&
+          ![action.source, action.target].every((id) =>
+            sessionConceptIds(state, sessionId).includes(id),
+          )) ||
         state.relations.some(
-          (r) => r.source === action.source && r.target === action.target,
-        )
+          (r) =>
+            r.type === type &&
+            r.sessionId === sessionId &&
+            r.source === action.source &&
+            r.target === action.target,
+        ) ||
+        (type === "prerequisite" &&
+          createsPrerequisiteCycle(
+            state.relations,
+            action.source,
+            action.target,
+          ))
       )
         return state;
       return {
@@ -605,24 +640,41 @@ export function reducer(state: AppState, action: Action): AppState {
         relations: [
           ...state.relations,
           {
-            id: uid("order"),
+            id: uid("edge"),
             source: action.source,
             target: action.target,
-            type: "recommended",
+            type,
+            ...(sessionId ? { sessionId } : {}),
           },
         ],
       };
     }
     case "removeRecommendation":
-      return {
-        ...state,
-        relations: state.relations.filter((r) => r.id !== action.id),
-      };
+      return canRemoveRelation(state, action.id)
+        ? {
+            ...state,
+            relations: state.relations.filter((r) => r.id !== action.id),
+          }
+        : state;
     case "reverseRecommendation": {
       const target = state.relations.find((r) => r.id === action.id);
-      if (!target) return state;
+      if (
+        !target ||
+        (target.type === "prerequisite" &&
+          createsPrerequisiteCycle(
+            state.relations,
+            target.target,
+            target.source,
+            target.id,
+          ))
+      )
+        return state;
       const reverseExists = state.relations.some(
-        (r) => r.source === target.target && r.target === target.source,
+        (r) =>
+          r.type === target.type &&
+          r.sessionId === target.sessionId &&
+          r.source === target.target &&
+          r.target === target.source,
       );
       return {
         ...state,
@@ -641,4 +693,9 @@ export function reducer(state: AppState, action: Action): AppState {
         settings: { ...state.settings, ...action.patch },
       });
   }
+}
+
+export function reducer(state: AppState, action: Action): AppState {
+  const next = reduceState(state, action);
+  return next === state ? state : repairRecommendations(next);
 }

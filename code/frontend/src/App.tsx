@@ -173,13 +173,18 @@ export default function App() {
       y: number;
     } | null>(null),
     [sessionName, setSessionName] = useState("");
+  const [relationMode, setRelationMode] = useState<
+    "prerequisite" | "recommended" | "both"
+  >("recommended");
   const mapWindow = useMapWindow({
     state,
     dispatch: localDispatch,
-    view: { selectedConcept, selectionOrigin },
+    view: { selectedConcept, selectionOrigin, tab, relationMode },
     onView: (view) => {
       setSelectedConcept(view.selectedConcept);
       setSelectionOrigin(view.selectionOrigin);
+      setTab(view.tab);
+      setRelationMode(view.relationMode);
     },
     onDismiss: () => setFloating(false),
     onHide: () => setMapOpen(false),
@@ -505,6 +510,8 @@ export default function App() {
       setSelectedConcept(id);
     },
     selectionOrigin,
+    relationMode,
+    setRelationMode,
     onSelectTree: (id: string) => {
       setSelectionOrigin("tree");
       dispatch({ type: "selectTurn", id });
@@ -524,14 +531,18 @@ export default function App() {
     },
     onPath: () => setDialog({ type: "path" }),
     floating: floating || mapWindow.detached,
-    onFloat: () => {
+    onFloat: async () => {
+      if (window.vibeDesktop) {
+        if (await mapWindow.open()) setFloating(true);
+        return;
+      }
       setFloating(true);
       setFloatPos({ x: Math.max(8, window.innerWidth - 490), y: 84 });
     },
     external: mapWindow.detached,
     popOutUrl: mapWindow.url,
-    onPopOut: () => {
-      if (mapWindow.open()) {
+    onPopOut: async () => {
+      if (await mapWindow.open()) {
         setFloating(true);
         setMapOpen(true);
       } else {

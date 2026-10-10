@@ -3,3 +3,6 @@ learning
 .deeptutor
 outputs
 .env.local
+code/desktop/ui/
+code/desktop/smoke-report.json
+artifacts/desktop/

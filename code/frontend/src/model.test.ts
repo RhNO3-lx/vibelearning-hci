@@ -281,7 +281,14 @@ describe("revised configuration and legacy migration", () => {
     const restored = parseState(JSON.stringify(legacy))!;
     expect(restored.sessions).toEqual(seed.sessions);
     expect(restored.turns).toEqual(seed.turns);
-    expect(restored.relations).toEqual([seed.relations[0]]);
+    expect(restored.relations.filter((r) => r.type === "prerequisite")).toEqual(
+      [seed.relations[0]],
+    );
+    expect(
+      restored.relations.some(
+        (r) => r.type === "recommended" && r.sessionId === "linear",
+      ),
+    ).toBe(true);
     expect(restored.settings).toEqual(seed.settings);
     const switched = reducer(restored, { type: "selectTurn", id: "t4" });
     expect(
@@ -302,7 +309,7 @@ describe("revised configuration and legacy migration", () => {
     );
     const restored = parseState(JSON.stringify(seed))!;
     expect(restored.settings.defaultWorkspace).toBe("~/custom-default");
-    expect(restored.relations).toHaveLength(3);
+    expect(restored.relations).toHaveLength(createSeed().relations.length);
     expect(
       restored.concepts.every((c) => typeof c.difficulty === "string"),
     ).toBe(true);
@@ -314,7 +321,7 @@ describe("recommended order and leaf mainline", () => {
     const seed = createSeed();
     const legacy = {
       ...seed,
-      relations: seed.relations.map((r) => ({ ...r, type: "prerequisite" })),
+      relations: seed.relations.filter((r) => r.type === "prerequisite"),
     };
     expect(parseState(JSON.stringify(legacy))?.relations).toEqual(
       seed.relations,
@@ -324,15 +331,15 @@ describe("recommended order and leaf mainline", () => {
     const seed = createSeed();
     let state = reducer(seed, {
       type: "addRecommendation",
-      source: "testing",
-      target: "eigen",
+      source: "vectors",
+      target: "diagonal",
     });
     const relation = state.relations.at(-1)!;
     expect(state.relations).toHaveLength(seed.relations.length + 1);
     state = reducer(state, { type: "reverseRecommendation", id: relation.id });
     expect(state.relations.at(-1)).toMatchObject({
-      source: "eigen",
-      target: "testing",
+      source: "diagonal",
+      target: "vectors",
     });
     state = reducer(state, { type: "removeRecommendation", id: relation.id });
     expect(state.relations).toEqual(seed.relations);

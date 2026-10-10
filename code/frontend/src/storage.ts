@@ -1,3 +1,4 @@
+import { repairRecommendations } from "./sessionGraph";
 import type { AppState } from "./model";
 import { createSeed } from "./seed";
 export const STORAGE_KEY = "vibelearning.frontend.v1";
@@ -155,9 +156,30 @@ export function parseState(raw: string | null): AppState | null {
         id: r.id,
         source: r.source,
         target: r.target,
-        type: "recommended",
+        type: r.type,
+        ...(r.type === "recommended" && typeof r.sessionId === "string"
+          ? { sessionId: r.sessionId }
+          : {}),
       }));
-    return s;
+    if (s.graphVersion !== 2) {
+      const defaults = createSeed().relations.filter(
+        (r) => r.type === "prerequisite",
+      );
+      for (const r of defaults)
+        if (
+          s.concepts.some((c) => c.id === r.source && !c.deleted) &&
+          s.concepts.some((c) => c.id === r.target && !c.deleted) &&
+          !s.relations.some(
+            (e) =>
+              e.type === "prerequisite" &&
+              e.source === r.source &&
+              e.target === r.target,
+          )
+        )
+          s.relations.push(r);
+      s.graphVersion = 2;
+    }
+    return repairRecommendations(s);
   } catch {
     return null;
   }

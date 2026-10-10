@@ -36,6 +36,13 @@ import {
   PanelRightClose,
   PanelsTopLeft,
 } from "lucide-react";
+import {
+  sessionConceptIds,
+  sessionRelations,
+  canRemoveRelation,
+  createsPrerequisiteCycle,
+  weakComponents,
+} from "../sessionGraph";
 import { BoundaryEdge } from "./BoundaryEdge";
 import { eventTitleLines } from "../graphGeometry";
 import { ResizeHandle } from "./ResizeHandle";
@@ -373,6 +380,8 @@ export function GraphPanel({
   selectedConcept,
   setSelectedConcept: selectConcept,
   selectionOrigin,
+  relationMode,
+  setRelationMode,
   onSelectTree,
   tab,
   setTab,
@@ -398,6 +407,8 @@ export function GraphPanel({
   selectedConcept: string | null;
   setSelectedConcept: (id: string | null) => void;
   selectionOrigin: "tree" | "knowledge";
+  relationMode: "prerequisite" | "recommended" | "both";
+  setRelationMode: (mode: "prerequisite" | "recommended" | "both") => void;
   onSelectTree: (id: string) => void;
   tab: "tree" | "knowledge" | "both";
   setTab: (tab: "tree" | "knowledge" | "both") => void;
@@ -424,6 +435,15 @@ export function GraphPanel({
     (c) => c.id === selectedConcept && !c.deleted,
   );
   const [category, setCategory] = useState<Activity | null>(null);
+  useEffect(() => {
+    if (
+      category &&
+      !state.turns.some(
+        (t) => t.sessionId === session.id && t.activity === category,
+      )
+    )
+      setCategory(null);
+  }, [category, state.turns, session.id]);
   const setSelectedConcept = useCallback(
     (id: string | null) => {
       setCategory(null);
@@ -437,8 +457,24 @@ export function GraphPanel({
     y: number;
   } | null>(null);
   const [editOrder, setEditOrder] = useState(false);
+  const [editKind, setEditKind] = useState<"prerequisite" | "recommended">(
+    "recommended",
+  );
+  const visibleIds = sessionConceptIds(state, session.id);
+  const visibleRelations = sessionRelations(state, session.id);
+
   const [orderSource, setOrderSource] = useState(""),
     [orderTarget, setOrderTarget] = useState("");
+  const orderBlocked =
+    orderSource === orderTarget ||
+    (editKind === "prerequisite" &&
+      createsPrerequisiteCycle(state.relations, orderSource, orderTarget)) ||
+    visibleRelations.some(
+      (r) =>
+        r.type === editKind &&
+        r.source === orderSource &&
+        r.target === orderTarget,
+    );
   const tree = useMemo(
     () =>
       treeLayout(
@@ -460,7 +496,7 @@ export function GraphPanel({
     [expanded, setExpanded, setSelectedConcept],
   );
   const knowledge = useMemo(() => {
-    const concepts = state.concepts.filter((c) => !c.deleted),
+    const concepts = state.concepts.filter((c) => visibleIds.includes(c.id)),
       positions = new Map(
         concepts.map((c, i) => [
           c.id,
@@ -490,20 +526,37 @@ export function GraphPanel({
         expand: () => toggleExpand(c.id),
       },
     }));
-    const edges: Edge[] = state.relations.map((r) => ({
-      id: r.id,
-      source: r.source,
-      target: r.target,
-      type: "boundary",
-      label: "推荐",
-      labelStyle: { fontSize: 10, fill: "#64748b" },
-      labelBgStyle: { fill: "#f8fafc" },
-      style: {
-        stroke: "#22b8cf",
-        strokeWidth: 1.4,
-      },
-      markerEnd: { type: MarkerType.ArrowClosed, color: "#22b8cf" },
-    }));
+    const grouped = new Map<string, typeof visibleRelations>();
+    for (const r of visibleRelations.filter(
+      (r) => relationMode === "both" || r.type === relationMode,
+    )) {
+      const key = JSON.stringify([r.source, r.target]);
+      grouped.set(key, [...(grouped.get(key) ?? []), r]);
+    }
+    const edges: Edge[] = [...grouped.values()].map((group) => {
+      const r = group[0],
+        prerequisite = group.some((e) => e.type === "prerequisite"),
+        recommended = group.some((e) => e.type === "recommended");
+      const color = recommended ? "#22b8cf" : "#64748b";
+      return {
+        id: group.map((e) => e.id).join("+"),
+        source: r.source,
+        target: r.target,
+        type: "boundary",
+        label:
+          prerequisite && recommended
+            ? "先修 · 推荐"
+            : prerequisite
+              ? "先修"
+              : "推荐",
+        style: {
+          stroke: color,
+          strokeWidth: 1.6,
+          strokeDasharray: prerequisite && !recommended ? "5 3" : undefined,
+        },
+        markerEnd: { type: MarkerType.ArrowClosed, color },
+      };
+    });
     for (const c of concepts.filter((c) => expanded.includes(c.id)))
       c.topics.forEach((topic, i) => {
         const p = positions.get(c.id)!,
@@ -542,6 +595,7 @@ export function GraphPanel({
     current.conceptIds,
     selectedConcept,
     selectionOrigin,
+    relationMode,
     expanded,
     toggleExpand,
   ]);
@@ -654,7 +708,7 @@ export function GraphPanel({
         <span>
           <i className="legend-dot" />
           {tab === "knowledge"
-            ? "全局模块 · 推荐学习顺序"
+            ? "本会话模块 · 双关系图"
             : `当前会话 · ${tree.nodes.length} 个节点`}
         </span>
         {tab !== "tree" && (
@@ -663,7 +717,7 @@ export function GraphPanel({
             onClick={() => setEditOrder((v) => !v)}
           >
             <ArrowLeftRight size={13} />
-            编辑顺序
+            编辑关系
           </button>
         )}
         {tab !== "tree" && (
@@ -706,19 +760,28 @@ export function GraphPanel({
                     (t) => t.sessionId === session.id && t.activity === id,
                   ).length;
                 return (
-                  <button
+                  <div
                     key={id}
-                    className={category === id ? "selected" : ""}
-                    aria-pressed={category === id}
-                    aria-label={`高亮${kind.label}事件`}
-                    onClick={() => {
-                      setCategory(category === id ? null : (id as Activity));
-                    }}
+                    className="event-category-slot"
+                    title={count === 0 ? "该类别没有活动" : kind.label}
                   >
-                    <Icon size={17} style={{ color: kind.color }} />
-                    <span>{kind.label}</span>
-                    <small>{count}</small>
-                  </button>
+                    <button
+                      disabled={count === 0}
+                      aria-description={
+                        count === 0 ? "该类别没有活动" : undefined
+                      }
+                      className={category === id ? "selected" : ""}
+                      aria-pressed={category === id}
+                      aria-label={`高亮${kind.label}事件`}
+                      onClick={() => {
+                        setCategory(category === id ? null : (id as Activity));
+                      }}
+                    >
+                      <Icon size={17} style={{ color: kind.color }} />
+                      <span>{kind.label}</span>
+                      <small>{count}</small>
+                    </button>
+                  </div>
                 );
               })}
             </div>
@@ -758,7 +821,40 @@ export function GraphPanel({
             initialNodes={knowledge.nodes}
             edges={knowledge.edges}
             onSelect={(id) => setSelectedConcept(id.split("::")[0])}
-          />
+          >
+            <div className="relation-mode-card" aria-label="知识图关系模式">
+              <button
+                aria-pressed={relationMode === "prerequisite"}
+                onClick={() => setRelationMode("prerequisite")}
+              >
+                <Network size={15} />
+                先修关系
+              </button>
+              <button
+                aria-pressed={relationMode === "recommended"}
+                onClick={() => setRelationMode("recommended")}
+              >
+                <Route size={15} />
+                推荐路径
+              </button>
+              <button
+                aria-pressed={relationMode === "both"}
+                onClick={() => setRelationMode("both")}
+              >
+                <Layers size={15} />
+                同时显示
+              </button>
+              <small>
+                {visibleIds.length} 个模块 ·{" "}
+                {weakComponents(
+                  visibleIds,
+                  visibleRelations.filter((r) => r.type === "recommended"),
+                ).length <= 1
+                  ? "推荐已连通"
+                  : "推荐未连通"}
+              </small>
+            </div>
+          </FlowCanvas>
         )}
       </div>
       {eventMenu && (
@@ -785,40 +881,59 @@ export function GraphPanel({
         </div>
       )}
       {editOrder && (
-        <section
-          className="recommendation-editor"
-          aria-label="编辑推荐学习顺序"
-        >
+        <section className="recommendation-editor" aria-label="编辑知识关系">
           <div className="detail-title">
-            <strong>推荐学习顺序</strong>
+            <strong>先修关系与推荐路径</strong>
             <button
               className="icon-button"
-              aria-label="关闭顺序编辑"
+              aria-label="关闭关系编辑"
               onClick={() => setEditOrder(false)}
             >
               <X size={15} />
             </button>
           </div>
-          <p>箭头表示建议先后，可按自己的学习方式调整。</p>
+          <p>
+            先修表示知识依赖，推荐表示学习建议。移除桥边前请先添加替代连接。
+          </p>
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              dispatch({
-                type: "addRecommendation",
-                source: orderSource,
-                target: orderTarget,
-              });
+              if (!orderBlocked)
+                dispatch(
+                  editKind === "prerequisite"
+                    ? {
+                        type: "addPrerequisite",
+                        source: orderSource,
+                        target: orderTarget,
+                      }
+                    : {
+                        type: "addRecommendation",
+                        source: orderSource,
+                        target: orderTarget,
+                        sessionId: session.id,
+                      },
+                );
             }}
           >
             <select
-              aria-label="推荐先学模块"
+              aria-label="新增关系类型"
+              value={editKind}
+              onChange={(e) =>
+                setEditKind(e.target.value as "prerequisite" | "recommended")
+              }
+            >
+              <option value="recommended">推荐路径</option>
+              <option value="prerequisite">先修关系</option>
+            </select>
+            <select
+              aria-label="关系起点模块"
               value={orderSource}
               onChange={(e) => setOrderSource(e.target.value)}
               required
             >
               <option value="">先学…</option>
               {state.concepts
-                .filter((c) => !c.deleted)
+                .filter((c) => visibleIds.includes(c.id))
                 .map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}
@@ -827,14 +942,14 @@ export function GraphPanel({
             </select>
             <span>→</span>
             <select
-              aria-label="推荐后学模块"
+              aria-label="关系终点模块"
               value={orderTarget}
               onChange={(e) => setOrderTarget(e.target.value)}
               required
             >
               <option value="">再学…</option>
               {state.concepts
-                .filter((c) => !c.deleted)
+                .filter((c) => visibleIds.includes(c.id))
                 .map((c) => (
                   <option key={c.id} value={c.id}>
                     {c.name}
@@ -843,24 +958,32 @@ export function GraphPanel({
             </select>
             <button
               className="btn small"
-              disabled={
-                !orderSource || !orderTarget || orderSource === orderTarget
-              }
+              disabled={!orderSource || !orderTarget || orderBlocked}
             >
               添加
             </button>
           </form>
           <div className="recommendation-list">
-            {state.relations.map((r) => (
+            {visibleRelations.map((r) => (
               <div key={r.id}>
                 <span>
+                  <small>{r.type === "prerequisite" ? "先修" : "推荐"}</small>{" "}
                   {state.concepts.find((c) => c.id === r.source)?.name} →{" "}
                   {state.concepts.find((c) => c.id === r.target)?.name}
                 </span>
                 <button
                   className="icon-button"
-                  aria-label={`反转${state.concepts.find((c) => c.id === r.source)?.name}到${state.concepts.find((c) => c.id === r.target)?.name}的推荐顺序`}
-                  title="反转顺序"
+                  aria-label={`反转${state.concepts.find((c) => c.id === r.source)?.name}到${state.concepts.find((c) => c.id === r.target)?.name}的${r.type === "prerequisite" ? "先修关系" : "推荐路径"}`}
+                  disabled={
+                    r.type === "prerequisite" &&
+                    createsPrerequisiteCycle(
+                      state.relations,
+                      r.target,
+                      r.source,
+                      r.id,
+                    )
+                  }
+                  title="反转关系"
                   onClick={() =>
                     dispatch({ type: "reverseRecommendation", id: r.id })
                   }
@@ -869,8 +992,13 @@ export function GraphPanel({
                 </button>
                 <button
                   className="icon-button danger"
-                  aria-label={`移除${state.concepts.find((c) => c.id === r.source)?.name}到${state.concepts.find((c) => c.id === r.target)?.name}的推荐`}
-                  title="移除推荐"
+                  aria-label={`移除${state.concepts.find((c) => c.id === r.source)?.name}到${state.concepts.find((c) => c.id === r.target)?.name}的${r.type === "prerequisite" ? "先修关系" : "推荐路径"}`}
+                  disabled={!canRemoveRelation(state, r.id)}
+                  title={
+                    canRemoveRelation(state, r.id)
+                      ? "移除关系"
+                      : "先添加替代连接，保持推荐路径连通"
+                  }
                   onClick={() =>
                     dispatch({ type: "removeRecommendation", id: r.id })
                   }
@@ -884,7 +1012,7 @@ export function GraphPanel({
       )}
       <div className="map-legend">
         <span>
-          <i className="legend-line" /> 主线 / 推荐顺序
+          <i className="legend-line" /> 主线 / 推荐路径
         </span>
         <span>
           <i className="legend-ring" /> 当前关联

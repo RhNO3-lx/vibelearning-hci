@@ -1,3 +1,4 @@
+import { repairRecommendations } from "./sessionGraph";
 import type { AppState, Session, Turn, Activity } from "./model";
 import { uid } from "./model";
 
@@ -173,8 +174,9 @@ export function createSeed(): AppState {
     summary: "目标：通过待办事项 API 理解接口契约与测试。",
     projectChecks: [false, false, false],
   };
-  return {
+  return repairRecommendations({
     version: 1,
+    graphVersion: 2,
     activeSessionId: "linear",
     sessions: [
       linear,
@@ -266,10 +268,10 @@ export function createSeed(): AppState {
         id: "r1",
         source: "vectors",
         target: "transform",
-        type: "recommended",
+        type: "prerequisite",
       },
-      { id: "r2", source: "transform", target: "eigen", type: "recommended" },
-      { id: "r3", source: "eigen", target: "diagonal", type: "recommended" },
+      { id: "r2", source: "transform", target: "eigen", type: "prerequisite" },
+      { id: "r3", source: "eigen", target: "diagonal", type: "prerequisite" },
     ],
     knowledgeBases: [
       {
@@ -318,7 +320,7 @@ export function createSeed(): AppState {
       defaultWorkspace: "~/learning",
       reduceMotion: false,
     },
-  };
+  });
 }
 
 export function demoTurn(

@@ -1,0 +1,20 @@
+{
+  "name": "vibe-learning-desktop",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Vibe Learning native workspace and dockable map window",
+  "main": "main.cjs",
+  "author": "Vibe Learning",
+  "license": "UNLICENSED",
+  "scripts": {
+    "prepare:ui": "npm --prefix ../frontend run build && node prepare-ui.cjs",
+    "start": "npm run prepare:ui && electron .",
+    "smoke": "npm run prepare:ui && electron . --smoke",
+    "package": "npm run prepare:ui && electron-packager . 'Vibe Learning' --platform=darwin --arch=arm64 --out=../../artifacts/desktop --overwrite --app-bundle-id=local.vibelearning.desktop --ignore=smoke-report.json",
+    "test": "node --test window-policy.test.cjs"
+  },
+  "devDependencies": {
+    "@electron/packager": "20.3.0",
+    "electron": "44.7.0"
+  }
+}

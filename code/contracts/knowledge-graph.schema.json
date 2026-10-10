@@ -54,10 +54,39 @@
             "type": "string"
           },
           "type": {
-            "const": "recommended"
+            "enum": [
+              "prerequisite",
+              "recommended"
+            ]
+          },
+          "sessionId": {
+            "type": "string"
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "allOf": [
+          {
+            "if": {
+              "properties": {
+                "type": {
+                  "const": "recommended"
+                }
+              }
+            },
+            "then": {
+              "required": [
+                "sessionId"
+              ]
+            },
+            "else": {
+              "not": {
+                "required": [
+                  "sessionId"
+                ]
+              }
+            }
+          }
+        ]
       }
     }
   }

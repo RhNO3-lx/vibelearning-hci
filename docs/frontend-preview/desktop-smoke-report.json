@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "electron": "44.7.0",
+  "checks": [
+    "bundled-ui-load",
+    "native-parent",
+    "resizable",
+    "maximizable",
+    "resize",
+    "minimize-restore",
+    "dock-destroys-child",
+    "restore-size",
+    "close-child"
+  ]
+}
