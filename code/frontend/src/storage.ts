@@ -145,7 +145,7 @@ export function parseState(raw: string | null): AppState | null {
       .filter(
         (r) =>
           r &&
-          r.type === "prerequisite" &&
+          ["prerequisite", "recommended"].includes(r.type) &&
           typeof r.id === "string" &&
           s.concepts.some((c) => c.id === r.source && !c.deleted) &&
           s.concepts.some((c) => c.id === r.target && !c.deleted) &&
@@ -155,7 +155,7 @@ export function parseState(raw: string | null): AppState | null {
         id: r.id,
         source: r.source,
         target: r.target,
-        type: "prerequisite",
+        type: "recommended",
       }));
     return s;
   } catch {

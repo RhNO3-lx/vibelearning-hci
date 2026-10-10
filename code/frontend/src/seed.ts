@@ -266,10 +266,10 @@ export function createSeed(): AppState {
         id: "r1",
         source: "vectors",
         target: "transform",
-        type: "prerequisite",
+        type: "recommended",
       },
-      { id: "r2", source: "transform", target: "eigen", type: "prerequisite" },
-      { id: "r3", source: "eigen", target: "diagonal", type: "prerequisite" },
+      { id: "r2", source: "transform", target: "eigen", type: "recommended" },
+      { id: "r3", source: "eigen", target: "diagonal", type: "recommended" },
     ],
     knowledgeBases: [
       {

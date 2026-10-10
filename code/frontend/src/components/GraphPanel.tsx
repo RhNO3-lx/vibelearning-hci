@@ -25,13 +25,19 @@ import {
   Route,
   CheckCheck,
   ExternalLink,
-  Flag,
+  ClipboardPen,
+  Swords,
+  Layers,
+  SquareArrowOutUpRight,
+  ArrowLeftRight,
   FlaskConical,
   X,
   Grip,
   PanelRightClose,
   PanelsTopLeft,
 } from "lucide-react";
+import { BoundaryEdge } from "./BoundaryEdge";
+import { eventTitleLines } from "../graphGeometry";
 import { ResizeHandle } from "./ResizeHandle";
 import {
   activeSession,
@@ -53,6 +59,8 @@ type GraphData = {
   active?: boolean;
   focus?: boolean;
   linked?: boolean;
+  categoryMatch?: boolean;
+  fullSummary?: string;
   difficulty?: string;
   goal?: boolean;
   topic?: boolean;
@@ -60,7 +68,32 @@ type GraphData = {
   expand?: () => void;
 };
 type GraphNode = Node<GraphData>;
+const eventKinds = {
+  concept: { icon: BookOpen, label: "概念讲解", color: "#7c3aed" },
+  quiz: { icon: ClipboardPen, label: "集中检测", color: "#0891b2" },
+  project: { icon: Swords, label: "实操演练", color: "#db2777" },
+  flashcard: { icon: Layers, label: "闪卡回顾", color: "#2563eb" },
+};
 function MapNode({ data }: NodeProps<GraphNode>) {
+  if (data.activity) {
+    const kind = eventKinds[data.activity],
+      Icon = kind.icon;
+    return (
+      <div
+        className={`map-node event-node ${data.active ? "active" : ""} ${data.linked ? "linked" : ""} ${data.categoryMatch ? "category-match" : ""}`}
+        title={`${kind.label} · ${data.title}\n${data.fullSummary ?? ""}`}
+      >
+        <Handle type="target" position={Position.Top} />
+        <Icon className="event-icon" size={22} style={{ color: kind.color }} />
+        <strong className="event-short-title">
+          {eventTitleLines(data.title).map((line, i) => (
+            <span key={i}>{line}</span>
+          ))}
+        </strong>
+        <Handle type="source" position={Position.Bottom} />
+      </div>
+    );
+  }
   return (
     <div
       className={`map-node ${data.activity ? "turn-node" : ""} ${data.active ? "active" : ""} ${data.linked ? "linked" : ""} ${data.topic ? "topic" : ""}`}
@@ -77,7 +110,6 @@ function MapNode({ data }: NodeProps<GraphNode>) {
           )}
           {data.activity ? activityNames[data.activity] : data.subtitle}
         </span>
-        {data.main && <Flag size={12} />}
         {data.goal && <Target size={13} />}
       </div>
       <strong>{data.title}</strong>
@@ -118,6 +150,7 @@ function MapNode({ data }: NodeProps<GraphNode>) {
   );
 }
 const nodeTypes = { map: MapNode };
+const edgeTypes = { boundary: BoundaryEdge };
 
 // Approximate text width for initial placement; React Flow measures final content height.
 function nodeWidth(title: string) {
@@ -139,6 +172,8 @@ function FlowCanvas({
   kind,
   reduceMotion,
   ratio = 1,
+  onContextMenu,
+  children,
 }: {
   initialNodes: GraphNode[];
   edges: Edge[];
@@ -146,6 +181,8 @@ function FlowCanvas({
   kind: "tree" | "knowledge";
   reduceMotion: boolean;
   ratio?: number;
+  onContextMenu?: (e: React.MouseEvent, id: string) => void;
+  children?: React.ReactNode;
 }) {
   const [nodes, setNodes, onNodesChange] =
     useNodesState<GraphNode>(initialNodes);
@@ -214,6 +251,8 @@ function FlowCanvas({
         nodes={nodes}
         edges={edges}
         nodeTypes={nodeTypes}
+        edgeTypes={edgeTypes}
+        onNodeContextMenu={(e, n) => onContextMenu?.(e, n.id)}
         onNodesChange={onNodesChange}
         onNodeClick={(_, n) => onSelect(n.id)}
         onNodeDragStop={(_, n) => {
@@ -232,6 +271,7 @@ function FlowCanvas({
         <Background gap={22} size={1} color="#d8e0ef" />
         <Controls showInteractive={false} position="top-left" />
       </ReactFlow>
+      {children}
     </div>
   );
 }
@@ -239,11 +279,12 @@ function FlowCanvas({
 function treeLayout(
   state: AppState,
   selectedConcept: string | null,
+  category: Activity | null,
 ): { nodes: GraphNode[]; edges: Edge[] } {
   const session = activeSession(state),
     turns = state.turns.filter((t) => t.sessionId === session.id),
     main = new Set(ancestors(turns, session.mainLeafId).map((t) => t.id));
-  const pitch = Math.max(...turns.map((t) => nodeWidth(t.title))) + 36;
+  const pitch = 176;
   let leaf = 0;
   const positions: Record<string, { x: number; y: number }> = {},
     visited = new Set<string>();
@@ -255,7 +296,7 @@ function treeLayout(
     const x = xs.length
       ? xs.reduce((a, b) => a + b, 0) / xs.length
       : leaf++ * pitch;
-    positions[id] = { x, y: depth * 136 };
+    positions[id] = { x, y: depth * 104 };
     return x;
   }
   place(session.rootId, 0);
@@ -271,6 +312,15 @@ function treeLayout(
           ]
         : turns.filter((t) => t.parentId === active.id).map((t) => t.id)),
     ]);
+  const related = turns.filter(
+    (t) => selectedConcept && t.conceptIds.includes(selectedConcept),
+  );
+  const filtered = turns.filter((t) => category && t.activity === category);
+  const focusedIds = category
+    ? new Set(filtered.map((t) => t.id))
+    : related.length
+      ? new Set(related.map((t) => t.id))
+      : focus;
   return {
     nodes: turns.map((t) => ({
       id: t.id,
@@ -278,7 +328,7 @@ function treeLayout(
       ariaLabel: `对话节点：${t.title}`,
       ariaRole: "button",
       position: positions[t.id] ?? { x: 0, y: 0 },
-      style: { width: nodeWidth(t.title) },
+      style: { width: 136 },
       data: {
         title: t.title,
         activity: t.activity,
@@ -291,7 +341,9 @@ function treeLayout(
             .join(" · ") || "学习目标",
         main: main.has(t.id),
         active: t.id === session.activeId,
-        focus: focus.has(t.id),
+        fullSummary: t.summary,
+        focus: focusedIds.has(t.id),
+        categoryMatch: !!category && t.activity === category,
         linked: !!selectedConcept && t.conceptIds.includes(selectedConcept),
       },
     })),
@@ -301,7 +353,7 @@ function treeLayout(
         id: `tree-${t.id}`,
         source: t.parentId!,
         target: t.id,
-        type: "default",
+        type: "boundary",
         style: {
           stroke: main.has(t.id) ? "#8b5cf6" : "#c4b5fd",
           strokeWidth: main.has(t.id) ? 2 : 1.5,
@@ -319,7 +371,7 @@ export function GraphPanel({
   state,
   dispatch,
   selectedConcept,
-  setSelectedConcept,
+  setSelectedConcept: selectConcept,
   selectionOrigin,
   onSelectTree,
   tab,
@@ -337,6 +389,9 @@ export function GraphPanel({
   onDock,
   onClose,
   onDrag,
+  onPopOut,
+  popOutUrl,
+  external,
 }: {
   state: AppState;
   dispatch: (action: Action) => void;
@@ -359,19 +414,39 @@ export function GraphPanel({
   onDock: () => void;
   onClose: () => void;
   onDrag: (event: React.PointerEvent<HTMLDivElement>) => void;
+  onPopOut: () => void;
+  popOutUrl: string;
+  external: boolean;
 }) {
   const session = activeSession(state),
     current = state.turns.find((t) => t.id === session.activeId)!;
   const concept = state.concepts.find(
     (c) => c.id === selectedConcept && !c.deleted,
   );
+  const [category, setCategory] = useState<Activity | null>(null);
+  const setSelectedConcept = useCallback(
+    (id: string | null) => {
+      setCategory(null);
+      selectConcept(id);
+    },
+    [selectConcept],
+  );
+  const [eventMenu, setEventMenu] = useState<{
+    id: string;
+    x: number;
+    y: number;
+  } | null>(null);
+  const [editOrder, setEditOrder] = useState(false);
+  const [orderSource, setOrderSource] = useState(""),
+    [orderTarget, setOrderTarget] = useState("");
   const tree = useMemo(
     () =>
       treeLayout(
         state,
         selectionOrigin === "knowledge" ? selectedConcept : null,
+        category,
       ),
-    [state, selectedConcept, selectionOrigin],
+    [state, selectedConcept, selectionOrigin, category],
   );
   const toggleExpand = useCallback(
     (id: string) => {
@@ -419,15 +494,15 @@ export function GraphPanel({
       id: r.id,
       source: r.source,
       target: r.target,
-      type: "default",
-      label: "先修",
+      type: "boundary",
+      label: "推荐",
       labelStyle: { fontSize: 10, fill: "#64748b" },
       labelBgStyle: { fill: "#f8fafc" },
       style: {
-        stroke: "#7da2e4",
+        stroke: "#22b8cf",
         strokeWidth: 1.4,
       },
-      markerEnd: { type: MarkerType.ArrowClosed, color: "#7da2e4" },
+      markerEnd: { type: MarkerType.ArrowClosed, color: "#22b8cf" },
     }));
     for (const c of concepts.filter((c) => expanded.includes(c.id)))
       c.topics.forEach((topic, i) => {
@@ -456,7 +531,7 @@ export function GraphPanel({
           id: `part-${id}`,
           source: c.id,
           target: id,
-          type: "default",
+          type: "boundary",
           style: { stroke: "#cbd5e1", strokeDasharray: "2 3" },
         });
       });
@@ -470,18 +545,45 @@ export function GraphPanel({
     expanded,
     toggleExpand,
   ]);
-  const relatedTurns = state.turns.filter((t) =>
-    t.conceptIds.includes(selectedConcept ?? ""),
+  const relatedTurns = state.turns.filter(
+    (t) =>
+      t.sessionId === session.id &&
+      t.conceptIds.includes(selectedConcept ?? ""),
   );
   const contexts = session.contexts[current.branchId]?.updates ?? [];
   const [showUpdates, setShowUpdates] = useState(false),
     [splitRatio, setSplitRatio] = useState(0.5);
-  const mapsContainer = useRef<HTMLDivElement>(null);
+  const mapsContainer = useRef<HTMLDivElement>(null),
+    eventMenuRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    setCategory(null);
+    setEventMenu(null);
+  }, [session.id]);
+  useEffect(() => {
+    if (!eventMenu) return;
+    const doc = mapsContainer.current?.ownerDocument ?? document;
+    eventMenuRef.current
+      ?.querySelector<HTMLButtonElement>("button:not(:disabled)")
+      ?.focus();
+    const dismiss = (e: Event) => {
+      if (!eventMenuRef.current?.contains(e.target as globalThis.Node))
+        setEventMenu(null);
+    };
+    const key = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setEventMenu(null);
+    };
+    doc.addEventListener("pointerdown", dismiss);
+    doc.addEventListener("keydown", key);
+    return () => {
+      doc.removeEventListener("pointerdown", dismiss);
+      doc.removeEventListener("keydown", key);
+    };
+  }, [eventMenu]);
   return (
     <>
       <div
         className={`panel-heading ${floating ? "draggable" : ""}`}
-        onPointerDown={onDrag}
+        onPointerDown={external ? undefined : onDrag}
       >
         <div className="panel-title">
           <Grip size={15} />
@@ -489,6 +591,21 @@ export function GraphPanel({
           <span>看见你的思考</span>
         </div>
         <div className="button-row">
+          {!external && (
+            <a
+              className="icon-button"
+              aria-label="在独立窗口打开地图"
+              title="在独立窗口打开地图"
+              href={popOutUrl}
+              target="_blank"
+              onClick={(e) => {
+                e.preventDefault();
+                onPopOut();
+              }}
+            >
+              <SquareArrowOutUpRight size={16} />
+            </a>
+          )}
           <button
             className="icon-button"
             title={floating ? "吸附到右侧" : "浮动学习地图"}
@@ -537,9 +654,18 @@ export function GraphPanel({
         <span>
           <i className="legend-dot" />
           {tab === "knowledge"
-            ? "全局模块 · 箭头表示先修"
+            ? "全局模块 · 推荐学习顺序"
             : `当前会话 · ${tree.nodes.length} 个节点`}
         </span>
+        {tab !== "tree" && (
+          <button
+            className="text-button"
+            onClick={() => setEditOrder((v) => !v)}
+          >
+            <ArrowLeftRight size={13} />
+            编辑顺序
+          </button>
+        )}
         {tab !== "tree" && (
           <button className="text-button" onClick={onAddConcept}>
             <Plus size={14} />
@@ -556,10 +682,47 @@ export function GraphPanel({
             kind="tree"
             initialNodes={tree.nodes}
             edges={tree.edges}
-            onSelect={onSelectTree}
+            onSelect={(id) => {
+              setCategory(null);
+              onSelectTree(id);
+            }}
+            onContextMenu={(e, id) => {
+              e.preventDefault();
+              const view =
+                mapsContainer.current?.ownerDocument.defaultView ?? window;
+              setEventMenu({
+                id,
+                x: Math.max(8, Math.min(e.clientX, view.innerWidth - 228)),
+                y: Math.max(8, Math.min(e.clientY, view.innerHeight - 75)),
+              });
+            }}
             reduceMotion={state.settings.reduceMotion}
             ratio={tab === "both" ? splitRatio : 1}
-          />
+          >
+            <div className="event-category-card" aria-label="事件类别">
+              {Object.entries(eventKinds).map(([id, kind]) => {
+                const Icon = kind.icon,
+                  count = state.turns.filter(
+                    (t) => t.sessionId === session.id && t.activity === id,
+                  ).length;
+                return (
+                  <button
+                    key={id}
+                    className={category === id ? "selected" : ""}
+                    aria-pressed={category === id}
+                    aria-label={`高亮${kind.label}事件`}
+                    onClick={() => {
+                      setCategory(category === id ? null : (id as Activity));
+                    }}
+                  >
+                    <Icon size={17} style={{ color: kind.color }} />
+                    <span>{kind.label}</span>
+                    <small>{count}</small>
+                  </button>
+                );
+              })}
+            </div>
+          </FlowCanvas>
         )}
         {tab === "both" && (
           <ResizeHandle
@@ -598,9 +761,130 @@ export function GraphPanel({
           />
         )}
       </div>
+      {eventMenu && (
+        <div
+          ref={eventMenuRef}
+          className="session-context-menu event-context-menu"
+          role="menu"
+          aria-label="事件操作"
+          style={{ left: eventMenu.x, top: eventMenu.y }}
+        >
+          <button
+            role="menuitem"
+            disabled={state.turns.some((t) => t.parentId === eventMenu.id)}
+            onClick={() => {
+              dispatch({ type: "mainline", id: eventMenu.id });
+              setEventMenu(null);
+            }}
+          >
+            设为主线终点
+          </button>
+          {state.turns.some((t) => t.parentId === eventMenu.id) && (
+            <small>仅叶子事件可设为终点</small>
+          )}
+        </div>
+      )}
+      {editOrder && (
+        <section
+          className="recommendation-editor"
+          aria-label="编辑推荐学习顺序"
+        >
+          <div className="detail-title">
+            <strong>推荐学习顺序</strong>
+            <button
+              className="icon-button"
+              aria-label="关闭顺序编辑"
+              onClick={() => setEditOrder(false)}
+            >
+              <X size={15} />
+            </button>
+          </div>
+          <p>箭头表示建议先后，可按自己的学习方式调整。</p>
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              dispatch({
+                type: "addRecommendation",
+                source: orderSource,
+                target: orderTarget,
+              });
+            }}
+          >
+            <select
+              aria-label="推荐先学模块"
+              value={orderSource}
+              onChange={(e) => setOrderSource(e.target.value)}
+              required
+            >
+              <option value="">先学…</option>
+              {state.concepts
+                .filter((c) => !c.deleted)
+                .map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+            </select>
+            <span>→</span>
+            <select
+              aria-label="推荐后学模块"
+              value={orderTarget}
+              onChange={(e) => setOrderTarget(e.target.value)}
+              required
+            >
+              <option value="">再学…</option>
+              {state.concepts
+                .filter((c) => !c.deleted)
+                .map((c) => (
+                  <option key={c.id} value={c.id}>
+                    {c.name}
+                  </option>
+                ))}
+            </select>
+            <button
+              className="btn small"
+              disabled={
+                !orderSource || !orderTarget || orderSource === orderTarget
+              }
+            >
+              添加
+            </button>
+          </form>
+          <div className="recommendation-list">
+            {state.relations.map((r) => (
+              <div key={r.id}>
+                <span>
+                  {state.concepts.find((c) => c.id === r.source)?.name} →{" "}
+                  {state.concepts.find((c) => c.id === r.target)?.name}
+                </span>
+                <button
+                  className="icon-button"
+                  aria-label={`反转${state.concepts.find((c) => c.id === r.source)?.name}到${state.concepts.find((c) => c.id === r.target)?.name}的推荐顺序`}
+                  title="反转顺序"
+                  onClick={() =>
+                    dispatch({ type: "reverseRecommendation", id: r.id })
+                  }
+                >
+                  <ArrowLeftRight size={14} />
+                </button>
+                <button
+                  className="icon-button danger"
+                  aria-label={`移除${state.concepts.find((c) => c.id === r.source)?.name}到${state.concepts.find((c) => c.id === r.target)?.name}的推荐`}
+                  title="移除推荐"
+                  onClick={() =>
+                    dispatch({ type: "removeRecommendation", id: r.id })
+                  }
+                >
+                  <Trash2 size={14} />
+                </button>
+              </div>
+            ))}
+          </div>
+        </section>
+      )}
       <div className="map-legend">
         <span>
-          <i className="legend-line" /> 主线 / 先修
+          <i className="legend-line" /> 主线 / 推荐顺序
         </span>
         <span>
           <i className="legend-ring" /> 当前关联
@@ -637,10 +921,12 @@ export function GraphPanel({
               </button>
               <button
                 className="btn small"
+                disabled={state.turns.some((t) => t.parentId === current.id)}
                 onClick={() => dispatch({ type: "mainline", id: current.id })}
               >
-                <Flag size={14} />
-                {session.mainLeafId === current.id ? "当前主线" : "设为主线"}
+                {session.mainLeafId === current.id
+                  ? "主线终点"
+                  : "设为主线终点"}
               </button>
               <button
                 className="icon-button danger"
@@ -756,7 +1042,7 @@ export function GraphPanel({
                 ))}
               </div>
               <details className="relation-details">
-                <summary>先修关系</summary>
+                <summary>推荐学习顺序</summary>
                 {state.relations
                   .filter(
                     (r) => r.source === concept.id || r.target === concept.id,
@@ -767,7 +1053,7 @@ export function GraphPanel({
                         {state.concepts.find((c) => c.id === r.source)?.name} →{" "}
                         {state.concepts.find((c) => c.id === r.target)?.name}
                       </strong>
-                      <p>先修关系</p>
+                      <p>推荐先学前者，可自由调整</p>
                     </div>
                   ))}
               </details>

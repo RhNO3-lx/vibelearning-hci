@@ -3222,3 +3222,204 @@ select:focus {
   background: #e9d5ff;
   color: #581c87;
 }
+
+/* Center-boundary links, compact events, and cyan knowledge selections. */
+.boundary-edge-label {
+  position: absolute;
+  font-size: 9px;
+  color: #0e7490;
+  background: #f8fafce8;
+  padding: 1px 4px;
+  border-radius: 3px;
+  pointer-events: none;
+}
+.knowledge-canvas {
+  --node-accent: #0891b2 !important;
+  --node-tint: #ecfeff !important;
+}
+.knowledge-canvas .map-node.active {
+  border-color: #06b6d4;
+  background: #ecfeff;
+}
+.knowledge-canvas .map-node.active strong {
+  color: #0e7490;
+}
+.tree-canvas .map-node.linked {
+  box-shadow: 0 0 12px 4px #06b6d450;
+}
+.graph-tabs button:nth-child(2).selected {
+  color: #0891b2;
+}
+.map-node .react-flow__handle {
+  opacity: 0;
+  pointer-events: none;
+}
+.map-node.event-node {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px;
+  min-height: 48px;
+  border-radius: 6px;
+}
+.event-short-title {
+  font-size: 12px !important;
+  line-height: 1.55 !important;
+  font-weight: 550;
+}
+.event-short-title span {
+  display: block;
+  white-space: nowrap;
+}
+.event-icon {
+  opacity: 0.5;
+}
+.event-node.active .event-icon,
+.event-node.linked .event-icon,
+.event-node.category-match .event-icon {
+  opacity: 1;
+}
+.event-node.category-match {
+  border-color: #a78bfa;
+  background: #faf5ff;
+  box-shadow: 0 0 10px #8b5cf633;
+}
+.tree-canvas {
+  display: flex;
+}
+.tree-canvas > .react-flow {
+  flex: 1;
+  width: 0;
+}
+.event-category-card {
+  flex: 0 0 115px;
+  align-self: center;
+  margin: 0 7px;
+  padding: 5px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 7px;
+  box-shadow: 0 2px 8px #0f172a05;
+}
+.event-category-card button {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 8px 3px;
+  width: 100%;
+  font-size: 10px;
+  background: transparent;
+  border: 0;
+  border-radius: 4px;
+}
+.event-category-card small {
+  margin-left: auto;
+  color: #94a3b8;
+}
+.event-category-card button.selected {
+  background: #f5f3ff;
+  color: #7c3aed;
+}
+.event-context-menu {
+  width: 220px;
+}
+.event-context-menu small {
+  display: block;
+  padding: 4px 10px;
+  color: #64748b;
+  font-size: 11px;
+}
+.recommendation-editor {
+  flex-shrink: 0;
+  padding: 12px 16px;
+  background: #fff;
+  border-top: 1px solid #e2e8f0;
+  border-bottom: 1px solid #e2e8f0;
+  font-size: 11px;
+  max-height: 260px;
+  overflow: auto;
+}
+.recommendation-editor p {
+  color: #64748b;
+  margin: 6px 0;
+}
+.recommendation-editor form {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.recommendation-editor select {
+  min-width: 0;
+  flex: 1;
+  font-size: 10px;
+  padding: 6px;
+  border: 1px solid #e2e8f0;
+  border-radius: 4px;
+}
+.recommendation-list > div {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 6px 0;
+  border-top: 1px solid #f1f5f9;
+}
+.recommendation-list > div > span {
+  flex: 1;
+}
+.floating-panel {
+  border-radius: 8px;
+  min-width: 330px;
+  min-height: 420px;
+  overflow: auto;
+}
+.floating-panel > * {
+  flex-shrink: 0;
+}
+.floating-panel > .maps-container {
+  flex-shrink: 1;
+}
+.floating-panel .panel-heading {
+  background: #f5f3ff;
+  cursor: move;
+  user-select: none;
+}
+.external-map-root .panel-heading {
+  background: #f5f3ff;
+}
+@media (max-width: 650px) {
+  .event-category-card {
+    flex-basis: 35px;
+    padding: 3px;
+    margin: 0 4px;
+  }
+  .event-category-card span,
+  .event-category-card small {
+    display: none;
+  }
+  .event-category-card button {
+    justify-content: center;
+    padding: 9px 2px;
+  }
+  .floating-panel {
+    min-width: min(330px, calc(100vw - 16px));
+  }
+}
+
+.detached-map {
+  height: 100dvh;
+  width: 100vw;
+}
+.graph-panel:not(.floating-panel) {
+  position: relative;
+}
+.recommendation-editor {
+  position: absolute;
+  bottom: 140px;
+  left: 10px;
+  right: 10px;
+  z-index: 12;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px #0f172a18;
+  max-height: 45%;
+}

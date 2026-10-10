@@ -265,6 +265,7 @@ describe("revised configuration and legacy migration", () => {
       relations: [
         {
           ...seed.relations[0],
+          type: "prerequisite",
           confidence: 80,
           help: "旧属性",
           sourceNote: "旧来源",
@@ -295,9 +296,9 @@ describe("revised configuration and legacy migration", () => {
         id: "dangling",
         source: "missing",
         target: "eigen",
-        type: "prerequisite",
+        type: "recommended",
       },
-      { id: "self", source: "eigen", target: "eigen", type: "prerequisite" },
+      { id: "self", source: "eigen", target: "eigen", type: "recommended" },
     );
     const restored = parseState(JSON.stringify(seed))!;
     expect(restored.settings.defaultWorkspace).toBe("~/custom-default");
@@ -305,5 +306,69 @@ describe("revised configuration and legacy migration", () => {
     expect(
       restored.concepts.every((c) => typeof c.difficulty === "string"),
     ).toBe(true);
+  });
+});
+
+describe("recommended order and leaf mainline", () => {
+  it("preserves direction when upgrading prerequisite edges", () => {
+    const seed = createSeed();
+    const legacy = {
+      ...seed,
+      relations: seed.relations.map((r) => ({ ...r, type: "prerequisite" })),
+    };
+    expect(parseState(JSON.stringify(legacy))?.relations).toEqual(
+      seed.relations,
+    );
+  });
+  it("lets learners add, reverse and remove recommendations without changing evidence or routes", () => {
+    const seed = createSeed();
+    let state = reducer(seed, {
+      type: "addRecommendation",
+      source: "testing",
+      target: "eigen",
+    });
+    const relation = state.relations.at(-1)!;
+    expect(state.relations).toHaveLength(seed.relations.length + 1);
+    state = reducer(state, { type: "reverseRecommendation", id: relation.id });
+    expect(state.relations.at(-1)).toMatchObject({
+      source: "eigen",
+      target: "testing",
+    });
+    state = reducer(state, { type: "removeRecommendation", id: relation.id });
+    expect(state.relations).toEqual(seed.relations);
+    expect(state.sessions).toEqual(seed.sessions);
+    expect(state.evidence).toEqual(seed.evidence);
+  });
+  it("ignores self, duplicate and missing-node recommendations", () => {
+    const seed = createSeed();
+    for (const [source, target] of [
+      ["eigen", "eigen"],
+      ["missing", "testing"],
+      ["vectors", "transform"],
+    ]) {
+      expect(reducer(seed, { type: "addRecommendation", source, target })).toBe(
+        seed,
+      );
+    }
+  });
+  it("only accepts a leaf as the mainline endpoint", () => {
+    const seed = createSeed();
+    expect(reducer(seed, { type: "mainline", id: "t2" })).toBe(seed);
+    expect(
+      activeSession(reducer(seed, { type: "mainline", id: "t4" })).mainLeafId,
+    ).toBe("t4");
+    const next = reducer(seed, {
+      type: "addTurn",
+      turn: demoTurn(
+        seed.turns.find((t) => t.id === "t3")!,
+        "继续",
+        "concept",
+        ["diagonal"],
+        true,
+      ),
+    });
+    expect(
+      next.turns.some((t) => t.parentId === activeSession(next).mainLeafId),
+    ).toBe(false);
   });
 });

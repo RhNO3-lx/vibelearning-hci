@@ -7,6 +7,7 @@ import {
   type PointerEvent,
   type CSSProperties,
 } from "react";
+import { useMapWindow } from "./components/useMapWindow";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import remarkMath from "remark-math";
@@ -21,7 +22,6 @@ import {
   ChevronRight,
   CircleHelp,
   FileText,
-  Flag,
   FolderOpen,
   GitBranch,
   GraduationCap,
@@ -147,7 +147,7 @@ const navItems = [
 ];
 
 export default function App() {
-  const [state, dispatch] = useReducer(reducer, undefined, loadState),
+  const [state, localDispatch] = useReducer(reducer, undefined, loadState),
     [page, setPage] = useState<Page>("learn");
   const [dialog, setDialog] = useState<Dialog | null>(null),
     [draft, setDraft] = useState(""),
@@ -173,6 +173,18 @@ export default function App() {
       y: number;
     } | null>(null),
     [sessionName, setSessionName] = useState("");
+  const mapWindow = useMapWindow({
+    state,
+    dispatch: localDispatch,
+    view: { selectedConcept, selectionOrigin },
+    onView: (view) => {
+      setSelectedConcept(view.selectedConcept);
+      setSelectionOrigin(view.selectionOrigin);
+    },
+    onDismiss: () => setFloating(false),
+    onHide: () => setMapOpen(false),
+  });
+  const dispatch = mapWindow.dispatch;
   const workbench = useRef<HTMLDivElement>(null),
     menuRef = useRef<HTMLDivElement>(null);
   const [floatPos, setFloatPos] = useState({ x: 680, y: 90 }),
@@ -226,7 +238,7 @@ export default function App() {
   const notify = (text: string) => setToast(text);
 
   useEffect(() => {
-    setSaved(saveState(state));
+    if (!mapWindow.detached) setSaved(saveState(state));
   }, [state]);
   useEffect(() => {
     if (!toast) return;
@@ -430,8 +442,14 @@ export default function App() {
     });
   }
   function startFloatDrag(e: PointerEvent<HTMLDivElement>) {
-    if ((e.target as HTMLElement).closest("button")) return;
+    if (
+      mapWindow.detached ||
+      e.button !== 0 ||
+      (e.target as HTMLElement).closest("button")
+    )
+      return;
     if (!floating && !(e.target as HTMLElement).closest(".panel-title")) return;
+    e.preventDefault();
     const rect = e.currentTarget.parentElement!.getBoundingClientRect();
     const pos = floating
       ? { ...floatPos }
@@ -457,11 +475,18 @@ export default function App() {
     function end(ev: globalThis.PointerEvent) {
       window.removeEventListener("pointermove", drag);
       window.removeEventListener("pointerup", end);
+      window.removeEventListener("pointercancel", cancel);
       if (ev.clientX > window.innerWidth - 70) {
         setFloating(false);
         notify("学习地图已吸附到右侧");
       }
     }
+    function cancel() {
+      window.removeEventListener("pointermove", drag);
+      window.removeEventListener("pointerup", end);
+      window.removeEventListener("pointercancel", cancel);
+    }
+    window.addEventListener("pointercancel", cancel);
     window.addEventListener("pointermove", drag);
     window.addEventListener("pointerup", end);
   }
@@ -498,15 +523,622 @@ export default function App() {
       setDialog({ type: "addConcept" });
     },
     onPath: () => setDialog({ type: "path" }),
-    floating,
+    floating: floating || mapWindow.detached,
     onFloat: () => {
       setFloating(true);
       setFloatPos({ x: Math.max(8, window.innerWidth - 490), y: 84 });
     },
-    onDock: () => setFloating(false),
-    onClose: () => setMapOpen(false),
+    external: mapWindow.detached,
+    popOutUrl: mapWindow.url,
+    onPopOut: () => {
+      if (mapWindow.open()) {
+        setFloating(true);
+        setMapOpen(true);
+      } else {
+        setFloating(true);
+        notify("此浏览器未开放独立窗口，已改为应用内浮动地图");
+      }
+    },
+    onDock: () => {
+      mapWindow.close();
+      setFloating(false);
+    },
+    onClose: () => {
+      mapWindow.close(true);
+      setFloating(false);
+      setMapOpen(false);
+    },
     onDrag: startFloatDrag,
   };
+
+  const dialogElement = dialog && (
+    <Modal
+      title={
+        dialog.type === "new"
+          ? "开始一段新的探索"
+          : dialog.type === "path"
+            ? "调整我的学习路线"
+            : dialog.type === "workspace"
+              ? "设置会话工作区"
+              : dialog.type === "rename"
+                ? "重命名会话"
+                : dialog.type === "resources"
+                  ? "这次学习使用什么？"
+                  : dialog.type === "removePath"
+                    ? "将模块移出当前路线"
+                    : dialog.type === "addConcept"
+                      ? "添加一个知识模块"
+                      : dialog.type === "help"
+                        ? "欢迎来到 Vibe Learning"
+                        : dialog.type === "reset"
+                          ? "重置演示工作台"
+                          : "确认删除"
+      }
+      onClose={() => setDialog(null)}
+    >
+      {dialog.type === "new" && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            if (!goal.trim()) return;
+            const created = createSession(
+              goal.trim(),
+              workspace.trim() ||
+                state.settings.defaultWorkspace ||
+                "~/learning",
+              newKbIds,
+            );
+            dispatch({ type: "newSession", ...created });
+            setSelectedConcept(null);
+            navigate("learn");
+            setDialog(null);
+          }}
+        >
+          <p className="modal-intro">
+            先说清楚想学会什么。一个具体目标，是探索的起点。
+          </p>
+          <label className="full-label">
+            学习目标
+            <textarea
+              autoFocus
+              placeholder="例如：理解特征值的几何意义，并能解释对角化证明"
+              value={goal}
+              onChange={(e) => setGoal(e.target.value)}
+              required
+            />
+          </label>
+          <label className="full-label">
+            会话工作区
+            <input
+              value={workspace}
+              onChange={(e) => setWorkspace(e.target.value)}
+            />
+            <small>所有轮次共用此路径；本地文件操作将在后端接入。</small>
+          </label>
+          <div className="option-list">
+            {state.knowledgeBases.map((k) => (
+              <label key={k.id}>
+                <input
+                  type="checkbox"
+                  checked={newKbIds.includes(k.id)}
+                  onChange={(e) =>
+                    setNewKbIds((v) =>
+                      e.target.checked
+                        ? [...v, k.id]
+                        : v.filter((id) => id !== k.id),
+                    )
+                  }
+                />
+                <BookOpen size={15} />
+                {k.name}
+              </label>
+            ))}
+          </div>
+          <div className="modal-actions">
+            <button
+              type="button"
+              className="btn"
+              onClick={() => setDialog(null)}
+            >
+              取消
+            </button>
+            <button className="btn primary" disabled={!goal.trim()}>
+              开始学习 <ArrowUpRight size={15} />
+            </button>
+          </div>
+        </form>
+      )}
+      {(dialog.type === "workspace" || dialog.type === "rename") && (
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            const value =
+              dialog.type === "rename" ? sessionName.trim() : workspace.trim();
+            if (!value) return;
+            dispatch({
+              type: "sessionConfig",
+              id: dialog.id,
+              patch:
+                dialog.type === "rename"
+                  ? { title: value }
+                  : { workspace: value },
+            });
+            setDialog(null);
+          }}
+        >
+          <p className="modal-intro">
+            {state.sessions.find((s) => s.id === dialog.id)?.title}
+          </p>
+          <label className="full-label">
+            {dialog.type === "rename" ? "会话名称" : "工作区路径"}
+            <input
+              required
+              value={dialog.type === "rename" ? sessionName : workspace}
+              onChange={(e) =>
+                dialog.type === "rename"
+                  ? setSessionName(e.target.value)
+                  : setWorkspace(e.target.value)
+              }
+            />
+            {dialog.type === "workspace" && (
+              <small>此会话所有轮次共用一个工作区。</small>
+            )}
+          </label>
+          <div className="modal-actions">
+            <button
+              type="button"
+              className="btn"
+              onClick={() => setDialog(null)}
+            >
+              取消
+            </button>
+            <button className="btn primary">
+              {dialog.type === "rename" ? "保存名称" : "保存工作区"}
+            </button>
+          </div>
+        </form>
+      )}
+      {dialog.type === "resources" && (
+        <>
+          <p className="modal-intro">
+            选择参与当前会话的资料与能力。此原型保留选择，检索和调用待接入。
+          </p>
+          <h4 className="modal-section-title">
+            <BookOpen size={15} /> 知识库
+          </h4>
+          <div className="option-list">
+            {state.knowledgeBases.map((k) => (
+              <label key={k.id}>
+                <input
+                  type="checkbox"
+                  checked={session.kbIds.includes(k.id)}
+                  onChange={(e) =>
+                    dispatch({
+                      type: "sessionConfig",
+                      id: session.id,
+                      patch: {
+                        kbIds: e.target.checked
+                          ? [...session.kbIds, k.id]
+                          : session.kbIds.filter((id) => id !== k.id),
+                      },
+                    })
+                  }
+                />
+                {k.name}
+                <small>{k.files.length} 份资料</small>
+              </label>
+            ))}
+            {!state.knowledgeBases.length && (
+              <p>还没有知识库，可在侧边栏添加。</p>
+            )}
+          </div>
+          <label className="full-label">
+            <span>
+              <Bot size={15} /> 辅助 Agent
+            </span>
+            <select
+              aria-label="辅助 Agent"
+              value={session.agentId}
+              onChange={(e) =>
+                dispatch({
+                  type: "sessionConfig",
+                  id: session.id,
+                  patch: { agentId: e.target.value },
+                })
+              }
+            >
+              <option value="">不指定</option>
+              {state.agents
+                .filter((a) => a.enabled)
+                .map((a) => (
+                  <option value={a.id} key={a.id}>
+                    {a.name}
+                  </option>
+                ))}
+            </select>
+          </label>
+          <h4 className="modal-section-title">
+            <Sparkles size={15} /> 技能
+          </h4>
+          <div className="option-list">
+            {state.skills
+              .filter((s) => s.enabled)
+              .map((s) => (
+                <label key={s.id}>
+                  <input
+                    type="checkbox"
+                    checked={session.skillIds.includes(s.id)}
+                    onChange={(e) =>
+                      dispatch({
+                        type: "sessionConfig",
+                        id: session.id,
+                        patch: {
+                          skillIds: e.target.checked
+                            ? [...session.skillIds, s.id]
+                            : session.skillIds.filter((id) => id !== s.id),
+                        },
+                      })
+                    }
+                  />
+                  {s.name}
+                </label>
+              ))}
+            {!state.skills.some((s) => s.enabled) && (
+              <p>暂无启用的技能。可在技能页配置。</p>
+            )}
+          </div>
+          <div className="modal-actions">
+            <button
+              className="btn"
+              onClick={() => {
+                setDialog(null);
+                navigate("knowledge");
+              }}
+            >
+              管理资料
+            </button>
+            <button className="btn primary" onClick={() => setDialog(null)}>
+              完成选择
+            </button>
+          </div>
+        </>
+      )}
+      {dialog.type === "path" && (
+        <>
+          <p className="modal-intro">
+            路线是你的参考路标。调整顺序，或选择暂时不学的模块。
+          </p>
+          <div className="path-editor">
+            {session.pathIds.map((id, i) => (
+              <div key={id}>
+                <span className="path-order">{i + 1}</span>
+                <span>{state.concepts.find((c) => c.id === id)?.name}</span>
+                <button
+                  className="icon-button"
+                  disabled={i === 0}
+                  aria-label={`上移${state.concepts.find((c) => c.id === id)?.name}`}
+                  onClick={() =>
+                    dispatch({
+                      type: "reorderPath",
+                      sessionId: session.id,
+                      from: i,
+                      to: i - 1,
+                    })
+                  }
+                >
+                  <ArrowUp size={14} />
+                </button>
+                <button
+                  className="icon-button"
+                  disabled={i === session.pathIds.length - 1}
+                  aria-label={`下移${state.concepts.find((c) => c.id === id)?.name}`}
+                  onClick={() =>
+                    dispatch({
+                      type: "reorderPath",
+                      sessionId: session.id,
+                      from: i,
+                      to: i + 1,
+                    })
+                  }
+                >
+                  <ArrowDown size={14} />
+                </button>
+                <button
+                  className="icon-button danger"
+                  aria-label={`移出路线${state.concepts.find((c) => c.id === id)?.name}`}
+                  onClick={() => {
+                    setReason("暂不相关");
+                    setDialog({ type: "removePath", id });
+                  }}
+                >
+                  <X size={14} />
+                </button>
+              </div>
+            ))}
+          </div>
+          <h4 className="modal-section-title">可以加入的模块</h4>
+          <div className="available-modules">
+            {state.concepts
+              .filter((c) => !c.deleted && !session.pathIds.includes(c.id))
+              .map((c) => (
+                <button
+                  className="btn small"
+                  key={c.id}
+                  onClick={() =>
+                    dispatch({
+                      type: "addPath",
+                      sessionId: session.id,
+                      conceptId: c.id,
+                    })
+                  }
+                >
+                  <Plus size={13} />
+                  {c.name}
+                </button>
+              ))}
+          </div>
+          {session.exclusions.length > 0 && (
+            <details className="exclusions">
+              <summary>查看移出原因</summary>
+              {session.exclusions.map((e) => (
+                <p key={e.conceptId}>
+                  {state.concepts.find((c) => c.id === e.conceptId)?.name ??
+                    "历史模块"}
+                  ：{e.reason}
+                </p>
+              ))}
+            </details>
+          )}
+          <div className="modal-actions">
+            <button className="btn" onClick={consultRoute}>
+              <Bot size={15} />
+              咨询学习伙伴
+            </button>
+            <button className="btn primary" onClick={() => setDialog(null)}>
+              完成调整
+            </button>
+          </div>
+        </>
+      )}
+      {dialog.type === "removePath" && (
+        <>
+          <p className="modal-intro">
+            「{state.concepts.find((c) => c.id === dialog.id)?.name}
+            」仅从当前路线移出，全局模块与掌握记录保留。
+          </p>
+          <div className="option-list">
+            {["已学过", "暂不相关", "稍后学习"].map((item) => (
+              <label key={item}>
+                <input
+                  type="radio"
+                  name="reason"
+                  value={item}
+                  checked={reason === item}
+                  onChange={() => setReason(item)}
+                />
+                {item}
+              </label>
+            ))}
+          </div>
+          <div className="modal-actions">
+            <button className="btn" onClick={() => setDialog({ type: "path" })}>
+              返回
+            </button>
+            <button
+              className="btn primary"
+              onClick={() => {
+                dispatch({
+                  type: "removePath",
+                  sessionId: session.id,
+                  conceptId: dialog.id,
+                  reason,
+                });
+                setDialog({ type: "path" });
+              }}
+            >
+              移出路线
+            </button>
+          </div>
+        </>
+      )}
+      {dialog.type === "addConcept" && (
+        <>
+          <p className="modal-intro">
+            先添加模块范围。详细知识划分与可靠关系将在后端阶段建立。
+          </p>
+          <label className="full-label">
+            模块名称
+            <input
+              value={moduleName}
+              onChange={(e) => setModuleName(e.target.value)}
+              placeholder="例如：内积与正交性"
+            />
+          </label>
+          <label className="full-label">
+            范围或学习目标
+            <textarea
+              value={moduleSummary}
+              onChange={(e) => setModuleSummary(e.target.value)}
+            />
+          </label>
+          <div className="modal-actions">
+            <button
+              className="btn primary"
+              disabled={!moduleName.trim()}
+              onClick={() => {
+                const concept: Concept = {
+                  id: uid("concept"),
+                  name: moduleName.trim(),
+                  summary: moduleSummary.trim(),
+                  category: "自定义",
+                  difficulty: "待评估",
+                  challenge: "尚未记录",
+                  topics: [],
+                  source: "学习者添加 · 待核实",
+                  sourceUrl: "",
+                  baseScore: null,
+                };
+                dispatch({
+                  type: "addConcept",
+                  concept,
+                  sessionId: session.id,
+                });
+                setSelectedConcept(concept.id);
+                setDialog(null);
+              }}
+            >
+              添加到知识图与路线
+            </button>
+          </div>
+        </>
+      )}
+      {dialog.type === "deleteTurn" && (
+        <>
+          <p className="modal-intro">
+            将删除「{state.turns.find((t) => t.id === dialog.id)?.title}
+            」及其 {descendants(state.turns, dialog.id).size - 1}{" "}
+            个后续节点。相关演示作答会被撤回，支线摘要产生更正记录。
+          </p>
+          <div className="modal-actions">
+            <button className="btn" onClick={() => setDialog(null)}>
+              保留
+            </button>
+            <button
+              className="btn danger-solid"
+              onClick={() => {
+                dispatch({ type: "deleteTurn", id: dialog.id });
+                setDialog(null);
+                setPendingFork(null);
+                notify("已删除子树并撤回相关演示证据");
+              }}
+            >
+              删除子树
+            </button>
+          </div>
+        </>
+      )}
+      {dialog.type === "deleteConcept" && (
+        <>
+          <p className="modal-intro">
+            全局删除「{state.concepts.find((c) => c.id === dialog.id)?.name}
+            」将移除所有会话路线中的关联和图中的关系。历史对话与作答证据会保留。
+          </p>
+          <div className="modal-actions">
+            <button className="btn" onClick={() => setDialog(null)}>
+              保留
+            </button>
+            <button
+              className="btn danger-solid"
+              onClick={() => {
+                dispatch({ type: "deleteConcept", id: dialog.id });
+                setSelectedConcept(null);
+                setDialog(null);
+                notify("已全局删除模块，历史证据保留");
+              }}
+            >
+              全局删除
+            </button>
+          </div>
+        </>
+      )}
+      {dialog.type === "deleteSession" && (
+        <>
+          <p className="modal-intro">
+            删除「{state.sessions.find((s) => s.id === dialog.id)?.title}
+            」会删除该会话的对话树，并撤回相关演示作答。其他会话保留。
+          </p>
+          <div className="modal-actions">
+            <button className="btn" onClick={() => setDialog(null)}>
+              取消
+            </button>
+            <button
+              className="btn danger-solid"
+              onClick={() => {
+                dispatch({ type: "deleteSession", id: dialog.id });
+                setDialog(null);
+              }}
+            >
+              删除会话
+            </button>
+          </div>
+        </>
+      )}
+      {dialog.type === "reset" && (
+        <>
+          <p className="modal-intro">
+            清除当前浏览器中的原型会话、图与配置，恢复初始示例。可以先在设置页导出数据。
+          </p>
+          <div className="modal-actions">
+            <button className="btn" onClick={() => setDialog(null)}>
+              取消
+            </button>
+            <button
+              className="btn danger-solid"
+              onClick={() => {
+                dispatch({ type: "reset", state: createSeed() });
+                setSelectedConcept("diagonal");
+                setDialog(null);
+                notify("演示数据已重置");
+              }}
+            >
+              重置数据
+            </button>
+          </div>
+        </>
+      )}
+      {dialog.type === "help" && (
+        <>
+          <p className="modal-intro">
+            沿着主线学习，遇到值得追问的细节，就为它开一条支线。
+          </p>
+          <div className="help-step">
+            <GitBranch size={19} />
+            <div>
+              <strong>从一句话出发</strong>
+              <p>
+                选中回答中的文字，或点击“分叉追问”。新问题成为当前节点的孩子。
+              </p>
+            </div>
+          </div>
+          <div className="help-step">
+            <Network size={19} />
+            <div>
+              <strong>在两张图之间找到位置</strong>
+              <p>
+                探索树记录思考，知识图记录学习范围。选择节点会高亮关联区域，也可将地图浮动后拖到右边缘吸附。
+              </p>
+            </div>
+          </div>
+          <div className="help-step">
+            <Route size={19} />
+            <div>
+              <strong>路线可以改变</strong>
+              <p>
+                增删模块、调整顺序，或发起诊断练习。闪卡是自评，测验是演示证据。
+              </p>
+            </div>
+          </div>
+          <div className="info-strip">
+            当前为前端原型：回复、题目和参考分是演示；没有连接模型、执行文件操作或验证真实掌握。
+          </div>
+          <div className="modal-actions">
+            <button className="btn primary" onClick={() => setDialog(null)}>
+              继续探索 <ArrowUpRight size={15} />
+            </button>
+          </div>
+        </>
+      )}
+    </Modal>
+  );
+  if (mapWindow.detached)
+    return (
+      <>
+        <aside className="graph-panel detached-map">
+          <GraphPanel {...graphProps} />
+        </aside>
+        {dialogElement}
+      </>
+    );
 
   return (
     <div
@@ -787,16 +1419,6 @@ export default function App() {
                           >
                             <Network size={13} /> 在地图中查看
                           </button>
-                          <button
-                            title="设为主线终点"
-                            aria-label={`将${turn.title}设为主线`}
-                            onClick={() => {
-                              dispatch({ type: "mainline", id: turn.id });
-                              notify("主线已更新");
-                            }}
-                          >
-                            <Flag size={13} />
-                          </button>
                           {turn.parentId && (
                             <button
                               title="删除此对话及子树"
@@ -1029,13 +1651,16 @@ export default function App() {
                 </aside>
               </>
             )}
-            {!mapOpen && (
+            {(!mapOpen || mapWindow.opened) && (
               <aside className="map-collapsed-rail">
                 <button
                   className="icon-button"
-                  aria-label="展开学习地图"
-                  title="展开学习地图"
+                  aria-label={
+                    mapWindow.opened ? "吸附学习地图" : "展开学习地图"
+                  }
+                  title={mapWindow.opened ? "吸附学习地图" : "展开学习地图"}
                   onClick={() => {
+                    mapWindow.close();
                     setMapOpen(true);
                     setFloating(false);
                   }}
@@ -1059,7 +1684,7 @@ export default function App() {
           />
         )}
       </div>
-      {mapOpen && floating && page === "learn" && (
+      {mapOpen && floating && !mapWindow.opened && page === "learn" && (
         <aside
           className="graph-panel floating-panel"
           style={{ left: floatPos.x, top: floatPos.y }}
@@ -1126,590 +1751,7 @@ export default function App() {
           </button>
         </div>
       )}
-      {dialog && (
-        <Modal
-          title={
-            dialog.type === "new"
-              ? "开始一段新的探索"
-              : dialog.type === "path"
-                ? "调整我的学习路线"
-                : dialog.type === "workspace"
-                  ? "设置会话工作区"
-                  : dialog.type === "rename"
-                    ? "重命名会话"
-                    : dialog.type === "resources"
-                      ? "这次学习使用什么？"
-                      : dialog.type === "removePath"
-                        ? "将模块移出当前路线"
-                        : dialog.type === "addConcept"
-                          ? "添加一个知识模块"
-                          : dialog.type === "help"
-                            ? "欢迎来到 Vibe Learning"
-                            : dialog.type === "reset"
-                              ? "重置演示工作台"
-                              : "确认删除"
-          }
-          onClose={() => setDialog(null)}
-        >
-          {dialog.type === "new" && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                if (!goal.trim()) return;
-                const created = createSession(
-                  goal.trim(),
-                  workspace.trim() ||
-                    state.settings.defaultWorkspace ||
-                    "~/learning",
-                  newKbIds,
-                );
-                dispatch({ type: "newSession", ...created });
-                setSelectedConcept(null);
-                navigate("learn");
-                setDialog(null);
-              }}
-            >
-              <p className="modal-intro">
-                先说清楚想学会什么。一个具体目标，是探索的起点。
-              </p>
-              <label className="full-label">
-                学习目标
-                <textarea
-                  autoFocus
-                  placeholder="例如：理解特征值的几何意义，并能解释对角化证明"
-                  value={goal}
-                  onChange={(e) => setGoal(e.target.value)}
-                  required
-                />
-              </label>
-              <label className="full-label">
-                会话工作区
-                <input
-                  value={workspace}
-                  onChange={(e) => setWorkspace(e.target.value)}
-                />
-                <small>所有轮次共用此路径；本地文件操作将在后端接入。</small>
-              </label>
-              <div className="option-list">
-                {state.knowledgeBases.map((k) => (
-                  <label key={k.id}>
-                    <input
-                      type="checkbox"
-                      checked={newKbIds.includes(k.id)}
-                      onChange={(e) =>
-                        setNewKbIds((v) =>
-                          e.target.checked
-                            ? [...v, k.id]
-                            : v.filter((id) => id !== k.id),
-                        )
-                      }
-                    />
-                    <BookOpen size={15} />
-                    {k.name}
-                  </label>
-                ))}
-              </div>
-              <div className="modal-actions">
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => setDialog(null)}
-                >
-                  取消
-                </button>
-                <button className="btn primary" disabled={!goal.trim()}>
-                  开始学习 <ArrowUpRight size={15} />
-                </button>
-              </div>
-            </form>
-          )}
-          {(dialog.type === "workspace" || dialog.type === "rename") && (
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                const value =
-                  dialog.type === "rename"
-                    ? sessionName.trim()
-                    : workspace.trim();
-                if (!value) return;
-                dispatch({
-                  type: "sessionConfig",
-                  id: dialog.id,
-                  patch:
-                    dialog.type === "rename"
-                      ? { title: value }
-                      : { workspace: value },
-                });
-                setDialog(null);
-              }}
-            >
-              <p className="modal-intro">
-                {state.sessions.find((s) => s.id === dialog.id)?.title}
-              </p>
-              <label className="full-label">
-                {dialog.type === "rename" ? "会话名称" : "工作区路径"}
-                <input
-                  required
-                  value={dialog.type === "rename" ? sessionName : workspace}
-                  onChange={(e) =>
-                    dialog.type === "rename"
-                      ? setSessionName(e.target.value)
-                      : setWorkspace(e.target.value)
-                  }
-                />
-                {dialog.type === "workspace" && (
-                  <small>此会话所有轮次共用一个工作区。</small>
-                )}
-              </label>
-              <div className="modal-actions">
-                <button
-                  type="button"
-                  className="btn"
-                  onClick={() => setDialog(null)}
-                >
-                  取消
-                </button>
-                <button className="btn primary">
-                  {dialog.type === "rename" ? "保存名称" : "保存工作区"}
-                </button>
-              </div>
-            </form>
-          )}
-          {dialog.type === "resources" && (
-            <>
-              <p className="modal-intro">
-                选择参与当前会话的资料与能力。此原型保留选择，检索和调用待接入。
-              </p>
-              <h4 className="modal-section-title">
-                <BookOpen size={15} /> 知识库
-              </h4>
-              <div className="option-list">
-                {state.knowledgeBases.map((k) => (
-                  <label key={k.id}>
-                    <input
-                      type="checkbox"
-                      checked={session.kbIds.includes(k.id)}
-                      onChange={(e) =>
-                        dispatch({
-                          type: "sessionConfig",
-                          id: session.id,
-                          patch: {
-                            kbIds: e.target.checked
-                              ? [...session.kbIds, k.id]
-                              : session.kbIds.filter((id) => id !== k.id),
-                          },
-                        })
-                      }
-                    />
-                    {k.name}
-                    <small>{k.files.length} 份资料</small>
-                  </label>
-                ))}
-                {!state.knowledgeBases.length && (
-                  <p>还没有知识库，可在侧边栏添加。</p>
-                )}
-              </div>
-              <label className="full-label">
-                <span>
-                  <Bot size={15} /> 辅助 Agent
-                </span>
-                <select
-                  aria-label="辅助 Agent"
-                  value={session.agentId}
-                  onChange={(e) =>
-                    dispatch({
-                      type: "sessionConfig",
-                      id: session.id,
-                      patch: { agentId: e.target.value },
-                    })
-                  }
-                >
-                  <option value="">不指定</option>
-                  {state.agents
-                    .filter((a) => a.enabled)
-                    .map((a) => (
-                      <option value={a.id} key={a.id}>
-                        {a.name}
-                      </option>
-                    ))}
-                </select>
-              </label>
-              <h4 className="modal-section-title">
-                <Sparkles size={15} /> 技能
-              </h4>
-              <div className="option-list">
-                {state.skills
-                  .filter((s) => s.enabled)
-                  .map((s) => (
-                    <label key={s.id}>
-                      <input
-                        type="checkbox"
-                        checked={session.skillIds.includes(s.id)}
-                        onChange={(e) =>
-                          dispatch({
-                            type: "sessionConfig",
-                            id: session.id,
-                            patch: {
-                              skillIds: e.target.checked
-                                ? [...session.skillIds, s.id]
-                                : session.skillIds.filter((id) => id !== s.id),
-                            },
-                          })
-                        }
-                      />
-                      {s.name}
-                    </label>
-                  ))}
-                {!state.skills.some((s) => s.enabled) && (
-                  <p>暂无启用的技能。可在技能页配置。</p>
-                )}
-              </div>
-              <div className="modal-actions">
-                <button
-                  className="btn"
-                  onClick={() => {
-                    setDialog(null);
-                    navigate("knowledge");
-                  }}
-                >
-                  管理资料
-                </button>
-                <button className="btn primary" onClick={() => setDialog(null)}>
-                  完成选择
-                </button>
-              </div>
-            </>
-          )}
-          {dialog.type === "path" && (
-            <>
-              <p className="modal-intro">
-                路线是你的参考路标。调整顺序，或选择暂时不学的模块。
-              </p>
-              <div className="path-editor">
-                {session.pathIds.map((id, i) => (
-                  <div key={id}>
-                    <span className="path-order">{i + 1}</span>
-                    <span>{state.concepts.find((c) => c.id === id)?.name}</span>
-                    <button
-                      className="icon-button"
-                      disabled={i === 0}
-                      aria-label={`上移${state.concepts.find((c) => c.id === id)?.name}`}
-                      onClick={() =>
-                        dispatch({
-                          type: "reorderPath",
-                          sessionId: session.id,
-                          from: i,
-                          to: i - 1,
-                        })
-                      }
-                    >
-                      <ArrowUp size={14} />
-                    </button>
-                    <button
-                      className="icon-button"
-                      disabled={i === session.pathIds.length - 1}
-                      aria-label={`下移${state.concepts.find((c) => c.id === id)?.name}`}
-                      onClick={() =>
-                        dispatch({
-                          type: "reorderPath",
-                          sessionId: session.id,
-                          from: i,
-                          to: i + 1,
-                        })
-                      }
-                    >
-                      <ArrowDown size={14} />
-                    </button>
-                    <button
-                      className="icon-button danger"
-                      aria-label={`移出路线${state.concepts.find((c) => c.id === id)?.name}`}
-                      onClick={() => {
-                        setReason("暂不相关");
-                        setDialog({ type: "removePath", id });
-                      }}
-                    >
-                      <X size={14} />
-                    </button>
-                  </div>
-                ))}
-              </div>
-              <h4 className="modal-section-title">可以加入的模块</h4>
-              <div className="available-modules">
-                {state.concepts
-                  .filter((c) => !c.deleted && !session.pathIds.includes(c.id))
-                  .map((c) => (
-                    <button
-                      className="btn small"
-                      key={c.id}
-                      onClick={() =>
-                        dispatch({
-                          type: "addPath",
-                          sessionId: session.id,
-                          conceptId: c.id,
-                        })
-                      }
-                    >
-                      <Plus size={13} />
-                      {c.name}
-                    </button>
-                  ))}
-              </div>
-              {session.exclusions.length > 0 && (
-                <details className="exclusions">
-                  <summary>查看移出原因</summary>
-                  {session.exclusions.map((e) => (
-                    <p key={e.conceptId}>
-                      {state.concepts.find((c) => c.id === e.conceptId)?.name ??
-                        "历史模块"}
-                      ：{e.reason}
-                    </p>
-                  ))}
-                </details>
-              )}
-              <div className="modal-actions">
-                <button className="btn" onClick={consultRoute}>
-                  <Bot size={15} />
-                  咨询学习伙伴
-                </button>
-                <button className="btn primary" onClick={() => setDialog(null)}>
-                  完成调整
-                </button>
-              </div>
-            </>
-          )}
-          {dialog.type === "removePath" && (
-            <>
-              <p className="modal-intro">
-                「{state.concepts.find((c) => c.id === dialog.id)?.name}
-                」仅从当前路线移出，全局模块与掌握记录保留。
-              </p>
-              <div className="option-list">
-                {["已学过", "暂不相关", "稍后学习"].map((item) => (
-                  <label key={item}>
-                    <input
-                      type="radio"
-                      name="reason"
-                      value={item}
-                      checked={reason === item}
-                      onChange={() => setReason(item)}
-                    />
-                    {item}
-                  </label>
-                ))}
-              </div>
-              <div className="modal-actions">
-                <button
-                  className="btn"
-                  onClick={() => setDialog({ type: "path" })}
-                >
-                  返回
-                </button>
-                <button
-                  className="btn primary"
-                  onClick={() => {
-                    dispatch({
-                      type: "removePath",
-                      sessionId: session.id,
-                      conceptId: dialog.id,
-                      reason,
-                    });
-                    setDialog({ type: "path" });
-                  }}
-                >
-                  移出路线
-                </button>
-              </div>
-            </>
-          )}
-          {dialog.type === "addConcept" && (
-            <>
-              <p className="modal-intro">
-                先添加模块范围。详细知识划分与可靠关系将在后端阶段建立。
-              </p>
-              <label className="full-label">
-                模块名称
-                <input
-                  value={moduleName}
-                  onChange={(e) => setModuleName(e.target.value)}
-                  placeholder="例如：内积与正交性"
-                />
-              </label>
-              <label className="full-label">
-                范围或学习目标
-                <textarea
-                  value={moduleSummary}
-                  onChange={(e) => setModuleSummary(e.target.value)}
-                />
-              </label>
-              <div className="modal-actions">
-                <button
-                  className="btn primary"
-                  disabled={!moduleName.trim()}
-                  onClick={() => {
-                    const concept: Concept = {
-                      id: uid("concept"),
-                      name: moduleName.trim(),
-                      summary: moduleSummary.trim(),
-                      category: "自定义",
-                      difficulty: "待评估",
-                      challenge: "尚未记录",
-                      topics: [],
-                      source: "学习者添加 · 待核实",
-                      sourceUrl: "",
-                      baseScore: null,
-                    };
-                    dispatch({
-                      type: "addConcept",
-                      concept,
-                      sessionId: session.id,
-                    });
-                    setSelectedConcept(concept.id);
-                    setDialog(null);
-                  }}
-                >
-                  添加到知识图与路线
-                </button>
-              </div>
-            </>
-          )}
-          {dialog.type === "deleteTurn" && (
-            <>
-              <p className="modal-intro">
-                将删除「{state.turns.find((t) => t.id === dialog.id)?.title}
-                」及其 {descendants(state.turns, dialog.id).size - 1}{" "}
-                个后续节点。相关演示作答会被撤回，支线摘要产生更正记录。
-              </p>
-              <div className="modal-actions">
-                <button className="btn" onClick={() => setDialog(null)}>
-                  保留
-                </button>
-                <button
-                  className="btn danger-solid"
-                  onClick={() => {
-                    dispatch({ type: "deleteTurn", id: dialog.id });
-                    setDialog(null);
-                    setPendingFork(null);
-                    notify("已删除子树并撤回相关演示证据");
-                  }}
-                >
-                  删除子树
-                </button>
-              </div>
-            </>
-          )}
-          {dialog.type === "deleteConcept" && (
-            <>
-              <p className="modal-intro">
-                全局删除「{state.concepts.find((c) => c.id === dialog.id)?.name}
-                」将移除所有会话路线中的关联和图中的关系。历史对话与作答证据会保留。
-              </p>
-              <div className="modal-actions">
-                <button className="btn" onClick={() => setDialog(null)}>
-                  保留
-                </button>
-                <button
-                  className="btn danger-solid"
-                  onClick={() => {
-                    dispatch({ type: "deleteConcept", id: dialog.id });
-                    setSelectedConcept(null);
-                    setDialog(null);
-                    notify("已全局删除模块，历史证据保留");
-                  }}
-                >
-                  全局删除
-                </button>
-              </div>
-            </>
-          )}
-          {dialog.type === "deleteSession" && (
-            <>
-              <p className="modal-intro">
-                删除「{state.sessions.find((s) => s.id === dialog.id)?.title}
-                」会删除该会话的对话树，并撤回相关演示作答。其他会话保留。
-              </p>
-              <div className="modal-actions">
-                <button className="btn" onClick={() => setDialog(null)}>
-                  取消
-                </button>
-                <button
-                  className="btn danger-solid"
-                  onClick={() => {
-                    dispatch({ type: "deleteSession", id: dialog.id });
-                    setDialog(null);
-                  }}
-                >
-                  删除会话
-                </button>
-              </div>
-            </>
-          )}
-          {dialog.type === "reset" && (
-            <>
-              <p className="modal-intro">
-                清除当前浏览器中的原型会话、图与配置，恢复初始示例。可以先在设置页导出数据。
-              </p>
-              <div className="modal-actions">
-                <button className="btn" onClick={() => setDialog(null)}>
-                  取消
-                </button>
-                <button
-                  className="btn danger-solid"
-                  onClick={() => {
-                    dispatch({ type: "reset", state: createSeed() });
-                    setSelectedConcept("diagonal");
-                    setDialog(null);
-                    notify("演示数据已重置");
-                  }}
-                >
-                  重置数据
-                </button>
-              </div>
-            </>
-          )}
-          {dialog.type === "help" && (
-            <>
-              <p className="modal-intro">
-                沿着主线学习，遇到值得追问的细节，就为它开一条支线。
-              </p>
-              <div className="help-step">
-                <GitBranch size={19} />
-                <div>
-                  <strong>从一句话出发</strong>
-                  <p>
-                    选中回答中的文字，或点击“分叉追问”。新问题成为当前节点的孩子。
-                  </p>
-                </div>
-              </div>
-              <div className="help-step">
-                <Network size={19} />
-                <div>
-                  <strong>在两张图之间找到位置</strong>
-                  <p>
-                    探索树记录思考，知识图记录学习范围。选择节点会高亮关联区域，也可将地图浮动后拖到右边缘吸附。
-                  </p>
-                </div>
-              </div>
-              <div className="help-step">
-                <Route size={19} />
-                <div>
-                  <strong>路线可以改变</strong>
-                  <p>
-                    增删模块、调整顺序，或发起诊断练习。闪卡是自评，测验是演示证据。
-                  </p>
-                </div>
-              </div>
-              <div className="info-strip">
-                当前为前端原型：回复、题目和参考分是演示；没有连接模型、执行文件操作或验证真实掌握。
-              </div>
-              <div className="modal-actions">
-                <button className="btn primary" onClick={() => setDialog(null)}>
-                  继续探索 <ArrowUpRight size={15} />
-                </button>
-              </div>
-            </>
-          )}
-        </Modal>
-      )}
+      {dialogElement}
     </div>
   );
 }

@@ -54,7 +54,7 @@
             "type": "string"
           },
           "type": {
-            "const": "prerequisite"
+            "const": "recommended"
           }
         },
         "additionalProperties": false

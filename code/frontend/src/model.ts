@@ -86,7 +86,7 @@ export interface Relation {
   id: string;
   source: string;
   target: string;
-  type: "prerequisite";
+  type: "recommended";
 }
 export interface Evidence {
   id: string;
@@ -138,8 +138,8 @@ export interface AppState {
 }
 export const activityNames: Record<Activity, string> = {
   concept: "概念讲解",
-  quiz: "诊断练习",
-  project: "项目实践",
+  quiz: "集中检测",
+  project: "实操演练",
   flashcard: "闪卡回顾",
 };
 export const uid = (prefix = "id") => `${prefix}-${crypto.randomUUID()}`;
@@ -202,6 +202,9 @@ export type Action =
   | { type: "setKBs"; items: KnowledgeBase[] }
   | { type: "setAgents"; items: AgentConfig[] }
   | { type: "setSkills"; items: SkillConfig[] }
+  | { type: "addRecommendation"; source: string; target: string }
+  | { type: "removeRecommendation"; id: string }
+  | { type: "reverseRecommendation"; id: string }
   | { type: "settings"; patch: Partial<Settings> }
   | { type: "reset"; state: AppState };
 
@@ -327,7 +330,10 @@ export function reducer(state: AppState, action: Action): AppState {
           ? {
               ...s,
               activeId: action.turn.id,
-              mainLeafId: action.main ? action.turn.id : s.mainLeafId,
+              mainLeafId:
+                action.main || s.mainLeafId === parent.id
+                  ? action.turn.id
+                  : s.mainLeafId,
               updatedAt: Date.now(),
             }
           : s,
@@ -341,7 +347,7 @@ export function reducer(state: AppState, action: Action): AppState {
     }
     case "mainline": {
       const turn = state.turns.find((t) => t.id === action.id);
-      return turn
+      return turn && !state.turns.some((t) => t.parentId === turn.id)
         ? {
             ...state,
             sessions: state.sessions.map((s) =>
@@ -583,6 +589,52 @@ export function reducer(state: AppState, action: Action): AppState {
       return { ...state, agents: action.items };
     case "setSkills":
       return { ...state, skills: action.items };
+    case "addRecommendation": {
+      if (
+        action.source === action.target ||
+        ![action.source, action.target].every((id) =>
+          state.concepts.some((c) => c.id === id && !c.deleted),
+        ) ||
+        state.relations.some(
+          (r) => r.source === action.source && r.target === action.target,
+        )
+      )
+        return state;
+      return {
+        ...state,
+        relations: [
+          ...state.relations,
+          {
+            id: uid("order"),
+            source: action.source,
+            target: action.target,
+            type: "recommended",
+          },
+        ],
+      };
+    }
+    case "removeRecommendation":
+      return {
+        ...state,
+        relations: state.relations.filter((r) => r.id !== action.id),
+      };
+    case "reverseRecommendation": {
+      const target = state.relations.find((r) => r.id === action.id);
+      if (!target) return state;
+      const reverseExists = state.relations.some(
+        (r) => r.source === target.target && r.target === target.source,
+      );
+      return {
+        ...state,
+        relations: state.relations.flatMap((r) =>
+          r.id !== target.id
+            ? [r]
+            : reverseExists
+              ? []
+              : [{ ...r, source: r.target, target: r.source }],
+        ),
+      };
+    }
     case "settings":
       return synchronize({
         ...state,
