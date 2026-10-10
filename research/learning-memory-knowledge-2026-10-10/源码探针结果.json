@@ -1,0 +1,74 @@
+{
+  "commit": "6cf793bd868ba5ecbe64722936d4be8fab5a01df",
+  "scope": "原始源码纯函数执行；没有运行全应用或项目测试套件",
+  "source_sha256": {
+    "deeptutor/learning/mastery.py": "318e1001a9cfeea744742bbb5d232d54bc72b3f915c7ef93f82683f038a66fd6",
+    "deeptutor/learning/grading.py": "7f35f9d4dbf6169aa32139a7808eed20be19d41a939d585237b3566d0f8f3c1c"
+  },
+  "mastery": [
+    {
+      "outcomes": [],
+      "score": 0.0
+    },
+    {
+      "outcomes": [
+        true
+      ],
+      "score": 0.5
+    },
+    {
+      "outcomes": [
+        true,
+        true
+      ],
+      "score": 0.8
+    },
+    {
+      "outcomes": [
+        true,
+        true,
+        true
+      ],
+      "score": 1.0
+    },
+    {
+      "outcomes": [
+        false,
+        true,
+        true
+      ],
+      "score": 0.6964285714285715
+    },
+    {
+      "outcomes": [
+        true,
+        true,
+        false
+      ],
+      "score": 0.6428571428571428
+    }
+  ],
+  "grading_boundary_cases": [
+    {
+      "case": "数值近似文本不同值",
+      "student": "123456789",
+      "expected": "123456788",
+      "type": "short",
+      "graded_correct": true
+    },
+    {
+      "case": "开放题否定句包含关键词",
+      "student": "不需要连续，也不需要可导",
+      "expected": "连续;可导",
+      "type": "open",
+      "graded_correct": true
+    },
+    {
+      "case": "选择题确定答案",
+      "student": "B",
+      "expected": "B",
+      "type": "choice",
+      "graded_correct": true
+    }
+  ]
+}

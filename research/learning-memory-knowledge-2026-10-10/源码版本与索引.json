@@ -1,0 +1,4578 @@
+[
+  {
+    "repository": "HKUDS/DeepTutor",
+    "commit": "6cf793bd868ba5ecbe64722936d4be8fab5a01df",
+    "local_checkout": "/tmp/vibelearning-research-20261010.vgCExf/DeepTutor",
+    "files": [
+      {
+        "path": "deeptutor/services/memory/trace.py",
+        "sha256": "722d30c7079e1cd3c0ff44c002f509f80f6884ecfd0b1177e7d10ee480414164",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/trace.py",
+        "line_count": 153,
+        "symbols": [
+          {
+            "symbol": "_lock_for",
+            "line": 27,
+            "end_line": 32
+          },
+          {
+            "symbol": "TraceEvent",
+            "line": 36,
+            "end_line": 63
+          },
+          {
+            "symbol": "append",
+            "line": 66,
+            "end_line": 79
+          },
+          {
+            "symbol": "_append_line",
+            "line": 82,
+            "end_line": 86
+          },
+          {
+            "symbol": "iter_since",
+            "line": 89,
+            "end_line": 112
+          },
+          {
+            "symbol": "iter_by_ids",
+            "line": 115,
+            "end_line": 128
+          },
+          {
+            "symbol": "count_since",
+            "line": 131,
+            "end_line": 132
+          },
+          {
+            "symbol": "latest_ts",
+            "line": 135,
+            "end_line": 153
+          },
+          {
+            "symbol": "new",
+            "line": 46,
+            "end_line": 63
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/store.py",
+        "sha256": "feca47652ecd3fb82157235870f8b52c6cf1bb3ed2a1f493ce42d498117fa940",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/store.py",
+        "line_count": 453,
+        "symbols": [
+          {
+            "symbol": "_normalize_pref_text",
+            "line": 35,
+            "end_line": 37
+          },
+          {
+            "symbol": "_find_duplicate_preference",
+            "line": 40,
+            "end_line": 51
+          },
+          {
+            "symbol": "DocOverview",
+            "line": 60,
+            "end_line": 66
+          },
+          {
+            "symbol": "MemoryStore",
+            "line": 69,
+            "end_line": 325
+          },
+          {
+            "symbol": "migrate_v1_if_needed",
+            "line": 331,
+            "end_line": 357
+          },
+          {
+            "symbol": "migrate_partner_surface_if_needed",
+            "line": 360,
+            "end_line": 426
+          },
+          {
+            "symbol": "get_memory_store",
+            "line": 435,
+            "end_line": 439
+          },
+          {
+            "symbol": "_default_title",
+            "line": 445,
+            "end_line": 453
+          },
+          {
+            "symbol": "__init__",
+            "line": 72,
+            "end_line": 73
+          },
+          {
+            "symbol": "emit",
+            "line": 77,
+            "end_line": 78
+          },
+          {
+            "symbol": "read_doc",
+            "line": 82,
+            "end_line": 86
+          },
+          {
+            "symbol": "read_raw",
+            "line": 88,
+            "end_line": 92
+          },
+          {
+            "symbol": "read_l3_concat",
+            "line": 94,
+            "end_line": 103
+          },
+          {
+            "symbol": "overwrite_doc",
+            "line": 107,
+            "end_line": 111
+          },
+          {
+            "symbol": "delete_entry",
+            "line": 113,
+            "end_line": 122
+          },
+          {
+            "symbol": "update_l2",
+            "line": 126,
+            "end_line": 143
+          },
+          {
+            "symbol": "update_l3",
+            "line": 145,
+            "end_line": 164
+          },
+          {
+            "symbol": "apply_ops_payload",
+            "line": 166,
+            "end_line": 193
+          },
+          {
+            "symbol": "write_preference",
+            "line": 195,
+            "end_line": 258
+          },
+          {
+            "symbol": "overview",
+            "line": 262,
+            "end_line": 268
+          },
+          {
+            "symbol": "_overview_for",
+            "line": 270,
+            "end_line": 306
+          },
+          {
+            "symbol": "_path",
+            "line": 310,
+            "end_line": 317
+          },
+          {
+            "symbol": "_lock_for",
+            "line": 319,
+            "end_line": 325
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/snapshot/adapters.py",
+        "sha256": "114d32d0d18431e22f808b64e30f71975c441a21b58498dee870ee6cabe407bc",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/snapshot/adapters.py",
+        "line_count": 689,
+        "symbols": [
+          {
+            "symbol": "_sha1",
+            "line": 37,
+            "end_line": 48
+          },
+          {
+            "symbol": "_iso",
+            "line": 51,
+            "end_line": 63
+          },
+          {
+            "symbol": "_iter_chat_dbs",
+            "line": 66,
+            "end_line": 106
+          },
+          {
+            "symbol": "read_notebook_entities",
+            "line": 112,
+            "end_line": 173
+          },
+          {
+            "symbol": "read_cowriter_entities",
+            "line": 176,
+            "end_line": 205
+          },
+          {
+            "symbol": "read_book_entities",
+            "line": 208,
+            "end_line": 267
+          },
+          {
+            "symbol": "_partner_display_name",
+            "line": 270,
+            "end_line": 288
+          },
+          {
+            "symbol": "_partner_session_entity",
+            "line": 291,
+            "end_line": 343
+          },
+          {
+            "symbol": "read_partner_entities",
+            "line": 346,
+            "end_line": 396
+          },
+          {
+            "symbol": "read_kb_entities",
+            "line": 399,
+            "end_line": 456
+          },
+          {
+            "symbol": "read_chat_entities",
+            "line": 459,
+            "end_line": 514
+          },
+          {
+            "symbol": "read_quiz_entities",
+            "line": 517,
+            "end_line": 576
+          },
+          {
+            "symbol": "probe_chat_entities",
+            "line": 582,
+            "end_line": 632
+          },
+          {
+            "symbol": "read_entities",
+            "line": 657,
+            "end_line": 665
+          },
+          {
+            "symbol": "read_stamps",
+            "line": 668,
+            "end_line": 686
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/snapshot/diff.py",
+        "sha256": "8d00cf73e41d2d13aa1eac0746cc377c8104ab8297c8d59a2c48e04dd13794a4",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/snapshot/diff.py",
+        "line_count": 67,
+        "symbols": [
+          {
+            "symbol": "diff_snapshots",
+            "line": 15,
+            "end_line": 67
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/snapshot/store.py",
+        "sha256": "284faa2d8fea726a9d7c5a1eb04b986b3ce08690194dbe24389f85e517dde91f",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/snapshot/store.py",
+        "line_count": 113,
+        "symbols": [
+          {
+            "symbol": "snapshot_dir",
+            "line": 27,
+            "end_line": 28
+          },
+          {
+            "symbol": "state_file",
+            "line": 31,
+            "end_line": 32
+          },
+          {
+            "symbol": "changes_file",
+            "line": 35,
+            "end_line": 36
+          },
+          {
+            "symbol": "load_state",
+            "line": 39,
+            "end_line": 51
+          },
+          {
+            "symbol": "save_state",
+            "line": 54,
+            "end_line": 70
+          },
+          {
+            "symbol": "append_changes",
+            "line": 73,
+            "end_line": 81
+          },
+          {
+            "symbol": "iter_changes",
+            "line": 84,
+            "end_line": 104
+          },
+          {
+            "symbol": "clear_changes",
+            "line": 107,
+            "end_line": 113
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/consolidator/meta.py",
+        "sha256": "36ef106436e286f29ac9842015e24d5a7f6b14414a41f93b9e0952c5cdf05ca0",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/consolidator/meta.py",
+        "line_count": 194,
+        "symbols": [
+          {
+            "symbol": "L2Meta",
+            "line": 55,
+            "end_line": 57
+          },
+          {
+            "symbol": "l2_meta_path",
+            "line": 60,
+            "end_line": 61
+          },
+          {
+            "symbol": "load_l2_meta",
+            "line": 64,
+            "end_line": 65
+          },
+          {
+            "symbol": "save_l2_meta",
+            "line": 68,
+            "end_line": 82
+          },
+          {
+            "symbol": "L3Meta",
+            "line": 89,
+            "end_line": 91
+          },
+          {
+            "symbol": "l3_meta_path",
+            "line": 94,
+            "end_line": 95
+          },
+          {
+            "symbol": "load_l3_meta",
+            "line": 98,
+            "end_line": 99
+          },
+          {
+            "symbol": "save_l3_meta",
+            "line": 102,
+            "end_line": 122
+          },
+          {
+            "symbol": "_load_meta_l2",
+            "line": 128,
+            "end_line": 136
+          },
+          {
+            "symbol": "_load_meta_l3",
+            "line": 139,
+            "end_line": 151
+          },
+          {
+            "symbol": "_read_json",
+            "line": 154,
+            "end_line": 161
+          },
+          {
+            "symbol": "_atomic_write_json",
+            "line": 164,
+            "end_line": 178
+          },
+          {
+            "symbol": "_now_iso",
+            "line": 181,
+            "end_line": 182
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/consolidator/modes/update.py",
+        "sha256": "1b18f63d466bf99f5e7aef1f49282cc2919c5c0e78ea6c8582ca5ee2616576f5",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/consolidator/modes/update.py",
+        "line_count": 706,
+        "symbols": [
+          {
+            "symbol": "UpdateResult",
+            "line": 67,
+            "end_line": 74
+          },
+          {
+            "symbol": "run_update",
+            "line": 80,
+            "end_line": 134
+          },
+          {
+            "symbol": "_run_update_l2",
+            "line": 140,
+            "end_line": 357
+          },
+          {
+            "symbol": "_run_update_l3",
+            "line": 363,
+            "end_line": 586
+          },
+          {
+            "symbol": "_parse_facts",
+            "line": 592,
+            "end_line": 617
+          },
+          {
+            "symbol": "_extract_json_object",
+            "line": 620,
+            "end_line": 633
+          },
+          {
+            "symbol": "_append_facts_to_doc",
+            "line": 636,
+            "end_line": 660
+          },
+          {
+            "symbol": "_render_existing_l2",
+            "line": 663,
+            "end_line": 666
+          },
+          {
+            "symbol": "_render_existing_l3",
+            "line": 669,
+            "end_line": 672
+          },
+          {
+            "symbol": "_chunk_with_ref_header",
+            "line": 675,
+            "end_line": 679
+          },
+          {
+            "symbol": "_load_all_l2_docs",
+            "line": 682,
+            "end_line": 694
+          },
+          {
+            "symbol": "_default_l3_title",
+            "line": 697,
+            "end_line": 703
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/consolidator/modes/audit.py",
+        "sha256": "f2fd7ea6527ff70139b42ca6d56d01c15f0092322ce7d936fcf4b59eca9c3c4b",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/consolidator/modes/audit.py",
+        "line_count": 484,
+        "symbols": [
+          {
+            "symbol": "AuditResult",
+            "line": 63,
+            "end_line": 69
+          },
+          {
+            "symbol": "run_audit",
+            "line": 75,
+            "end_line": 123
+          },
+          {
+            "symbol": "_run_audit_l2",
+            "line": 129,
+            "end_line": 261
+          },
+          {
+            "symbol": "_run_audit_l3",
+            "line": 267,
+            "end_line": 401
+          },
+          {
+            "symbol": "_build_annotated_l2",
+            "line": 407,
+            "end_line": 435
+          },
+          {
+            "symbol": "_build_annotated_l3",
+            "line": 438,
+            "end_line": 457
+          },
+          {
+            "symbol": "_render_line_index",
+            "line": 460,
+            "end_line": 464
+          },
+          {
+            "symbol": "_build_l2_entry_lookup",
+            "line": 467,
+            "end_line": 481
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/consolidator/modes/merge.py",
+        "sha256": "0df69bd2a1cc439fb9e5097862fd0d503db45747b28275b9da3fd1e0317e2d9c",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/consolidator/modes/merge.py",
+        "line_count": 227,
+        "symbols": [
+          {
+            "symbol": "MergeResult",
+            "line": 53,
+            "end_line": 59
+          },
+          {
+            "symbol": "run_merge",
+            "line": 62,
+            "end_line": 151
+          },
+          {
+            "symbol": "_migrate_l3_legacy_refs",
+            "line": 157,
+            "end_line": 205
+          },
+          {
+            "symbol": "_path_for",
+            "line": 208,
+            "end_line": 213
+          },
+          {
+            "symbol": "_default_title",
+            "line": 216,
+            "end_line": 224
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/consolidator/references.py",
+        "sha256": "b9f4def350e455bfdd48b2a733082c35844ef456027117d6bd06fa60271a38ed",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/consolidator/references.py",
+        "line_count": 388,
+        "symbols": [
+          {
+            "symbol": "ExtractedFact",
+            "line": 36,
+            "end_line": 41
+          },
+          {
+            "symbol": "refs_in_chunk_l2",
+            "line": 44,
+            "end_line": 61
+          },
+          {
+            "symbol": "refs_in_span_l2",
+            "line": 64,
+            "end_line": 79
+          },
+          {
+            "symbol": "refs_in_chunk_l3",
+            "line": 85,
+            "end_line": 95
+          },
+          {
+            "symbol": "refs_in_span_l3",
+            "line": 98,
+            "end_line": 122
+          },
+          {
+            "symbol": "validate_fact_refs",
+            "line": 125,
+            "end_line": 163
+          },
+          {
+            "symbol": "render_traces_for_concat",
+            "line": 175,
+            "end_line": 200
+          },
+          {
+            "symbol": "render_l2_entries_for_concat",
+            "line": 203,
+            "end_line": 226
+          },
+          {
+            "symbol": "annotate_l2_line_with_evidence",
+            "line": 232,
+            "end_line": 266
+          },
+          {
+            "symbol": "annotate_l3_line_with_evidence",
+            "line": 269,
+            "end_line": 296
+          },
+          {
+            "symbol": "_entity_marker",
+            "line": 302,
+            "end_line": 303
+          },
+          {
+            "symbol": "_format_meta",
+            "line": 306,
+            "end_line": 310
+          },
+          {
+            "symbol": "_normalize_allowed_ref",
+            "line": 313,
+            "end_line": 328
+          },
+          {
+            "symbol": "_strip_ref_wrappers",
+            "line": 331,
+            "end_line": 332
+          },
+          {
+            "symbol": "_has_ref_suffix",
+            "line": 335,
+            "end_line": 345
+          },
+          {
+            "symbol": "_dedupe",
+            "line": 348,
+            "end_line": 356
+          },
+          {
+            "symbol": "_refs_overlapping_span",
+            "line": 359,
+            "end_line": 368
+          },
+          {
+            "symbol": "collect_l2_entries",
+            "line": 371,
+            "end_line": 373
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/memory/consolidator/prompts/zh/update_l2.yaml",
+        "sha256": "cee7fc406127232b4ef0621eeff9b87a86133f7e17497df810da16b84b7c3b7d",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/consolidator/prompts/zh/update_l2.yaml",
+        "line_count": 40,
+        "symbols": []
+      },
+      {
+        "path": "deeptutor/services/memory/consolidator/prompts/zh/update_l3.yaml",
+        "sha256": "11b337baabed9284863ee23d78aef8b0bdd7167c62567557f92f20c2c06ea3b6",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/memory/consolidator/prompts/zh/update_l3.yaml",
+        "line_count": 43,
+        "symbols": []
+      },
+      {
+        "path": "deeptutor/tools/builtin/__init__.py",
+        "sha256": "27f7598be52707c9d9171a26b824718b76381ab383cfb6a1aaffaa2857197fa3",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/tools/builtin/__init__.py",
+        "line_count": 2095,
+        "symbols": [
+          {
+            "symbol": "_PromptHintsMixin",
+            "line": 26,
+            "end_line": 30
+          },
+          {
+            "symbol": "BrainstormTool",
+            "line": 33,
+            "end_line": 65
+          },
+          {
+            "symbol": "_rag_sources",
+            "line": 68,
+            "end_line": 102
+          },
+          {
+            "symbol": "RAGTool",
+            "line": 105,
+            "end_line": 253
+          },
+          {
+            "symbol": "_rag_visual_model_message",
+            "line": 256,
+            "end_line": 301
+          },
+          {
+            "symbol": "KbFilesTool",
+            "line": 304,
+            "end_line": 380
+          },
+          {
+            "symbol": "_kb_files_limit",
+            "line": 389,
+            "end_line": 397
+          },
+          {
+            "symbol": "KnowledgeFrontierTool",
+            "line": 400,
+            "end_line": 480
+          },
+          {
+            "symbol": "WebSearchTool",
+            "line": 483,
+            "end_line": 520
+          },
+          {
+            "symbol": "ReasonTool",
+            "line": 523,
+            "end_line": 558
+          },
+          {
+            "symbol": "PaperSearchToolWrapper",
+            "line": 561,
+            "end_line": 638
+          },
+          {
+            "symbol": "ZoteroSearchToolWrapper",
+            "line": 641,
+            "end_line": 761
+          },
+          {
+            "symbol": "GeoGebraAnalysisTool",
+            "line": 764,
+            "end_line": 895
+          },
+          {
+            "symbol": "ReadSourceTool",
+            "line": 898,
+            "end_line": 962
+          },
+          {
+            "symbol": "ReadMemoryTool",
+            "line": 965,
+            "end_line": 992
+          },
+          {
+            "symbol": "WriteMemoryTool",
+            "line": 995,
+            "end_line": 1097
+          },
+          {
+            "symbol": "WebFetchTool",
+            "line": 1100,
+            "end_line": 1161
+          },
+          {
+            "symbol": "ListNotebookTool",
+            "line": 1164,
+            "end_line": 1211
+          },
+          {
+            "symbol": "QuestionBankTool",
+            "line": 1214,
+            "end_line": 1378
+          },
+          {
+            "symbol": "WriteNoteTool",
+            "line": 1381,
+            "end_line": 1504
+          },
+          {
+            "symbol": "GithubTool",
+            "line": 1507,
+            "end_line": 1567
+          },
+          {
+            "symbol": "AskUserTool",
+            "line": 1570,
+            "end_line": 1711
+          },
+          {
+            "symbol": "ReadSkillTool",
+            "line": 1714,
+            "end_line": 1805
+          },
+          {
+            "symbol": "LoadToolsTool",
+            "line": 1808,
+            "end_line": 1863
+          },
+          {
+            "symbol": "CronTool",
+            "line": 1866,
+            "end_line": 1960
+          },
+          {
+            "symbol": "__getattr__",
+            "line": 2048,
+            "end_line": 2057
+          },
+          {
+            "symbol": "get_prompt_hints",
+            "line": 29,
+            "end_line": 30
+          },
+          {
+            "symbol": "get_definition",
+            "line": 34,
+            "end_line": 51
+          },
+          {
+            "symbol": "execute",
+            "line": 53,
+            "end_line": 65
+          },
+          {
+            "symbol": "get_definition",
+            "line": 106,
+            "end_line": 159
+          },
+          {
+            "symbol": "execute",
+            "line": 161,
+            "end_line": 253
+          },
+          {
+            "symbol": "get_definition",
+            "line": 313,
+            "end_line": 347
+          },
+          {
+            "symbol": "execute",
+            "line": 349,
+            "end_line": 380
+          },
+          {
+            "symbol": "get_definition",
+            "line": 403,
+            "end_line": 442
+          },
+          {
+            "symbol": "execute",
+            "line": 444,
+            "end_line": 480
+          },
+          {
+            "symbol": "get_definition",
+            "line": 484,
+            "end_line": 491
+          },
+          {
+            "symbol": "execute",
+            "line": 493,
+            "end_line": 520
+          },
+          {
+            "symbol": "get_definition",
+            "line": 524,
+            "end_line": 544
+          },
+          {
+            "symbol": "execute",
+            "line": 546,
+            "end_line": 558
+          },
+          {
+            "symbol": "get_definition",
+            "line": 562,
+            "end_line": 591
+          },
+          {
+            "symbol": "execute",
+            "line": 593,
+            "end_line": 638
+          },
+          {
+            "symbol": "get_definition",
+            "line": 652,
+            "end_line": 682
+          },
+          {
+            "symbol": "execute",
+            "line": 684,
+            "end_line": 761
+          },
+          {
+            "symbol": "get_definition",
+            "line": 772,
+            "end_line": 794
+          },
+          {
+            "symbol": "execute",
+            "line": 796,
+            "end_line": 895
+          },
+          {
+            "symbol": "get_definition",
+            "line": 909,
+            "end_line": 931
+          },
+          {
+            "symbol": "execute",
+            "line": 933,
+            "end_line": 962
+          },
+          {
+            "symbol": "get_definition",
+            "line": 973,
+            "end_line": 983
+          },
+          {
+            "symbol": "execute",
+            "line": 985,
+            "end_line": 992
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1004,
+            "end_line": 1039
+          },
+          {
+            "symbol": "execute",
+            "line": 1041,
+            "end_line": 1097
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1109,
+            "end_line": 1130
+          },
+          {
+            "symbol": "execute",
+            "line": 1132,
+            "end_line": 1161
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1173,
+            "end_line": 1198
+          },
+          {
+            "symbol": "execute",
+            "line": 1200,
+            "end_line": 1211
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1228,
+            "end_line": 1352
+          },
+          {
+            "symbol": "execute",
+            "line": 1354,
+            "end_line": 1378
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1398,
+            "end_line": 1475
+          },
+          {
+            "symbol": "execute",
+            "line": 1477,
+            "end_line": 1504
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1514,
+            "end_line": 1539
+          },
+          {
+            "symbol": "execute",
+            "line": 1541,
+            "end_line": 1567
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1584,
+            "end_line": 1686
+          },
+          {
+            "symbol": "execute",
+            "line": 1688,
+            "end_line": 1711
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1724,
+            "end_line": 1749
+          },
+          {
+            "symbol": "execute",
+            "line": 1751,
+            "end_line": 1805
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1816,
+            "end_line": 1835
+          },
+          {
+            "symbol": "execute",
+            "line": 1837,
+            "end_line": 1863
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1876,
+            "end_line": 1954
+          },
+          {
+            "symbol": "execute",
+            "line": 1956,
+            "end_line": 1960
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/session/sqlite_store.py",
+        "sha256": "3ce91074219983b3d5481d12f8dab608ece30cc9e9eb7983cceb1e1c8805f02a",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/session/sqlite_store.py",
+        "line_count": 4612,
+        "symbols": [
+          {
+            "symbol": "_json_dumps",
+            "line": 48,
+            "end_line": 52
+          },
+          {
+            "symbol": "_escape_like",
+            "line": 55,
+            "end_line": 57
+          },
+          {
+            "symbol": "_migration_lock",
+            "line": 61,
+            "end_line": 71
+          },
+          {
+            "symbol": "_Unset",
+            "line": 79,
+            "end_line": 80
+          },
+          {
+            "symbol": "_trace_bounds",
+            "line": 86,
+            "end_line": 97
+          },
+          {
+            "symbol": "_json_loads",
+            "line": 100,
+            "end_line": 106
+          },
+          {
+            "symbol": "make_imported_session_id",
+            "line": 134,
+            "end_line": 143
+          },
+          {
+            "symbol": "TurnRecord",
+            "line": 147,
+            "end_line": 182
+          },
+          {
+            "symbol": "QuestionBankQuery",
+            "line": 186,
+            "end_line": 251
+          },
+          {
+            "symbol": "SQLiteSessionStore",
+            "line": 254,
+            "end_line": 4578
+          },
+          {
+            "symbol": "get_sqlite_session_store",
+            "line": 4584,
+            "end_line": 4589
+          },
+          {
+            "symbol": "get_sqlite_session_store_for",
+            "line": 4592,
+            "end_line": 4603
+          },
+          {
+            "symbol": "to_dict",
+            "line": 164,
+            "end_line": 182
+          },
+          {
+            "symbol": "normalized",
+            "line": 220,
+            "end_line": 251
+          },
+          {
+            "symbol": "__init__",
+            "line": 257,
+            "end_line": 265
+          },
+          {
+            "symbol": "_migrate_legacy_db",
+            "line": 267,
+            "end_line": 281
+          },
+          {
+            "symbol": "_initialize",
+            "line": 283,
+            "end_line": 533
+          },
+          {
+            "symbol": "_migrate_workspace_preferences",
+            "line": 536,
+            "end_line": 561
+          },
+          {
+            "symbol": "_migrate_workspace_preferences_sync",
+            "line": 563,
+            "end_line": 569
+          },
+          {
+            "symbol": "migrate_workspace_preferences",
+            "line": 571,
+            "end_line": 574
+          },
+          {
+            "symbol": "_migrate_turn_runtime_columns",
+            "line": 577,
+            "end_line": 660
+          },
+          {
+            "symbol": "_migrate_notebook_entries_add_turn_id",
+            "line": 663,
+            "end_line": 740
+          },
+          {
+            "symbol": "_migrate_notebook_entries_add_user_answer_images",
+            "line": 743,
+            "end_line": 759
+          },
+          {
+            "symbol": "_migrate_notebook_entries_add_ai_judgment",
+            "line": 762,
+            "end_line": 775
+          },
+          {
+            "symbol": "_migrate_notebook_entries_add_assessment_review",
+            "line": 778,
+            "end_line": 802
+          },
+          {
+            "symbol": "_migrate_notebook_entries_add_assessment_v2",
+            "line": 805,
+            "end_line": 854
+          },
+          {
+            "symbol": "_migrate_notebook_entry_origins",
+            "line": 857,
+            "end_line": 1006
+          },
+          {
+            "symbol": "_migrate_assessment_attempt_origins",
+            "line": 1009,
+            "end_line": 1096
+          },
+          {
+            "symbol": "_migrate_assessment_attempt_link_state",
+            "line": 1099,
+            "end_line": 1112
+          },
+          {
+            "symbol": "_run",
+            "line": 1114,
+            "end_line": 1116
+          },
+          {
+            "symbol": "_connect",
+            "line": 1119,
+            "end_line": 1134
+          },
+          {
+            "symbol": "_create_session_sync",
+            "line": 1136,
+            "end_line": 1142
+          },
+          {
+            "symbol": "_insert_session",
+            "line": 1144,
+            "end_line": 1170
+          },
+          {
+            "symbol": "create_session",
+            "line": 1172,
+            "end_line": 1177
+          },
+          {
+            "symbol": "_reserve_submission_sync",
+            "line": 1179,
+            "end_line": 1223
+          },
+          {
+            "symbol": "reserve_submission",
+            "line": 1225,
+            "end_line": 1228
+          },
+          {
+            "symbol": "_submission_turn_sync",
+            "line": 1230,
+            "end_line": 1236
+          },
+          {
+            "symbol": "submission_turn",
+            "line": 1238,
+            "end_line": 1239
+          },
+          {
+            "symbol": "ensure_notebook_session",
+            "line": 1241,
+            "end_line": 1247
+          },
+          {
+            "symbol": "_ensure_notebook_session_sync",
+            "line": 1249,
+            "end_line": 1266
+          },
+          {
+            "symbol": "_get_session_sync",
+            "line": 1268,
+            "end_line": 1322
+          },
+          {
+            "symbol": "get_session",
+            "line": 1324,
+            "end_line": 1325
+          },
+          {
+            "symbol": "ensure_session",
+            "line": 1327,
+            "end_line": 1335
+          },
+          {
+            "symbol": "_serialize_turn",
+            "line": 1338,
+            "end_line": 1357
+          },
+          {
+            "symbol": "_begin_turn_sync",
+            "line": 1359,
+            "end_line": 1458
+          },
+          {
+            "symbol": "begin_turn",
+            "line": 1460,
+            "end_line": 1478
+          },
+          {
+            "symbol": "create_turn",
+            "line": 1480,
+            "end_line": 1483
+          },
+          {
+            "symbol": "_get_turn_sync",
+            "line": 1485,
+            "end_line": 1499
+          },
+          {
+            "symbol": "get_turn",
+            "line": 1501,
+            "end_line": 1502
+          },
+          {
+            "symbol": "_get_active_turn_sync",
+            "line": 1504,
+            "end_line": 1521
+          },
+          {
+            "symbol": "get_active_turn",
+            "line": 1523,
+            "end_line": 1524
+          },
+          {
+            "symbol": "_list_active_turns_sync",
+            "line": 1526,
+            "end_line": 1540
+          },
+          {
+            "symbol": "list_active_turns",
+            "line": 1542,
+            "end_line": 1543
+          },
+          {
+            "symbol": "_list_orphaned_failed_turns_sync",
+            "line": 1545,
+            "end_line": 1557
+          },
+          {
+            "symbol": "list_orphaned_failed_turns",
+            "line": 1559,
+            "end_line": 1560
+          },
+          {
+            "symbol": "_list_nonterminal_turns_sync",
+            "line": 1562,
+            "end_line": 1575
+          },
+          {
+            "symbol": "list_nonterminal_turns",
+            "line": 1577,
+            "end_line": 1578
+          },
+          {
+            "symbol": "_transition_turn_sync",
+            "line": 1580,
+            "end_line": 1626
+          },
+          {
+            "symbol": "transition_turn",
+            "line": 1628,
+            "end_line": 1648
+          },
+          {
+            "symbol": "update_turn_status",
+            "line": 1650,
+            "end_line": 1651
+          },
+          {
+            "symbol": "_event_matches_row",
+            "line": 1654,
+            "end_line": 1661
+          },
+          {
+            "symbol": "_turn_event_row_to_payload",
+            "line": 1664,
+            "end_line": 1675
+          },
+          {
+            "symbol": "_append_turn_events_sync",
+            "line": 1677,
+            "end_line": 1755
+          },
+          {
+            "symbol": "append_events",
+            "line": 1757,
+            "end_line": 1769
+          },
+          {
+            "symbol": "append_turn_event",
+            "line": 1771,
+            "end_line": 1773
+          },
+          {
+            "symbol": "append_turn_events",
+            "line": 1775,
+            "end_line": 1778
+          },
+          {
+            "symbol": "_get_turn_events_sync",
+            "line": 1780,
+            "end_line": 1806
+          },
+          {
+            "symbol": "get_turn_events",
+            "line": 1808,
+            "end_line": 1809
+          },
+          {
+            "symbol": "get_events",
+            "line": 1811,
+            "end_line": 1812
+          },
+          {
+            "symbol": "_link_turn_message_sync",
+            "line": 1814,
+            "end_line": 1827
+          },
+          {
+            "symbol": "link_turn_message",
+            "line": 1829,
+            "end_line": 1832
+          },
+          {
+            "symbol": "_get_message_trace_sync",
+            "line": 1834,
+            "end_line": 1898
+          },
+          {
+            "symbol": "get_message_trace",
+            "line": 1900,
+            "end_line": 1917
+          },
+          {
+            "symbol": "_update_session_title_sync",
+            "line": 1919,
+            "end_line": 1930
+          },
+          {
+            "symbol": "update_session_title",
+            "line": 1932,
+            "end_line": 1933
+          },
+          {
+            "symbol": "_delete_session_sync",
+            "line": 1935,
+            "end_line": 1939
+          },
+          {
+            "symbol": "delete_session",
+            "line": 1941,
+            "end_line": 1943
+          },
+          {
+            "symbol": "_soft_delete_session_sync",
+            "line": 1945,
+            "end_line": 1952
+          },
+          {
+            "symbol": "soft_delete_session",
+            "line": 1954,
+            "end_line": 1956
+          },
+          {
+            "symbol": "_restore_session_sync",
+            "line": 1958,
+            "end_line": 1965
+          },
+          {
+            "symbol": "restore_session",
+            "line": 1967,
+            "end_line": 1968
+          },
+          {
+            "symbol": "_hard_delete_session_sync",
+            "line": 1970,
+            "end_line": 1977
+          },
+          {
+            "symbol": "hard_delete_session",
+            "line": 1979,
+            "end_line": 1981
+          },
+          {
+            "symbol": "_list_deleted_sessions_sync",
+            "line": 1983,
+            "end_line": 1988
+          },
+          {
+            "symbol": "list_deleted_sessions",
+            "line": 1990,
+            "end_line": 1995
+          },
+          {
+            "symbol": "_add_message_sync",
+            "line": 1997,
+            "end_line": 2063
+          },
+          {
+            "symbol": "add_message",
+            "line": 2065,
+            "end_line": 2089
+          },
+          {
+            "symbol": "_backfill_import_meta_sync",
+            "line": 2092,
+            "end_line": 2123
+          },
+          {
+            "symbol": "_import_session_sync",
+            "line": 2125,
+            "end_line": 2189
+          },
+          {
+            "symbol": "import_session",
+            "line": 2191,
+            "end_line": 2214
+          },
+          {
+            "symbol": "import_legacy_session",
+            "line": 2216,
+            "end_line": 2234
+          },
+          {
+            "symbol": "_delete_message_sync",
+            "line": 2236,
+            "end_line": 2240
+          },
+          {
+            "symbol": "delete_message",
+            "line": 2242,
+            "end_line": 2243
+          },
+          {
+            "symbol": "_delete_turn_by_message_sync",
+            "line": 2245,
+            "end_line": 2427
+          },
+          {
+            "symbol": "delete_turn_by_message",
+            "line": 2429,
+            "end_line": 2430
+          },
+          {
+            "symbol": "_get_last_message_sync",
+            "line": 2432,
+            "end_line": 2462
+          },
+          {
+            "symbol": "get_last_message",
+            "line": 2464,
+            "end_line": 2467
+          },
+          {
+            "symbol": "_serialize_message",
+            "line": 2469,
+            "end_line": 2489
+          },
+          {
+            "symbol": "_canonical_trace_preview_sync",
+            "line": 2491,
+            "end_line": 2555
+          },
+          {
+            "symbol": "_legacy_trace_preview_sync",
+            "line": 2557,
+            "end_line": 2570
+          },
+          {
+            "symbol": "_ask_user_events_sync",
+            "line": 2572,
+            "end_line": 2593
+          },
+          {
+            "symbol": "_get_messages_sync",
+            "line": 2595,
+            "end_line": 2628
+          },
+          {
+            "symbol": "_get_message_path_sync",
+            "line": 2630,
+            "end_line": 2660
+          },
+          {
+            "symbol": "get_message_path",
+            "line": 2662,
+            "end_line": 2663
+          },
+          {
+            "symbol": "usage_records",
+            "line": 2665,
+            "end_line": 2714
+          },
+          {
+            "symbol": "get_messages",
+            "line": 2716,
+            "end_line": 2717
+          },
+          {
+            "symbol": "_get_messages_for_context_sync",
+            "line": 2719,
+            "end_line": 2785
+          },
+          {
+            "symbol": "get_messages_for_context",
+            "line": 2787,
+            "end_line": 2790
+          },
+          {
+            "symbol": "_list_session_summaries_sync",
+            "line": 2853,
+            "end_line": 2861
+          },
+          {
+            "symbol": "_session_summary_payload",
+            "line": 2864,
+            "end_line": 2868
+          },
+          {
+            "symbol": "_get_session_summaries_sync",
+            "line": 2870,
+            "end_line": 2885
+          },
+          {
+            "symbol": "_list_sessions_sync",
+            "line": 2887,
+            "end_line": 2908
+          },
+          {
+            "symbol": "_list_imported_sessions_sync",
+            "line": 2910,
+            "end_line": 2915
+          },
+          {
+            "symbol": "list_sessions",
+            "line": 2917,
+            "end_line": 2924
+          },
+          {
+            "symbol": "_search_sessions_sync",
+            "line": 2926,
+            "end_line": 3043
+          },
+          {
+            "symbol": "search_sessions",
+            "line": 3045,
+            "end_line": 3052
+          },
+          {
+            "symbol": "get_session_summaries",
+            "line": 3054,
+            "end_line": 3058
+          },
+          {
+            "symbol": "list_imported_sessions",
+            "line": 3060,
+            "end_line": 3065
+          },
+          {
+            "symbol": "_update_summary_sync",
+            "line": 3067,
+            "end_line": 3078
+          },
+          {
+            "symbol": "update_summary",
+            "line": 3080,
+            "end_line": 3081
+          },
+          {
+            "symbol": "_update_session_preferences_sync",
+            "line": 3083,
+            "end_line": 3107
+          },
+          {
+            "symbol": "update_session_preferences",
+            "line": 3109,
+            "end_line": 3112
+          },
+          {
+            "symbol": "get_session_with_messages",
+            "line": 3114,
+            "end_line": 3121
+          },
+          {
+            "symbol": "_optional_float",
+            "line": 3126,
+            "end_line": 3132
+          },
+          {
+            "symbol": "_notebook_assessment_values",
+            "line": 3135,
+            "end_line": 3162
+          },
+          {
+            "symbol": "_notebook_origin",
+            "line": 3165,
+            "end_line": 3183
+          },
+          {
+            "symbol": "_upsert_notebook_entries_in_conn",
+            "line": 3185,
+            "end_line": 3325
+          },
+          {
+            "symbol": "_upsert_notebook_entries_sync",
+            "line": 3327,
+            "end_line": 3333
+          },
+          {
+            "symbol": "upsert_notebook_entries",
+            "line": 3335,
+            "end_line": 3340
+          },
+          {
+            "symbol": "_append_assessment_attempt_sync",
+            "line": 3342,
+            "end_line": 3389
+          },
+          {
+            "symbol": "append_assessment_attempt",
+            "line": 3391,
+            "end_line": 3403
+          },
+          {
+            "symbol": "_record_assessment_sync",
+            "line": 3405,
+            "end_line": 3524
+          },
+          {
+            "symbol": "record_assessment",
+            "line": 3526,
+            "end_line": 3533
+          },
+          {
+            "symbol": "_get_assessment_attempt_sync",
+            "line": 3535,
+            "end_line": 3544
+          },
+          {
+            "symbol": "get_assessment_attempt",
+            "line": 3546,
+            "end_line": 3547
+          },
+          {
+            "symbol": "_mark_assessment_link_applied_sync",
+            "line": 3549,
+            "end_line": 3554
+          },
+          {
+            "symbol": "mark_assessment_link_applied",
+            "line": 3556,
+            "end_line": 3557
+          },
+          {
+            "symbol": "_pending_linked_assessments_sync",
+            "line": 3559,
+            "end_line": 3571
+          },
+          {
+            "symbol": "pending_linked_assessments",
+            "line": 3573,
+            "end_line": 3574
+          },
+          {
+            "symbol": "_list_assessment_attempts_sync",
+            "line": 3576,
+            "end_line": 3592
+          },
+          {
+            "symbol": "list_assessment_attempts",
+            "line": 3594,
+            "end_line": 3605
+          },
+          {
+            "symbol": "_put_reading_quiz_pending_sync",
+            "line": 3607,
+            "end_line": 3636
+          },
+          {
+            "symbol": "put_reading_quiz_pending",
+            "line": 3638,
+            "end_line": 3644
+          },
+          {
+            "symbol": "_get_reading_quiz_pending_sync",
+            "line": 3646,
+            "end_line": 3672
+          },
+          {
+            "symbol": "get_reading_quiz_pending",
+            "line": 3674,
+            "end_line": 3686
+          },
+          {
+            "symbol": "_best_reading_quiz_results_sync",
+            "line": 3688,
+            "end_line": 3720
+          },
+          {
+            "symbol": "best_reading_quiz_results",
+            "line": 3722,
+            "end_line": 3731
+          },
+          {
+            "symbol": "_upsert_reading_quiz_reward_sync",
+            "line": 3733,
+            "end_line": 3768
+          },
+          {
+            "symbol": "upsert_reading_quiz_reward",
+            "line": 3770,
+            "end_line": 3774
+          },
+          {
+            "symbol": "_list_reading_quiz_rewards_sync",
+            "line": 3776,
+            "end_line": 3793
+          },
+          {
+            "symbol": "list_reading_quiz_rewards",
+            "line": 3795,
+            "end_line": 3796
+          },
+          {
+            "symbol": "_reading_quiz_reward_totals_sync",
+            "line": 3798,
+            "end_line": 3818
+          },
+          {
+            "symbol": "reading_quiz_reward_totals",
+            "line": 3820,
+            "end_line": 3822
+          },
+          {
+            "symbol": "_serialize_notebook_entry",
+            "line": 3825,
+            "end_line": 3889
+          },
+          {
+            "symbol": "_question_bank_filters",
+            "line": 3894,
+            "end_line": 3980
+          },
+          {
+            "symbol": "_load_categories_for",
+            "line": 3983,
+            "end_line": 4005
+          },
+          {
+            "symbol": "_load_practice_for",
+            "line": 4008,
+            "end_line": 4023
+          },
+          {
+            "symbol": "_list_notebook_entries_sync",
+            "line": 4025,
+            "end_line": 4065
+          },
+          {
+            "symbol": "list_notebook_entries",
+            "line": 4067,
+            "end_line": 4116
+          },
+          {
+            "symbol": "_question_bank_stats_sync",
+            "line": 4118,
+            "end_line": 4162
+          },
+          {
+            "symbol": "has_question_bank_entries",
+            "line": 4164,
+            "end_line": 4176
+          },
+          {
+            "symbol": "question_bank_stats",
+            "line": 4178,
+            "end_line": 4186
+          },
+          {
+            "symbol": "_list_question_bank_materials_sync",
+            "line": 4188,
+            "end_line": 4216
+          },
+          {
+            "symbol": "list_question_bank_materials",
+            "line": 4218,
+            "end_line": 4226
+          },
+          {
+            "symbol": "_get_notebook_entry_sync",
+            "line": 4228,
+            "end_line": 4255
+          },
+          {
+            "symbol": "get_notebook_entry",
+            "line": 4257,
+            "end_line": 4258
+          },
+          {
+            "symbol": "_find_notebook_entry_sync",
+            "line": 4260,
+            "end_line": 4277
+          },
+          {
+            "symbol": "find_notebook_entry",
+            "line": 4279,
+            "end_line": 4285
+          },
+          {
+            "symbol": "_find_notebook_entry_by_origin_sync",
+            "line": 4287,
+            "end_line": 4309
+          },
+          {
+            "symbol": "find_notebook_entry_by_origin",
+            "line": 4311,
+            "end_line": 4324
+          },
+          {
+            "symbol": "_update_notebook_entry_sync",
+            "line": 4326,
+            "end_line": 4353
+          },
+          {
+            "symbol": "update_notebook_entry",
+            "line": 4355,
+            "end_line": 4356
+          },
+          {
+            "symbol": "_delete_notebook_entry_sync",
+            "line": 4358,
+            "end_line": 4362
+          },
+          {
+            "symbol": "delete_notebook_entry",
+            "line": 4364,
+            "end_line": 4365
+          },
+          {
+            "symbol": "_name_taken",
+            "line": 4370,
+            "end_line": 4382
+          },
+          {
+            "symbol": "_create_category_sync",
+            "line": 4384,
+            "end_line": 4395
+          },
+          {
+            "symbol": "create_category",
+            "line": 4397,
+            "end_line": 4398
+          },
+          {
+            "symbol": "_list_categories_sync",
+            "line": 4400,
+            "end_line": 4436
+          },
+          {
+            "symbol": "list_categories",
+            "line": 4438,
+            "end_line": 4445
+          },
+          {
+            "symbol": "_rename_category_sync",
+            "line": 4447,
+            "end_line": 4459
+          },
+          {
+            "symbol": "rename_category",
+            "line": 4461,
+            "end_line": 4462
+          },
+          {
+            "symbol": "_delete_category_sync",
+            "line": 4464,
+            "end_line": 4468
+          },
+          {
+            "symbol": "delete_category",
+            "line": 4470,
+            "end_line": 4471
+          },
+          {
+            "symbol": "_add_entry_to_category_sync",
+            "line": 4473,
+            "end_line": 4483
+          },
+          {
+            "symbol": "add_entry_to_category",
+            "line": 4485,
+            "end_line": 4486
+          },
+          {
+            "symbol": "_remove_entry_from_category_sync",
+            "line": 4488,
+            "end_line": 4495
+          },
+          {
+            "symbol": "remove_entry_from_category",
+            "line": 4497,
+            "end_line": 4498
+          },
+          {
+            "symbol": "_get_entry_categories_sync",
+            "line": 4500,
+            "end_line": 4511
+          },
+          {
+            "symbol": "get_entry_categories",
+            "line": 4513,
+            "end_line": 4514
+          },
+          {
+            "symbol": "_link_entries_to_category_sync",
+            "line": 4516,
+            "end_line": 4556
+          },
+          {
+            "symbol": "link_entries_to_category",
+            "line": 4558,
+            "end_line": 4563
+          },
+          {
+            "symbol": "_find_category_by_name_sync",
+            "line": 4565,
+            "end_line": 4574
+          },
+          {
+            "symbol": "find_category_by_name",
+            "line": 4576,
+            "end_line": 4578
+          },
+          {
+            "symbol": "read",
+            "line": 2669,
+            "end_line": 2712
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/session/context_builder.py",
+        "sha256": "520b17920ea8e3319bc09770068c7cd5a72809d46de543fc1508b22eaa7688e9",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/session/context_builder.py",
+        "line_count": 671,
+        "symbols": [
+          {
+            "symbol": "count_tokens",
+            "line": 49,
+            "end_line": 59
+          },
+          {
+            "symbol": "_count_model_context_tokens",
+            "line": 62,
+            "end_line": 90
+          },
+          {
+            "symbol": "trim_incomplete_tail",
+            "line": 93,
+            "end_line": 102
+          },
+          {
+            "symbol": "expand_message_context",
+            "line": 105,
+            "end_line": 125
+          },
+          {
+            "symbol": "format_messages_as_transcript",
+            "line": 128,
+            "end_line": 140
+          },
+          {
+            "symbol": "build_history_text",
+            "line": 143,
+            "end_line": 156
+          },
+          {
+            "symbol": "_provider_response_state_tokens",
+            "line": 159,
+            "end_line": 170
+          },
+          {
+            "symbol": "ContextBuildResult",
+            "line": 174,
+            "end_line": 182
+          },
+          {
+            "symbol": "_ContextSummaryAgent",
+            "line": 185,
+            "end_line": 196
+          },
+          {
+            "symbol": "ContextBuilder",
+            "line": 199,
+            "end_line": 659
+          },
+          {
+            "symbol": "accounting_view",
+            "line": 72,
+            "end_line": 87
+          },
+          {
+            "symbol": "__init__",
+            "line": 188,
+            "end_line": 193
+          },
+          {
+            "symbol": "process",
+            "line": 195,
+            "end_line": 196
+          },
+          {
+            "symbol": "__init__",
+            "line": 206,
+            "end_line": 214
+          },
+          {
+            "symbol": "_effective_context_window",
+            "line": 216,
+            "end_line": 221
+          },
+          {
+            "symbol": "_history_budget",
+            "line": 223,
+            "end_line": 226
+          },
+          {
+            "symbol": "_summary_budget",
+            "line": 228,
+            "end_line": 235
+          },
+          {
+            "symbol": "_recent_budget",
+            "line": 237,
+            "end_line": 241
+          },
+          {
+            "symbol": "_rebuild_source_budget",
+            "line": 243,
+            "end_line": 247
+          },
+          {
+            "symbol": "_build_history",
+            "line": 249,
+            "end_line": 271
+          },
+          {
+            "symbol": "_append_event",
+            "line": 273,
+            "end_line": 281
+          },
+          {
+            "symbol": "_select_recent_messages",
+            "line": 283,
+            "end_line": 307
+          },
+          {
+            "symbol": "_model_tokens",
+            "line": 309,
+            "end_line": 314
+          },
+          {
+            "symbol": "_summarize",
+            "line": 316,
+            "end_line": 505
+          },
+          {
+            "symbol": "build",
+            "line": 507,
+            "end_line": 659
+          },
+          {
+            "symbol": "_trace_bridge",
+            "line": 339,
+            "end_line": 405
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/session/turns/executor.py",
+        "sha256": "f45111b0b599f5fb193cffcc59166d7ae2c6ead21ff8bf554eed140d040dff9f",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/session/turns/executor.py",
+        "line_count": 1441,
+        "symbols": [
+          {
+            "symbol": "TurnExecutor",
+            "line": 67,
+            "end_line": 1441
+          },
+          {
+            "symbol": "_run_turn",
+            "line": 139,
+            "end_line": 1441
+          },
+          {
+            "symbol": "_create_context_builder",
+            "line": 76,
+            "end_line": 76
+          },
+          {
+            "symbol": "_publish_live_event",
+            "line": 78,
+            "end_line": 82
+          },
+          {
+            "symbol": "_grade_submitted_card_answer",
+            "line": 84,
+            "end_line": 90
+          },
+          {
+            "symbol": "_skip_card_question",
+            "line": 92,
+            "end_line": 98
+          },
+          {
+            "symbol": "_publish_mastery_path_change",
+            "line": 100,
+            "end_line": 108
+          },
+          {
+            "symbol": "_publish_mastery_mode_change",
+            "line": 110,
+            "end_line": 116
+          },
+          {
+            "symbol": "_flush_buffered_events",
+            "line": 118,
+            "end_line": 118
+          },
+          {
+            "symbol": "_transition_execution",
+            "line": 120,
+            "end_line": 128
+          },
+          {
+            "symbol": "_maybe_generate_session_title",
+            "line": 130,
+            "end_line": 136
+          },
+          {
+            "symbol": "_persisted_answer",
+            "line": 159,
+            "end_line": 164
+          },
+          {
+            "symbol": "_wait_for_user_reply",
+            "line": 181,
+            "end_line": 215
+          },
+          {
+            "symbol": "_attachment_progress",
+            "line": 379,
+            "end_line": 397
+          },
+          {
+            "symbol": "_emit_context_event",
+            "line": 549,
+            "end_line": 552
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/services/partners/sessions.py",
+        "sha256": "06585f0dabf63ce9d6e197bebe39353db1c187d8d27c0e57f786042384539bed",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/services/partners/sessions.py",
+        "line_count": 462,
+        "symbols": [
+          {
+            "symbol": "conversation_scope",
+            "line": 43,
+            "end_line": 47
+          },
+          {
+            "symbol": "PartnerSessionStore",
+            "line": 50,
+            "end_line": 459
+          },
+          {
+            "symbol": "__init__",
+            "line": 53,
+            "end_line": 56
+          },
+          {
+            "symbol": "_path",
+            "line": 58,
+            "end_line": 59
+          },
+          {
+            "symbol": "is_archived_key",
+            "line": 62,
+            "end_line": 63
+          },
+          {
+            "symbol": "_index_path",
+            "line": 73,
+            "end_line": 74
+          },
+          {
+            "symbol": "_load_index",
+            "line": 76,
+            "end_line": 84
+          },
+          {
+            "symbol": "_save_index",
+            "line": 86,
+            "end_line": 90
+          },
+          {
+            "symbol": "_stem",
+            "line": 92,
+            "end_line": 104
+          },
+          {
+            "symbol": "is_archived",
+            "line": 106,
+            "end_line": 111
+          },
+          {
+            "symbol": "set_archived",
+            "line": 113,
+            "end_line": 128
+          },
+          {
+            "symbol": "delete_session",
+            "line": 130,
+            "end_line": 139
+          },
+          {
+            "symbol": "branch",
+            "line": 141,
+            "end_line": 157
+          },
+          {
+            "symbol": "append",
+            "line": 161,
+            "end_line": 204
+          },
+          {
+            "symbol": "clear",
+            "line": 206,
+            "end_line": 211
+          },
+          {
+            "symbol": "archive",
+            "line": 213,
+            "end_line": 243
+          },
+          {
+            "symbol": "_read_records",
+            "line": 247,
+            "end_line": 266
+          },
+          {
+            "symbol": "conversation_history",
+            "line": 268,
+            "end_line": 290
+          },
+          {
+            "symbol": "messages",
+            "line": 292,
+            "end_line": 300
+          },
+          {
+            "symbol": "messages_page",
+            "line": 302,
+            "end_line": 347
+          },
+          {
+            "symbol": "previous_model_turn",
+            "line": 349,
+            "end_line": 360
+          },
+          {
+            "symbol": "model_history",
+            "line": 362,
+            "end_line": 381
+          },
+          {
+            "symbol": "merged_messages",
+            "line": 383,
+            "end_line": 403
+          },
+          {
+            "symbol": "_session_summary",
+            "line": 405,
+            "end_line": 417
+          },
+          {
+            "symbol": "_origin",
+            "line": 420,
+            "end_line": 433
+          },
+          {
+            "symbol": "_derive_title",
+            "line": 436,
+            "end_line": 451
+          },
+          {
+            "symbol": "list_sessions",
+            "line": 453,
+            "end_line": 459
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/api/routers/sessions.py",
+        "sha256": "ac26bd63ca4642d98923d34450fe07fc56d0bf3a368a54f0799dc971fcf71f4a",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/api/routers/sessions.py",
+        "line_count": 727,
+        "symbols": [
+          {
+            "symbol": "_turn_application_service",
+            "line": 35,
+            "end_line": 38
+          },
+          {
+            "symbol": "SessionRenameRequest",
+            "line": 41,
+            "end_line": 42
+          },
+          {
+            "symbol": "BranchSelectionRequest",
+            "line": 45,
+            "end_line": 52
+          },
+          {
+            "symbol": "SessionOrganizationRequest",
+            "line": 55,
+            "end_line": 63
+          },
+          {
+            "symbol": "SessionReplyLanguageRequest",
+            "line": 66,
+            "end_line": 72
+          },
+          {
+            "symbol": "QuizResultItem",
+            "line": 75,
+            "end_line": 94
+          },
+          {
+            "symbol": "QuizResultsRequest",
+            "line": 97,
+            "end_line": 99
+          },
+          {
+            "symbol": "_format_quiz_results_message",
+            "line": 102,
+            "end_line": 117
+          },
+          {
+            "symbol": "_legacy_watching_media_id",
+            "line": 120,
+            "end_line": 129
+          },
+          {
+            "symbol": "_normalize_legacy_watching_session",
+            "line": 132,
+            "end_line": 205
+          },
+          {
+            "symbol": "list_sessions",
+            "line": 209,
+            "end_line": 225
+          },
+          {
+            "symbol": "search_sessions",
+            "line": 229,
+            "end_line": 248
+          },
+          {
+            "symbol": "_redact_private_message_metadata",
+            "line": 261,
+            "end_line": 263
+          },
+          {
+            "symbol": "_attach_orphaned_failed_turns",
+            "line": 266,
+            "end_line": 337
+          },
+          {
+            "symbol": "_truncate_oversized_events",
+            "line": 340,
+            "end_line": 370
+          },
+          {
+            "symbol": "list_recycle_bin",
+            "line": 374,
+            "end_line": 380
+          },
+          {
+            "symbol": "migrate_watching_session",
+            "line": 384,
+            "end_line": 405
+          },
+          {
+            "symbol": "get_session",
+            "line": 409,
+            "end_line": 419
+          },
+          {
+            "symbol": "get_message_events",
+            "line": 423,
+            "end_line": 433
+          },
+          {
+            "symbol": "get_session_ask_hint",
+            "line": 437,
+            "end_line": 441
+          },
+          {
+            "symbol": "rename_session",
+            "line": 445,
+            "end_line": 457
+          },
+          {
+            "symbol": "update_session_reply_language",
+            "line": 461,
+            "end_line": 472
+          },
+          {
+            "symbol": "update_session_organization",
+            "line": 476,
+            "end_line": 578
+          },
+          {
+            "symbol": "delete_session",
+            "line": 582,
+            "end_line": 616
+          },
+          {
+            "symbol": "_cleanup_deleted_session",
+            "line": 619,
+            "end_line": 631
+          },
+          {
+            "symbol": "restore_session",
+            "line": 635,
+            "end_line": 641
+          },
+          {
+            "symbol": "purge_session",
+            "line": 645,
+            "end_line": 659
+          },
+          {
+            "symbol": "update_branch_selection",
+            "line": 663,
+            "end_line": 673
+          },
+          {
+            "symbol": "delete_turn_by_message",
+            "line": 677,
+            "end_line": 693
+          },
+          {
+            "symbol": "record_quiz_results",
+            "line": 697,
+            "end_line": 727
+          },
+          {
+            "symbol": "_supported_language",
+            "line": 71,
+            "end_line": 72
+          },
+          {
+            "symbol": "_coerce_options",
+            "line": 88,
+            "end_line": 89
+          },
+          {
+            "symbol": "_coerce_str",
+            "line": 93,
+            "end_line": 94
+          },
+          {
+            "symbol": "_cap",
+            "line": 350,
+            "end_line": 355
+          },
+          {
+            "symbol": "migrate",
+            "line": 388,
+            "end_line": 403
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/learning/mastery.py",
+        "sha256": "318e1001a9cfeea744742bbb5d232d54bc72b3f915c7ef93f82683f038a66fd6",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/learning/mastery.py",
+        "line_count": 40,
+        "symbols": [
+          {
+            "symbol": "compute_mastery",
+            "line": 24,
+            "end_line": 37
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/learning/grading.py",
+        "sha256": "7f35f9d4dbf6169aa32139a7808eed20be19d41a939d585237b3566d0f8f3c1c",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/learning/grading.py",
+        "line_count": 64,
+        "symbols": [
+          {
+            "symbol": "grade_answer",
+            "line": 13,
+            "end_line": 49
+          },
+          {
+            "symbol": "classify_error",
+            "line": 52,
+            "end_line": 61
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/learning/service.py",
+        "sha256": "db80368e5fdbae06228193a09d65edf25375dd6f79fc2e75d92af6d18ea6e35b",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/learning/service.py",
+        "line_count": 1996,
+        "symbols": [
+          {
+            "symbol": "_objective_fingerprint",
+            "line": 59,
+            "end_line": 60
+          },
+          {
+            "symbol": "_unique_fingerprint_map",
+            "line": 63,
+            "end_line": 72
+          },
+          {
+            "symbol": "_reserved_objective_ids",
+            "line": 75,
+            "end_line": 91
+          },
+          {
+            "symbol": "_new_objective_id",
+            "line": 94,
+            "end_line": 100
+          },
+          {
+            "symbol": "_quiz_evidence_matches_attempt",
+            "line": 107,
+            "end_line": 117
+          },
+          {
+            "symbol": "_drop_quiz_evidence_for_attempts",
+            "line": 120,
+            "end_line": 154
+          },
+          {
+            "symbol": "_update_quiz_evidence_for_attempts",
+            "line": 157,
+            "end_line": 178
+          },
+          {
+            "symbol": "assign_objective_identities",
+            "line": 181,
+            "end_line": 247
+          },
+          {
+            "symbol": "MasteryInteractionError",
+            "line": 250,
+            "end_line": 251
+          },
+          {
+            "symbol": "NoPendingInteractionError",
+            "line": 254,
+            "end_line": 255
+          },
+          {
+            "symbol": "StaleInteractionError",
+            "line": 258,
+            "end_line": 266
+          },
+          {
+            "symbol": "LearningService",
+            "line": 269,
+            "end_line": 1988
+          },
+          {
+            "symbol": "__init__",
+            "line": 261,
+            "end_line": 266
+          },
+          {
+            "symbol": "__init__",
+            "line": 270,
+            "end_line": 271
+          },
+          {
+            "symbol": "store",
+            "line": 274,
+            "end_line": 276
+          },
+          {
+            "symbol": "get_or_create",
+            "line": 278,
+            "end_line": 282
+          },
+          {
+            "symbol": "init_modules",
+            "line": 284,
+            "end_line": 286
+          },
+          {
+            "symbol": "_resolve_final_relations",
+            "line": 289,
+            "end_line": 332
+          },
+          {
+            "symbol": "replace_modules",
+            "line": 334,
+            "end_line": 388
+          },
+          {
+            "symbol": "advance_stage",
+            "line": 390,
+            "end_line": 392
+          },
+          {
+            "symbol": "switch_module",
+            "line": 394,
+            "end_line": 407
+          },
+          {
+            "symbol": "record_quiz_attempt",
+            "line": 409,
+            "end_line": 461
+          },
+          {
+            "symbol": "calculate_mastery",
+            "line": 463,
+            "end_line": 470
+          },
+          {
+            "symbol": "update_mastery",
+            "line": 472,
+            "end_line": 474
+          },
+          {
+            "symbol": "grade_and_record",
+            "line": 476,
+            "end_line": 513
+          },
+          {
+            "symbol": "_apply_grade",
+            "line": 515,
+            "end_line": 589
+          },
+          {
+            "symbol": "_record_quiz_evidence",
+            "line": 591,
+            "end_line": 619
+          },
+          {
+            "symbol": "set_pending_question",
+            "line": 623,
+            "end_line": 628
+          },
+          {
+            "symbol": "clear_pending_question",
+            "line": 630,
+            "end_line": 633
+          },
+          {
+            "symbol": "_interaction_from_legacy_pending",
+            "line": 636,
+            "end_line": 652
+          },
+          {
+            "symbol": "register_question",
+            "line": 654,
+            "end_line": 733
+          },
+          {
+            "symbol": "mark_question_awaiting",
+            "line": 735,
+            "end_line": 774
+          },
+          {
+            "symbol": "record_question_answer",
+            "line": 776,
+            "end_line": 844
+          },
+          {
+            "symbol": "grade_interaction",
+            "line": 846,
+            "end_line": 1035
+          },
+          {
+            "symbol": "replace_modules_for_path",
+            "line": 1037,
+            "end_line": 1210
+          },
+          {
+            "symbol": "create_topic",
+            "line": 1212,
+            "end_line": 1256
+          },
+          {
+            "symbol": "rename_path",
+            "line": 1258,
+            "end_line": 1276
+          },
+          {
+            "symbol": "record_learner_profile",
+            "line": 1278,
+            "end_line": 1325
+          },
+          {
+            "symbol": "abandon_active_question",
+            "line": 1327,
+            "end_line": 1357
+          },
+          {
+            "symbol": "reset_path",
+            "line": 1359,
+            "end_line": 1386
+          },
+          {
+            "symbol": "set_learner_mastery_override",
+            "line": 1388,
+            "end_line": 1423
+          },
+          {
+            "symbol": "_recompute_objective_state",
+            "line": 1425,
+            "end_line": 1475
+          },
+          {
+            "symbol": "repair_question",
+            "line": 1477,
+            "end_line": 1701
+          },
+          {
+            "symbol": "defer_objective",
+            "line": 1703,
+            "end_line": 1757
+          },
+          {
+            "symbol": "record_qualitative",
+            "line": 1759,
+            "end_line": 1784
+          },
+          {
+            "symbol": "record_qualitative_for_path",
+            "line": 1786,
+            "end_line": 1846
+          },
+          {
+            "symbol": "record_qualitative_in_memory",
+            "line": 1849,
+            "end_line": 1902
+          },
+          {
+            "symbol": "list_path_overviews",
+            "line": 1904,
+            "end_line": 1943
+          },
+          {
+            "symbol": "list_progress",
+            "line": 1945,
+            "end_line": 1985
+          },
+          {
+            "symbol": "save",
+            "line": 1987,
+            "end_line": 1988
+          },
+          {
+            "symbol": "register",
+            "line": 668,
+            "end_line": 729
+          },
+          {
+            "symbol": "mark",
+            "line": 745,
+            "end_line": 771
+          },
+          {
+            "symbol": "record",
+            "line": 787,
+            "end_line": 841
+          },
+          {
+            "symbol": "grade",
+            "line": 866,
+            "end_line": 1031
+          },
+          {
+            "symbol": "replace",
+            "line": 1066,
+            "end_line": 1207
+          },
+          {
+            "symbol": "create",
+            "line": 1228,
+            "end_line": 1253
+          },
+          {
+            "symbol": "rename",
+            "line": 1267,
+            "end_line": 1273
+          },
+          {
+            "symbol": "record",
+            "line": 1309,
+            "end_line": 1323
+          },
+          {
+            "symbol": "abandon",
+            "line": 1342,
+            "end_line": 1355
+          },
+          {
+            "symbol": "reset",
+            "line": 1360,
+            "end_line": 1383
+          },
+          {
+            "symbol": "update",
+            "line": 1398,
+            "end_line": 1420
+          },
+          {
+            "symbol": "repair",
+            "line": 1500,
+            "end_line": 1698
+          },
+          {
+            "symbol": "defer",
+            "line": 1714,
+            "end_line": 1755
+          },
+          {
+            "symbol": "record",
+            "line": 1797,
+            "end_line": 1843
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/learning/assessment.py",
+        "sha256": "f2e04d9a59ed47d19f91013fdae01719874e0d85f94afe5299e0475b78e63f62",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/learning/assessment.py",
+        "line_count": 558,
+        "symbols": [
+          {
+            "symbol": "RecordAssessmentError",
+            "line": 36,
+            "end_line": 37
+          },
+          {
+            "symbol": "AssessmentOutcome",
+            "line": 40,
+            "end_line": 47
+          },
+          {
+            "symbol": "result_to_is_correct",
+            "line": 50,
+            "end_line": 52
+          },
+          {
+            "symbol": "is_correct_to_result",
+            "line": 55,
+            "end_line": 61
+          },
+          {
+            "symbol": "build_grade_result",
+            "line": 64,
+            "end_line": 73
+          },
+          {
+            "symbol": "AssessmentRecord",
+            "line": 76,
+            "end_line": 242
+          },
+          {
+            "symbol": "_resolve_result",
+            "line": 245,
+            "end_line": 263
+          },
+          {
+            "symbol": "_apply_linkage",
+            "line": 266,
+            "end_line": 278
+          },
+          {
+            "symbol": "_is_trusted_linkage",
+            "line": 281,
+            "end_line": 292
+          },
+          {
+            "symbol": "_get_learning_store",
+            "line": 295,
+            "end_line": 298
+          },
+          {
+            "symbol": "_apply_linked_retention",
+            "line": 301,
+            "end_line": 387
+          },
+          {
+            "symbol": "to_notebook_item",
+            "line": 390,
+            "end_line": 423
+          },
+          {
+            "symbol": "record_assessment",
+            "line": 426,
+            "end_line": 509
+          },
+          {
+            "symbol": "reconcile_linked_assessments",
+            "line": 512,
+            "end_line": 538
+          },
+          {
+            "symbol": "_normalize_source",
+            "line": 117,
+            "end_line": 119
+          },
+          {
+            "symbol": "_normalize_origin_type",
+            "line": 123,
+            "end_line": 125
+          },
+          {
+            "symbol": "_normalize_type",
+            "line": 129,
+            "end_line": 131
+          },
+          {
+            "symbol": "_normalize_result_field",
+            "line": 135,
+            "end_line": 137
+          },
+          {
+            "symbol": "_strip_text",
+            "line": 160,
+            "end_line": 161
+          },
+          {
+            "symbol": "_options",
+            "line": 165,
+            "end_line": 168
+          },
+          {
+            "symbol": "_attempt_count",
+            "line": 172,
+            "end_line": 176
+          },
+          {
+            "symbol": "_hints_used",
+            "line": 180,
+            "end_line": 184
+          },
+          {
+            "symbol": "_require_identity",
+            "line": 187,
+            "end_line": 200
+          },
+          {
+            "symbol": "assessment_id",
+            "line": 203,
+            "end_line": 211
+          },
+          {
+            "symbol": "attempt_identity",
+            "line": 214,
+            "end_line": 242
+          },
+          {
+            "symbol": "apply",
+            "line": 339,
+            "end_line": 384
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/learning/models.py",
+        "sha256": "66e8188c601cee457a0bc17d66b3a20e0181a2b2a0c51355b2ef9225ca5e3f4a",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/learning/models.py",
+        "line_count": 623,
+        "symbols": [
+          {
+            "symbol": "KnowledgeType",
+            "line": 24,
+            "end_line": 33
+          },
+          {
+            "symbol": "ErrorType",
+            "line": 36,
+            "end_line": 45
+          },
+          {
+            "symbol": "LearningStage",
+            "line": 61,
+            "end_line": 77
+          },
+          {
+            "symbol": "KnowledgePoint",
+            "line": 80,
+            "end_line": 94
+          },
+          {
+            "symbol": "LearningModule",
+            "line": 97,
+            "end_line": 111
+          },
+          {
+            "symbol": "DiagnosticResult",
+            "line": 114,
+            "end_line": 119
+          },
+          {
+            "symbol": "QuizAttempt",
+            "line": 122,
+            "end_line": 139
+          },
+          {
+            "symbol": "RetryAttempt",
+            "line": 142,
+            "end_line": 147
+          },
+          {
+            "symbol": "ErrorRecord",
+            "line": 150,
+            "end_line": 162
+          },
+          {
+            "symbol": "LearningEvidence",
+            "line": 165,
+            "end_line": 189
+          },
+          {
+            "symbol": "RepetitionState",
+            "line": 192,
+            "end_line": 213
+          },
+          {
+            "symbol": "ReviewTask",
+            "line": 216,
+            "end_line": 228
+          },
+          {
+            "symbol": "PendingOption",
+            "line": 231,
+            "end_line": 246
+          },
+          {
+            "symbol": "PendingQuestion",
+            "line": 249,
+            "end_line": 299
+          },
+          {
+            "symbol": "InteractionStatus",
+            "line": 302,
+            "end_line": 315
+          },
+          {
+            "symbol": "MasteryInteraction",
+            "line": 318,
+            "end_line": 332
+          },
+          {
+            "symbol": "MasteryEvent",
+            "line": 335,
+            "end_line": 347
+          },
+          {
+            "symbol": "MasteryPathLease",
+            "line": 350,
+            "end_line": 358
+          },
+          {
+            "symbol": "TopicSourceKind",
+            "line": 361,
+            "end_line": 386
+          },
+          {
+            "symbol": "TopicSource",
+            "line": 389,
+            "end_line": 402
+          },
+          {
+            "symbol": "TopicMetadata",
+            "line": 405,
+            "end_line": 417
+          },
+          {
+            "symbol": "MasteryTopic",
+            "line": 420,
+            "end_line": 424
+          },
+          {
+            "symbol": "LearnerMasteryOverride",
+            "line": 427,
+            "end_line": 434
+          },
+          {
+            "symbol": "DeferredObjective",
+            "line": 437,
+            "end_line": 444
+          },
+          {
+            "symbol": "LearnerProfile",
+            "line": 447,
+            "end_line": 493
+          },
+          {
+            "symbol": "ReadingProgressRecord",
+            "line": 504,
+            "end_line": 514
+          },
+          {
+            "symbol": "ReadingActivityRecord",
+            "line": 517,
+            "end_line": 528
+          },
+          {
+            "symbol": "ReadingLearningRecords",
+            "line": 531,
+            "end_line": 537
+          },
+          {
+            "symbol": "LearningProgress",
+            "line": 540,
+            "end_line": 591
+          },
+          {
+            "symbol": "_missing_",
+            "line": 31,
+            "end_line": 33
+          },
+          {
+            "symbol": "_missing_",
+            "line": 43,
+            "end_line": 45
+          },
+          {
+            "symbol": "_missing_",
+            "line": 75,
+            "end_line": 77
+          },
+          {
+            "symbol": "_read_legacy_option_strings",
+            "line": 281,
+            "end_line": 294
+          },
+          {
+            "symbol": "choice_map",
+            "line": 297,
+            "end_line": 299
+          },
+          {
+            "symbol": "is_empty",
+            "line": 482,
+            "end_line": 493
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/learning/objective_relations.py",
+        "sha256": "5dc9c07625f96081634a09ed690a48b9d7eb98aad97d03bdd1c160a7b1acb87a",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/learning/objective_relations.py",
+        "line_count": 181,
+        "symbols": [
+          {
+            "symbol": "ObjectiveRelationError",
+            "line": 16,
+            "end_line": 17
+          },
+          {
+            "symbol": "RelationRefs",
+            "line": 21,
+            "end_line": 26
+          },
+          {
+            "symbol": "normalize_refs",
+            "line": 29,
+            "end_line": 38
+          },
+          {
+            "symbol": "source_ref_map",
+            "line": 41,
+            "end_line": 64
+          },
+          {
+            "symbol": "_knowledge_points",
+            "line": 67,
+            "end_line": 69
+          },
+          {
+            "symbol": "validate_objective_relations",
+            "line": 72,
+            "end_line": 128
+          },
+          {
+            "symbol": "resolve_relation_refs",
+            "line": 131,
+            "end_line": 171
+          },
+          {
+            "symbol": "visit",
+            "line": 112,
+            "end_line": 125
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/capabilities/mastery/tools.py",
+        "sha256": "b6be3c50425472056c4744f7d80917a6a2e3ccd8226f752e1d9e4092608c3872",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/capabilities/mastery/tools.py",
+        "line_count": 2886,
+        "symbols": [
+          {
+            "symbol": "_new_service",
+            "line": 124,
+            "end_line": 128
+          },
+          {
+            "symbol": "_resolve_path_id",
+            "line": 131,
+            "end_line": 132
+          },
+          {
+            "symbol": "_resolve_session_id",
+            "line": 135,
+            "end_line": 136
+          },
+          {
+            "symbol": "_resolve_turn_id",
+            "line": 139,
+            "end_line": 140
+          },
+          {
+            "symbol": "_normalize_difficulty",
+            "line": 146,
+            "end_line": 153
+          },
+          {
+            "symbol": "_question_bank_type",
+            "line": 156,
+            "end_line": 162
+          },
+          {
+            "symbol": "_duplicate_option_body",
+            "line": 165,
+            "end_line": 181
+          },
+          {
+            "symbol": "_read_choice_options",
+            "line": 184,
+            "end_line": 223
+          },
+          {
+            "symbol": "_normalize_quiz_contract",
+            "line": 226,
+            "end_line": 290
+          },
+          {
+            "symbol": "_shuffle_choice_options",
+            "line": 293,
+            "end_line": 317
+          },
+          {
+            "symbol": "_resolve_pending_choice",
+            "line": 320,
+            "end_line": 341
+          },
+          {
+            "symbol": "_sync_mastery_attempt_to_question_bank",
+            "line": 344,
+            "end_line": 408
+          },
+          {
+            "symbol": "_sync_qualitative_to_question_bank",
+            "line": 411,
+            "end_line": 458
+          },
+          {
+            "symbol": "_unreadable_choice_result",
+            "line": 461,
+            "end_line": 477
+          },
+          {
+            "symbol": "_json_result",
+            "line": 480,
+            "end_line": 485
+          },
+          {
+            "symbol": "_no_path_result",
+            "line": 488,
+            "end_line": 492
+          },
+          {
+            "symbol": "_load_path",
+            "line": 495,
+            "end_line": 504
+          },
+          {
+            "symbol": "_profile_status",
+            "line": 507,
+            "end_line": 539
+          },
+          {
+            "symbol": "_review_scope_refusal",
+            "line": 542,
+            "end_line": 572
+          },
+          {
+            "symbol": "_mode_instructions",
+            "line": 575,
+            "end_line": 602
+          },
+          {
+            "symbol": "_mode_of",
+            "line": 605,
+            "end_line": 607
+          },
+          {
+            "symbol": "_wrong_mode_result",
+            "line": 610,
+            "end_line": 625
+          },
+          {
+            "symbol": "_no_built_path_result",
+            "line": 628,
+            "end_line": 637
+          },
+          {
+            "symbol": "_unbuilt_status_message",
+            "line": 640,
+            "end_line": 701
+          },
+          {
+            "symbol": "MasteryStatusTool",
+            "line": 704,
+            "end_line": 823
+          },
+          {
+            "symbol": "MasteryNoteExplainedTool",
+            "line": 826,
+            "end_line": 882
+          },
+          {
+            "symbol": "MasteryQuizTool",
+            "line": 885,
+            "end_line": 1182
+          },
+          {
+            "symbol": "MasteryGradeTool",
+            "line": 1185,
+            "end_line": 1418
+          },
+          {
+            "symbol": "MasteryAssessTool",
+            "line": 1421,
+            "end_line": 1525
+          },
+          {
+            "symbol": "MasterySkipQuestionTool",
+            "line": 1528,
+            "end_line": 1573
+          },
+          {
+            "symbol": "MasteryRepairQuestionTool",
+            "line": 1576,
+            "end_line": 1690
+          },
+          {
+            "symbol": "MasteryDeferObjectiveTool",
+            "line": 1693,
+            "end_line": 1758
+          },
+          {
+            "symbol": "MasteryBuildTool",
+            "line": 1761,
+            "end_line": 1916
+          },
+          {
+            "symbol": "MasteryModeTool",
+            "line": 1919,
+            "end_line": 2010
+          },
+          {
+            "symbol": "MasteryProfileTool",
+            "line": 2013,
+            "end_line": 2144
+          },
+          {
+            "symbol": "MasteryReviseTool",
+            "line": 2147,
+            "end_line": 2340
+          },
+          {
+            "symbol": "MasteryPathsTool",
+            "line": 2343,
+            "end_line": 2381
+          },
+          {
+            "symbol": "MasterySwitchTool",
+            "line": 2384,
+            "end_line": 2444
+          },
+          {
+            "symbol": "MasteryLeaveTool",
+            "line": 2447,
+            "end_line": 2490
+          },
+          {
+            "symbol": "_humanized",
+            "line": 2506,
+            "end_line": 2517
+          },
+          {
+            "symbol": "_display_name",
+            "line": 2520,
+            "end_line": 2530
+          },
+          {
+            "symbol": "_module_objective",
+            "line": 2533,
+            "end_line": 2545
+          },
+          {
+            "symbol": "_raw_knowledge_points",
+            "line": 2548,
+            "end_line": 2554
+          },
+          {
+            "symbol": "_normalized_module_tree",
+            "line": 2557,
+            "end_line": 2593
+          },
+          {
+            "symbol": "_revised_point_id",
+            "line": 2602,
+            "end_line": 2616
+          },
+          {
+            "symbol": "_revise_points",
+            "line": 2619,
+            "end_line": 2768
+          },
+          {
+            "symbol": "_parse_modules_with_refs",
+            "line": 2771,
+            "end_line": 2837
+          },
+          {
+            "symbol": "_parse_modules",
+            "line": 2840,
+            "end_line": 2846
+          },
+          {
+            "symbol": "get_definition",
+            "line": 707,
+            "end_line": 720
+          },
+          {
+            "symbol": "execute",
+            "line": 722,
+            "end_line": 823
+          },
+          {
+            "symbol": "get_definition",
+            "line": 829,
+            "end_line": 845
+          },
+          {
+            "symbol": "execute",
+            "line": 847,
+            "end_line": 882
+          },
+          {
+            "symbol": "get_definition",
+            "line": 888,
+            "end_line": 1007
+          },
+          {
+            "symbol": "execute",
+            "line": 1009,
+            "end_line": 1182
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1188,
+            "end_line": 1216
+          },
+          {
+            "symbol": "execute",
+            "line": 1218,
+            "end_line": 1418
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1424,
+            "end_line": 1453
+          },
+          {
+            "symbol": "execute",
+            "line": 1455,
+            "end_line": 1525
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1531,
+            "end_line": 1543
+          },
+          {
+            "symbol": "execute",
+            "line": 1545,
+            "end_line": 1573
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1579,
+            "end_line": 1615
+          },
+          {
+            "symbol": "execute",
+            "line": 1617,
+            "end_line": 1690
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1696,
+            "end_line": 1720
+          },
+          {
+            "symbol": "execute",
+            "line": 1722,
+            "end_line": 1758
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1764,
+            "end_line": 1865
+          },
+          {
+            "symbol": "execute",
+            "line": 1867,
+            "end_line": 1916
+          },
+          {
+            "symbol": "get_definition",
+            "line": 1934,
+            "end_line": 1963
+          },
+          {
+            "symbol": "execute",
+            "line": 1965,
+            "end_line": 2010
+          },
+          {
+            "symbol": "get_definition",
+            "line": 2025,
+            "end_line": 2090
+          },
+          {
+            "symbol": "execute",
+            "line": 2092,
+            "end_line": 2144
+          },
+          {
+            "symbol": "get_definition",
+            "line": 2169,
+            "end_line": 2248
+          },
+          {
+            "symbol": "execute",
+            "line": 2250,
+            "end_line": 2340
+          },
+          {
+            "symbol": "get_definition",
+            "line": 2346,
+            "end_line": 2357
+          },
+          {
+            "symbol": "execute",
+            "line": 2359,
+            "end_line": 2381
+          },
+          {
+            "symbol": "get_definition",
+            "line": 2387,
+            "end_line": 2408
+          },
+          {
+            "symbol": "execute",
+            "line": 2410,
+            "end_line": 2444
+          },
+          {
+            "symbol": "get_definition",
+            "line": 2450,
+            "end_line": 2462
+          },
+          {
+            "symbol": "execute",
+            "line": 2464,
+            "end_line": 2490
+          },
+          {
+            "symbol": "relation_values",
+            "line": 2681,
+            "end_line": 2684
+          },
+          {
+            "symbol": "note",
+            "line": 862,
+            "end_line": 873
+          }
+        ]
+      },
+      {
+        "path": "tests/services/memory/test_modes.py",
+        "sha256": "5d82518141fcb12a9ad1a00a66d3dcf5657f8c729737b3d1459414a19a12c6b8",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/tests/services/memory/test_modes.py",
+        "line_count": 315,
+        "symbols": [
+          {
+            "symbol": "memory_dir",
+            "line": 26,
+            "end_line": 31
+          },
+          {
+            "symbol": "_entity",
+            "line": 34,
+            "end_line": 42
+          },
+          {
+            "symbol": "test_update_l2_appends_facts_from_chunk",
+            "line": 49,
+            "end_line": 86
+          },
+          {
+            "symbol": "test_update_l2_idempotent_when_no_new_entities",
+            "line": 90,
+            "end_line": 134
+          },
+          {
+            "symbol": "test_update_l2_drops_facts_with_out_of_pool_refs",
+            "line": 138,
+            "end_line": 169
+          },
+          {
+            "symbol": "test_audit_l2_applies_replace_edit",
+            "line": 176,
+            "end_line": 213
+          },
+          {
+            "symbol": "test_dedup_early_stop_when_no_edits",
+            "line": 220,
+            "end_line": 256
+          },
+          {
+            "symbol": "test_dedup_applies_delete_then_stops",
+            "line": 260,
+            "end_line": 315
+          },
+          {
+            "symbol": "fake_llm",
+            "line": 57,
+            "end_line": 63
+          },
+          {
+            "symbol": "llm_returns_one",
+            "line": 98,
+            "end_line": 99
+          },
+          {
+            "symbol": "llm_should_not_run",
+            "line": 118,
+            "end_line": 120
+          },
+          {
+            "symbol": "fake_llm",
+            "line": 145,
+            "end_line": 149
+          },
+          {
+            "symbol": "fake_llm",
+            "line": 193,
+            "end_line": 206
+          },
+          {
+            "symbol": "fake_llm",
+            "line": 239,
+            "end_line": 241
+          },
+          {
+            "symbol": "fake_llm",
+            "line": 279,
+            "end_line": 300
+          }
+        ]
+      },
+      {
+        "path": "tests/services/memory/test_references.py",
+        "sha256": "33ec6eb740821335a79c10bd2d3a74ea22574403087f0042d2f34c85dd5947cb",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/tests/services/memory/test_references.py",
+        "line_count": 159,
+        "symbols": [
+          {
+            "symbol": "_entity",
+            "line": 18,
+            "end_line": 26
+          },
+          {
+            "symbol": "test_render_traces_yields_unique_markers_per_entity",
+            "line": 29,
+            "end_line": 32
+          },
+          {
+            "symbol": "test_refs_in_chunk_l2_only_lists_refs_visible_in_chunk",
+            "line": 35,
+            "end_line": 42
+          },
+          {
+            "symbol": "test_refs_in_span_l2_keeps_ref_when_chunk_starts_inside_entity_body",
+            "line": 45,
+            "end_line": 57
+          },
+          {
+            "symbol": "test_render_l2_for_concat_is_text_only_no_entry_ids",
+            "line": 60,
+            "end_line": 79
+          },
+          {
+            "symbol": "test_refs_in_chunk_l3_returns_surface_names_visible_in_chunk",
+            "line": 82,
+            "end_line": 94
+          },
+          {
+            "symbol": "test_refs_in_span_l3_keeps_surface_when_chunk_starts_mid_block",
+            "line": 97,
+            "end_line": 116
+          },
+          {
+            "symbol": "test_validate_fact_refs_drops_out_of_pool_when_drop_invalid_true",
+            "line": 119,
+            "end_line": 128
+          },
+          {
+            "symbol": "test_validate_fact_refs_recovers_label_prefixed_l2_ref",
+            "line": 131,
+            "end_line": 143
+          },
+          {
+            "symbol": "test_validate_fact_refs_rejects_when_drop_invalid_false",
+            "line": 146,
+            "end_line": 151
+          },
+          {
+            "symbol": "test_validate_fact_refs_rejects_empty_refs_when_required",
+            "line": 154,
+            "end_line": 159
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/learning/tests/test_mastery_state_integrity.py",
+        "sha256": "5ff44f664a49557c49235184003c9b277d944b1991cd12b4cc8086bb6584b1d9",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/learning/tests/test_mastery_state_integrity.py",
+        "line_count": 671,
+        "symbols": [
+          {
+            "symbol": "tool_payload",
+            "line": 45,
+            "end_line": 47
+          },
+          {
+            "symbol": "path_id",
+            "line": 51,
+            "end_line": 59
+          },
+          {
+            "symbol": "_kp",
+            "line": 62,
+            "end_line": 65
+          },
+          {
+            "symbol": "_module",
+            "line": 68,
+            "end_line": 69
+          },
+          {
+            "symbol": "_seed_objective_evidence",
+            "line": 72,
+            "end_line": 115
+          },
+          {
+            "symbol": "_evidence_ids",
+            "line": 118,
+            "end_line": 129
+          },
+          {
+            "symbol": "_build",
+            "line": 132,
+            "end_line": 139
+          },
+          {
+            "symbol": "test_replace_unrelated_objective_does_not_inherit_positional_state",
+            "line": 146,
+            "end_line": 184
+          },
+          {
+            "symbol": "test_replace_reorder_keeps_evidence_with_the_objective",
+            "line": 191,
+            "end_line": 241
+          },
+          {
+            "symbol": "test_deleting_pending_objective_abandons_question_and_interaction",
+            "line": 247,
+            "end_line": 289
+          },
+          {
+            "symbol": "test_full_replace_mints_new_id_for_rewritten_content",
+            "line": 296,
+            "end_line": 343
+          },
+          {
+            "symbol": "test_targeted_revise_resets_only_the_rewritten_waypoint",
+            "line": 347,
+            "end_line": 386
+          },
+          {
+            "symbol": "test_void_invalid_question_recomputes_mastery_and_review",
+            "line": 392,
+            "end_line": 428
+          },
+          {
+            "symbol": "test_void_removes_only_evidence_for_that_question",
+            "line": 431,
+            "end_line": 457
+          },
+          {
+            "symbol": "test_correct_answer_key_regrades_and_restores_mastery",
+            "line": 460,
+            "end_line": 501
+          },
+          {
+            "symbol": "test_repair_question_tool_voids_wrong_key_from_question_bank",
+            "line": 505,
+            "end_line": 580
+          },
+          {
+            "symbol": "test_defer_advances_route_without_marking_mastered",
+            "line": 587,
+            "end_line": 627
+          },
+          {
+            "symbol": "test_skip_question_stays_on_the_same_objective",
+            "line": 631,
+            "end_line": 661
+          },
+          {
+            "symbol": "test_legacy_quiz_attempt_without_voided_stays_counted",
+            "line": 664,
+            "end_line": 671
+          },
+          {
+            "symbol": "_init",
+            "line": 52,
+            "end_line": 56
+          },
+          {
+            "symbol": "prepare",
+            "line": 256,
+            "end_line": 275
+          }
+        ]
+      },
+      {
+        "path": "deeptutor/learning/tests/test_guided_mastery_updates.py",
+        "sha256": "cd88beb3d67631d9d981a1152f33ade94221a304c899f4b8c6f6d5c800255b0e",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/deeptutor/learning/tests/test_guided_mastery_updates.py",
+        "line_count": 539,
+        "symbols": [
+          {
+            "symbol": "_make_progress",
+            "line": 27,
+            "end_line": 41
+          },
+          {
+            "symbol": "test_compute_mastery_single_correct_is_capped_at_half",
+            "line": 47,
+            "end_line": 49
+          },
+          {
+            "symbol": "test_compute_mastery_cap_progression",
+            "line": 52,
+            "end_line": 56
+          },
+          {
+            "symbol": "test_compute_mastery_empty_is_zero",
+            "line": 59,
+            "end_line": 60
+          },
+          {
+            "symbol": "test_compute_mastery_partial_correctness_scales",
+            "line": 63,
+            "end_line": 69
+          },
+          {
+            "symbol": "test_compute_mastery_weighs_recent_attempts_more_heavily",
+            "line": 72,
+            "end_line": 81
+          },
+          {
+            "symbol": "test_grade_and_record_correct_updates_capped_mastery_and_persists",
+            "line": 87,
+            "end_line": 111
+          },
+          {
+            "symbol": "test_grade_and_record_fail_closed_without_expected_answer",
+            "line": 114,
+            "end_line": 134
+          },
+          {
+            "symbol": "test_grade_and_record_advances_sr_state_and_builds_queue",
+            "line": 137,
+            "end_line": 164
+          },
+          {
+            "symbol": "test_grade_and_record_no_scheduler_skips_sr_state",
+            "line": 167,
+            "end_line": 186
+          },
+          {
+            "symbol": "test_grade_and_record_blank_wrong_is_metacognitive",
+            "line": 189,
+            "end_line": 207
+          },
+          {
+            "symbol": "test_error_record_graduates_on_later_correct_answer",
+            "line": 213,
+            "end_line": 247
+          },
+          {
+            "symbol": "test_pending_question_set_and_clear_round_trip",
+            "line": 253,
+            "end_line": 274
+          },
+          {
+            "symbol": "test_record_qualitative_pass_and_fail_drive_display_mastery",
+            "line": 277,
+            "end_line": 293
+          },
+          {
+            "symbol": "test_record_qualitative_starts_at_first_review_interval",
+            "line": 303,
+            "end_line": 322
+          },
+          {
+            "symbol": "test_record_qualitative_updates_existing_review_state",
+            "line": 325,
+            "end_line": 360
+          },
+          {
+            "symbol": "test_record_qualitative_initial_failure_schedules_repair_review",
+            "line": 363,
+            "end_line": 376
+          },
+          {
+            "symbol": "test_qualitative_live_state_matches_evidence_replay",
+            "line": 379,
+            "end_line": 397
+          },
+          {
+            "symbol": "test_record_qualitative_multi_turn_repair_does_not_compound_lapses",
+            "line": 400,
+            "end_line": 444
+          },
+          {
+            "symbol": "test_grade_and_record_retry_correct_uses_weaker_quality",
+            "line": 447,
+            "end_line": 470
+          },
+          {
+            "symbol": "test_grade_interaction_persists_evidence_and_emits_event",
+            "line": 473,
+            "end_line": 504
+          },
+          {
+            "symbol": "test_graduated_retry_does_not_weaken_later_independent_review",
+            "line": 508,
+            "end_line": 523
+          },
+          {
+            "symbol": "test_active_error_on_another_question_does_not_weaken_correct_answer",
+            "line": 526,
+            "end_line": 539
+          }
+        ]
+      },
+      {
+        "path": "pyproject.toml",
+        "sha256": "47a31df4e2694f586e9fded2fd896a944e8006e98fee64590555ff85c3e28545",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/pyproject.toml",
+        "line_count": 539,
+        "symbols": []
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "cd2f54e1e5066644023203dcbd956776a9f4ef6eb8b6225afe1ffa2d380fede4",
+        "url": "https://github.com/HKUDS/DeepTutor/blob/6cf793bd868ba5ecbe64722936d4be8fab5a01df/LICENSE",
+        "line_count": 202,
+        "symbols": []
+      }
+    ]
+  },
+  {
+    "repository": "CAHLR/pyBKT",
+    "commit": "cc1682e6e65241d5aaa7a286a01c4b76cd0da167",
+    "local_checkout": "/tmp/vibelearning-research-20261010.vgCExf/pyBKT",
+    "files": [
+      {
+        "path": "README.md",
+        "sha256": "20878d1583e42eee798d664f167057fb012d243ca0b37d316eb04814d9464c43",
+        "url": "https://github.com/CAHLR/pyBKT/blob/cc1682e6e65241d5aaa7a286a01c4b76cd0da167/README.md",
+        "line_count": 405,
+        "symbols": []
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "ad0c7a38bf01d8f2577bf69309f46d15ef9c82a1cff3ad19cf4bae8cee86704e",
+        "url": "https://github.com/CAHLR/pyBKT/blob/cc1682e6e65241d5aaa7a286a01c4b76cd0da167/LICENSE",
+        "line_count": 21,
+        "symbols": []
+      },
+      {
+        "path": "source-py/pyBKT/models/Model.py",
+        "sha256": "da4c64cd9e56bb2c9746b504d1204144dda3a193fa5a0b1ea06f1d3bb1db4612",
+        "url": "https://github.com/CAHLR/pyBKT/blob/cc1682e6e65241d5aaa7a286a01c4b76cd0da167/source-py/pyBKT/models/Model.py",
+        "line_count": 570,
+        "symbols": [
+          {
+            "symbol": "Model",
+            "line": 22,
+            "end_line": 570
+          },
+          {
+            "symbol": "__init__",
+            "line": 48,
+            "end_line": 64
+          },
+          {
+            "symbol": "fit",
+            "line": 66,
+            "end_line": 80
+          },
+          {
+            "symbol": "partial_fit",
+            "line": 82,
+            "end_line": 113
+          },
+          {
+            "symbol": "predict",
+            "line": 115,
+            "end_line": 161
+          },
+          {
+            "symbol": "evaluate",
+            "line": 163,
+            "end_line": 193
+          },
+          {
+            "symbol": "crossvalidate",
+            "line": 195,
+            "end_line": 256
+          },
+          {
+            "symbol": "coef_",
+            "line": 259,
+            "end_line": 275
+          },
+          {
+            "symbol": "coef_",
+            "line": 278,
+            "end_line": 301
+          },
+          {
+            "symbol": "params",
+            "line": 303,
+            "end_line": 339
+          },
+          {
+            "symbol": "save",
+            "line": 341,
+            "end_line": 350
+          },
+          {
+            "symbol": "load",
+            "line": 352,
+            "end_line": 362
+          },
+          {
+            "symbol": "fetch_dataset",
+            "line": 365,
+            "end_line": 376
+          },
+          {
+            "symbol": "_data_helper",
+            "line": 378,
+            "end_line": 392
+          },
+          {
+            "symbol": "_fit",
+            "line": 394,
+            "end_line": 436
+          },
+          {
+            "symbol": "_predict",
+            "line": 438,
+            "end_line": 440
+          },
+          {
+            "symbol": "_evaluate",
+            "line": 442,
+            "end_line": 456
+          },
+          {
+            "symbol": "_crossvalidate",
+            "line": 458,
+            "end_line": 463
+          },
+          {
+            "symbol": "_format_param",
+            "line": 465,
+            "end_line": 473
+          },
+          {
+            "symbol": "_check_fixed",
+            "line": 475,
+            "end_line": 484
+          },
+          {
+            "symbol": "_update_param",
+            "line": 487,
+            "end_line": 503
+          },
+          {
+            "symbol": "_update_defaults",
+            "line": 505,
+            "end_line": 524
+          },
+          {
+            "symbol": "_check_params",
+            "line": 526,
+            "end_line": 539
+          },
+          {
+            "symbol": "_check_manual_param_init",
+            "line": 541,
+            "end_line": 550
+          },
+          {
+            "symbol": "_check_args",
+            "line": 552,
+            "end_line": 556
+          },
+          {
+            "symbol": "_check_data",
+            "line": 558,
+            "end_line": 564
+          },
+          {
+            "symbol": "__repr__",
+            "line": 566,
+            "end_line": 570
+          }
+        ]
+      },
+      {
+        "path": "source-py/pyBKT/fit/predict_onestep.py",
+        "sha256": "2f7db66b938a3c482e8987eb1fa5810f5a6e110a56a390afa8291d42e89a8982",
+        "url": "https://github.com/CAHLR/pyBKT/blob/cc1682e6e65241d5aaa7a286a01c4b76cd0da167/source-py/pyBKT/fit/predict_onestep.py",
+        "line_count": 77,
+        "symbols": [
+          {
+            "symbol": "run",
+            "line": 15,
+            "end_line": 39
+          },
+          {
+            "symbol": "predict_onestep_states",
+            "line": 41,
+            "end_line": 74
+          },
+          {
+            "symbol": "interleave",
+            "line": 76,
+            "end_line": 77
+          }
+        ]
+      },
+      {
+        "path": "source-py/pyBKT/util/data_helper.py",
+        "sha256": "e5466a79cbab051f864e3d21f11649b0335669cbc2eeb9c9563e15d8d5352f80",
+        "url": "https://github.com/CAHLR/pyBKT/blob/cc1682e6e65241d5aaa7a286a01c4b76cd0da167/source-py/pyBKT/util/data_helper.py",
+        "line_count": 304,
+        "symbols": [
+          {
+            "symbol": "convert_data",
+            "line": 16,
+            "end_line": 304
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "repository": "umass-ml4ed/dialogue-kt",
+    "commit": "c61f335f89005161b6ef439872cc1735bee26745",
+    "local_checkout": "/tmp/vibelearning-research-20261010.vgCExf/dialogue-kt",
+    "files": [
+      {
+        "path": "README.md",
+        "sha256": "c3fcd3b0c600048c522bb4de82f1a7ff9bf487214a0abb5d88e0b2ac69b701d4",
+        "url": "https://github.com/umass-ml4ed/dialogue-kt/blob/c61f335f89005161b6ef439872cc1735bee26745/README.md",
+        "line_count": 114,
+        "symbols": []
+      },
+      {
+        "path": "LICENSE",
+        "sha256": "11fc0673ce5818c29aaa746587e10b2238b9c676e3d9f72b8dfda31bc04ac2a4",
+        "url": "https://github.com/umass-ml4ed/dialogue-kt/blob/c61f335f89005161b6ef439872cc1735bee26745/LICENSE",
+        "line_count": 21,
+        "symbols": []
+      },
+      {
+        "path": "dialogue_kt/prompting.py",
+        "sha256": "efa174eda5c817076fafc7d07d0e9fab30fbfbb9289b7a47be4d271c8b6d4226",
+        "url": "https://github.com/umass-ml4ed/dialogue-kt/blob/c61f335f89005161b6ef439872cc1735bee26745/dialogue_kt/prompting.py",
+        "line_count": 149,
+        "symbols": [
+          {
+            "symbol": "get_dialogue_text",
+            "line": 8,
+            "end_line": 25
+          },
+          {
+            "symbol": "get_mathdial_context",
+            "line": 27,
+            "end_line": 30
+          },
+          {
+            "symbol": "get_true_false_tokens",
+            "line": 32,
+            "end_line": 35
+          },
+          {
+            "symbol": "get_dataset_desc",
+            "line": 80,
+            "end_line": 85
+          },
+          {
+            "symbol": "anno_base_system_prompt",
+            "line": 87,
+            "end_line": 88
+          },
+          {
+            "symbol": "anno_base_user_prompt",
+            "line": 90,
+            "end_line": 97
+          },
+          {
+            "symbol": "anno_atc_system_prompt",
+            "line": 99,
+            "end_line": 105
+          },
+          {
+            "symbol": "anno_atc_user_prompt",
+            "line": 107,
+            "end_line": 118
+          },
+          {
+            "symbol": "anno_correctness_system_prompt",
+            "line": 120,
+            "end_line": 121
+          },
+          {
+            "symbol": "kt_system_prompt",
+            "line": 131,
+            "end_line": 132
+          },
+          {
+            "symbol": "kt_user_prompt",
+            "line": 134,
+            "end_line": 142
+          },
+          {
+            "symbol": "dkt_sem_prompt",
+            "line": 144,
+            "end_line": 149
+          }
+        ]
+      },
+      {
+        "path": "dialogue_kt/kt_data_loading.py",
+        "sha256": "33dd4534125062da9094891c16cf20d5fc812e7b19d18e1b13a20804243fef77",
+        "url": "https://github.com/umass-ml4ed/dialogue-kt/blob/c61f335f89005161b6ef439872cc1735bee26745/dialogue_kt/kt_data_loading.py",
+        "line_count": 321,
+        "symbols": [
+          {
+            "symbol": "apply_annotations",
+            "line": 12,
+            "end_line": 42
+          },
+          {
+            "symbol": "DatasetBase",
+            "line": 44,
+            "end_line": 49
+          },
+          {
+            "symbol": "LMKTDatasetUnpacked",
+            "line": 51,
+            "end_line": 82
+          },
+          {
+            "symbol": "LMKTCollatorUnpacked",
+            "line": 84,
+            "end_line": 98
+          },
+          {
+            "symbol": "LMKTDatasetPacked",
+            "line": 100,
+            "end_line": 138
+          },
+          {
+            "symbol": "LMKTCollatorPacked",
+            "line": 140,
+            "end_line": 187
+          },
+          {
+            "symbol": "DKTDataset",
+            "line": 189,
+            "end_line": 260
+          },
+          {
+            "symbol": "DKTCollator",
+            "line": 262,
+            "end_line": 318
+          },
+          {
+            "symbol": "get_dataloader",
+            "line": 320,
+            "end_line": 321
+          },
+          {
+            "symbol": "__getitem__",
+            "line": 45,
+            "end_line": 46
+          },
+          {
+            "symbol": "__len__",
+            "line": 48,
+            "end_line": 49
+          },
+          {
+            "symbol": "__init__",
+            "line": 52,
+            "end_line": 82
+          },
+          {
+            "symbol": "__init__",
+            "line": 85,
+            "end_line": 86
+          },
+          {
+            "symbol": "__call__",
+            "line": 88,
+            "end_line": 98
+          },
+          {
+            "symbol": "__init__",
+            "line": 101,
+            "end_line": 138
+          },
+          {
+            "symbol": "__init__",
+            "line": 141,
+            "end_line": 142
+          },
+          {
+            "symbol": "__call__",
+            "line": 144,
+            "end_line": 187
+          },
+          {
+            "symbol": "__init__",
+            "line": 190,
+            "end_line": 260
+          },
+          {
+            "symbol": "__init__",
+            "line": 263,
+            "end_line": 264
+          },
+          {
+            "symbol": "__call__",
+            "line": 266,
+            "end_line": 318
+          }
+        ]
+      },
+      {
+        "path": "dialogue_kt/training.py",
+        "sha256": "58243e108f4fa7467ddc845b1bf320af3504cd054c7553bb4236dada3a9d7fe3",
+        "url": "https://github.com/umass-ml4ed/dialogue-kt/blob/c61f335f89005161b6ef439872cc1735bee26745/dialogue_kt/training.py",
+        "line_count": 674,
+        "symbols": [
+          {
+            "symbol": "apply_defaults",
+            "line": 28,
+            "end_line": 53
+          },
+          {
+            "symbol": "hyperparam_sweep",
+            "line": 55,
+            "end_line": 84
+          },
+          {
+            "symbol": "crossval",
+            "line": 86,
+            "end_line": 116
+          },
+          {
+            "symbol": "train",
+            "line": 118,
+            "end_line": 129
+          },
+          {
+            "symbol": "test",
+            "line": 131,
+            "end_line": 137
+          },
+          {
+            "symbol": "compute_metrics",
+            "line": 139,
+            "end_line": 144
+          },
+          {
+            "symbol": "compute_all_metrics",
+            "line": 146,
+            "end_line": 164
+          },
+          {
+            "symbol": "get_lmkt_loss_unpacked",
+            "line": 169,
+            "end_line": 194
+          },
+          {
+            "symbol": "get_lmkt_loss_packed",
+            "line": 196,
+            "end_line": 223
+          },
+          {
+            "symbol": "train_lmkt",
+            "line": 225,
+            "end_line": 287
+          },
+          {
+            "symbol": "test_lmkt",
+            "line": 289,
+            "end_line": 387
+          },
+          {
+            "symbol": "select_flat_baseline_out_vectors",
+            "line": 395,
+            "end_line": 402
+          },
+          {
+            "symbol": "get_baseline_loss",
+            "line": 404,
+            "end_line": 427
+          },
+          {
+            "symbol": "get_baseline_model",
+            "line": 429,
+            "end_line": 456
+          },
+          {
+            "symbol": "compute_baseline_loss",
+            "line": 458,
+            "end_line": 494
+          },
+          {
+            "symbol": "compute_kc_emb_matrix",
+            "line": 496,
+            "end_line": 500
+          },
+          {
+            "symbol": "train_baseline",
+            "line": 502,
+            "end_line": 566
+          },
+          {
+            "symbol": "test_baseline",
+            "line": 568,
+            "end_line": 628
+          },
+          {
+            "symbol": "bkt_prep_data",
+            "line": 630,
+            "end_line": 638
+          },
+          {
+            "symbol": "train_test_bkt",
+            "line": 640,
+            "end_line": 674
+          }
+        ]
+      }
+    ]
+  }
+]
