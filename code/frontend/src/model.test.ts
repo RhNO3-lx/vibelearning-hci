@@ -227,3 +227,83 @@ describe("local persistence", () => {
     expect(serialized).not.toContain("blob:");
   });
 });
+
+describe("revised configuration and legacy migration", () => {
+  it("changes defaults without changing existing workspaces", () => {
+    const seed = createSeed();
+    const next = reducer(seed, {
+      type: "settings",
+      patch: { defaultWorkspace: "~/new-default" },
+    });
+    expect(next.sessions).toEqual(seed.sessions);
+    const created = createSession("新的学习", next.settings.defaultWorkspace);
+    expect(created.session.workspace).toBe("~/new-default");
+    expect(seed.settings.defaultWorkspace).toBe("~/learning");
+  });
+  it("renames and sets the clicked inactive session without moving the current cursor", () => {
+    const seed = createSeed();
+    const next = reducer(seed, {
+      type: "sessionConfig",
+      id: "coding",
+      patch: { title: "新的会话名称", workspace: "~/coding-only" },
+    });
+    expect(activeSession(next)).toEqual(activeSession(seed));
+    expect(next.sessions.find((s) => s.id === "coding")?.workspace).toBe(
+      "~/coding-only",
+    );
+    expect(next.sessions.find((s) => s.id === "coding")?.title).toBe(
+      "新的会话名称",
+    );
+    expect(next.settings.defaultWorkspace).toBe(seed.settings.defaultWorkspace);
+  });
+  it("migrates disabled legacy toggles and relation metadata while retaining conversations", () => {
+    const seed = createSeed();
+    const { defaultWorkspace: _oldDefault, ...oldSettings } = seed.settings;
+    const legacy = {
+      ...seed,
+      settings: { ...oldSettings, showMath: false, autoSummary: false },
+      relations: [
+        {
+          ...seed.relations[0],
+          confidence: 80,
+          help: "旧属性",
+          sourceNote: "旧来源",
+        },
+        {
+          id: "old-help",
+          source: "vectors",
+          target: "diagonal",
+          type: "helpful",
+        },
+      ],
+    };
+    const restored = parseState(JSON.stringify(legacy))!;
+    expect(restored.sessions).toEqual(seed.sessions);
+    expect(restored.turns).toEqual(seed.turns);
+    expect(restored.relations).toEqual([seed.relations[0]]);
+    expect(restored.settings).toEqual(seed.settings);
+    const switched = reducer(restored, { type: "selectTurn", id: "t4" });
+    expect(
+      activeSession(switched).contexts.geometry.updates.length,
+    ).toBeGreaterThan(0);
+  });
+  it("retains the new default and rejects dangling or self prerequisites on restore", () => {
+    const seed = createSeed();
+    seed.settings.defaultWorkspace = "~/custom-default";
+    seed.relations.push(
+      {
+        id: "dangling",
+        source: "missing",
+        target: "eigen",
+        type: "prerequisite",
+      },
+      { id: "self", source: "eigen", target: "eigen", type: "prerequisite" },
+    );
+    const restored = parseState(JSON.stringify(seed))!;
+    expect(restored.settings.defaultWorkspace).toBe("~/custom-default");
+    expect(restored.relations).toHaveLength(3);
+    expect(
+      restored.concepts.every((c) => typeof c.difficulty === "string"),
+    ).toBe(true);
+  });
+});

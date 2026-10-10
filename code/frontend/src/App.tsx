@@ -5,6 +5,7 @@ import {
   useState,
   type ReactNode,
   type PointerEvent,
+  type CSSProperties,
 } from "react";
 import Markdown from "react-markdown";
 import remarkGfm from "remark-gfm";
@@ -38,7 +39,6 @@ import {
   X,
   ArrowDown,
   PanelRightOpen,
-  PanelLeftClose,
   Zap,
 } from "lucide-react";
 import {
@@ -56,6 +56,7 @@ import {
 import { createSeed, createSession, demoTurn } from "./seed";
 import { loadState, saveState } from "./storage";
 import { GraphPanel } from "./components/GraphPanel";
+import { ResizeHandle } from "./components/ResizeHandle";
 import { LearningCards } from "./components/Cards";
 import { ConfigPages, formatSize } from "./components/ConfigPages";
 
@@ -132,8 +133,9 @@ function Modal({
   );
 }
 type Dialog =
-  | { type: "new" | "path" | "workspace" | "resources" | "addConcept" | "help" }
+  | { type: "new" | "path" | "resources" | "addConcept" | "help" }
   | { type: "deleteTurn" | "deleteConcept" | "deleteSession"; id: string }
+  | { type: "rename" | "workspace"; id: string }
   | { type: "removePath"; id: string }
   | { type: "reset" };
 const navItems = [
@@ -161,6 +163,18 @@ export default function App() {
     [expanded, setExpanded] = useState<string[]>([]),
     [mapOpen, setMapOpen] = useState(true),
     [floating, setFloating] = useState(false);
+  const [panelWidth, setPanelWidth] = useState(410),
+    [selectionOrigin, setSelectionOrigin] = useState<"tree" | "knowledge">(
+      "tree",
+    ),
+    [sessionMenu, setSessionMenu] = useState<{
+      id: string;
+      x: number;
+      y: number;
+    } | null>(null),
+    [sessionName, setSessionName] = useState("");
+  const workbench = useRef<HTMLDivElement>(null),
+    menuRef = useRef<HTMLDivElement>(null);
   const [floatPos, setFloatPos] = useState({ x: 680, y: 90 }),
     [sidebarOpen, setSidebarOpen] = useState(false),
     [historyOpen, setHistoryOpen] = useState(false),
@@ -226,6 +240,7 @@ export default function App() {
     setHistoryOpen(false);
     setSelection(null);
     setSelectedConcept(current.conceptIds.at(-1) ?? null);
+    setSelectionOrigin("tree");
   }, [session.id]);
   useEffect(() => {
     scrollArea.current?.scrollTo({ top: 0, behavior: "instant" });
@@ -248,7 +263,63 @@ export default function App() {
     window.addEventListener("keydown", escape);
     return () => window.removeEventListener("keydown", escape);
   }, [dialog]);
+  useEffect(() => {
+    if (!sessionMenu) return;
+    const trigger = document.activeElement as HTMLElement | null;
+    menuRef.current?.querySelector<HTMLButtonElement>("button")?.focus();
+    function dismiss(e: Event) {
+      if (!menuRef.current?.contains(e.target as Node)) setSessionMenu(null);
+    }
+    function keyboard(e: KeyboardEvent) {
+      if (e.key === "Escape") {
+        setSessionMenu(null);
+        trigger?.focus();
+      }
+      if (e.key === "Tab") setSessionMenu(null);
+      if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+        e.preventDefault();
+        const items = [
+          ...(menuRef.current?.querySelectorAll<HTMLButtonElement>(
+            "button:not(:disabled)",
+          ) ?? []),
+        ];
+        const index = items.indexOf(
+          document.activeElement as HTMLButtonElement,
+        );
+        items[
+          (index + (e.key === "ArrowDown" ? 1 : items.length - 1)) %
+            items.length
+        ]?.focus();
+      }
+    }
+    document.addEventListener("pointerdown", dismiss);
+    document.addEventListener("keydown", keyboard);
+    window.addEventListener("resize", dismiss);
+    document.addEventListener("scroll", dismiss, true);
+    return () => {
+      document.removeEventListener("pointerdown", dismiss);
+      document.removeEventListener("keydown", keyboard);
+      window.removeEventListener("resize", dismiss);
+      document.removeEventListener("scroll", dismiss, true);
+    };
+  }, [sessionMenu]);
+  function showSessionMenu(id: string, x: number, y: number) {
+    setSessionMenu({
+      id,
+      x: Math.max(8, Math.min(x, window.innerWidth - 208)),
+      y: Math.max(8, Math.min(y, window.innerHeight - 154)),
+    });
+  }
+  function editSession(type: "rename" | "workspace", id: string) {
+    const target = state.sessions.find((s) => s.id === id);
+    if (!target) return;
+    setSessionName(target.title);
+    setWorkspace(target.workspace);
+    setSessionMenu(null);
+    setDialog({ type, id });
+  }
   function navigate(next: Page) {
+    setSessionMenu(null);
     setPage(next);
     setSidebarOpen(false);
     setSelection(null);
@@ -308,6 +379,7 @@ export default function App() {
     }
     const text = draft.trim() || "请结合这些附件帮助我学习。";
     const conceptIds =
+      selectionOrigin === "knowledge" &&
       selectedConcept &&
       state.concepts.some((c) => c.id === selectedConcept && !c.deleted)
         ? [selectedConcept]
@@ -395,7 +467,7 @@ export default function App() {
   }
   function openNew() {
     setGoal("");
-    setWorkspace("~/learning/new-project");
+    setWorkspace(state.settings.defaultWorkspace);
     setNewKbIds([]);
     setDialog({ type: "new" });
   }
@@ -403,7 +475,15 @@ export default function App() {
     state,
     dispatch,
     selectedConcept,
-    setSelectedConcept,
+    setSelectedConcept: (id: string | null) => {
+      setSelectionOrigin("knowledge");
+      setSelectedConcept(id);
+    },
+    selectionOrigin,
+    onSelectTree: (id: string) => {
+      setSelectionOrigin("tree");
+      dispatch({ type: "selectTurn", id });
+    },
     tab,
     setTab,
     expanded,
@@ -486,6 +566,21 @@ export default function App() {
           {state.sessions.slice(0, 5).map((s) => (
             <button
               key={s.id}
+              aria-haspopup="menu"
+              onContextMenu={(e) => {
+                e.preventDefault();
+                showSessionMenu(s.id, e.clientX, e.clientY);
+              }}
+              onKeyDown={(e) => {
+                if (
+                  e.key === "ContextMenu" ||
+                  (e.shiftKey && e.key === "F10")
+                ) {
+                  e.preventDefault();
+                  const r = e.currentTarget.getBoundingClientRect();
+                  showSessionMenu(s.id, r.left + 20, r.bottom);
+                }
+              }}
               className={
                 s.id === session.id && page === "learn" ? "current" : ""
               }
@@ -567,6 +662,8 @@ export default function App() {
         {page === "learn" ? (
           <div
             className={`workbench ${mapOpen && !floating ? "with-map" : ""}`}
+            ref={workbench}
+            style={{ "--panel-width": `${panelWidth}px` } as CSSProperties}
           >
             <section className="conversation">
               <div className="lesson-header">
@@ -576,29 +673,13 @@ export default function App() {
                 </div>
                 <div className="lesson-title-row">
                   <h1>{session.title}</h1>
-                  <button
-                    className="icon-button"
-                    aria-label="编辑当前会话目标"
-                    title="编辑目标与工作区"
-                    onClick={() => {
-                      setWorkspace(session.workspace);
-                      setDialog({ type: "workspace" });
-                    }}
-                  >
-                    <Settings2 size={17} />
-                  </button>
                 </div>
                 <p>{session.goal}</p>
                 <div className="lesson-meta">
-                  <button
-                    onClick={() => {
-                      setWorkspace(session.workspace);
-                      setDialog({ type: "workspace" });
-                    }}
-                  >
+                  <span title={session.workspace}>
                     <FolderOpen size={13} />
-                    {session.workspace.split("/").at(-1) || "选择工作区"}
-                  </button>
+                    {session.workspace.split("/").at(-1) || "工作区"}
+                  </span>
                   <button onClick={() => setDialog({ type: "resources" })}>
                     <BookOpen size={13} />
                     {session.kbIds.length} 个知识库
@@ -609,17 +690,6 @@ export default function App() {
                       {enabledAgent.name}
                     </span>
                   )}
-                  <button
-                    className="show-map-button"
-                    onClick={() => setMapOpen((v) => !v)}
-                  >
-                    {mapOpen ? (
-                      <PanelLeftClose size={14} />
-                    ) : (
-                      <PanelRightOpen size={14} />
-                    )}
-                    {mapOpen ? "收起地图" : "展开地图"}
-                  </button>
                 </div>
               </div>
               <div
@@ -696,14 +766,8 @@ export default function App() {
                           onMouseUp={() => captureSelection(turn.id)}
                         >
                           <Markdown
-                            remarkPlugins={
-                              state.settings.showMath
-                                ? [remarkGfm, remarkMath]
-                                : [remarkGfm]
-                            }
-                            rehypePlugins={
-                              state.settings.showMath ? [rehypeKatex] : []
-                            }
+                            remarkPlugins={[remarkGfm, remarkMath]}
+                            rehypePlugins={[rehypeKatex]}
                           >
                             {turn.assistant}
                           </Markdown>
@@ -716,7 +780,7 @@ export default function App() {
                           <button
                             onClick={() => {
                               dispatch({ type: "selectTurn", id: turn.id });
-                              setSelectedConcept(turn.conceptIds[0] ?? null);
+                              setSelectionOrigin("tree");
                               setMapOpen(true);
                               setTab("tree");
                             }}
@@ -937,8 +1001,47 @@ export default function App() {
               </div>
             </section>
             {mapOpen && !floating && (
-              <aside className="graph-panel">
-                <GraphPanel {...graphProps} />
+              <>
+                <ResizeHandle
+                  orientation="vertical"
+                  label="调整学习地图宽度"
+                  value={panelWidth}
+                  minimum={260}
+                  maximum={Math.max(
+                    260,
+                    (workbench.current?.clientWidth ?? window.innerWidth) - 320,
+                  )}
+                  onDelta={(dx) =>
+                    setPanelWidth((w) =>
+                      Math.max(
+                        260,
+                        Math.min(
+                          w - dx,
+                          (workbench.current?.clientWidth ?? 900) - 320,
+                        ),
+                      ),
+                    )
+                  }
+                  onReset={() => setPanelWidth(410)}
+                />
+                <aside className="graph-panel">
+                  <GraphPanel {...graphProps} />
+                </aside>
+              </>
+            )}
+            {!mapOpen && (
+              <aside className="map-collapsed-rail">
+                <button
+                  className="icon-button"
+                  aria-label="展开学习地图"
+                  title="展开学习地图"
+                  onClick={() => {
+                    setMapOpen(true);
+                    setFloating(false);
+                  }}
+                >
+                  <PanelRightOpen size={18} />
+                </button>
               </aside>
             )}
           </div>
@@ -963,6 +1066,42 @@ export default function App() {
         >
           <GraphPanel {...graphProps} />
         </aside>
+      )}
+      {sessionMenu && (
+        <div
+          ref={menuRef}
+          className="session-context-menu"
+          role="menu"
+          aria-label="会话操作"
+          style={{ left: sessionMenu.x, top: sessionMenu.y }}
+        >
+          <button
+            role="menuitem"
+            onClick={() => editSession("rename", sessionMenu.id)}
+          >
+            <FileText size={15} />
+            重命名
+          </button>
+          <button
+            role="menuitem"
+            onClick={() => editSession("workspace", sessionMenu.id)}
+          >
+            <FolderOpen size={15} />
+            设置工作区
+          </button>
+          <button
+            role="menuitem"
+            className="danger"
+            disabled={state.sessions.length === 1}
+            onClick={() => {
+              setDialog({ type: "deleteSession", id: sessionMenu.id });
+              setSessionMenu(null);
+            }}
+          >
+            <Trash2 size={15} />
+            删除
+          </button>
+        </div>
       )}
       {selection && (
         <button
@@ -995,18 +1134,20 @@ export default function App() {
               : dialog.type === "path"
                 ? "调整我的学习路线"
                 : dialog.type === "workspace"
-                  ? "目标与工作区"
-                  : dialog.type === "resources"
-                    ? "这次学习使用什么？"
-                    : dialog.type === "removePath"
-                      ? "将模块移出当前路线"
-                      : dialog.type === "addConcept"
-                        ? "添加一个知识模块"
-                        : dialog.type === "help"
-                          ? "欢迎来到 Vibe Learning"
-                          : dialog.type === "reset"
-                            ? "重置演示工作台"
-                            : "确认删除"
+                  ? "设置会话工作区"
+                  : dialog.type === "rename"
+                    ? "重命名会话"
+                    : dialog.type === "resources"
+                      ? "这次学习使用什么？"
+                      : dialog.type === "removePath"
+                        ? "将模块移出当前路线"
+                        : dialog.type === "addConcept"
+                          ? "添加一个知识模块"
+                          : dialog.type === "help"
+                            ? "欢迎来到 Vibe Learning"
+                            : dialog.type === "reset"
+                              ? "重置演示工作台"
+                              : "确认删除"
           }
           onClose={() => setDialog(null)}
         >
@@ -1017,7 +1158,9 @@ export default function App() {
                 if (!goal.trim()) return;
                 const created = createSession(
                   goal.trim(),
-                  workspace.trim() || "~/learning/new-project",
+                  workspace.trim() ||
+                    state.settings.defaultWorkspace ||
+                    "~/learning",
                   newKbIds,
                 );
                 dispatch({ type: "newSession", ...created });
@@ -1080,60 +1223,57 @@ export default function App() {
               </div>
             </form>
           )}
-          {dialog.type === "workspace" && (
-            <>
+          {(dialog.type === "workspace" || dialog.type === "rename") && (
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const value =
+                  dialog.type === "rename"
+                    ? sessionName.trim()
+                    : workspace.trim();
+                if (!value) return;
+                dispatch({
+                  type: "sessionConfig",
+                  id: dialog.id,
+                  patch:
+                    dialog.type === "rename"
+                      ? { title: value }
+                      : { workspace: value },
+                });
+                setDialog(null);
+              }}
+            >
+              <p className="modal-intro">
+                {state.sessions.find((s) => s.id === dialog.id)?.title}
+              </p>
               <label className="full-label">
-                学习目标
-                <textarea
-                  value={session.goal}
+                {dialog.type === "rename" ? "会话名称" : "工作区路径"}
+                <input
+                  required
+                  value={dialog.type === "rename" ? sessionName : workspace}
                   onChange={(e) =>
-                    dispatch({
-                      type: "sessionConfig",
-                      id: session.id,
-                      patch: { goal: e.target.value },
-                    })
+                    dialog.type === "rename"
+                      ? setSessionName(e.target.value)
+                      : setWorkspace(e.target.value)
                   }
                 />
-              </label>
-              <label className="full-label">
-                会话名称
-                <input
-                  value={session.title}
-                  onChange={(e) =>
-                    dispatch({
-                      type: "sessionConfig",
-                      id: session.id,
-                      patch: { title: e.target.value },
-                    })
-                  }
-                />
-              </label>
-              <label className="full-label">
-                工作区路径
-                <input
-                  value={workspace}
-                  onChange={(e) => setWorkspace(e.target.value)}
-                />
-                <small>这是前端配置，不会访问或创建目录。</small>
+                {dialog.type === "workspace" && (
+                  <small>此会话所有轮次共用一个工作区。</small>
+                )}
               </label>
               <div className="modal-actions">
                 <button
-                  className="btn primary"
-                  onClick={() => {
-                    dispatch({
-                      type: "sessionConfig",
-                      id: session.id,
-                      patch: {
-                        workspace: workspace.trim() || session.workspace,
-                      },
-                    });
-                    setDialog(null);
-                  }}
+                  type="button"
+                  className="btn"
+                  onClick={() => setDialog(null)}
                 >
-                  保存工作区
+                  取消
+                </button>
+                <button className="btn primary">
+                  {dialog.type === "rename" ? "保存名称" : "保存工作区"}
                 </button>
               </div>
-            </>
+            </form>
           )}
           {dialog.type === "resources" && (
             <>

@@ -182,7 +182,7 @@ export function ConfigPages({
               {page === "sessions"
                 ? "回到思考发生的地方，或开启一段新的探索。"
                 : page === "settings"
-                  ? "学习偏好保存在本地，服务连接将在后端阶段启用。"
+                  ? "学习偏好、模型配置与默认工作区保存在本地。"
                   : "配置可用于当前会话；真实检索与调用等待后端接入。"}
             </p>
           </div>
@@ -490,40 +490,6 @@ export function ConfigPages({
               </div>
               <label className="settings-row">
                 <span>
-                  <strong>显示数学公式</strong>
-                  <small>使用数学排版呈现定义与证明</small>
-                </span>
-                <input
-                  type="checkbox"
-                  checked={state.settings.showMath}
-                  onChange={(e) =>
-                    dispatch({
-                      type: "settings",
-                      patch: { showMath: e.target.checked },
-                    })
-                  }
-                />
-              </label>
-              <label className="settings-row">
-                <span>
-                  <strong>接收支线摘要</strong>
-                  <small>
-                    开启时，回答前同步演示摘要版本；关闭后保留既有记录
-                  </small>
-                </span>
-                <input
-                  type="checkbox"
-                  checked={state.settings.autoSummary}
-                  onChange={(e) =>
-                    dispatch({
-                      type: "settings",
-                      patch: { autoSummary: e.target.checked },
-                    })
-                  }
-                />
-              </label>
-              <label className="settings-row">
-                <span>
                   <strong>减少动画</strong>
                   <small>使用更安静的交互过渡</small>
                 </span>
@@ -543,14 +509,14 @@ export function ConfigPages({
               <div className="settings-heading">
                 <Plug size={19} />
                 <div>
-                  <h3>服务连接</h3>
-                  <p>保存接口配置，后端接入后启用</p>
+                  <h3>模型配置</h3>
+                  <p>配置模型与 API 接口</p>
                 </div>
                 <span className="micro-badge">未连接</span>
               </div>
               <div className="form-grid">
                 <label>
-                  后端地址
+                  模型 API 地址
                   <input
                     value={state.settings.endpoint}
                     onChange={(e) =>
@@ -606,23 +572,22 @@ export function ConfigPages({
               <div className="settings-heading">
                 <FolderOpen size={19} />
                 <div>
-                  <h3>当前会话工作区</h3>
-                  <p>所有轮次使用同一工作区</p>
+                  <h3>默认工作区</h3>
+                  <p>新会话默认使用此路径</p>
                 </div>
               </div>
               <label className="full-label">
-                {session.title}
+                默认工作区路径
                 <input
-                  value={session.workspace}
+                  value={state.settings.defaultWorkspace}
                   onChange={(e) =>
                     dispatch({
-                      type: "sessionConfig",
-                      id: session.id,
-                      patch: { workspace: e.target.value },
+                      type: "settings",
+                      patch: { defaultWorkspace: e.target.value },
                     })
                   }
                 />
-                <small>前端只保存路径配置，尚无本地文件访问能力。</small>
+                <small>已有会话不受影响。右键侧栏会话可单独设置工作区。</small>
               </label>
             </section>
             <section className="settings-card">

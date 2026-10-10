@@ -86,10 +86,7 @@ export interface Relation {
   id: string;
   source: string;
   target: string;
-  type: "prerequisite" | "helpful";
-  confidence: number | null;
-  help: string;
-  sourceNote: string;
+  type: "prerequisite";
 }
 export interface Evidence {
   id: string;
@@ -123,8 +120,7 @@ export interface Settings {
   model: string;
   endpoint: string;
   contextLimit: number;
-  autoSummary: boolean;
-  showMath: boolean;
+  defaultWorkspace: string;
   reduceMotion: boolean;
 }
 export interface AppState {
@@ -210,7 +206,6 @@ export type Action =
   | { type: "reset"; state: AppState };
 
 function synchronize(state: AppState): AppState {
-  if (!state.settings.autoSummary) return state;
   const session = activeSession(state),
     node = state.turns.find((t) => t.id === session.activeId);
   if (!node) return state;

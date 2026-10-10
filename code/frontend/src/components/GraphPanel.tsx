@@ -32,6 +32,7 @@ import {
   PanelRightClose,
   PanelsTopLeft,
 } from "lucide-react";
+import { ResizeHandle } from "./ResizeHandle";
 import {
   activeSession,
   ancestors,
@@ -52,6 +53,7 @@ type GraphData = {
   active?: boolean;
   focus?: boolean;
   linked?: boolean;
+  difficulty?: string;
   goal?: boolean;
   topic?: boolean;
   expanded?: boolean;
@@ -91,6 +93,9 @@ function MapNode({ data }: NodeProps<GraphNode>) {
           </div>
         )
       )}
+      {data.difficulty && (
+        <small className="node-difficulty">预估难度 · {data.difficulty}</small>
+      )}
       {data.expand && (
         <button
           className="node-expand nodrag"
@@ -114,39 +119,81 @@ function MapNode({ data }: NodeProps<GraphNode>) {
 }
 const nodeTypes = { map: MapNode };
 
+// Approximate text width for initial placement; React Flow measures final content height.
+function nodeWidth(title: string) {
+  return Math.max(
+    148,
+    Math.min(
+      248,
+      [...title].reduce(
+        (w, c) => w + (/[^\u0000-\u00ff]/.test(c) ? 13 : 7),
+        32,
+      ),
+    ),
+  );
+}
 function FlowCanvas({
   initialNodes,
   edges,
   onSelect,
   kind,
+  reduceMotion,
+  ratio = 1,
 }: {
   initialNodes: GraphNode[];
   edges: Edge[];
   onSelect: (id: string) => void;
-  kind: string;
+  kind: "tree" | "knowledge";
+  reduceMotion: boolean;
+  ratio?: number;
 }) {
   const [nodes, setNodes, onNodesChange] =
     useNodesState<GraphNode>(initialNodes);
   const instance = useRef<ReactFlowInstance<GraphNode, Edge> | null>(null);
   const positions = useRef<Record<string, { x: number; y: number }>>({});
-  const count = useRef(initialNodes.length);
-  const focusId = initialNodes.find((n) => n.data.active)?.id;
-  const previousFocus = useRef(focusId);
   const container = useRef<HTMLDivElement>(null);
-  const nodesRef = useRef(initialNodes);
+  const nodesRef = useRef(initialNodes),
+    motionRef = useRef(reduceMotion);
   nodesRef.current = initialNodes;
-  useEffect(() => {
-    const observer = new ResizeObserver(() => {
-      const focused = nodesRef.current.filter((n) => n.data.focus);
-      void instance.current?.fitView({
-        nodes: focused.length ? focused : undefined,
-        padding: 0.12,
-        maxZoom: 0.95,
+  motionRef.current = reduceMotion;
+  const focusKey = initialNodes
+    .filter((n) => n.data.focus)
+    .map((n) => n.id)
+    .sort()
+    .join("|");
+  const count = initialNodes.length;
+  const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const fit = useCallback(() => {
+    if (timer.current) clearTimeout(timer.current);
+    timer.current = setTimeout(() => {
+      const flow = instance.current;
+      if (!flow) return;
+      const ids = new Set(
+        nodesRef.current.filter((n) => n.data.focus).map((n) => n.id),
+      );
+      // Pass IDs from current measured nodes, retaining any positions dragged by the user.
+      const measured = flow
+        .getNodes()
+        .filter((n) => !ids.size || ids.has(n.id));
+      void flow.fitView({
+        nodes: measured,
+        padding: 0.13,
+        minZoom: 0.05,
+        maxZoom: 1.15,
+        duration: motionRef.current ? 0 : 480,
+        interpolate: "linear",
+        ease: (t) => (1 - Math.exp(-6 * t)) / (1 - Math.exp(-6)),
       });
-    });
-    if (container.current) observer.observe(container.current);
-    return () => observer.disconnect();
+    }, 60);
   }, []);
+  useEffect(() => {
+    const observer = new ResizeObserver(fit);
+    if (container.current) observer.observe(container.current);
+    return () => {
+      observer.disconnect();
+      if (timer.current) clearTimeout(timer.current);
+    };
+  }, [fit]);
   useEffect(() => {
     setNodes(
       initialNodes.map((n) => ({
@@ -154,29 +201,13 @@ function FlowCanvas({
         position: positions.current[n.id] ?? n.position,
       })),
     );
-    if (
-      count.current !== initialNodes.length ||
-      previousFocus.current !== focusId
-    ) {
-      count.current = initialNodes.length;
-      previousFocus.current = focusId;
-      requestAnimationFrame(
-        () =>
-          void instance.current?.fitView({
-            nodes: initialNodes.some((n) => n.data.focus)
-              ? initialNodes.filter((n) => n.data.focus)
-              : undefined,
-            padding: 0.12,
-            duration: 160,
-            maxZoom: 1,
-          }),
-      );
-    }
-  }, [initialNodes, setNodes, kind, focusId]);
+  }, [initialNodes, setNodes]);
+  useEffect(fit, [focusKey, count, fit]);
   return (
     <div
       ref={container}
-      className="flow-canvas"
+      className={`flow-canvas ${kind}-canvas`}
+      style={{ flex: ratio }}
       aria-label={kind === "tree" ? "交互轨迹图" : "知识模块图"}
     >
       <ReactFlow<GraphNode, Edge>
@@ -190,25 +221,15 @@ function FlowCanvas({
         }}
         onInit={(flow) => {
           instance.current = flow;
-          setTimeout(
-            () =>
-              void flow.fitView({
-                nodes: initialNodes.some((n) => n.data.focus)
-                  ? initialNodes.filter((n) => n.data.focus)
-                  : undefined,
-                padding: 0.12,
-                maxZoom: 0.95,
-              }),
-            80,
-          );
+          fit();
         }}
-        minZoom={0.18}
-        maxZoom={1.6}
+        minZoom={0.05}
+        maxZoom={1.8}
         nodesConnectable={false}
         deleteKeyCode={null}
         attributionPosition="bottom-right"
       >
-        <Background gap={22} size={1} color="#cdd8ce" />
+        <Background gap={22} size={1} color="#d8e0ef" />
         <Controls showInteractive={false} position="top-left" />
       </ReactFlow>
     </div>
@@ -222,6 +243,7 @@ function treeLayout(
   const session = activeSession(state),
     turns = state.turns.filter((t) => t.sessionId === session.id),
     main = new Set(ancestors(turns, session.mainLeafId).map((t) => t.id));
+  const pitch = Math.max(...turns.map((t) => nodeWidth(t.title))) + 36;
   let leaf = 0;
   const positions: Record<string, { x: number; y: number }> = {},
     visited = new Set<string>();
@@ -232,8 +254,8 @@ function treeLayout(
     const xs = children.map((t) => place(t.id, depth + 1));
     const x = xs.length
       ? xs.reduce((a, b) => a + b, 0) / xs.length
-      : leaf++ * 220;
-    positions[id] = { x, y: depth * 146 };
+      : leaf++ * pitch;
+    positions[id] = { x, y: depth * 136 };
     return x;
   }
   place(session.rootId, 0);
@@ -256,6 +278,7 @@ function treeLayout(
       ariaLabel: `对话节点：${t.title}`,
       ariaRole: "button",
       position: positions[t.id] ?? { x: 0, y: 0 },
+      style: { width: nodeWidth(t.title) },
       data: {
         title: t.title,
         activity: t.activity,
@@ -278,15 +301,15 @@ function treeLayout(
         id: `tree-${t.id}`,
         source: t.parentId!,
         target: t.id,
-        type: "smoothstep",
+        type: "default",
         style: {
-          stroke: main.has(t.id) ? "#538772" : "#c0ccc2",
+          stroke: main.has(t.id) ? "#8b5cf6" : "#c4b5fd",
           strokeWidth: main.has(t.id) ? 2 : 1.5,
           strokeDasharray: main.has(t.id) ? undefined : "4 4",
         },
         markerEnd: {
           type: MarkerType.ArrowClosed,
-          color: main.has(t.id) ? "#538772" : "#b1beb6",
+          color: main.has(t.id) ? "#8b5cf6" : "#c4b5fd",
         },
       })),
   };
@@ -297,6 +320,8 @@ export function GraphPanel({
   dispatch,
   selectedConcept,
   setSelectedConcept,
+  selectionOrigin,
+  onSelectTree,
   tab,
   setTab,
   expanded,
@@ -317,6 +342,8 @@ export function GraphPanel({
   dispatch: (action: Action) => void;
   selectedConcept: string | null;
   setSelectedConcept: (id: string | null) => void;
+  selectionOrigin: "tree" | "knowledge";
+  onSelectTree: (id: string) => void;
   tab: "tree" | "knowledge" | "both";
   setTab: (tab: "tree" | "knowledge" | "both") => void;
   expanded: string[];
@@ -339,8 +366,12 @@ export function GraphPanel({
     (c) => c.id === selectedConcept && !c.deleted,
   );
   const tree = useMemo(
-    () => treeLayout(state, selectedConcept),
-    [state, selectedConcept],
+    () =>
+      treeLayout(
+        state,
+        selectionOrigin === "knowledge" ? selectedConcept : null,
+      ),
+    [state, selectedConcept, selectionOrigin],
   );
   const toggleExpand = useCallback(
     (id: string) => {
@@ -358,33 +389,28 @@ export function GraphPanel({
       positions = new Map(
         concepts.map((c, i) => [
           c.id,
-          { x: (i % 2) * 230, y: Math.floor(i / 2) * 230 },
+          { x: (i % 2) * 284, y: Math.floor(i / 2) * 252 },
         ]),
       );
-    const relation =
-      state.relations.find((r) => r.source === selectedConcept) ??
-      state.relations.find((r) => r.target === selectedConcept);
-    const neighbor = expanded.includes(selectedConcept ?? "")
-      ? null
-      : relation
-        ? relation.source === selectedConcept
-          ? relation.target
-          : relation.source
-        : null;
     const nodes: GraphNode[] = concepts.map((c) => ({
       id: c.id,
       type: "map",
       ariaLabel: `知识模块：${c.name}`,
       ariaRole: "button",
       position: positions.get(c.id)!,
+      style: { width: nodeWidth(c.name) },
       data: {
         title: c.name,
         subtitle: c.category,
         score: conceptScore(state, c.id),
+        difficulty: c.difficulty,
         goal: session.pathIds.at(-1) === c.id,
         active: c.id === selectedConcept,
-        focus: c.id === selectedConcept || c.id === neighbor,
-        linked: current.conceptIds.includes(c.id),
+        focus:
+          selectionOrigin === "tree"
+            ? current.conceptIds.includes(c.id)
+            : c.id === selectedConcept,
+        linked: selectionOrigin === "tree" && current.conceptIds.includes(c.id),
         expanded: expanded.includes(c.id),
         expand: () => toggleExpand(c.id),
       },
@@ -393,16 +419,15 @@ export function GraphPanel({
       id: r.id,
       source: r.source,
       target: r.target,
-      type: "smoothstep",
-      label: r.type === "prerequisite" ? "先修" : "有帮助",
-      labelStyle: { fontSize: 10, fill: "#6f7e73" },
-      labelBgStyle: { fill: "#f4f6f0" },
+      type: "default",
+      label: "先修",
+      labelStyle: { fontSize: 10, fill: "#64748b" },
+      labelBgStyle: { fill: "#f8fafc" },
       style: {
-        stroke: "#a6bcb0",
+        stroke: "#7da2e4",
         strokeWidth: 1.4,
-        strokeDasharray: r.type === "helpful" ? "4 4" : undefined,
       },
-      markerEnd: { type: MarkerType.ArrowClosed, color: "#a6bcb0" },
+      markerEnd: { type: MarkerType.ArrowClosed, color: "#7da2e4" },
     }));
     for (const c of concepts.filter((c) => expanded.includes(c.id)))
       c.topics.forEach((topic, i) => {
@@ -417,20 +442,22 @@ export function GraphPanel({
             x: p.x + (i - (c.topics.length - 1) / 2) * 175,
             y: p.y + 160,
           },
+          style: { width: nodeWidth(topic) },
           data: {
             title: topic,
             subtitle: c.name,
             topic: true,
-            focus: c.id === selectedConcept,
-            linked: current.conceptIds.includes(c.id),
+            focus: selectionOrigin === "knowledge" && c.id === selectedConcept,
+            linked:
+              selectionOrigin === "tree" && current.conceptIds.includes(c.id),
           },
         });
         edges.push({
           id: `part-${id}`,
           source: c.id,
           target: id,
-          type: "smoothstep",
-          style: { stroke: "#c3cdc2", strokeDasharray: "2 3" },
+          type: "default",
+          style: { stroke: "#cbd5e1", strokeDasharray: "2 3" },
         });
       });
     return { nodes, edges };
@@ -439,6 +466,7 @@ export function GraphPanel({
     session.pathIds,
     current.conceptIds,
     selectedConcept,
+    selectionOrigin,
     expanded,
     toggleExpand,
   ]);
@@ -446,7 +474,9 @@ export function GraphPanel({
     t.conceptIds.includes(selectedConcept ?? ""),
   );
   const contexts = session.contexts[current.branchId]?.updates ?? [];
-  const [showUpdates, setShowUpdates] = useState(false);
+  const [showUpdates, setShowUpdates] = useState(false),
+    [splitRatio, setSplitRatio] = useState(0.5);
+  const mapsContainer = useRef<HTMLDivElement>(null);
   return (
     <>
       <div
@@ -507,33 +537,61 @@ export function GraphPanel({
         <span>
           <i className="legend-dot" />
           {tab === "knowledge"
-            ? "全局模块 · 虚线表示有帮助"
+            ? "全局模块 · 箭头表示先修"
             : `当前会话 · ${tree.nodes.length} 个节点`}
         </span>
-        <button
-          className="text-button"
-          onClick={tab === "knowledge" ? onAddConcept : onFork}
-        >
-          <Plus size={14} />
-          {tab === "knowledge" ? "模块" : "分支"}
-        </button>
+        {tab !== "tree" && (
+          <button className="text-button" onClick={onAddConcept}>
+            <Plus size={14} />
+            模块
+          </button>
+        )}
       </div>
-      <div className={`maps-container ${tab === "both" ? "both" : ""}`}>
+      <div
+        ref={mapsContainer}
+        className={`maps-container ${tab === "both" ? "both" : ""}`}
+      >
         {tab !== "knowledge" && (
           <FlowCanvas
             kind="tree"
             initialNodes={tree.nodes}
             edges={tree.edges}
-            onSelect={(id) => {
-              dispatch({ type: "selectTurn", id });
-              const turn = state.turns.find((t) => t.id === id);
-              setSelectedConcept(turn?.conceptIds[0] ?? null);
-            }}
+            onSelect={onSelectTree}
+            reduceMotion={state.settings.reduceMotion}
+            ratio={tab === "both" ? splitRatio : 1}
+          />
+        )}
+        {tab === "both" && (
+          <ResizeHandle
+            orientation="horizontal"
+            label="调整两图高度"
+            value={splitRatio * 100}
+            minimum={20}
+            maximum={80}
+            onDelta={(dy) =>
+              setSplitRatio((r) =>
+                Math.max(
+                  0.2,
+                  Math.min(
+                    0.8,
+                    r +
+                      dy /
+                        Math.max(
+                          1,
+                          (mapsContainer.current?.clientHeight ?? 400) - 8,
+                        ),
+                  ),
+                ),
+              )
+            }
+            onReset={() => setSplitRatio(0.5)}
           />
         )}
         {tab !== "tree" && (
           <FlowCanvas
             kind="knowledge"
+            reduceMotion={state.settings.reduceMotion}
+            ratio={tab === "both" ? 1 - splitRatio : 1}
             initialNodes={knowledge.nodes}
             edges={knowledge.edges}
             onSelect={(id) => setSelectedConcept(id.split("::")[0])}
@@ -691,17 +749,14 @@ export function GraphPanel({
               <div className="related-turns">
                 <strong>关联对话 · {relatedTurns.length}</strong>
                 {relatedTurns.map((t) => (
-                  <button
-                    key={t.id}
-                    onClick={() => dispatch({ type: "selectTurn", id: t.id })}
-                  >
+                  <button key={t.id} onClick={() => onSelectTree(t.id)}>
                     {t.title}
                     <ArrowUpRight size={13} />
                   </button>
                 ))}
               </div>
               <details className="relation-details">
-                <summary>关系依据与属性</summary>
+                <summary>先修关系</summary>
                 {state.relations
                   .filter(
                     (r) => r.source === concept.id || r.target === concept.id,
@@ -712,15 +767,7 @@ export function GraphPanel({
                         {state.concepts.find((c) => c.id === r.source)?.name} →{" "}
                         {state.concepts.find((c) => c.id === r.target)?.name}
                       </strong>
-                      <p>
-                        {r.type === "prerequisite" ? "先修" : "有帮助"} ·
-                        置信度：
-                        {r.confidence === null ? "待核实" : `${r.confidence}%`}
-                        <br />
-                        帮助：{r.help}
-                        <br />
-                        {r.sourceNote}
-                      </p>
+                      <p>先修关系</p>
                     </div>
                   ))}
               </details>

@@ -129,6 +129,34 @@ export function parseState(raw: string | null): AppState | null {
       if (s.sessions.find((n) => n.id === turn.sessionId)?.rootId !== node.id)
         return null;
     }
+    // Upgrade earlier v1 records without replacing sessions, turns or summaries.
+    s.settings = {
+      model: typeof s.settings.model === "string" ? s.settings.model : "",
+      endpoint:
+        typeof s.settings.endpoint === "string" ? s.settings.endpoint : "",
+      contextLimit: s.settings.contextLimit,
+      reduceMotion: Boolean(s.settings.reduceMotion),
+      defaultWorkspace:
+        typeof s.settings.defaultWorkspace === "string"
+          ? s.settings.defaultWorkspace
+          : "~/learning",
+    };
+    s.relations = s.relations
+      .filter(
+        (r) =>
+          r &&
+          r.type === "prerequisite" &&
+          typeof r.id === "string" &&
+          s.concepts.some((c) => c.id === r.source && !c.deleted) &&
+          s.concepts.some((c) => c.id === r.target && !c.deleted) &&
+          r.source !== r.target,
+      )
+      .map((r) => ({
+        id: r.id,
+        source: r.source,
+        target: r.target,
+        type: "prerequisite",
+      }));
     return s;
   } catch {
     return null;
