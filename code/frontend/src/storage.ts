@@ -137,6 +137,7 @@ export function parseState(raw: string | null): AppState | null {
         typeof s.settings.endpoint === "string" ? s.settings.endpoint : "",
       contextLimit: s.settings.contextLimit,
       reduceMotion: Boolean(s.settings.reduceMotion),
+      trackView: s.settings.trackView !== false,
       defaultWorkspace:
         typeof s.settings.defaultWorkspace === "string"
           ? s.settings.defaultWorkspace

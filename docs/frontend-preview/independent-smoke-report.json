@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "electron": "44.7.0",
+  "checks": [
+    "bundled-ui-load",
+    "two-simultaneous-windows",
+    "top-level-windows",
+    "outside-workbench-visible",
+    "parent-move-independent",
+    "four-boundary-bounds",
+    "minimize-restore",
+    "independent-dock",
+    "restore-size",
+    "combined-replaces-singles",
+    "dock-all"
+  ]
+}

@@ -161,8 +161,7 @@ export default function App() {
     ),
     [tab, setTab] = useState<"tree" | "knowledge" | "both">("tree"),
     [expanded, setExpanded] = useState<string[]>([]),
-    [mapOpen, setMapOpen] = useState(true),
-    [floating, setFloating] = useState(false);
+    [mapOpen, setMapOpen] = useState(true);
   const [panelWidth, setPanelWidth] = useState(410),
     [selectionOrigin, setSelectionOrigin] = useState<"tree" | "knowledge">(
       "tree",
@@ -179,21 +178,18 @@ export default function App() {
   const mapWindow = useMapWindow({
     state,
     dispatch: localDispatch,
-    view: { selectedConcept, selectionOrigin, tab, relationMode },
+    view: { selectedConcept, selectionOrigin, relationMode },
     onView: (view) => {
       setSelectedConcept(view.selectedConcept);
       setSelectionOrigin(view.selectionOrigin);
-      setTab(view.tab);
       setRelationMode(view.relationMode);
     },
-    onDismiss: () => setFloating(false),
-    onHide: () => setMapOpen(false),
+    onDismiss: () => setMapOpen(true),
   });
   const dispatch = mapWindow.dispatch;
   const workbench = useRef<HTMLDivElement>(null),
     menuRef = useRef<HTMLDivElement>(null);
-  const [floatPos, setFloatPos] = useState({ x: 680, y: 90 }),
-    [sidebarOpen, setSidebarOpen] = useState(false),
+  const [sidebarOpen, setSidebarOpen] = useState(false),
     [historyOpen, setHistoryOpen] = useState(false),
     [toast, setToast] = useState(""),
     [saved, setSaved] = useState(true);
@@ -446,54 +442,30 @@ export default function App() {
       y: Math.max(12, rect.top - 44),
     });
   }
+  async function openGraphWindow(kind: "tree" | "knowledge" | "both") {
+    if (!(await mapWindow.open(kind)))
+      notify("浏览器未允许独立窗口，请允许弹窗或使用桌面版");
+  }
   function startFloatDrag(e: PointerEvent<HTMLDivElement>) {
     if (
       mapWindow.detached ||
       e.button !== 0 ||
-      (e.target as HTMLElement).closest("button")
+      !(e.target as HTMLElement).closest(".panel-title")
     )
       return;
-    if (!floating && !(e.target as HTMLElement).closest(".panel-title")) return;
-    e.preventDefault();
-    const rect = e.currentTarget.parentElement!.getBoundingClientRect();
-    const pos = floating
-      ? { ...floatPos }
-      : { x: Math.min(rect.left, window.innerWidth - 450), y: rect.top };
-    if (!floating) {
-      setFloating(true);
-      setFloatPos(pos);
-    }
-    const originX = e.clientX,
-      originY = e.clientY;
-    function drag(ev: globalThis.PointerEvent) {
-      setFloatPos({
-        x: Math.max(
-          8,
-          Math.min(window.innerWidth - 240, pos.x + ev.clientX - originX),
-        ),
-        y: Math.max(
-          8,
-          Math.min(window.innerHeight - 100, pos.y + ev.clientY - originY),
-        ),
-      });
-    }
-    function end(ev: globalThis.PointerEvent) {
-      window.removeEventListener("pointermove", drag);
-      window.removeEventListener("pointerup", end);
-      window.removeEventListener("pointercancel", cancel);
-      if (ev.clientX > window.innerWidth - 70) {
-        setFloating(false);
-        notify("学习地图已吸附到右侧");
-      }
-    }
-    function cancel() {
-      window.removeEventListener("pointermove", drag);
-      window.removeEventListener("pointerup", end);
-      window.removeEventListener("pointercancel", cancel);
-    }
-    window.addEventListener("pointercancel", cancel);
-    window.addEventListener("pointermove", drag);
-    window.addEventListener("pointerup", end);
+    const x = e.clientX,
+      y = e.clientY;
+    const release = (event: globalThis.PointerEvent) => {
+      cleanup();
+      if (Math.hypot(event.clientX - x, event.clientY - y) > 12)
+        void openGraphWindow(tab);
+    };
+    const cleanup = () => {
+      window.removeEventListener("pointerup", release);
+      window.removeEventListener("pointercancel", cleanup);
+    };
+    window.addEventListener("pointerup", release);
+    window.addEventListener("pointercancel", cleanup);
   }
   function openNew() {
     setGoal("");
@@ -516,7 +488,7 @@ export default function App() {
       setSelectionOrigin("tree");
       dispatch({ type: "selectTurn", id });
     },
-    tab,
+    tab: mapWindow.detached && mapWindow.kind !== "both" ? mapWindow.kind : tab,
     setTab,
     expanded,
     setExpanded,
@@ -530,34 +502,21 @@ export default function App() {
       setDialog({ type: "addConcept" });
     },
     onPath: () => setDialog({ type: "path" }),
-    floating: floating || mapWindow.detached,
-    onFloat: async () => {
-      if (window.vibeDesktop) {
-        if (await mapWindow.open()) setFloating(true);
-        return;
-      }
-      setFloating(true);
-      setFloatPos({ x: Math.max(8, window.innerWidth - 490), y: 84 });
-    },
+    floating: mapWindow.detached,
     external: mapWindow.detached,
-    popOutUrl: mapWindow.url,
-    onPopOut: async () => {
-      if (await mapWindow.open()) {
-        setFloating(true);
-        setMapOpen(true);
-      } else {
-        setFloating(true);
-        notify("此浏览器未开放独立窗口，已改为应用内浮动地图");
-      }
-    },
-    onDock: () => {
-      mapWindow.close();
-      setFloating(false);
-    },
+    fixedKind:
+      mapWindow.detached && mapWindow.kind !== "both"
+        ? mapWindow.kind
+        : undefined,
+    detachedKinds: mapWindow.detached ? [] : mapWindow.openedKinds,
+    onOpenWindow: openGraphWindow,
+    onDockGraph: (kind: "tree" | "knowledge") =>
+      mapWindow.close(mapWindow.openedKinds.includes("both") ? "both" : kind),
+    onFloat: () => openGraphWindow(tab),
+    onDock: () => mapWindow.close(),
     onClose: () => {
-      mapWindow.close(true);
-      setFloating(false);
-      setMapOpen(false);
+      if (mapWindow.detached) mapWindow.close();
+      else setMapOpen(false);
     },
     onDrag: startFloatDrag,
   };
@@ -1304,7 +1263,7 @@ export default function App() {
         </header>
         {page === "learn" ? (
           <div
-            className={`workbench ${mapOpen && !floating ? "with-map" : ""}`}
+            className={`workbench ${mapOpen ? "with-map" : ""}`}
             ref={workbench}
             style={{ "--panel-width": `${panelWidth}px` } as CSSProperties}
           >
@@ -1633,7 +1592,7 @@ export default function App() {
                 </div>
               </div>
             </section>
-            {mapOpen && !floating && (
+            {mapOpen && (
               <>
                 <ResizeHandle
                   orientation="vertical"
@@ -1662,18 +1621,14 @@ export default function App() {
                 </aside>
               </>
             )}
-            {(!mapOpen || mapWindow.opened) && (
+            {!mapOpen && (
               <aside className="map-collapsed-rail">
                 <button
                   className="icon-button"
-                  aria-label={
-                    mapWindow.opened ? "吸附学习地图" : "展开学习地图"
-                  }
-                  title={mapWindow.opened ? "吸附学习地图" : "展开学习地图"}
+                  aria-label="展开学习地图"
+                  title="展开学习地图"
                   onClick={() => {
-                    mapWindow.close();
                     setMapOpen(true);
-                    setFloating(false);
                   }}
                 >
                   <PanelRightOpen size={18} />
@@ -1695,14 +1650,6 @@ export default function App() {
           />
         )}
       </div>
-      {mapOpen && floating && !mapWindow.opened && page === "learn" && (
-        <aside
-          className="graph-panel floating-panel"
-          style={{ left: floatPos.x, top: floatPos.y }}
-        >
-          <GraphPanel {...graphProps} />
-        </aside>
-      )}
       {sessionMenu && (
         <div
           ref={menuRef}

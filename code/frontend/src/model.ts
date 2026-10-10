@@ -129,6 +129,7 @@ export interface Settings {
   contextLimit: number;
   defaultWorkspace: string;
   reduceMotion: boolean;
+  trackView: boolean;
 }
 export interface AppState {
   version: 1;

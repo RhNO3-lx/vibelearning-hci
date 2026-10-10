@@ -11,7 +11,12 @@ const {
 const fs = require("node:fs");
 const path = require("node:path");
 const { pathToFileURL } = require("node:url");
-const { inDockZone, validChannel } = require("./window-policy.cjs");
+const {
+  inDockZone,
+  validChannel,
+  validKind,
+  conflicts,
+} = require("./window-policy.cjs");
 protocol.registerSchemesAsPrivileged([
   {
     scheme: "vibelearning",
@@ -27,10 +32,10 @@ if (smoke)
   );
 app.setName("Vibe Learning");
 let mainWindow,
-  mapWindow,
-  closingParent = false,
-  collapseOnClose = false;
-let mapBounds = { width: 640, height: 800 };
+  closingParent = false;
+const mapWindows = new Map();
+const mapBounds = new Map();
+const titles = { tree: "探索树", knowledge: "知识图", both: "学习地图" };
 const preferences = {
   preload: path.join(__dirname, "preload.cjs"),
   nodeIntegration: false,
@@ -40,7 +45,10 @@ const preferences = {
 function allowed(event, mainOnly = false) {
   return (
     (event.sender === mainWindow?.webContents ||
-      (!mainOnly && event.sender === mapWindow?.webContents)) &&
+      (!mainOnly &&
+        [...mapWindows.values()].some(
+          (entry) => event.sender === entry.win.webContents,
+        ))) &&
     event.senderFrame?.url.startsWith(origin + "/")
   );
 }
@@ -57,88 +65,107 @@ function notify(state) {
   if (mainWindow && !mainWindow.isDestroyed())
     mainWindow.webContents.send("map:window-state", state);
 }
-function dock(collapse = false) {
-  collapseOnClose = collapse;
-  if (mapWindow && !mapWindow.isDestroyed()) mapWindow.close();
-  else notify({ opened: false, collapse });
-  mainWindow?.show();
-  mainWindow?.focus();
+function dock(kind = "all") {
+  const targets = kind === "all" ? [...mapWindows.keys()] : [kind];
+  for (const key of targets) mapWindows.get(key)?.win.close();
+  if (!closingParent && mainWindow && !mainWindow.isDestroyed()) {
+    mainWindow.show();
+    mainWindow.focus();
+  }
 }
-async function openMap(channel) {
-  if (!validChannel(channel)) throw new Error("Invalid map channel");
-  if (mapWindow && !mapWindow.isDestroyed()) {
-    mapWindow.show();
-    mapWindow.focus();
+async function openMap(channel, kind = "both") {
+  if (!validChannel(channel) || !validKind(kind))
+    throw new Error("Invalid map window");
+  const existing = mapWindows.get(kind);
+  if (existing && !existing.win.isDestroyed()) {
+    existing.win.show();
+    existing.win.focus();
     return true;
   }
-  collapseOnClose = false;
+  for (const other of conflicts([...mapWindows.keys()], kind)) dock(other);
   const parent = mainWindow.getBounds(),
     display = screen.getDisplayMatching(parent).workArea;
+  const size = mapBounds.get(kind) ?? {
+    width: 640,
+    height: kind === "both" ? 800 : 640,
+  };
+  const offset = kind === "knowledge" ? 160 : 60;
   const x = Math.max(
     display.x,
-    Math.min(parent.x + 80, display.x + display.width - mapBounds.width),
+    Math.min(parent.x + offset, display.x + display.width - size.width),
   );
   const y = Math.max(
     display.y,
-    Math.min(parent.y + 60, display.y + display.height - mapBounds.height),
+    Math.min(parent.y + offset, display.y + display.height - size.height),
   );
-  const child = new BrowserWindow({
-    title: "Vibe Learning · 学习地图",
-    parent: mainWindow,
-    modal: false,
+  // A top-level native window: no parent constraint, native frame owns all resize borders.
+  const win = new BrowserWindow({
+    title: `Vibe Learning · ${titles[kind]}`,
     x,
     y,
-    ...mapBounds,
+    ...size,
     minWidth: 360,
     minHeight: 440,
     resizable: true,
     maximizable: true,
     minimizable: true,
+    movable: true,
     frame: true,
     show: false,
     backgroundColor: "#f8fafc",
     webPreferences: preferences,
   });
-  mapWindow = child;
-  externalPolicy(child);
-  let wasNear = inDockZone(mainWindow.getBounds(), child.getBounds());
-  child.on("moved", () => {
-    if (!mainWindow || mainWindow.isDestroyed() || child.isDestroyed()) return;
-    const near = inDockZone(mainWindow.getBounds(), child.getBounds());
-    if (near && !wasNear && child.isFocused() && !child.isMaximized()) dock();
+  mapWindows.set(kind, { win, channel });
+  externalPolicy(win);
+  let wasNear = inDockZone(mainWindow.getBounds(), win.getBounds());
+  win.on("moved", () => {
+    if (
+      closingParent ||
+      !mainWindow ||
+      mainWindow.isDestroyed() ||
+      win.isDestroyed()
+    )
+      return;
+    const near = inDockZone(mainWindow.getBounds(), win.getBounds());
+    if (near && !wasNear && win.isFocused() && !win.isMaximized()) dock(kind);
     wasNear = near;
   });
-  child.on("resize", () => {
-    if (!child.isMaximized() && !child.isFullScreen()) {
-      const b = child.getBounds();
-      mapBounds = { width: b.width, height: b.height };
+  win.on("resize", () => {
+    if (!win.isMaximized() && !win.isFullScreen()) {
+      const b = win.getBounds();
+      mapBounds.set(kind, { width: b.width, height: b.height });
     }
   });
-  child.on("close", () => {
-    const b = child.getNormalBounds();
-    mapBounds = { width: b.width, height: b.height };
+  win.on("close", () => {
+    const b = win.getNormalBounds();
+    mapBounds.set(kind, { width: b.width, height: b.height });
   });
-  child.on("closed", () => {
-    mapWindow = null;
-    if (!closingParent) notify({ opened: false, collapse: collapseOnClose });
+  win.on("closed", () => {
+    mapWindows.delete(kind);
+    if (!closingParent) notify({ kind, opened: false });
   });
-  await child.loadURL(
-    `${origin}/?view=map&channel=${encodeURIComponent(channel)}`,
+  await win.loadURL(
+    `${origin}/?view=map&channel=${encodeURIComponent(channel)}&mapKind=${kind}`,
   );
-  if (!child.isDestroyed()) {
-    child.show();
-    child.focus();
-    notify({ opened: true });
+  if (!win.isDestroyed()) {
+    win.show();
+    win.focus();
+    notify({ kind, opened: true });
   }
   return true;
 }
-ipcMain.handle("map:open", (event, channel) => {
-  if (!allowed(event, true)) throw new Error("Untrusted caller");
-  return openMap(channel);
+ipcMain.handle("map:open", (event, channel, kind) => {
+  if (!allowed(event) || !validKind(kind)) throw new Error("Untrusted caller");
+  const sender = [...mapWindows.values()].find(
+    (entry) => entry.win.webContents === event.sender,
+  );
+  if (sender && sender.channel !== channel) throw new Error("Wrong channel");
+  return openMap(channel, kind);
 });
-ipcMain.handle("map:dock", (event, collapse) => {
-  if (!allowed(event)) throw new Error("Untrusted caller");
-  dock(Boolean(collapse));
+ipcMain.handle("map:dock", (event, kind) => {
+  if (!allowed(event) || (kind !== "all" && !validKind(kind)))
+    throw new Error("Untrusted caller");
+  dock(kind);
   return true;
 });
 app.whenReady().then(async () => {
@@ -179,7 +206,7 @@ app.whenReady().then(async () => {
         submenu: [
           { role: "minimize" },
           { role: "zoom" },
-          { label: "吸附学习地图", click: () => dock() },
+          { label: "吸附所有地图", click: () => dock() },
           { role: "close" },
         ],
       },
@@ -197,50 +224,103 @@ app.whenReady().then(async () => {
   externalPolicy(mainWindow);
   mainWindow.on("close", () => {
     closingParent = true;
-    mapWindow?.destroy();
+    for (const { win } of mapWindows.values()) win.destroy();
   });
   await mainWindow.loadURL(origin + "/");
   if (smoke) {
     try {
       const assert = require("node:assert/strict");
-      await openMap("vibelearning-map-smoke");
-      assert.equal(mapWindow.getParentWindow(), mainWindow);
-      assert.equal(mapWindow.isResizable(), true);
-      assert.equal(mapWindow.isMaximizable(), true);
-      mapWindow.setSize(780, 720);
-      assert.deepEqual(mapWindow.getSize(), [780, 720]);
-      const childId = mapWindow.id;
-      const minimized = require("node:events").once(mapWindow, "minimize");
-      mapWindow.minimize();
+      const { once } = require("node:events");
+      await openMap("vibelearning-map-smoke", "tree");
+      await openMap("vibelearning-map-smoke", "knowledge");
+      const tree = mapWindows.get("tree").win,
+        knowledge = mapWindows.get("knowledge").win;
+      assert.equal(mapWindows.size, 2);
+      for (const win of [tree, knowledge]) {
+        assert.equal(win.getParentWindow(), null);
+        assert.equal(win.isResizable(), true);
+        assert.equal(win.isMaximizable(), true);
+      }
+      // Leave desktop space to place a map entirely outside the workbench.
+      const area = screen.getPrimaryDisplay().workArea;
+      mainWindow.setBounds({ x: area.x, y: area.y, width: 800, height: 580 });
+      tree.setBounds({
+        x: area.x + 830,
+        y: area.y + 20,
+        width: 400,
+        height: 500,
+      });
+      assert.ok(
+        tree.getBounds().x >=
+          mainWindow.getBounds().x + mainWindow.getBounds().width,
+      );
+      assert.equal(tree.isVisible(), true);
+      const detachedPosition = tree.getPosition();
+      mainWindow.setPosition(area.x + 20, area.y + 40);
+      assert.deepEqual(tree.getPosition(), detachedPosition);
+      // Exercise each boundary independently while keeping its opposite boundary fixed.
+      for (const side of ["left", "right", "top", "bottom"]) {
+        const before = tree.getBounds(),
+          after = { ...before };
+        if (side === "left") {
+          after.x -= 20;
+          after.width += 20;
+        }
+        if (side === "right") after.width += 20;
+        if (side === "top") {
+          after.y -= 20;
+          after.height += 20;
+        }
+        if (side === "bottom") after.height += 20;
+        tree.setBounds(after);
+        assert.deepEqual(tree.getBounds(), after);
+      }
+      const minimized = once(tree, "minimize");
+      tree.minimize();
       await minimized;
-      assert.equal(mapWindow.isMinimized(), true);
-      const restored = require("node:events").once(mapWindow, "restore");
-      mapWindow.restore();
+      assert.equal(tree.isMinimized(), true);
+      const restored = once(tree, "restore");
+      tree.restore();
       await restored;
-      const closed = require("node:events").once(mapWindow, "closed");
-      dock();
+      const treeSize = tree.getSize(),
+        treeId = tree.id;
+      const closed = once(tree, "closed");
+      dock("tree");
       await closed;
-      assert.equal(BrowserWindow.fromId(childId), null);
-      await openMap("vibelearning-map-smoke");
-      assert.deepEqual(mapWindow.getSize(), [780, 720]);
-      const secondId = mapWindow.id;
-      const secondClosed = require("node:events").once(mapWindow, "closed");
-      mapWindow.close();
-      await secondClosed;
-      assert.equal(BrowserWindow.fromId(secondId), null);
+      assert.equal(BrowserWindow.fromId(treeId), null);
+      assert.equal(knowledge.isDestroyed(), false);
+      assert.equal(mapWindows.size, 1);
+      await openMap("vibelearning-map-smoke", "tree");
+      assert.deepEqual(mapWindows.get("tree").win.getSize(), treeSize);
+      // Opening a combined window atomically retires both single-graph windows.
+      const remainingTree = mapWindows.get("tree").win;
+      const singlesClosed = Promise.all([
+        once(remainingTree, "closed"),
+        once(knowledge, "closed"),
+      ]);
+      await openMap("vibelearning-map-smoke", "both");
+      await singlesClosed;
+      assert.deepEqual([...mapWindows.keys()], ["both"]);
+      const combined = mapWindows.get("both").win;
+      const finalClosed = once(combined, "closed");
+      dock();
+      await finalClosed;
+      assert.equal(mapWindows.size, 0);
       const report = {
         passed: true,
         electron: process.versions.electron,
         checks: [
           "bundled-ui-load",
-          "native-parent",
-          "resizable",
-          "maximizable",
-          "resize",
+          "two-simultaneous-windows",
+          "top-level-windows",
+          "outside-workbench-visible",
+          "parent-move-independent",
+          "four-boundary-bounds",
           "minimize-restore",
-          "dock-destroys-child",
+          "independent-dock",
           "restore-size",
-          "close-child",
+          "combined-replaces-singles",
+          "dock-all",
         ],
       };
       fs.writeFileSync(

@@ -319,6 +319,7 @@ export function createSeed(): AppState {
       contextLimit: 32000,
       defaultWorkspace: "~/learning",
       reduceMotion: false,
+      trackView: true,
     },
   });
 }

@@ -28,3 +28,17 @@ test("accepts only bounded private map channel identifiers", () => {
   ])
     assert.equal(validChannel(value), false);
 });
+
+test("single map windows coexist; combined windows retire both singles", () => {
+  const { validKind, conflicts } = require("./window-policy.cjs");
+  assert.deepEqual(conflicts(["tree"], "knowledge"), []);
+  assert.deepEqual(conflicts(["tree", "knowledge"], "both"), [
+    "tree",
+    "knowledge",
+  ]);
+  assert.deepEqual(conflicts(["both"], "tree"), ["both"]);
+  assert.equal(validKind("tree"), true);
+  assert.equal(validKind("knowledge"), true);
+  assert.equal(validKind("all"), false);
+  assert.equal(validKind({}), false);
+});

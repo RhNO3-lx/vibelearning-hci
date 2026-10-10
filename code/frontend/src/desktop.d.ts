@@ -1,11 +1,12 @@
+import type { MapWindowKind } from "./mapWindows";
 export {};
 declare global {
   interface Window {
     vibeDesktop?: {
-      openMap: (channel: string) => Promise<boolean>;
-      dockMap: (collapse: boolean) => Promise<boolean>;
+      openMap: (channel: string, kind: MapWindowKind) => Promise<boolean>;
+      dockMap: (kind: MapWindowKind | "all") => Promise<boolean>;
       onMapWindowChange: (
-        callback: (state: { opened: boolean; collapse?: boolean }) => void,
+        callback: (state: { kind: MapWindowKind; opened: boolean }) => void,
       ) => () => void;
     };
   }

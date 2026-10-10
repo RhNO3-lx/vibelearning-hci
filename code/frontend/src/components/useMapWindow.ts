@@ -1,101 +1,128 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import type { Action, AppState } from "../model";
+import {
+  mapWindowKind,
+  conflictingWindows,
+  type MapWindowKind,
+  type MapView,
+} from "../mapWindows";
 
-type MapView = {
-  selectedConcept: string | null;
-  selectionOrigin: "tree" | "knowledge";
-  tab: "tree" | "knowledge" | "both";
-  relationMode: "prerequisite" | "recommended" | "both";
-};
 type WindowMessage =
-  | { kind: "ready" | "dock" | "hide" | "shutdown" }
+  | { kind: "ready" | "dock" | "hide"; windowKind: MapWindowKind }
+  | { kind: "shutdown"; windowKind?: MapWindowKind }
   | { kind: "action"; action: Action }
   | { kind: "view"; view: MapView }
-  | { kind: "state"; state: AppState; view: MapView };
+  | {
+      kind: "state";
+      state: AppState;
+      view: MapView;
+      windowKind?: MapWindowKind;
+    };
 
-/** A real map-only page; BroadcastChannel keeps the parent authoritative. */
+/** The workbench owns domain state; graph windows retain their own tabs and cameras. */
 export function useMapWindow(options: {
   state: AppState;
   dispatch: (action: Action) => void;
   view: MapView;
   onView: (view: MapView) => void;
   onDismiss: () => void;
-  onHide: () => void;
 }) {
   const desktop = window.vibeDesktop;
   const params = new URLSearchParams(window.location.search);
   const detached = params.get("view") === "map";
+  const kind = mapWindowKind(params.get("mapKind"));
   const channelName = useRef(
     params.get("channel") ?? `vibelearning-map-${crypto.randomUUID()}`,
   );
-  const [opened, setOpened] = useState(false);
+  const [openedKinds, setOpenedKinds] = useState<MapWindowKind[]>([]);
   const [synchronized, setSynchronized] = useState(!detached);
-  const popup = useRef<Window | null>(null),
-    channel = useRef<BroadcastChannel | null>(null);
+  const popups = useRef<Partial<Record<MapWindowKind, Window>>>({});
+  const channel = useRef<BroadcastChannel | null>(null);
   const latest = useRef(options);
   latest.current = options;
-  const dismiss = useCallback(() => {
-    const child = popup.current;
-    popup.current = null;
-    setOpened(false);
-    child?.close();
-    latest.current.onDismiss();
-  }, []);
+  const markWindow = useCallback(
+    (windowKind: MapWindowKind, opened: boolean) => {
+      setOpenedKinds((previous) =>
+        opened
+          ? previous.includes(windowKind)
+            ? previous
+            : [...previous, windowKind]
+          : previous.filter((k) => k !== windowKind),
+      );
+    },
+    [],
+  );
+  const dismiss = useCallback(
+    (windowKind: MapWindowKind) => {
+      const child = popups.current[windowKind];
+      delete popups.current[windowKind];
+      child?.close();
+      markWindow(windowKind, false);
+      latest.current.onDismiss();
+    },
+    [markWindow],
+  );
   useEffect(() => {
     const bc = new BroadcastChannel(channelName.current);
     channel.current = bc;
     bc.onmessage = (event: MessageEvent<WindowMessage>) => {
       const message = event.data;
       if (detached) {
-        if (message.kind === "state") {
+        if (
+          message.kind === "state" &&
+          (!message.windowKind || message.windowKind === kind)
+        ) {
           latest.current.dispatch({ type: "reset", state: message.state });
           latest.current.onView(message.view);
           setSynchronized(true);
         }
-        if (message.kind === "shutdown") window.close();
+        if (
+          message.kind === "shutdown" &&
+          (!message.windowKind || message.windowKind === kind)
+        )
+          window.close();
       } else {
-        if (message.kind === "ready")
+        if (message.kind === "ready") {
+          markWindow(message.windowKind, true);
           bc.postMessage({
             kind: "state",
             state: latest.current.state,
             view: latest.current.view,
+            windowKind: message.windowKind,
           });
+        }
         if (message.kind === "action") latest.current.dispatch(message.action);
         if (message.kind === "view") latest.current.onView(message.view);
-        if (message.kind === "dock") dismiss();
-        if (message.kind === "hide") {
-          dismiss();
-          latest.current.onHide();
-        }
+        if (message.kind === "dock" || message.kind === "hide")
+          dismiss(message.windowKind);
       }
     };
     if (detached) {
-      document.title = "Vibe Learning · 学习地图";
-      bc.postMessage({ kind: "ready" });
+      document.title = `Vibe Learning · ${kind === "tree" ? "探索树" : kind === "knowledge" ? "知识图" : "学习地图"}`;
+      bc.postMessage({ kind: "ready", windowKind: kind });
     }
-    const nativeUnsubscribe = desktop?.onMapWindowChange((state) => {
+    const unsubscribe = desktop?.onMapWindowChange((state) => {
       if (detached) return;
-      setOpened(state.opened);
-      if (!state.opened) {
-        latest.current.onDismiss();
-        if (state.collapse) latest.current.onHide();
-      }
+      markWindow(state.kind, state.opened);
+      if (!state.opened) latest.current.onDismiss();
     });
     const unload = () => {
-      if (!desktop || !detached)
-        bc.postMessage({ kind: detached ? "dock" : "shutdown" });
-      if (!detached) popup.current?.close();
+      if (!detached) {
+        bc.postMessage({ kind: "shutdown" });
+        Object.values(popups.current).forEach((child) => child?.close());
+      } else if (!desktop) bc.postMessage({ kind: "dock", windowKind: kind });
     };
     window.addEventListener("beforeunload", unload);
     return () => {
       window.removeEventListener("beforeunload", unload);
-      nativeUnsubscribe?.();
+      unsubscribe?.();
       bc.close();
-      if (!detached) popup.current?.close();
+      if (!detached)
+        Object.values(popups.current).forEach((child) => child?.close());
     };
-  }, [detached, dismiss, desktop]);
+  }, [detached, kind, dismiss, markWindow, desktop]);
   useEffect(() => {
-    if (!detached && opened)
+    if (!detached && openedKinds.length)
       channel.current?.postMessage({
         kind: "state",
         state: options.state,
@@ -103,11 +130,10 @@ export function useMapWindow(options: {
       });
   }, [
     detached,
-    opened,
+    openedKinds,
     options.state,
     options.view.selectedConcept,
     options.view.selectionOrigin,
-    options.view.tab,
     options.view.relationMode,
   ]);
   useEffect(() => {
@@ -118,61 +144,67 @@ export function useMapWindow(options: {
     synchronized,
     options.view.selectedConcept,
     options.view.selectionOrigin,
-    options.view.tab,
     options.view.relationMode,
   ]);
   useEffect(() => {
-    if (!opened || desktop) return;
+    if (!openedKinds.length || desktop || detached) return;
     const timer = setInterval(() => {
-      if (popup.current?.closed) dismiss();
+      for (const k of openedKinds) if (popups.current[k]?.closed) dismiss(k);
     }, 500);
     return () => clearInterval(timer);
-  }, [opened, dismiss]);
-  const mapUrl = new URL(window.location.href);
-  mapUrl.search = new URLSearchParams({
-    view: "map",
-    channel: channelName.current,
-  }).toString();
-  const url = mapUrl.href;
-  const open = useCallback(async () => {
-    if (desktop) {
-      try {
-        const opened = await desktop.openMap(channelName.current);
-        setOpened(opened);
-        return opened;
-      } catch {
-        return false;
-      }
-    }
-    if (popup.current && !popup.current.closed) {
-      popup.current.focus();
-      return true;
-    }
-    const child = window.open(
-      url,
-      "_blank",
-      "popup=yes,width=540,height=780,resizable=yes,scrollbars=no",
-    );
-    if (!child) return false;
-    popup.current = child;
-    setOpened(true);
-    return true;
-  }, [url, desktop]);
-  const close = useCallback(
-    (collapse = false) => {
+  }, [openedKinds, dismiss, desktop, detached]);
+  const open = useCallback(
+    async (windowKind: MapWindowKind = "both") => {
       if (desktop) {
-        void desktop.dockMap(collapse);
+        try {
+          return await desktop.openMap(channelName.current, windowKind);
+        } catch {
+          return false;
+        }
+      }
+      const existing = popups.current[windowKind];
+      if (existing && !existing.closed) {
+        existing.focus();
+        return true;
+      }
+      const mapUrl = new URL(window.location.href);
+      mapUrl.search = new URLSearchParams({
+        view: "map",
+        channel: channelName.current,
+        mapKind: windowKind,
+      }).toString();
+      const child = window.open(
+        mapUrl.href,
+        "_blank",
+        "popup=yes,width=640,height=780,resizable=yes,scrollbars=no",
+      );
+      if (!child) return false;
+      for (const other of conflictingWindows(
+        Object.keys(popups.current) as MapWindowKind[],
+        windowKind,
+      ))
+        dismiss(other);
+      popups.current[windowKind] = child;
+      markWindow(windowKind, true);
+      return true;
+    },
+    [desktop, dismiss, markWindow],
+  );
+  const close = useCallback(
+    (windowKind?: MapWindowKind) => {
+      const target = windowKind ?? (detached ? kind : "all");
+      if (desktop) {
+        void desktop.dockMap(target);
         return;
       }
-      if (detached) {
-        channel.current?.postMessage({ kind: collapse ? "hide" : "dock" });
+      if (detached && target === kind) {
+        channel.current?.postMessage({ kind: "dock", windowKind: kind });
         setTimeout(() => window.close(), 40);
-      } else {
-        dismiss();
-        if (collapse) latest.current.onHide();
-      }
+      } else if (target === "all") {
+        Object.keys(popups.current).forEach((k) => dismiss(k as MapWindowKind));
+      } else dismiss(target);
     },
-    [detached, dismiss, desktop],
+    [desktop, detached, kind, dismiss],
   );
   const dispatch = useCallback(
     (action: Action) => {
@@ -181,5 +213,13 @@ export function useMapWindow(options: {
     },
     [detached],
   );
-  return { detached, opened, open, close, dispatch, url };
+  return {
+    detached,
+    kind,
+    openedKinds,
+    opened: openedKinds.length > 0,
+    open,
+    close,
+    dispatch,
+  };
 }

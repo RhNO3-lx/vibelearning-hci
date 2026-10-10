@@ -1,3 +1,4 @@
+import { coversGraph, type MapWindowKind } from "../mapWindows";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import {
   ReactFlow,
@@ -179,6 +180,7 @@ function FlowCanvas({
   kind,
   reduceMotion,
   ratio = 1,
+  autoFocus = true,
   onContextMenu,
   children,
 }: {
@@ -188,6 +190,7 @@ function FlowCanvas({
   kind: "tree" | "knowledge";
   reduceMotion: boolean;
   ratio?: number;
+  autoFocus?: boolean;
   onContextMenu?: (e: React.MouseEvent, id: string) => void;
   children?: React.ReactNode;
 }) {
@@ -197,9 +200,11 @@ function FlowCanvas({
   const positions = useRef<Record<string, { x: number; y: number }>>({});
   const container = useRef<HTMLDivElement>(null);
   const nodesRef = useRef(initialNodes),
-    motionRef = useRef(reduceMotion);
+    motionRef = useRef(reduceMotion),
+    focusEnabled = useRef(autoFocus);
   nodesRef.current = initialNodes;
   motionRef.current = reduceMotion;
+  focusEnabled.current = autoFocus;
   const focusKey = initialNodes
     .filter((n) => n.data.focus)
     .map((n) => n.id)
@@ -231,7 +236,9 @@ function FlowCanvas({
     }, 60);
   }, []);
   useEffect(() => {
-    const observer = new ResizeObserver(fit);
+    const observer = new ResizeObserver(() => {
+      if (focusEnabled.current) fit();
+    });
     if (container.current) observer.observe(container.current);
     return () => {
       observer.disconnect();
@@ -246,7 +253,9 @@ function FlowCanvas({
       })),
     );
   }, [initialNodes, setNodes]);
-  useEffect(fit, [focusKey, count, fit]);
+  useEffect(() => {
+    if (autoFocus) fit();
+  }, [focusKey, count, fit, autoFocus]);
   return (
     <div
       ref={container}
@@ -398,8 +407,10 @@ export function GraphPanel({
   onDock,
   onClose,
   onDrag,
-  onPopOut,
-  popOutUrl,
+  onOpenWindow,
+  onDockGraph,
+  detachedKinds,
+  fixedKind,
   external,
 }: {
   state: AppState;
@@ -425,8 +436,10 @@ export function GraphPanel({
   onDock: () => void;
   onClose: () => void;
   onDrag: (event: React.PointerEvent<HTMLDivElement>) => void;
-  onPopOut: () => void;
-  popOutUrl: string;
+  onOpenWindow: (kind: MapWindowKind) => void;
+  onDockGraph: (kind: "tree" | "knowledge") => void;
+  detachedKinds: MapWindowKind[];
+  fixedKind?: "tree" | "knowledge";
   external: boolean;
 }) {
   const session = activeSession(state),
@@ -641,25 +654,16 @@ export function GraphPanel({
       >
         <div className="panel-title">
           <Grip size={15} />
-          <strong>学习地图</strong>
+          <strong>
+            {fixedKind === "tree"
+              ? "探索树"
+              : fixedKind === "knowledge"
+                ? "知识图"
+                : "学习地图"}
+          </strong>
           <span>看见你的思考</span>
         </div>
         <div className="button-row">
-          {!external && (
-            <a
-              className="icon-button"
-              aria-label="在独立窗口打开地图"
-              title="在独立窗口打开地图"
-              href={popOutUrl}
-              target="_blank"
-              onClick={(e) => {
-                e.preventDefault();
-                onPopOut();
-              }}
-            >
-              <SquareArrowOutUpRight size={16} />
-            </a>
-          )}
           <button
             className="icon-button"
             title={floating ? "吸附到右侧" : "浮动学习地图"}
@@ -678,31 +682,66 @@ export function GraphPanel({
           </button>
         </div>
       </div>
-      <div className="graph-tabs" role="tablist" aria-label="学习地图视图">
-        <button
-          role="tab"
-          aria-selected={tab === "tree"}
-          className={tab === "tree" ? "selected" : ""}
-          onClick={() => setTab("tree")}
-        >
-          <GitBranch size={15} /> 探索树
-        </button>
-        <button
-          role="tab"
-          aria-selected={tab === "knowledge"}
-          className={tab === "knowledge" ? "selected" : ""}
-          onClick={() => setTab("knowledge")}
-        >
-          <Network size={15} /> 知识图
-        </button>
-        <button
-          role="tab"
-          aria-selected={tab === "both"}
-          className={tab === "both" ? "selected" : ""}
-          onClick={() => setTab("both")}
-        >
-          并看
-        </button>
+      {!fixedKind && (
+        <div className="graph-tabs" role="tablist" aria-label="学习地图视图">
+          <button
+            role="tab"
+            aria-selected={tab === "tree"}
+            className={tab === "tree" ? "selected" : ""}
+            onClick={() => setTab("tree")}
+          >
+            <GitBranch size={15} /> 探索树
+          </button>
+          <button
+            role="tab"
+            aria-selected={tab === "knowledge"}
+            className={tab === "knowledge" ? "selected" : ""}
+            onClick={() => setTab("knowledge")}
+          >
+            <Network size={15} /> 知识图
+          </button>
+          <button
+            role="tab"
+            aria-selected={tab === "both"}
+            className={tab === "both" ? "selected" : ""}
+            onClick={() => setTab("both")}
+          >
+            并看
+          </button>
+        </div>
+      )}
+      <div className="graph-window-tools">
+        <label title="关闭后保留关联高亮，另一张图的视角不自动跟随">
+          <input
+            type="checkbox"
+            checked={state.settings.trackView}
+            onChange={(e) =>
+              dispatch({
+                type: "settings",
+                patch: { trackView: e.target.checked },
+              })
+            }
+          />
+          视角追踪
+        </label>
+        {!external && (
+          <>
+            <button
+              className="text-button"
+              onClick={() => onOpenWindow("tree")}
+            >
+              <SquareArrowOutUpRight size={13} />
+              独立探索树
+            </button>
+            <button
+              className="text-button"
+              onClick={() => onOpenWindow("knowledge")}
+            >
+              <SquareArrowOutUpRight size={13} />
+              独立知识图
+            </button>
+          </>
+        )}
       </div>
       <div className="graph-toolbar">
         <span>
@@ -731,62 +770,86 @@ export function GraphPanel({
         ref={mapsContainer}
         className={`maps-container ${tab === "both" ? "both" : ""}`}
       >
-        {tab !== "knowledge" && (
-          <FlowCanvas
-            kind="tree"
-            initialNodes={tree.nodes}
-            edges={tree.edges}
-            onSelect={(id) => {
-              setCategory(null);
-              onSelectTree(id);
-            }}
-            onContextMenu={(e, id) => {
-              e.preventDefault();
-              const view =
-                mapsContainer.current?.ownerDocument.defaultView ?? window;
-              setEventMenu({
-                id,
-                x: Math.max(8, Math.min(e.clientX, view.innerWidth - 228)),
-                y: Math.max(8, Math.min(e.clientY, view.innerHeight - 75)),
-              });
-            }}
-            reduceMotion={state.settings.reduceMotion}
-            ratio={tab === "both" ? splitRatio : 1}
-          >
-            <div className="event-category-card" aria-label="事件类别">
-              {Object.entries(eventKinds).map(([id, kind]) => {
-                const Icon = kind.icon,
-                  count = state.turns.filter(
-                    (t) => t.sessionId === session.id && t.activity === id,
-                  ).length;
-                return (
-                  <div
-                    key={id}
-                    className="event-category-slot"
-                    title={count === 0 ? "该类别没有活动" : kind.label}
-                  >
-                    <button
-                      disabled={count === 0}
-                      aria-description={
-                        count === 0 ? "该类别没有活动" : undefined
-                      }
-                      className={category === id ? "selected" : ""}
-                      aria-pressed={category === id}
-                      aria-label={`高亮${kind.label}事件`}
-                      onClick={() => {
-                        setCategory(category === id ? null : (id as Activity));
-                      }}
-                    >
-                      <Icon size={17} style={{ color: kind.color }} />
-                      <span>{kind.label}</span>
-                      <small>{count}</small>
-                    </button>
-                  </div>
-                );
-              })}
+        {tab !== "knowledge" &&
+          (coversGraph(detachedKinds, "tree") ? (
+            <div className="detached-graph-placeholder">
+              <GitBranch size={23} />
+              <p>探索树已在独立窗口打开</p>
+              <button className="btn small" onClick={() => onDockGraph("tree")}>
+                吸附探索树
+              </button>
+              <button
+                className="text-button"
+                onClick={() =>
+                  onOpenWindow(detachedKinds.includes("both") ? "both" : "tree")
+                }
+              >
+                显示窗口
+              </button>
             </div>
-          </FlowCanvas>
-        )}
+          ) : (
+            <FlowCanvas
+              kind="tree"
+              autoFocus={
+                state.settings.trackView ||
+                selectionOrigin === "tree" ||
+                category !== null
+              }
+              initialNodes={tree.nodes}
+              edges={tree.edges}
+              onSelect={(id) => {
+                setCategory(null);
+                onSelectTree(id);
+              }}
+              onContextMenu={(e, id) => {
+                e.preventDefault();
+                const view =
+                  mapsContainer.current?.ownerDocument.defaultView ?? window;
+                setEventMenu({
+                  id,
+                  x: Math.max(8, Math.min(e.clientX, view.innerWidth - 228)),
+                  y: Math.max(8, Math.min(e.clientY, view.innerHeight - 75)),
+                });
+              }}
+              reduceMotion={state.settings.reduceMotion}
+              ratio={tab === "both" ? splitRatio : 1}
+            >
+              <div className="event-category-card" aria-label="事件类别">
+                {Object.entries(eventKinds).map(([id, kind]) => {
+                  const Icon = kind.icon,
+                    count = state.turns.filter(
+                      (t) => t.sessionId === session.id && t.activity === id,
+                    ).length;
+                  return (
+                    <div
+                      key={id}
+                      className="event-category-slot"
+                      title={count === 0 ? "该类别没有活动" : kind.label}
+                    >
+                      <button
+                        disabled={count === 0}
+                        aria-description={
+                          count === 0 ? "该类别没有活动" : undefined
+                        }
+                        className={category === id ? "selected" : ""}
+                        aria-pressed={category === id}
+                        aria-label={`高亮${kind.label}事件`}
+                        onClick={() => {
+                          setCategory(
+                            category === id ? null : (id as Activity),
+                          );
+                        }}
+                      >
+                        <Icon size={17} style={{ color: kind.color }} />
+                        <span>{kind.label}</span>
+                        <small>{count}</small>
+                      </button>
+                    </div>
+                  );
+                })}
+              </div>
+            </FlowCanvas>
+          ))}
         {tab === "both" && (
           <ResizeHandle
             orientation="horizontal"
@@ -813,49 +876,74 @@ export function GraphPanel({
             onReset={() => setSplitRatio(0.5)}
           />
         )}
-        {tab !== "tree" && (
-          <FlowCanvas
-            kind="knowledge"
-            reduceMotion={state.settings.reduceMotion}
-            ratio={tab === "both" ? 1 - splitRatio : 1}
-            initialNodes={knowledge.nodes}
-            edges={knowledge.edges}
-            onSelect={(id) => setSelectedConcept(id.split("::")[0])}
-          >
-            <div className="relation-mode-card" aria-label="知识图关系模式">
+        {tab !== "tree" &&
+          (coversGraph(detachedKinds, "knowledge") ? (
+            <div className="detached-graph-placeholder">
+              <Network size={23} />
+              <p>知识图已在独立窗口打开</p>
               <button
-                aria-pressed={relationMode === "prerequisite"}
-                onClick={() => setRelationMode("prerequisite")}
+                className="btn small"
+                onClick={() => onDockGraph("knowledge")}
               >
-                <Network size={15} />
-                先修关系
+                吸附知识图
               </button>
               <button
-                aria-pressed={relationMode === "recommended"}
-                onClick={() => setRelationMode("recommended")}
+                className="text-button"
+                onClick={() =>
+                  onOpenWindow(
+                    detachedKinds.includes("both") ? "both" : "knowledge",
+                  )
+                }
               >
-                <Route size={15} />
-                推荐路径
+                显示窗口
               </button>
-              <button
-                aria-pressed={relationMode === "both"}
-                onClick={() => setRelationMode("both")}
-              >
-                <Layers size={15} />
-                同时显示
-              </button>
-              <small>
-                {visibleIds.length} 个模块 ·{" "}
-                {weakComponents(
-                  visibleIds,
-                  visibleRelations.filter((r) => r.type === "recommended"),
-                ).length <= 1
-                  ? "推荐已连通"
-                  : "推荐未连通"}
-              </small>
             </div>
-          </FlowCanvas>
-        )}
+          ) : (
+            <FlowCanvas
+              kind="knowledge"
+              autoFocus={
+                state.settings.trackView || selectionOrigin === "knowledge"
+              }
+              reduceMotion={state.settings.reduceMotion}
+              ratio={tab === "both" ? 1 - splitRatio : 1}
+              initialNodes={knowledge.nodes}
+              edges={knowledge.edges}
+              onSelect={(id) => setSelectedConcept(id.split("::")[0])}
+            >
+              <div className="relation-mode-card" aria-label="知识图关系模式">
+                <button
+                  aria-pressed={relationMode === "prerequisite"}
+                  onClick={() => setRelationMode("prerequisite")}
+                >
+                  <Network size={15} />
+                  先修关系
+                </button>
+                <button
+                  aria-pressed={relationMode === "recommended"}
+                  onClick={() => setRelationMode("recommended")}
+                >
+                  <Route size={15} />
+                  推荐路径
+                </button>
+                <button
+                  aria-pressed={relationMode === "both"}
+                  onClick={() => setRelationMode("both")}
+                >
+                  <Layers size={15} />
+                  同时显示
+                </button>
+                <small>
+                  {visibleIds.length} 个模块 ·{" "}
+                  {weakComponents(
+                    visibleIds,
+                    visibleRelations.filter((r) => r.type === "recommended"),
+                  ).length <= 1
+                    ? "推荐已连通"
+                    : "推荐未连通"}
+                </small>
+              </div>
+            </FlowCanvas>
+          ))}
       </div>
       {eventMenu && (
         <div

@@ -1,8 +1,8 @@
 {
   "name": "vibe-learning-desktop",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
-  "description": "Vibe Learning native workspace and dockable map window",
+  "description": "Vibe Learning workspace with independent graph windows",
   "main": "main.cjs",
   "author": "Vibe Learning",
   "license": "UNLICENSED",

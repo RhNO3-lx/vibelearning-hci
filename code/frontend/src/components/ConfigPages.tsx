@@ -490,6 +490,22 @@ export function ConfigPages({
               </div>
               <label className="settings-row">
                 <span>
+                  <strong>视角追踪</strong>
+                  <small>选择节点时，让另一张图聚焦关联区域</small>
+                </span>
+                <input
+                  type="checkbox"
+                  checked={state.settings.trackView}
+                  onChange={(e) =>
+                    dispatch({
+                      type: "settings",
+                      patch: { trackView: e.target.checked },
+                    })
+                  }
+                />
+              </label>
+              <label className="settings-row">
+                <span>
                   <strong>减少动画</strong>
                   <small>使用更安静的交互过渡</small>
                 </span>

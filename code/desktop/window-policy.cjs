@@ -13,4 +13,12 @@ function validChannel(value) {
     /^vibelearning-map-[a-zA-Z0-9-]{1,100}$/.test(value)
   );
 }
-module.exports = { inDockZone, validChannel };
+function validKind(kind) {
+  return ["tree", "knowledge", "both"].includes(kind);
+}
+function conflicts(opened, next) {
+  return opened.filter(
+    (kind) => kind !== next && (next === "both" || kind === "both"),
+  );
+}
+module.exports = { inDockZone, validChannel, validKind, conflicts };
