@@ -2,3 +2,4 @@
 learning
 .deeptutor
 outputs
+.env.local
